@@ -187,8 +187,6 @@ header {
 </div>
 
 <script>
-let cart = [];
-
 let products = [
   {name:"Solar Lamp", price:12000, category:"solar", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
   {name:"Solar Panel", price:45000, category:"solar", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
@@ -197,6 +195,26 @@ let products = [
   {name:"Cable Wire", price:8000, category:"electrical", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
   {name:"Switch Socket", price:3000, category:"electrical", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"}
 ];
+
+function getCart(){
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function addToCart(product){
+  let cart = getCart();
+  cart.push(product);
+  saveCart(cart);
+  updateCartCount();
+}
+
+function updateCartCount(){
+  let cart = getCart();
+  document.getElementById("cart-count").innerText = cart.length;
+}
 
 function displayProducts(list){
   let container = document.getElementById("product-list");
@@ -209,7 +227,9 @@ function displayProducts(list){
         <div class="card-content">
           <h4>${p.name}</h4>
           <p class="price">₦${p.price}</p>
-          <button class="btn" onclick="addToCart()">Add to Cart</button>
+          <button class="btn" onclick='addToCart(${JSON.stringify(p)})'>
+            Add to Cart
+          </button>
         </div>
       </div>
     `;
@@ -220,16 +240,11 @@ function filterProducts(category){
   if(category === "all"){
     displayProducts(products);
   } else {
-    let filtered = products.filter(p => p.category === category);
-    displayProducts(filtered);
+    displayProducts(products.filter(p => p.category === category));
   }
 }
 
-function addToCart(){
-  cart.push(1);
-  document.getElementById("cart-count").innerText = cart.length;
-}
-
+updateCartCount();
 displayProducts(products);
 </script>
 
