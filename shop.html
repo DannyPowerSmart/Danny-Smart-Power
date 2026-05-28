@@ -251,6 +251,7 @@ function displayProducts(list){
 function filterProducts(category){
   if(category === "all"){
     displayProducts(allProducts);
+loadBanner();
   } else {
     displayProducts(allProducts.filter(p => p.category === category));
   }
