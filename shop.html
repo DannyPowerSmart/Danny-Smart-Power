@@ -12,7 +12,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #0f172a; /* SAME AS INDEX */
+  background: #0f172a;
   color: white;
 }
 
@@ -186,16 +186,27 @@ header {
   <div class="grid" id="product-list"></div>
 </div>
 
-<script>
-let products = [
-  {name:"Solar Lamp", price:12000, category:"solar", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
-  {name:"Solar Panel", price:45000, category:"solar", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
-  {name:"LED Bulb", price:2500, category:"lighting", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
-  {name:"Street Light", price:15000, category:"lighting", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
-  {name:"Cable Wire", price:8000, category:"electrical", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
-  {name:"Switch Socket", price:3000, category:"electrical", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"}
-];
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain: "danny-smart-power.firebaseapp.com",
+  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "danny-smart-power",
+  storageBucket: "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "649735645158",
+  appId: "1:649735645158:web:cff518b89721a163679827"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+let allProducts = [];
+
+/* CART FUNCTIONS */
 function getCart(){
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
@@ -216,6 +227,7 @@ function updateCartCount(){
   document.getElementById("cart-count").innerText = cart.length;
 }
 
+/* DISPLAY */
 function displayProducts(list){
   let container = document.getElementById("product-list");
   container.innerHTML = "";
@@ -236,16 +248,31 @@ function displayProducts(list){
   });
 }
 
+/* FILTER */
 function filterProducts(category){
   if(category === "all"){
-    displayProducts(products);
+    displayProducts(allProducts);
   } else {
-    displayProducts(products.filter(p => p.category === category));
+    displayProducts(allProducts.filter(p => p.category === category));
   }
 }
 
+/* LOAD FROM FIREBASE */
+function loadProducts(){
+  db.ref("products").on("value", snapshot => {
+    allProducts = [];
+
+    snapshot.forEach(child => {
+      allProducts.push(child.val());
+    });
+
+    displayProducts(allProducts);
+  });
+}
+
+/* INIT */
 updateCartCount();
-displayProducts(products);
+loadProducts();
 </script>
 
 </body>
