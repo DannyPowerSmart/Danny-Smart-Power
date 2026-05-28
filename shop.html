@@ -194,7 +194,6 @@ header {
 const firebaseConfig = {
   apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
   authDomain: "danny-smart-power.firebaseapp.com",
-  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
   projectId: "danny-smart-power",
   storageBucket: "danny-smart-power.firebasestorage.app",
   messagingSenderId: "649735645158",
@@ -202,7 +201,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const db = firebase.firestore();
 
 let allProducts = [];
 
@@ -257,13 +256,13 @@ function filterProducts(category){
   }
 }
 
-/* LOAD FROM FIREBASE */
+/* LOAD FROM FIRESTORE */
 function loadProducts(){
-  db.ref("products").on("value", snapshot => {
+  db.collection("products").get().then((querySnapshot) => {
     allProducts = [];
 
-    snapshot.forEach(child => {
-      allProducts.push(child.val());
+    querySnapshot.forEach((doc) => {
+      allProducts.push(doc.data());
     });
 
     displayProducts(allProducts);
@@ -274,6 +273,5 @@ function loadProducts(){
 updateCartCount();
 loadProducts();
 </script>
-
 </body>
 </html>
