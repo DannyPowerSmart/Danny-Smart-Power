@@ -272,6 +272,19 @@ function loadProducts(){
 /* INIT */
 updateCartCount();
 loadProducts();
+
+  function loadBanner(){
+  if(allProducts.length === 0) return;
+
+  let random = allProducts[Math.floor(Math.random() * allProducts.length)];
+
+  let banner = document.getElementById("banner");
+  let text = document.getElementById("banner-text");
+
+  banner.style.background = `url('${random.image}') center/cover`;
+  text.innerText = random.name + " ⚡";
+  }
+  
 </script>
 </body>
 </html>
