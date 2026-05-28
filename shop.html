@@ -233,7 +233,7 @@ function displayProducts(list){
 
   list.forEach(p=>{
     container.innerHTML += `
-      <div class="card">
+      <div class="card" onclick='openProduct(${JSON.stringify(p)})'>
         <img src="${p.image}">
         <div class="card-content">
           <h4>${p.name}</h4>
