@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - Danny Smart Power</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a; /* SAME AS INDEX */
+  color: white;
+}
+
+/* HEADER */
+header {
+  background: #020617;
+  padding: 15px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* CART */
+.cart {
+  position: relative;
+}
+
+.cart span {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #38bdf8;
+  color: black;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* BANNER */
+.banner {
+  margin: 20px 8%;
+  height: 200px;
+  border-radius: 12px;
+  background: url('https://images.unsplash.com/photo-1509395176047-4a66953fd231') center/cover;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.banner h2 {
+  font-size: 24px;
+}
+
+/* CATEGORY */
+.categories {
+  margin: 20px 8%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  padding: 8px 15px;
+  background: #020617;
+  border: 1px solid #38bdf8;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.cat-btn:hover {
+  background: #38bdf8;
+  color: black;
+}
+
+/* PRODUCTS */
+.container {
+  padding: 0 8% 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media(max-width: 900px){
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* CARD */
+.card {
+  background: #020617;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.card h4 {
+  font-size: 14px;
+}
+
+.price {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: #38bdf8;
+  border-radius: 6px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DSP</div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+
+    <div class="cart">
+      <a href="cart.html">Cart 🛒</a>
+      <span id="cart-count">0</span>
+    </div>
+  </div>
+</header>
+
+<!-- BANNER -->
+<div class="banner">
+  <h2>Reliable Electrical & Solar Products ⚡</h2>
+</div>
+
+<!-- CATEGORY -->
+<div class="categories">
+  <button class="cat-btn" onclick="filterProducts('all')">All</button>
+  <button class="cat-btn" onclick="filterProducts('solar')">Solar</button>
+  <button class="cat-btn" onclick="filterProducts('lighting')">Lighting</button>
+  <button class="cat-btn" onclick="filterProducts('electrical')">Electrical</button>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container">
+  <div class="grid" id="product-list"></div>
+</div>
+
+<script>
+let cart = [];
+
+let products = [
+  {name:"Solar Lamp", price:12000, category:"solar", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
+  {name:"Solar Panel", price:45000, category:"solar", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
+  {name:"LED Bulb", price:2500, category:"lighting", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
+  {name:"Street Light", price:15000, category:"lighting", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
+  {name:"Cable Wire", price:8000, category:"electrical", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"},
+  {name:"Switch Socket", price:3000, category:"electrical", image:"https://i.imgur.com/3ZQ3Q0P.jpeg"}
+];
+
+function displayProducts(list){
+  let container = document.getElementById("product-list");
+  container.innerHTML = "";
+
+  list.forEach(p=>{
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.image}">
+        <div class="card-content">
+          <h4>${p.name}</h4>
+          <p class="price">₦${p.price}</p>
+          <button class="btn" onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function filterProducts(category){
+  if(category === "all"){
+    displayProducts(products);
+  } else {
+    let filtered = products.filter(p => p.category === category);
+    displayProducts(filtered);
+  }
+}
+
+function addToCart(){
+  cart.push(1);
+  document.getElementById("cart-count").innerText = cart.length;
+}
+
+displayProducts(products);
+</script>
+
+</body>
+</html>
