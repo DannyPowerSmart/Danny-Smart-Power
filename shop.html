@@ -25,11 +25,43 @@ header {
   align-items: center;
 }
 
+/* MENU BUTTON */
+.menu-btn {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #020617;
+  padding: 20px;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.side-menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+/* LOGO */
 .logo {
   color: #38bdf8;
   font-weight: 600;
 }
 
+/* NAV */
 .nav {
   display: flex;
   gap: 20px;
@@ -61,10 +93,11 @@ header {
   margin: 20px 8%;
   height: 200px;
   border-radius: 12px;
-  background: url('https://images.unsplash.com/photo-1509395176047-4a66953fd231') center/cover;
   display: flex;
   align-items: center;
   padding: 20px;
+  background-size: cover;
+  background-position: center;
 }
 
 .banner h2 {
@@ -116,6 +149,7 @@ header {
   border-radius: 12px;
   overflow: hidden;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -130,10 +164,6 @@ header {
 
 .card-content {
   padding: 10px;
-}
-
-.card h4 {
-  font-size: 14px;
 }
 
 .price {
@@ -155,7 +185,19 @@ header {
 
 <body>
 
+<!-- SIDE MENU -->
+<div class="side-menu" id="menu">
+  <h3>Danny Smart Power</h3>
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- HEADER -->
 <header>
+  <span class="menu-btn" onclick="toggleMenu()">☰</span>
+
   <div class="logo">DSP</div>
 
   <div class="nav">
@@ -194,10 +236,7 @@ header {
 const firebaseConfig = {
   apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
   authDomain: "danny-smart-power.firebaseapp.com",
-  projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.firebasestorage.app",
-  messagingSenderId: "649735645158",
-  appId: "1:649735645158:web:cff518b89721a163679827"
+  projectId: "danny-smart-power"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -205,7 +244,12 @@ const db = firebase.firestore();
 
 let allProducts = [];
 
-/* CART FUNCTIONS */
+/* MENU */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+/* CART */
 function getCart(){
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
@@ -222,8 +266,7 @@ function addToCart(product){
 }
 
 function updateCartCount(){
-  let cart = getCart();
-  document.getElementById("cart-count").innerText = cart.length;
+  document.getElementById("cart-count").innerText = getCart().length;
 }
 
 /* DISPLAY */
@@ -238,7 +281,7 @@ function displayProducts(list){
         <div class="card-content">
           <h4>${p.name}</h4>
           <p class="price">₦${p.price}</p>
-          <button class="btn" onclick='addToCart(${JSON.stringify(p)})'>
+          <button class="btn" onclick='event.stopPropagation(); addToCart(${JSON.stringify(p)})'>
             Add to Cart
           </button>
         </div>
@@ -251,30 +294,14 @@ function displayProducts(list){
 function filterProducts(category){
   if(category === "all"){
     displayProducts(allProducts);
-loadBanner();
   } else {
     displayProducts(allProducts.filter(p => p.category === category));
   }
+  loadBanner();
 }
 
-/* LOAD FROM FIRESTORE */
-function loadProducts(){
-  db.collection("products").get().then((querySnapshot) => {
-    allProducts = [];
-
-    querySnapshot.forEach((doc) => {
-      allProducts.push(doc.data());
-    });
-
-    displayProducts(allProducts);
-  });
-}
-
-/* INIT */
-updateCartCount();
-loadProducts();
-
-  function loadBanner(){
+/* BANNER */
+function loadBanner(){
   if(allProducts.length === 0) return;
 
   let random = allProducts[Math.floor(Math.random() * allProducts.length)];
@@ -284,13 +311,31 @@ loadProducts();
 
   banner.style.background = `url('${random.image}') center/cover`;
   text.innerText = random.name + " ⚡";
-  }
+}
 
+/* LOAD FIRESTORE */
+function loadProducts(){
+  db.collection("products").get().then(snapshot=>{
+    allProducts = [];
+    snapshot.forEach(doc=>{
+      allProducts.push(doc.data());
+    });
+
+    displayProducts(allProducts);
+    loadBanner();
+  });
+}
+
+/* OPEN PRODUCT */
 function openProduct(product){
   localStorage.setItem("selectedProduct", JSON.stringify(product));
   window.location.href = "product.html";
 }
-  
+
+/* INIT */
+updateCartCount();
+loadProducts();
 </script>
+
 </body>
 </html>
