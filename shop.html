@@ -382,11 +382,17 @@ function openProduct(product){
 updateCartCount();
 loadProducts();
 
-  function openBannerProduct(){
-  if(!currentBannerProduct) return;
+  function searchProducts(){
+  let value = document.getElementById("search").value.toLowerCase();
 
-  localStorage.setItem("selectedProduct", JSON.stringify(currentBannerProduct));
-  window.location.href = "product.html";
+  let filtered = allProducts.filter(p => {
+    let name = p.name ? p.name.toLowerCase() : "";
+    let category = p.category ? p.category.toLowerCase() : "";
+
+    return name.includes(value) || category.includes(value);
+  });
+
+  displayProducts(filtered);
 }
 </script>
 
