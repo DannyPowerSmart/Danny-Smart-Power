@@ -323,6 +323,7 @@ function loadProducts(){
 
     displayProducts(allProducts);
     loadBanner();
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
   });
 }
 
