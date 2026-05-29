@@ -21,9 +21,10 @@ header {
   padding: 15px 8%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-a { color: white; text-decoration: none; }
+a { color: #38bdf8; text-decoration: none; }
 
 /* CONTAINER */
 .container {
@@ -35,16 +36,17 @@ a { color: white; text-decoration: none; }
   display: flex;
   gap: 15px;
   background: #020617;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  align-items: center;
 }
 
 .item img {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .info {
@@ -56,17 +58,46 @@ a { color: white; text-decoration: none; }
   font-weight: bold;
 }
 
-.remove {
-  background: red;
+/* QUANTITY */
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.qty button {
+  background: #38bdf8;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  color: white;
+  border-radius: 5px;
 }
 
-/* TOTAL */
+.qty span {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* REMOVE */
+.remove {
+  background: red;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: white;
+  border-radius: 6px;
+}
+
+/* TOTAL BOX */
+.summary {
+  margin-top: 20px;
+  background: #020617;
+  padding: 15px;
+  border-radius: 12px;
+}
+
 .total {
-  margin-top: 15px;
   font-size: 18px;
   font-weight: bold;
 }
@@ -74,11 +105,20 @@ a { color: white; text-decoration: none; }
 /* BUTTON */
 .btn {
   margin-top: 10px;
-  padding: 10px;
+  padding: 12px;
   background: #38bdf8;
   border: none;
   width: 100%;
   cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* EMPTY */
+.empty {
+  text-align: center;
+  margin-top: 50px;
+  color: #aaa;
 }
 </style>
 </head>
@@ -86,17 +126,18 @@ a { color: white; text-decoration: none; }
 <body>
 
 <header>
-  <h2>My Cart</h2>
-  <a href="shop.html">← Back to Shop</a>
+  <h2>My Cart 🛒</h2>
+  <a href="shop.html">← Continue Shopping</a>
 </header>
 
 <div class="container">
 
   <div id="cart-items"></div>
 
-  <p class="total" id="total"></p>
-
-  <button onclick="orderWhatsApp()" class="btn">Order on WhatsApp</button>
+  <div class="summary">
+    <p class="total" id="total"></p>
+    <button onclick="orderWhatsApp()" class="btn">Order on WhatsApp</button>
+  </div>
 
 </div>
 
@@ -109,6 +150,7 @@ function saveCart(cart){
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+/* DISPLAY CART */
 function displayCart(){
   let cart = getCart();
   let box = document.getElementById("cart-items");
@@ -116,24 +158,61 @@ function displayCart(){
 
   box.innerHTML = "";
 
+  if(cart.length === 0){
+    box.innerHTML = `<p class="empty">Your cart is empty 🛒</p>`;
+    document.getElementById("total").innerText = "";
+    return;
+  }
+
   cart.forEach((item, index)=>{
-    total += item.price;
+
+    if(!item.qty) item.qty = 1;
+
+    let subtotal = item.price * item.qty;
+    total += subtotal;
 
     box.innerHTML += `
       <div class="item">
         <img src="${item.image}">
+        
         <div class="info">
           <h4>${item.name}</h4>
           <p class="price">₦${item.price}</p>
-          <button class="remove" onclick="removeItem(${index})">Remove</button>
+
+          <div class="qty">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)">+</button>
+          </div>
+
+          <p>Subtotal: ₦${subtotal}</p>
         </div>
+
+        <button class="remove" onclick="removeItem(${index})">X</button>
       </div>
     `;
   });
 
   document.getElementById("total").innerText = "Total: ₦" + total;
+
+  saveCart(cart);
 }
 
+/* CHANGE QUANTITY */
+function changeQty(index, change){
+  let cart = getCart();
+
+  cart[index].qty = (cart[index].qty || 1) + change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index, 1);
+  }
+
+  saveCart(cart);
+  displayCart();
+}
+
+/* REMOVE */
 function removeItem(index){
   let cart = getCart();
   cart.splice(index, 1);
@@ -141,14 +220,18 @@ function removeItem(index){
   displayCart();
 }
 
+/* WHATSAPP ORDER */
 function orderWhatsApp(){
   let cart = getCart();
   let phone = "2349036470778";
-  let message = "Hello, I want to order:\n";
+  let message = "Hello, I want to order:\n\n";
 
   cart.forEach(item=>{
-    message += `- ${item.name} ₦${item.price}\n`;
+    message += `- ${item.name} x${item.qty} = ₦${item.price * item.qty}\n`;
   });
+
+  let total = cart.reduce((sum, item)=> sum + (item.price * item.qty), 0);
+  message += `\nTotal: ₦${total}`;
 
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
 }
