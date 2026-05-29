@@ -301,34 +301,7 @@ function filterProducts(category){
 }
 
 /* BANNER */
-let bannerInterval;
 
-function loadBanner(){
-  if(allProducts.length === 0) return;
-
-  let banner = document.getElementById("banner");
-  let text = document.getElementById("banner-text");
-
-  let index = 0;
-
-  // Clear old interval (important)
-  if(bannerInterval){
-    clearInterval(bannerInterval);
-  }
-
-  function changeBanner(){
-    let p = allProducts[index];
-
-    banner.style.background = `url('${p.image}') center/cover`;
-    text.innerText = p.name + " ⚡";
-
-    index = (index + 1) % allProducts.length;
-  }
-
-  changeBanner(); // first load
-
-  bannerInterval = setInterval(changeBanner, 4000); // change every 4s
-}
 
 /* LOAD FIRESTORE */
 function loadProducts(){
