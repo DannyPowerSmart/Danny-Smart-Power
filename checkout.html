@@ -178,8 +178,71 @@ function placeOrder(){
 
   let adminPhone = "2349036470778";
 
-  window.open(`https://wa.me/${adminPhone}?text=${message}`);
+  function placeOrder(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+  let note = document.getElementById("note").value;
 
+  if(!name || !phone || !address){
+    alert("Please fill all required fields");
+    return;
+  }
+
+  let cart = getCart();
+  let total = 0;
+
+  cart.forEach(item=>{
+    total += item.price * item.qty;
+  });
+
+  // 🔥 SAVE TO FIREBASE
+  db.collection("orders").add({
+    name: name,
+    phone: phone,
+    address: address,
+    note: note,
+    cart: cart,
+    total: total,
+    status: "pending",
+    createdAt: new Date()
+  })
+  .then(()=>{
+    alert("Order placed successfully!");
+
+    // WhatsApp message
+    let message = `*New Order*%0A%0A`;
+    message += `Name: ${name}%0A`;
+    message += `Phone: ${phone}%0A`;
+    message += `Address: ${address}%0A`;
+
+    if(note){
+      message += `Note: ${note}%0A`;
+    }
+
+    message += `%0A*Order Details*%0A`;
+
+    cart.forEach(item=>{
+      message += `- ${item.name} x${item.qty} = ₦${item.price * item.qty}%0A`;
+    });
+
+    message += `%0ATotal: ₦${total}`;
+
+    let adminPhone = "2349036470778";
+    window.open(`https://wa.me/${adminPhone}?text=${message}`);
+
+    // Clear cart
+    localStorage.removeItem("cart");
+    localStorage.removeItem("checkoutCart");
+
+    window.location.href = "orders.html";
+  })
+  .catch((error)=>{
+    console.error(error);
+    alert("Error placing order");
+  });
+  }
+  
   // SAVE ORDER
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
