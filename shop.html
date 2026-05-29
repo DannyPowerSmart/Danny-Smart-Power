@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+7<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -317,17 +317,16 @@ function loadBanner(){
   }
 
   function changeBanner(){
-    let p = allProducts[index];
+    let random = allProducts[Math.floor(Math.random() * allProducts.length)];
 
-    banner.style.background = `url('${p.image}') center/cover`;
-    text.innerText = p.name + " ⚡";
+    currentBannerProduct = random; // store current product
 
-    index = (index + 1) % allProducts.length;
+    banner.style.background = `url('${random.image}') center/cover`;
+    text.innerText = random.name + " ⚡";
   }
 
-  changeBanner(); // first load
-
-  bannerInterval = setInterval(changeBanner, 4000); // change every 4s
+  changeBanner();
+  bannerInterval = setInterval(changeBanner, 4000);
 }
 
 /* LOAD FIRESTORE */
