@@ -285,6 +285,11 @@ loadProducts();
   banner.style.background = `url('${random.image}') center/cover`;
   text.innerText = random.name + " ⚡";
   }
+
+function openProduct(product){
+  localStorage.setItem("selectedProduct", JSON.stringify(product));
+  window.location.href = "product.html";
+}
   
 </script>
 </body>
