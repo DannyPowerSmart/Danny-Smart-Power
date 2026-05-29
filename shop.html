@@ -352,6 +352,13 @@ function openProduct(product){
 /* INIT */
 updateCartCount();
 loadProducts();
+
+  function openBannerProduct(){
+  if(!currentBannerProduct) return;
+
+  localStorage.setItem("selectedProduct", JSON.stringify(currentBannerProduct));
+  window.location.href = "product.html";
+}
 </script>
 
 </body>
