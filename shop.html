@@ -324,7 +324,9 @@ function filterProducts(category){
   if(category === "all"){
     displayProducts(allProducts);
   } else {
-    displayProducts(allProducts.filter(p => p.category === category));
+    displayProducts(allProducts.filter(p => 
+  (p.category || "").toLowerCase() === category.toLowerCase()
+));
   }
   loadBanner();
 }
