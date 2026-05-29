@@ -105,7 +105,7 @@ function loadSimilar(){
   let all = JSON.parse(localStorage.getItem("allProducts")) || [];
   let box = document.getElementById("similar");
 
-  let filtered = all.filter(p => p.category === product.category && p.name !== product.name);
+  let filtered = all.filter(p =>p.category.toLowerCase() === product.category.toLowerCase() && p.name !== product.name);
 
   filtered.slice(0,3).forEach(p=>{
     box.innerHTML += `
