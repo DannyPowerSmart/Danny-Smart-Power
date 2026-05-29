@@ -380,6 +380,15 @@ function openProduct(product){
   localStorage.setItem("selectedProduct", JSON.stringify(product));
   window.location.href = "product.html";
 }
+  function openBannerProduct(){
+  if(!currentBannerProduct){
+    alert("Banner not ready yet");
+    return;
+  }
+
+  localStorage.setItem("selectedProduct", JSON.stringify(currentBannerProduct));
+  window.location.href = "product.html";
+}
 
 /* INIT */
 updateCartCount();
