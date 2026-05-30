@@ -21,6 +21,7 @@ header {
   padding: 15px 8%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 a { color: #38bdf8; text-decoration: none; }
@@ -46,10 +47,6 @@ input, textarea {
   border: none;
   background: #0f172a;
   color: white;
-}
-
-textarea {
-  resize: none;
 }
 
 /* SUMMARY */
@@ -94,7 +91,7 @@ textarea {
 <div class="container">
 
   <!-- CUSTOMER INFO -->
-  <form id="checkout-form">
+  <form>
     <h3>Delivery Details</h3>
 
     <input type="text" id="name" placeholder="Full Name" required>
@@ -109,12 +106,12 @@ textarea {
     <div id="summary-items"></div>
     <p class="total" id="total"></p>
 
-    <button class="btn" onclick="placeOrder()">Place Order</button>
+    <!-- IMPORTANT: type="button" -->
+    <button type="button" class="btn" onclick="placeOrder()">Place Order</button>
   </div>
 
 </div>
 
-<script>
 <script>
 function getCart(){
   return JSON.parse(localStorage.getItem("cart")) || [];
@@ -163,50 +160,46 @@ function placeOrder(){
   }
 
   let total = 0;
-  let message = `*New Order*%0A%0A`;
+  let message = "New Order\n\n";
 
-  message += `Name: ${name}%0A`;
-  message += `Phone: ${phone}%0A`;
-  message += `Address: ${address}%0A`;
+  message += "Name: " + name + "\n";
+  message += "Phone: " + phone + "\n";
+  message += "Address: " + address + "\n";
 
   if(note){
-    message += `Note: ${note}%0A`;
+    message += "Note: " + note + "\n";
   }
 
-  message += `%0A*Order Details*%0A`;
+  message += "\nOrder Details\n";
 
   cart.forEach(item=>{
     let subtotal = item.price * item.qty;
     total += subtotal;
 
-    message += `- ${item.name} x${item.qty} = ₦${subtotal}%0A`;
+    message += `- ${item.name} x${item.qty} = ₦${subtotal}\n`;
   });
 
-  message += `%0ATotal: ₦${total}`;
+  message += "\nTotal: ₦" + total;
 
-  /* ✅ SAVE TO LOCAL ORDER HISTORY */
+  /* SAVE ORDER */
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   orders.push({
-    name,
-    phone,
-    address,
-    note,
-    cart,
-    total,
+    name, phone, address, note, cart, total,
     date: new Date().toLocaleString()
   });
 
   localStorage.setItem("orders", JSON.stringify(orders));
 
-  /* ✅ OPEN WHATSAPP */
-  let adminPhone = "2349036470778";
-  window.open(`https://wa.me/${adminPhone}?text=${message}`);
+  /* OPEN WHATSAPP */
+  let phoneNumber = "2349036470778";
+  let url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
 
-  /* ✅ CLEAR CART */
+  /* CLEAR CART */
   localStorage.removeItem("cart");
 
-  /* ✅ REDIRECT */
+  /* REDIRECT */
   window.location.href = "orders.html";
 }
 
