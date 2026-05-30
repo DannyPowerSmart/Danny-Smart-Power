@@ -21,7 +21,6 @@ header {
   padding: 15px 8%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 a { color: #38bdf8; text-decoration: none; }
@@ -47,6 +46,10 @@ input, textarea {
   border: none;
   background: #0f172a;
   color: white;
+}
+
+textarea {
+  resize: none;
 }
 
 /* SUMMARY */
@@ -91,7 +94,7 @@ input, textarea {
 <div class="container">
 
   <!-- CUSTOMER INFO -->
-  <form>
+  <form id="checkout-form">
     <h3>Delivery Details</h3>
 
     <input type="text" id="name" placeholder="Full Name" required>
@@ -106,18 +109,16 @@ input, textarea {
     <div id="summary-items"></div>
     <p class="total" id="total"></p>
 
-    <!-- IMPORTANT: type="button" -->
-    <button type="button" class="btn" onclick="placeOrder()">Place Order</button>
+    <button class="btn" onclick="placeOrder()">Place Order</button>
   </div>
 
 </div>
 
 <script>
 function getCart(){
-  return JSON.parse(localStorage.getItem("cart")) || [];
+  return JSON.parse(localStorage.getItem("checkoutCart")) || [];
 }
 
-/* LOAD SUMMARY */
 function loadSummary(){
   let cart = getCart();
   let box = document.getElementById("summary-items");
@@ -140,12 +141,11 @@ function loadSummary(){
   document.getElementById("total").innerText = "Total: ₦" + total;
 }
 
-/* PLACE ORDER */
 function placeOrder(){
-  let name = document.getElementById("name").value.trim();
-  let phone = document.getElementById("phone").value.trim();
-  let address = document.getElementById("address").value.trim();
-  let note = document.getElementById("note").value.trim();
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+  let note = document.getElementById("note").value;
 
   if(!name || !phone || !address){
     alert("Please fill all required fields");
@@ -154,56 +154,37 @@ function placeOrder(){
 
   let cart = getCart();
 
-  if(cart.length === 0){
-    alert("Cart is empty");
-    return;
-  }
-
-  let total = 0;
-  let message = "New Order\n\n";
-
-  message += "Name: " + name + "\n";
-  message += "Phone: " + phone + "\n";
-  message += "Address: " + address + "\n";
+  let message = `*New Order*%0A%0A`;
+  message += `Name: ${name}%0A`;
+  message += `Phone: ${phone}%0A`;
+  message += `Address: ${address}%0A`;
 
   if(note){
-    message += "Note: " + note + "\n";
+    message += `Note: ${note}%0A`;
   }
 
-  message += "\nOrder Details\n";
+  message += `%0A*Order Details*%0A`;
+
+  let total = 0;
 
   cart.forEach(item=>{
     let subtotal = item.price * item.qty;
     total += subtotal;
 
-    message += `- ${item.name} x${item.qty} = ₦${subtotal}\n`;
+    message += `- ${item.name} x${item.qty} = ₦${subtotal}%0A`;
   });
 
-  message += "\nTotal: ₦" + total;
+  message += `%0ATotal: ₦${total}`;
 
-  /* SAVE ORDER */
-  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  let adminPhone = "2349036470778";
 
-  orders.push({
-    name, phone, address, note, cart, total,
-    date: new Date().toLocaleString()
-  });
+  window.open(`https://wa.me/${adminPhone}?text=${message}`);
 
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  /* OPEN WHATSAPP */
-  let phoneNumber = "2349036470778";
-  let url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-
-  /* CLEAR CART */
+  // Optional: clear cart after order
   localStorage.removeItem("cart");
-
-  /* REDIRECT */
-  window.location.href = "orders.html";
+  localStorage.removeItem("checkoutCart");
 }
 
-/* INIT */
 loadSummary();
 </script>
 
