@@ -28,6 +28,31 @@ a { color: #38bdf8; text-decoration: none; }
   padding: 20px 8%;
 }
 
+.banner {
+  height: 200px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: #020617;
+}
+
+.banner h2 {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 20px;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
 form {
   background: #020617;
   padding: 20px;
