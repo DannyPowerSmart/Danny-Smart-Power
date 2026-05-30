@@ -154,6 +154,25 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 
+  /* SERVICE BANNER DATA */
+let banners = [
+  {
+    type: "image",
+    src: "https://i.postimg.cc/pXkzCM9g/1664297728469.jpg",
+    text: "Professional Lighting Installation ⚡"
+  },
+  {
+    type: "image",
+    src: "https://i.postimg.cc/QxhhsH83/1665223017400.jpg",
+    text: "Reliable Electrical Repair 🔧"
+  },
+  {
+    type: "video",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    text: "Real Work in Progress 👷‍♂️"
+  }
+];
+
 /* LOCATION */
 function getLocation(){
   if(navigator.geolocation){
