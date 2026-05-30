@@ -15,7 +15,6 @@ body {
   margin: 0;
 }
 
-/* HEADER */
 header {
   background: #020617;
   padding: 15px 8%;
@@ -25,12 +24,10 @@ header {
 
 a { color: #38bdf8; text-decoration: none; }
 
-/* CONTAINER */
 .container {
   padding: 20px 8%;
 }
 
-/* FORM */
 form {
   background: #020617;
   padding: 20px;
@@ -47,7 +44,6 @@ input, select, textarea {
   color: white;
 }
 
-/* BUTTON */
 .btn {
   margin-top: 15px;
   padding: 12px;
@@ -57,6 +53,19 @@ input, select, textarea {
   cursor: pointer;
   border-radius: 8px;
   font-weight: bold;
+}
+
+.btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+/* IMAGE */
+.preview {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: none;
 }
 </style>
 </head>
@@ -70,28 +79,40 @@ input, select, textarea {
 
 <div class="container">
 
-  <form onsubmit="sendServiceRequest(event)">
-    <h3>Tell us what you need</h3>
+<form onsubmit="sendServiceRequest(event)">
+  <h3>Tell us what you need</h3>
 
-    <input type="text" id="name" placeholder="Full Name" required>
-    <input type="tel" id="phone" placeholder="Phone Number" required>
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="tel" id="phone" placeholder="Phone Number" required>
 
-    <select id="service">
-      <option value="">Select Service</option>
-      <option>Electrical Installation</option>
-      <option>Electrical Repair</option>
-      <option>Solar Installation</option>
-      <option>Lighting Setup</option>
-    </select>
+  <select id="service" required>
+    <option value="">Select Service</option>
+    <option>Electrical Installation</option>
+    <option>Electrical Repair</option>
+    <option>Solar Installation</option>
+    <option>Lighting Setup</option>
+  </select>
 
-    <input type="text" id="location" placeholder="Your Location (e.g Lagos)" required>
+  <input type="text" id="location" placeholder="Detecting your location..." required>
 
-    <textarea id="details" rows="4" placeholder="Describe your problem or request..." required></textarea>
+  <textarea id="details" rows="4" placeholder="Describe your problem..." required></textarea>
 
-    <button type="submit" class="btn">Request Service</button>
-  </form>
+  <!-- IMAGE -->
+  <input type="file" id="image" accept="image/*">
+  <img id="preview" class="preview">
+
+  <small style="color:#aaa;">
+    After submitting, image will be sent automatically 📸
+  </small>
+
+  <button type="submit" class="btn" id="submitBtn">Request Service</button>
+</form>
 
 </div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
 <script>
 const firebaseConfig = {
@@ -102,7 +123,6 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const storage = firebase.storage();
 
 /* LOCATION */
@@ -116,11 +136,15 @@ function getLocation(){
       .then(res=>res.json())
       .then(data=>{
         document.getElementById("location").value = data.display_name;
+      })
+      .catch(()=>{
+        document.getElementById("location").placeholder = "Enter location manually";
       });
+    }, ()=>{
+      document.getElementById("location").placeholder = "Allow location or type manually";
     });
   }
 }
-
 window.onload = getLocation;
 
 /* IMAGE PREVIEW */
@@ -144,28 +168,38 @@ document.getElementById("image").addEventListener("change", function(){
 function sendServiceRequest(e){
   e.preventDefault();
 
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
+  let btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.innerText = "Sending...";
+
+  let name = document.getElementById("name").value.trim();
+  let phone = document.getElementById("phone").value.trim();
   let service = document.getElementById("service").value;
-  let location = document.getElementById("location").value;
-  let details = document.getElementById("details").value;
+  let location = document.getElementById("location").value.trim();
+  let details = document.getElementById("details").value.trim();
 
   if(!name || !phone || !service || !location || !details){
     alert("Fill all fields");
+    btn.disabled = false;
+    btn.innerText = "Request Service";
     return;
   }
 
-  // 🔥 IF IMAGE EXISTS → UPLOAD
   if(selectedImage){
     let fileName = Date.now() + "_" + selectedImage.name;
-
     let ref = storage.ref("fault-images/" + fileName);
 
-    ref.put(selectedImage).then(()=>{
-      ref.getDownloadURL().then(url=>{
-        sendWhatsApp(name, phone, service, location, details, url);
-      });
+    ref.put(selectedImage)
+    .then(()=> ref.getDownloadURL())
+    .then(url=>{
+      sendWhatsApp(name, phone, service, location, details, url);
+    })
+    .catch(err=>{
+      console.error(err);
+      alert("Image upload failed");
+      resetBtn();
     });
+
   } else {
     sendWhatsApp(name, phone, service, location, details, null);
   }
@@ -186,13 +220,21 @@ function sendWhatsApp(name, phone, service, location, details, imageUrl){
   }
 
   let admin = "2349036470778";
-
   window.open(`https://wa.me/${admin}?text=${message}`);
 
   alert("Request sent successfully!");
 
   document.querySelector("form").reset();
   document.getElementById("preview").style.display = "none";
+
+  resetBtn();
+}
+
+/* RESET BUTTON */
+function resetBtn(){
+  let btn = document.getElementById("submitBtn");
+  btn.disabled = false;
+  btn.innerText = "Request Service";
 }
 </script>
 
