@@ -284,6 +284,40 @@ function resetBtn(){
   btn.disabled = false;
   btn.innerText = "Request Service";
 }
+
+  let bannerIndex = 0;
+
+function loadServiceBanner(){
+  let banner = document.getElementById("banner");
+  let video = document.getElementById("banner-video");
+  let text = document.getElementById("banner-text");
+
+  function changeBanner(){
+    let item = banners[bannerIndex];
+
+    if(item.type === "image"){
+      video.style.display = "none";
+      banner.style.background = `url('${item.src}') center/cover`;
+    }
+
+    if(item.type === "video"){
+      banner.style.background = "none";
+      video.style.display = "block";
+      video.src = item.src;
+      video.play();
+    }
+
+    text.innerText = item.text;
+
+    bannerIndex++;
+    if(bannerIndex >= banners.length){
+      bannerIndex = 0;
+    }
+  }
+
+  changeBanner();
+  setInterval(changeBanner, 5000);
+}
 </script>
 
 </body>
