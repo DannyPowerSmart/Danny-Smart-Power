@@ -94,32 +94,105 @@ input, select, textarea {
 </div>
 
 <script>
+const firebaseConfig = {
+  apiKey: "YOUR KEY",
+  authDomain: "YOUR DOMAIN",
+  projectId: "YOUR ID",
+  storageBucket: "YOUR BUCKET"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
+
+/* LOCATION */
+function getLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(pos=>{
+      let lat = pos.coords.latitude;
+      let lon = pos.coords.longitude;
+
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+      .then(res=>res.json())
+      .then(data=>{
+        document.getElementById("location").value = data.display_name;
+      });
+    });
+  }
+}
+
+window.onload = getLocation;
+
+/* IMAGE PREVIEW */
+let selectedImage = null;
+
+document.getElementById("image").addEventListener("change", function(){
+  selectedImage = this.files[0];
+
+  if(selectedImage){
+    let reader = new FileReader();
+    reader.onload = e=>{
+      let preview = document.getElementById("preview");
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(selectedImage);
+  }
+});
+
+/* MAIN FUNCTION */
 function sendServiceRequest(e){
   e.preventDefault();
 
-  let name = document.getElementById("name").value.trim();
-  let phone = document.getElementById("phone").value.trim();
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
   let service = document.getElementById("service").value;
-  let location = document.getElementById("location").value.trim();
-  let details = document.getElementById("details").value.trim();
+  let location = document.getElementById("location").value;
+  let details = document.getElementById("details").value;
 
   if(!name || !phone || !service || !location || !details){
-    alert("Please fill all fields");
+    alert("Fill all fields");
     return;
   }
+
+  // 🔥 IF IMAGE EXISTS → UPLOAD
+  if(selectedImage){
+    let fileName = Date.now() + "_" + selectedImage.name;
+
+    let ref = storage.ref("fault-images/" + fileName);
+
+    ref.put(selectedImage).then(()=>{
+      ref.getDownloadURL().then(url=>{
+        sendWhatsApp(name, phone, service, location, details, url);
+      });
+    });
+  } else {
+    sendWhatsApp(name, phone, service, location, details, null);
+  }
+}
+
+/* SEND TO WHATSAPP */
+function sendWhatsApp(name, phone, service, location, details, imageUrl){
 
   let message = `⚡ *Service Request*%0A%0A`;
   message += `Name: ${name}%0A`;
   message += `Phone: ${phone}%0A`;
   message += `Service: ${service}%0A`;
   message += `Location: ${location}%0A`;
-  message += `Details: ${details}`;
+  message += `Details: ${details}%0A`;
 
-  let adminNumber = "2349036470778";
+  if(imageUrl){
+    message += `%0A📸 Image: ${imageUrl}`;
+  }
 
-  let url = `https://wa.me/${adminNumber}?text=${message}`;
+  let admin = "2349036470778";
 
-  window.open(url, "_blank");
+  window.open(`https://wa.me/${admin}?text=${message}`);
+
+  alert("Request sent successfully!");
+
+  document.querySelector("form").reset();
+  document.getElementById("preview").style.display = "none";
 }
 </script>
 
