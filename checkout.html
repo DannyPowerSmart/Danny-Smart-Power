@@ -115,10 +115,12 @@ textarea {
 </div>
 
 <script>
+<script>
 function getCart(){
-  return JSON.parse(localStorage.getItem("checkoutCart")) || [];
+  return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
+/* LOAD SUMMARY */
 function loadSummary(){
   let cart = getCart();
   let box = document.getElementById("summary-items");
@@ -141,11 +143,12 @@ function loadSummary(){
   document.getElementById("total").innerText = "Total: ₦" + total;
 }
 
+/* PLACE ORDER */
 function placeOrder(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
-  let note = document.getElementById("note").value;
+  let name = document.getElementById("name").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let address = document.getElementById("address").value.trim();
+  let note = document.getElementById("note").value.trim();
 
   if(!name || !phone || !address){
     alert("Please fill all required fields");
@@ -154,7 +157,14 @@ function placeOrder(){
 
   let cart = getCart();
 
+  if(cart.length === 0){
+    alert("Cart is empty");
+    return;
+  }
+
+  let total = 0;
   let message = `*New Order*%0A%0A`;
+
   message += `Name: ${name}%0A`;
   message += `Phone: ${phone}%0A`;
   message += `Address: ${address}%0A`;
@@ -165,8 +175,6 @@ function placeOrder(){
 
   message += `%0A*Order Details*%0A`;
 
-  let total = 0;
-
   cart.forEach(item=>{
     let subtotal = item.price * item.qty;
     total += subtotal;
@@ -176,93 +184,33 @@ function placeOrder(){
 
   message += `%0ATotal: ₦${total}`;
 
+  /* ✅ SAVE TO LOCAL ORDER HISTORY */
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  orders.push({
+    name,
+    phone,
+    address,
+    note,
+    cart,
+    total,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  /* ✅ OPEN WHATSAPP */
   let adminPhone = "2349036470778";
+  window.open(`https://wa.me/${adminPhone}?text=${message}`);
 
-  function placeOrder(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
-  let note = document.getElementById("note").value;
-
-  if(!name || !phone || !address){
-    alert("Please fill all required fields");
-    return;
-  }
-
-  let cart = getCart();
-  let total = 0;
-
-  cart.forEach(item=>{
-    total += item.price * item.qty;
-  });
-
-  // 🔥 SAVE TO FIREBASE
-  db.collection("orders").add({
-    name: name,
-    phone: phone,
-    address: address,
-    note: note,
-    cart: cart,
-    total: total,
-    status: "pending",
-    createdAt: new Date()
-  })
-  .then(()=>{
-    alert("Order placed successfully!");
-
-    // WhatsApp message
-    let message = `*New Order*%0A%0A`;
-    message += `Name: ${name}%0A`;
-    message += `Phone: ${phone}%0A`;
-    message += `Address: ${address}%0A`;
-
-    if(note){
-      message += `Note: ${note}%0A`;
-    }
-
-    message += `%0A*Order Details*%0A`;
-
-    cart.forEach(item=>{
-      message += `- ${item.name} x${item.qty} = ₦${item.price * item.qty}%0A`;
-    });
-
-    message += `%0ATotal: ₦${total}`;
-
-    let adminPhone = "2349036470778";
-    window.open(`https://wa.me/${adminPhone}?text=${message}`);
-
-    // Clear cart
-    localStorage.removeItem("cart");
-    localStorage.removeItem("checkoutCart");
-
-    window.location.href = "orders.html";
-  })
-  .catch((error)=>{
-    console.error(error);
-    alert("Error placing order");
-  });
-  }
-  
-  // SAVE ORDER
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-orders.push({
-  name,
-  phone,
-  address,
-  note,
-  cart,
-  total,
-  date: new Date().toLocaleString()
-});
-
-localStorage.setItem("orders", JSON.stringify(orders));
-
-  // Optional: clear cart after order
+  /* ✅ CLEAR CART */
   localStorage.removeItem("cart");
-  localStorage.removeItem("checkoutCart");
+
+  /* ✅ REDIRECT */
+  window.location.href = "orders.html";
 }
 
+/* INIT */
 loadSummary();
 </script>
 
