@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Service - Danny Smart Power</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a;
+  color: white;
+  margin: 0;
+}
+
+/* HEADER */
+header {
+  background: #020617;
+  padding: 15px 8%;
+  display: flex;
+  justify-content: space-between;
+}
+
+a { color: #38bdf8; text-decoration: none; }
+
+/* CONTAINER */
+.container {
+  padding: 20px 8%;
+}
+
+/* FORM */
+form {
+  background: #020617;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #0f172a;
+  color: white;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 15px;
+  padding: 12px;
+  background: #38bdf8;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>⚡ Request Electrical Service</h2>
+  <a href="shop.html">← Back</a>
+</header>
+
+<div class="container">
+
+  <form onsubmit="sendServiceRequest(event)">
+    <h3>Tell us what you need</h3>
+
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+
+    <select id="service">
+      <option value="">Select Service</option>
+      <option>Electrical Installation</option>
+      <option>Electrical Repair</option>
+      <option>Solar Installation</option>
+      <option>Lighting Setup</option>
+    </select>
+
+    <input type="text" id="location" placeholder="Your Location (e.g Lagos)" required>
+
+    <textarea id="details" rows="4" placeholder="Describe your problem or request..." required></textarea>
+
+    <button type="submit" class="btn">Request Service</button>
+  </form>
+
+</div>
+
+<script>
+function sendServiceRequest(e){
+  e.preventDefault();
+
+  let name = document.getElementById("name").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let service = document.getElementById("service").value;
+  let location = document.getElementById("location").value.trim();
+  let details = document.getElementById("details").value.trim();
+
+  if(!name || !phone || !service || !location || !details){
+    alert("Please fill all fields");
+    return;
+  }
+
+  let message = `⚡ *Service Request*%0A%0A`;
+  message += `Name: ${name}%0A`;
+  message += `Phone: ${phone}%0A`;
+  message += `Service: ${service}%0A`;
+  message += `Location: ${location}%0A`;
+  message += `Details: ${details}`;
+
+  let adminNumber = "2349036470778";
+
+  let url = `https://wa.me/${adminNumber}?text=${message}`;
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
