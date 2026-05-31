@@ -194,6 +194,10 @@ function getLocation(){
   }
 }
 window.onload = getLocation;
+  window.onload = function(){
+  getLocation();
+  loadServiceBanner();
+};
 
 /* IMAGE PREVIEW */
 let selectedImage = null;
