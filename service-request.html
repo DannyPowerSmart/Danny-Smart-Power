@@ -3,118 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request Service</title>
+<title>Request Service - DSP</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-  margin: 0;
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0f172a;
+  color:white;
+  margin:0;
 }
 
 /* HEADER */
-header {
-  background: #020617;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
+header{
+  background:#020617;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-a { color: #38bdf8; text-decoration: none; }
+header a{
+  color:#38bdf8;
+  text-decoration:none;
+  font-size:18px;
+}
 
-.container {
-  padding: 15px;
+/* CONTAINER */
+.container{
+  padding:20px;
 }
 
 /* SEARCH */
-.search {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #020617;
-  color: white;
-  margin-bottom: 15px;
+.search{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background:#020617;
+  color:white;
+  margin-bottom:20px;
 }
 
 /* BANNER */
-.banner {
-  height: 180px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 15px;
-  position: relative;
-  cursor: pointer;
+.banner{
+  height:180px;
+  border-radius:12px;
+  margin-bottom:20px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
 }
 
-.banner img, .banner video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.banner img,
+.banner video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.banner h3 {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+/* BUTTON BOX */
+.card{
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:15px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-/* CHAT */
-.chat-box {
-  background: #38bdf8;
-  padding: 12px;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 15px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* WORK */
-.work {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.work div {
-  background: #020617;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-}
-
-/* FORM */
-form {
-  background: #020617;
-  padding: 15px;
-  border-radius: 12px;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #0f172a;
-  color: white;
-}
-
-.btn {
-  margin-top: 15px;
-  padding: 12px;
-  background: #38bdf8;
-  border: none;
-  width: 100%;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
+.card:hover{
+  background:#38bdf8;
+  color:black;
 }
 </style>
 </head>
@@ -122,116 +84,95 @@ input, select, textarea {
 <body>
 
 <header>
-  <h3>⚡ Request Service</h3>
-  <a href="index.html">← Back</a>
+  <a href="index.html">←</a>
+  <h3>Request Service</h3>
 </header>
 
 <div class="container">
 
-<!-- 🔍 SEARCH -->
-<input class="search" placeholder="Search your electrical problem...">
+  <!-- SEARCH -->
+  <input type="text" class="search" placeholder="Search...">
 
-<!-- 🎬 BANNER -->
-<div class="banner" onclick="bannerClick()">
-  <img id="banner-img">
-  <h3 id="banner-text"></h3>
-</div>
+  <!-- RANDOM BANNER -->
+  <div class="banner" id="banner" onclick="openBanner()">
+    <img id="banner-img">
+    <video id="banner-video" muted loop style="display:none;"></video>
+  </div>
 
-<!-- 💬 CHAT -->
-<div class="chat-box" onclick="chatDanny()">
-  💬 Talk to Danny (Quick Help)
-</div>
+  <!-- TALK TO DANNY -->
+  <div class="card" onclick="talkToDanny()">
+    Talk to Danny
+  </div>
 
-<!-- 🧱 SAMPLE WORK -->
-<div class="work">
-  <div onclick="selectService('repair')">🔧 Repair</div>
-  <div onclick="selectService('installation')">⚡ Installation</div>
-  <div onclick="selectService('solar')">☀️ Solar</div>
-  <div onclick="selectService('lighting')">💡 Lighting</div>
-</div>
-
-<!-- 📋 FORM -->
-<form onsubmit="submitForm(event)">
-
-<input type="text" id="name" placeholder="Full Name" required>
-<input type="tel" id="phone" placeholder="Phone Number" required>
-
-<select id="service" required>
-  <option value="">Select Service</option>
-  <option value="repair">Repair</option>
-  <option value="installation">Installation</option>
-  <option value="solar">Solar</option>
-  <option value="lighting">Lighting</option>
-</select>
-
-<input type="text" id="location" placeholder="Detecting location..." required>
-
-<textarea id="details" placeholder="Describe your issue..." required></textarea>
-
-<button class="btn">Request Service</button>
-
-</form>
+  <!-- SAMPLE WORK -->
+  <div class="card" onclick="openWork()">
+    Sample of Work That's Done
+  </div>
 
 </div>
 
 <script>
-
-/* 🔥 BANNER */
+/* BANNER DATA */
 let banners = [
-  {img:"https://i.postimg.cc/pXkzCM9g/1664297728469.jpg", text:"Lighting Installation"},
-  {img:"https://i.postimg.cc/QxhhsH83/1665223017400.jpg", text:"Electrical Repair"}
+  {
+    type:"image",
+    src:"https://i.postimg.cc/pXkzCM9g/1664297728469.jpg",
+    link:"https://wa.me/2349036470778"
+  },
+  {
+    type:"image",
+    src:"https://i.postimg.cc/QxhhsH83/1665223017400.jpg",
+    link:"https://wa.me/2349036470778"
+  },
+  {
+    type:"video",
+    src:"https://www.w3schools.com/html/mov_bbb.mp4",
+    link:"https://wa.me/2349036470778"
+  }
 ];
 
-let i = 0;
+let currentBanner = {};
 
-function rotateBanner(){
-  document.getElementById("banner-img").src = banners[i].img;
-  document.getElementById("banner-text").innerText = banners[i].text;
-  i = (i + 1) % banners.length;
+/* LOAD RANDOM BANNER */
+function loadBanner(){
+  let random = Math.floor(Math.random()*banners.length);
+  currentBanner = banners[random];
+
+  let img = document.getElementById("banner-img");
+  let video = document.getElementById("banner-video");
+
+  if(currentBanner.type === "image"){
+    img.style.display="block";
+    video.style.display="none";
+    img.src = currentBanner.src;
+  }else{
+    img.style.display="none";
+    video.style.display="block";
+    video.src = currentBanner.src;
+    video.play();
+  }
 }
-
-setInterval(rotateBanner, 4000);
-rotateBanner();
 
 /* CLICK BANNER */
-function bannerClick(){
-  alert("This is our recent work 🔥");
+function openBanner(){
+  if(currentBanner.link){
+    window.open(currentBanner.link,"_blank");
+  }
 }
 
-/* CHAT */
-function chatDanny(){
-  window.open("https://wa.me/2349036470778?text=Hello I need electrical help");
+/* TALK TO DANNY */
+function talkToDanny(){
+  let message = "Hello Danny, I need electrical service";
+  window.open("https://wa.me/2349036470778?text="+encodeURIComponent(message));
 }
 
-/* SELECT SERVICE */
-function selectService(type){
-  document.getElementById("service").value = type;
+/* SAMPLE WORK */
+function openWork(){
+  window.location.href = "work.html"; // create later
 }
 
-/* LOCATION */
-navigator.geolocation.getCurrentPosition(pos=>{
-  fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`)
-  .then(res=>res.json())
-  .then(data=>{
-    document.getElementById("location").value = data.display_name;
-  });
-});
-
-/* SUBMIT */
-function submitForm(e){
-  e.preventDefault();
-
-  let name = name.value;
-  let phone = phone.value;
-  let service = service.value;
-  let location = location.value;
-  let details = details.value;
-
-  let msg = `Service Request\n\nName:${name}\nPhone:${phone}\nService:${service}\nLocation:${location}\nDetails:${details}`;
-
-  window.open("https://wa.me/2349036470778?text=" + encodeURIComponent(msg));
-}
-
+/* INIT */
+loadBanner();
 </script>
 
 </body>
