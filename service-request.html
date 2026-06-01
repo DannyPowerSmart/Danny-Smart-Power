@@ -61,14 +61,12 @@ header {
   display: flex;
   align-items: center;
   padding: 20px;
-  background: #020617;
   cursor: pointer;
 }
 
 .banner h2 {
   position: absolute;
   z-index: 2;
-  font-size: 18px;
 }
 
 .banner::after {
@@ -78,7 +76,7 @@ header {
   background: rgba(0,0,0,0.4);
 }
 
-/* BUTTONS */
+/* BUTTON */
 .card-btn {
   background: #020617;
   padding: 15px;
@@ -94,7 +92,7 @@ header {
   color: black;
 }
 
-/* GRID FOR PROJECTS */
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -125,17 +123,17 @@ header {
     <h2 id="banner-text"></h2>
   </div>
 
-  <!-- CONTACT SUPPORT -->
+  <!-- CHAT SUPPORT -->
   <div class="card-btn" onclick="contactSupport()">
-     Chat with Danny 💬  
+     💬 Chat with Support  
   </div>
 
-  <!-- COMPLETED PROJECTS -->
+  <!-- PROJECTS -->
   <div class="card-btn" onclick="showProjects()">
     🛠 Our Completed Projects
   </div>
 
-  <!-- PROJECTS DISPLAY -->
+  <!-- PROJECT IMAGES -->
   <div id="projects" class="grid" style="display:none;">
     <img src="https://i.postimg.cc/pXkzCM9g/1664297728469.jpg">
     <img src="https://i.postimg.cc/QxhhsH83/1665223017400.jpg">
@@ -144,29 +142,35 @@ header {
 </div>
 
 <script>
-/* SEARCH FUNCTION */
+
+/* SEARCH */
 function searchService(){
   let input = document.getElementById("search").value.toLowerCase();
 
-  let support = document.querySelectorAll(".card-btn")[0];
-  let project = document.querySelectorAll(".card-btn")[1];
+  let cards = document.querySelectorAll(".card-btn");
 
-  support.style.display = support.innerText.toLowerCase().includes(input) ? "block" : "none";
-  project.style.display = project.innerText.toLowerCase().includes(input) ? "block" : "none";
+  cards.forEach(card=>{
+    card.style.display = card.innerText.toLowerCase().includes(input) ? "block" : "none";
+  });
 }
 
-/* CONTACT SUPPORT */
+/* 💬 CONTACT SUPPORT (UPDATED TO CHAT SYSTEM) */
 function contactSupport(){
-  let msg = "Hello, I need electrical service support.";
+
+  // Save first message for chat page
+  localStorage.setItem("chatMessage", "Hello, I need electrical service support.");
+
+  // Go to chat page
   window.location.href = "chat.html";
-  
+}
+
 /* SHOW PROJECTS */
 function showProjects(){
   let box = document.getElementById("projects");
   box.style.display = box.style.display === "none" ? "grid" : "none";
 }
 
-/* BANNER SYSTEM */
+/* BANNER */
 let banners = [
   {
     img: "https://i.postimg.cc/pXkzCM9g/1664297728469.jpg",
@@ -198,6 +202,7 @@ loadBanner();
 function openBanner(){
   window.open(banners[index - 1].img, "_blank");
 }
+
 </script>
 
 </body>
