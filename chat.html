@@ -12,7 +12,6 @@ body{
   margin:0;
   font-family:Poppins;
   background:#0f172a;
-  color:white;
   display:flex;
   flex-direction:column;
   height:100vh;
@@ -21,35 +20,53 @@ body{
 /* HEADER */
 header{
   background:#020617;
+  color:white;
   padding:12px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+}
+
+.back{
+  font-size:20px;
+  cursor:pointer;
 }
 
 .title{
-  font-weight:bold;
+  font-weight:600;
 }
 
-/* MENU */
+.menu-btn{
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* DROPDOWN MENU */
 .menu{
   position:absolute;
-  right:10px;
   top:60px;
+  right:10px;
   background:#020617;
   border-radius:10px;
   display:none;
-  padding:10px;
+  overflow:hidden;
+  z-index:10;
 }
 
 .menu a{
   display:block;
-  padding:10px;
+  padding:12px;
   color:white;
   text-decoration:none;
+  border-bottom:1px solid #111;
 }
 
-/* CHAT AREA */
+.menu a:hover{
+  background:#38bdf8;
+  color:black;
+}
+
+/* CHAT */
 .chat-box{
   flex:1;
   overflow-y:auto;
@@ -59,9 +76,9 @@ header{
 /* MESSAGE */
 .msg{
   max-width:75%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:10px;
+  padding:10px 12px;
+  margin:8px 0;
+  border-radius:12px;
   position:relative;
   font-size:14px;
 }
@@ -74,21 +91,25 @@ header{
 
 .admin{
   background:#1e293b;
+  color:white;
 }
 
 /* TICKS */
 .ticks{
   font-size:10px;
   position:absolute;
-  bottom:3px;
+  bottom:4px;
   right:8px;
 }
 
-/* INPUT */
+/* INPUT AREA */
 .input-area{
   display:flex;
+  align-items:center;
   padding:10px;
   background:#020617;
+  position:sticky;
+  bottom:0;
 }
 
 .input-area input{
@@ -96,21 +117,29 @@ header{
   padding:10px;
   border-radius:20px;
   border:none;
+  outline:none;
 }
 
-.btn{
-  margin-left:5px;
-  background:#38bdf8;
-  border:none;
-  border-radius:50%;
+.icon-btn{
   width:40px;
   height:40px;
+  border-radius:50%;
+  border:none;
+  margin:0 5px;
+  background:#38bdf8;
   cursor:pointer;
+  font-size:18px;
 }
 
 /* FILE */
 #file{
   display:none;
+}
+
+/* IMAGE MESSAGE */
+.msg img{
+  width:100%;
+  border-radius:10px;
 }
 </style>
 </head>
@@ -118,9 +147,9 @@ header{
 <body>
 
 <header>
-  <a href="index.html">←</a>
+  <div class="back" onclick="goBack()">←</div>
   <div class="title">Danny</div>
-  <div onclick="toggleMenu()">⋮</div>
+  <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 </header>
 
 <div class="menu" id="menu">
@@ -133,11 +162,12 @@ header{
 <div class="chat-box" id="chat-box"></div>
 
 <div class="input-area">
-  <label for="file" class="btn">+</label>
+  <label for="file" class="icon-btn">+</label>
   <input type="file" id="file" accept="image/*">
 
   <input type="text" id="message" placeholder="Type message...">
-  <button class="btn" onclick="sendMessage()">➤</button>
+
+  <button class="icon-btn" onclick="sendMessage()">➤</button>
 </div>
 
 <!-- FIREBASE -->
@@ -158,26 +188,27 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 
-/* CHAT ID */
-let chatId = sessionStorage.getItem("chatId");
+/* CHAT ID (PRIVATE PER USER) */
+let chatId = localStorage.getItem("chatId");
 
 if(!chatId){
   chatId = Date.now().toString();
-  sessionStorage.setItem("chatId", chatId);
+  localStorage.setItem("chatId", chatId);
 
   db.collection("chats").doc(chatId).set({
     createdAt:new Date()
   });
 
+  // welcome message
   db.collection("chats").doc(chatId).collection("messages").add({
-    text:"Hello 👋, this is Danny. We are here to assist you.",
+    text:"Hello 👋, this is Danny. We are here to assist you. Please tell us your issue.",
     sender:"admin",
     time:new Date(),
     seen:true
   });
 }
 
-/* LOAD MESSAGES */
+/* LOAD MESSAGES REALTIME */
 db.collection("chats")
 .doc(chatId)
 .collection("messages")
@@ -190,21 +221,17 @@ db.collection("chats")
     let msg = doc.data();
 
     let div = document.createElement("div");
-    div.classList.add("msg");
-
-    if(msg.sender==="user") div.classList.add("user");
-    else div.classList.add("admin");
+    div.classList.add("msg", msg.sender);
 
     if(msg.image){
-      div.innerHTML = `<img src="${msg.image}" style="width:100%;border-radius:10px;">`;
+      div.innerHTML = `<img src="${msg.image}">`;
     } else {
       div.innerText = msg.text;
     }
 
-    // ✔✔ ticks
     if(msg.sender==="user"){
       let tick = document.createElement("span");
-      tick.className = "ticks";
+      tick.className="ticks";
       tick.innerText = msg.seen ? "✔✔" : "✔";
       div.appendChild(tick);
     }
@@ -217,7 +244,7 @@ db.collection("chats")
 
 /* SEND MESSAGE */
 function sendMessage(){
-  let text = document.getElementById("message").value;
+  let text = document.getElementById("message").value.trim();
   let file = document.getElementById("file").files[0];
 
   if(!text && !file) return;
@@ -227,33 +254,37 @@ function sendMessage(){
 
     ref.put(file).then(()=>{
       ref.getDownloadURL().then(url=>{
-        db.collection("chats").doc(chatId).collection("messages").add({
-          image:url,
-          sender:"user",
-          time:new Date(),
-          seen:false
-        });
+        saveMessage({image:url});
       });
     });
   }
 
   if(text){
-    db.collection("chats").doc(chatId).collection("messages").add({
-      text:text,
-      sender:"user",
-      time:new Date(),
-      seen:false
-    });
+    saveMessage({text:text});
   }
 
   document.getElementById("message").value="";
   document.getElementById("file").value="";
 }
 
+function saveMessage(data){
+  db.collection("chats").doc(chatId).collection("messages").add({
+    ...data,
+    sender:"user",
+    time:new Date(),
+    seen:false
+  });
+}
+
 /* MENU */
 function toggleMenu(){
   let menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+  menu.style.display = menu.style.display==="block"?"none":"block";
+}
+
+/* BACK */
+function goBack(){
+  window.history.back();
 }
 </script>
 
