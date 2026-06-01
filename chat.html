@@ -114,11 +114,11 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 /* 🔥 IMPORTANT */
-let chatId = localStorage.getItem("chatId");
+let chatId = sessionStorage.getItem("chatId");
 
 if(!chatId){
-  chatId = Date.now().toString();
-  localStorage.setItem("chatId", chatId);
+  alert("No chat session found");
+}
 
   db.collection("chats").doc(chatId).set({
     userName: "Customer"
