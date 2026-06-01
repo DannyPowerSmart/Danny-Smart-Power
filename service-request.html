@@ -157,6 +157,32 @@ function searchService(){
 /* 💬 CONTACT SUPPORT (UPDATED TO CHAT SYSTEM) */
 function contactSupport(){
 
+  // Create a unique chat ID
+  let chatId = Date.now().toString();
+
+  // Save chatId so chat.html can use it
+  sessionStorage.setItem("chatId", chatId);
+
+  // Create chat in Firebase
+  db.collection("chats").doc(chatId).set({
+    userName: "Customer",
+    createdAt: new Date()
+  });
+
+  // Send first message directly to Firebase
+  db.collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add({
+      text: "Hello, I need electrical service support.",
+      sender: "user",
+      time: new Date()
+    });
+
+  // Go to chat page
+  window.location.href = "chat.html";
+}
+
   // Save first message for chat page
   localStorage.setItem("chatMessage", "Hello, I need electrical service support.");
 
