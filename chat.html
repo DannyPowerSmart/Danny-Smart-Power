@@ -23,25 +23,15 @@ header{
   color:white;
   padding:12px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
-.back{
-  font-size:20px;
-  cursor:pointer;
-}
+.title{font-weight:600;}
+.back{cursor:pointer;}
+.menu-btn{cursor:pointer;}
 
-.title{
-  font-weight:600;
-}
-
-.menu-btn{
-  font-size:20px;
-  cursor:pointer;
-}
-
-/* DROPDOWN MENU */
+/* MENU */
 .menu{
   position:absolute;
   top:60px;
@@ -49,8 +39,6 @@ header{
   background:#020617;
   border-radius:10px;
   display:none;
-  overflow:hidden;
-  z-index:10;
 }
 
 .menu a{
@@ -58,13 +46,8 @@ header{
   padding:12px;
   color:white;
   text-decoration:none;
-  border-bottom:1px solid #111;
 }
-
-.menu a:hover{
-  background:#38bdf8;
-  color:black;
-}
+.menu a:hover{background:#38bdf8;color:black;}
 
 /* CHAT */
 .chat-box{
@@ -73,43 +56,29 @@ header{
   padding:15px;
 }
 
-/* MESSAGE */
 .msg{
   max-width:75%;
-  padding:10px 12px;
+  padding:10px;
   margin:8px 0;
   border-radius:12px;
   position:relative;
-  font-size:14px;
 }
 
-.user{
-  background:#38bdf8;
-  margin-left:auto;
-  color:black;
-}
+.user{background:#38bdf8;margin-left:auto;color:black;}
+.admin{background:#1e293b;}
 
-.admin{
-  background:#1e293b;
-  color:white;
-}
-
-/* TICKS */
 .ticks{
   font-size:10px;
   position:absolute;
-  bottom:4px;
+  bottom:3px;
   right:8px;
 }
 
-/* INPUT AREA */
+/* INPUT */
 .input-area{
   display:flex;
-  align-items:center;
   padding:10px;
   background:#020617;
-  position:sticky;
-  bottom:0;
 }
 
 .input-area input{
@@ -117,29 +86,24 @@ header{
   padding:10px;
   border-radius:20px;
   border:none;
-  outline:none;
 }
 
-.icon-btn{
+.btn{
   width:40px;
   height:40px;
-  border-radius:50%;
   border:none;
-  margin:0 5px;
+  border-radius:50%;
+  margin-left:5px;
   background:#38bdf8;
   cursor:pointer;
-  font-size:18px;
 }
 
-/* FILE */
-#file{
-  display:none;
-}
+#file{display:none;}
 
-/* IMAGE MESSAGE */
-.msg img{
-  width:100%;
-  border-radius:10px;
+.typing{
+  font-size:12px;
+  color:#aaa;
+  padding:0 15px;
 }
 </style>
 </head>
@@ -147,7 +111,7 @@ header{
 <body>
 
 <header>
-  <div class="back" onclick="goBack()">←</div>
+  <div class="back" onclick="history.back()">←</div>
   <div class="title">Danny</div>
   <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 </header>
@@ -156,18 +120,19 @@ header{
   <a href="#">Profile</a>
   <a href="#">Orders</a>
   <a href="#">Settings</a>
-  <a href="#">Help</a>
+  <a href="#">Help Center</a>
 </div>
 
 <div class="chat-box" id="chat-box"></div>
+<div class="typing" id="typing"></div>
 
 <div class="input-area">
-  <label for="file" class="icon-btn">+</label>
+  <label for="file" class="btn">+</label>
   <input type="file" id="file" accept="image/*">
 
-  <input type="text" id="message" placeholder="Type message...">
+  <input type="text" id="message" placeholder="Type message..." oninput="typingStatus()">
 
-  <button class="icon-btn" onclick="sendMessage()">➤</button>
+  <button class="btn" onclick="sendMessage()">➤</button>
 </div>
 
 <!-- FIREBASE -->
@@ -188,30 +153,22 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 
-/* CHAT ID (PRIVATE PER USER) */
-let chatId = localStorage.getItem("chatId");
+/* CREATE CHAT (NO LOCAL STORAGE) */
+let chatId = Date.now().toString();
+let chatRef = db.collection("chats").doc(chatId);
 
-if(!chatId){
-  chatId = Date.now().toString();
-  localStorage.setItem("chatId", chatId);
+chatRef.set({createdAt:new Date()});
 
-  db.collection("chats").doc(chatId).set({
-    createdAt:new Date()
-  });
+/* ADD WELCOME MESSAGE */
+chatRef.collection("messages").add({
+  text:"Hello 👋, this is Danny. We are here to assist you. Please tell us your issue.",
+  sender:"admin",
+  time:new Date(),
+  seen:true
+});
 
-  // welcome message
-  db.collection("chats").doc(chatId).collection("messages").add({
-    text:"Hello 👋, this is Danny. We are here to assist you. Please tell us your issue.",
-    sender:"admin",
-    time:new Date(),
-    seen:true
-  });
-}
-
-/* LOAD MESSAGES REALTIME */
-db.collection("chats")
-.doc(chatId)
-.collection("messages")
+/* LOAD */
+chatRef.collection("messages")
 .orderBy("time")
 .onSnapshot(snapshot=>{
   let box = document.getElementById("chat-box");
@@ -224,98 +181,74 @@ db.collection("chats")
     div.classList.add("msg", msg.sender);
 
     if(msg.image){
-      div.innerHTML = `<img src="${msg.image}">`;
-    } else {
-      div.innerText = msg.text;
+      div.innerHTML=`<img src="${msg.image}" style="width:100%">`;
+    }else{
+      div.innerText=msg.text;
     }
 
     if(msg.sender==="user"){
-      let tick = document.createElement("span");
+      let tick=document.createElement("span");
       tick.className="ticks";
-      tick.innerText = msg.seen ? "✔✔" : "✔";
+      tick.innerText=msg.seen?"✔✔":"✔";
       div.appendChild(tick);
+
+      // mark seen
+      doc.ref.update({seen:true});
     }
 
     box.appendChild(div);
   });
 
-  box.scrollTop = box.scrollHeight;
+  box.scrollTop=box.scrollHeight;
 });
 
-/* SEND MESSAGE */
+/* SEND */
 function sendMessage(){
-  let text = document.getElementById("message").value.trim();
-  let file = document.getElementById("file").files[0];
+  let text=document.getElementById("message").value.trim();
+  let file=document.getElementById("file").files[0];
 
   if(!text && !file) return;
 
   if(file){
-    let ref = storage.ref("chat-images/"+Date.now());
-
+    let ref=storage.ref("chat/"+Date.now());
     ref.put(file).then(()=>{
       ref.getDownloadURL().then(url=>{
-        saveMessage({image:url});
+        chatRef.collection("messages").add({
+          image:url,
+          sender:"user",
+          time:new Date(),
+          seen:false
+        });
       });
     });
   }
 
   if(text){
-    saveMessage({text:text});
+    chatRef.collection("messages").add({
+      text:text,
+      sender:"user",
+      time:new Date(),
+      seen:false
+    });
   }
 
   document.getElementById("message").value="";
   document.getElementById("file").value="";
 }
 
-function saveMessage(data){
-  db.collection("chats").doc(chatId).collection("messages").add({
-    ...data,
-    sender:"user",
-    time:new Date(),
-    seen:false
-  });
+/* TYPING */
+function typingStatus(){
+  document.getElementById("typing").innerText="Typing...";
+  setTimeout(()=>{
+    document.getElementById("typing").innerText="";
+  },1000);
 }
 
 /* MENU */
 function toggleMenu(){
-  let menu = document.getElementById("menu");
-  menu.style.display = menu.style.display==="block"?"none":"block";
+  let m=document.getElementById("menu");
+  m.style.display=m.style.display==="block"?"none":"block";
 }
-
-/* BACK */
-function goBack(){
-  window.history.back();
-}
-  
-  /* CHAT ID */
-let chatId = sessionStorage.getItem("chatId");
-
-if(!chatId){
-  chatId = Date.now().toString();
-  localStorage.setItem("chatId", chatId);
-
-  db.collection("chats").doc(chatId).set({
-    createdAt:new Date()
-  });
-}
-
-// ✅ CHECK IF MESSAGES EXIST
-db.collection("chats")
-.doc(chatId)
-.collection("messages")
-.limit(1)
-.get()
-.then(snapshot=>{
-  if(snapshot.empty){
-    // 🔥 ADD WELCOME MESSAGE
-    db.collection("chats").doc(chatId).collection("messages").add({
-      text:"Hello 👋, this is Danny. We are here to assist you. Please tell us your issue.",
-      sender:"admin",
-      time:new Date(),
-      seen:true
-    });
-  }
-});
 </script>
 
 </body>
