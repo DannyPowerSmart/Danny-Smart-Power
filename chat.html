@@ -13,9 +13,9 @@ body{
   font-family:Poppins;
   background:#0f172a;
   color:white;
-  height:100vh;
   display:flex;
   flex-direction:column;
+  height:100vh;
 }
 
 /* HEADER */
@@ -23,100 +23,92 @@ header{
   background:#020617;
   padding:12px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-}
-
-.header-left{
-  display:flex;
   align-items:center;
-  gap:10px;
 }
 
-.header-title{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+.title{
   font-weight:bold;
-}
-
-.menu-btn{
-  cursor:pointer;
 }
 
 /* MENU */
 .menu{
-  position:fixed;
-  right:-250px;
-  top:0;
-  width:250px;
-  height:100%;
+  position:absolute;
+  right:10px;
+  top:60px;
   background:#020617;
-  padding:20px;
-  transition:0.3s;
-  z-index:10;
+  border-radius:10px;
+  display:none;
+  padding:10px;
 }
 
 .menu a{
   display:block;
-  margin-bottom:15px;
-  text-decoration:none;
+  padding:10px;
   color:white;
+  text-decoration:none;
 }
 
-/* CHAT */
+/* CHAT AREA */
 .chat-box{
   flex:1;
   overflow-y:auto;
   padding:15px;
-  background:url("https://i.postimg.cc/8Cw8Jp7Y/bg-chat.png");
-  background-size:cover;
 }
 
 /* MESSAGE */
 .msg{
   max-width:75%;
   padding:10px;
-  margin-bottom:10px;
+  margin:10px 0;
   border-radius:10px;
+  position:relative;
+  font-size:14px;
 }
 
 .user{
   background:#38bdf8;
   margin-left:auto;
+  color:black;
 }
 
 .admin{
   background:#1e293b;
 }
 
+/* TICKS */
+.ticks{
+  font-size:10px;
+  position:absolute;
+  bottom:3px;
+  right:8px;
+}
+
 /* INPUT */
 .input-area{
-  position:fixed;
-  bottom:0;
-  width:100%;
   display:flex;
   padding:10px;
   background:#020617;
 }
 
-input{
+.input-area input{
   flex:1;
   padding:10px;
-  border:none;
   border-radius:20px;
+  border:none;
 }
 
-button{
-  border:none;
-  padding:10px;
-  background:#38bdf8;
-  border-radius:50%;
+.btn{
   margin-left:5px;
+  background:#38bdf8;
+  border:none;
+  border-radius:50%;
+  width:40px;
+  height:40px;
   cursor:pointer;
 }
 
-/* HIDDEN FILE */
+/* FILE */
 #file{
   display:none;
 }
@@ -126,33 +118,26 @@ button{
 <body>
 
 <header>
-  <div class="header-left">
-    <a href="index.html">←</a>
-  </div>
-
-  <div class="header-title">Danny</div>
-
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <a href="index.html">←</a>
+  <div class="title">Danny</div>
+  <div onclick="toggleMenu()">⋮</div>
 </header>
 
-<!-- MENU -->
 <div class="menu" id="menu">
-  <a href="#">👤 Profile</a>
-  <a href="#">📦 My Orders</a>
-  <a href="#">⚙ Settings</a>
-  <a href="#">❓ Help</a>
+  <a href="#">Profile</a>
+  <a href="#">Orders</a>
+  <a href="#">Settings</a>
+  <a href="#">Help</a>
 </div>
 
-<!-- CHAT -->
 <div class="chat-box" id="chat-box"></div>
 
-<!-- INPUT -->
 <div class="input-area">
-  <label for="file">➕</label>
+  <label for="file" class="btn">+</label>
   <input type="file" id="file" accept="image/*">
 
   <input type="text" id="message" placeholder="Type message...">
-  <button onclick="sendMessage()">➤</button>
+  <button class="btn" onclick="sendMessage()">➤</button>
 </div>
 
 <!-- FIREBASE -->
@@ -165,7 +150,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
   authDomain: "danny-smart-power.firebaseapp.com",
   projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.appspot.com",
+  storageBucket: "danny-smart-power.appspot.com"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -173,7 +158,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 
-/* UNIQUE CHAT */
+/* CHAT ID */
 let chatId = sessionStorage.getItem("chatId");
 
 if(!chatId){
@@ -184,11 +169,11 @@ if(!chatId){
     createdAt:new Date()
   });
 
-  // welcome message
   db.collection("chats").doc(chatId).collection("messages").add({
-    text:"Hello 👋, this is Danny. We are here to assist you. Please tell us your issue.",
+    text:"Hello 👋, this is Danny. We are here to assist you.",
     sender:"admin",
-    time:new Date()
+    time:new Date(),
+    seen:true
   });
 }
 
@@ -198,13 +183,13 @@ db.collection("chats")
 .collection("messages")
 .orderBy("time")
 .onSnapshot(snapshot=>{
-  let box=document.getElementById("chat-box");
+  let box = document.getElementById("chat-box");
   box.innerHTML="";
 
   snapshot.forEach(doc=>{
-    let msg=doc.data();
+    let msg = doc.data();
 
-    let div=document.createElement("div");
+    let div = document.createElement("div");
     div.classList.add("msg");
 
     if(msg.sender==="user") div.classList.add("user");
@@ -216,49 +201,59 @@ db.collection("chats")
       div.innerText = msg.text;
     }
 
+    // ✔✔ ticks
+    if(msg.sender==="user"){
+      let tick = document.createElement("span");
+      tick.className = "ticks";
+      tick.innerText = msg.seen ? "✔✔" : "✔";
+      div.appendChild(tick);
+    }
+
     box.appendChild(div);
   });
 
-  box.scrollTop=box.scrollHeight;
+  box.scrollTop = box.scrollHeight;
 });
 
 /* SEND MESSAGE */
 function sendMessage(){
-  let input=document.getElementById("message");
-  let file=document.getElementById("file").files[0];
+  let text = document.getElementById("message").value;
+  let file = document.getElementById("file").files[0];
 
-  if(input.value.trim()==="" && !file) return;
+  if(!text && !file) return;
 
   if(file){
-    let ref=storage.ref("chat-images/"+Date.now());
+    let ref = storage.ref("chat-images/"+Date.now());
 
     ref.put(file).then(()=>{
       ref.getDownloadURL().then(url=>{
         db.collection("chats").doc(chatId).collection("messages").add({
           image:url,
           sender:"user",
-          time:new Date()
+          time:new Date(),
+          seen:false
         });
       });
     });
   }
 
-  if(input.value.trim()!==""){
+  if(text){
     db.collection("chats").doc(chatId).collection("messages").add({
-      text:input.value,
+      text:text,
       sender:"user",
-      time:new Date()
+      time:new Date(),
+      seen:false
     });
   }
 
-  input.value="";
+  document.getElementById("message").value="";
   document.getElementById("file").value="";
 }
 
 /* MENU */
 function toggleMenu(){
-  let menu=document.getElementById("menu");
-  menu.style.right = menu.style.right === "0px" ? "-250px" : "0px";
+  let menu = document.getElementById("menu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 </script>
 
