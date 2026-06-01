@@ -292,19 +292,30 @@ let chatId = sessionStorage.getItem("chatId");
 
 if(!chatId){
   chatId = Date.now().toString();
-  sessionStorage.setItem("chatId", chatId);
+  localStorage.setItem("chatId", chatId);
 
   db.collection("chats").doc(chatId).set({
     createdAt:new Date()
   });
-
-  db.collection("chats").doc(chatId).collection("messages").add({
-    text:"Hello 👋, this is Danny. We are here to assist you.",
-    sender:"admin",
-    time:new Date(),
-    seen:true
-  });
 }
+
+// ✅ CHECK IF MESSAGES EXIST
+db.collection("chats")
+.doc(chatId)
+.collection("messages")
+.limit(1)
+.get()
+.then(snapshot=>{
+  if(snapshot.empty){
+    // 🔥 ADD WELCOME MESSAGE
+    db.collection("chats").doc(chatId).collection("messages").add({
+      text:"Hello 👋, this is Danny. We are here to assist you. Please tell us your issue.",
+      sender:"admin",
+      time:new Date(),
+      seen:true
+    });
+  }
+});
 </script>
 
 </body>
