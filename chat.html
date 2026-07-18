@@ -2,727 +2,1696 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
 <title>Chat with Danny | Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#07111f;
-  --panel:#0d1b2a;
-  --panel2:#112437;
-  --blue:#38bdf8;
-  --cyan:#67e8f9;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --border:rgba(255,255,255,.08);
-  --bubble:#162d42;
-}
+
+/* =========================
+   RESET
+========================= */
 
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
+/* =========================
+   BODY
+========================= */
+
+html,
 body{
-  font-family:Inter, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  height:100vh;
+  width:100%;
+  height:100%;
   overflow:hidden;
 }
 
-/* APP */
-.app{
-  display:flex;
-  height:100vh;
-}
-
-/* SIDEBAR */
-.sidebar{
-  width:330px;
-  background:#091522;
-  border-right:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
-}
-
-/* BRAND */
-.brand{
-  padding:22px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  border-bottom:1px solid var(--border);
-}
-
-.logo{
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#38bdf8,#06b6d4);
-  color:#00111c;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  font-weight:800;
-  box-shadow:0 0 25px rgba(56,189,248,.3);
-}
-
-.brand h2{
-  font-size:16px;
-}
-
-.brand p{
-  font-size:11px;
-  color:var(--muted);
-  margin-top:3px;
-}
-
-/* SEARCH */
-.search{
-  margin:18px;
-  position:relative;
-}
-
-.search input{
-  width:100%;
-  background:#101f2e;
-  border:1px solid var(--border);
+body{
+  font-family:Poppins,Arial,sans-serif;
+  background:#0f172a;
   color:white;
-  padding:13px 15px 13px 42px;
-  border-radius:12px;
-  outline:none;
 }
 
-.search span{
-  position:absolute;
-  left:14px;
-  top:12px;
-  color:var(--muted);
-}
+/* =========================
+   APP
+========================= */
 
-/* SUPPORT CARD */
-.support-card{
-  margin:0 18px 18px;
-  padding:16px;
-  border-radius:16px;
-  background:linear-gradient(135deg,#12334a,#0d2235);
-  border:1px solid rgba(56,189,248,.18);
-}
-
-.support-top{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.avatar{
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#38bdf8,#22d3ee);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#00111c;
-  font-weight:800;
-  position:relative;
-}
-
-.online{
-  width:11px;
-  height:11px;
-  background:#22c55e;
-  border:2px solid #12334a;
-  border-radius:50%;
-  position:absolute;
-  right:0;
-  bottom:1px;
-}
-
-.support-info h3{
-  font-size:14px;
-}
-
-.support-info p{
-  color:#4ade80;
-  font-size:11px;
-  margin-top:4px;
-}
-
-.support-card small{
-  display:block;
-  color:var(--muted);
-  margin-top:14px;
-  font-size:11px;
-}
-
-/* CONVERSATION */
-.conversation{
-  padding:15px 18px;
-  display:flex;
-  gap:12px;
-  align-items:center;
-  background:rgba(56,189,248,.08);
-  border-left:3px solid var(--blue);
-}
-
-.conversation-text{
-  flex:1;
-}
-
-.conversation-text strong{
-  display:block;
-  font-size:13px;
-}
-
-.conversation-text span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.badge{
-  background:var(--blue);
-  color:#00111c;
-  font-size:10px;
-  font-weight:bold;
-  padding:4px 7px;
-  border-radius:20px;
-}
-
-/* MAIN */
-.chat{
-  flex:1;
+.chat-app{
+  width:100%;
+  height:100dvh;
   display:flex;
   flex-direction:column;
-  min-width:0;
+  background:#0f172a;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 .chat-header{
-  height:76px;
-  padding:14px 24px;
+  height:64px;
+  min-height:64px;
+  background:#020617;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  background:rgba(7,17,31,.85);
-  backdrop-filter:blur(15px);
+  padding:0 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  position:relative;
+  z-index:20;
 }
 
-.chat-person{
+.back-btn,
+.menu-btn{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:transparent;
+  color:white;
+  font-size:26px;
+  cursor:pointer;
   display:flex;
   align-items:center;
-  gap:12px;
+  justify-content:center;
 }
 
-.chat-person h3{
-  font-size:15px;
+.back-btn:active,
+.menu-btn:active{
+  background:#1e293b;
 }
 
-.chat-person p{
-  font-size:11px;
-  color:#4ade80;
-  margin-top:4px;
-}
-
-.header-actions{
+.chat-title{
   display:flex;
+  align-items:center;
   gap:10px;
 }
 
-.icon-btn{
+.danny-avatar{
   width:38px;
   height:38px;
-  border:1px solid var(--border);
-  background:#102234;
-  color:white;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:17px;
+  border-radius:50%;
+  background:#38bdf8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
 }
 
-/* MESSAGES */
+.title-text h3{
+  font-size:16px;
+  font-weight:600;
+}
+
+.online-status{
+  font-size:11px;
+  color:#4ade80;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  z-index:30;
+}
+
+.menu-overlay.active{
+  display:block;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-290px;
+  width:280px;
+  max-width:85%;
+  height:100dvh;
+  background:#020617;
+  z-index:40;
+  transition:right .25s ease;
+  padding:20px;
+  box-shadow:-10px 0 30px rgba(0,0,0,.35);
+}
+
+.side-menu.active{
+  right:0;
+}
+
+.menu-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
+
+.menu-top h2{
+  font-size:19px;
+}
+
+.close-menu{
+  border:none;
+  background:none;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.menu-user{
+  padding:15px;
+  background:#0f172a;
+  border-radius:14px;
+  margin-bottom:20px;
+}
+
+.menu-user strong{
+  display:block;
+  font-size:15px;
+}
+
+.menu-user small{
+  display:block;
+  color:#94a3b8;
+  margin-top:4px;
+  word-break:break-word;
+}
+
+.menu-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.menu-item{
+  width:100%;
+  border:none;
+  background:#0f172a;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  text-align:left;
+  font-family:inherit;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.menu-item:hover,
+.menu-item:active{
+  background:#1e293b;
+}
+
+.menu-item.logout{
+  color:#f87171;
+}
+
+/* =========================
+   CHAT AREA
+========================= */
+
 .messages{
   flex:1;
+  min-height:0;
   overflow-y:auto;
-  padding:30px 8%;
-  background:
-    radial-gradient(circle at top right,rgba(56,189,248,.08),transparent 30%),
-    var(--bg);
+  padding:18px 14px 12px;
+  scroll-behavior:smooth;
 }
 
-/* WELCOME */
-.welcome{
-  max-width:620px;
-  margin:20px auto 35px;
+/* =========================
+   WELCOME CARD
+========================= */
+
+.welcome-card{
+  max-width:420px;
+  margin:5px auto 22px;
+  padding:18px;
+  background:#172337;
+  border:1px solid rgba(56,189,248,.18);
+  border-radius:18px;
   text-align:center;
 }
 
 .welcome-icon{
-  width:70px;
-  height:70px;
-  margin:auto;
-  border-radius:22px;
-  background:linear-gradient(135deg,#38bdf8,#06b6d4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  box-shadow:0 0 35px rgba(56,189,248,.2);
+  font-size:30px;
+  margin-bottom:8px;
 }
 
-.welcome h1{
-  margin-top:18px;
-  font-size:24px;
+.welcome-card h3{
+  font-size:16px;
+  margin-bottom:7px;
 }
 
-.welcome p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-  margin-top:8px;
-}
-
-/* QUICK OPTIONS */
-.quick-options{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:9px;
-  margin-top:20px;
-}
-
-.quick-options button{
-  background:#102234;
-  color:#dbeafe;
-  border:1px solid var(--border);
-  padding:10px 14px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:11px;
-  transition:.2s;
-}
-
-.quick-options button:hover{
-  background:#163952;
-  border-color:var(--blue);
-}
-
-/* MESSAGE */
-.message{
-  display:flex;
-  gap:10px;
-  margin:22px 0;
-  max-width:680px;
-}
-
-.message.user{
-  margin-left:auto;
-  flex-direction:row-reverse;
-}
-
-.message-avatar{
-  width:32px;
-  height:32px;
-  min-width:32px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.welcome-card p{
+  color:#aebccc;
   font-size:12px;
-  font-weight:bold;
-  background:#12334a;
-  color:var(--cyan);
-}
-
-.message.user .message-avatar{
-  background:#38bdf8;
-  color:#00111c;
-}
-
-.message-content{
-  max-width:75%;
-}
-
-.bubble{
-  padding:12px 15px;
-  border-radius:15px;
-  background:var(--bubble);
-  color:#e2e8f0;
-  font-size:13px;
   line-height:1.6;
 }
 
-.message.user .bubble{
-  background:linear-gradient(135deg,#0284c7,#0891b2);
-  color:white;
+/* =========================
+   MESSAGE
+========================= */
+
+.message-row{
+  display:flex;
+  margin:7px 0;
+}
+
+.message-row.user{
+  justify-content:flex-end;
+}
+
+.message-row.danny{
+  justify-content:flex-start;
+}
+
+.message{
+  max-width:min(78%,420px);
+  padding:10px 12px 7px;
+  border-radius:16px;
+  font-size:14px;
+  line-height:1.45;
+  word-wrap:break-word;
+}
+
+.message-row.user .message{
+  background:#38bdf8;
+  color:#00111c;
   border-bottom-right-radius:4px;
 }
 
-.message:not(.user) .bubble{
+.message-row.danny .message{
+  background:#1e293b;
+  color:white;
   border-bottom-left-radius:4px;
 }
 
-.time{
-  display:block;
-  color:#64748b;
+.message-time{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:5px;
   font-size:9px;
-  margin-top:5px;
+  opacity:.7;
+  margin-top:4px;
 }
 
-/* TYPING */
+.seen{
+  color:#2563eb;
+  font-size:11px;
+}
+
+/* =========================
+   IMAGE MESSAGE
+========================= */
+
+.message-image{
+  width:100%;
+  max-width:260px;
+  max-height:320px;
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+  cursor:pointer;
+}
+
+/* =========================
+   TYPING
+========================= */
+
 .typing{
   display:none;
   align-items:center;
   gap:5px;
-  margin:10px 0;
-  color:var(--muted);
-  font-size:11px;
+  width:max-content;
+  background:#1e293b;
+  padding:10px 14px;
+  border-radius:16px;
+  margin:5px 0 10px;
+  color:#94a3b8;
+  font-size:12px;
 }
 
-.typing span{
-  width:6px;
-  height:6px;
-  background:var(--blue);
+.typing.active{
+  display:flex;
+}
+
+.dot{
+  width:5px;
+  height:5px;
   border-radius:50%;
-  animation:bounce 1s infinite;
+  background:#94a3b8;
+  animation:bounce 1.2s infinite;
 }
 
-.typing span:nth-child(2){animation-delay:.15s}
-.typing span:nth-child(3){animation-delay:.3s}
+.dot:nth-child(2){
+  animation-delay:.2s;
+}
+
+.dot:nth-child(3){
+  animation-delay:.4s;
+}
 
 @keyframes bounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-5px)}
+  0%,60%,100%{
+    transform:translateY(0);
+  }
+  30%{
+    transform:translateY(-4px);
+  }
 }
 
-/* INPUT */
-.input-area{
-  padding:15px 7%;
-  border-top:1px solid var(--border);
-  background:#091522;
+/* =========================
+   ATTACHMENT PREVIEW
+========================= */
+
+.preview-area{
+  display:none;
+  padding:8px 12px;
+  background:#020617;
+  border-top:1px solid rgba(255,255,255,.06);
 }
 
-.input-box{
+.preview-area.active{
   display:flex;
   align-items:center;
   gap:10px;
-  background:#102234;
-  border:1px solid var(--border);
-  padding:8px;
-  border-radius:16px;
 }
 
-.input-box button{
-  background:none;
+.preview-image{
+  width:58px;
+  height:58px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.remove-preview{
   border:none;
-  color:var(--muted);
-  font-size:20px;
+  background:#ef4444;
+  color:white;
+  border-radius:50%;
+  width:26px;
+  height:26px;
   cursor:pointer;
 }
 
-.input-box input{
+/* =========================
+   COMPOSER
+========================= */
+
+.composer{
+  flex-shrink:0;
+  background:#020617;
+  padding:8px 10px;
+  padding-bottom:calc(8px + env(safe-area-inset-bottom));
+  display:flex;
+  align-items:flex-end;
+  gap:7px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.attach-btn,
+.send-btn{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+}
+
+.attach-btn{
+  background:#1e293b;
+  color:white;
+}
+
+.send-btn{
+  background:#38bdf8;
+  color:#00111c;
+  font-size:18px;
+}
+
+.attach-btn:active,
+.send-btn:active{
+  transform:scale(.94);
+}
+
+.message-input{
   flex:1;
-  background:none;
+  min-width:0;
+  max-height:120px;
+  min-height:42px;
+  resize:none;
   border:none;
   outline:none;
+  border-radius:22px;
+  padding:11px 15px;
+  background:#1e293b;
   color:white;
-  font-size:13px;
+  font-family:inherit;
+  font-size:14px;
+  line-height:20px;
 }
 
-.send{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  background:var(--blue)!important;
-  color:#00111c!important;
-  font-size:17px!important;
+.message-input::placeholder{
+  color:#94a3b8;
 }
 
-.privacy{
-  text-align:center;
-  color:#64748b;
-  font-size:9px;
-  margin-top:8px;
+/* =========================
+   ATTACHMENT OPTIONS
+========================= */
+
+.attachment-menu{
+  position:fixed;
+  bottom:70px;
+  left:10px;
+  background:#020617;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:8px;
+  display:none;
+  z-index:25;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
-/* MOBILE */
-@media(max-width:800px){
-
-  .sidebar{
-    display:none;
-  }
-
-  .chat-header{
-    padding:12px 16px;
-  }
-
-  .messages{
-    padding:25px 15px;
-  }
-
-  .input-area{
-    padding:12px;
-  }
-
-  .welcome h1{
-    font-size:21px;
-  }
-
-  .header-actions .icon-btn:first-child{
-    display:none;
-  }
+.attachment-menu.active{
+  display:block;
 }
+
+.attachment-option{
+  display:block;
+  width:210px;
+  padding:13px;
+  border:none;
+  background:transparent;
+  color:white;
+  text-align:left;
+  border-radius:9px;
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.attachment-option:hover{
+  background:#1e293b;
+}
+
+.hidden{
+  display:none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .message{
+    max-width:84%;
+  }
+
+  .welcome-card{
+    margin-top:3px;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="chat-app">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <!-- HEADER -->
 
-    <div class="brand">
-      <div class="logo">⚡</div>
-      <div>
-        <h2>Danny Smart Power</h2>
-        <p>Customer Support Center</p>
+  <header class="chat-header">
+
+    <button class="back-btn" id="backBtn" aria-label="Go back">
+      ‹
+    </button>
+
+    <div class="chat-title">
+
+      <div class="danny-avatar">
+        ⚡
       </div>
+
+      <div class="title-text">
+        <h3>Danny</h3>
+        <div class="online-status">
+          ● Online
+        </div>
+      </div>
+
     </div>
 
-    <div class="search">
-      <span>⌕</span>
-      <input type="text" placeholder="Search conversations...">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      ⋮
+    </button>
+
+  </header>
+
+
+  <!-- MESSAGES -->
+
+  <main class="messages" id="messages">
+
+    <div class="welcome-card">
+
+      <div class="welcome-icon">
+        👋
+      </div>
+
+      <h3>Welcome to Danny Smart Power</h3>
+
+      <p>
+        This is Danny. We are here for you.
+        Feel free to discuss your questions,
+        electrical needs, solar solutions,
+        orders, or anything else you need help with.
+        We will reply as soon as possible.
+      </p>
+
     </div>
 
-    <div class="support-card">
-      <div class="support-top">
-        <div class="avatar">
-          D
-          <span class="online"></span>
-        </div>
+    <div class="typing" id="typingIndicator">
 
-        <div class="support-info">
-          <h3>Danny Support</h3>
-          <p>● Online now</p>
-        </div>
-      </div>
+      <span>Danny is typing</span>
 
-      <small>We're here to help with your power, solar and electrical needs.</small>
-    </div>
-
-    <div class="conversation">
-      <div class="avatar">D</div>
-
-      <div class="conversation-text">
-        <strong>Chat with Danny</strong>
-        <span>Welcome to Danny Smart Power 👋</span>
-      </div>
-
-      <div class="badge">1</div>
-    </div>
-
-  </aside>
-
-  <!-- CHAT -->
-  <main class="chat">
-
-    <header class="chat-header">
-
-      <div class="chat-person">
-
-        <div class="avatar">
-          D
-          <span class="online"></span>
-        </div>
-
-        <div>
-          <h3>Chat with Danny</h3>
-          <p>● Online • Usually replies quickly</p>
-        </div>
-
-      </div>
-
-      <div class="header-actions">
-        <button class="icon-btn">☎</button>
-        <button class="icon-btn">⋮</button>
-      </div>
-
-    </header>
-
-    <section class="messages" id="messages">
-
-      <div class="welcome">
-
-        <div class="welcome-icon">⚡</div>
-
-        <h1>Welcome to Danny Smart Power</h1>
-
-        <p>
-          Hi 👋 Welcome to our support center.
-          Whether you need help with a product, solar installation,
-          electrical service or an order, we're here to help.
-        </p>
-
-        <div class="quick-options">
-
-          <button onclick="quickMessage('I want to ask about a product')">
-            🛒 Product Question
-          </button>
-
-          <button onclick="quickMessage('I need help with solar installation')">
-            ☀️ Solar Installation
-          </button>
-
-          <button onclick="quickMessage('I need electrical service')">
-            ⚡ Electrical Service
-          </button>
-
-          <button onclick="quickMessage('I want to check my order')">
-            📦 My Order
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="message">
-
-        <div class="message-avatar">D</div>
-
-        <div class="message-content">
-
-          <div class="bubble">
-            Hi 👋 I'm Danny. How can I help you today?
-          </div>
-
-          <span class="time">Just now</span>
-
-        </div>
-
-      </div>
-
-      <div class="typing" id="typing">
-        Danny is typing
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-    </section>
-
-    <div class="input-area">
-
-      <div class="input-box">
-
-        <button onclick="document.getElementById('file').click()">📎</button>
-
-        <input
-          id="messageInput"
-          type="text"
-          placeholder="Write a message..."
-          onkeydown="if(event.key==='Enter') sendMessage()"
-        >
-
-        <button>😊</button>
-
-        <button class="send" onclick="sendMessage()">➤</button>
-
-      </div>
-
-      <input type="file" id="file" hidden>
-
-      <div class="privacy">
-        🔒 Your conversation is private and secure
-      </div>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
 
     </div>
 
   </main>
 
+
+  <!-- PREVIEW -->
+
+  <div class="preview-area" id="previewArea">
+
+    <img
+      id="previewImage"
+      class="preview-image"
+      alt="Selected image"
+    >
+
+    <button
+      class="remove-preview"
+      id="removePreview"
+      type="button"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <!-- ATTACHMENT MENU -->
+
+  <div
+    class="attachment-menu"
+    id="attachmentMenu"
+  >
+
+    <button
+      class="attachment-option"
+      id="galleryBtn"
+      type="button"
+    >
+      🖼️ Choose image from gallery
+    </button>
+
+    <button
+      class="attachment-option"
+      id="cameraBtn"
+      type="button"
+    >
+      📷 Take a photo
+    </button>
+
+  </div>
+
+
+  <!-- COMPOSER -->
+
+  <form
+    class="composer"
+    id="messageForm"
+  >
+
+    <button
+      type="button"
+      class="attach-btn"
+      id="attachBtn"
+      aria-label="Add attachment"
+    >
+      +
+    </button>
+
+    <textarea
+      id="messageInput"
+      class="message-input"
+      placeholder="Type a message..."
+      rows="1"
+      autocomplete="off"
+    ></textarea>
+
+    <button
+      type="submit"
+      class="send-btn"
+      id="sendBtn"
+      aria-label="Send message"
+    >
+      ➤
+    </button>
+
+  </form>
+
 </div>
+
+
+<!-- RIGHT MENU -->
+
+<div
+  class="menu-overlay"
+  id="menuOverlay"
+></div>
+
+<aside
+  class="side-menu"
+  id="sideMenu"
+>
+
+  <div class="menu-top">
+
+    <h2>Chat Menu</h2>
+
+    <button
+      class="close-menu"
+      id="closeMenu"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="menu-user">
+
+    <strong id="userName">
+      Loading...
+    </strong>
+
+    <small id="userEmail">
+      Loading...
+    </small>
+
+  </div>
+
+
+  <div class="menu-list">
+
+    <button
+      class="menu-item"
+      id="profileBtn"
+    >
+      👤 My Profile
+    </button>
+
+    <button
+      class="menu-item"
+      id="ordersBtn"
+    >
+      📦 My Orders
+    </button>
+
+    <button
+      class="menu-item"
+      id="settingsBtn"
+    >
+      ⚙️ Settings
+    </button>
+
+    <button
+      class="menu-item"
+      id="helpBtn"
+    >
+      ❓ Help Center
+    </button>
+
+    <button
+      class="menu-item"
+      id="shopBtn"
+    >
+      🛍️ Continue Shopping
+    </button>
+
+    <button
+      class="menu-item logout"
+      id="logoutBtn"
+    >
+      🚪 Logout
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- HIDDEN FILE INPUTS -->
+
+<input
+  type="file"
+  id="galleryInput"
+  class="hidden"
+  accept="image/*"
+>
+
+<input
+  type="file"
+  id="cameraInput"
+  class="hidden"
+  accept="image/*"
+  capture="environment"
+>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
 
 <script>
 
-function sendMessage(){
+/* =====================================
+   FIREBASE CONFIG
+===================================== */
 
-  const input = document.getElementById("messageInput");
-  const text = input.value.trim();
+const firebaseConfig = {
 
-  if(!text) return;
+  apiKey:
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
 
-  const messages = document.getElementById("messages");
+  authDomain:
+  "danny-smart-power.firebaseapp.com",
 
-  const message = document.createElement("div");
+  projectId:
+  "danny-smart-power",
 
-  message.className = "message user";
+  storageBucket:
+  "danny-smart-power.firebasestorage.app",
 
-  message.innerHTML = `
-    <div class="message-avatar">You</div>
+  messagingSenderId:
+  "649735645158",
 
-    <div class="message-content">
+  appId:
+  "1:649735645158:web:cff518b89721a163679827"
 
-      <div class="bubble">
-        ${text}
-      </div>
+};
 
-      <span class="time">Just now</span>
 
-    </div>
-  `;
+firebase.initializeApp(firebaseConfig);
 
-  messages.appendChild(message);
 
-  input.value = "";
+const auth = firebase.auth();
 
-  messages.scrollTop = messages.scrollHeight;
+const db = firebase.firestore();
 
-  const typing = document.getElementById("typing");
+const storage = firebase.storage();
 
-  typing.style.display = "flex";
 
-  setTimeout(() => {
+/* =====================================
+   VARIABLES
+===================================== */
 
-    typing.style.display = "none";
+let currentUser = null;
 
-    const reply = document.createElement("div");
+let chatRef = null;
 
-    reply.className = "message";
+let messagesRef = null;
 
-    reply.innerHTML = `
-      <div class="message-avatar">D</div>
+let typingTimeout = null;
 
-      <div class="message-content">
+let selectedFile = null;
 
-        <div class="bubble">
-          Thanks for your message 👋 Danny Smart Power has received it. We'll get back to you as soon as possible.
-        </div>
 
-        <span class="time">Just now</span>
+/* =====================================
+   ELEMENTS
+===================================== */
 
-      </div>
-    `;
+const messages = document.getElementById("messages");
 
-    messages.appendChild(reply);
+const messageForm = document.getElementById("messageForm");
 
-    messages.scrollTop = messages.scrollHeight;
+const messageInput = document.getElementById("messageInput");
 
-  }, 1500);
+const typingIndicator =
+document.getElementById("typingIndicator");
+
+const galleryInput =
+document.getElementById("galleryInput");
+
+const cameraInput =
+document.getElementById("cameraInput");
+
+const previewArea =
+document.getElementById("previewArea");
+
+const previewImage =
+document.getElementById("previewImage");
+
+const attachmentMenu =
+document.getElementById("attachmentMenu");
+
+
+/* =====================================
+   AUTHENTICATION
+===================================== */
+
+auth.onAuthStateChanged(async function(user){
+
+  if(!user){
+
+    window.location.replace("login.html");
+
+    return;
+
+  }
+
+
+  currentUser = user;
+
+
+  document.getElementById("userName").textContent =
+  user.displayName || "Danny Smart Power Customer";
+
+
+  document.getElementById("userEmail").textContent =
+  user.email;
+
+
+  /*
+    IMPORTANT:
+
+    The logged-in Firebase UID is the chat ID.
+
+    No localStorage.
+    No sessionStorage.
+    No random timestamp.
+
+    Therefore every user has their own chat.
+  */
+
+  chatRef =
+  db.collection("chats")
+    .doc(user.uid);
+
+
+  messagesRef =
+  chatRef.collection("messages");
+
+
+  await createChatIfNeeded();
+
+  listenForMessages();
+
+  listenForTyping();
+
+});
+
+
+/* =====================================
+   CREATE PRIVATE CHAT
+===================================== */
+
+async function createChatIfNeeded(){
+
+  const chatSnapshot =
+  await chatRef.get();
+
+
+  if(!chatSnapshot.exists){
+
+    await chatRef.set({
+
+      userId:currentUser.uid,
+
+      userEmail:currentUser.email,
+
+      userName:
+      currentUser.displayName || "",
+
+      createdAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
+
+      lastMessage:"",
+
+      lastMessageAt:
+      firebase.firestore.FieldValue.serverTimestamp()
+
+    });
+
+  }
+
+
+  /*
+    WELCOME MESSAGE IS STORED IN FIRESTORE.
+
+    It will therefore appear properly
+    for this user and remain in their
+    private chat.
+  */
+
+  const firstMessage =
+  await messagesRef
+  .limit(1)
+  .get();
+
+
+  if(firstMessage.empty){
+
+    await messagesRef.add({
+
+      text:
+      "Hello 👋, this is Danny. We are here for you. Feel free to discuss your questions, electrical needs, solar solutions, orders, or anything else you need help with. We will reply as soon as possible.",
+
+      sender:"danny",
+
+      senderId:"danny",
+
+      createdAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
+
+      seen:true
+
+    });
+
+  }
 
 }
 
-function quickMessage(text){
 
-  document.getElementById("messageInput").value = text;
+/* =====================================
+   REAL-TIME MESSAGES
+===================================== */
 
-  sendMessage();
+function listenForMessages(){
+
+  messagesRef
+  .orderBy("createdAt","asc")
+  .onSnapshot(function(snapshot){
+
+    const welcome =
+    messages.querySelector(".welcome-card");
+
+
+    messages.innerHTML = "";
+
+    if(welcome){
+
+      messages.appendChild(welcome);
+
+    }
+
+
+    snapshot.forEach(function(doc){
+
+      renderMessage(doc.id,doc.data());
+
+    });
+
+
+    messages.appendChild(typingIndicator);
+
+
+    scrollToBottom();
+
+  });
+
+}
+
+
+/* =====================================
+   RENDER MESSAGE
+===================================== */
+
+function renderMessage(id,data){
+
+  const row =
+  document.createElement("div");
+
+
+  const isUser =
+  data.sender === "user";
+
+
+  row.className =
+  "message-row " +
+  (isUser ? "user" : "danny");
+
+
+  const bubble =
+  document.createElement("div");
+
+
+  bubble.className =
+  "message";
+
+
+  if(data.image){
+
+    const image =
+    document.createElement("img");
+
+
+    image.src =
+    data.image;
+
+
+    image.className =
+    "message-image";
+
+
+    image.onclick =
+    function(){
+
+      window.open(data.image,"_blank");
+
+    };
+
+
+    bubble.appendChild(image);
+
+  }
+
+
+  if(data.text){
+
+    const text =
+    document.createElement("div");
+
+
+    text.textContent =
+    data.text;
+
+
+    bubble.appendChild(text);
+
+  }
+
+
+  const time =
+  document.createElement("div");
+
+
+  time.className =
+  "message-time";
+
+
+  let messageTime =
+  "";
+
+
+  if(data.createdAt){
+
+    const date =
+    data.createdAt.toDate();
+
+
+    messageTime =
+    date.toLocaleTimeString(
+      [],
+      {
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+  }
+
+
+  time.innerHTML =
+  `<span>${messageTime}</span>`;
+
+
+  if(isUser){
+
+    const seen =
+    document.createElement("span");
+
+
+    seen.className =
+    "seen";
+
+
+    seen.textContent =
+    data.seen ? "✓✓" : "✓";
+
+
+    time.appendChild(seen);
+
+  }
+
+
+  bubble.appendChild(time);
+
+  row.appendChild(bubble);
+
+  messages.insertBefore(row,typingIndicator);
+
+}
+
+
+/* =====================================
+   SEND TEXT / IMAGE
+===================================== */
+
+messageForm.addEventListener(
+"submit",
+async function(event){
+
+  event.preventDefault();
+
+
+  const text =
+  messageInput.value.trim();
+
+
+  if(!text && !selectedFile){
+
+    return;
+
+  }
+
+
+  const sendBtn =
+  document.getElementById("sendBtn");
+
+
+  sendBtn.disabled =
+  true;
+
+
+  try{
+
+
+    let imageUrl =
+    null;
+
+
+    if(selectedFile){
+
+      const filePath =
+      "chat-images/" +
+      currentUser.uid +
+      "/" +
+      Date.now() +
+      "-" +
+      selectedFile.name;
+
+
+      const fileRef =
+      storage.ref(filePath);
+
+
+      await fileRef.put(selectedFile);
+
+
+      imageUrl =
+      await fileRef.getDownloadURL();
+
+    }
+
+
+    await messagesRef.add({
+
+      text:text || "",
+
+      image:imageUrl,
+
+      sender:"user",
+
+      senderId:currentUser.uid,
+
+      createdAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
+
+      seen:false
+
+    });
+
+
+    await chatRef.update({
+
+      lastMessage:
+      text || "📷 Image",
+
+      lastMessageAt:
+      firebase.firestore.FieldValue.serverTimestamp()
+
+    });
+
+
+    messageInput.value = "";
+
+    selectedFile = null;
+
+    clearPreview();
+
+    autoResize();
+
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "Message could not be sent. Please check your internet connection."
+    );
+
+  }
+
+
+  sendBtn.disabled =
+  false;
+
+
+  scrollToBottom();
+
+});
+
+
+/* =====================================
+   ENTER TO SEND
+===================================== */
+
+messageInput.addEventListener(
+"keydown",
+function(event){
+
+  if(
+    event.key === "Enter" &&
+    !event.shiftKey
+  ){
+
+    event.preventDefault();
+
+    messageForm.requestSubmit();
+
+  }
+
+});
+
+
+/* =====================================
+   AUTO RESIZE
+===================================== */
+
+messageInput.addEventListener(
+"input",
+function(){
+
+  autoResize();
+
+  setTyping(true);
+
+});
+
+
+function autoResize(){
+
+  messageInput.style.height =
+  "42px";
+
+
+  messageInput.style.height =
+  Math.min(
+    messageInput.scrollHeight,
+    120
+  ) + "px";
+
+}
+
+
+/* =====================================
+   TYPING INDICATOR
+===================================== */
+
+function setTyping(value){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  chatRef.set({
+
+    userTyping:value,
+
+    userTypingAt:
+    firebase.firestore.FieldValue.serverTimestamp()
+
+  },{
+
+    merge:true
+
+  });
+
+
+  clearTimeout(typingTimeout);
+
+
+  if(value){
+
+    typingTimeout =
+    setTimeout(function(){
+
+      setTyping(false);
+
+    },3000);
+
+  }
+
+}
+
+
+function listenForTyping(){
+
+  chatRef.onSnapshot(function(snapshot){
+
+    const data =
+    snapshot.data();
+
+
+    if(
+      data &&
+      data.dannyTyping === true
+    ){
+
+      typingIndicator.classList.add("active");
+
+      typingIndicator.querySelector("span")
+      .textContent =
+      "Danny is typing";
+
+    }
+
+    else{
+
+      typingIndicator.classList.remove("active");
+
+    }
+
+  });
+
+}
+
+
+/* =====================================
+   ATTACHMENTS
+===================================== */
+
+document.getElementById("attachBtn")
+.addEventListener(
+"click",
+function(){
+
+  attachmentMenu.classList.toggle("active");
+
+});
+
+
+document.getElementById("galleryBtn")
+.addEventListener(
+"click",
+function(){
+
+  attachmentMenu.classList.remove("active");
+
+  galleryInput.click();
+
+});
+
+
+document.getElementById("cameraBtn")
+.addEventListener(
+"click",
+function(){
+
+  attachmentMenu.classList.remove("active");
+
+  cameraInput.click();
+
+});
+
+
+galleryInput.addEventListener(
+"change",
+handleFile
+);
+
+
+cameraInput.addEventListener(
+"change",
+handleFile
+);
+
+
+function handleFile(event){
+
+  const file =
+  event.target.files[0];
+
+
+  if(!file){
+
+    return;
+
+  }
+
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please choose an image.");
+
+    return;
+
+  }
+
+
+  selectedFile =
+  file;
+
+
+  previewImage.src =
+  URL.createObjectURL(file);
+
+
+  previewArea.classList.add("active");
+
+}
+
+
+document.getElementById("removePreview")
+.addEventListener(
+"click",
+function(){
+
+  selectedFile =
+  null;
+
+
+  galleryInput.value =
+  "";
+
+
+  cameraInput.value =
+  "";
+
+
+  clearPreview();
+
+});
+
+
+function clearPreview(){
+
+  previewArea.classList.remove("active");
+
+  previewImage.src =
+  "";
+
+}
+
+
+/* =====================================
+   MENU
+===================================== */
+
+const sideMenu =
+document.getElementById("sideMenu");
+
+const menuOverlay =
+document.getElementById("menuOverlay");
+
+
+function openMenu(){
+
+  sideMenu.classList.add("active");
+
+  menuOverlay.classList.add("active");
+
+}
+
+
+function closeMenu(){
+
+  sideMenu.classList.remove("active");
+
+  menuOverlay.classList.remove("active");
+
+}
+
+
+document.getElementById("menuBtn")
+.addEventListener(
+"click",
+openMenu
+);
+
+
+document.getElementById("closeMenu")
+.addEventListener(
+"click",
+closeMenu
+);
+
+
+menuOverlay.addEventListener(
+"click",
+closeMenu
+);
+
+
+/* =====================================
+   MENU LINKS
+===================================== */
+
+document.getElementById("profileBtn")
+.onclick =
+function(){
+
+  window.location.href =
+  "profile.html";
+
+};
+
+
+document.getElementById("ordersBtn")
+.onclick =
+function(){
+
+  window.location.href =
+  "orders.html";
+
+};
+
+
+document.getElementById("settingsBtn")
+.onclick =
+function(){
+
+  window.location.href =
+  "settings.html";
+
+};
+
+
+document.getElementById("helpBtn")
+.onclick =
+function(){
+
+  window.location.href =
+  "help.html";
+
+};
+
+
+document.getElementById("shopBtn")
+.onclick =
+function(){
+
+  window.location.href =
+  "shop.html";
+
+};
+
+
+document.getElementById("logoutBtn")
+.onclick =
+async function(){
+
+  await auth.signOut();
+
+  window.location.replace(
+    "login.html"
+  );
+
+};
+
+
+/* =====================================
+   BACK BUTTON
+===================================== */
+
+document.getElementById("backBtn")
+.onclick =
+function(){
+
+  window.location.href =
+  "home.html";
+
+};
+
+
+/* =====================================
+   SCROLL
+===================================== */
+
+function scrollToBottom(){
+
+  setTimeout(function(){
+
+    messages.scrollTop =
+    messages.scrollHeight;
+
+  },100);
 
 }
 
