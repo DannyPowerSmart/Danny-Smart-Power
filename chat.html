@@ -972,16 +972,33 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
 
-const auth =
-firebase.auth();
+auth.onAuthStateChanged(async (user) => {
 
-const db =
-firebase.firestore();
+  if (!user) {
+    // User is genuinely not logged in
+    document.getElementById("accountStatus").innerHTML = `
+      <h2>Account not available</h2>
+      <p>Please sign in before using Danny Chat.</p>
+      <a href="login.html">Login</a>
+    `;
 
-const storage =
-firebase.storage();
+    return;
+  }
 
+  // Firebase has confirmed the user is logged in
+  console.log("Logged-in user:", user.uid);
+  console.log("Email:", user.email);
+
+  // Hide the error message
+  document.getElementById("accountStatus").style.display = "none";
+
+  // Start the private chat using Firebase Auth UID
+  startPrivateChat(user.uid);
+});
 
 /* ELEMENTS */
 
