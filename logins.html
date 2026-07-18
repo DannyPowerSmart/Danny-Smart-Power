@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Login | Danny Smart Power</title>  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: white;
+      padding: 20px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      background: #0d1b2a;
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .logo {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      background: #38bdf8;
+      color: #00111c;
+      font-size: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-size: 13px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: #102234;
+      color: white;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #38bdf8;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #38bdf8;
+      color: #00111c;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 13px;
+    }
+  </style></head><body>  <div class="login-box"><div class="logo">⚡</div>
+
+<h1>Welcome Back</h1>
+
+<p class="subtitle">
+  Login to Danny Smart Power
+</p>
+
+<label for="email">Email Address</label>
+
+<input
+  type="email"
+  id="email"
+  placeholder="Enter your email"
+  autocomplete="email"
+>
+
+<label for="password">Password</label>
+
+<input
+  type="password"
+  id="password"
+  placeholder="Enter your password"
+  autocomplete="current-password"
+>
+
+<button id="loginBtn" onclick="login()">
+  Login
+</button>
+
+<p id="message"></p>
+
+<a class="back" href="index.html">
+  ← Back to Danny Smart Power
+</a>
+
+  </div>  <!-- Firebase -->  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>  <script>
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
+  authDomain: "danny-smart-power.firebaseapp.com",
+  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "danny-smart-power",
+  storageBucket: "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "649735645158",
+  appId: "1:649735645158:web:cff518b89721a163679827",
+  measurementId: "G-258YKLP5ZS"
+};
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    async function login() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("message");
+
+      const loginBtn =
+        document.getElementById("loginBtn");
+
+
+      if (!email || !password) {
+
+        message.textContent =
+          "Please enter your email and password.";
+
+        message.style.color = "#f87171";
+
+        return;
+
+      }
+
+
+      loginBtn.disabled = true;
+
+      loginBtn.textContent = "Logging in...";
+
+
+      try {
+
+        const userCredential =
+          await auth.signInWithEmailAndPassword(
+            email,
+            password
+          );
+
+
+        const user =
+          userCredential.user;
+
+
+        message.textContent =
+          "Login successful! Welcome back.";
+
+        message.style.color =
+          "#4ade80";
+
+
+        console.log("Logged in user UID:", user.uid);
+
+
+        /*
+          CHANGE THIS LATER
+          TO THE PAGE YOU WANT AFTER LOGIN
+        */
+
+        setTimeout(() => {
+
+          window.location.href = "chat.html";
+
+        }, 1000);
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        if (
+          error.code ===
+          "auth/invalid-credential"
+        ) {
+
+          message.textContent =
+            "Incorrect email or password.";
+
+        } else if (
+          error.code ===
+          "auth/user-not-found"
+        ) {
+
+          message.textContent =
+            "No account was found with this email.";
+
+        } else if (
+          error.code ===
+          "auth/wrong-password"
+        ) {
+
+          message.textContent =
+            "Incorrect password.";
+
+        } else {
+
+          message.textContent =
+            error.message;
+
+        }
+
+        message.style.color =
+          "#f87171";
+
+
+        loginBtn.disabled = false;
+
+        loginBtn.textContent =
+          "Login";
+
+      }
+
+    }
+
+
+    document
+      .getElementById("password")
+      .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+          login();
+
+        }
+
+      });
+
+  </script></body>
+</html>
