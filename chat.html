@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Chat with Danny | Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
   box-sizing:border-box;
@@ -23,9 +20,15 @@
   padding:0;
 }
 
-/* =========================
-   BODY
-========================= */
+:root{
+  --blue:#38bdf8;
+  --dark:#020617;
+  --dark2:#0f172a;
+  --panel:#111c2d;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --border:rgba(255,255,255,.08);
+}
 
 html,
 body{
@@ -35,37 +38,34 @@ body{
 }
 
 body{
-  font-family:Poppins,Arial,sans-serif;
+  font-family:Inter,Arial,sans-serif;
   background:#0f172a;
-  color:white;
+  color:var(--text);
 }
 
-/* =========================
-   APP
-========================= */
+/* APP */
 
-.chat-app{
+.app{
   width:100%;
   height:100dvh;
   display:flex;
   flex-direction:column;
-  background:#0f172a;
+  background:
+    radial-gradient(circle at top right,rgba(56,189,248,.08),transparent 30%),
+    #0f172a;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
-.chat-header{
+.header{
   height:64px;
-  min-height:64px;
-  background:#020617;
+  flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 14px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  position:relative;
+  padding:0 16px;
+  background:rgba(2,6,23,.96);
+  border-bottom:1px solid var(--border);
   z-index:20;
 }
 
@@ -73,20 +73,20 @@ body{
 .menu-btn{
   width:42px;
   height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   border:none;
   border-radius:50%;
   background:transparent;
   color:white;
-  font-size:26px;
+  font-size:25px;
   cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
-.back-btn:active,
-.menu-btn:active{
-  background:#1e293b;
+.back-btn:hover,
+.menu-btn:hover{
+  background:#172033;
 }
 
 .chat-title{
@@ -99,172 +99,95 @@ body{
   width:38px;
   height:38px;
   border-radius:50%;
-  background:#38bdf8;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:20px;
+  background:linear-gradient(135deg,#38bdf8,#0284c7);
+  color:#00111c;
+  font-size:19px;
+  font-weight:bold;
 }
 
-.title-text h3{
-  font-size:16px;
+.title-text h2{
+  font-size:15px;
   font-weight:600;
 }
 
-.online-status{
+.status{
+  color:#22c55e;
   font-size:11px;
-  color:#4ade80;
+  margin-top:2px;
 }
 
-/* =========================
-   MENU
-========================= */
+/* CHAT AREA */
 
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  z-index:30;
-}
-
-.menu-overlay.active{
-  display:block;
-}
-
-.side-menu{
-  position:fixed;
-  top:0;
-  right:-290px;
-  width:280px;
-  max-width:85%;
-  height:100dvh;
-  background:#020617;
-  z-index:40;
-  transition:right .25s ease;
-  padding:20px;
-  box-shadow:-10px 0 30px rgba(0,0,0,.35);
-}
-
-.side-menu.active{
-  right:0;
-}
-
-.menu-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:25px;
-}
-
-.menu-top h2{
-  font-size:19px;
-}
-
-.close-menu{
-  border:none;
-  background:none;
-  color:white;
-  font-size:25px;
-  cursor:pointer;
-}
-
-.menu-user{
-  padding:15px;
-  background:#0f172a;
-  border-radius:14px;
-  margin-bottom:20px;
-}
-
-.menu-user strong{
-  display:block;
-  font-size:15px;
-}
-
-.menu-user small{
-  display:block;
-  color:#94a3b8;
-  margin-top:4px;
-  word-break:break-word;
-}
-
-.menu-list{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.menu-item{
-  width:100%;
-  border:none;
-  background:#0f172a;
-  color:white;
-  padding:14px;
-  border-radius:10px;
-  text-align:left;
-  font-family:inherit;
-  font-size:14px;
-  cursor:pointer;
-}
-
-.menu-item:hover,
-.menu-item:active{
-  background:#1e293b;
-}
-
-.menu-item.logout{
-  color:#f87171;
-}
-
-/* =========================
-   CHAT AREA
-========================= */
-
-.messages{
+.chat-area{
   flex:1;
   min-height:0;
   overflow-y:auto;
-  padding:18px 14px 12px;
+  padding:20px 14px 18px;
   scroll-behavior:smooth;
 }
 
-/* =========================
-   WELCOME CARD
-========================= */
+.chat-area::-webkit-scrollbar{
+  width:5px;
+}
 
-.welcome-card{
+.chat-area::-webkit-scrollbar-thumb{
+  background:#334155;
+  border-radius:20px;
+}
+
+/* WELCOME CARD */
+
+.welcome{
   max-width:420px;
-  margin:5px auto 22px;
+  margin:10px auto 24px;
   padding:18px;
-  background:#172337;
-  border:1px solid rgba(56,189,248,.18);
-  border-radius:18px;
   text-align:center;
+  border:1px solid var(--border);
+  background:rgba(17,28,45,.85);
+  border-radius:18px;
 }
 
 .welcome-icon{
-  font-size:30px;
-  margin-bottom:8px;
+  width:48px;
+  height:48px;
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(56,189,248,.12);
+  color:var(--blue);
+  font-size:23px;
 }
 
-.welcome-card h3{
-  font-size:16px;
+.welcome h3{
+  font-size:15px;
   margin-bottom:7px;
 }
 
-.welcome-card p{
-  color:#aebccc;
+.welcome p{
+  color:var(--muted);
   font-size:12px;
   line-height:1.6;
 }
 
-/* =========================
-   MESSAGE
-========================= */
+/* DATE */
+
+.date-label{
+  text-align:center;
+  color:#64748b;
+  font-size:11px;
+  margin:15px 0;
+}
+
+/* MESSAGES */
 
 .message-row{
   display:flex;
-  margin:7px 0;
+  margin:8px 0;
 }
 
 .message-row.user{
@@ -278,176 +201,128 @@ body{
 .message{
   max-width:min(78%,420px);
   padding:10px 12px 7px;
-  border-radius:16px;
-  font-size:14px;
-  line-height:1.45;
+  border-radius:17px;
+  position:relative;
   word-wrap:break-word;
+  overflow:hidden;
 }
 
 .message-row.user .message{
-  background:#38bdf8;
-  color:#00111c;
-  border-bottom-right-radius:4px;
+  background:#075985;
+  border-bottom-right-radius:5px;
 }
 
 .message-row.danny .message{
   background:#1e293b;
-  color:white;
-  border-bottom-left-radius:4px;
+  border-bottom-left-radius:5px;
 }
 
-.message-time{
+.message-text{
+  font-size:14px;
+  line-height:1.5;
+  white-space:pre-wrap;
+}
+
+.message-image{
+  display:block;
+  max-width:230px;
+  max-height:300px;
+  border-radius:12px;
+  object-fit:cover;
+  cursor:pointer;
+}
+
+.message-info{
   display:flex;
   justify-content:flex-end;
   align-items:center;
   gap:5px;
+  margin-top:5px;
   font-size:9px;
-  opacity:.7;
-  margin-top:4px;
+  color:#cbd5e1;
 }
 
 .seen{
-  color:#2563eb;
-  font-size:11px;
+  color:#38bdf8;
+  font-size:12px;
+  letter-spacing:-3px;
 }
 
-/* =========================
-   IMAGE MESSAGE
-========================= */
-
-.message-image{
-  width:100%;
-  max-width:260px;
-  max-height:320px;
-  object-fit:cover;
-  border-radius:12px;
-  display:block;
-  cursor:pointer;
-}
-
-/* =========================
-   TYPING
-========================= */
+/* TYPING */
 
 .typing{
   display:none;
   align-items:center;
-  gap:5px;
-  width:max-content;
-  background:#1e293b;
-  padding:10px 14px;
-  border-radius:16px;
-  margin:5px 0 10px;
+  gap:7px;
   color:#94a3b8;
   font-size:12px;
+  margin:8px 0 12px 4px;
 }
 
 .typing.active{
   display:flex;
 }
 
-.dot{
+.typing-dots{
+  display:flex;
+  gap:3px;
+}
+
+.typing-dots span{
   width:5px;
   height:5px;
   border-radius:50%;
   background:#94a3b8;
-  animation:bounce 1.2s infinite;
+  animation:typing 1.2s infinite;
 }
 
-.dot:nth-child(2){
+.typing-dots span:nth-child(2){
   animation-delay:.2s;
 }
 
-.dot:nth-child(3){
+.typing-dots span:nth-child(3){
   animation-delay:.4s;
 }
 
-@keyframes bounce{
+@keyframes typing{
   0%,60%,100%{
+    opacity:.3;
     transform:translateY(0);
   }
+
   30%{
-    transform:translateY(-4px);
+    opacity:1;
+    transform:translateY(-3px);
   }
 }
 
-/* =========================
-   ATTACHMENT PREVIEW
-========================= */
+/* INPUT AREA */
 
-.preview-area{
-  display:none;
-  padding:8px 12px;
-  background:#020617;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-
-.preview-area.active{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.preview-image{
-  width:58px;
-  height:58px;
-  object-fit:cover;
-  border-radius:10px;
-}
-
-.remove-preview{
-  border:none;
-  background:#ef4444;
-  color:white;
-  border-radius:50%;
-  width:26px;
-  height:26px;
-  cursor:pointer;
-}
-
-/* =========================
-   COMPOSER
-========================= */
-
-.composer{
+.input-area{
   flex-shrink:0;
-  background:#020617;
-  padding:8px 10px;
-  padding-bottom:calc(8px + env(safe-area-inset-bottom));
   display:flex;
   align-items:flex-end;
   gap:7px;
-  border-top:1px solid rgba(255,255,255,.08);
+  padding:9px 10px;
+  padding-bottom:calc(9px + env(safe-area-inset-bottom));
+  background:rgba(2,6,23,.98);
+  border-top:1px solid var(--border);
 }
 
-.attach-btn,
-.send-btn{
-  flex-shrink:0;
+.icon-btn{
   width:42px;
   height:42px;
+  flex-shrink:0;
   border:none;
   border-radius:50%;
+  background:#172033;
+  color:#e2e8f0;
+  font-size:23px;
   cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:21px;
 }
 
-.attach-btn{
-  background:#1e293b;
-  color:white;
-}
-
-.send-btn{
-  background:#38bdf8;
-  color:#00111c;
-  font-size:18px;
-}
-
-.attach-btn:active,
-.send-btn:active{
-  transform:scale(.94);
+.icon-btn:hover{
+  background:#24334b;
 }
 
 .message-input{
@@ -455,37 +330,58 @@ body{
   min-width:0;
   max-height:120px;
   min-height:42px;
+  padding:12px 15px;
   resize:none;
-  border:none;
   outline:none;
+  border:none;
   border-radius:22px;
-  padding:11px 15px;
-  background:#1e293b;
+  background:#172033;
   color:white;
   font-family:inherit;
   font-size:14px;
-  line-height:20px;
+  line-height:1.4;
 }
 
 .message-input::placeholder{
-  color:#94a3b8;
+  color:#64748b;
 }
 
-/* =========================
-   ATTACHMENT OPTIONS
-========================= */
+.send-btn{
+  width:42px;
+  height:42px;
+  flex-shrink:0;
+  border:none;
+  border-radius:50%;
+  background:var(--blue);
+  color:#00111c;
+  font-size:19px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.send-btn:hover{
+  transform:scale(1.05);
+}
+
+.send-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* ATTACHMENT MENU */
 
 .attachment-menu{
   position:fixed;
-  bottom:70px;
   left:10px;
-  background:#020617;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:14px;
+  bottom:75px;
+  width:190px;
   padding:8px;
   display:none;
-  z-index:25;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  background:#111c2d;
+  border:1px solid var(--border);
+  border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  z-index:30;
 }
 
 .attachment-menu.active{
@@ -493,38 +389,212 @@ body{
 }
 
 .attachment-option{
-  display:block;
-  width:210px;
-  padding:13px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
   border:none;
+  border-radius:10px;
   background:transparent;
   color:white;
   text-align:left;
-  border-radius:9px;
-  font-family:inherit;
   cursor:pointer;
+  font-family:inherit;
 }
 
 .attachment-option:hover{
   background:#1e293b;
 }
 
-.hidden{
+/* PREVIEW */
+
+.preview{
+  position:fixed;
+  left:10px;
+  right:10px;
+  bottom:75px;
+  max-width:400px;
+  padding:10px;
   display:none;
+  background:#111c2d;
+  border:1px solid var(--border);
+  border-radius:15px;
+  z-index:40;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.preview.active{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.preview img{
+  width:65px;
+  height:65px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.preview-info{
+  flex:1;
+  font-size:12px;
+  color:#cbd5e1;
+}
+
+.remove-preview{
+  border:none;
+  background:transparent;
+  color:#f87171;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* SIDE MENU */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  display:none;
+  z-index:50;
+}
+
+.overlay.active{
+  display:block;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-310px;
+  width:290px;
+  max-width:85%;
+  height:100dvh;
+  background:#020617;
+  border-left:1px solid var(--border);
+  z-index:60;
+  transition:.3s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+.side-menu.active{
+  right:0;
+}
+
+.menu-top{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+}
+
+.menu-top h3{
+  font-size:16px;
+}
+
+.close-menu{
+  border:none;
+  background:transparent;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.profile{
+  padding:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid var(--border);
+}
+
+.profile-avatar{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:#1e293b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:bold;
+}
+
+.profile-info{
+  min-width:0;
+}
+
+.profile-name{
+  font-size:14px;
+  font-weight:600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.profile-email{
+  color:#64748b;
+  font-size:10px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.menu-list{
+  padding:12px;
+  overflow-y:auto;
+}
+
+.menu-item{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  margin-bottom:6px;
+  border:none;
+  border-radius:12px;
+  background:transparent;
+  color:white;
+  text-align:left;
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.menu-item:hover{
+  background:#111c2d;
+}
+
+.menu-icon{
+  width:28px;
+  text-align:center;
+  font-size:18px;
+}
+
+.menu-footer{
+  margin-top:auto;
+  padding:18px;
+  border-top:1px solid var(--border);
+  color:#64748b;
+  font-size:10px;
+  text-align:center;
+}
+
+/* MOBILE */
 
 @media(max-width:600px){
 
   .message{
-    max-width:84%;
+    max-width:85%;
   }
 
-  .welcome-card{
-    margin-top:3px;
+  .chat-area{
+    padding-left:10px;
+    padding-right:10px;
   }
 
 }
@@ -534,14 +604,17 @@ body{
 
 <body>
 
-<div class="chat-app">
+<div class="app">
 
   <!-- HEADER -->
 
-  <header class="chat-header">
+  <header class="header">
 
-    <button class="back-btn" id="backBtn" aria-label="Go back">
-      ‹
+    <button
+      class="back-btn"
+      id="backBtn"
+      aria-label="Go back">
+      ←
     </button>
 
     <div class="chat-title">
@@ -551,134 +624,161 @@ body{
       </div>
 
       <div class="title-text">
-        <h3>Danny</h3>
-        <div class="online-status">
-          ● Online
+
+        <h2>Danny</h2>
+
+        <div
+          class="status"
+          id="onlineStatus">
+          Online
         </div>
+
       </div>
 
     </div>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Open menu">
       ⋮
     </button>
 
   </header>
 
 
-  <!-- MESSAGES -->
+  <!-- CHAT -->
 
-  <main class="messages" id="messages">
+  <main
+    class="chat-area"
+    id="chatArea">
 
-    <div class="welcome-card">
+    <div class="welcome">
 
       <div class="welcome-icon">
-        👋
+        ⚡
       </div>
 
-      <h3>Welcome to Danny Smart Power</h3>
+      <h3>
+        Welcome to Danny Smart Power
+      </h3>
 
       <p>
-        This is Danny. We are here for you.
-        Feel free to discuss your questions,
-        electrical needs, solar solutions,
-        orders, or anything else you need help with.
-        We will reply as soon as possible.
+        Hello 👋, this is Danny. We are here to assist you with your electrical, solar and power needs. Feel free to discuss anything with us. We will reply as soon as possible.
       </p>
 
     </div>
 
-    <div class="typing" id="typingIndicator">
+    <div
+      class="date-label"
+      id="dateLabel">
+    </div>
 
-      <span>Danny is typing</span>
+    <div
+      id="messages">
+    </div>
 
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+    <div
+      class="typing"
+      id="typingIndicator">
+
+      <div class="typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      Danny is typing...
 
     </div>
 
   </main>
 
 
-  <!-- PREVIEW -->
-
-  <div class="preview-area" id="previewArea">
-
-    <img
-      id="previewImage"
-      class="preview-image"
-      alt="Selected image"
-    >
-
-    <button
-      class="remove-preview"
-      id="removePreview"
-      type="button"
-    >
-      ×
-    </button>
-
-  </div>
-
-
   <!-- ATTACHMENT MENU -->
 
   <div
     class="attachment-menu"
-    id="attachmentMenu"
-  >
+    id="attachmentMenu">
 
     <button
       class="attachment-option"
-      id="galleryBtn"
-      type="button"
-    >
-      🖼️ Choose image from gallery
+      id="galleryBtn">
+
+      🖼️
+      <span>Choose from gallery</span>
+
     </button>
 
     <button
       class="attachment-option"
-      id="cameraBtn"
-      type="button"
-    >
-      📷 Take a photo
+      id="cameraBtn">
+
+      📷
+      <span>Take a photo</span>
+
     </button>
 
   </div>
 
 
-  <!-- COMPOSER -->
+  <!-- IMAGE PREVIEW -->
+
+  <div
+    class="preview"
+    id="preview">
+
+    <img
+      id="previewImage"
+      alt="Image preview">
+
+    <div
+      class="preview-info">
+
+      Image ready to send
+
+    </div>
+
+    <button
+      class="remove-preview"
+      id="removePreview">
+
+      ×
+
+    </button>
+
+  </div>
+
+
+  <!-- INPUT -->
 
   <form
-    class="composer"
-    id="messageForm"
-  >
+    class="input-area"
+    id="messageForm">
 
     <button
       type="button"
-      class="attach-btn"
-      id="attachBtn"
-      aria-label="Add attachment"
-    >
+      class="icon-btn"
+      id="attachBtn">
+
       +
+
     </button>
 
     <textarea
-      id="messageInput"
       class="message-input"
-      placeholder="Type a message..."
+      id="messageInput"
       rows="1"
-      autocomplete="off"
-    ></textarea>
+      placeholder="Type a message..."
+      autocomplete="off"></textarea>
 
     <button
       type="submit"
       class="send-btn"
-      id="sendBtn"
-      aria-label="Send message"
-    >
+      id="sendBtn">
+
       ➤
+
     </button>
 
   </form>
@@ -686,110 +786,146 @@ body{
 </div>
 
 
-<!-- RIGHT MENU -->
+<!-- SIDE MENU -->
 
 <div
-  class="menu-overlay"
-  id="menuOverlay"
-></div>
+  class="overlay"
+  id="overlay">
+</div>
 
 <aside
   class="side-menu"
-  id="sideMenu"
->
+  id="sideMenu">
 
   <div class="menu-top">
 
-    <h2>Chat Menu</h2>
+    <h3>Danny Chat</h3>
 
     <button
       class="close-menu"
-      id="closeMenu"
-    >
+      id="closeMenu">
+
       ×
+
     </button>
 
   </div>
 
 
-  <div class="menu-user">
+  <div
+    class="profile">
 
-    <strong id="userName">
-      Loading...
-    </strong>
+    <div
+      class="profile-avatar"
+      id="profileAvatar">
 
-    <small id="userEmail">
-      Loading...
-    </small>
+      U
+
+    </div>
+
+    <div
+      class="profile-info">
+
+      <div
+        class="profile-name"
+        id="profileName">
+
+        User
+
+      </div>
+
+      <div
+        class="profile-email"
+        id="profileEmail">
+
+        Loading...
+
+      </div>
+
+    </div>
 
   </div>
 
 
-  <div class="menu-list">
+  <div
+    class="menu-list">
 
     <button
       class="menu-item"
-      id="profileBtn"
-    >
-      👤 My Profile
+      id="profileBtn">
+
+      <span class="menu-icon">👤</span>
+
+      <span>My Profile</span>
+
     </button>
+
 
     <button
       class="menu-item"
-      id="ordersBtn"
-    >
-      📦 My Orders
+      id="ordersBtn">
+
+      <span class="menu-icon">📦</span>
+
+      <span>My Orders</span>
+
     </button>
+
 
     <button
       class="menu-item"
-      id="settingsBtn"
-    >
-      ⚙️ Settings
+      id="servicesBtn">
+
+      <span class="menu-icon">⚡</span>
+
+      <span>Our Services</span>
+
     </button>
+
 
     <button
       class="menu-item"
-      id="helpBtn"
-    >
-      ❓ Help Center
+      id="settingsBtn">
+
+      <span class="menu-icon">⚙️</span>
+
+      <span>Settings</span>
+
     </button>
+
 
     <button
       class="menu-item"
-      id="shopBtn"
-    >
-      🛍️ Continue Shopping
+      id="helpBtn">
+
+      <span class="menu-icon">❓</span>
+
+      <span>Help & Support</span>
+
     </button>
 
+
     <button
-      class="menu-item logout"
-      id="logoutBtn"
-    >
-      🚪 Logout
+      class="menu-item"
+      id="contactBtn">
+
+      <span class="menu-icon">📞</span>
+
+      <span>Contact Danny Smart Power</span>
+
     </button>
+
+  </div>
+
+
+  <div
+    class="menu-footer">
+
+    Danny Smart Power ⚡
 
   </div>
 
 </aside>
-
-
-<!-- HIDDEN FILE INPUTS -->
-
-<input
-  type="file"
-  id="galleryInput"
-  class="hidden"
-  accept="image/*"
->
-
-<input
-  type="file"
-  id="cameraInput"
-  class="hidden"
-  accept="image/*"
-  capture="environment"
->
 
 
 <!-- FIREBASE -->
@@ -805,10 +941,6 @@ body{
 
 <script>
 
-/* =====================================
-   FIREBASE CONFIG
-===================================== */
-
 const firebaseConfig = {
 
   apiKey:
@@ -816,6 +948,9 @@ const firebaseConfig = {
 
   authDomain:
   "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+  "https://danny-smart-power-default-rtdb.firebaseio.com",
 
   projectId:
   "danny-smart-power",
@@ -827,7 +962,10 @@ const firebaseConfig = {
   "649735645158",
 
   appId:
-  "1:649735645158:web:cff518b89721a163679827"
+  "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+  "G-258YKLP5ZS"
 
 };
 
@@ -835,105 +973,221 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const auth = firebase.auth();
+const auth =
+firebase.auth();
 
-const db = firebase.firestore();
+const db =
+firebase.firestore();
 
-const storage = firebase.storage();
-
-
-/* =====================================
-   VARIABLES
-===================================== */
-
-let currentUser = null;
-
-let chatRef = null;
-
-let messagesRef = null;
-
-let typingTimeout = null;
-
-let selectedFile = null;
+const storage =
+firebase.storage();
 
 
-/* =====================================
-   ELEMENTS
-===================================== */
+/* ELEMENTS */
 
-const messages = document.getElementById("messages");
+const chatArea =
+document.getElementById("chatArea");
 
-const messageForm = document.getElementById("messageForm");
+const messagesBox =
+document.getElementById("messages");
 
-const messageInput = document.getElementById("messageInput");
+const messageInput =
+document.getElementById("messageInput");
 
-const typingIndicator =
-document.getElementById("typingIndicator");
+const messageForm =
+document.getElementById("messageForm");
 
-const galleryInput =
-document.getElementById("galleryInput");
+const sendBtn =
+document.getElementById("sendBtn");
 
-const cameraInput =
-document.getElementById("cameraInput");
-
-const previewArea =
-document.getElementById("previewArea");
-
-const previewImage =
-document.getElementById("previewImage");
+const attachBtn =
+document.getElementById("attachBtn");
 
 const attachmentMenu =
 document.getElementById("attachmentMenu");
 
+const preview =
+document.getElementById("preview");
+
+const previewImage =
+document.getElementById("previewImage");
+
+const galleryBtn =
+document.getElementById("galleryBtn");
+
+const cameraBtn =
+document.getElementById("cameraBtn");
+
+const typingIndicator =
+document.getElementById("typingIndicator");
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const sideMenu =
+document.getElementById("sideMenu");
+
+const overlay =
+document.getElementById("overlay");
+
+const closeMenu =
+document.getElementById("closeMenu");
+
+const profileName =
+document.getElementById("profileName");
+
+const profileEmail =
+document.getElementById("profileEmail");
+
+const profileAvatar =
+document.getElementById("profileAvatar");
 
 
+/* USER */
 
-  currentUser = user;
+let currentUser = null;
+
+let chatId = null;
+
+let selectedImage = null;
+
+let typingTimer = null;
+
+let unsubscribeMessages = null;
+
+let unsubscribeTyping = null;
 
 
-  document.getElementById("userName").textContent =
-  user.displayName || "Danny Smart Power Customer";
+/* FILE INPUTS */
+
+const galleryInput =
+document.createElement("input");
+
+galleryInput.type =
+"file";
+
+galleryInput.accept =
+"image/*";
+
+galleryInput.style.display =
+"none";
 
 
-  document.getElementById("userEmail").textContent =
-  user.email;
+const cameraInput =
+document.createElement("input");
+
+cameraInput.type =
+"file";
+
+cameraInput.accept =
+"image/*";
+
+cameraInput.capture =
+"environment";
+
+cameraInput.style.display =
+"none";
+
+
+document.body.appendChild(galleryInput);
+
+document.body.appendChild(cameraInput);
+
+
+/* AUTH CHECK */
+
+auth.onAuthStateChanged(async function(user){
+
+  if(!user){
+
+    /*
+      Login is handled by login.html.
+      We do not redirect here.
+    */
+
+    messagesBox.innerHTML = `
+      <div class="welcome">
+        <h3>Account not available</h3>
+        <p>Please sign in before using Danny Chat.</p>
+      </div>
+    `;
+
+    messageInput.disabled = true;
+
+    sendBtn.disabled = true;
+
+    return;
+
+  }
+
+
+  currentUser =
+  user;
 
 
   /*
-    IMPORTANT:
+    VERY IMPORTANT
 
-    The logged-in Firebase UID is the chat ID.
+    The chat ID is the Firebase Auth UID.
 
-    No localStorage.
-    No sessionStorage.
-    No random timestamp.
+    User A:
+    chats/A_UID/messages
 
-    Therefore every user has their own chat.
+    User B:
+    chats/B_UID/messages
+
+    They can never share the same chat.
   */
 
-  chatRef =
-  db.collection("chats")
-    .doc(user.uid);
+  chatId =
+  currentUser.uid;
 
 
-  messagesRef =
-  chatRef.collection("messages");
+  loadProfile();
 
+  await createChat();
 
-  await createChatIfNeeded();
+  listenToMessages();
 
-  listenForMessages();
-
-  listenForTyping();
+  listenToTyping();
 
 });
 
 
-/* =====================================
-   CREATE PRIVATE CHAT
-===================================== */
+/* PROFILE */
 
-async function createChatIfNeeded(){
+function loadProfile(){
+
+  const email =
+  currentUser.email || "User";
+
+
+  const name =
+  currentUser.displayName ||
+  email.split("@")[0];
+
+
+  profileName.textContent =
+  name;
+
+
+  profileEmail.textContent =
+  email;
+
+
+  profileAvatar.textContent =
+  name.charAt(0).toUpperCase();
+
+}
+
+
+/* CREATE PRIVATE CHAT */
+
+async function createChat(){
+
+  const chatRef =
+  db.collection("chats").doc(chatId);
+
 
   const chatSnapshot =
   await chatRef.get();
@@ -943,120 +1197,134 @@ async function createChatIfNeeded(){
 
     await chatRef.set({
 
-      userId:currentUser.uid,
-
-      userEmail:currentUser.email,
+      userId:
+      currentUser.uid,
 
       userName:
-      currentUser.displayName || "",
+      currentUser.displayName ||
+      currentUser.email.split("@")[0],
+
+      userEmail:
+      currentUser.email,
 
       createdAt:
       firebase.firestore.FieldValue.serverTimestamp(),
 
-      lastMessage:"",
-
-      lastMessageAt:
-      firebase.firestore.FieldValue.serverTimestamp()
-
-    });
-
-  }
-
-
-  /*
-    WELCOME MESSAGE IS STORED IN FIRESTORE.
-
-    It will therefore appear properly
-    for this user and remain in their
-    private chat.
-  */
-
-  const firstMessage =
-  await messagesRef
-  .limit(1)
-  .get();
-
-
-  if(firstMessage.empty){
-
-    await messagesRef.add({
-
-      text:
-      "Hello 👋, this is Danny. We are here for you. Feel free to discuss your questions, electrical needs, solar solutions, orders, or anything else you need help with. We will reply as soon as possible.",
-
-      sender:"danny",
-
-      senderId:"danny",
-
-      createdAt:
+      updatedAt:
       firebase.firestore.FieldValue.serverTimestamp(),
 
-      seen:true
+      lastMessage:
+      ""
 
     });
+
+
+    await chatRef
+      .collection("messages")
+      .add({
+
+        text:
+        "Hello 👋, this is Danny. We are here to assist you with your electrical, solar and power needs. Feel free to discuss anything with us. We will reply as soon as possible.",
+
+        sender:
+        "admin",
+
+        time:
+        firebase.firestore.FieldValue.serverTimestamp(),
+
+        seen:
+        true
+
+      });
 
   }
 
 }
 
 
-/* =====================================
-   REAL-TIME MESSAGES
-===================================== */
+/* LOAD MESSAGES */
 
-function listenForMessages(){
+function listenToMessages(){
 
-  messagesRef
-  .orderBy("createdAt","asc")
-  .onSnapshot(function(snapshot){
+  if(unsubscribeMessages){
 
-    const welcome =
-    messages.querySelector(".welcome-card");
+    unsubscribeMessages();
+
+  }
 
 
-    messages.innerHTML = "";
+  unsubscribeMessages =
+  db.collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .orderBy("time","asc")
+    .onSnapshot(function(snapshot){
 
-    if(welcome){
-
-      messages.appendChild(welcome);
-
-    }
+      messagesBox.innerHTML =
+      "";
 
 
-    snapshot.forEach(function(doc){
+      snapshot.forEach(function(doc){
 
-      renderMessage(doc.id,doc.data());
+        const message =
+        doc.data();
+
+
+        renderMessage(
+          doc.id,
+          message
+        );
+
+
+        /*
+          Mark messages from Danny as seen
+        */
+
+        if(
+          message.sender ===
+          "admin" &&
+          message.seen === false
+        ){
+
+          doc.ref.update({
+
+            seen:
+            true
+
+          });
+
+        }
+
+      });
+
+
+      setTimeout(function(){
+
+        chatArea.scrollTop =
+        chatArea.scrollHeight;
+
+      },100);
 
     });
-
-
-    messages.appendChild(typingIndicator);
-
-
-    scrollToBottom();
-
-  });
 
 }
 
 
-/* =====================================
-   RENDER MESSAGE
-===================================== */
+/* RENDER MESSAGE */
 
-function renderMessage(id,data){
+function renderMessage(id,message){
 
   const row =
   document.createElement("div");
 
 
-  const isUser =
-  data.sender === "user";
-
-
   row.className =
   "message-row " +
-  (isUser ? "user" : "danny");
+  (
+    message.sender === "user"
+    ? "user"
+    : "danny"
+  );
 
 
   const bubble =
@@ -1067,14 +1335,14 @@ function renderMessage(id,data){
   "message";
 
 
-  if(data.image){
+  if(message.image){
 
     const image =
     document.createElement("img");
 
 
     image.src =
-    data.image;
+    message.image;
 
 
     image.className =
@@ -1084,96 +1352,91 @@ function renderMessage(id,data){
     image.onclick =
     function(){
 
-      window.open(data.image,"_blank");
+      window.open(
+        message.image,
+        "_blank"
+      );
 
     };
 
 
-    bubble.appendChild(image);
-
-  }
-
-
-  if(data.text){
-
-    const text =
-    document.createElement("div");
-
-
-    text.textContent =
-    data.text;
-
-
-    bubble.appendChild(text);
-
-  }
-
-
-  const time =
-  document.createElement("div");
-
-
-  time.className =
-  "message-time";
-
-
-  let messageTime =
-  "";
-
-
-  if(data.createdAt){
-
-    const date =
-    data.createdAt.toDate();
-
-
-    messageTime =
-    date.toLocaleTimeString(
-      [],
-      {
-        hour:"2-digit",
-        minute:"2-digit"
-      }
+    bubble.appendChild(
+      image
     );
 
   }
 
 
-  time.innerHTML =
-  `<span>${messageTime}</span>`;
+  if(message.text){
+
+    const text =
+    document.createElement("div");
 
 
-  if(isUser){
-
-    const seen =
-    document.createElement("span");
+    text.className =
+    "message-text";
 
 
-    seen.className =
-    "seen";
+    text.textContent =
+    message.text;
 
 
-    seen.textContent =
-    data.seen ? "✓✓" : "✓";
-
-
-    time.appendChild(seen);
+    bubble.appendChild(
+      text
+    );
 
   }
 
 
-  bubble.appendChild(time);
+  const info =
+  document.createElement("div");
 
-  row.appendChild(bubble);
 
-  messages.insertBefore(row,typingIndicator);
+  info.className =
+  "message-info";
+
+
+  const time =
+  message.time
+  ? message.time.toDate()
+  : new Date();
+
+
+  info.innerHTML =
+  `
+    ${time.toLocaleTimeString([],{
+      hour:"2-digit",
+      minute:"2-digit"
+    })}
+
+    ${
+      message.sender === "user"
+      ? `<span class="seen">
+          ${message.seen ? "✔✔" : "✔"}
+         </span>`
+      : ""
+    }
+  `;
+
+
+  bubble.appendChild(
+  info
+  );
+
+
+  row.appendChild(
+  bubble
+  );
+
+
+  messagesBox.appendChild(
+  row
+  );
 
 }
 
 
-/* =====================================
-   SEND TEXT / IMAGE
-===================================== */
+/* SEND MESSAGE */
 
 messageForm.addEventListener(
 "submit",
@@ -1182,19 +1445,22 @@ async function(event){
   event.preventDefault();
 
 
-  const text =
-  messageInput.value.trim();
-
-
-  if(!text && !selectedFile){
+  if(!currentUser){
 
     return;
 
   }
 
 
-  const sendBtn =
-  document.getElementById("sendBtn");
+  const text =
+  messageInput.value.trim();
+
+
+  if(!text && !selectedImage){
+
+    return;
+
+  }
 
 
   sendBtn.disabled =
@@ -1204,80 +1470,107 @@ async function(event){
   try{
 
 
-    let imageUrl =
+    let imageURL =
     null;
 
 
-    if(selectedFile){
+    if(selectedImage){
 
-      const filePath =
-      "chat-images/" +
-      currentUser.uid +
-      "/" +
-      Date.now() +
-      "-" +
-      selectedFile.name;
+      const fileName =
+      `chat-images/${currentUser.uid}/${Date.now()}-${selectedImage.name}`;
 
 
-      const fileRef =
-      storage.ref(filePath);
+      const imageRef =
+      storage.ref(fileName);
 
 
-      await fileRef.put(selectedFile);
+      await imageRef.put(
+      selectedImage
+      );
 
 
-      imageUrl =
-      await fileRef.getDownloadURL();
+      imageURL =
+      await imageRef.getDownloadURL();
 
     }
 
 
-    await messagesRef.add({
+    await db
+      .collection("chats")
+      .doc(chatId)
+      .collection("messages")
+      .add({
 
-      text:text || "",
+        text:
+        text || "",
 
-      image:imageUrl,
+        image:
+        imageURL || "",
 
-      sender:"user",
+        sender:
+        "user",
 
-      senderId:currentUser.uid,
+        userId:
+        currentUser.uid,
 
-      createdAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
+        time:
+        firebase.firestore.FieldValue.serverTimestamp(),
 
-      seen:false
+        seen:
+        false
 
-    });
-
-
-    await chatRef.update({
-
-      lastMessage:
-      text || "📷 Image",
-
-      lastMessageAt:
-      firebase.firestore.FieldValue.serverTimestamp()
-
-    });
+      });
 
 
-    messageInput.value = "";
+    await db
+      .collection("chats")
+      .doc(chatId)
+      .update({
 
-    selectedFile = null;
+        lastMessage:
+        text || "📷 Image",
 
-    clearPreview();
+        updatedAt:
+        firebase.firestore.FieldValue.serverTimestamp()
 
-    autoResize();
+      });
+
+
+    messageInput.value =
+    "";
+
+    selectedImage =
+    null;
+
+
+    preview.classList.remove(
+      "active"
+    );
+
+
+    previewImage.src =
+    "";
+
+
+    messageInput.style.height =
+    "auto";
+
+
+    stopTyping();
 
 
   }
 
   catch(error){
 
-    console.error(error);
+    console.error(
+      "Message sending error:",
+      error
+    );
+
 
     alert(
-      "Message could not be sent. Please check your internet connection."
+      "Message could not be sent. Please try again."
     );
 
   }
@@ -1286,22 +1579,18 @@ async function(event){
   sendBtn.disabled =
   false;
 
-
-  scrollToBottom();
-
 });
 
 
-/* =====================================
-   ENTER TO SEND
-===================================== */
+/* ENTER SENDS */
 
 messageInput.addEventListener(
 "keydown",
 function(event){
 
   if(
-    event.key === "Enter" &&
+    event.key ===
+    "Enter" &&
     !event.shiftKey
   ){
 
@@ -1314,41 +1603,31 @@ function(event){
 });
 
 
-/* =====================================
-   AUTO RESIZE
-===================================== */
+/* AUTO RESIZE */
 
 messageInput.addEventListener(
 "input",
 function(){
 
-  autoResize();
+  this.style.height =
+  "auto";
 
-  setTyping(true);
+
+  this.style.height =
+  Math.min(
+    this.scrollHeight,
+    120
+  ) + "px";
+
+
+  setTyping();
 
 });
 
 
-function autoResize(){
+/* TYPING */
 
-  messageInput.style.height =
-  "42px";
-
-
-  messageInput.style.height =
-  Math.min(
-    messageInput.scrollHeight,
-    120
-  ) + "px";
-
-}
-
-
-/* =====================================
-   TYPING INDICATOR
-===================================== */
-
-function setTyping(value){
+function setTyping(){
 
   if(!currentUser){
 
@@ -1357,101 +1636,130 @@ function setTyping(value){
   }
 
 
-  chatRef.set({
+  db.collection("chats")
+    .doc(chatId)
+    .set({
 
-    userTyping:value,
+      typingUser:
+      true,
 
-    userTypingAt:
-    firebase.firestore.FieldValue.serverTimestamp()
+      typingUpdatedAt:
+      firebase.firestore.FieldValue.serverTimestamp()
 
-  },{
-
-    merge:true
-
-  });
-
-
-  clearTimeout(typingTimeout);
+    },{
+      merge:true
+    });
 
 
-  if(value){
+  clearTimeout(
+  typingTimer
+  );
 
-    typingTimeout =
-    setTimeout(function(){
 
-      setTyping(false);
+  typingTimer =
+  setTimeout(
+  stopTyping,
+  1500
+  );
 
-    },3000);
+}
+
+
+function stopTyping(){
+
+  if(!currentUser ||
+     !chatId){
+
+    return;
 
   }
 
-}
 
+  db.collection("chats")
+    .doc(chatId)
+    .set({
 
-function listenForTyping(){
+      typingUser:
+      false
 
-  chatRef.onSnapshot(function(snapshot){
-
-    const data =
-    snapshot.data();
-
-
-    if(
-      data &&
-      data.dannyTyping === true
-    ){
-
-      typingIndicator.classList.add("active");
-
-      typingIndicator.querySelector("span")
-      .textContent =
-      "Danny is typing";
-
-    }
-
-    else{
-
-      typingIndicator.classList.remove("active");
-
-    }
-
-  });
+    },{
+      merge:true
+    });
 
 }
 
 
-/* =====================================
-   ATTACHMENTS
-===================================== */
+/* LISTEN TO DANNY TYPING */
 
-document.getElementById("attachBtn")
-.addEventListener(
+function listenToTyping(){
+
+  unsubscribeTyping =
+  db.collection("chats")
+    .doc(chatId)
+    .onSnapshot(function(snapshot){
+
+      const data =
+      snapshot.data();
+
+
+      if(
+        data &&
+        data.typingAdmin ===
+        true
+      ){
+
+        typingIndicator.classList.add(
+          "active"
+        );
+
+      }
+
+      else{
+
+        typingIndicator.classList.remove(
+          "active"
+        );
+
+      }
+
+    });
+
+}
+
+
+/* ATTACHMENT MENU */
+
+attachBtn.addEventListener(
 "click",
 function(){
 
-  attachmentMenu.classList.toggle("active");
+  attachmentMenu.classList.toggle(
+    "active"
+  );
 
 });
 
 
-document.getElementById("galleryBtn")
-.addEventListener(
+galleryBtn.addEventListener(
 "click",
 function(){
 
-  attachmentMenu.classList.remove("active");
+  attachmentMenu.classList.remove(
+    "active"
+  );
 
   galleryInput.click();
 
 });
 
 
-document.getElementById("cameraBtn")
-.addEventListener(
+cameraBtn.addEventListener(
 "click",
 function(){
 
-  attachmentMenu.classList.remove("active");
+  attachmentMenu.classList.remove(
+    "active"
+  );
 
   cameraInput.click();
 
@@ -1460,21 +1768,27 @@ function(){
 
 galleryInput.addEventListener(
 "change",
-handleFile
-);
+function(){
+
+  handleImage(
+    this.files[0]
+  );
+
+});
 
 
 cameraInput.addEventListener(
 "change",
-handleFile
-);
+function(){
+
+  handleImage(
+    this.files[0]
+  );
+
+});
 
 
-function handleFile(event){
-
-  const file =
-  event.target.files[0];
-
+function handleImage(file){
 
   if(!file){
 
@@ -1483,115 +1797,101 @@ function handleFile(event){
   }
 
 
-  if(!file.type.startsWith("image/")){
-
-    alert("Please choose an image.");
-
-    return;
-
-  }
-
-
-  selectedFile =
+  selectedImage =
   file;
 
 
-  previewImage.src =
-  URL.createObjectURL(file);
+  const reader =
+  new FileReader();
 
 
-  previewArea.classList.add("active");
+  reader.onload =
+  function(event){
+
+    previewImage.src =
+    event.target.result;
+
+
+    preview.classList.add(
+      "active"
+    );
+
+  };
+
+
+  reader.readAsDataURL(
+  file
+  );
 
 }
 
 
-document.getElementById("removePreview")
-.addEventListener(
+removePreview.addEventListener(
 "click",
 function(){
 
-  selectedFile =
+  selectedImage =
   null;
 
 
-  galleryInput.value =
+  preview.classList.remove(
+    "active"
+  );
+
+
+  previewImage.src =
   "";
-
-
-  cameraInput.value =
-  "";
-
-
-  clearPreview();
 
 });
 
 
-function clearPreview(){
+/* MENU */
 
-  previewArea.classList.remove("active");
+menuBtn.addEventListener(
+"click",
+function(){
 
-  previewImage.src =
-  "";
+  sideMenu.classList.add(
+    "active"
+  );
+
+  overlay.classList.add(
+    "active"
+  );
+
+});
+
+
+function closeSideMenu(){
+
+  sideMenu.classList.remove(
+    "active"
+  );
+
+  overlay.classList.remove(
+    "active"
+  );
 
 }
 
 
-/* =====================================
-   MENU
-===================================== */
-
-const sideMenu =
-document.getElementById("sideMenu");
-
-const menuOverlay =
-document.getElementById("menuOverlay");
-
-
-function openMenu(){
-
-  sideMenu.classList.add("active");
-
-  menuOverlay.classList.add("active");
-
-}
-
-
-function closeMenu(){
-
-  sideMenu.classList.remove("active");
-
-  menuOverlay.classList.remove("active");
-
-}
-
-
-document.getElementById("menuBtn")
-.addEventListener(
+closeMenu.addEventListener(
 "click",
-openMenu
+closeSideMenu
 );
 
 
-document.getElementById("closeMenu")
-.addEventListener(
+overlay.addEventListener(
 "click",
-closeMenu
+closeSideMenu
 );
 
 
-menuOverlay.addEventListener(
-"click",
-closeMenu
-);
+/* MENU NAVIGATION */
 
-
-/* =====================================
-   MENU LINKS
-===================================== */
-
-document.getElementById("profileBtn")
-.onclick =
+document.getElementById(
+"profileBtn"
+).onclick =
 function(){
 
   window.location.href =
@@ -1600,18 +1900,31 @@ function(){
 };
 
 
-document.getElementById("ordersBtn")
-.onclick =
+document.getElementById(
+"ordersBtn"
+).onclick =
 function(){
 
   window.location.href =
- "order.html";
+  "orders.html";
 
 };
 
 
-document.getElementById("settingsBtn")
-.onclick =
+document.getElementById(
+"servicesBtn"
+).onclick =
+function(){
+
+  window.location.href =
+  "services.html";
+
+};
+
+
+document.getElementById(
+"settingsBtn"
+).onclick =
 function(){
 
   window.location.href =
@@ -1620,8 +1933,9 @@ function(){
 };
 
 
-document.getElementById("helpBtn")
-.onclick =
+document.getElementById(
+"helpBtn"
+).onclick =
 function(){
 
   window.location.href =
@@ -1630,57 +1944,47 @@ function(){
 };
 
 
-document.getElementById("shopBtn")
-.onclick =
+document.getElementById(
+"contactBtn"
+).onclick =
 function(){
 
   window.location.href =
-  "shop.html";
+  "contact.html";
 
 };
 
 
-document.getElementById("logoutBtn")
-.onclick =
-async function(){
+/* BACK */
 
-  await auth.signOut();
-
-  window.location.replace(
-    "login.html"
-  );
-
-};
-
-
-/* =====================================
-   BACK BUTTON
-===================================== */
-
-document.getElementById("backBtn")
-.onclick =
+document.getElementById(
+"backBtn"
+).onclick =
 function(){
 
-  window.location.href =
-  "home.html";
+  window.history.back();
 
 };
 
 
-/* =====================================
-   SCROLL
-===================================== */
+/* CLOSE ATTACHMENT MENU WHEN CLICKING OUTSIDE */
 
-function scrollToBottom(){
+document.addEventListener(
+"click",
+function(event){
 
-  setTimeout(function(){
+  if(
+    !attachBtn.contains(event.target) &&
+    !attachmentMenu.contains(event.target)
+  ){
 
-    messages.scrollTop =
-    messages.scrollHeight;
+    attachmentMenu.classList.remove(
+      "active"
+    );
 
-  },100);
+  }
 
-}
+});
 
 </script>
 
