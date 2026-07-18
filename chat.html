@@ -886,19 +886,6 @@ const attachmentMenu =
 document.getElementById("attachmentMenu");
 
 
-/* =====================================
-   AUTHENTICATION
-===================================== */
-
-auth.onAuthStateChanged(async function(user){
-
-  if(!user){
-
-    window.location.replace("chat.html");
-
-    return;
-
-  }
 
 
   currentUser = user;
