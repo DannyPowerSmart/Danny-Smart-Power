@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Danny Smart Power</title>
+</head>
+<body>
+
+  <h2>Login to Danny Smart Power</h2>
+
+  <input type="email" id="email" placeholder="Email">
+  <br><br>
+
+  <input type="password" id="password" placeholder="Password">
+  <br><br>
+
+  <button onclick="login()">Login</button>
+
+  <p id="message"></p>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
+      authDomain: "danny-smart-power.firebaseapp.com",
+      projectId: "danny-smart-power",
+      storageBucket: "danny-smart-power.firebasestorage.app",
+      messagingSenderId: "649735645158",
+      appId: "1:649735645158:web:cff518b89721a163679827"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    function login() {
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      auth.signInWithEmailAndPassword(email, password)
+
+        .then((userCredential) => {
+
+          const user = userCredential.user;
+
+          message.textContent =
+            "Login successful! UID: " + user.uid;
+
+          console.log("Logged in user:", user);
+
+        })
+
+        .catch((error) => {
+
+          message.textContent = error.message;
+
+        });
+
+    }
+
+  </script>
+
+</body>
+</html>
