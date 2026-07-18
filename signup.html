@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | Danny Smart Power</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  font-family:'Poppins', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(56,189,248,.12), transparent 35%),
+    #07111f;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+}
+
+/* MAIN CARD */
+
+.signup-card{
+  width:100%;
+  max-width:450px;
+  background:rgba(13,27,42,.96);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  padding:32px;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.45);
+}
+
+/* BRAND */
+
+.brand{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 15px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:20px;
+  background:#38bdf8;
+  color:#00111c;
+
+  font-size:32px;
+  box-shadow:0 10px 30px rgba(56,189,248,.2);
+}
+
+.brand h1{
+  font-size:24px;
+  margin-bottom:7px;
+}
+
+.brand p{
+  color:#94a3b8;
+  font-size:13px;
+}
+
+/* FORM */
+
+.form-group{
+  margin-bottom:18px;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  margin-bottom:8px;
+  color:#dbeafe;
+}
+
+.input-wrapper{
+  position:relative;
+}
+
+input{
+  width:100%;
+  padding:14px 15px;
+
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+
+  background:#102234;
+  color:white;
+
+  outline:none;
+  font-size:14px;
+
+  transition:.25s;
+}
+
+input:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 3px rgba(56,189,248,.1);
+}
+
+input::placeholder{
+  color:#64748b;
+}
+
+/* PASSWORD TOGGLE */
+
+.password-toggle{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+
+  cursor:pointer;
+  color:#94a3b8;
+  font-size:14px;
+  user-select:none;
+}
+
+/* PASSWORD STRENGTH */
+
+.password-strength{
+  height:5px;
+  width:100%;
+  background:#1e293b;
+  border-radius:10px;
+  margin-top:8px;
+  overflow:hidden;
+}
+
+#strengthBar{
+  height:100%;
+  width:0%;
+  transition:.3s;
+}
+
+/* TERMS */
+
+.terms{
+  display:flex;
+  gap:9px;
+  align-items:flex-start;
+  margin:18px 0;
+
+  color:#94a3b8;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.terms input{
+  width:auto;
+  margin-top:3px;
+  accent-color:#38bdf8;
+}
+
+/* BUTTON */
+
+button{
+  width:100%;
+  padding:15px;
+
+  border:none;
+  border-radius:12px;
+
+  background:#38bdf8;
+  color:#00111c;
+
+  font-size:15px;
+  font-weight:700;
+
+  cursor:pointer;
+  transition:.25s;
+}
+
+button:hover{
+  background:#7dd3fc;
+  transform:translateY(-1px);
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* MESSAGE */
+
+#message{
+  text-align:center;
+  margin-top:18px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* LOGIN LINK */
+
+.login-link{
+  text-align:center;
+  margin-top:22px;
+  font-size:13px;
+  color:#94a3b8;
+}
+
+.login-link a{
+  color:#38bdf8;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* BACK */
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+
+  color:#64748b;
+  text-decoration:none;
+  font-size:12px;
+}
+
+.back:hover{
+  color:#38bdf8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="signup-card">
+
+  <!-- BRAND -->
+
+  <div class="brand">
+
+    <div class="logo">
+      ⚡
+    </div>
+
+    <h1>Create Your Account</h1>
+
+    <p>
+      Join Danny Smart Power today
+    </p>
+
+  </div>
+
+
+  <!-- SIGN UP FORM -->
+
+  <form id="signupForm">
+
+    <!-- FULL NAME -->
+
+    <div class="form-group">
+
+      <label for="name">
+        Full Name
+      </label>
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your full name"
+        autocomplete="name"
+        required
+      >
+
+    </div>
+
+
+    <!-- EMAIL -->
+
+    <div class="form-group">
+
+      <label for="email">
+        Email Address
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email address"
+        autocomplete="email"
+        required
+      >
+
+    </div>
+
+
+    <!-- PASSWORD -->
+
+    <div class="form-group">
+
+      <label for="password">
+        Password
+      </label>
+
+      <div class="input-wrapper">
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Create a password"
+          autocomplete="new-password"
+          required
+        >
+
+        <span
+          class="password-toggle"
+          onclick="togglePassword('password', this)"
+        >
+          Show
+        </span>
+
+      </div>
+
+      <div class="password-strength">
+
+        <div id="strengthBar"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONFIRM PASSWORD -->
+
+    <div class="form-group">
+
+      <label for="confirmPassword">
+        Confirm Password
+      </label>
+
+      <div class="input-wrapper">
+
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm your password"
+          autocomplete="new-password"
+          required
+        >
+
+        <span
+          class="password-toggle"
+          onclick="togglePassword('confirmPassword', this)"
+        >
+          Show
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- TERMS -->
+
+    <label class="terms">
+
+      <input
+        type="checkbox"
+        id="terms"
+        required
+      >
+
+      <span>
+        I agree to create an account with Danny Smart Power and use its services responsibly.
+      </span>
+
+    </label>
+
+
+    <!-- BUTTON -->
+
+    <button
+      type="submit"
+      id="signupBtn"
+    >
+
+      Create Account
+
+    </button>
+
+  </form>
+
+
+  <!-- MESSAGE -->
+
+  <p id="message"></p>
+
+
+  <!-- LOGIN -->
+
+  <div class="login-link">
+
+    Already have an account?
+
+    <a href="login.html">
+      Login
+    </a>
+
+  </div>
+
+
+  <!-- BACK -->
+
+  <a
+    href="index.html"
+    class="back"
+  >
+
+    ← Back to Danny Smart Power
+
+  </a>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
+
+  authDomain:
+  "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+  "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+  "danny-smart-power",
+
+  storageBucket:
+  "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+  "649735645158",
+
+  appId:
+  "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+  "G-258YKLP5ZS"
+
+};
+
+
+/* START FIREBASE */
+
+firebase.initializeApp(firebaseConfig);
+
+
+/* SERVICES */
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+
+/* ELEMENTS */
+
+const signupForm =
+document.getElementById("signupForm");
+
+const nameInput =
+document.getElementById("name");
+
+const emailInput =
+document.getElementById("email");
+
+const passwordInput =
+document.getElementById("password");
+
+const confirmPasswordInput =
+document.getElementById("confirmPassword");
+
+const signupBtn =
+document.getElementById("signupBtn");
+
+const message =
+document.getElementById("message");
+
+
+/* PASSWORD VISIBILITY */
+
+function togglePassword(
+  inputId,
+  element
+){
+
+  const input =
+  document.getElementById(inputId);
+
+
+  if(input.type === "password"){
+
+    input.type = "text";
+
+    element.textContent =
+    "Hide";
+
+  }else{
+
+    input.type = "password";
+
+    element.textContent =
+    "Show";
+
+  }
+
+}
+
+
+/* PASSWORD STRENGTH */
+
+passwordInput.addEventListener(
+"input",
+function(){
+
+  const password =
+  passwordInput.value;
+
+  const strengthBar =
+  document.getElementById("strengthBar");
+
+
+  let strength = 0;
+
+
+  if(password.length >= 6){
+
+    strength += 25;
+
+  }
+
+  if(password.length >= 10){
+
+    strength += 25;
+
+  }
+
+  if(/[A-Z]/.test(password)){
+
+    strength += 25;
+
+  }
+
+  if(/[0-9!@#$%^&*]/.test(password)){
+
+    strength += 25;
+
+  }
+
+
+  strengthBar.style.width =
+  strength + "%";
+
+
+  if(strength <= 25){
+
+    strengthBar.style.background =
+    "#ef4444";
+
+  }
+
+  else if(strength <= 50){
+
+    strengthBar.style.background =
+    "#f59e0b";
+
+  }
+
+  else if(strength <= 75){
+
+    strengthBar.style.background =
+    "#eab308";
+
+  }
+
+  else{
+
+    strengthBar.style.background =
+    "#22c55e";
+
+  }
+
+});
+
+
+/* SIGN UP */
+
+signupForm.addEventListener(
+"submit",
+async function(event){
+
+  event.preventDefault();
+
+
+  const name =
+  nameInput.value.trim();
+
+  const email =
+  emailInput.value.trim();
+
+  const password =
+  passwordInput.value;
+
+  const confirmPassword =
+  confirmPasswordInput.value;
+
+
+  /* VALIDATION */
+
+  if(name.length < 2){
+
+    showMessage(
+      "Please enter your full name.",
+      "#f87171"
+    );
+
+    return;
+
+  }
+
+
+  if(password.length < 6){
+
+    showMessage(
+      "Password must be at least 6 characters.",
+      "#f87171"
+    );
+
+    return;
+
+  }
+
+
+  if(password !== confirmPassword){
+
+    showMessage(
+      "Passwords do not match.",
+      "#f87171"
+    );
+
+    return;
+
+  }
+
+
+  signupBtn.disabled =
+  true;
+
+  signupBtn.textContent =
+  "Creating account...";
+
+
+  try{
+
+
+    /* CREATE FIREBASE AUTH ACCOUNT */
+
+    const userCredential =
+    await auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+
+
+    const user =
+    userCredential.user;
+
+
+    /* SAVE NAME IN FIREBASE AUTH */
+
+    await user.updateProfile({
+
+      displayName:name
+
+    });
+
+
+    /* SAVE USER PROFILE IN FIRESTORE */
+
+    await db
+    .collection("users")
+    .doc(user.uid)
+    .set({
+
+      uid:user.uid,
+
+      name:name,
+
+      email:user.email,
+
+      createdAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
+
+      accountType:
+      "customer"
+
+    });
+
+
+    /* SUCCESS */
+
+    showMessage(
+      "Account created successfully! Welcome to Danny Smart Power ⚡",
+      "#4ade80"
+    );
+
+
+    /*
+      REDIRECT TO CHAT
+      AFTER SUCCESSFUL SIGN UP
+    */
+
+    setTimeout(function(){
+
+      window.location.href =
+      "chat.html";
+
+    },1500);
+
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Signup error:",
+      error
+    );
+
+
+    let errorMessage =
+    "Unable to create account.";
+
+
+    if(
+      error.code ===
+      "auth/email-already-in-use"
+    ){
+
+      errorMessage =
+      "This email already has an account. Please login instead.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/invalid-email"
+    ){
+
+      errorMessage =
+      "Please enter a valid email address.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/weak-password"
+    ){
+
+      errorMessage =
+      "Your password is too weak.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/network-request-failed"
+    ){
+
+      errorMessage =
+      "Network error. Please check your internet connection.";
+
+    }
+
+    else{
+
+      errorMessage =
+      error.message;
+
+    }
+
+
+    showMessage(
+      errorMessage,
+      "#f87171"
+    );
+
+
+    signupBtn.disabled =
+    false;
+
+    signupBtn.textContent =
+    "Create Account";
+
+  }
+
+});
+
+
+/* MESSAGE FUNCTION */
+
+function showMessage(
+  text,
+  color
+){
+
+  message.textContent =
+  text;
+
+  message.style.color =
+  color;
+
+}
+
+</script>
+
+</body>
+
+</html>
