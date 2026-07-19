@@ -1469,16 +1469,15 @@ async function sendMessage(){
 
     if(selectedFile){
 
-      const fileName =
-      Date.now() +
-      "_" +
-      currentUser.uid +
-      "_" +
-      selectedFile.name;
+  console.log("Starting image upload...");
 
+  const fileName =
+    Date.now() +
+    "_" +
+    selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
 
-      const imageRef =
-      storage
+  const imageRef =
+    storage
       .ref()
       .child(
         "chat-images/" +
@@ -1487,17 +1486,18 @@ async function sendMessage(){
         fileName
       );
 
+  console.log("Uploading image...");
 
-      await imageRef.put(
-        selectedFile
-      );
+  await imageRef.put(selectedFile);
 
+  console.log("Image uploaded successfully.");
 
-      imageUrl =
-      await imageRef.getDownloadURL();
+  imageUrl =
+    await imageRef.getDownloadURL();
 
-    }
+  console.log("Image URL:", imageUrl);
 
+}
 
     const messageData = {
 
