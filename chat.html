@@ -1425,19 +1425,18 @@ function renderMessage(id,message){
 }
 
 
-  /* ==================================
+
+/* ==================================
    SEND MESSAGE
 ================================== */
 
 async function sendMessage(){
 
-  // TEST 1: Check if the send button is working
-  alert(
-  "SEND FUNCTION STARTED\n\n" +
-  "User: " +
-  (currentUser ? "LOGGED IN" : "NOT LOGGED IN")
-);
-  
+  if(!currentUser){
+
+    return;
+
+  }
 
 
   if(isSending){
@@ -1451,18 +1450,7 @@ async function sendMessage(){
   messageInput.value.trim();
 
 
-  // TEST 2: Check whether the image is still selected
-  alert(
-    "File selected: " +
-    (selectedFile
-      ? selectedFile.name
-      : "NO FILE SELECTED")
-  );
-
-
   if(!text && !selectedFile){
-
-    alert("There is no text or image to send.");
 
     return;
 
@@ -1476,66 +1464,29 @@ async function sendMessage(){
 
   try{
 
-    let imageUrl = null;
+    let imageUrl =
+    null;
 
-
-    /* =========================
-       UPLOAD IMAGE
-    ========================= */
 
     if(selectedFile){
 
-      alert("Starting image upload...");
-
-
-      console.log(
-        "SELECTED FILE:",
-        selectedFile
-      );
-
-
-      console.log(
-        "FILE NAME:",
-        selectedFile.name
-      );
-
-
-      console.log(
-        "FILE TYPE:",
-        selectedFile.type
-      );
-
-
-      console.log(
-        "FILE SIZE:",
-        selectedFile.size
-      );
-
-
       const fileName =
-        Date.now() +
-        "_" +
-        currentUser.uid +
-        "_" +
-        selectedFile.name
-          .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-          );
+      Date.now() +
+      "_" +
+      currentUser.uid +
+      "_" +
+      selectedFile.name;
 
 
       const imageRef =
-        storage
-          .ref()
-          .child(
-            "chat-images/" +
-            currentUser.uid +
-            "/" +
-            fileName
-          );
-
-
-      alert("Uploading image now...");
+      storage
+      .ref()
+      .child(
+        "chat-images/" +
+        currentUser.uid +
+        "/" +
+        fileName
+      );
 
 
       await imageRef.put(
@@ -1543,53 +1494,34 @@ async function sendMessage(){
       );
 
 
-      alert("Image uploaded successfully!");
-
-
       imageUrl =
-        await imageRef.getDownloadURL();
-
-
-      console.log(
-        "IMAGE URL:",
-        imageUrl
-      );
+      await imageRef.getDownloadURL();
 
     }
 
 
-    /* =========================
-       CREATE MESSAGE
-    ========================= */
-
     const messageData = {
 
-      sender:
-        "user",
+      sender:"user",
 
       senderId:
-        currentUser.uid,
+      currentUser.uid,
 
       userEmail:
-        currentUser.email,
+      currentUser.email,
 
       text:
-        text || "",
+      text || "",
 
       image:
-        imageUrl || null,
+      imageUrl || null,
 
-      seen:
-        false,
+      seen:false,
 
       createdAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp()
+      firebase.firestore.FieldValue.serverTimestamp()
 
     };
-
-
-    alert("Saving message to chat...");
 
 
     await messagesRef.add(
@@ -1597,74 +1529,50 @@ async function sendMessage(){
     );
 
 
-    alert("MESSAGE SENT SUCCESSFULLY!");
-
-
     await currentChatRef.update({
 
       updatedAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp(),
+      firebase.firestore.FieldValue.serverTimestamp(),
 
       lastMessage:
-        text ||
-        "📷 Image"
+      text ||
+      "📷 Image"
 
     });
 
 
     messageInput.value =
-      "";
+    "";
 
 
     resetTextarea();
 
-
     clearSelectedFile();
-
 
     stopTyping();
 
-
     scrollToBottom();
 
-
   }
-
 
   catch(error){
 
     console.error(
-      "FULL SEND ERROR:",
+      "Send error:",
       error
     );
 
 
     alert(
-
-      "SEND ERROR:\n\n" +
-
-      "CODE:\n" +
-
-      error.code +
-
-      "\n\n" +
-
-      "MESSAGE:\n" +
-
-      error.message
-
+      "Message could not be sent. Please try again."
     );
 
   }
 
 
-  isSending =
-    false;
+  isSending = false;
 
-
-  sendButton.disabled =
-    false;
+  sendButton.disabled = false;
 
 }
 
