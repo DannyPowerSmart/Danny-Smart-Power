@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Help Center | Danny Smart Power</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#0f172a;
+  --header:#020617;
+  --card:#111e30;
+  --card2:#17253a;
+  --border:rgba(148,163,184,.15);
+  --blue:#38bdf8;
+  --blue2:#0284c7;
+  --green:#22c55e;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(56,189,248,.10),
+      transparent 35%
+    ),
+    var(--bg);
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
+}
+
+/* HEADER */
+
+header{
+  height:78px;
+  background:var(--header);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back-button{
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:50%;
+  background:transparent;
+  color:white;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.back-button:hover{
+  background:var(--card2);
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(
+    135deg,
+    var(--blue),
+    var(--blue2)
+  );
+  font-size:22px;
+}
+
+header h1{
+  font-size:18px;
+}
+
+/* MAIN */
+
+main{
+  width:100%;
+  max-width:850px;
+  margin:auto;
+  padding:25px 16px 50px;
+}
+
+/* HERO */
+
+.hero{
+  text-align:center;
+  padding:30px 20px;
+  background:
+    linear-gradient(
+      145deg,
+      #111e30,
+      #0c1727
+    );
+  border:1px solid var(--border);
+  border-radius:24px;
+}
+
+.hero-icon{
+  width:75px;
+  height:75px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  background:#12324b;
+}
+
+.hero h2{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* SEARCH */
+
+.search-box{
+  margin-top:20px;
+  position:relative;
+}
+
+.search-box input{
+  width:100%;
+  padding:16px 18px 16px 48px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  outline:none;
+  background:var(--card);
+  color:white;
+  font-family:inherit;
+  font-size:14px;
+}
+
+.search-box input:focus{
+  border-color:var(--blue);
+}
+
+.search-icon{
+  position:absolute;
+  left:17px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:20px;
+}
+
+/* QUICK HELP */
+
+.section-title{
+  margin:28px 0 14px;
+  font-size:19px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.quick-card{
+  padding:18px 14px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--card);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.quick-card:hover{
+  transform:translateY(-2px);
+  background:var(--card2);
+  border-color:var(--blue);
+}
+
+.quick-card span{
+  display:block;
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.quick-card strong{
+  display:block;
+  font-size:14px;
+}
+
+.quick-card small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+/* FAQ */
+
+.faq-container{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.faq{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.faq-question{
+  width:100%;
+  padding:17px;
+  border:none;
+  background:transparent;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.faq-question span{
+  color:var(--blue);
+  font-size:20px;
+  transition:.2s;
+}
+
+.faq-answer{
+  display:none;
+  padding:0 17px 17px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.faq.open .faq-answer{
+  display:block;
+}
+
+.faq.open .faq-question span{
+  transform:rotate(45deg);
+}
+
+/* SUPPORT CARD */
+
+.support-card{
+  margin-top:28px;
+  padding:23px;
+  text-align:center;
+  border-radius:20px;
+  background:
+    linear-gradient(
+      135deg,
+      #12324b,
+      #10283d
+    );
+  border:1px solid rgba(56,189,248,.25);
+}
+
+.support-card h3{
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.support-card p{
+  color:#cbd5e1;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:17px;
+}
+
+.support-button{
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:12px;
+  background:var(--blue);
+  color:#00111c;
+  text-decoration:none;
+  font-weight:600;
+  font-size:13px;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  color:#64748b;
+  font-size:11px;
+  margin-top:30px;
+}
+
+/* NO RESULTS */
+
+.no-results{
+  display:none;
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
+  background:var(--card);
+  border-radius:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  main{
+    padding:18px 12px 40px;
+  }
+
+  header h1{
+    font-size:16px;
+  }
+
+  .hero{
+    padding:25px 15px;
+  }
+
+  .hero h2{
+    font-size:21px;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-left">
+
+    <button
+      class="back-button"
+      id="backButton">
+      ←
+    </button>
+
+    <div class="logo">
+      ⚡
+    </div>
+
+    <h1>
+      Help Center
+    </h1>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      ❓
+    </div>
+
+    <h2>
+      How can we help you?
+    </h2>
+
+    <p>
+      Find answers to common questions about shopping,
+      orders, payments, your account and Danny Smart Power.
+    </p>
+
+  </section>
+
+
+  <!-- SEARCH -->
+
+  <div class="search-box">
+
+    <span class="search-icon">
+      🔍
+    </span>
+
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="Search for help...">
+
+  </div>
+
+
+  <!-- QUICK HELP -->
+
+  <h2 class="section-title">
+    Quick Help
+  </h2>
+
+  <div class="quick-grid">
+
+    <div
+      class="quick-card"
+      data-search="shopping products shop">
+
+      <span>🛍️</span>
+
+      <strong>
+        Shopping
+      </strong>
+
+      <small>
+        Browse and buy products
+      </small>
+
+    </div>
+
+
+    <div
+      class="quick-card"
+      data-search="orders delivery tracking">
+
+      <span>📦</span>
+
+      <strong>
+        Orders
+      </strong>
+
+      <small>
+        Check your order information
+      </small>
+
+    </div>
+
+
+    <div
+      class="quick-card"
+      data-search="account profile login password">
+
+      <span>👤</span>
+
+      <strong>
+        My Account
+      </strong>
+
+      <small>
+        Profile and account help
+      </small>
+
+    </div>
+
+
+    <div
+      class="quick-card"
+      data-search="contact support chat danny">
+
+      <span>💬</span>
+
+      <strong>
+        Contact Support
+      </strong>
+
+      <small>
+        Talk with Danny
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- FAQ -->
+
+  <h2 class="section-title">
+    Frequently Asked Questions
+  </h2>
+
+
+  <div
+    class="faq-container"
+    id="faqContainer">
+
+
+    <div
+      class="faq"
+      data-search="how place order shopping buy product">
+
+      <button class="faq-question">
+
+        How do I place an order?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Browse products in the Shop page.
+        Select the product you want, add it to your cart,
+        then follow the checkout process to place your order.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="cart add product remove">
+
+      <button class="faq-question">
+
+        How do I add a product to my cart?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Open the product you want to buy and tap
+        the "Add to Cart" button.
+        You can view your selected products from the Cart page.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="order status delivery tracking">
+
+      <button class="faq-question">
+
+        How can I check my order?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Open the Orders page from your account menu.
+        Your order information and status will be displayed there.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="profile name phone age gender save">
+
+      <button class="faq-question">
+
+        How do I update my profile?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Open your Profile page, update your information,
+        and press the Save Profile button.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="password forgot change reset">
+
+      <button class="faq-question">
+
+        I forgot my password. What should I do?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Open your Profile page and choose Change Password.
+        A password reset link will be sent to your registered email address.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="chat contact danny support message">
+
+      <button class="faq-question">
+
+        How can I contact Danny Smart Power?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        You can contact us through the Chat page.
+        Send us a message and our support team will reply as soon as possible.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="payment paystack payment failed">
+
+      <button class="faq-question">
+
+        What should I do if my payment fails?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Check your internet connection and try again.
+        If the problem continues, contact Danny Smart Power support
+        before attempting the payment again.
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="faq"
+      data-search="account delete remove">
+
+      <button class="faq-question">
+
+        How do I delete my account?
+
+        <span>
+          +
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Go to your Profile page and select Delete Account.
+        Please remember that account deletion may be permanent.
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div
+    class="no-results"
+    id="noResults">
+
+    No help articles found for your search.
+
+  </div>
+
+
+  <!-- SUPPORT -->
+
+  <section class="support-card">
+
+    <h3>
+      Still need help? 😊
+    </h3>
+
+    <p>
+      Our support team is ready to help you with your
+      products, orders, account or any other questions.
+    </p>
+
+    <a
+      href="chat.html"
+      class="support-button">
+
+      💬 Chat with Danny
+
+    </a>
+
+  </section>
+
+
+  <footer>
+
+    © 2026 Danny Smart Power ⚡
+
+  </footer>
+
+</main>
+
+
+<script>
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+document
+  .getElementById("backButton")
+  .addEventListener(
+    "click",
+    function(){
+
+      window.history.back();
+
+    }
+  );
+
+
+/* =========================
+   FAQ ACCORDION
+========================= */
+
+const faqQuestions =
+document.querySelectorAll(
+  ".faq-question"
+);
+
+
+faqQuestions.forEach(
+
+  function(button){
+
+    button.addEventListener(
+
+      "click",
+
+      function(){
+
+        const faq =
+        button.parentElement;
+
+
+        faq.classList.toggle(
+          "open"
+        );
+
+      }
+
+    );
+
+  }
+
+);
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const searchInput =
+document.getElementById(
+  "searchInput"
+);
+
+
+const faqs =
+document.querySelectorAll(
+  ".faq"
+);
+
+
+const quickCards =
+document.querySelectorAll(
+  ".quick-card"
+);
+
+
+const noResults =
+document.getElementById(
+  "noResults"
+);
+
+
+searchInput.addEventListener(
+
+  "input",
+
+  function(){
+
+    const search =
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+
+    let found =
+    false;
+
+
+    faqs.forEach(
+
+      function(faq){
+
+        const text =
+        faq.dataset.search
+          .toLowerCase();
+
+
+        if(
+          text.includes(search)
+        ){
+
+          faq.style.display =
+          "block";
+
+          found =
+          true;
+
+        }
+
+        else{
+
+          faq.style.display =
+          "none";
+
+        }
+
+      }
+
+    );
+
+
+    quickCards.forEach(
+
+      function(card){
+
+        const text =
+        card.dataset.search
+          .toLowerCase();
+
+
+        if(
+          !search ||
+          text.includes(search)
+        ){
+
+          card.style.display =
+          "block";
+
+        }
+
+        else{
+
+          card.style.display =
+          "none";
+
+        }
+
+      }
+
+    );
+
+
+    if(
+      search &&
+      !found
+    ){
+
+      noResults.style.display =
+      "block";
+
+    }
+
+    else{
+
+      noResults.style.display =
+      "none";
+
+    }
+
+  }
+
+);
+
+</script>
+
+</body>
+</html>
