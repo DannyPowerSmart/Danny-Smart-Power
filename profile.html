@@ -6,176 +6,182 @@
 
 <title>My Profile | Danny Smart Power</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 :root{
-  --bg:#07111f;
-  --card:#0d1b2e;
-  --card2:#12243a;
-  --border:rgba(148,163,184,.16);
+  --bg:#0f172a;
+  --header:#020617;
+  --card:#111e30;
+  --card2:#17253a;
+  --border:rgba(148,163,184,.15);
   --blue:#38bdf8;
   --blue2:#0284c7;
   --green:#22c55e;
   --red:#ef4444;
-  --white:#f8fafc;
+  --text:#f8fafc;
   --muted:#94a3b8;
 }
 
-html,
 body{
-  min-height:100%;
-}
-
-body{
-  font-family:'Poppins',sans-serif;
+  min-height:100vh;
   background:
-    radial-gradient(circle at top left,rgba(56,189,248,.12),transparent 35%),
+    radial-gradient(
+      circle at top left,
+      rgba(56,189,248,.10),
+      transparent 35%
+    ),
     var(--bg);
-  color:var(--white);
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
 }
 
-/* HEADER */
-
-.header{
-  height:76px;
+header{
+  height:78px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
   padding:0 18px;
-  background:rgba(2,6,23,.92);
+  background:var(--header);
   border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
   z-index:10;
 }
 
-.back-btn{
+.header-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back-button{
   width:44px;
   height:44px;
   border:none;
   border-radius:50%;
   background:transparent;
   color:white;
-  font-size:27px;
+  font-size:28px;
   cursor:pointer;
 }
 
-.back-btn:hover{
+.back-button:hover{
   background:var(--card2);
 }
 
-.header-title{
+.header-logo{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  font-size:22px;
+}
+
+.header-title h1{
   font-size:18px;
-  font-weight:700;
 }
 
-.header-spacer{
-  width:44px;
-}
-
-/* MAIN */
-
-.container{
+main{
   width:100%;
-  max-width:650px;
-  margin:0 auto;
-  padding:25px 16px 50px;
+  max-width:850px;
+  margin:auto;
+  padding:28px 16px 50px;
 }
 
-/* PROFILE TOP */
-
-.profile-top{
+.profile-hero{
   text-align:center;
-  margin-bottom:25px;
+  padding:25px 20px 30px;
+  background:linear-gradient(145deg,#111e30,#0c1727);
+  border:1px solid var(--border);
+  border-radius:24px;
 }
 
 .avatar-wrapper{
   position:relative;
-  width:125px;
-  height:125px;
-  margin:0 auto 15px;
+  width:130px;
+  height:130px;
+  margin:0 auto 18px;
 }
 
-.avatar{
-  width:125px;
-  height:125px;
+.profile-avatar{
+  width:130px;
+  height:130px;
   border-radius:50%;
   object-fit:cover;
   border:4px solid var(--blue);
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-  font-weight:700;
-  box-shadow:0 0 30px rgba(56,189,248,.2);
+  background:#12324b;
 }
 
-.camera-btn{
+.camera-button{
   position:absolute;
   right:0;
-  bottom:2px;
-  width:40px;
-  height:40px;
+  bottom:3px;
+  width:42px;
+  height:42px;
+  border:none;
   border-radius:50%;
-  border:3px solid var(--bg);
   background:var(--blue);
   color:#00111c;
-  font-size:19px;
+  font-size:20px;
   cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
-.profile-top h1{
-  font-size:23px;
-  margin-bottom:5px;
+.profile-hero h2{
+  font-size:24px;
+  margin-bottom:4px;
 }
 
-.profile-top p{
+.profile-hero p{
   color:var(--muted);
   font-size:13px;
   word-break:break-word;
 }
 
-/* CARD */
+.hidden-input{
+  display:none;
+}
 
 .card{
-  background:linear-gradient(145deg,var(--card),#091525);
+  margin-top:20px;
+  padding:22px;
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  border-radius:20px;
 }
 
 .card-title{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
 }
 
-/* FORM */
+.card-title h3{
+  font-size:17px;
+}
+
+.card-title span{
+  font-size:21px;
+}
 
 .form-group{
-  margin-bottom:16px;
+  margin-bottom:17px;
 }
 
 .form-group label{
   display:block;
   color:var(--muted);
-  font-size:12px;
+  font-size:13px;
   margin-bottom:7px;
 }
 
@@ -183,22 +189,20 @@ body{
 .form-group select,
 .form-group textarea{
   width:100%;
+  padding:13px 14px;
   border:1px solid var(--border);
+  border-radius:12px;
   outline:none;
-  border-radius:13px;
-  background:#081525;
+  background:var(--card2);
   color:white;
   font-family:inherit;
   font-size:14px;
-  padding:13px 14px;
-  transition:.2s;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
   border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(56,189,248,.1);
 }
 
 .form-group textarea{
@@ -206,177 +210,101 @@ body{
   resize:vertical;
 }
 
-.form-group select option{
-  background:#081525;
+.form-group input:disabled{
+  opacity:.6;
 }
 
-/* EMAIL */
+button{
+  font-family:inherit;
+}
 
-.email-box{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.save-button,
+.action-button{
+  width:100%;
   padding:14px;
-  border-radius:13px;
-  background:#081525;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.save-button{
+  background:var(--blue);
+  color:#00111c;
+}
+
+.save-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.action-button{
+  margin-top:12px;
+  background:var(--card2);
+  color:white;
   border:1px solid var(--border);
 }
 
-.email-icon{
-  font-size:22px;
+.change-password{
+  color:var(--blue);
 }
 
-.email-info{
-  min-width:0;
+.logout-button{
+  color:#fbbf24;
 }
 
-.email-label{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
+.delete-button{
+  color:#f87171;
 }
 
-.email-value{
-  display:block;
-  font-size:13px;
-  word-break:break-word;
-}
-
-/* SAVE */
-
-.save-btn{
-  width:100%;
-  min-height:52px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#00111c;
-  font-family:inherit;
-  font-weight:700;
-  font-size:15px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.save-btn:hover{
-  transform:translateY(-1px);
-}
-
-.save-btn:disabled{
-  opacity:.65;
-  cursor:not-allowed;
-  transform:none;
-}
-
-/* STATUS */
-
-.status-box{
+.message{
   display:none;
-  text-align:center;
+  margin-top:15px;
   padding:12px;
-  margin-bottom:16px;
-  border-radius:12px;
+  border-radius:10px;
   font-size:13px;
+  text-align:center;
 }
 
-.status-box.show{
+.message.success{
   display:block;
-}
-
-.status-box.success{
   background:rgba(34,197,94,.12);
   color:#86efac;
-  border:1px solid rgba(34,197,94,.25);
 }
 
-.status-box.error{
+.message.error{
+  display:block;
   background:rgba(239,68,68,.12);
   color:#fca5a5;
-  border:1px solid rgba(239,68,68,.25);
 }
 
-.status-box.loading{
-  background:rgba(56,189,248,.1);
-  color:#7dd3fc;
-  border:1px solid rgba(56,189,248,.2);
-}
-
-/* ACCOUNT */
-
-.account-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:13px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.account-row:last-child{
-  border-bottom:none;
-}
-
-.account-label{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.account-value{
-  font-size:13px;
-  text-align:right;
-  word-break:break-word;
-}
-
-/* HIDDEN */
-
-.hidden{
-  display:none;
-}
-
-/* LOADING */
-
-.page-loading{
+.loading{
   position:fixed;
   inset:0;
-  background:var(--bg);
-  z-index:100;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
-  gap:14px;
+  background:var(--bg);
+  z-index:100;
+  color:var(--muted);
 }
 
-.loader{
-  width:38px;
-  height:38px;
-  border:4px solid rgba(255,255,255,.15);
-  border-top-color:var(--blue);
-  border-radius:50%;
-  animation:spin .8s linear infinite;
+.loading.hidden{
+  display:none;
 }
 
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
+@media(max-width:600px){
 
-/* MOBILE */
-
-@media(max-width:500px){
-
-  .container{
-    padding:20px 12px 40px;
+  main{
+    padding:18px 12px 40px;
   }
 
   .card{
-    padding:17px;
-    border-radius:18px;
+    padding:18px;
   }
 
-  .profile-top h1{
-    font-size:21px;
+  .header-title h1{
+    font-size:16px;
   }
 
 }
@@ -386,131 +314,126 @@ body{
 
 <body>
 
-<!-- PAGE LOADING -->
-
-<div class="page-loading" id="pageLoading">
-
-  <div class="loader"></div>
-
-  <p>Loading your profile...</p>
-
+<div class="loading" id="loading">
+  Loading profile...
 </div>
 
-
-<!-- HEADER -->
-
-<header class="header">
-
-  <button
-    class="back-btn"
-    id="backBtn"
-  >
-    ←
-  </button>
+<header>
 
   <div class="header-title">
-    My Profile
-  </div>
 
-  <div class="header-spacer"></div>
+    <button class="back-button" id="backButton">
+      ←
+    </button>
+
+    <div class="header-logo">
+      ⚡
+    </div>
+
+    <h1>
+      My Profile
+    </h1>
+
+  </div>
 
 </header>
 
+<main>
 
-<main class="container">
-
-  <!-- PROFILE TOP -->
-
-  <section class="profile-top">
+  <section class="profile-hero">
 
     <div class="avatar-wrapper">
 
-      <div
-        class="avatar"
-        id="avatar"
+      <img
+        id="profileAvatar"
+        class="profile-avatar"
+        alt="Profile picture"
       >
-        ⚡
-      </div>
 
       <button
-        class="camera-btn"
-        id="cameraBtn"
-        type="button"
+        class="camera-button"
+        id="photoButton"
       >
         📷
       </button>
 
     </div>
 
-    <h1 id="profileHeading">
-      My Profile
-    </h1>
+    <h2 id="heroName">
+      Loading...
+    </h2>
 
-    <p id="profileEmail">
+    <p id="heroEmail">
       Loading...
     </p>
 
+    <input
+      type="file"
+      id="galleryInput"
+      class="hidden-input"
+      accept="image/*"
+    >
+
+    <input
+      type="file"
+      id="cameraInput"
+      class="hidden-input"
+      accept="image/*"
+      capture="environment"
+    >
+
   </section>
-
-
-  <!-- STATUS -->
-
-  <div
-    class="status-box"
-    id="statusBox"
-  ></div>
-
-
-  <!-- PROFILE INFORMATION -->
 
   <section class="card">
 
-    <h2 class="card-title">
-      Personal Information
-    </h2>
-
+    <div class="card-title">
+      <span>👤</span>
+      <h3>Personal Information</h3>
+    </div>
 
     <div class="form-group">
 
-      <label for="nameInput">
-        Full Name
-      </label>
+      <label>Full Name</label>
 
       <input
-        id="nameInput"
         type="text"
-        placeholder="Enter your full name"
-        autocomplete="name"
+        id="nameInput"
+        placeholder="Enter your name"
       >
 
     </div>
 
+    <div class="form-group">
+
+      <label>Email Address</label>
+
+      <input
+        type="email"
+        id="emailInput"
+        disabled
+      >
+
+    </div>
 
     <div class="form-group">
 
-      <label for="phoneInput">
-        Phone Number
-      </label>
+      <label>Phone Number</label>
 
       <input
-        id="phoneInput"
         type="tel"
-        placeholder="Enter your phone number"
-        autocomplete="tel"
+        id="phoneInput"
+        placeholder="Enter phone number"
       >
 
     </div>
 
-
     <div class="form-group">
 
-      <label for="ageInput">
-        Age
-      </label>
+      <label>Age</label>
 
       <input
-        id="ageInput"
         type="number"
+        id="ageInput"
         min="1"
         max="120"
         placeholder="Enter your age"
@@ -518,12 +441,9 @@ body{
 
     </div>
 
-
     <div class="form-group">
 
-      <label for="genderInput">
-        Gender
-      </label>
+      <label>Gender</label>
 
       <select id="genderInput">
 
@@ -547,108 +467,79 @@ body{
 
     </div>
 
-
     <div class="form-group">
 
-      <label for="bioInput">
-        About You
-      </label>
+      <label>About Me</label>
 
       <textarea
         id="bioInput"
-        placeholder="Tell us a little about yourself..."
+        placeholder="Tell us something about yourself..."
       ></textarea>
 
     </div>
 
-
     <button
-      class="save-btn"
-      id="saveBtn"
-      type="button"
+      class="save-button"
+      id="saveButton"
     >
       Save Profile
     </button>
 
+    <div
+      class="message"
+      id="message"
+    ></div>
+
   </section>
-
-
-  <!-- ACCOUNT INFORMATION -->
 
   <section class="card">
 
-    <h2 class="card-title">
-      Account Information
-    </h2>
+    <div class="card-title">
 
+      <span>⚙️</span>
 
-    <div class="account-row">
-
-      <span class="account-label">
-        Email
-      </span>
-
-      <span
-        class="account-value"
-        id="accountEmail"
-      >
-        Loading...
-      </span>
+      <h3>
+        Account Settings
+      </h3>
 
     </div>
 
+    <button
+      class="action-button change-password"
+      id="changePasswordButton"
+    >
+      🔐 Change Password
+    </button>
 
-    <div class="account-row">
+    <button
+      class="action-button logout-button"
+      id="logoutButton"
+    >
+      🚪 Sign Out
+    </button>
 
-      <span class="account-label">
-        Account ID
-      </span>
-
-      <span
-        class="account-value"
-        id="accountId"
-      >
-        Loading...
-      </span>
-
-    </div>
+    <button
+      class="action-button delete-button"
+      id="deleteButton"
+    >
+      🗑️ Delete Account
+    </button>
 
   </section>
 
 </main>
 
-
-<!-- FILE INPUT -->
-
-<input
-  type="file"
-  id="imageInput"
-  class="hidden"
-  accept="image/*"
->
-
-
-<!-- FIREBASE -->
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 
-
 <script>
-
-/* =====================================
-   FIREBASE CONFIG
-===================================== */
 
 const firebaseConfig = {
 
   apiKey:
-  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
   authDomain:
   "danny-smart-power.firebaseapp.com",
@@ -673,53 +564,36 @@ const firebaseConfig = {
 
 };
 
-
 firebase.initializeApp(firebaseConfig);
 
+const auth = firebase.auth();
 
-const auth =
-firebase.auth();
+const db = firebase.firestore();
 
-const db =
-firebase.firestore();
-
-const storage =
-firebase.storage();
+const storage = firebase.storage();
 
 
-/* =====================================
+/* =========================
    ELEMENTS
-===================================== */
+========================= */
 
-const pageLoading =
-document.getElementById("pageLoading");
+const loading =
+document.getElementById("loading");
 
-const backBtn =
-document.getElementById("backBtn");
+const profileAvatar =
+document.getElementById("profileAvatar");
 
-const avatar =
-document.getElementById("avatar");
+const heroName =
+document.getElementById("heroName");
 
-const cameraBtn =
-document.getElementById("cameraBtn");
-
-const imageInput =
-document.getElementById("imageInput");
-
-const profileHeading =
-document.getElementById("profileHeading");
-
-const profileEmail =
-document.getElementById("profileEmail");
-
-const accountEmail =
-document.getElementById("accountEmail");
-
-const accountId =
-document.getElementById("accountId");
+const heroEmail =
+document.getElementById("heroEmail");
 
 const nameInput =
 document.getElementById("nameInput");
+
+const emailInput =
+document.getElementById("emailInput");
 
 const phoneInput =
 document.getElementById("phoneInput");
@@ -733,146 +607,116 @@ document.getElementById("genderInput");
 const bioInput =
 document.getElementById("bioInput");
 
-const saveBtn =
-document.getElementById("saveBtn");
+const saveButton =
+document.getElementById("saveButton");
 
-const statusBox =
-document.getElementById("statusBox");
+const message =
+document.getElementById("message");
 
+const photoButton =
+document.getElementById("photoButton");
 
-/* =====================================
-   VARIABLES
-===================================== */
+const galleryInput =
+document.getElementById("galleryInput");
+
+const cameraInput =
+document.getElementById("cameraInput");
+
+const logoutButton =
+document.getElementById("logoutButton");
+
+const deleteButton =
+document.getElementById("deleteButton");
+
+const changePasswordButton =
+document.getElementById("changePasswordButton");
+
+const backButton =
+document.getElementById("backButton");
+
 
 let currentUser = null;
 
-let selectedImage = null;
+let selectedPhoto = null;
 
 
-/* =====================================
+/* =========================
    AUTH
-===================================== */
+========================= */
 
 auth.onAuthStateChanged(async function(user){
 
   if(!user){
 
-    window.location.href =
-    "login.html";
+    window.location.href = "login.html";
 
     return;
 
   }
 
+  currentUser = user;
 
-  currentUser =
-  user;
+  emailInput.value = user.email || "";
 
-
-  profileEmail.textContent =
-  user.email;
-
-
-  accountEmail.textContent =
-  user.email;
-
-
-  accountId.textContent =
-  user.uid.substring(0,12) + "...";
-
-
-  await loadProfile();
-
-
-  pageLoading.style.display =
-  "none";
-
-});
-
-
-/* =====================================
-   LOAD PROFILE
-===================================== */
-
-async function loadProfile(){
+  const defaultName =
+    user.displayName ||
+    user.email.split("@")[0];
 
   try{
 
-    const userRef =
-    db.collection("users")
-      .doc(currentUser.uid);
-
+    const profileRef =
+      db.collection("users").doc(user.uid);
 
     const snapshot =
-    await userRef.get();
-
+      await profileRef.get();
 
     if(snapshot.exists){
 
       const data =
-      snapshot.data();
-
+        snapshot.data();
 
       nameInput.value =
-      data.name || "";
-
+        data.name || defaultName;
 
       phoneInput.value =
-      data.phone || "";
-
+        data.phone || "";
 
       ageInput.value =
-      data.age || "";
-
+        data.age || "";
 
       genderInput.value =
-      data.gender || "";
-
+        data.gender || "";
 
       bioInput.value =
-      data.bio || "";
-
+        data.bio || "";
 
       if(data.photoURL){
 
-        avatar.innerHTML = "";
+        profileAvatar.src =
+          data.photoURL;
 
-        avatar.style.background =
-        "none";
+      }else{
 
-        const image =
-        document.createElement("img");
-
-        image.src =
-        data.photoURL;
-
-        image.alt =
-        "Profile picture";
-
-        image.style.width =
-        "100%";
-
-        image.style.height =
-        "100%";
-
-        image.style.objectFit =
-        "cover";
-
-        image.style.borderRadius =
-        "50%";
-
-        avatar.appendChild(image);
+        createDefaultAvatar(
+          data.name || defaultName
+        );
 
       }
 
-      if(data.name){
+    }else{
 
-        profileHeading.textContent =
-        data.name;
+      nameInput.value =
+        defaultName;
 
-      }
+      createDefaultAvatar(
+        defaultName
+      );
 
     }
+
+    updateHero();
+
+    loading.classList.add("hidden");
 
   }
 
@@ -883,113 +727,166 @@ async function loadProfile(){
       error
     );
 
+    loading.classList.add("hidden");
 
-    showStatus(
-      "Could not load profile: " +
+    showMessage(
       error.message,
       "error"
     );
 
   }
 
+});
+
+
+/* =========================
+   DEFAULT AVATAR
+========================= */
+
+function createDefaultAvatar(name){
+
+  const letter =
+    name.charAt(0).toUpperCase();
+
+  profileAvatar.src =
+    "data:image/svg+xml;charset=UTF-8," +
+
+    encodeURIComponent(`
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="300"
+        height="300"
+      >
+
+        <rect
+          width="100%"
+          height="100%"
+          fill="#12324b"
+        />
+
+        <text
+          x="50%"
+          y="55%"
+          dominant-baseline="middle"
+          text-anchor="middle"
+          font-size="130"
+          fill="#38bdf8"
+          font-family="Arial"
+        >
+          ${letter}
+        </text>
+
+      </svg>
+
+    `);
+
 }
 
 
-/* =====================================
-   IMAGE SELECT
-===================================== */
+/* =========================
+   HERO
+========================= */
 
-cameraBtn.addEventListener(
+function updateHero(){
+
+  const name =
+    nameInput.value.trim() ||
+    currentUser.email.split("@")[0];
+
+  heroName.textContent =
+    name;
+
+  heroEmail.textContent =
+    currentUser.email;
+
+}
+
+
+/* =========================
+   PHOTO SELECTOR
+========================= */
+
+photoButton.addEventListener(
   "click",
   function(){
 
-    imageInput.click();
+    const choice =
+      confirm(
+        "Press OK to choose a photo from your phone.\n\n" +
+        "Press Cancel to take a new photo with your camera."
+      );
+
+    if(choice){
+
+      galleryInput.click();
+
+    }else{
+
+      cameraInput.click();
+
+    }
 
   }
 );
 
 
-imageInput.addEventListener(
+galleryInput.addEventListener(
   "change",
-  function(event){
+  handlePhoto
+);
 
-    const file =
+cameraInput.addEventListener(
+  "change",
+  handlePhoto
+);
+
+
+function handlePhoto(event){
+
+  const file =
     event.target.files[0];
 
+  if(!file){
 
-    if(!file){
+    return;
 
-      return;
+  }
 
-    }
+  if(!file.type.startsWith("image/")){
 
+    alert(
+      "Please select an image."
+    );
 
-    if(!file.type.startsWith("image/")){
+    return;
 
-      showStatus(
-        "Please select an image file.",
-        "error"
-      );
+  }
 
-      return;
-
-    }
-
-
-    selectedImage =
+  selectedPhoto =
     file;
 
-
-    const reader =
+  const reader =
     new FileReader();
 
+  reader.onload =
+    function(event){
 
-    reader.onload =
-    function(e){
-
-      avatar.innerHTML = "";
-
-      avatar.style.background =
-      "none";
-
-
-      const image =
-      document.createElement("img");
-
-
-      image.src =
-      e.target.result;
-
-
-      image.style.width =
-      "100%";
-
-      image.style.height =
-      "100%";
-
-      image.style.objectFit =
-      "cover";
-
-      image.style.borderRadius =
-      "50%";
-
-
-      avatar.appendChild(image);
+      profileAvatar.src =
+        event.target.result;
 
     };
 
+  reader.readAsDataURL(file);
 
-    reader.readAsDataURL(file);
-
-  }
-);
+}
 
 
-/* =====================================
+/* =========================
    SAVE PROFILE
-===================================== */
+========================= */
 
-saveBtn.addEventListener(
+saveButton.addEventListener(
   "click",
   saveProfile
 );
@@ -999,8 +896,8 @@ async function saveProfile(){
 
   if(!currentUser){
 
-    showStatus(
-      "You are not logged in.",
+    showMessage(
+      "You are not signed in.",
       "error"
     );
 
@@ -1008,142 +905,108 @@ async function saveProfile(){
 
   }
 
-
   const name =
-  nameInput.value.trim();
-
-
-  const phone =
-  phoneInput.value.trim();
-
-
-  const age =
-  ageInput.value.trim();
-
-
-  const gender =
-  genderInput.value;
-
-
-  const bio =
-  bioInput.value.trim();
-
+    nameInput.value.trim();
 
   if(!name){
 
-    showStatus(
+    showMessage(
       "Please enter your name.",
       "error"
     );
 
-    nameInput.focus();
-
     return;
 
   }
 
+  saveButton.disabled =
+    true;
 
-  saveBtn.disabled =
-  true;
-
-
-  saveBtn.textContent =
-  "Saving...";
-
-
-  showStatus(
-    "Saving your profile...",
-    "loading"
-  );
-
+  saveButton.textContent =
+    "Saving...";
 
   try{
 
     let photoURL =
-    null;
+      profileAvatar.src;
 
+    /* =========================
+       UPLOAD PHOTO IF SELECTED
+    ========================= */
 
-    /*
-      UPLOAD PROFILE IMAGE
-    */
-
-    if(selectedImage){
+    if(selectedPhoto){
 
       const safeName =
-      selectedImage.name
-        .replace(
-          /[^a-zA-Z0-9._-]/g,
-          "_"
-        );
+        selectedPhoto.name
+          .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+          );
 
+      const fileName =
+        Date.now() +
+        "_" +
+        safeName;
 
-      const imageRef =
-      storage
-        .ref()
-        .child(
-          "profile-images/" +
-          currentUser.uid +
-          "/" +
-          Date.now() +
-          "_" +
-          safeName
-        );
+      const photoRef =
+        storage
+          .ref()
+          .child(
+            "profile-images/" +
+            currentUser.uid +
+            "/" +
+            fileName
+          );
 
-
-      await imageRef.put(
-        selectedImage
+      await photoRef.put(
+        selectedPhoto
       );
 
-
       photoURL =
-      await imageRef.getDownloadURL();
+        await photoRef.getDownloadURL();
 
     }
 
 
-    /*
-      SAVE PROFILE TO:
-
-      users/
-        CURRENT_USER_UID
-    */
+    /* =========================
+       PROFILE DATA
+    ========================= */
 
     const profileData = {
 
       uid:
-      currentUser.uid,
+        currentUser.uid,
 
       name:
-      name,
+        name,
 
       email:
-      currentUser.email,
+        currentUser.email,
 
       phone:
-      phone,
+        phoneInput.value.trim(),
 
       age:
-      age,
+        ageInput.value.trim(),
 
       gender:
-      gender,
+        genderInput.value,
 
       bio:
-      bio,
+        bioInput.value.trim(),
+
+      photoURL:
+        photoURL,
 
       updatedAt:
-      firebase.firestore.FieldValue.serverTimestamp()
+        firebase.firestore.FieldValue.serverTimestamp()
 
     };
 
 
-    if(photoURL){
-
-      profileData.photoURL =
-      photoURL;
-
-    }
-
+    /* =========================
+       SAVE TO FIRESTORE
+    ========================= */
 
     await db
       .collection("users")
@@ -1156,54 +1019,33 @@ async function saveProfile(){
       );
 
 
-    /*
-      UPDATE FIREBASE AUTH DISPLAY NAME
-    */
+    /* =========================
+       UPDATE FIREBASE AUTH
+    ========================= */
 
-    if(
-      currentUser.displayName !== name
-    ){
+    await currentUser.updateProfile({
 
-      await currentUser.updateProfile({
+      displayName:
+        name,
 
-        displayName:
-        name
+      photoURL:
+        photoURL.startsWith("http")
+          ? photoURL
+          : null
 
-      });
-
-    }
-
-
-    profileHeading.textContent =
-    name;
+    });
 
 
-    selectedImage =
-    null;
+    selectedPhoto =
+      null;
 
 
-    imageInput.value =
-    "";
+    updateHero();
 
 
-    saveBtn.textContent =
-    "Saved ✓";
-
-
-    showStatus(
-      "Your profile was saved successfully.",
+    showMessage(
+      "Profile saved successfully ✓",
       "success"
-    );
-
-
-    setTimeout(
-      function(){
-
-        saveBtn.textContent =
-        "Save Profile";
-
-      },
-      2000
     );
 
   }
@@ -1211,55 +1053,178 @@ async function saveProfile(){
   catch(error){
 
     console.error(
-      "FULL PROFILE SAVE ERROR:",
+      "PROFILE SAVE ERROR:",
       error
     );
 
-
-    showStatus(
+    showMessage(
       "Save failed: " +
       error.message,
       "error"
     );
 
-
-    saveBtn.textContent =
-    "Try Again";
-
   }
 
+  saveButton.disabled =
+    false;
 
-  saveBtn.disabled =
-  false;
-
-}
-
-
-/* =====================================
-   STATUS MESSAGE
-===================================== */
-
-function showStatus(
-  message,
-  type
-){
-
-  statusBox.textContent =
-  message;
-
-
-  statusBox.className =
-  "status-box show " +
-  type;
+  saveButton.textContent =
+    "Save Profile";
 
 }
 
 
-/* =====================================
+/* =========================
+   CHANGE PASSWORD
+========================= */
+
+changePasswordButton.addEventListener(
+  "click",
+  async function(){
+
+    if(!currentUser.email){
+
+      return;
+
+    }
+
+    const confirmReset =
+      confirm(
+        "Send a password reset link to:\n\n" +
+        currentUser.email +
+        "?"
+      );
+
+    if(!confirmReset){
+
+      return;
+
+    }
+
+    try{
+
+      await auth.sendPasswordResetEmail(
+        currentUser.email
+      );
+
+      alert(
+        "Password reset email sent. Check your inbox and spam folder."
+      );
+
+    }
+
+    catch(error){
+
+      alert(
+        error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+logoutButton.addEventListener(
+  "click",
+  async function(){
+
+    if(
+      !confirm(
+        "Are you sure you want to sign out?"
+      )
+    ){
+
+      return;
+
+    }
+
+    await auth.signOut();
+
+    window.location.href =
+      "login.html";
+
+  }
+);
+
+
+/* =========================
+   DELETE ACCOUNT
+========================= */
+
+deleteButton.addEventListener(
+  "click",
+  async function(){
+
+    const first =
+      confirm(
+        "WARNING!\n\n" +
+        "This may permanently delete your account.\n\n" +
+        "Continue?"
+      );
+
+    if(!first){
+
+      return;
+
+    }
+
+    const typed =
+      prompt(
+        'Type DELETE to confirm.'
+      );
+
+    if(typed !== "DELETE"){
+
+      alert(
+        "Deletion cancelled."
+      );
+
+      return;
+
+    }
+
+    try{
+
+      await db
+        .collection("users")
+        .doc(currentUser.uid)
+        .delete();
+
+      await currentUser.delete();
+
+      alert(
+        "Account deleted."
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      alert(
+        "Firebase requires you to sign in again before deleting this account."
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
    BACK
-===================================== */
+========================= */
 
-backBtn.addEventListener(
+backButton.addEventListener(
   "click",
   function(){
 
@@ -1268,7 +1233,33 @@ backBtn.addEventListener(
   }
 );
 
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text,type){
+
+  message.textContent =
+    text;
+
+  message.className =
+    "message " +
+    type;
+
+  setTimeout(
+    function(){
+
+      message.className =
+        "message";
+
+    },
+    5000
+  );
+
+}
+
 </script>
 
 </body>
-   </html>
+  </html>
