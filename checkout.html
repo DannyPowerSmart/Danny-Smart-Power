@@ -1121,71 +1121,23 @@ function loadSummary(){
 
 function placeOrder(){
 
-
   const name =
-  document.getElementById(
-
-    "name"
-
-  ).value.trim();
-
+    document.getElementById("name").value.trim();
 
   const phone =
-  document.getElementById(
-
-    "phone"
-
-  ).value.trim();
-
+    document.getElementById("phone").value.trim();
 
   const address =
-  document.getElementById(
-
-    "address"
-
-  ).value.trim();
-
+    document.getElementById("address").value.trim();
 
   const note =
-  document.getElementById(
-
-    "note"
-
-  ).value.trim();
+    document.getElementById("note").value.trim();
 
 
-  if(!name){
+  if(!name || !phone || !address){
 
     alert(
-
-      "Please enter your full name."
-
-    );
-
-    return;
-
-  }
-
-
-  if(!phone){
-
-    alert(
-
-      "Please enter your phone number."
-
-    );
-
-    return;
-
-  }
-
-
-  if(!address){
-
-    alert(
-
-      "Please enter your delivery address."
-
+      "Please fill in your name, phone number and delivery address."
     );
 
     return;
@@ -1194,15 +1146,13 @@ function placeOrder(){
 
 
   const cart =
-  getCart();
+    getCart();
 
 
   if(!cart.length){
 
     alert(
-
       "Your cart is empty."
-
     );
 
     return;
@@ -1210,173 +1160,90 @@ function placeOrder(){
   }
 
 
-  let total =
-  0;
+  let orderMessage =
 
+`🛒 NEW ORDER
 
-  let orderText =
+👤 Customer: ${name}
 
-    "🛒 NEW ORDER\n\n" +
+📞 Phone: ${phone}
 
-    "👤 CUSTOMER DETAILS\n" +
-
-    "Name: " +
-
-    name +
-
-    "\n" +
-
-    "Phone: " +
-
-    phone +
-
-    "\n" +
-
-    "Address: " +
-
-    address +
-
-    "\n";
+📍 Address: ${address}`;
 
 
   if(note){
 
-    orderText +=
+    orderMessage +=
 
-      "Note: " +
-
-      note +
-
-      "\n";
+`\n\n📝 Note: ${note}`;
 
   }
 
 
-  orderText +=
+  orderMessage +=
 
-    "\n📦 ORDER ITEMS\n";
-
-
-  cart.forEach(item => {
+`\n\n📦 ORDER DETAILS\n`;
 
 
-    const quantity =
-    Number(item.qty) || 1;
+  let total = 0;
 
 
-    const price =
-    Number(item.price) || 0;
-
+  cart.forEach(function(item){
 
     const subtotal =
-    price * quantity;
+      Number(item.price) *
+      Number(item.qty || 1);
 
 
-    total +=
-    subtotal;
+    total += subtotal;
 
 
-    orderText +=
+    orderMessage +=
 
-      "• " +
-
-      item.name +
-
-      " x" +
-
-      quantity +
-
-      " = " +
-
-      formatPrice(subtotal) +
-
-      "\n";
+`\n• ${item.name} × ${item.qty || 1} = ₦${subtotal.toLocaleString()}`;
 
   });
 
 
-  orderText +=
+  orderMessage +=
 
-    "\n💰 TOTAL: " +
+`\n\n💰 TOTAL: ₦${total.toLocaleString()}`;
 
-    formatPrice(total);
+
+  orderMessage +=
+
+`\n\n✅ Order placed from Danny Smart Power Shop.`;
 
 
   /*
-
-    SAVE ORDER FOR CHAT
-
+  SAVE ORDER FOR CHAT
   */
-
 
   localStorage.setItem(
 
     "pendingOrderMessage",
 
-    orderText
+    orderMessage
 
   );
-
-
-  localStorage.setItem(
-
-    "pendingOrderData",
-
-    JSON.stringify({
-
-      name:name,
-
-      phone:phone,
-
-      address:address,
-
-      note:note,
-
-      items:cart,
-
-      total:total,
-
-      createdAt:Date.now()
-
-    })
-
-  );
-
-
-  const button =
-  document.getElementById(
-
-    "placeOrderButton"
-
-  );
-
-
-  button.disabled =
-  true;
-
-
-  button.textContent =
-  "Opening Support Chat...";
 
 
   /*
-
-    OPEN YOUR CHAT PAGE
-
+  CLEAR CART
   */
 
+  localStorage.removeItem("cart");
+
+  localStorage.removeItem("checkoutCart");
+
+
+  /*
+  OPEN YOUR CHAT
+  */
 
   window.location.href =
-  "chat.html";
-
+    "chat.html?order=1";
 
 }
-
-
-loadSummary();
-
-</script>
-
-</body>
-
-</html>
+    
+   
