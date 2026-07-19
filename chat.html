@@ -1557,16 +1557,18 @@ async function sendMessage(){
   catch(error){
 
     console.error(
-      "Send error:",
-      error
-    );
+    catch(error){
 
+  console.error("FULL SEND ERROR:", error);
 
-    alert(
-      "Message could not be sent. Please try again."
-    );
+  alert(
+    "SEND ERROR:\n\n" +
+    error.code +
+    "\n\n" +
+    error.message
+  );
 
-  }
+}
 
 
   isSending = false;
