@@ -1432,16 +1432,12 @@ function renderMessage(id,message){
 async function sendMessage(){
 
   // TEST 1: Check if the send button is working
-  alert("SEND FUNCTION STARTED");
-
-
-  if(!currentUser){
-
-    alert("You are not logged in.");
-
-    return;
-
-  }
+  alert(
+  "SEND FUNCTION STARTED\n\n" +
+  "User: " +
+  (currentUser ? "LOGGED IN" : "NOT LOGGED IN")
+);
+  
 
 
   if(isSending){
