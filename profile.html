@@ -1544,231 +1544,71 @@ saveButton.addEventListener(
 
   "click",
 
-  async function(){
+  async function saveProfile() {
 
+  if (!currentUser) {
+    alert("You are not logged in.");
+    return;
+  }
 
-    if(!currentUser){
+  saveButton.disabled = true;
+  saveButton.textContent = "Saving...";
 
-      return;
+  try {
 
-    }
+    await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .set({
 
+        uid: currentUser.uid,
 
-    const name =
-    nameInput.value.trim();
+        name: nameInput.value.trim(),
 
+        email: currentUser.email,
 
-    if(!name){
+        phone: phoneInput.value.trim(),
 
-      showMessage(
+        age: ageInput.value.trim(),
 
-        "Please enter your name.",
-
-        "error"
-
-      );
-
-      return;
-
-    }
-
-
-    saveButton.disabled =
-    true;
-
-
-    saveButton.textContent =
-    "Saving...";
-
-
-    try{
-
-
-      let photoURL =
-      null;
-
-
-      /* UPLOAD NEW PHOTO */
-
-      if(
-        profileAvatar.selectedFile
-      ){
-
-        const file =
-        profileAvatar.selectedFile;
-
-
-        const fileName =
-
-          Date.now() +
-
-          "_" +
-
-          file.name
-            .replace(
-              /[^a-zA-Z0-9._-]/g,
-              "_"
-            );
-
-
-        const photoRef =
-
-          storage
-          .ref()
-          .child(
-
-            "profile-images/" +
-
-            currentUser.uid +
-
-            "/" +
-
-            fileName
-
-          );
-
-
-        await photoRef.put(
-          file
-        );
-
-
-        photoURL =
-
-          await photoRef
-          .getDownloadURL();
-
-      }
-
-
-      const profileData = {
-
-        name:
-
-          name,
-
-
-        email:
-
-          currentUser.email,
-
-
-        phone:
-
-          phoneInput.value.trim(),
-
-
-        age:
-
-          ageInput.value.trim(),
-
-
-        gender:
-
-          genderInput.value,
-
-
-        bio:
-
-          bioInput.value.trim(),
-
+        gender: genderInput.value,
 
         updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
 
-          firebase.firestore
-          .FieldValue
-          .serverTimestamp()
+      }, { merge: true });
 
-      };
+    saveButton.textContent = "Saved ✓";
 
+    alert("Profile saved successfully!");
 
-      if(photoURL){
+    setTimeout(() => {
+      saveButton.textContent = "Save Profile";
+    }, 1500);
 
-        profileData.photoURL =
-        photoURL;
+  } catch (error) {
 
-      }
+    console.error("PROFILE SAVE ERROR:", error);
 
+    alert(
+      "Save failed:\n\n" +
+      error.code +
+      "\n\n" +
+      error.message
+    );
 
-      await db
+    saveButton.textContent = "Try Again";
 
-        .collection("users")
+  } finally {
 
-        .doc(currentUser.uid)
-
-        .set(
-
-          profileData,
-
-          {
-
-            merge:true
-
-          }
-
-        );
-
-
-      await currentUser
-        .updateProfile({
-
-          displayName:
-          name,
-
-          ...(photoURL
-            ? {photoURL:photoURL}
-            : {})
-
-        });
-
-
-      profileAvatar.selectedFile =
-      null;
-
-
-      updateHero();
-
-
-      showMessage(
-
-        "Profile saved successfully ✓",
-
-        "success"
-
-      );
-
-
-    }
-
-
-    catch(error){
-
-      console.error(error);
-
-
-      showMessage(
-
-        error.message,
-
-        "error"
-
-      );
-
-    }
-
-
-    saveButton.disabled =
-    false;
-
-
-    saveButton.textContent =
-    "Save Profile";
+    saveButton.disabled = false;
 
   }
 
-);
+}
+        
 
-
+      
 /* =========================
    CHANGE PASSWORD
 ========================= */
