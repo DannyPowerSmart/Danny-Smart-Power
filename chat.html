@@ -2131,6 +2131,136 @@ function escapeHtml(text){
 
 }
 
+  /* ==================================
+   SEND CHECKOUT ORDER TO CHAT
+================================== */
+
+async function sendPendingOrder(){
+
+  const pendingOrder =
+    localStorage.getItem(
+      "pendingOrderMessage"
+    );
+
+
+  if(!pendingOrder){
+
+    return;
+
+  }
+
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  if(!messagesRef){
+
+    console.error(
+      "messagesRef is not ready."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+
+    const orderMessageData = {
+
+      sender:
+        "user",
+
+      senderId:
+        currentUser.uid,
+
+      userEmail:
+        currentUser.email,
+
+      text:
+        pendingOrder,
+
+      image:
+        null,
+
+      messageType:
+        "order",
+
+      seen:
+        false,
+
+      createdAt:
+        firebase.firestore
+        .FieldValue
+        .serverTimestamp()
+
+    };
+
+
+    await messagesRef.add(
+
+      orderMessageData
+
+    );
+
+
+    await currentChatRef.update({
+
+      updatedAt:
+        firebase.firestore
+        .FieldValue
+        .serverTimestamp(),
+
+      lastMessage:
+        "🛒 New Order"
+
+    });
+
+
+    localStorage.removeItem(
+
+      "pendingOrderMessage"
+
+    );
+
+
+    console.log(
+
+      "Order sent successfully."
+
+    );
+
+
+    scrollToBottom();
+
+
+  }
+
+
+  catch(error){
+
+    console.error(
+
+      "Order send error:",
+
+      error
+
+    );
+
+
+    alert(
+
+      "Order could not be sent. Please try again."
+
+    );
+
+  }
+
 </script>
 
 </body>
