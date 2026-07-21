@@ -442,18 +442,8 @@ loginForm.addEventListener(
       result.user;
 
 
-      if(
-        user.uid !==
-        ADMIN_UID
-      ){
-
-        await auth.signOut();
-
-        throw new Error(
-          "This account is not authorized as admin."
-        );
-
-      }
+      console.log("Logged in UID:", user.uid);
+console.log("Logged in email:", user.email);
 
 
       if(
