@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | Danny Smart Power</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  font-family:'Poppins',sans-serif;
+  color:#f8fafc;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(56,189,248,.16),
+      transparent 35%
+    ),
+    #0f172a;
+}
+
+.login-card{
+  width:100%;
+  max-width:440px;
+  padding:34px 26px;
+  background:rgba(2,6,23,.92);
+  border:1px solid rgba(56,189,248,.18);
+  border-radius:24px;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  font-size:32px;
+  background:linear-gradient(135deg,#38bdf8,#0284c7);
+  color:#00111c;
+  box-shadow:0 10px 30px rgba(56,189,248,.2);
+}
+
+h1{
+  text-align:center;
+  font-size:24px;
+  margin-bottom:7px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#94a3b8;
+  font-size:13px;
+  margin-bottom:28px;
+}
+
+.form-group{
+  margin-bottom:17px;
+}
+
+label{
+  display:block;
+  margin-bottom:7px;
+  color:#cbd5e1;
+  font-size:13px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid rgba(148,163,184,.18);
+  border-radius:12px;
+  outline:none;
+  background:#111e30;
+  color:white;
+  font-family:inherit;
+  font-size:14px;
+}
+
+input:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 3px rgba(56,189,248,.08);
+}
+
+.password-box{
+  position:relative;
+}
+
+.password-box input{
+  padding-right:70px;
+}
+
+.show-password{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  border:none;
+  background:none;
+  color:#38bdf8;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:12px;
+}
+
+.login-button{
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  border:none;
+  border-radius:12px;
+  background:#38bdf8;
+  color:#00111c;
+  font-family:inherit;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.login-button:hover{
+  background:#7dd3fc;
+}
+
+.login-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.message{
+  display:none;
+  margin-top:16px;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  font-size:13px;
+}
+
+.message.show{
+  display:block;
+}
+
+.message.error{
+  background:rgba(239,68,68,.12);
+  color:#fca5a5;
+}
+
+.message.success{
+  background:rgba(34,197,94,.12);
+  color:#86efac;
+}
+
+.security-note{
+  margin-top:24px;
+  padding:13px;
+  border-radius:12px;
+  background:rgba(56,189,248,.06);
+  border:1px solid rgba(56,189,248,.1);
+  color:#94a3b8;
+  text-align:center;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.back-link{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  color:#38bdf8;
+  text-decoration:none;
+  font-size:13px;
+}
+
+@media(max-width:480px){
+  .login-card{
+    padding:28px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+  <div class="logo">⚡</div>
+
+  <h1>Admin Access</h1>
+
+  <p class="subtitle">
+    Danny Smart Power Management System
+  </p>
+
+  <form id="loginForm">
+
+    <div class="form-group">
+      <label for="email">Admin Email</label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter admin email"
+        autocomplete="email"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+
+      <div class="password-box">
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button
+          type="button"
+          class="show-password"
+          id="showPassword"
+        >
+          Show
+        </button>
+
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="login-button"
+      id="loginButton"
+    >
+      🔐 Sign In Securely
+    </button>
+
+  </form>
+
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+  <div class="security-note">
+    🔒 Protected by Firebase Authentication<br>
+    Admin access is restricted to authorized personnel only.
+  </div>
+
+  <a
+    href="index.html"
+    class="back-link"
+  >
+    ← Back to Danny Smart Power
+  </a>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+  "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+  "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+  "danny-smart-power",
+
+  storageBucket:
+  "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+  "649735645158",
+
+  appId:
+  "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+  "G-258YKLP5ZS"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth =
+firebase.auth();
+
+const db =
+firebase.firestore();
+
+const ADMIN_UID =
+"AxDvoTcZYsSwSO5lktEK";
+
+const ADMIN_EMAIL =
+"dannysmartpower@gmail.com";
+
+const loginForm =
+document.getElementById(
+  "loginForm"
+);
+
+const emailInput =
+document.getElementById(
+  "email"
+);
+
+const passwordInput =
+document.getElementById(
+  "password"
+);
+
+const loginButton =
+document.getElementById(
+  "loginButton"
+);
+
+const showPassword =
+document.getElementById(
+  "showPassword"
+);
+
+const message =
+document.getElementById(
+  "message"
+);
+
+
+/* =========================
+   SHOW PASSWORD
+========================= */
+
+showPassword.addEventListener(
+  "click",
+  function(){
+
+    if(
+      passwordInput.type ===
+      "password"
+    ){
+
+      passwordInput.type =
+      "text";
+
+      showPassword.textContent =
+      "Hide";
+
+    }
+
+    else{
+
+      passwordInput.type =
+      "password";
+
+      showPassword.textContent =
+      "Show";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   SHOW MESSAGE
+========================= */
+
+function showMessage(
+  text,
+  type
+){
+
+  message.textContent =
+  text;
+
+  message.className =
+  "message show " +
+  type;
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    const email =
+    emailInput.value
+    .trim()
+    .toLowerCase();
+
+    const password =
+    passwordInput.value;
+
+    if(
+      email !==
+      ADMIN_EMAIL
+    ){
+
+      showMessage(
+        "Access denied.",
+        "error"
+      );
+
+      return;
+
+    }
+
+    loginButton.disabled =
+    true;
+
+    loginButton.textContent =
+    "Checking security...";
+
+    try{
+
+      const result =
+      await auth
+      .signInWithEmailAndPassword(
+        email,
+        password
+      );
+
+      const user =
+      result.user;
+
+
+      if(
+        user.uid !==
+        ADMIN_UID
+      ){
+
+        await auth.signOut();
+
+        throw new Error(
+          "This account is not authorized as admin."
+        );
+
+      }
+
+
+      if(
+        !user.emailVerified
+      ){
+
+        await auth.signOut();
+
+        throw new Error(
+          "Please verify your admin email before continuing."
+        );
+
+      }
+
+
+      const adminDoc =
+      await db
+      .collection("users")
+      .doc(ADMIN_UID)
+      .get();
+
+
+      if(
+        !adminDoc.exists
+      ){
+
+        await auth.signOut();
+
+        throw new Error(
+          "Admin authorization record was not found."
+        );
+
+      }
+
+
+      const adminData =
+      adminDoc.data();
+
+
+      if(
+        adminData.role !==
+        "admin"
+      ){
+
+        await auth.signOut();
+
+        throw new Error(
+          "Admin role is not active."
+        );
+
+      }
+
+
+      showMessage(
+        "Secure login successful. Opening dashboard...",
+        "success"
+      );
+
+
+      setTimeout(
+        function(){
+
+          window.location.href =
+          "admin.html";
+
+        },
+        800
+      );
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Admin login error:",
+        error
+      );
+
+      showMessage(
+        error.message ||
+        "Login failed.",
+        "error"
+      );
+
+      loginButton.disabled =
+      false;
+
+      loginButton.textContent =
+      "🔐 Sign In Securely";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
