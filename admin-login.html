@@ -637,20 +637,16 @@ loginForm.addEventListener(
       We use that UID directly.
       */
 
+console.log("LOGGED-IN UID:", user.uid);
+console.log("LOOKING FOR DOCUMENT:", user.uid);
 
-      const adminDoc =
+const adminDoc = await db
+  .collection("users")
+  .doc(user.uid)
+  .get();
 
-        await db
-
-        .collection(
-          "users"
-        )
-
-        .doc(
-          user.uid
-        )
-
-        .get();
+console.log("DOCUMENT EXISTS:", adminDoc.exists);
+console.log("DOCUMENT DATA:", adminDoc.data());
 
 
       /* DOCUMENT NOT FOUND */
