@@ -458,12 +458,11 @@ console.log("Logged in email:", user.email);
 
       }
 
-
-      const adminDoc =
-      await db
-      .collection("users")
-      .doc(ADMIN_UID)
-      .get();
+const adminDoc =
+await db
+.collection("users")
+.doc(user.uid)
+.get();
 
 
       if(
