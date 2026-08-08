@@ -1,0 +1,3181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin | Danny Smart Power</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#07111f;
+  --panel:#0d1b2a;
+  --panel2:#102234;
+  --border:#203247;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --green:#4ade80;
+  --red:#f87171;
+  --yellow:#facc15;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.login-box{
+  width:100%;
+  max-width:400px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:32px;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--blue);
+  color:#00111c;
+  border-radius:20px;
+  font-size:32px;
+}
+
+.login-box h1{
+  text-align:center;
+  font-size:25px;
+}
+
+.login-subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-top:8px;
+  font-size:14px;
+}
+
+label{
+  display:block;
+  margin:18px 0 7px;
+  font-size:13px;
+  color:#cbd5e1;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  background:var(--panel2);
+  color:white;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--blue);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.primary-btn{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:var(--blue);
+  color:#00111c;
+  font-weight:bold;
+}
+
+.primary-btn:disabled{
+  opacity:.6;
+}
+
+.message{
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.error{
+  color:var(--red);
+}
+
+.success{
+  color:var(--green);
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+  min-height:100vh;
+}
+
+.topbar{
+  position:fixed;
+  left:260px;
+  right:0;
+  top:0;
+  height:70px;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  background:#020617;
+  border-bottom:1px solid var(--border);
+}
+
+.topbar-title{
+  font-size:19px;
+  font-weight:bold;
+}
+
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.admin-badge{
+  background:rgba(56,189,248,.12);
+  color:var(--blue);
+  border:1px solid rgba(56,189,248,.25);
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.logout-btn{
+  background:transparent;
+  border:1px solid #334155;
+  color:white;
+  border-radius:9px;
+  padding:9px 13px;
+}
+
+.menu-btn{
+  display:none;
+  background:transparent;
+  color:white;
+  border:0;
+  font-size:25px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:260px;
+  background:#020617;
+  border-right:1px solid var(--border);
+  z-index:30;
+  padding:22px 15px;
+}
+
+.sidebar-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:30px;
+  padding:0 10px;
+}
+
+.sidebar-brand span{
+  color:var(--blue);
+}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#cbd5e1;
+  padding:13px 14px;
+  margin-bottom:5px;
+  border-radius:10px;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-btn:hover{
+  background:#0f1d2e;
+}
+
+.nav-btn.active{
+  background:rgba(56,189,248,.12);
+  color:var(--blue);
+}
+
+.sidebar-footer{
+  position:absolute;
+  left:15px;
+  right:15px;
+  bottom:20px;
+  color:#64748b;
+  font-size:11px;
+  text-align:center;
+}
+
+/* CONTENT */
+
+.main{
+  margin-left:260px;
+  padding:95px 25px 40px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-title{
+  font-size:28px;
+  margin-bottom:7px;
+}
+
+.page-subtitle{
+  color:var(--muted);
+  margin-bottom:25px;
+  font-size:14px;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:20px;
+}
+
+.stat-icon{
+  font-size:25px;
+  margin-bottom:14px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stat-value{
+  font-size:27px;
+  font-weight:bold;
+  margin-top:6px;
+}
+
+/* PANELS */
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.panel-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.panel-title{
+  font-size:18px;
+}
+
+/* TABLE */
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th,
+td{
+  text-align:left;
+  padding:13px 10px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+
+th{
+  color:var(--muted);
+  font-weight:normal;
+}
+
+td{
+  color:#e2e8f0;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.status.pending{
+  background:rgba(250,204,21,.12);
+  color:var(--yellow);
+}
+
+.status.processing{
+  background:rgba(56,189,248,.12);
+  color:var(--blue);
+}
+
+.status.shipped{
+  background:rgba(168,85,247,.12);
+  color:#c084fc;
+}
+
+.status.completed{
+  background:rgba(74,222,128,.12);
+  color:var(--green);
+}
+
+.status.cancelled{
+  background:rgba(248,113,113,.12);
+  color:var(--red);
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.toolbar input{
+  flex:1;
+}
+
+.small-btn{
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:white;
+  border-radius:9px;
+  padding:10px 14px;
+}
+
+.add-btn{
+  background:var(--blue);
+  color:#00111c;
+  border:0;
+  border-radius:9px;
+  padding:10px 15px;
+  font-weight:bold;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.product-card{
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.product-image{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  background:#020617;
+}
+
+.product-body{
+  padding:15px;
+}
+
+.product-name{
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.product-category{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.product-price{
+  color:var(--blue);
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.product-stock{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+}
+
+.product-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.edit-btn,
+.delete-btn{
+  flex:1;
+  padding:9px;
+  border-radius:8px;
+}
+
+.edit-btn{
+  background:transparent;
+  border:1px solid var(--blue);
+  color:var(--blue);
+}
+
+.delete-btn{
+  background:transparent;
+  border:1px solid var(--red);
+  color:var(--red);
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.form-actions button{
+  flex:1;
+}
+
+.cancel-btn{
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:white;
+  border-radius:10px;
+  padding:13px;
+}
+
+/* =========================
+   ORDER FILTER
+========================= */
+
+.order-tools{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.order-tools input{
+  flex:1;
+}
+
+.order-tools select{
+  width:180px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:650px;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+}
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.close-btn{
+  background:transparent;
+  border:0;
+  color:white;
+  font-size:25px;
+}
+
+.detail{
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.detail-label{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:5px;
+}
+
+.detail-value{
+  color:white;
+  line-height:1.5;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:700px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .topbar{
+    left:0;
+    padding:0 15px;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .topbar-title{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    padding:90px 13px 30px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .stat-card{
+    padding:15px;
+  }
+
+  .stat-value{
+    font-size:22px;
+  }
+
+  .products-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .toolbar,
+  .order-tools{
+    flex-direction:column;
+  }
+
+  .order-tools select{
+    width:100%;
+  }
+
+  .admin-badge{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section id="loginScreen">
+
+  <div class="login-box">
+
+    <div class="logo">⚡</div>
+
+    <h1>Admin Access</h1>
+
+    <p class="login-subtitle">
+      Danny Smart Power Control Center
+    </p>
+
+    <label>Email Address</label>
+
+    <input
+      type="email"
+      id="adminEmail"
+      placeholder="Admin email"
+      autocomplete="email"
+    >
+
+    <label>Password</label>
+
+    <input
+      type="password"
+      id="adminPassword"
+      placeholder="Admin password"
+      autocomplete="current-password"
+    >
+
+    <button
+      class="primary-btn"
+      id="loginButton"
+      onclick="adminLogin()"
+    >
+      Login to Dashboard
+    </button>
+
+    <p
+      id="loginMessage"
+      class="message"
+    ></p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ADMIN APP
+========================= -->
+
+<section
+  id="app"
+  class="hidden"
+>
+
+  <!-- SIDEBAR -->
+
+  <aside
+    id="sidebar"
+    class="sidebar"
+  >
+
+    <div class="sidebar-brand">
+      ⚡ <span>DSP</span> Admin
+    </div>
+
+    <button
+      class="nav-btn active"
+      data-page="dashboard"
+      onclick="openPage('dashboard',this)"
+    >
+      📊
+      Dashboard
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="products"
+      onclick="openPage('products',this)"
+    >
+      📦
+      Products
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="orders"
+      onclick="openPage('orders',this)"
+    >
+      🛒
+      Orders
+    </button>
+
+    <div class="sidebar-footer">
+      Danny Smart Power<br>
+      Admin Control Center
+    </div>
+
+  </aside>
+
+
+  <!-- TOPBAR -->
+
+  <header class="topbar">
+
+    <button
+      class="menu-btn"
+      onclick="toggleSidebar()"
+    >
+      ☰
+    </button>
+
+    <div class="topbar-title">
+      Admin Control Center
+    </div>
+
+    <div class="topbar-right">
+
+      <span class="admin-badge">
+        ● Administrator
+      </span>
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+
+    <!-- =====================
+         DASHBOARD
+    ====================== -->
+
+    <section
+      id="page-dashboard"
+      class="page active"
+    >
+
+      <h1 class="page-title">
+        Dashboard
+      </h1>
+
+      <p class="page-subtitle">
+        Welcome to your Danny Smart Power control center.
+      </p>
+
+
+      <div class="stats">
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            📦
+          </div>
+
+          <div class="stat-label">
+            Total Products
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalProducts"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            🛒
+          </div>
+
+          <div class="stat-label">
+            Total Orders
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalOrders"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            ⏳
+          </div>
+
+          <div class="stat-label">
+            Pending Orders
+          </div>
+
+          <div
+            class="stat-value"
+            id="pendingOrders"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            👥
+          </div>
+
+          <div class="stat-label">
+            Customers
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalCustomers"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- RECENT ORDERS -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <h2 class="panel-title">
+            Recent Orders
+          </h2>
+
+          <button
+            class="small-btn"
+            onclick="openPageByName('orders')"
+          >
+            View All
+          </button>
+
+        </div>
+
+        <div
+          id="recentOrders"
+          class="table-wrap"
+        >
+          <div class="empty">
+            Loading orders...
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         PRODUCTS
+    ====================== -->
+
+    <section
+      id="page-products"
+      class="page"
+    >
+
+      <h1 class="page-title">
+        Products
+      </h1>
+
+      <p class="page-subtitle">
+        Manage the products displayed in your store.
+      </p>
+
+
+      <!-- PRODUCT FORM -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <h2
+            class="panel-title"
+            id="productFormTitle"
+          >
+            Add New Product
+          </h2>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <div>
+
+            <label>
+              Product Name
+            </label>
+
+            <input
+              id="productName"
+              placeholder="e.g. Solar Panel 200W"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Price (₦)
+            </label>
+
+            <input
+              id="productPrice"
+              type="number"
+              min="0"
+              placeholder="85000"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Category
+            </label>
+
+            <select id="productCategory">
+
+              <option value="Solar">
+                Solar
+              </option>
+
+              <option value="Electrical">
+                Electrical
+              </option>
+
+              <option value="Lighting">
+                Lighting
+              </option>
+
+              <option value="Accessories">
+                Accessories
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Stock
+            </label>
+
+            <input
+              id="productStock"
+              type="number"
+              min="0"
+              value="0"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Image URL
+            </label>
+
+            <input
+              id="productImage"
+              placeholder="https://..."
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Availability
+            </label>
+
+            <select id="productAvailable">
+
+              <option value="true">
+                Available
+              </option>
+
+              <option value="false">
+                Out of Stock
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea
+              id="productDescription"
+              placeholder="Describe this product..."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+          <button
+            class="primary-btn"
+            id="saveProductBtn"
+            onclick="saveProduct()"
+          >
+            Add Product
+          </button>
+
+          <button
+            class="cancel-btn hidden"
+            id="cancelEditBtn"
+            onclick="cancelProductEdit()"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+        <p
+          id="productMessage"
+          class="message"
+        ></p>
+
+      </div>
+
+
+      <!-- SEARCH -->
+
+      <div class="panel">
+
+        <div class="toolbar">
+
+          <input
+            id="productSearch"
+            placeholder="🔎 Search products..."
+            oninput="renderProducts()"
+          >
+
+          <button
+            class="add-btn"
+            onclick="newProduct()"
+          >
+            + New Product
+          </button>
+
+        </div>
+
+
+        <div
+          id="productsGrid"
+          class="products-grid"
+        >
+          <div class="empty">
+            Loading products...
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         ORDERS
+    ====================== -->
+
+    <section
+      id="page-orders"
+      class="page"
+    >
+
+      <h1 class="page-title">
+        Orders
+      </h1>
+
+      <p class="page-subtitle">
+        View and manage customer orders.
+      </p>
+
+
+      <div class="panel">
+
+        <div class="order-tools">
+
+          <input
+            id="orderSearch"
+            placeholder="🔎 Search customer, phone or order..."
+            oninput="renderOrders()"
+          >
+
+          <select
+            id="orderStatusFilter"
+            onchange="renderOrders()"
+          >
+
+            <option value="all">
+              All Statuses
+            </option>
+
+            <option value="Pending">
+              Pending
+            </option>
+
+            <option value="Processing">
+              Processing
+            </option>
+
+            <option value="Shipped">
+              Shipped
+            </option>
+
+            <option value="Completed">
+              Completed
+            </option>
+
+            <option value="Cancelled">
+              Cancelled
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div
+          id="ordersTable"
+          class="table-wrap"
+        >
+          <div class="empty">
+            Loading orders...
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</section>
+
+
+<!-- =========================
+     ORDER MODAL
+========================= -->
+
+<div
+  id="orderModal"
+  class="modal"
+  onclick="closeModalOutside(event)"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>
+        Order Details
+      </h2>
+
+      <button
+        class="close-btn"
+        onclick="closeOrderModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="orderDetails"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uNUHmFQjAH9bOvALgb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
+};
+
+
+/*
+ IMPORTANT:
+ Your Firebase configuration above must exactly
+ match Firebase Console.
+*/
+
+
+firebase.initializeApp(firebaseConfig);
+
+const auth =
+  firebase.auth();
+
+const db =
+  firebase.firestore();
+
+
+/*
+ YOUR EXISTING ADMIN UID
+*/
+
+const ADMIN_UID =
+  "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
+
+
+let products = [];
+
+let orders = [];
+
+let editingProductId = null;
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function adminLogin(){
+
+  const email =
+    document
+      .getElementById("adminEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("adminPassword")
+      .value;
+
+  const message =
+    document.getElementById(
+      "loginMessage"
+    );
+
+  const button =
+    document.getElementById(
+      "loginButton"
+    );
+
+
+  if(!email || !password){
+
+    message.textContent =
+      "Please enter your email and password.";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Checking...";
+
+
+  try{
+
+    const result =
+      await auth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+
+
+    const user =
+      result.user;
+
+
+    if(user.uid !== ADMIN_UID){
+
+      await auth.signOut();
+
+      throw new Error(
+        "This account is not authorized as an administrator."
+      );
+
+    }
+
+
+    const adminDoc =
+      await db
+        .collection("admins")
+        .doc(user.uid)
+        .get();
+
+
+    if(!adminDoc.exists){
+
+      await auth.signOut();
+
+      throw new Error(
+        "Admin account is not configured in Firestore."
+      );
+
+    }
+
+
+    showApp();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    message.textContent =
+      getFriendlyError(error);
+
+    message.className =
+      "message error";
+
+    button.disabled = false;
+
+    button.textContent =
+      "Login to Dashboard";
+
+  }
+
+}
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+auth.onAuthStateChanged(async user => {
+
+  if(!user){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  if(user.uid !== ADMIN_UID){
+
+    await auth.signOut();
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  try{
+
+    const adminDoc =
+      await db
+        .collection("admins")
+        .doc(user.uid)
+        .get();
+
+
+    if(adminDoc.exists){
+
+      showApp();
+
+    }else{
+
+      await auth.signOut();
+
+      showLogin();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showLogin();
+
+  }
+
+});
+
+
+function showLogin(){
+
+  document
+    .getElementById("loginScreen")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("app")
+    .classList
+    .add("hidden");
+
+}
+
+
+function showApp(){
+
+  document
+    .getElementById("loginScreen")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("app")
+    .classList
+    .remove("hidden");
+
+
+  loadAllData();
+
+}
+
+
+async function logout(){
+
+  await auth.signOut();
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function openPage(page, button){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(p => {
+      p.classList.remove("active");
+    });
+
+
+  document
+    .getElementById(
+      "page-" + page
+    )
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+
+  if(button){
+
+    button.classList.add("active");
+
+  }else{
+
+    const nav =
+      document.querySelector(
+        `[data-page="${page}"]`
+      );
+
+    if(nav){
+      nav.classList.add("active");
+    }
+
+  }
+
+
+  document
+    .getElementById("sidebar")
+    .classList.remove("open");
+
+}
+
+
+function openPageByName(page){
+
+  openPage(page);
+
+}
+
+
+function toggleSidebar(){
+
+  document
+    .getElementById("sidebar")
+    .classList
+    .toggle("open");
+
+}
+
+
+/* =========================
+   LOAD ALL
+========================= */
+
+async function loadAllData(){
+
+  await Promise.all([
+    loadProducts(),
+    loadOrders()
+  ]);
+
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+async function loadProducts(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("products")
+        .get();
+
+
+    products =
+      snapshot.docs.map(doc => ({
+
+        id:doc.id,
+
+        ...doc.data()
+
+      }));
+
+
+    renderProducts();
+
+    updateDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById(
+      "productsGrid"
+    ).innerHTML =
+
+      `<div class="empty">
+        Unable to load products.<br><br>
+        ${escapeHtml(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+function renderProducts(){
+
+  const container =
+    document.getElementById(
+      "productsGrid"
+    );
+
+  const search =
+    document
+      .getElementById("productSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    products.filter(product => {
+
+      const name =
+        String(
+          product.name || ""
+        ).toLowerCase();
+
+      const category =
+        String(
+          product.category || ""
+        ).toLowerCase();
+
+
+      return(
+        name.includes(search) ||
+        category.includes(search)
+      );
+
+    });
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML =
+      `<div class="empty">
+        No products found.
+      </div>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered.map(product => {
+
+      const image =
+        product.image ||
+        product.imageUrl ||
+        "https://via.placeholder.com/600x400?text=Danny+Smart+Power";
+
+
+      const price =
+        formatMoney(product.price);
+
+
+      const stock =
+        product.stock !== undefined
+          ? product.stock
+          : "—";
+
+
+      return `
+
+        <div class="product-card">
+
+          <img
+            class="product-image"
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(product.name || "Product")}"
+            onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
+          >
+
+          <div class="product-body">
+
+            <div class="product-name">
+              ${escapeHtml(
+                product.name ||
+                "Unnamed Product"
+              )}
+            </div>
+
+            <div class="product-category">
+              ${escapeHtml(
+                product.category ||
+                "Uncategorized"
+              )}
+            </div>
+
+            <div class="product-price">
+              ₦${price}
+            </div>
+
+            <div class="product-stock">
+              Stock: ${escapeHtml(stock)}
+            </div>
+
+            <div class="product-actions">
+
+              <button
+                class="edit-btn"
+                onclick="editProduct('${product.id}')"
+              >
+                Edit
+              </button>
+
+              <button
+                class="delete-btn"
+                onclick="deleteProduct('${product.id}')"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function newProduct(){
+
+  editingProductId = null;
+
+  clearProductForm();
+
+  document
+    .getElementById("productFormTitle")
+    .textContent =
+      "Add New Product";
+
+  document
+    .getElementById("saveProductBtn")
+    .textContent =
+      "Add Product";
+
+  document
+    .getElementById("cancelEditBtn")
+    .classList
+    .add("hidden");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+async function saveProduct(){
+
+  const name =
+    document
+      .getElementById("productName")
+      .value
+      .trim();
+
+  const price =
+    Number(
+      document
+        .getElementById("productPrice")
+        .value
+    );
+
+  const category =
+    document
+      .getElementById("productCategory")
+      .value;
+
+  const stock =
+    Number(
+      document
+        .getElementById("productStock")
+        .value
+    );
+
+  const image =
+    document
+      .getElementById("productImage")
+      .value
+      .trim();
+
+  const available =
+    document
+      .getElementById("productAvailable")
+      .value === "true";
+
+  const description =
+    document
+      .getElementById("productDescription")
+      .value
+      .trim();
+
+  const message =
+    document.getElementById(
+      "productMessage"
+    );
+
+
+  if(!name){
+
+    message.textContent =
+      "Please enter a product name.";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  if(!price || price < 0){
+
+    message.textContent =
+      "Please enter a valid price.";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "saveProductBtn"
+    );
+
+  button.disabled = true;
+
+  button.textContent =
+    editingProductId
+      ? "Saving..."
+      : "Adding...";
+
+
+  try{
+
+    const data = {
+
+      name:name,
+
+      price:price,
+
+      category:category,
+
+      stock:stock,
+
+      available:available,
+
+      image:image,
+
+      description:description,
+
+      updatedAt:
+        firebase.firestore
+          .FieldValue
+          .serverTimestamp()
+
+    };
+
+
+    if(editingProductId){
+
+      await db
+        .collection("products")
+        .doc(editingProductId)
+        .update(data);
+
+
+      message.textContent =
+        "Product updated successfully.";
+
+
+    }else{
+
+      await db
+        .collection("products")
+        .add({
+
+          ...data,
+
+          createdAt:
+            firebase.firestore
+              .FieldValue
+              .serverTimestamp()
+
+        });
+
+
+      message.textContent =
+        "Product added successfully.";
+
+    }
+
+
+    message.className =
+      "message success";
+
+
+    clearProductForm();
+
+    editingProductId = null;
+
+
+    document
+      .getElementById("productFormTitle")
+      .textContent =
+        "Add New Product";
+
+
+    document
+      .getElementById("saveProductBtn")
+      .textContent =
+        "Add Product";
+
+
+    document
+      .getElementById("cancelEditBtn")
+      .classList
+      .add("hidden");
+
+
+    await loadProducts();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    message.textContent =
+      getFriendlyError(error);
+
+    message.className =
+      "message error";
+
+  }
+
+
+  button.disabled = false;
+
+}
+
+
+function editProduct(id){
+
+  const product =
+    products.find(
+      p => p.id === id
+    );
+
+
+  if(!product) return;
+
+
+  editingProductId = id;
+
+
+  document.getElementById(
+    "productName"
+  ).value =
+    product.name || "";
+
+
+  document.getElementById(
+    "productPrice"
+  ).value =
+    product.price ?? "";
+
+
+  document.getElementById(
+    "productCategory"
+  ).value =
+    product.category || "Solar";
+
+
+  document.getElementById(
+    "productStock"
+  ).value =
+    product.stock ?? 0;
+
+
+  document.getElementById(
+    "productImage"
+  ).value =
+    product.image ||
+    product.imageUrl ||
+    "";
+
+
+  document.getElementById(
+    "productAvailable"
+  ).value =
+    product.available === false
+      ? "false"
+      : "true";
+
+
+  document.getElementById(
+    "productDescription"
+  ).value =
+    product.description || "";
+
+
+  document.getElementById(
+    "productFormTitle"
+  ).textContent =
+    "Edit Product";
+
+
+  document.getElementById(
+    "saveProductBtn"
+  ).textContent =
+    "Save Changes";
+
+
+  document.getElementById(
+    "cancelEditBtn"
+  ).classList
+    .remove("hidden");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function cancelProductEdit(){
+
+  newProduct();
+
+}
+
+
+function clearProductForm(){
+
+  document.getElementById(
+    "productName"
+  ).value = "";
+
+  document.getElementById(
+    "productPrice"
+  ).value = "";
+
+  document.getElementById(
+    "productCategory"
+  ).value = "Solar";
+
+  document.getElementById(
+    "productStock"
+  ).value = "0";
+
+  document.getElementById(
+    "productImage"
+  ).value = "";
+
+  document.getElementById(
+    "productAvailable"
+  ).value = "true";
+
+  document.getElementById(
+    "productDescription"
+  ).value = "";
+
+}
+
+
+async function deleteProduct(id){
+
+  const product =
+    products.find(
+      p => p.id === id
+    );
+
+
+  if(!product) return;
+
+
+  const confirmed =
+    confirm(
+      `Delete "${product.name || "this product"}"?`
+    );
+
+
+  if(!confirmed) return;
+
+
+  try{
+
+    await db
+      .collection("products")
+      .doc(id)
+      .delete();
+
+
+    await loadProducts();
+
+
+  }catch(error){
+
+    alert(
+      getFriendlyError(error)
+    );
+
+  }
+
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+async function loadOrders(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("orders")
+        .get();
+
+
+    orders =
+      snapshot.docs.map(doc => ({
+
+        id:doc.id,
+
+        ...doc.data()
+
+      }));
+
+
+    orders.sort(
+      (a,b) =>
+        getTime(b.createdAt) -
+        getTime(a.createdAt)
+    );
+
+
+    renderOrders();
+
+    renderRecentOrders();
+
+    updateDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById(
+      "ordersTable"
+    ).innerHTML =
+
+      `<div class="empty">
+        Unable to load orders.<br><br>
+        ${escapeHtml(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+function renderOrders(){
+
+  const container =
+    document.getElementById(
+      "ordersTable"
+    );
+
+  const search =
+    document
+      .getElementById("orderSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const status =
+    document
+      .getElementById("orderStatusFilter")
+      .value;
+
+
+  const filtered =
+    orders.filter(order => {
+
+      const customer =
+        String(
+          order.customerName || ""
+        ).toLowerCase();
+
+      const phone =
+        String(
+          order.phone || ""
+        ).toLowerCase();
+
+      const id =
+        String(
+          order.id || ""
+        ).toLowerCase();
+
+      const matchesSearch =
+        customer.includes(search) ||
+        phone.includes(search) ||
+        id.includes(search);
+
+
+      const matchesStatus =
+        status === "all" ||
+        String(order.status || "Pending")
+          .toLowerCase() ===
+        status.toLowerCase();
+
+
+      return(
+        matchesSearch &&
+        matchesStatus
+      );
+
+    });
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML =
+      `<div class="empty">
+        No orders found.
+      </div>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Phone</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Action</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${filtered.map(order => {
+
+          const status =
+            order.status ||
+            "Pending";
+
+          return `
+
+            <tr>
+
+              <td>
+                #${escapeHtml(
+                  order.id.slice(0,8)
+                )}
+              </td>
+
+              <td>
+                ${escapeHtml(
+                  order.customerName ||
+                  "Unknown"
+                )}
+              </td>
+
+              <td>
+                ${escapeHtml(
+                  order.phone ||
+                  "—"
+                )}
+              </td>
+
+              <td>
+                ₦${formatMoney(
+                  order.total
+                )}
+              </td>
+
+              <td>
+
+                <span class="status ${statusClass(status)}">
+
+                  ${escapeHtml(status)}
+
+                </span>
+
+              </td>
+
+              <td>
+                ${formatDate(
+                  order.createdAt
+                )}
+              </td>
+
+              <td>
+
+                <button
+                  class="small-btn"
+                  onclick="viewOrder('${order.id}')"
+                >
+                  View
+                </button>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }).join("")}
+
+      </tbody>
+
+    </table>
+
+  `;
+
+}
+
+
+function renderRecentOrders(){
+
+  const container =
+    document.getElementById(
+      "recentOrders"
+    );
+
+
+  const recent =
+    orders.slice(0,5);
+
+
+  if(recent.length === 0){
+
+    container.innerHTML =
+      `<div class="empty">
+        No orders yet.
+      </div>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${recent.map(order => {
+
+          const status =
+            order.status ||
+            "Pending";
+
+          return `
+
+            <tr>
+
+              <td>
+                ${escapeHtml(
+                  order.customerName ||
+                  "Unknown"
+                )}
+              </td>
+
+              <td>
+                ₦${formatMoney(
+                  order.total
+                )}
+              </td>
+
+              <td>
+
+                <span class="status ${statusClass(status)}">
+
+                  ${escapeHtml(status)}
+
+                </span>
+
+              </td>
+
+              <td>
+                ${formatDate(
+                  order.createdAt
+                )}
+              </td>
+
+            </tr>
+
+          `;
+
+        }).join("")}
+
+      </tbody>
+
+    </table>
+
+  `;
+
+}
+
+
+function viewOrder(id){
+
+  const order =
+    orders.find(
+      o => o.id === id
+    );
+
+
+  if(!order) return;
+
+
+  const items =
+    formatOrderItems(
+      order.items
+    );
+
+
+  document.getElementById(
+    "orderDetails"
+  ).innerHTML = `
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Order ID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHtml(order.id)}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Customer
+      </div>
+
+      <div class="detail-value">
+        ${escapeHtml(
+          order.customerName ||
+          "Unknown"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Customer ID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHtml(
+          order.customerId ||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+        ${escapeHtml(
+          order.phone ||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Delivery Address
+      </div>
+
+      <div class="detail-value">
+        ${escapeHtml(
+          order.address ||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Items
+      </div>
+
+      <div class="detail-value">
+        ${items}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Total
+      </div>
+
+      <div class="detail-value">
+        <strong>
+          ₦${formatMoney(order.total)}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Order Date
+      </div>
+
+      <div class="detail-value">
+        ${formatDate(order.createdAt)}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Order Status
+      </div>
+
+      <select
+        id="modalOrderStatus"
+        onchange="updateOrderStatus('${order.id}',this.value)"
+      >
+
+        ${statusOptions(order.status)}
+
+      </select>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById("orderModal")
+    .classList
+    .add("show");
+
+}
+
+
+async function updateOrderStatus(
+  orderId,
+  newStatus
+){
+
+  try{
+
+    await db
+      .collection("orders")
+      .doc(orderId)
+      .update({
+
+        status:newStatus,
+
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    const order =
+      orders.find(
+        o => o.id === orderId
+      );
+
+
+    if(order){
+
+      order.status =
+        newStatus;
+
+    }
+
+
+    renderOrders();
+
+    renderRecentOrders();
+
+    updateDashboard();
+
+
+  }catch(error){
+
+    alert(
+      "Could not update order: " +
+      getFriendlyError(error)
+    );
+
+  }
+
+}
+
+
+function closeOrderModal(){
+
+  document
+    .getElementById("orderModal")
+    .classList
+    .remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+  if(
+    event.target.id ===
+    "orderModal"
+  ){
+
+    closeOrderModal();
+
+  }
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+  document.getElementById(
+    "totalProducts"
+  ).textContent =
+    products.length;
+
+
+  document.getElementById(
+    "totalOrders"
+  ).textContent =
+    orders.length;
+
+
+  const pending =
+    orders.filter(order => {
+
+      return String(
+        order.status ||
+        "Pending"
+      ).toLowerCase()
+      === "pending";
+
+    }).length;
+
+
+  document.getElementById(
+    "pendingOrders"
+  ).textContent =
+    pending;
+
+
+  /*
+    We count unique customer IDs
+    from orders for now.
+    This avoids requiring another
+    Firestore read.
+  */
+
+  const customerIds =
+    new Set(
+      orders
+        .map(order => order.customerId)
+        .filter(Boolean)
+    );
+
+
+  document.getElementById(
+    "totalCustomers"
+  ).textContent =
+    customerIds.size;
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function formatMoney(value){
+
+  const number =
+    Number(value || 0);
+
+  return number.toLocaleString(
+    "en-NG"
+  );
+
+}
+
+
+function formatDate(timestamp){
+
+  if(!timestamp){
+
+    return "—";
+
+  }
+
+
+  try{
+
+    const date =
+      timestamp.toDate
+        ? timestamp.toDate()
+        : new Date(timestamp);
+
+
+    return date.toLocaleString(
+      "en-NG",
+      {
+        day:"numeric",
+        month:"short",
+        year:"numeric",
+        hour:"numeric",
+        minute:"2-digit"
+      }
+    );
+
+  }catch(error){
+
+    return "—";
+
+  }
+
+}
+
+
+function getTime(timestamp){
+
+  if(!timestamp)
+    return 0;
+
+
+  try{
+
+    return timestamp.toDate
+      ? timestamp.toDate().getTime()
+      : new Date(timestamp).getTime();
+
+  }catch(error){
+
+    return 0;
+
+  }
+
+}
+
+
+function statusClass(status){
+
+  return String(
+    status || "Pending"
+  )
+    .toLowerCase()
+    .replace(/\s+/g,"-");
+
+}
+
+
+function statusOptions(current){
+
+  const statuses = [
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ];
+
+
+  return statuses.map(status => {
+
+    return `
+
+      <option
+        value="${status}"
+        ${status === current ? "selected" : ""}
+      >
+        ${status}
+      </option>
+
+    `;
+
+  }).join("");
+
+}
+
+
+function formatOrderItems(items){
+
+  if(!items){
+
+    return "No item information.";
+
+  }
+
+
+  /*
+    New recommended format:
+    Firestore Array
+  */
+
+  if(Array.isArray(items)){
+
+    return items.map(item => {
+
+      if(typeof item === "object"){
+
+        const name =
+          item.name ||
+          item.productName ||
+          "Product";
+
+        const quantity =
+          item.quantity ||
+          1;
+
+        const price =
+          item.price !== undefined
+            ? " — ₦" +
+              formatMoney(item.price)
+            : "";
+
+        return `
+          <div style="margin-bottom:8px;">
+            ${escapeHtml(name)}
+            × ${escapeHtml(quantity)}
+            ${price}
+          </div>
+        `;
+
+      }
+
+
+      return `
+        <div>
+          ${escapeHtml(item)}
+        </div>
+      `;
+
+    }).join("");
+
+  }
+
+
+  /*
+    Old orders may have items
+    stored as a string.
+  */
+
+  if(typeof items === "string"){
+
+    return escapeHtml(items);
+
+  }
+
+
+  return escapeHtml(
+    JSON.stringify(items)
+  );
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+
+    .replaceAll("&","&amp;")
+
+    .replaceAll("<","&lt;")
+
+    .replaceAll(">","&gt;")
+
+    .replaceAll('"',"&quot;")
+
+    .replaceAll("'","&#039;");
+
+}
+
+
+function getFriendlyError(error){
+
+  if(!error)
+    return "Something went wrong.";
+
+  if(
+    error.code ===
+    "permission-denied"
+  ){
+
+    return "Firestore permission denied. Check your Firestore Rules.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/invalid-credential"
+  ){
+
+    return "Incorrect email or password.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/user-not-found"
+  ){
+
+    return "No account was found with this email.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/wrong-password"
+  ){
+
+    return "Incorrect password.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/too-many-requests"
+  ){
+
+    return "Too many login attempts. Please try again later.";
+
+  }
+
+  return error.message ||
+    "Something went wrong.";
+
+}
+
+</script>
+
+</body>
+</html>
