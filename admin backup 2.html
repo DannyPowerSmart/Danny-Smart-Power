@@ -3,18 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Admin | Danny Smart Power</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --bg:#07111f;
+  --dark:#020617;
   --panel:#0d1b2a;
   --panel2:#102234;
   --border:#203247;
@@ -24,6 +20,7 @@
   --green:#4ade80;
   --red:#f87171;
   --yellow:#facc15;
+  --purple:#c084fc;
 }
 
 body{
@@ -33,24 +30,11 @@ body{
   min-height:100vh;
 }
 
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* =========================
-   LOGIN
-========================= */
+/* LOGIN */
 
 #loginScreen{
   min-height:100vh;
@@ -83,10 +67,7 @@ button{
   font-size:32px;
 }
 
-.login-box h1{
-  text-align:center;
-  font-size:25px;
-}
+.login-box h1{text-align:center;font-size:25px}
 
 .login-subtitle{
   text-align:center;
@@ -97,14 +78,12 @@ button{
 
 label{
   display:block;
-  margin:18px 0 7px;
+  margin:17px 0 7px;
   font-size:13px;
   color:#cbd5e1;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
   width:100%;
   background:var(--panel2);
   color:white;
@@ -114,14 +93,12 @@ textarea{
   outline:none;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
+input:focus,select:focus,textarea:focus{
   border-color:var(--blue);
 }
 
 textarea{
-  min-height:110px;
+  min-height:100px;
   resize:vertical;
 }
 
@@ -136,83 +113,17 @@ textarea{
   font-weight:bold;
 }
 
-.primary-btn:disabled{
-  opacity:.6;
-}
+.primary-btn:disabled{opacity:.6}
 
 .message{
   text-align:center;
-  margin-top:15px;
+  margin-top:14px;
   font-size:13px;
   line-height:1.5;
 }
 
-.error{
-  color:var(--red);
-}
-
-.success{
-  color:var(--green);
-}
-
-/* =========================
-   APP
-========================= */
-
-#app{
-  min-height:100vh;
-}
-
-.topbar{
-  position:fixed;
-  left:260px;
-  right:0;
-  top:0;
-  height:70px;
-  z-index:20;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 25px;
-  background:#020617;
-  border-bottom:1px solid var(--border);
-}
-
-.topbar-title{
-  font-size:19px;
-  font-weight:bold;
-}
-
-.topbar-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.admin-badge{
-  background:rgba(56,189,248,.12);
-  color:var(--blue);
-  border:1px solid rgba(56,189,248,.25);
-  padding:7px 11px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-.logout-btn{
-  background:transparent;
-  border:1px solid #334155;
-  color:white;
-  border-radius:9px;
-  padding:9px 13px;
-}
-
-.menu-btn{
-  display:none;
-  background:transparent;
-  color:white;
-  border:0;
-  font-size:25px;
-}
+.error{color:var(--red)}
+.success{color:var(--green)}
 
 /* SIDEBAR */
 
@@ -221,146 +132,192 @@ textarea{
   left:0;
   top:0;
   bottom:0;
-  width:260px;
-  background:#020617;
+  width:255px;
+  background:var(--dark);
   border-right:1px solid var(--border);
-  z-index:30;
-  padding:22px 15px;
+  z-index:50;
+  padding:22px 14px;
+  transition:.25s;
 }
 
-.sidebar-brand{
+.brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
   font-size:19px;
   font-weight:bold;
-  margin-bottom:30px;
   padding:0 10px;
+  margin-bottom:28px;
 }
 
-.sidebar-brand span{
-  color:var(--blue);
-}
+.brand span{color:var(--blue)}
 
 .nav-btn{
   width:100%;
   border:0;
   background:transparent;
   color:#cbd5e1;
-  padding:13px 14px;
-  margin-bottom:5px;
+  padding:13px;
+  margin-bottom:4px;
   border-radius:10px;
   text-align:left;
-  display:flex;
-  align-items:center;
-  gap:12px;
 }
 
-.nav-btn:hover{
-  background:#0f1d2e;
-}
-
+.nav-btn:hover,
 .nav-btn.active{
   background:rgba(56,189,248,.12);
   color:var(--blue);
 }
 
-.sidebar-footer{
+.sidebar-bottom{
   position:absolute;
+  bottom:20px;
   left:15px;
   right:15px;
-  bottom:20px;
   color:#64748b;
-  font-size:11px;
   text-align:center;
+  font-size:11px;
 }
 
-/* CONTENT */
+/* TOPBAR */
+
+.topbar{
+  position:fixed;
+  top:0;
+  left:255px;
+  right:0;
+  height:70px;
+  z-index:40;
+  background:var(--dark);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 22px;
+}
+
+.top-title{font-size:18px;font-weight:bold}
+
+.top-right{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.admin-badge{
+  color:var(--blue);
+  background:rgba(56,189,248,.1);
+  border:1px solid rgba(56,189,248,.2);
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.logout{
+  background:transparent;
+  border:1px solid var(--border);
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+.menu{
+  display:none;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
+}
+
+/* MAIN */
 
 .main{
-  margin-left:260px;
-  padding:95px 25px 40px;
+  margin-left:255px;
+  padding:95px 23px 40px;
 }
 
-.page{
-  display:none;
-}
+.page{display:none}
+.page.active{display:block}
 
-.page.active{
-  display:block;
-}
+.page-title{font-size:28px;margin-bottom:6px}
+.page-subtitle{color:var(--muted);font-size:14px;margin-bottom:23px}
 
-.page-title{
-  font-size:28px;
-  margin-bottom:7px;
-}
-
-.page-subtitle{
-  color:var(--muted);
-  margin-bottom:25px;
-  font-size:14px;
-}
-
-/* =========================
-   DASHBOARD CARDS
-========================= */
+/* DASHBOARD */
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:25px;
+  grid-template-columns:repeat(5,1fr);
+  gap:13px;
+  margin-bottom:22px;
 }
 
-.stat-card{
+.stat{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:17px;
-  padding:20px;
+  border-radius:16px;
+  padding:17px;
 }
 
-.stat-icon{
-  font-size:25px;
-  margin-bottom:14px;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.stat-value{
-  font-size:27px;
-  font-weight:bold;
-  margin-top:6px;
-}
-
-/* PANELS */
+.stat-icon{font-size:23px;margin-bottom:11px}
+.stat-label{font-size:12px;color:var(--muted)}
+.stat-value{font-size:25px;font-weight:bold;margin-top:5px}
 
 .panel{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:17px;
-  padding:20px;
-  margin-bottom:20px;
+  border-radius:16px;
+  padding:19px;
+  margin-bottom:18px;
 }
 
-.panel-header{
+.panel-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
 
-.panel-title{
-  font-size:18px;
+.panel-head h2{font-size:17px}
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.toolbar input{flex:1}
+
+.btn{
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:white;
+  border-radius:9px;
+  padding:10px 13px;
+}
+
+.btn-blue{
+  border:0;
+  background:var(--blue);
+  color:#00111c;
+  font-weight:bold;
+}
+
+.btn-red{
+  border:1px solid var(--red);
+  color:var(--red);
+  background:transparent;
+}
+
+.btn-green{
+  border:1px solid var(--green);
+  color:var(--green);
+  background:transparent;
 }
 
 /* TABLE */
 
 .table-wrap{
-  width:100%;
   overflow-x:auto;
 }
 
@@ -370,226 +327,272 @@ table{
   min-width:700px;
 }
 
-th,
-td{
-  text-align:left;
-  padding:13px 10px;
+th,td{
+  padding:12px 9px;
   border-bottom:1px solid var(--border);
+  text-align:left;
   font-size:13px;
 }
 
-th{
-  color:var(--muted);
-  font-weight:normal;
-}
-
-td{
-  color:#e2e8f0;
-}
+th{color:var(--muted);font-weight:normal}
 
 .status{
   display:inline-block;
   padding:5px 9px;
   border-radius:20px;
   font-size:11px;
-  font-weight:bold;
 }
 
-.status.pending{
-  background:rgba(250,204,21,.12);
-  color:var(--yellow);
+.pending{color:var(--yellow);background:rgba(250,204,21,.1)}
+.processing{color:var(--blue);background:rgba(56,189,248,.1)}
+.shipped{color:var(--purple);background:rgba(192,132,252,.1)}
+.completed{color:var(--green);background:rgba(74,222,128,.1)}
+.cancelled{color:var(--red);background:rgba(248,113,113,.1)}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
 }
 
-.status.processing{
-  background:rgba(56,189,248,.12);
-  color:var(--blue);
-}
-
-.status.shipped{
-  background:rgba(168,85,247,.12);
-  color:#c084fc;
-}
-
-.status.completed{
-  background:rgba(74,222,128,.12);
-  color:var(--green);
-}
-
-.status.cancelled{
-  background:rgba(248,113,113,.12);
-  color:var(--red);
-}
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.toolbar{
-  display:flex;
-  gap:10px;
-  margin-bottom:18px;
-}
-
-.toolbar input{
-  flex:1;
-}
-
-.small-btn{
-  border:1px solid var(--border);
-  background:var(--panel2);
-  color:white;
-  border-radius:9px;
-  padding:10px 14px;
-}
-
-.add-btn{
-  background:var(--blue);
-  color:#00111c;
-  border:0;
-  border-radius:9px;
-  padding:10px 15px;
-  font-weight:bold;
-}
+/* PRODUCTS */
 
 .products-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  gap:15px;
 }
 
-.product-card{
+.product{
   background:var(--panel2);
   border:1px solid var(--border);
-  border-radius:15px;
+  border-radius:14px;
   overflow:hidden;
 }
 
-.product-image{
+.product img{
   width:100%;
-  height:180px;
+  height:170px;
   object-fit:cover;
-  background:#020617;
+  background:var(--dark);
 }
 
-.product-body{
-  padding:15px;
-}
+.product-body{padding:14px}
 
-.product-name{
-  font-weight:bold;
-  margin-bottom:6px;
-}
-
-.product-category{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.product-price{
-  color:var(--blue);
-  font-weight:bold;
-  margin-top:10px;
-}
-
-.product-stock{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
-}
+.product-name{font-weight:bold}
+.product-category{font-size:12px;color:var(--muted);margin-top:5px}
+.product-price{color:var(--blue);font-weight:bold;margin-top:9px}
+.product-stock{font-size:12px;color:var(--muted);margin-top:5px}
 
 .product-actions{
   display:flex;
-  gap:8px;
-  margin-top:15px;
+  gap:7px;
+  margin-top:13px;
 }
 
-.edit-btn,
-.delete-btn{
-  flex:1;
-  padding:9px;
-  border-radius:8px;
-}
+.product-actions button{flex:1}
 
-.edit-btn{
-  background:transparent;
-  border:1px solid var(--blue);
-  color:var(--blue);
-}
-
-.delete-btn{
-  background:transparent;
-  border:1px solid var(--red);
-  color:var(--red);
-}
-
-/* =========================
-   FORM
-========================= */
+/* FORMS */
 
 .form-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:14px;
 }
 
-.full{
-  grid-column:1/-1;
-}
+.full{grid-column:1/-1}
 
 .form-actions{
   display:flex;
   gap:10px;
-  margin-top:18px;
+  margin-top:17px;
 }
 
-.form-actions button{
-  flex:1;
-}
+.form-actions button{flex:1}
 
-.cancel-btn{
-  border:1px solid var(--border);
-  background:var(--panel2);
-  color:white;
-  border-radius:10px;
-  padding:13px;
-}
+/* CUSTOMERS */
 
-/* =========================
-   ORDER FILTER
-========================= */
-
-.order-tools{
+.customer{
   display:flex;
-  gap:10px;
-  margin-bottom:18px;
+  align-items:center;
+  gap:13px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.order-tools input{
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  background:var(--panel2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--blue);
+  flex-shrink:0;
+}
+
+.customer-name{font-weight:bold}
+.customer-info{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* CHAT */
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:310px 1fr;
+  min-height:600px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+  background:var(--panel);
+}
+
+.chat-list{
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+}
+
+.chat-item{
+  padding:14px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+
+.chat-item:hover,
+.chat-item.active{
+  background:rgba(56,189,248,.08);
+}
+
+.chat-item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.chat-name{font-weight:bold;font-size:14px}
+
+.unread{
+  background:var(--blue);
+  color:#00111c;
+  min-width:20px;
+  height:20px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.last-message{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.chat-window{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+
+.chat-header{
+  padding:15px;
+  border-bottom:1px solid var(--border);
+}
+
+.chat-header-name{font-weight:bold}
+
+.chat-header-info{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.messages{
   flex:1;
+  padding:17px;
+  overflow-y:auto;
+  min-height:400px;
+  max-height:500px;
 }
 
-.order-tools select{
-  width:180px;
+.msg{
+  max-width:75%;
+  padding:10px 12px;
+  border-radius:13px;
+  margin-bottom:9px;
+  font-size:13px;
+  line-height:1.4;
 }
 
-/* =========================
-   MODAL
-========================= */
+.msg.admin{
+  margin-left:auto;
+  background:#075985;
+}
+
+.msg.customer{
+  margin-right:auto;
+  background:var(--panel2);
+}
+
+.msg-time{
+  display:block;
+  color:#94a3b8;
+  font-size:9px;
+  margin-top:5px;
+}
+
+.chat-input{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  border-top:1px solid var(--border);
+}
+
+.chat-input input{flex:1}
+.chat-input button{width:80px}
+
+/* WISHLIST */
+
+.wishlist{
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:10px;
+}
+
+.wishlist-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.wishlist-items{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* MODAL */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.72);
   z-index:100;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:18px;
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
   width:100%;
@@ -598,66 +601,43 @@ td{
   overflow:auto;
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
+  border-radius:17px;
+  padding:20px;
 }
 
-.modal-header{
+.modal-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:20px;
+  align-items:center;
+  margin-bottom:18px;
 }
 
-.close-btn{
-  background:transparent;
+.close{
+  background:none;
   border:0;
   color:white;
   font-size:25px;
 }
 
 .detail{
-  padding:13px 0;
+  padding:12px 0;
   border-bottom:1px solid var(--border);
 }
 
-.detail-label{
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:5px;
+.detail-label{font-size:11px;color:var(--muted);margin-bottom:5px}
+.detail-value{line-height:1.5}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
 }
 
-.detail-value{
-  color:white;
-  line-height:1.5;
-}
-
-/* EMPTY */
-
-.empty{
-  text-align:center;
-  padding:35px;
-  color:var(--muted);
-}
-
-/* MOBILE */
-
-@media(max-width:950px){
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .products-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-@media(max-width:700px){
+@media(max-width:750px){
 
   .sidebar{
     transform:translateX(-100%);
-    transition:.25s;
   }
 
   .sidebar.open{
@@ -666,33 +646,20 @@ td{
 
   .topbar{
     left:0;
-    padding:0 15px;
+    padding:0 14px;
   }
 
-  .menu-btn{
-    display:block;
-  }
-
-  .topbar-title{
-    display:none;
-  }
+  .menu{display:block}
+  .top-title{display:none}
+  .admin-badge{display:none}
 
   .main{
     margin-left:0;
-    padding:90px 13px 30px;
+    padding:88px 12px 30px;
   }
 
   .stats{
     grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .stat-card{
-    padding:15px;
-  }
-
-  .stat-value{
-    font-size:22px;
   }
 
   .products-grid{
@@ -703,21 +670,20 @@ td{
     grid-template-columns:1fr;
   }
 
-  .full{
-    grid-column:auto;
-  }
+  .full{grid-column:auto}
 
-  .toolbar,
-  .order-tools{
+  .toolbar{
     flex-direction:column;
   }
 
-  .order-tools select{
-    width:100%;
+  .chat-layout{
+    grid-template-columns:1fr;
   }
 
-  .admin-badge{
-    display:none;
+  .chat-list{
+    max-height:260px;
+    border-right:0;
+    border-bottom:1px solid var(--border);
   }
 }
 </style>
@@ -725,27 +691,24 @@ td{
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
-
+<!-- LOGIN -->
 <section id="loginScreen">
 
   <div class="login-box">
 
     <div class="logo">⚡</div>
 
-    <h1>Admin Access</h1>
+    <h1>Admin Control Center</h1>
 
     <p class="login-subtitle">
-      Danny Smart Power Control Center
+      Danny Smart Power
     </p>
 
     <label>Email Address</label>
 
     <input
-      type="email"
       id="adminEmail"
+      type="email"
       placeholder="Admin email"
       autocomplete="email"
     >
@@ -753,110 +716,101 @@ td{
     <label>Password</label>
 
     <input
-      type="password"
       id="adminPassword"
-      placeholder="Admin password"
+      type="password"
+      placeholder="Password"
       autocomplete="current-password"
     >
 
     <button
       class="primary-btn"
-      id="loginButton"
-      onclick="adminLogin()"
+      id="loginBtn"
+      onclick="loginAdmin()"
     >
-      Login to Dashboard
+      Login
     </button>
 
-    <p
-      id="loginMessage"
-      class="message"
-    ></p>
+    <p id="loginMessage" class="message"></p>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     ADMIN APP
-========================= -->
-
-<section
-  id="app"
-  class="hidden"
->
+<!-- APP -->
+<section id="app" class="hidden">
 
   <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
 
-  <aside
-    id="sidebar"
-    class="sidebar"
-  >
-
-    <div class="sidebar-brand">
+    <div class="brand">
       ⚡ <span>DSP</span> Admin
     </div>
 
-    <button
-      class="nav-btn active"
-      data-page="dashboard"
-      onclick="openPage('dashboard',this)"
-    >
-      📊
-      Dashboard
+    <button class="nav-btn active"
+      onclick="openPage('dashboard',this)">
+      📊 Dashboard
     </button>
 
-    <button
-      class="nav-btn"
-      data-page="products"
-      onclick="openPage('products',this)"
-    >
-      📦
-      Products
+    <button class="nav-btn"
+      onclick="openPage('products',this)">
+      📦 Products
     </button>
 
-    <button
-      class="nav-btn"
-      data-page="orders"
-      onclick="openPage('orders',this)"
-    >
-      🛒
-      Orders
+    <button class="nav-btn"
+      onclick="openPage('orders',this)">
+      🛒 Orders
     </button>
 
-    <div class="sidebar-footer">
+    <button class="nav-btn"
+      onclick="openPage('customers',this)">
+      👥 Customers
+    </button>
+
+    <button class="nav-btn"
+      onclick="openPage('chat',this)">
+      💬 Chat with Danny
+    </button>
+
+    <button class="nav-btn"
+      onclick="openPage('wishlists',this)">
+      ❤️ Wishlists
+    </button>
+
+    <button class="nav-btn"
+      onclick="openPage('settings',this)">
+      ⚙️ Settings
+    </button>
+
+    <button class="nav-btn"
+      onclick="openPage('admins',this)">
+      🔐 Admin
+    </button>
+
+    <div class="sidebar-bottom">
       Danny Smart Power<br>
-      Admin Control Center
+      Control Center
     </div>
 
   </aside>
 
 
-  <!-- TOPBAR -->
-
+  <!-- TOP -->
   <header class="topbar">
 
-    <button
-      class="menu-btn"
-      onclick="toggleSidebar()"
-    >
-      ☰
-    </button>
+    <button class="menu" onclick="toggleSidebar()">☰</button>
 
-    <div class="topbar-title">
-      Admin Control Center
+    <div class="top-title">
+      Danny Smart Power Admin
     </div>
 
-    <div class="topbar-right">
+    <div class="top-right">
 
       <span class="admin-badge">
         ● Administrator
       </span>
 
-      <button
-        class="logout-btn"
-        onclick="logout()"
-      >
+      <button class="logout" onclick="logout()">
         Logout
       </button>
 
@@ -865,139 +819,66 @@ td{
   </header>
 
 
-  <!-- MAIN -->
-
   <main class="main">
 
 
-    <!-- =====================
-         DASHBOARD
-    ====================== -->
+    <!-- DASHBOARD -->
+    <section id="page-dashboard" class="page active">
 
-    <section
-      id="page-dashboard"
-      class="page active"
-    >
-
-      <h1 class="page-title">
-        Dashboard
-      </h1>
+      <h1 class="page-title">Dashboard</h1>
 
       <p class="page-subtitle">
-        Welcome to your Danny Smart Power control center.
+        Manage your Danny Smart Power store.
       </p>
-
 
       <div class="stats">
 
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            📦
-          </div>
-
-          <div class="stat-label">
-            Total Products
-          </div>
-
-          <div
-            class="stat-value"
-            id="totalProducts"
-          >
-            0
-          </div>
-
+        <div class="stat">
+          <div class="stat-icon">📦</div>
+          <div class="stat-label">Products</div>
+          <div class="stat-value" id="statProducts">0</div>
         </div>
 
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            🛒
-          </div>
-
-          <div class="stat-label">
-            Total Orders
-          </div>
-
-          <div
-            class="stat-value"
-            id="totalOrders"
-          >
-            0
-          </div>
-
+        <div class="stat">
+          <div class="stat-icon">🛒</div>
+          <div class="stat-label">Orders</div>
+          <div class="stat-value" id="statOrders">0</div>
         </div>
 
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            ⏳
-          </div>
-
-          <div class="stat-label">
-            Pending Orders
-          </div>
-
-          <div
-            class="stat-value"
-            id="pendingOrders"
-          >
-            0
-          </div>
-
+        <div class="stat">
+          <div class="stat-icon">👥</div>
+          <div class="stat-label">Customers</div>
+          <div class="stat-value" id="statCustomers">0</div>
         </div>
 
+        <div class="stat">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-label">Pending Orders</div>
+          <div class="stat-value" id="statPending">0</div>
+        </div>
 
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            👥
-          </div>
-
-          <div class="stat-label">
-            Customers
-          </div>
-
-          <div
-            class="stat-value"
-            id="totalCustomers"
-          >
-            0
-          </div>
-
+        <div class="stat">
+          <div class="stat-icon">💬</div>
+          <div class="stat-label">Unread Chats</div>
+          <div class="stat-value" id="statUnread">0</div>
         </div>
 
       </div>
 
 
-      <!-- RECENT ORDERS -->
-
       <div class="panel">
 
-        <div class="panel-header">
+        <div class="panel-head">
+          <h2>Recent Orders</h2>
 
-          <h2 class="panel-title">
-            Recent Orders
-          </h2>
-
-          <button
-            class="small-btn"
-            onclick="openPageByName('orders')"
-          >
-            View All
+          <button class="btn"
+            onclick="openPage('orders')">
+            View Orders
           </button>
-
         </div>
 
-        <div
-          id="recentOrders"
-          class="table-wrap"
-        >
-          <div class="empty">
-            Loading orders...
-          </div>
+        <div id="recentOrders" class="table-wrap">
+          <div class="empty">Loading...</div>
         </div>
 
       </div>
@@ -1005,225 +886,127 @@ td{
     </section>
 
 
-    <!-- =====================
-         PRODUCTS
-    ====================== -->
+    <!-- PRODUCTS -->
+    <section id="page-products" class="page">
 
-    <section
-      id="page-products"
-      class="page"
-    >
-
-      <h1 class="page-title">
-        Products
-      </h1>
+      <h1 class="page-title">Products</h1>
 
       <p class="page-subtitle">
-        Manage the products displayed in your store.
+        Add and manage your store products.
       </p>
 
 
-      <!-- PRODUCT FORM -->
-
       <div class="panel">
 
-        <div class="panel-header">
-
-          <h2
-            class="panel-title"
-            id="productFormTitle"
-          >
-            Add New Product
+        <div class="panel-head">
+          <h2 id="productFormTitle">
+            Add Product
           </h2>
-
         </div>
-
 
         <div class="form-grid">
 
           <div>
-
-            <label>
-              Product Name
-            </label>
-
-            <input
-              id="productName"
-              placeholder="e.g. Solar Panel 200W"
-            >
-
+            <label>Product Name</label>
+            <input id="pName"
+              placeholder="Solar Panel 200W">
           </div>
 
-
           <div>
-
-            <label>
-              Price (₦)
-            </label>
-
-            <input
-              id="productPrice"
+            <label>Price (₦)</label>
+            <input id="pPrice"
               type="number"
-              min="0"
-              placeholder="85000"
-            >
-
+              placeholder="85000">
           </div>
 
-
           <div>
-
-            <label>
-              Category
-            </label>
-
-            <select id="productCategory">
-
-              <option value="Solar">
-                Solar
-              </option>
-
-              <option value="Electrical">
-                Electrical
-              </option>
-
-              <option value="Lighting">
-                Lighting
-              </option>
-
-              <option value="Accessories">
-                Accessories
-              </option>
-
+            <label>Category</label>
+            <select id="pCategory">
+              <option>Solar</option>
+              <option>Lighting</option>
+              <option>Electrical</option>
+              <option>Accessories</option>
             </select>
-
           </div>
 
-
           <div>
-
-            <label>
-              Stock
-            </label>
-
-            <input
-              id="productStock"
+            <label>Stock</label>
+            <input id="pStock"
               type="number"
-              min="0"
-              value="0"
-            >
-
+              value="0">
           </div>
 
-
           <div>
-
-            <label>
-              Image URL
-            </label>
-
-            <input
-              id="productImage"
-              placeholder="https://..."
-            >
-
+            <label>Image URL</label>
+            <input id="pImage"
+              placeholder="https://...">
           </div>
 
-
           <div>
-
-            <label>
-              Availability
-            </label>
-
-            <select id="productAvailable">
-
-              <option value="true">
-                Available
-              </option>
-
-              <option value="false">
-                Out of Stock
-              </option>
-
+            <label>Available</label>
+            <select id="pAvailable">
+              <option value="true">Available</option>
+              <option value="false">Unavailable</option>
             </select>
-
           </div>
 
+          <div>
+            <label>Featured</label>
+            <select id="pFeatured">
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
 
           <div class="full">
-
-            <label>
-              Description
-            </label>
-
-            <textarea
-              id="productDescription"
-              placeholder="Describe this product..."
-            ></textarea>
-
+            <label>Description</label>
+            <textarea id="pDescription"
+              placeholder="Product description"></textarea>
           </div>
 
         </div>
 
-
         <div class="form-actions">
 
           <button
-            class="primary-btn"
             id="saveProductBtn"
-            onclick="saveProduct()"
-          >
+            class="btn btn-blue"
+            onclick="saveProduct()">
             Add Product
           </button>
 
           <button
-            class="cancel-btn hidden"
-            id="cancelEditBtn"
-            onclick="cancelProductEdit()"
-          >
+            id="cancelProductBtn"
+            class="btn hidden"
+            onclick="resetProductForm()">
             Cancel
           </button>
 
         </div>
 
-        <p
-          id="productMessage"
-          class="message"
-        ></p>
+        <p id="productMessage" class="message"></p>
 
       </div>
 
-
-      <!-- SEARCH -->
 
       <div class="panel">
 
         <div class="toolbar">
 
-          <input
-            id="productSearch"
+          <input id="productSearch"
             placeholder="🔎 Search products..."
-            oninput="renderProducts()"
-          >
+            oninput="renderProducts()">
 
-          <button
-            class="add-btn"
-            onclick="newProduct()"
-          >
+          <button class="btn btn-blue"
+            onclick="resetProductForm()">
             + New Product
           </button>
 
         </div>
 
-
-        <div
-          id="productsGrid"
-          class="products-grid"
-        >
-          <div class="empty">
-            Loading products...
-          </div>
+        <div id="productsGrid"
+          class="products-grid">
+          <div class="empty">Loading products...</div>
         </div>
 
       </div>
@@ -1231,75 +1014,243 @@ td{
     </section>
 
 
-    <!-- =====================
-         ORDERS
-    ====================== -->
+    <!-- ORDERS -->
+    <section id="page-orders" class="page">
 
-    <section
-      id="page-orders"
-      class="page"
-    >
-
-      <h1 class="page-title">
-        Orders
-      </h1>
+      <h1 class="page-title">Orders</h1>
 
       <p class="page-subtitle">
-        View and manage customer orders.
+        Manage customer orders.
       </p>
-
 
       <div class="panel">
 
-        <div class="order-tools">
+        <div class="toolbar">
 
-          <input
-            id="orderSearch"
-            placeholder="🔎 Search customer, phone or order..."
-            oninput="renderOrders()"
-          >
+          <input id="orderSearch"
+            placeholder="🔎 Search customer, phone or order ID..."
+            oninput="renderOrders()">
 
-          <select
-            id="orderStatusFilter"
-            onchange="renderOrders()"
-          >
+          <select id="orderFilter"
+            onchange="renderOrders()">
 
-            <option value="all">
-              All Statuses
-            </option>
-
-            <option value="Pending">
-              Pending
-            </option>
-
-            <option value="Processing">
-              Processing
-            </option>
-
-            <option value="Shipped">
-              Shipped
-            </option>
-
-            <option value="Completed">
-              Completed
-            </option>
-
-            <option value="Cancelled">
-              Cancelled
-            </option>
+            <option value="all">All Orders</option>
+            <option>Pending</option>
+            <option>Processing</option>
+            <option>Shipped</option>
+            <option>Completed</option>
+            <option>Cancelled</option>
 
           </select>
 
         </div>
 
+        <div id="ordersTable"
+          class="table-wrap">
+          <div class="empty">Loading orders...</div>
+        </div>
 
-        <div
-          id="ordersTable"
-          class="table-wrap"
-        >
-          <div class="empty">
-            Loading orders...
+      </div>
+
+    </section>
+
+
+    <!-- CUSTOMERS -->
+    <section id="page-customers" class="page">
+
+      <h1 class="page-title">Customers</h1>
+
+      <p class="page-subtitle">
+        View registered customers and their profiles.
+      </p>
+
+      <div class="panel">
+
+        <div class="toolbar">
+
+          <input id="customerSearch"
+            placeholder="🔎 Search customers..."
+            oninput="renderCustomers()">
+
+        </div>
+
+        <div id="customersList">
+          <div class="empty">Loading customers...</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CHAT -->
+    <section id="page-chat" class="page">
+
+      <h1 class="page-title">Chat with Danny</h1>
+
+      <p class="page-subtitle">
+        Communicate directly with your customers.
+      </p>
+
+      <div class="chat-layout">
+
+        <div class="chat-list" id="chatList">
+          <div class="empty">Loading chats...</div>
+        </div>
+
+        <div class="chat-window">
+
+          <div class="chat-header">
+
+            <div class="chat-header-name"
+              id="chatCustomerName">
+              Select a customer
+            </div>
+
+            <div class="chat-header-info"
+              id="chatCustomerInfo">
+              Choose a conversation from the left.
+            </div>
+
           </div>
+
+          <div class="messages"
+            id="messages">
+            <div class="empty">
+              No conversation selected.
+            </div>
+          </div>
+
+          <div class="chat-input">
+
+            <input
+              id="chatInput"
+              placeholder="Type your reply..."
+              autocomplete="off"
+              disabled
+              onkeydown="handleChatEnter(event)"
+            >
+
+            <button
+              id="sendChatBtn"
+              class="btn btn-blue"
+              onclick="sendMessage()"
+              disabled>
+              Send
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- WISHLISTS -->
+    <section id="page-wishlists" class="page">
+
+      <h1 class="page-title">Wishlists</h1>
+
+      <p class="page-subtitle">
+        Products saved by your customers.
+      </p>
+
+      <div class="panel">
+
+        <div id="wishlistsList">
+          <div class="empty">Loading wishlists...</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SETTINGS -->
+    <section id="page-settings" class="page">
+
+      <h1 class="page-title">Store Settings</h1>
+
+      <p class="page-subtitle">
+        Manage your store information.
+      </p>
+
+      <div class="panel">
+
+        <div class="form-grid">
+
+          <div>
+            <label>Store Name</label>
+            <input id="sName">
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input id="sEmail" type="email">
+          </div>
+
+          <div>
+            <label>Phone</label>
+            <input id="sPhone">
+          </div>
+
+          <div>
+            <label>WhatsApp</label>
+            <input id="sWhatsapp">
+          </div>
+
+          <div>
+            <label>Currency</label>
+            <input id="sCurrency"
+              placeholder="NGN">
+          </div>
+
+          <div>
+            <label>Logo URL</label>
+            <input id="sLogo">
+          </div>
+
+          <div class="full">
+            <label>Address</label>
+            <input id="sAddress">
+          </div>
+
+          <div class="full">
+            <label>Description</label>
+            <textarea id="sDescription"></textarea>
+          </div>
+
+        </div>
+
+        <button
+          class="primary-btn"
+          onclick="saveSettings()">
+          Save Settings
+        </button>
+
+        <p id="settingsMessage"
+          class="message"></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ADMINS -->
+    <section id="page-admins" class="page">
+
+      <h1 class="page-title">Admin</h1>
+
+      <p class="page-subtitle">
+        Administrator accounts.
+      </p>
+
+      <div class="panel">
+
+        <div id="adminsList">
+          <div class="empty">Loading admins...</div>
         </div>
 
       </div>
@@ -1311,56 +1262,45 @@ td{
 </section>
 
 
-<!-- =========================
-     ORDER MODAL
-========================= -->
-
-<div
-  id="orderModal"
+<!-- MODAL -->
+<div id="modal"
   class="modal"
-  onclick="closeModalOutside(event)"
->
+  onclick="closeModalOutside(event)">
 
   <div class="modal-box">
 
-    <div class="modal-header">
+    <div class="modal-head">
 
-      <h2>
-        Order Details
-      </h2>
+      <h2 id="modalTitle">Details</h2>
 
-      <button
-        class="close-btn"
-        onclick="closeOrderModal()"
-      >
+      <button class="close"
+        onclick="closeModal()">
         ×
       </button>
 
     </div>
 
-    <div id="orderDetails"></div>
+    <div id="modalContent"></div>
 
   </div>
 
 </div>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
-
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 
 <script>
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+/* ==========================================
+   FIREBASE
+========================================== */
+
 const firebaseConfig = {
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFjAH9bOvALgb44",
   authDomain: "danny-smart-power.firebaseapp.com",
   databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
   projectId: "danny-smart-power",
@@ -1370,83 +1310,63 @@ const firebaseConfig = {
   measurementId: "G-258YKLP5ZS"
 };
 
-/*
- IMPORTANT:
- Your Firebase configuration above must exactly
- match Firebase Console.
-*/
-
-
 firebase.initializeApp(firebaseConfig);
 
-const auth =
-  firebase.auth();
-
-const db =
-  firebase.firestore();
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 
-/*
- YOUR EXISTING ADMIN UID
-*/
+/* YOUR ADMIN UID */
 
 const ADMIN_UID =
   "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
 
 
-let products = [];
+/* DATA */
 
+let products = [];
 let orders = [];
+let users = [];
+let profiles = [];
+let chats = [];
+let wishlists = [];
+let admins = [];
 
 let editingProductId = null;
+let selectedChatId = null;
+let messageUnsubscribe = null;
 
 
-/* =========================
+/* ==========================================
    LOGIN
-========================= */
+========================================== */
 
-async function adminLogin(){
+async function loginAdmin(){
 
   const email =
-    document
-      .getElementById("adminEmail")
-      .value
-      .trim();
+    document.getElementById("adminEmail").value.trim();
 
   const password =
-    document
-      .getElementById("adminPassword")
-      .value;
+    document.getElementById("adminPassword").value;
 
-  const message =
-    document.getElementById(
-      "loginMessage"
-    );
+  const msg =
+    document.getElementById("loginMessage");
 
-  const button =
-    document.getElementById(
-      "loginButton"
-    );
-
+  const btn =
+    document.getElementById("loginBtn");
 
   if(!email || !password){
 
-    message.textContent =
-      "Please enter your email and password.";
+    msg.textContent =
+      "Enter your email and password.";
 
-    message.className =
-      "message error";
+    msg.className = "message error";
 
     return;
-
   }
 
-
-  button.disabled = true;
-
-  button.textContent =
-    "Checking...";
-
+  btn.disabled = true;
+  btn.textContent = "Checking...";
 
   try{
 
@@ -1456,106 +1376,80 @@ async function adminLogin(){
         password
       );
 
-
-    const user =
-      result.user;
-
-
-    if(user.uid !== ADMIN_UID){
+    if(result.user.uid !== ADMIN_UID){
 
       await auth.signOut();
 
       throw new Error(
-        "This account is not authorized as an administrator."
+        "This account is not authorized as administrator."
       );
-
     }
-
 
     const adminDoc =
       await db
         .collection("admins")
-        .doc(user.uid)
+        .doc(result.user.uid)
         .get();
-
 
     if(!adminDoc.exists){
 
       await auth.signOut();
 
       throw new Error(
-        "Admin account is not configured in Firestore."
+        "Admin document was not found."
       );
-
     }
 
-
     showApp();
-
 
   }catch(error){
 
     console.error(error);
 
-    message.textContent =
-      getFriendlyError(error);
+    msg.textContent =
+      friendlyError(error);
 
-    message.className =
+    msg.className =
       "message error";
 
-    button.disabled = false;
-
-    button.textContent =
-      "Login to Dashboard";
-
+    btn.disabled = false;
+    btn.textContent = "Login";
   }
-
 }
 
 
-/* =========================
-   AUTH STATE
-========================= */
+/* AUTH */
 
 auth.onAuthStateChanged(async user => {
 
   if(!user){
 
     showLogin();
-
     return;
-
   }
-
 
   if(user.uid !== ADMIN_UID){
 
     await auth.signOut();
-
     showLogin();
-
     return;
-
   }
-
 
   try{
 
-    const adminDoc =
+    const admin =
       await db
         .collection("admins")
         .doc(user.uid)
         .get();
 
-
-    if(adminDoc.exists){
+    if(admin.exists){
 
       showApp();
 
     }else{
 
       await auth.signOut();
-
       showLogin();
 
     }
@@ -1563,7 +1457,6 @@ auth.onAuthStateChanged(async user => {
   }catch(error){
 
     console.error(error);
-
     showLogin();
 
   }
@@ -1582,7 +1475,6 @@ function showLogin(){
     .getElementById("app")
     .classList
     .add("hidden");
-
 }
 
 
@@ -1598,45 +1490,44 @@ function showApp(){
     .classList
     .remove("hidden");
 
-
-  loadAllData();
-
+  loadEverything();
 }
 
 
 async function logout(){
 
-  await auth.signOut();
+  if(messageUnsubscribe)
+    messageUnsubscribe();
 
+  await auth.signOut();
 }
 
 
-/* =========================
+/* ==========================================
    NAVIGATION
-========================= */
+========================================== */
 
 function openPage(page, button){
 
   document
     .querySelectorAll(".page")
-    .forEach(p => {
-      p.classList.remove("active");
-    });
+    .forEach(x =>
+      x.classList.remove("active")
+    );
 
-
-  document
-    .getElementById(
+  const target =
+    document.getElementById(
       "page-" + page
-    )
-    .classList.add("active");
+    );
 
+  if(target)
+    target.classList.add("active");
 
   document
     .querySelectorAll(".nav-btn")
-    .forEach(btn => {
-      btn.classList.remove("active");
-    });
-
+    .forEach(x =>
+      x.classList.remove("active")
+    );
 
   if(button){
 
@@ -1644,29 +1535,39 @@ function openPage(page, button){
 
   }else{
 
-    const nav =
-      document.querySelector(
-        `[data-page="${page}"]`
-      );
+    const buttons =
+      document.querySelectorAll(".nav-btn");
 
-    if(nav){
-      nav.classList.add("active");
-    }
+    const index = {
+      dashboard:0,
+      products:1,
+      orders:2,
+      customers:3,
+      chat:4,
+      wishlists:5,
+      settings:6,
+      admins:7
+    }[page];
 
+    if(index !== undefined && buttons[index])
+      buttons[index].classList.add("active");
   }
-
 
   document
     .getElementById("sidebar")
     .classList.remove("open");
 
-}
+  if(page === "chat")
+    loadChats();
 
+  if(page === "wishlists")
+    loadWishlists();
 
-function openPageByName(page){
+  if(page === "settings")
+    loadSettings();
 
-  openPage(page);
-
+  if(page === "admins")
+    loadAdmins();
 }
 
 
@@ -1674,54 +1575,55 @@ function toggleSidebar(){
 
   document
     .getElementById("sidebar")
-    .classList
-    .toggle("open");
-
+    .classList.toggle("open");
 }
 
 
-/* =========================
-   LOAD ALL
-========================= */
+/* ==========================================
+   LOAD EVERYTHING
+========================================== */
 
-async function loadAllData(){
+async function loadEverything(){
 
-  await Promise.all([
+  await Promise.allSettled([
+
     loadProducts(),
-    loadOrders()
+    loadOrders(),
+    loadUsers(),
+    loadProfiles(),
+    loadChats(),
+    loadWishlists(),
+    loadAdmins(),
+    loadSettings()
+
   ]);
 
+  updateDashboard();
 }
 
 
-/* =========================
+/* ==========================================
    PRODUCTS
-========================= */
+========================================== */
 
 async function loadProducts(){
 
   try{
 
-    const snapshot =
+    const snap =
       await db
         .collection("products")
         .get();
 
-
     products =
-      snapshot.docs.map(doc => ({
-
+      snap.docs.map(doc => ({
         id:doc.id,
-
         ...doc.data()
-
       }));
-
 
     renderProducts();
 
     updateDashboard();
-
 
   }catch(error){
 
@@ -1730,133 +1632,99 @@ async function loadProducts(){
     document.getElementById(
       "productsGrid"
     ).innerHTML =
-
       `<div class="empty">
-        Unable to load products.<br><br>
-        ${escapeHtml(error.message)}
+        ${escapeHTML(error.message)}
       </div>`;
-
   }
-
 }
 
 
 function renderProducts(){
 
-  const container =
-    document.getElementById(
-      "productsGrid"
-    );
+  const box =
+    document.getElementById("productsGrid");
 
   const search =
-    document
-      .getElementById("productSearch")
+    document.getElementById("productSearch")
       .value
       .toLowerCase()
       .trim();
 
+  const list =
+    products.filter(p =>
 
-  const filtered =
-    products.filter(product => {
+      String(p.name || "")
+        .toLowerCase()
+        .includes(search)
 
-      const name =
-        String(
-          product.name || ""
-        ).toLowerCase();
+      ||
 
-      const category =
-        String(
-          product.category || ""
-        ).toLowerCase();
+      String(p.category || "")
+        .toLowerCase()
+        .includes(search)
 
+    );
 
-      return(
-        name.includes(search) ||
-        category.includes(search)
-      );
+  if(!list.length){
 
-    });
-
-
-  if(filtered.length === 0){
-
-    container.innerHTML =
+    box.innerHTML =
       `<div class="empty">
         No products found.
       </div>`;
 
     return;
-
   }
 
-
-  container.innerHTML =
-    filtered.map(product => {
+  box.innerHTML =
+    list.map(p => {
 
       const image =
-        product.image ||
-        product.imageUrl ||
-        "https://via.placeholder.com/600x400?text=Danny+Smart+Power";
-
-
-      const price =
-        formatMoney(product.price);
-
-
-      const stock =
-        product.stock !== undefined
-          ? product.stock
-          : "—";
-
+        p.image ||
+        "https://via.placeholder.com/600x400?text=DSP";
 
       return `
 
-        <div class="product-card">
+        <div class="product">
 
           <img
-            class="product-image"
-            src="${escapeHtml(image)}"
-            alt="${escapeHtml(product.name || "Product")}"
+            src="${escapeHTML(image)}"
             onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
           >
 
           <div class="product-body">
 
             <div class="product-name">
-              ${escapeHtml(
-                product.name ||
-                "Unnamed Product"
-              )}
+              ${escapeHTML(p.name || "Unnamed")}
             </div>
 
             <div class="product-category">
-              ${escapeHtml(
-                product.category ||
-                "Uncategorized"
-              )}
+              ${escapeHTML(p.category || "—")}
             </div>
 
             <div class="product-price">
-              ₦${price}
+              ₦${money(p.price)}
             </div>
 
             <div class="product-stock">
-              Stock: ${escapeHtml(stock)}
+              Stock: ${escapeHTML(p.stock ?? 0)}
+              ·
+              ${p.available === false
+                ? "Unavailable"
+                : "Available"}
+              ${p.featured ? " · ⭐ Featured" : ""}
             </div>
 
             <div class="product-actions">
 
               <button
-                class="edit-btn"
-                onclick="editProduct('${product.id}')"
-              >
+                class="btn"
+                onclick="editProduct('${p.id}')">
                 Edit
               </button>
 
               <button
-                class="delete-btn"
-                onclick="deleteProduct('${product.id}')"
-              >
+                class="btn btn-red"
+                onclick="deleteProduct('${p.id}')">
                 Delete
               </button>
 
@@ -1869,153 +1737,162 @@ function renderProducts(){
       `;
 
     }).join("");
-
 }
 
 
-function newProduct(){
+function resetProductForm(){
 
   editingProductId = null;
 
-  clearProductForm();
+  document.getElementById("pName").value = "";
+  document.getElementById("pPrice").value = "";
+  document.getElementById("pCategory").value = "Solar";
+  document.getElementById("pStock").value = "0";
+  document.getElementById("pImage").value = "";
+  document.getElementById("pAvailable").value = "true";
+  document.getElementById("pFeatured").value = "false";
+  document.getElementById("pDescription").value = "";
 
-  document
-    .getElementById("productFormTitle")
-    .textContent =
-      "Add New Product";
+  document.getElementById(
+    "productFormTitle"
+  ).textContent = "Add Product";
 
-  document
-    .getElementById("saveProductBtn")
-    .textContent =
-      "Add Product";
+  document.getElementById(
+    "saveProductBtn"
+  ).textContent = "Add Product";
 
-  document
-    .getElementById("cancelEditBtn")
-    .classList
-    .add("hidden");
+  document.getElementById(
+    "cancelProductBtn"
+  ).classList.add("hidden");
+
+  document.getElementById(
+    "productMessage"
+  ).textContent = "";
+}
+
+
+function editProduct(id){
+
+  const p =
+    products.find(x => x.id === id);
+
+  if(!p) return;
+
+  editingProductId = id;
+
+  document.getElementById("pName").value =
+    p.name || "";
+
+  document.getElementById("pPrice").value =
+    p.price ?? "";
+
+  document.getElementById("pCategory").value =
+    p.category || "Solar";
+
+  document.getElementById("pStock").value =
+    p.stock ?? 0;
+
+  document.getElementById("pImage").value =
+    p.image || "";
+
+  document.getElementById("pAvailable").value =
+    p.available === false
+      ? "false"
+      : "true";
+
+  document.getElementById("pFeatured").value =
+    p.featured === true
+      ? "true"
+      : "false";
+
+  document.getElementById("pDescription").value =
+    p.description || "";
+
+  document.getElementById(
+    "productFormTitle"
+  ).textContent = "Edit Product";
+
+  document.getElementById(
+    "saveProductBtn"
+  ).textContent = "Save Changes";
+
+  document.getElementById(
+    "cancelProductBtn"
+  ).classList.remove("hidden");
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
-
 }
 
 
 async function saveProduct(){
 
   const name =
-    document
-      .getElementById("productName")
-      .value
-      .trim();
+    document.getElementById("pName").value.trim();
 
   const price =
-    Number(
-      document
-        .getElementById("productPrice")
-        .value
-    );
+    Number(document.getElementById("pPrice").value);
 
   const category =
-    document
-      .getElementById("productCategory")
-      .value;
+    document.getElementById("pCategory").value;
 
   const stock =
-    Number(
-      document
-        .getElementById("productStock")
-        .value
-    );
+    Number(document.getElementById("pStock").value);
 
   const image =
-    document
-      .getElementById("productImage")
-      .value
-      .trim();
+    document.getElementById("pImage").value.trim();
 
   const available =
-    document
-      .getElementById("productAvailable")
-      .value === "true";
+    document.getElementById("pAvailable").value === "true";
+
+  const featured =
+    document.getElementById("pFeatured").value === "true";
 
   const description =
-    document
-      .getElementById("productDescription")
-      .value
-      .trim();
+    document.getElementById("pDescription").value.trim();
 
-  const message =
-    document.getElementById(
-      "productMessage"
-    );
-
+  const msg =
+    document.getElementById("productMessage");
 
   if(!name){
 
-    message.textContent =
-      "Please enter a product name.";
-
-    message.className =
-      "message error";
-
+    msg.textContent = "Enter a product name.";
+    msg.className = "message error";
     return;
-
   }
 
+  if(isNaN(price) || price < 0){
 
-  if(!price || price < 0){
-
-    message.textContent =
-      "Please enter a valid price.";
-
-    message.className =
-      "message error";
-
+    msg.textContent = "Enter a valid price.";
+    msg.className = "message error";
     return;
-
   }
 
+  const data = {
 
-  const button =
-    document.getElementById(
-      "saveProductBtn"
-    );
+    name,
+    description,
+    price,
+    category,
+    image,
+    stock,
+    available,
+    featured,
 
-  button.disabled = true;
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
 
-  button.textContent =
-    editingProductId
-      ? "Saving..."
-      : "Adding...";
+  };
 
+  const btn =
+    document.getElementById("saveProductBtn");
+
+  btn.disabled = true;
 
   try{
-
-    const data = {
-
-      name:name,
-
-      price:price,
-
-      category:category,
-
-      stock:stock,
-
-      available:available,
-
-      image:image,
-
-      description:description,
-
-      updatedAt:
-        firebase.firestore
-          .FieldValue
-          .serverTimestamp()
-
-    };
-
 
     if(editingProductId){
 
@@ -2024,10 +1901,8 @@ async function saveProduct(){
         .doc(editingProductId)
         .update(data);
 
-
-      message.textContent =
+      msg.textContent =
         "Product updated successfully.";
-
 
     }else{
 
@@ -2038,212 +1913,50 @@ async function saveProduct(){
           ...data,
 
           createdAt:
-            firebase.firestore
-              .FieldValue
+            firebase.firestore.FieldValue
               .serverTimestamp()
 
         });
 
-
-      message.textContent =
+      msg.textContent =
         "Product added successfully.";
-
     }
 
-
-    message.className =
+    msg.className =
       "message success";
 
-
-    clearProductForm();
-
-    editingProductId = null;
-
-
-    document
-      .getElementById("productFormTitle")
-      .textContent =
-        "Add New Product";
-
-
-    document
-      .getElementById("saveProductBtn")
-      .textContent =
-        "Add Product";
-
-
-    document
-      .getElementById("cancelEditBtn")
-      .classList
-      .add("hidden");
-
+    resetProductForm();
 
     await loadProducts();
-
 
   }catch(error){
 
     console.error(error);
 
-    message.textContent =
-      getFriendlyError(error);
+    msg.textContent =
+      friendlyError(error);
 
-    message.className =
+    msg.className =
       "message error";
 
+  }finally{
+
+    btn.disabled = false;
+
   }
-
-
-  button.disabled = false;
-
-}
-
-
-function editProduct(id){
-
-  const product =
-    products.find(
-      p => p.id === id
-    );
-
-
-  if(!product) return;
-
-
-  editingProductId = id;
-
-
-  document.getElementById(
-    "productName"
-  ).value =
-    product.name || "";
-
-
-  document.getElementById(
-    "productPrice"
-  ).value =
-    product.price ?? "";
-
-
-  document.getElementById(
-    "productCategory"
-  ).value =
-    product.category || "Solar";
-
-
-  document.getElementById(
-    "productStock"
-  ).value =
-    product.stock ?? 0;
-
-
-  document.getElementById(
-    "productImage"
-  ).value =
-    product.image ||
-    product.imageUrl ||
-    "";
-
-
-  document.getElementById(
-    "productAvailable"
-  ).value =
-    product.available === false
-      ? "false"
-      : "true";
-
-
-  document.getElementById(
-    "productDescription"
-  ).value =
-    product.description || "";
-
-
-  document.getElementById(
-    "productFormTitle"
-  ).textContent =
-    "Edit Product";
-
-
-  document.getElementById(
-    "saveProductBtn"
-  ).textContent =
-    "Save Changes";
-
-
-  document.getElementById(
-    "cancelEditBtn"
-  ).classList
-    .remove("hidden");
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-function cancelProductEdit(){
-
-  newProduct();
-
-}
-
-
-function clearProductForm(){
-
-  document.getElementById(
-    "productName"
-  ).value = "";
-
-  document.getElementById(
-    "productPrice"
-  ).value = "";
-
-  document.getElementById(
-    "productCategory"
-  ).value = "Solar";
-
-  document.getElementById(
-    "productStock"
-  ).value = "0";
-
-  document.getElementById(
-    "productImage"
-  ).value = "";
-
-  document.getElementById(
-    "productAvailable"
-  ).value = "true";
-
-  document.getElementById(
-    "productDescription"
-  ).value = "";
-
 }
 
 
 async function deleteProduct(id){
 
-  const product =
-    products.find(
-      p => p.id === id
-    );
+  const p =
+    products.find(x => x.id === id);
 
+  if(!p) return;
 
-  if(!product) return;
-
-
-  const confirmed =
-    confirm(
-      `Delete "${product.name || "this product"}"?`
-    );
-
-
-  if(!confirmed) return;
-
+  if(!confirm(
+    `Delete "${p.name || "this product"}"?`
+  )) return;
 
   try{
 
@@ -2252,58 +1965,44 @@ async function deleteProduct(id){
       .doc(id)
       .delete();
 
-
     await loadProducts();
-
 
   }catch(error){
 
-    alert(
-      getFriendlyError(error)
-    );
+    alert(friendlyError(error));
 
   }
-
 }
 
 
-/* =========================
+/* ==========================================
    ORDERS
-========================= */
+========================================== */
 
 async function loadOrders(){
 
   try{
 
-    const snapshot =
+    const snap =
       await db
         .collection("orders")
         .get();
 
-
     orders =
-      snapshot.docs.map(doc => ({
-
+      snap.docs.map(doc => ({
         id:doc.id,
-
         ...doc.data()
-
       }));
-
 
     orders.sort(
       (a,b) =>
-        getTime(b.createdAt) -
-        getTime(a.createdAt)
+        timeOf(b.createdAt) -
+        timeOf(a.createdAt)
     );
 
-
     renderOrders();
-
     renderRecentOrders();
-
     updateDashboard();
-
 
   }catch(error){
 
@@ -2312,423 +2011,265 @@ async function loadOrders(){
     document.getElementById(
       "ordersTable"
     ).innerHTML =
-
       `<div class="empty">
-        Unable to load orders.<br><br>
-        ${escapeHtml(error.message)}
+        ${escapeHTML(error.message)}
       </div>`;
-
   }
-
 }
 
 
 function renderOrders(){
 
-  const container =
-    document.getElementById(
-      "ordersTable"
-    );
+  const box =
+    document.getElementById("ordersTable");
 
   const search =
-    document
-      .getElementById("orderSearch")
+    document.getElementById("orderSearch")
       .value
       .toLowerCase()
       .trim();
 
-  const status =
-    document
-      .getElementById("orderStatusFilter")
+  const filter =
+    document.getElementById("orderFilter")
       .value;
 
+  const list =
+    orders.filter(o => {
 
-  const filtered =
-    orders.filter(order => {
-
-      const customer =
-        String(
-          order.customerName || ""
+      const text =
+        (
+          String(o.id || "") +
+          " " +
+          String(o.customerName || "") +
+          " " +
+          String(o.phone || "")
         ).toLowerCase();
 
-      const phone =
-        String(
-          order.phone || ""
-        ).toLowerCase();
+      const searchOK =
+        text.includes(search);
 
-      const id =
-        String(
-          order.id || ""
-        ).toLowerCase();
-
-      const matchesSearch =
-        customer.includes(search) ||
-        phone.includes(search) ||
-        id.includes(search);
-
-
-      const matchesStatus =
-        status === "all" ||
-        String(order.status || "Pending")
+      const statusOK =
+        filter === "all" ||
+        String(o.status || "Pending")
           .toLowerCase() ===
-        status.toLowerCase();
+        filter.toLowerCase();
 
-
-      return(
-        matchesSearch &&
-        matchesStatus
-      );
-
+      return searchOK && statusOK;
     });
 
+  if(!list.length){
 
-  if(filtered.length === 0){
-
-    container.innerHTML =
+    box.innerHTML =
       `<div class="empty">
         No orders found.
       </div>`;
 
     return;
-
   }
 
-
-  container.innerHTML = `
+  box.innerHTML = `
 
     <table>
 
       <thead>
-
         <tr>
-
           <th>Order</th>
           <th>Customer</th>
           <th>Phone</th>
           <th>Total</th>
+          <th>Payment</th>
           <th>Status</th>
           <th>Date</th>
-          <th>Action</th>
-
+          <th></th>
         </tr>
-
       </thead>
 
       <tbody>
 
-        ${filtered.map(order => {
+        ${list.map(o => `
 
-          const status =
-            order.status ||
-            "Pending";
+          <tr>
 
-          return `
+            <td>
+              #${escapeHTML(o.id.slice(0,8))}
+            </td>
 
-            <tr>
+            <td>
+              ${escapeHTML(o.customerName || "Unknown")}
+            </td>
 
-              <td>
-                #${escapeHtml(
-                  order.id.slice(0,8)
-                )}
-              </td>
+            <td>
+              ${escapeHTML(o.phone || "—")}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  order.customerName ||
-                  "Unknown"
-                )}
-              </td>
+            <td>
+              ₦${escapeHTML(o.total || "0")}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  order.phone ||
-                  "—"
-                )}
-              </td>
+            <td>
+              ${escapeHTML(o.payment || "—")}
+            </td>
 
-              <td>
-                ₦${formatMoney(
-                  order.total
-                )}
-              </td>
+            <td>
 
-              <td>
+              <span class="status ${statusClass(o.status)}">
+                ${escapeHTML(o.status || "Pending")}
+              </span>
 
-                <span class="status ${statusClass(status)}">
+            </td>
 
-                  ${escapeHtml(status)}
+            <td>
+              ${dateOf(o.createdAt)}
+            </td>
 
-                </span>
+            <td>
 
-              </td>
+              <button
+                class="btn"
+                onclick="viewOrder('${o.id}')">
+                View
+              </button>
 
-              <td>
-                ${formatDate(
-                  order.createdAt
-                )}
-              </td>
+            </td>
 
-              <td>
+          </tr>
 
-                <button
-                  class="small-btn"
-                  onclick="viewOrder('${order.id}')"
-                >
-                  View
-                </button>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        }).join("")}
+        `).join("")}
 
       </tbody>
 
     </table>
-
   `;
-
 }
 
 
 function renderRecentOrders(){
 
-  const container =
-    document.getElementById(
-      "recentOrders"
-    );
+  const box =
+    document.getElementById("recentOrders");
 
-
-  const recent =
+  const list =
     orders.slice(0,5);
 
+  if(!list.length){
 
-  if(recent.length === 0){
-
-    container.innerHTML =
+    box.innerHTML =
       `<div class="empty">
         No orders yet.
       </div>`;
 
     return;
-
   }
 
-
-  container.innerHTML = `
+  box.innerHTML = `
 
     <table>
 
       <thead>
-
         <tr>
-
           <th>Customer</th>
           <th>Total</th>
           <th>Status</th>
           <th>Date</th>
-
         </tr>
-
       </thead>
 
       <tbody>
 
-        ${recent.map(order => {
+        ${list.map(o => `
 
-          const status =
-            order.status ||
-            "Pending";
+          <tr>
 
-          return `
+            <td>
+              ${escapeHTML(o.customerName || "Unknown")}
+            </td>
 
-            <tr>
+            <td>
+              ₦${escapeHTML(o.total || "0")}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  order.customerName ||
-                  "Unknown"
-                )}
-              </td>
+            <td>
+              <span class="status ${statusClass(o.status)}">
+                ${escapeHTML(o.status || "Pending")}
+              </span>
+            </td>
 
-              <td>
-                ₦${formatMoney(
-                  order.total
-                )}
-              </td>
+            <td>
+              ${dateOf(o.createdAt)}
+            </td>
 
-              <td>
+          </tr>
 
-                <span class="status ${statusClass(status)}">
-
-                  ${escapeHtml(status)}
-
-                </span>
-
-              </td>
-
-              <td>
-                ${formatDate(
-                  order.createdAt
-                )}
-              </td>
-
-            </tr>
-
-          `;
-
-        }).join("")}
+        `).join("")}
 
       </tbody>
 
     </table>
-
   `;
-
 }
 
 
 function viewOrder(id){
 
-  const order =
-    orders.find(
-      o => o.id === id
-    );
+  const o =
+    orders.find(x => x.id === id);
 
-
-  if(!order) return;
-
+  if(!o) return;
 
   const items =
-    formatOrderItems(
-      order.items
-    );
-
+    Array.isArray(o.items)
+      ? o.items.map(x =>
+          `<div>• ${escapeHTML(x)}</div>`
+        ).join("")
+      : escapeHTML(o.items || "—");
 
   document.getElementById(
-    "orderDetails"
+    "modalTitle"
+  ).textContent = "Order Details";
+
+  document.getElementById(
+    "modalContent"
   ).innerHTML = `
 
     <div class="detail">
-
-      <div class="detail-label">
-        Order ID
-      </div>
-
-      <div class="detail-value">
-        ${escapeHtml(order.id)}
-      </div>
-
+      <div class="detail-label">Order ID</div>
+      <div class="detail-value">${escapeHTML(o.id)}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Customer
-      </div>
-
-      <div class="detail-value">
-        ${escapeHtml(
-          order.customerName ||
-          "Unknown"
-        )}
-      </div>
-
+      <div class="detail-label">Customer</div>
+      <div class="detail-value">${escapeHTML(o.customerName || "—")}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Customer ID
-      </div>
-
-      <div class="detail-value">
-        ${escapeHtml(
-          order.customerId ||
-          "—"
-        )}
-      </div>
-
+      <div class="detail-label">Phone</div>
+      <div class="detail-value">${escapeHTML(o.phone || "—")}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Phone
-      </div>
-
-      <div class="detail-value">
-        ${escapeHtml(
-          order.phone ||
-          "—"
-        )}
-      </div>
-
+      <div class="detail-label">Address</div>
+      <div class="detail-value">${escapeHTML(o.address || "—")}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Delivery Address
-      </div>
-
-      <div class="detail-value">
-        ${escapeHtml(
-          order.address ||
-          "—"
-        )}
-      </div>
-
+      <div class="detail-label">Items</div>
+      <div class="detail-value">${items}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Items
-      </div>
-
-      <div class="detail-value">
-        ${items}
-      </div>
-
+      <div class="detail-label">Total</div>
+      <div class="detail-value">₦${escapeHTML(o.total || "0")}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Total
-      </div>
-
-      <div class="detail-value">
-        <strong>
-          ₦${formatMoney(order.total)}
-        </strong>
-      </div>
-
+      <div class="detail-label">Payment</div>
+      <div class="detail-value">${escapeHTML(o.payment || "—")}</div>
     </div>
-
 
     <div class="detail">
-
-      <div class="detail-label">
-        Order Date
-      </div>
-
-      <div class="detail-value">
-        ${formatDate(order.createdAt)}
-      </div>
-
+      <div class="detail-label">Created</div>
+      <div class="detail-value">${dateOf(o.createdAt)}</div>
     </div>
-
 
     <div class="detail">
 
@@ -2737,197 +2278,1125 @@ function viewOrder(id){
       </div>
 
       <select
-        id="modalOrderStatus"
-        onchange="updateOrderStatus('${order.id}',this.value)"
-      >
+        onchange="changeOrderStatus('${o.id}',this.value)">
 
-        ${statusOptions(order.status)}
+        ${orderStatusOptions(o.status)}
 
       </select>
 
     </div>
-
   `;
 
-
   document
-    .getElementById("orderModal")
-    .classList
-    .add("show");
-
+    .getElementById("modal")
+    .classList.add("show");
 }
 
 
-async function updateOrderStatus(
-  orderId,
-  newStatus
-){
+async function changeOrderStatus(id,status){
 
   try{
 
     await db
       .collection("orders")
-      .doc(orderId)
+      .doc(id)
       .update({
 
-        status:newStatus,
+        status,
 
         updatedAt:
-          firebase.firestore
-            .FieldValue
+          firebase.firestore.FieldValue
             .serverTimestamp()
 
       });
 
-
     const order =
-      orders.find(
-        o => o.id === orderId
-      );
+      orders.find(x => x.id === id);
 
-
-    if(order){
-
-      order.status =
-        newStatus;
-
-    }
-
+    if(order)
+      order.status = status;
 
     renderOrders();
-
     renderRecentOrders();
+    updateDashboard();
+
+  }catch(error){
+
+    alert(friendlyError(error));
+
+  }
+}
+
+
+/* ==========================================
+   CUSTOMERS
+========================================== */
+
+async function loadUsers(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("users")
+        .get();
+
+    users =
+      snap.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    renderCustomers();
+    updateDashboard();
+
+  }catch(error){
+
+    console.error(error);
+  }
+}
+
+
+async function loadProfiles(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("profiles")
+        .get();
+
+    profiles =
+      snap.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    renderCustomers();
+
+  }catch(error){
+
+    console.error(error);
+  }
+}
+
+
+function renderCustomers(){
+
+  const box =
+    document.getElementById("customersList");
+
+  if(!box) return;
+
+  const search =
+    (
+      document.getElementById("customerSearch")?.value
+      || ""
+    ).toLowerCase().trim();
+
+  const customerUsers =
+    users.filter(u =>
+      String(u.role || "").toLowerCase()
+      !== "admin"
+    );
+
+  const list =
+    customerUsers.filter(u => {
+
+      const profile =
+        profiles.find(
+          p => p.uid === u.uid
+        );
+
+      const text =
+        (
+          u.name || "" +
+          " " +
+          u.email || "" +
+          " " +
+          profile?.phone || ""
+        ).toLowerCase();
+
+      return text.includes(search);
+
+    });
+
+  if(!list.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        No customers found.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML =
+    list.map(u => {
+
+      const profile =
+        profiles.find(
+          p => p.uid === u.uid
+        );
+
+      const photo =
+        profile?.photoURL;
+
+      return `
+
+        <div class="customer">
+
+          ${
+            photo
+            ? `<img class="avatar"
+                src="${escapeHTML(photo)}"
+                onerror="this.style.display='none'">`
+            : `<div class="avatar">👤</div>`
+          }
+
+          <div style="flex:1">
+
+            <div class="customer-name">
+              ${escapeHTML(
+                profile?.fullName ||
+                u.name ||
+                "Customer"
+              )}
+            </div>
+
+            <div class="customer-info">
+              ${escapeHTML(u.email || "No email")}
+            </div>
+
+            <div class="customer-info">
+              ${escapeHTML(profile?.phone || "No phone")}
+            </div>
+
+          </div>
+
+          <button
+            class="btn"
+            onclick="viewCustomer('${u.uid}')">
+            View
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+function viewCustomer(uid){
+
+  const u =
+    users.find(x => x.uid === uid);
+
+  const p =
+    profiles.find(x => x.uid === uid);
+
+  if(!u) return;
+
+  document.getElementById(
+    "modalTitle"
+  ).textContent = "Customer";
+
+  document.getElementById(
+    "modalContent"
+  ).innerHTML = `
+
+    <div class="detail">
+      <div class="detail-label">Name</div>
+      <div class="detail-value">
+        ${escapeHTML(p?.fullName || u.name || "—")}
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">Email</div>
+      <div class="detail-value">
+        ${escapeHTML(u.email || "—")}
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">Phone</div>
+      <div class="detail-value">
+        ${escapeHTML(p?.phone || "—")}
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">Address</div>
+      <div class="detail-value">
+        ${escapeHTML(p?.address || "—")}
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">Location</div>
+      <div class="detail-value">
+        ${escapeHTML(
+          [
+            p?.city,
+            p?.state,
+            p?.country
+          ].filter(Boolean).join(", ")
+          || "—"
+        )}
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">UID</div>
+      <div class="detail-value">
+        ${escapeHTML(uid)}
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">Account Status</div>
+      <div class="detail-value">
+        ${u.active === false ? "Inactive" : "Active"}
+      </div>
+    </div>
+  `;
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+}
+
+
+/* ==========================================
+   CHATS
+========================================== */
+
+async function loadChats(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("chats")
+        .get();
+
+    chats =
+      snap.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    chats.sort(
+      (a,b) =>
+        timeOf(b.lastMessageAt) -
+        timeOf(a.lastMessageAt)
+    );
+
+    renderChats();
 
     updateDashboard();
 
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById(
+      "chatList"
+    ).innerHTML =
+      `<div class="empty">
+        ${escapeHTML(error.message)}
+      </div>`;
+  }
+}
+
+
+function renderChats(){
+
+  const box =
+    document.getElementById("chatList");
+
+  if(!chats.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        No chats yet.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML =
+    chats.map(c => `
+
+      <div
+        class="chat-item ${
+          selectedChatId === c.id
+            ? "active"
+            : ""
+        }"
+        onclick="selectChat('${c.id}')">
+
+        <div class="chat-item-top">
+
+          <div class="chat-name">
+            ${escapeHTML(
+              c.customerName ||
+              "Customer"
+            )}
+          </div>
+
+          ${
+            Number(c.unreadForAdmin || 0) > 0
+            ? `<span class="unread">
+                ${c.unreadForAdmin}
+              </span>`
+            : ""
+          }
+
+        </div>
+
+        <div class="last-message">
+          ${escapeHTML(
+            c.lastMessage ||
+            "No messages yet"
+          )}
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+
+async function selectChat(chatId){
+
+  selectedChatId = chatId;
+
+  const chat =
+    chats.find(x => x.id === chatId);
+
+  if(!chat) return;
+
+  renderChats();
+
+  document.getElementById(
+    "chatCustomerName"
+  ).textContent =
+    chat.customerName || "Customer";
+
+  document.getElementById(
+    "chatCustomerInfo"
+  ).textContent =
+    "Customer ID: " +
+    (chat.customerId || "—");
+
+  document.getElementById(
+    "chatInput"
+  ).disabled = false;
+
+  document.getElementById(
+    "sendChatBtn"
+  ).disabled = false;
+
+  listenToMessages(chatId);
+
+  /*
+    Mark admin unread count as zero.
+  */
+
+  if(Number(chat.unreadForAdmin || 0) > 0){
+
+    try{
+
+      await db
+        .collection("chats")
+        .doc(chatId)
+        .update({
+          unreadForAdmin:0
+        });
+
+      chat.unreadForAdmin = 0;
+
+      renderChats();
+      updateDashboard();
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+  }
+}
+
+
+function listenToMessages(chatId){
+
+  if(messageUnsubscribe)
+    messageUnsubscribe();
+
+  const box =
+    document.getElementById("messages");
+
+  box.innerHTML =
+    `<div class="empty">
+      Loading messages...
+    </div>`;
+
+  /*
+    We only use where().
+    Sorting happens in JavaScript,
+    which avoids requiring a composite index.
+  */
+
+  messageUnsubscribe =
+    db
+      .collection("messages")
+      .where("chatId","==",chatId)
+      .onSnapshot(snapshot => {
+
+        const list =
+          snapshot.docs.map(doc => ({
+            id:doc.id,
+            ...doc.data()
+          }));
+
+        list.sort(
+          (a,b) =>
+            timeOf(a.createdAt) -
+            timeOf(b.createdAt)
+        );
+
+        if(!list.length){
+
+          box.innerHTML =
+            `<div class="empty">
+              No messages yet.
+            </div>`;
+
+          return;
+        }
+
+        box.innerHTML =
+          list.map(m => `
+
+            <div class="msg ${
+              m.senderRole === "admin"
+                ? "admin"
+                : "customer"
+            }">
+
+              ${escapeHTML(m.text || "")}
+
+              ${
+                m.imageUrl
+                ? `<div style="margin-top:8px">
+                    <img
+                      src="${escapeHTML(m.imageUrl)}"
+                      style="max-width:180px;border-radius:9px"
+                    >
+                  </div>`
+                : ""
+              }
+
+              <span class="msg-time">
+                ${escapeHTML(
+                  m.senderName || ""
+                )}
+                ·
+                ${dateOf(m.createdAt)}
+              </span>
+
+            </div>
+
+          `).join("");
+
+        box.scrollTop =
+          box.scrollHeight;
+
+      },error => {
+
+        console.error(error);
+
+        box.innerHTML =
+          `<div class="empty">
+            ${escapeHTML(error.message)}
+          </div>`;
+      });
+}
+
+
+function handleChatEnter(event){
+
+  if(event.key === "Enter"){
+
+    event.preventDefault();
+
+    sendMessage();
+
+  }
+}
+
+
+async function sendMessage(){
+
+  if(!selectedChatId) return;
+
+  const input =
+    document.getElementById("chatInput");
+
+  const text =
+    input.value.trim();
+
+  if(!text) return;
+
+  const user =
+    auth.currentUser;
+
+  if(!user) return;
+
+  const chat =
+    chats.find(x => x.id === selectedChatId);
+
+  if(!chat) return;
+
+  input.disabled = true;
+
+  try{
+
+    await db
+      .collection("messages")
+      .add({
+
+        chatId:selectedChatId,
+
+        senderId:user.uid,
+
+        senderName:
+          "Danny",
+
+        senderRole:
+          "admin",
+
+        text:text,
+
+        imageUrl:"",
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
+
+        read:false
+
+      });
+
+
+    await db
+      .collection("chats")
+      .doc(selectedChatId)
+      .update({
+
+        lastMessage:text,
+
+        lastMessageAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
+
+        unreadForCustomer:
+          firebase.firestore.FieldValue
+            .increment(1),
+
+        unreadForAdmin:0
+
+      });
+
+
+    input.value = "";
+
+    chat.lastMessage = text;
+
+    chat.unreadForAdmin = 0;
+
+    renderChats();
 
   }catch(error){
 
     alert(
-      "Could not update order: " +
-      getFriendlyError(error)
+      friendlyError(error)
     );
 
-  }
+  }finally{
 
+    input.disabled = false;
+    input.focus();
+
+  }
 }
 
 
-function closeOrderModal(){
+/* ==========================================
+   WISHLISTS
+========================================== */
+
+async function loadWishlists(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("wishlists")
+        .get();
+
+    wishlists =
+      snap.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    renderWishlists();
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById(
+      "wishlistsList"
+    ).innerHTML =
+      `<div class="empty">
+        ${escapeHTML(error.message)}
+      </div>`;
+  }
+}
+
+
+function renderWishlists(){
+
+  const box =
+    document.getElementById(
+      "wishlistsList"
+    );
+
+  if(!wishlists.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        No wishlists found.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML =
+    wishlists.map(w => {
+
+      const items =
+        Array.isArray(w.items)
+          ? w.items
+          : [];
+
+      return `
+
+        <div class="wishlist">
+
+          <div class="wishlist-head">
+
+            <strong>
+              Customer
+            </strong>
+
+            <span>
+              ${items.length} saved
+            </span>
+
+          </div>
+
+          <div class="wishlist-items">
+
+            Customer ID:
+            ${escapeHTML(
+              w.customerId || w.id
+            )}
+
+            <br><br>
+
+            ${
+              items.length
+              ? items.map(item => {
+
+                  const product =
+                    products.find(
+                      p =>
+                        p.id === item.productId
+                    );
+
+                  return `
+                    • ${
+                      escapeHTML(
+                        product?.name ||
+                        item.productId ||
+                        "Unknown product"
+                      )
+                    }
+                  `;
+
+                }).join("<br>")
+              : "No saved products."
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+/* ==========================================
+   SETTINGS
+========================================== */
+
+let settingsDocId = null;
+
+
+async function loadSettings(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("settings")
+        .limit(1)
+        .get();
+
+    if(snap.empty)
+      return;
+
+    const doc =
+      snap.docs[0];
+
+    settingsDocId = doc.id;
+
+    const s =
+      doc.data();
+
+    document.getElementById("sName").value =
+      s.storeName || "";
+
+    document.getElementById("sDescription").value =
+      s.description || "";
+
+    document.getElementById("sEmail").value =
+      s.email || "";
+
+    document.getElementById("sPhone").value =
+      s.phone || "";
+
+    document.getElementById("sWhatsapp").value =
+      s.whatsapp || "";
+
+    document.getElementById("sAddress").value =
+      s.address || "";
+
+    document.getElementById("sLogo").value =
+      s.logoUrl || "";
+
+    document.getElementById("sCurrency").value =
+      s.currency || "NGN";
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+
+async function saveSettings(){
+
+  const data = {
+
+    storeName:
+      document.getElementById("sName").value.trim(),
+
+    description:
+      document.getElementById("sDescription").value.trim(),
+
+    email:
+      document.getElementById("sEmail").value.trim(),
+
+    phone:
+      document.getElementById("sPhone").value.trim(),
+
+    whatsapp:
+      document.getElementById("sWhatsapp").value.trim(),
+
+    address:
+      document.getElementById("sAddress").value.trim(),
+
+    logoUrl:
+      document.getElementById("sLogo").value.trim(),
+
+    currency:
+      document.getElementById("sCurrency").value.trim(),
+
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
+
+  };
+
+  try{
+
+    if(settingsDocId){
+
+      await db
+        .collection("settings")
+        .doc(settingsDocId)
+        .update(data);
+
+    }else{
+
+      const ref =
+        await db
+          .collection("settings")
+          .add(data);
+
+      settingsDocId = ref.id;
+
+    }
+
+    const msg =
+      document.getElementById(
+        "settingsMessage"
+      );
+
+    msg.textContent =
+      "Settings saved successfully.";
+
+    msg.className =
+      "message success";
+
+  }catch(error){
+
+    const msg =
+      document.getElementById(
+        "settingsMessage"
+      );
+
+    msg.textContent =
+      friendlyError(error);
+
+    msg.className =
+      "message error";
+  }
+}
+
+
+/* ==========================================
+   ADMINS
+========================================== */
+
+async function loadAdmins(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("admins")
+        .get();
+
+    admins =
+      snap.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    renderAdmins();
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById(
+      "adminsList"
+    ).innerHTML =
+      `<div class="empty">
+        ${escapeHTML(error.message)}
+      </div>`;
+  }
+}
+
+
+function renderAdmins(){
+
+  const box =
+    document.getElementById("adminsList");
+
+  if(!admins.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        No admins found.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML =
+    admins.map(a => `
+
+      <div class="customer">
+
+        <div class="avatar">
+          🔐
+        </div>
+
+        <div style="flex:1">
+
+          <div class="customer-name">
+            ${escapeHTML(a.name || "Admin")}
+          </div>
+
+          <div class="customer-info">
+            ${escapeHTML(a.email || "—")}
+          </div>
+
+          <div class="customer-info">
+            Role:
+            ${escapeHTML(a.role || "admin")}
+            ·
+            ${
+              a.active === false
+              ? "Inactive"
+              : "Active"
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+function updateDashboard(){
+
+  document.getElementById(
+    "statProducts"
+  ).textContent =
+    products.length;
+
+  document.getElementById(
+    "statOrders"
+  ).textContent =
+    orders.length;
+
+  const pending =
+    orders.filter(o =>
+      String(o.status || "Pending")
+        .toLowerCase() === "pending"
+    ).length;
+
+  document.getElementById(
+    "statPending"
+  ).textContent =
+    pending;
+
+  const customers =
+    users.filter(u =>
+      String(u.role || "").toLowerCase()
+      !== "admin"
+    );
+
+  document.getElementById(
+    "statCustomers"
+  ).textContent =
+    customers.length;
+
+  const unread =
+    chats.reduce(
+      (total,c) =>
+        total +
+        Number(c.unreadForAdmin || 0),
+      0
+    );
+
+  document.getElementById(
+    "statUnread"
+  ).textContent =
+    unread;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+function closeModal(){
 
   document
-    .getElementById("orderModal")
+    .getElementById("modal")
     .classList
     .remove("show");
-
 }
 
 
 function closeModalOutside(event){
 
-  if(
-    event.target.id ===
-    "orderModal"
-  ){
-
-    closeOrderModal();
-
-  }
-
+  if(event.target.id === "modal")
+    closeModal();
 }
 
 
-/* =========================
-   DASHBOARD
-========================= */
-
-function updateDashboard(){
-
-  document.getElementById(
-    "totalProducts"
-  ).textContent =
-    products.length;
-
-
-  document.getElementById(
-    "totalOrders"
-  ).textContent =
-    orders.length;
-
-
-  const pending =
-    orders.filter(order => {
-
-      return String(
-        order.status ||
-        "Pending"
-      ).toLowerCase()
-      === "pending";
-
-    }).length;
-
-
-  document.getElementById(
-    "pendingOrders"
-  ).textContent =
-    pending;
-
-
-  /*
-    We count unique customer IDs
-    from orders for now.
-    This avoids requiring another
-    Firestore read.
-  */
-
-  const customerIds =
-    new Set(
-      orders
-        .map(order => order.customerId)
-        .filter(Boolean)
-    );
-
-
-  document.getElementById(
-    "totalCustomers"
-  ).textContent =
-    customerIds.size;
-
-}
-
-
-/* =========================
+/* ==========================================
    HELPERS
-========================= */
+========================================== */
 
-function formatMoney(value){
+function money(value){
 
-  const number =
+  const n =
     Number(value || 0);
 
-  return number.toLocaleString(
-    "en-NG"
-  );
-
+  return n.toLocaleString("en-NG");
 }
 
 
-function formatDate(timestamp){
+function timeOf(value){
 
-  if(!timestamp){
+  if(!value)
+    return 0;
 
-    return "—";
+  try{
 
+    return value.toDate
+      ? value.toDate().getTime()
+      : new Date(value).getTime();
+
+  }catch{
+    return 0;
   }
+}
 
+
+function dateOf(value){
+
+  if(!value)
+    return "—";
 
   try{
 
     const date =
-      timestamp.toDate
-        ? timestamp.toDate()
-        : new Date(timestamp);
-
+      value.toDate
+      ? value.toDate()
+      : new Date(value);
 
     return date.toLocaleString(
       "en-NG",
@@ -2940,33 +3409,9 @@ function formatDate(timestamp){
       }
     );
 
-  }catch(error){
-
+  }catch{
     return "—";
-
   }
-
-}
-
-
-function getTime(timestamp){
-
-  if(!timestamp)
-    return 0;
-
-
-  try{
-
-    return timestamp.toDate
-      ? timestamp.toDate().getTime()
-      : new Date(timestamp).getTime();
-
-  }catch(error){
-
-    return 0;
-
-  }
-
 }
 
 
@@ -2975,15 +3420,14 @@ function statusClass(status){
   return String(
     status || "Pending"
   )
-    .toLowerCase()
-    .replace(/\s+/g,"-");
-
+  .toLowerCase()
+  .replace(/\s+/g,"-");
 }
 
 
-function statusOptions(current){
+function orderStatusOptions(current){
 
-  const statuses = [
+  const list = [
     "Pending",
     "Processing",
     "Shipped",
@@ -2991,171 +3435,52 @@ function statusOptions(current){
     "Cancelled"
   ];
 
+  return list.map(s => `
 
-  return statuses.map(status => {
+    <option
+      value="${s}"
+      ${s === current ? "selected" : ""}
+    >
+      ${s}
+    </option>
 
-    return `
-
-      <option
-        value="${status}"
-        ${status === current ? "selected" : ""}
-      >
-        ${status}
-      </option>
-
-    `;
-
-  }).join("");
-
+  `).join("");
 }
 
 
-function formatOrderItems(items){
-
-  if(!items){
-
-    return "No item information.";
-
-  }
-
-
-  /*
-    New recommended format:
-    Firestore Array
-  */
-
-  if(Array.isArray(items)){
-
-    return items.map(item => {
-
-      if(typeof item === "object"){
-
-        const name =
-          item.name ||
-          item.productName ||
-          "Product";
-
-        const quantity =
-          item.quantity ||
-          1;
-
-        const price =
-          item.price !== undefined
-            ? " — ₦" +
-              formatMoney(item.price)
-            : "";
-
-        return `
-          <div style="margin-bottom:8px;">
-            ${escapeHtml(name)}
-            × ${escapeHtml(quantity)}
-            ${price}
-          </div>
-        `;
-
-      }
-
-
-      return `
-        <div>
-          ${escapeHtml(item)}
-        </div>
-      `;
-
-    }).join("");
-
-  }
-
-
-  /*
-    Old orders may have items
-    stored as a string.
-  */
-
-  if(typeof items === "string"){
-
-    return escapeHtml(items);
-
-  }
-
-
-  return escapeHtml(
-    JSON.stringify(items)
-  );
-
-}
-
-
-function escapeHtml(value){
+function escapeHTML(value){
 
   return String(value ?? "")
-
     .replaceAll("&","&amp;")
-
     .replaceAll("<","&lt;")
-
     .replaceAll(">","&gt;")
-
     .replaceAll('"',"&quot;")
-
     .replaceAll("'","&#039;");
-
 }
 
 
-function getFriendlyError(error){
+function friendlyError(error){
 
   if(!error)
     return "Something went wrong.";
 
-  if(
-    error.code ===
-    "permission-denied"
-  ){
-
+  if(error.code === "permission-denied")
     return "Firestore permission denied. Check your Firestore Rules.";
 
-  }
-
-  if(
-    error.code ===
-    "auth/invalid-credential"
-  ){
-
+  if(error.code === "auth/invalid-credential")
     return "Incorrect email or password.";
 
-  }
+  if(error.code === "auth/user-not-found")
+    return "No account was found.";
 
-  if(
-    error.code ===
-    "auth/user-not-found"
-  ){
-
-    return "No account was found with this email.";
-
-  }
-
-  if(
-    error.code ===
-    "auth/wrong-password"
-  ){
-
+  if(error.code === "auth/wrong-password")
     return "Incorrect password.";
 
-  }
-
-  if(
-    error.code ===
-    "auth/too-many-requests"
-  ){
-
-    return "Too many login attempts. Please try again later.";
-
-  }
+  if(error.code === "auth/too-many-requests")
+    return "Too many attempts. Try again later.";
 
   return error.message ||
     "Something went wrong.";
-
 }
 
 </script>
