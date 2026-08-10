@@ -6,540 +6,443 @@
 
 <title>My Profile | Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-:root{
-  --bg:#0f172a;
-  --header:#020617;
-  --card:#111e30;
-  --card2:#17253a;
-  --border:rgba(148,163,184,.15);
-  --blue:#38bdf8;
-  --blue2:#0284c7;
-  --green:#22c55e;
-  --red:#ef4444;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-}
-
 body{
+  font-family:Arial, sans-serif;
+  background:#07111f;
+  color:#fff;
   min-height:100vh;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(56,189,248,.10),
-      transparent 35%
-    ),
-    var(--bg);
-  color:var(--text);
-  font-family:'Poppins',sans-serif;
 }
 
 header{
-  height:78px;
+  height:65px;
+  background:#020617;
   display:flex;
   align-items:center;
+  justify-content:space-between;
   padding:0 18px;
-  background:var(--header);
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid rgba(255,255,255,.08);
   position:sticky;
   top:0;
   z-index:10;
 }
 
-.header-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.back-button{
-  width:44px;
-  height:44px;
-  border:none;
-  border-radius:50%;
-  background:transparent;
-  color:white;
-  font-size:28px;
-  cursor:pointer;
-}
-
-.back-button:hover{
-  background:var(--card2);
-}
-
-.header-logo{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  font-size:22px;
-}
-
-.header-title h1{
-  font-size:18px;
-}
-
-main{
-  width:100%;
-  max-width:850px;
-  margin:auto;
-  padding:28px 16px 50px;
-}
-
-.profile-hero{
-  text-align:center;
-  padding:25px 20px 30px;
-  background:linear-gradient(145deg,#111e30,#0c1727);
-  border:1px solid var(--border);
-  border-radius:24px;
-}
-
-.avatar-wrapper{
-  position:relative;
-  width:130px;
-  height:130px;
-  margin:0 auto 18px;
-}
-
-.profile-avatar{
-  width:130px;
-  height:130px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid var(--blue);
-  background:#12324b;
-}
-
-.camera-button{
-  position:absolute;
-  right:0;
-  bottom:3px;
-  width:42px;
-  height:42px;
-  border:none;
-  border-radius:50%;
-  background:var(--blue);
-  color:#00111c;
+.logo{
   font-size:20px;
-  cursor:pointer;
+  font-weight:bold;
+  color:#38bdf8;
 }
 
-.profile-hero h2{
-  font-size:24px;
-  margin-bottom:4px;
+.logo span{
+  color:#fff;
 }
 
-.profile-hero p{
-  color:var(--muted);
-  font-size:13px;
-  word-break:break-word;
-}
-
-.hidden-input{
-  display:none;
-}
-
-.card{
-  margin-top:20px;
-  padding:22px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-}
-
-.card-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px;
-}
-
-.card-title h3{
-  font-size:17px;
-}
-
-.card-title span{
-  font-size:21px;
-}
-
-.form-group{
-  margin-bottom:17px;
-}
-
-.form-group label{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:7px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-  width:100%;
-  padding:13px 14px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  outline:none;
-  background:var(--card2);
-  color:white;
-  font-family:inherit;
+.back{
+  color:#94a3b8;
+  text-decoration:none;
   font-size:14px;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:var(--blue);
+.back:hover{
+  color:#38bdf8;
 }
 
-.form-group textarea{
-  min-height:100px;
-  resize:vertical;
+.container{
+  width:100%;
+  max-width:700px;
+  margin:30px auto;
+  padding:0 16px;
 }
 
-.form-group input:disabled{
-  opacity:.6;
+.profile-card{
+  background:#0d1b2a;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.profile-top{
+  text-align:center;
+  padding-bottom:25px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.photo-wrapper{
+  position:relative;
+  width:105px;
+  height:105px;
+  margin:auto;
+}
+
+.profile-photo{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#102234;
+  border:3px solid #38bdf8;
+}
+
+.photo-btn{
+  position:absolute;
+  right:-2px;
+  bottom:2px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:3px solid #0d1b2a;
+  background:#38bdf8;
+  color:#00111c;
+  cursor:pointer;
+  font-size:16px;
+}
+
+#photoInput{
+  display:none;
+}
+
+.profile-top h1{
+  margin-top:15px;
+  font-size:23px;
+}
+
+.email{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:14px;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:20px;
+  background:rgba(56,189,248,.12);
+  color:#38bdf8;
+  font-size:12px;
+}
+
+.form{
+  margin-top:25px;
+}
+
+.section-title{
+  font-size:16px;
+  margin-bottom:15px;
+  color:#e2e8f0;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
+label{
+  display:block;
+  margin-bottom:7px;
+  color:#94a3b8;
+  font-size:13px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.09);
+  background:#102234;
+  color:#fff;
+  outline:none;
+  font-size:14px;
+}
+
+input:focus{
+  border-color:#38bdf8;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-top:25px;
 }
 
 button{
-  font-family:inherit;
-}
-
-.save-button,
-.action-button{
-  width:100%;
-  padding:14px;
   border:none;
-  border-radius:12px;
-  font-weight:600;
   cursor:pointer;
+  font-weight:bold;
 }
 
-.save-button{
-  background:var(--blue);
+.save{
+  flex:1;
+  padding:14px;
+  border-radius:11px;
+  background:#38bdf8;
   color:#00111c;
 }
 
-.save-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+.save:hover{
+  background:#7dd3fc;
 }
 
-.action-button{
-  margin-top:12px;
-  background:var(--card2);
-  color:white;
-  border:1px solid var(--border);
-}
-
-.change-password{
-  color:var(--blue);
-}
-
-.logout-button{
-  color:#fbbf24;
-}
-
-.delete-button{
+.logout{
+  padding:14px 20px;
+  border-radius:11px;
+  background:#18283a;
   color:#f87171;
 }
 
 .message{
-  display:none;
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  font-size:13px;
   text-align:center;
-}
-
-.message.success{
-  display:block;
-  background:rgba(34,197,94,.12);
-  color:#86efac;
-}
-
-.message.error{
-  display:block;
-  background:rgba(239,68,68,.12);
-  color:#fca5a5;
+  min-height:20px;
+  margin-top:16px;
+  font-size:13px;
 }
 
 .loading{
-  position:fixed;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--bg);
-  z-index:100;
-  color:var(--muted);
+  text-align:center;
+  color:#94a3b8;
+  padding:20px;
 }
 
-.loading.hidden{
-  display:none;
+@media(max-width:550px){
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+
+  .profile-card{
+    padding:20px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .logout{
+    width:100%;
+  }
 }
-
-@media(max-width:600px){
-
-  main{
-    padding:18px 12px 40px;
-  }
-
-  .card{
-    padding:18px;
-  }
-
-  .header-title h1{
-    font-size:16px;
-  }
-
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="loading" id="loading">
-  Loading profile...
-</div>
-
 <header>
 
-  <div class="header-title">
-
-    <button class="back-button" id="backButton">
-      ←
-    </button>
-
-    <div class="header-logo">
-      ⚡
-    </div>
-
-    <h1>
-      My Profile
-    </h1>
-
+  <div class="logo">
+    ⚡ <span>Danny Smart Power</span>
   </div>
+
+  <a href="index.html" class="back">
+    ← Back
+  </a>
 
 </header>
 
-<main>
 
-  <section class="profile-hero">
+<div class="container">
 
-    <div class="avatar-wrapper">
+  <div class="profile-card">
 
-      <img
-        id="profileAvatar"
-        class="profile-avatar"
-        alt="Profile picture"
-      >
+    <div class="profile-top">
 
-      <button
-        class="camera-button"
-        id="photoButton"
-      >
-        📷
-      </button>
+      <div class="photo-wrapper">
 
-    </div>
+        <img
+          id="profilePhoto"
+          class="profile-photo"
+          src="https://via.placeholder.com/105"
+          alt="Profile Photo"
+        >
 
-    <h2 id="heroName">
-      Loading...
-    </h2>
+        <button
+          class="photo-btn"
+          onclick="document.getElementById('photoInput').click()"
+        >
+          ✎
+        </button>
 
-    <p id="heroEmail">
-      Loading...
-    </p>
+        <input
+          type="file"
+          id="photoInput"
+          accept="image/*"
+        >
 
-    <input
-      type="file"
-      id="galleryInput"
-      class="hidden-input"
-      accept="image/*"
-    >
+      </div>
 
-    <input
-      type="file"
-      id="cameraInput"
-      class="hidden-input"
-      accept="image/*"
-      capture="environment"
-    >
+      <h1 id="displayName">Loading...</h1>
 
-  </section>
+      <p class="email" id="displayEmail">
+        Loading...
+      </p>
 
-  <section class="card">
-
-    <div class="card-title">
-      <span>👤</span>
-      <h3>Personal Information</h3>
-    </div>
-
-    <div class="form-group">
-
-      <label>Full Name</label>
-
-      <input
-        type="text"
-        id="nameInput"
-        placeholder="Enter your name"
-      >
+      <div class="badge">
+        Customer Account
+      </div>
 
     </div>
 
-    <div class="form-group">
 
-      <label>Email Address</label>
+    <div class="form">
 
-      <input
-        type="email"
-        id="emailInput"
-        disabled
-      >
+      <h2 class="section-title">
+        Personal Information
+      </h2>
+
+
+      <div class="field">
+
+        <label>Full Name</label>
+
+        <input
+          id="fullName"
+          type="text"
+          placeholder="Enter your full name"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Email Address</label>
+
+        <input
+          id="email"
+          type="email"
+          readonly
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Phone Number</label>
+
+        <input
+          id="phone"
+          type="tel"
+          placeholder="Enter your phone number"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Address</label>
+
+        <input
+          id="address"
+          type="text"
+          placeholder="Enter your address"
+        >
+
+      </div>
+
+
+      <div class="grid">
+
+        <div class="field">
+
+          <label>City</label>
+
+          <input
+            id="city"
+            type="text"
+            placeholder="City"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>State</label>
+
+          <input
+            id="state"
+            type="text"
+            placeholder="State"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Country</label>
+
+        <input
+          id="country"
+          type="text"
+          placeholder="Country"
+        >
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="save"
+          id="saveBtn"
+          onclick="saveProfile()"
+        >
+          Save Changes
+        </button>
+
+        <button
+          class="logout"
+          onclick="logout()"
+        >
+          Logout
+        </button>
+
+      </div>
+
+      <div
+        class="message"
+        id="message"
+      ></div>
 
     </div>
 
-    <div class="form-group">
+  </div>
 
-      <label>Phone Number</label>
+</div>
 
-      <input
-        type="tel"
-        id="phoneInput"
-        placeholder="Enter phone number"
-      >
 
-    </div>
-
-    <div class="form-group">
-
-      <label>Age</label>
-
-      <input
-        type="number"
-        id="ageInput"
-        min="1"
-        max="120"
-        placeholder="Enter your age"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Gender</label>
-
-      <select id="genderInput">
-
-        <option value="">
-          Select gender
-        </option>
-
-        <option value="Male">
-          Male
-        </option>
-
-        <option value="Female">
-          Female
-        </option>
-
-        <option value="Prefer not to say">
-          Prefer not to say
-        </option>
-
-      </select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>About Me</label>
-
-      <textarea
-        id="bioInput"
-        placeholder="Tell us something about yourself..."
-      ></textarea>
-
-    </div>
-
-    <button
-      class="save-button"
-      id="saveButton"
-    >
-      Save Profile
-    </button>
-
-    <div
-      class="message"
-      id="message"
-    ></div>
-
-  </section>
-
-  <section class="card">
-
-    <div class="card-title">
-
-      <span>⚙️</span>
-
-      <h3>
-        Account Settings
-      </h3>
-
-    </div>
-
-    <button
-      class="action-button change-password"
-      id="changePasswordButton"
-    >
-      🔐 Change Password
-    </button>
-
-    <button
-      class="action-button logout-button"
-      id="logoutButton"
-    >
-      🚪 Sign Out
-    </button>
-
-    <button
-      class="action-button delete-button"
-      id="deleteButton"
-    >
-      🗑️ Delete Account
-    </button>
-
-  </section>
-
-</main>
+<!-- Firebase -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
 
 <script>
 
 const firebaseConfig = {
 
   apiKey:
-  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
 
   authDomain:
   "danny-smart-power.firebaseapp.com",
@@ -554,15 +457,16 @@ const firebaseConfig = {
   "danny-smart-power.firebasestorage.app",
 
   messagingSenderId:
-  "649735645158",
+  "6497356458",
 
   appId:
-  "1:649735645158:web:cff518b89721a163679827",
+  "1:6497356458:web:cff518b89721a163679827",
 
   measurementId:
   "G-258YKLP5ZS"
 
 };
+
 
 firebase.initializeApp(firebaseConfig);
 
@@ -570,83 +474,17 @@ const auth = firebase.auth();
 
 const db = firebase.firestore();
 
-const storage = firebase.storage();
-
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const loading =
-document.getElementById("loading");
-
-const profileAvatar =
-document.getElementById("profileAvatar");
-
-const heroName =
-document.getElementById("heroName");
-
-const heroEmail =
-document.getElementById("heroEmail");
-
-const nameInput =
-document.getElementById("nameInput");
-
-const emailInput =
-document.getElementById("emailInput");
-
-const phoneInput =
-document.getElementById("phoneInput");
-
-const ageInput =
-document.getElementById("ageInput");
-
-const genderInput =
-document.getElementById("genderInput");
-
-const bioInput =
-document.getElementById("bioInput");
-
-const saveButton =
-document.getElementById("saveButton");
-
-const message =
-document.getElementById("message");
-
-const photoButton =
-document.getElementById("photoButton");
-
-const galleryInput =
-document.getElementById("galleryInput");
-
-const cameraInput =
-document.getElementById("cameraInput");
-
-const logoutButton =
-document.getElementById("logoutButton");
-
-const deleteButton =
-document.getElementById("deleteButton");
-
-const changePasswordButton =
-document.getElementById("changePasswordButton");
-
-const backButton =
-document.getElementById("backButton");
-
 
 let currentUser = null;
 
-let selectedPhoto = null;
-
 
 /* =========================
-   AUTH
+   AUTH STATE
 ========================= */
 
-auth.onAuthStateChanged(async function(user){
+auth.onAuthStateChanged(async (user) => {
 
-  if(!user){
+  if (!user) {
 
     window.location.href = "login.html";
 
@@ -656,228 +494,88 @@ auth.onAuthStateChanged(async function(user){
 
   currentUser = user;
 
-  emailInput.value = user.email || "";
+  document.getElementById("displayEmail")
+    .textContent = user.email || "";
 
-  const defaultName =
-    user.displayName ||
-    user.email.split("@")[0];
+  document.getElementById("email")
+    .value = user.email || "";
 
-  try{
-
-    const profileRef =
-      db.collection("users").doc(user.uid);
-
-    const snapshot =
-      await profileRef.get();
-
-    if(snapshot.exists){
-
-      const data =
-        snapshot.data();
-
-      nameInput.value =
-        data.name || defaultName;
-
-      phoneInput.value =
-        data.phone || "";
-
-      ageInput.value =
-        data.age || "";
-
-      genderInput.value =
-        data.gender || "";
-
-      bioInput.value =
-        data.bio || "";
-
-      if(data.photoURL){
-
-        profileAvatar.src =
-          data.photoURL;
-
-      }else{
-
-        createDefaultAvatar(
-          data.name || defaultName
-        );
-
-      }
-
-    }else{
-
-      nameInput.value =
-        defaultName;
-
-      createDefaultAvatar(
-        defaultName
-      );
-
-    }
-
-    updateHero();
-
-    loading.classList.add("hidden");
-
-  }
-
-  catch(error){
-
-    console.error(
-      "PROFILE LOAD ERROR:",
-      error
-    );
-
-    loading.classList.add("hidden");
-
-    showMessage(
-      error.message,
-      "error"
-    );
-
-  }
+  await loadProfile();
 
 });
 
 
 /* =========================
-   DEFAULT AVATAR
+   LOAD PROFILE
 ========================= */
 
-function createDefaultAvatar(name){
+async function loadProfile(){
 
-  const letter =
-    name.charAt(0).toUpperCase();
+  if (!currentUser) return;
 
-  profileAvatar.src =
-    "data:image/svg+xml;charset=UTF-8," +
+  try {
 
-    encodeURIComponent(`
+    const ref = db
+      .collection("profiles")
+      .doc(currentUser.uid);
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="300"
-        height="300"
-      >
-
-        <rect
-          width="100%"
-          height="100%"
-          fill="#12324b"
-        />
-
-        <text
-          x="50%"
-          y="55%"
-          dominant-baseline="middle"
-          text-anchor="middle"
-          font-size="130"
-          fill="#38bdf8"
-          font-family="Arial"
-        >
-          ${letter}
-        </text>
-
-      </svg>
-
-    `);
-
-}
+    const snapshot = await ref.get();
 
 
-/* =========================
-   HERO
-========================= */
+    if (snapshot.exists) {
 
-function updateHero(){
+      const data = snapshot.data();
 
-  const name =
-    nameInput.value.trim() ||
-    currentUser.email.split("@")[0];
+      document.getElementById("fullName").value =
+        data.fullName || "";
 
-  heroName.textContent =
-    name;
+      document.getElementById("phone").value =
+        data.phone || "";
 
-  heroEmail.textContent =
-    currentUser.email;
+      document.getElementById("address").value =
+        data.address || "";
 
-}
+      document.getElementById("city").value =
+        data.city || "";
 
+      document.getElementById("state").value =
+        data.state || "";
 
-/* =========================
-   PHOTO SELECTOR
-========================= */
+      document.getElementById("country").value =
+        data.country || "";
 
-photoButton.addEventListener(
-  "click",
-  function(){
+      document.getElementById("displayName")
+        .textContent =
+        data.fullName ||
+        currentUser.displayName ||
+        "Welcome";
 
-    const choice =
-      confirm(
-        "Press OK to choose a photo from your phone.\n\n" +
-        "Press Cancel to take a new photo with your camera."
-      );
+      if (data.photoURL) {
 
-    if(choice){
+        document.getElementById("profilePhoto")
+          .src = data.photoURL;
 
-      galleryInput.click();
+      }
 
-    }else{
+    } else {
 
-      cameraInput.click();
+      document.getElementById("displayName")
+        .textContent =
+        currentUser.displayName ||
+        "Welcome";
 
     }
 
-  }
-);
+  } catch(error) {
 
+    console.error(error);
 
-galleryInput.addEventListener(
-  "change",
-  handlePhoto
-);
-
-cameraInput.addEventListener(
-  "change",
-  handlePhoto
-);
-
-
-function handlePhoto(event){
-
-  const file =
-    event.target.files[0];
-
-  if(!file){
-
-    return;
-
-  }
-
-  if(!file.type.startsWith("image/")){
-
-    alert(
-      "Please select an image."
+    showMessage(
+      "Unable to load your profile.",
+      "error"
     );
 
-    return;
-
   }
-
-  selectedPhoto =
-    file;
-
-  const reader =
-    new FileReader();
-
-  reader.onload =
-    function(event){
-
-      profileAvatar.src =
-        event.target.result;
-
-    };
-
-  reader.readAsDataURL(file);
 
 }
 
@@ -886,18 +584,12 @@ function handlePhoto(event){
    SAVE PROFILE
 ========================= */
 
-saveButton.addEventListener(
-  "click",
-  saveProfile
-);
-
-
 async function saveProfile(){
 
-  if(!currentUser){
+  if (!currentUser) {
 
     showMessage(
-      "You are not signed in.",
+      "Please login first.",
       "error"
     );
 
@@ -905,13 +597,40 @@ async function saveProfile(){
 
   }
 
-  const name =
-    nameInput.value.trim();
 
-  if(!name){
+  const saveBtn =
+    document.getElementById("saveBtn");
+
+
+  const fullName =
+    document.getElementById("fullName")
+      .value.trim();
+
+  const phone =
+    document.getElementById("phone")
+      .value.trim();
+
+  const address =
+    document.getElementById("address")
+      .value.trim();
+
+  const city =
+    document.getElementById("city")
+      .value.trim();
+
+  const state =
+    document.getElementById("state")
+      .value.trim();
+
+  const country =
+    document.getElementById("country")
+      .value.trim();
+
+
+  if (!fullName) {
 
     showMessage(
-      "Please enter your name.",
+      "Please enter your full name.",
       "error"
     );
 
@@ -919,347 +638,159 @@ async function saveProfile(){
 
   }
 
-  saveButton.disabled =
-    true;
 
-  saveButton.textContent =
-    "Saving...";
+  saveBtn.disabled = true;
 
-  try{
-
-    let photoURL =
-      profileAvatar.src;
-
-    /* =========================
-       UPLOAD PHOTO IF SELECTED
-    ========================= */
-
-    if(selectedPhoto){
-
-      const safeName =
-        selectedPhoto.name
-          .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-          );
-
-      const fileName =
-        Date.now() +
-        "_" +
-        safeName;
-
-      const photoRef =
-        storage
-          .ref()
-          .child(
-            "profile-images/" +
-            currentUser.uid +
-            "/" +
-            fileName
-          );
-
-      await photoRef.put(
-        selectedPhoto
-      );
-
-      photoURL =
-        await photoRef.getDownloadURL();
-
-    }
+  saveBtn.textContent = "Saving...";
 
 
-    /* =========================
-       PROFILE DATA
-    ========================= */
-
-    const profileData = {
-
-      uid:
-        currentUser.uid,
-
-      name:
-        name,
-
-      email:
-        currentUser.email,
-
-      phone:
-        phoneInput.value.trim(),
-
-      age:
-        ageInput.value.trim(),
-
-      gender:
-        genderInput.value,
-
-      bio:
-        bioInput.value.trim(),
-
-      photoURL:
-        photoURL,
-
-      updatedAt:
-        firebase.firestore.FieldValue.serverTimestamp()
-
-    };
-
-
-    /* =========================
-       SAVE TO FIRESTORE
-    ========================= */
+  try {
 
     await db
-      .collection("users")
+      .collection("profiles")
       .doc(currentUser.uid)
-      .set(
-        profileData,
-        {
-          merge:true
-        }
-      );
+      .set({
+
+        uid: currentUser.uid,
+
+        fullName: fullName,
+
+        phone: phone,
+
+        address: address,
+
+        city: city,
+
+        state: state,
+
+        country: country,
+
+        photoURL:
+          document.getElementById("profilePhoto").src,
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      }, {
+
+        merge:true
+
+      });
 
 
-    /* =========================
-       UPDATE FIREBASE AUTH
-    ========================= */
-
-    await currentUser.updateProfile({
-
-      displayName:
-        name,
-
-      photoURL:
-        photoURL.startsWith("http")
-          ? photoURL
-          : null
-
-    });
-
-
-    selectedPhoto =
-      null;
-
-
-    updateHero();
+    document.getElementById("displayName")
+      .textContent = fullName;
 
 
     showMessage(
-      "Profile saved successfully ✓",
+      "Profile updated successfully ✓",
       "success"
     );
 
-  }
 
-  catch(error){
+  } catch(error) {
 
-    console.error(
-      "PROFILE SAVE ERROR:",
-      error
-    );
+    console.error(error);
 
     showMessage(
-      "Save failed: " +
+      "Could not save profile: " +
       error.message,
       "error"
     );
 
   }
 
-  saveButton.disabled =
-    false;
 
-  saveButton.textContent =
-    "Save Profile";
+  saveBtn.disabled = false;
+
+  saveBtn.textContent = "Save Changes";
 
 }
 
 
 /* =========================
-   CHANGE PASSWORD
+   PHOTO PREVIEW
 ========================= */
 
-changePasswordButton.addEventListener(
-  "click",
-  async function(){
+document
+  .getElementById("photoInput")
+  .addEventListener("change", function(){
 
-    if(!currentUser.email){
+    const file = this.files[0];
 
-      return;
+    if (!file) return;
 
-    }
 
-    const confirmReset =
-      confirm(
-        "Send a password reset link to:\n\n" +
-        currentUser.email +
-        "?"
-      );
+    const reader =
+      new FileReader();
 
-    if(!confirmReset){
 
-      return;
+    reader.onload = function(e){
 
-    }
+      document.getElementById("profilePhoto")
+        .src = e.target.result;
 
-    try{
+    };
 
-      await auth.sendPasswordResetEmail(
-        currentUser.email
-      );
 
-      alert(
-        "Password reset email sent. Check your inbox and spam folder."
-      );
+    reader.readAsDataURL(file);
 
-    }
+    showMessage(
+      "Photo selected. Press Save Changes to save it.",
+      "success"
+    );
 
-    catch(error){
-
-      alert(
-        error.message
-      );
-
-    }
-
-  }
-);
+  });
 
 
 /* =========================
    LOGOUT
 ========================= */
 
-logoutButton.addEventListener(
-  "click",
-  async function(){
+async function logout(){
 
-    if(
-      !confirm(
-        "Are you sure you want to sign out?"
-      )
-    ){
-
-      return;
-
-    }
+  try {
 
     await auth.signOut();
 
-    window.location.href =
-      "login.html";
+    window.location.href = "login.html";
+
+  } catch(error){
+
+    showMessage(
+      "Logout failed.",
+      "error"
+    );
 
   }
-);
 
-
-/* =========================
-   DELETE ACCOUNT
-========================= */
-
-deleteButton.addEventListener(
-  "click",
-  async function(){
-
-    const first =
-      confirm(
-        "WARNING!\n\n" +
-        "This may permanently delete your account.\n\n" +
-        "Continue?"
-      );
-
-    if(!first){
-
-      return;
-
-    }
-
-    const typed =
-      prompt(
-        'Type DELETE to confirm.'
-      );
-
-    if(typed !== "DELETE"){
-
-      alert(
-        "Deletion cancelled."
-      );
-
-      return;
-
-    }
-
-    try{
-
-      await db
-        .collection("users")
-        .doc(currentUser.uid)
-        .delete();
-
-      await currentUser.delete();
-
-      alert(
-        "Account deleted."
-      );
-
-      window.location.href =
-        "login.html";
-
-    }
-
-    catch(error){
-
-      console.error(error);
-
-      alert(
-        "Firebase requires you to sign in again before deleting this account."
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================
-   BACK
-========================= */
-
-backButton.addEventListener(
-  "click",
-  function(){
-
-    window.history.back();
-
-  }
-);
+}
 
 
 /* =========================
    MESSAGE
 ========================= */
 
-function showMessage(text,type){
+function showMessage(text, type){
 
-  message.textContent =
-    text;
+  const message =
+    document.getElementById("message");
 
-  message.className =
-    "message " +
-    type;
+  message.textContent = text;
 
-  setTimeout(
-    function(){
+  if(type === "success"){
 
-      message.className =
-        "message";
+    message.style.color = "#4ade80";
 
-    },
-    5000
-  );
+  } else {
+
+    message.style.color = "#f87171";
+
+  }
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
