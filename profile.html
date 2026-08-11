@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My Profile | Danny Smart Power</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -23,36 +26,60 @@
   --card:#0d1b2a;
   --card2:#102234;
   --border:rgba(255,255,255,.09);
+
   --blue:#38bdf8;
-  --blue-dark:#0284c7;
+  --blueDark:#0284c7;
+
   --green:#22c55e;
   --red:#ef4444;
   --yellow:#fbbf24;
+
   --text:#f8fafc;
   --muted:#94a3b8;
 }
 
+html{
+  min-height:100%;
+}
+
 body{
   min-height:100vh;
+
   background:
-    radial-gradient(circle at top left,rgba(56,189,248,.10),transparent 35%),
+    radial-gradient(
+      circle at top left,
+      rgba(56,189,248,.10),
+      transparent 35%
+    ),
     var(--bg);
+
   color:var(--text);
+
   font-family:'Poppins',sans-serif;
 }
 
-/* HEADER */
+
+/* ================================
+   HEADER
+================================ */
 
 header{
   height:70px;
+
   display:flex;
   align-items:center;
+
   padding:0 16px;
+
   background:rgba(2,6,23,.96);
+
   border-bottom:1px solid var(--border);
+
   position:sticky;
   top:0;
+
   z-index:20;
+
   backdrop-filter:blur(12px);
 }
 
@@ -65,11 +92,16 @@ header{
 .back-button{
   width:42px;
   height:42px;
+
   border:0;
   border-radius:50%;
+
   background:transparent;
+
   color:white;
+
   font-size:25px;
+
   cursor:pointer;
 }
 
@@ -80,12 +112,22 @@ header{
 .logo{
   width:40px;
   height:40px;
+
   border-radius:12px;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blueDark)
+    );
+
   color:#00111c;
+
   font-size:21px;
 }
 
@@ -94,119 +136,187 @@ header{
   font-weight:600;
 }
 
-/* MAIN */
+
+/* ================================
+   MAIN
+================================ */
 
 main{
   width:100%;
-  max-width:850px;
+  max-width:820px;
+
   margin:auto;
-  padding:24px 14px 50px;
+
+  padding:25px 15px 50px;
 }
 
-/* HERO */
+
+/* ================================
+   HERO
+================================ */
 
 .profile-hero{
   position:relative;
+
   overflow:hidden;
+
   text-align:center;
+
   padding:30px 20px;
+
   border:1px solid var(--border);
+
   border-radius:25px;
-  background:linear-gradient(145deg,#102234,#091523);
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+  background:
+    linear-gradient(
+      145deg,
+      #102234,
+      #091523
+    );
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
 }
 
-.profile-hero:before{
+.profile-hero::before{
   content:"";
+
   position:absolute;
-  width:190px;
-  height:190px;
+
+  width:180px;
+  height:180px;
+
   border-radius:50%;
-  background:rgba(56,189,248,.07);
+
+  background:rgba(56,189,248,.08);
+
   top:-90px;
   right:-70px;
 }
 
 .avatar-wrapper{
   position:relative;
+
   width:135px;
   height:135px;
+
   margin:0 auto 18px;
 }
 
 .profile-avatar{
   width:135px;
   height:135px;
+
   border-radius:50%;
+
   object-fit:cover;
+
   background:#12324b;
+
   border:4px solid var(--blue);
-  box-shadow:0 0 0 6px rgba(56,189,248,.08);
+
+  box-shadow:
+    0 0 0 6px rgba(56,189,248,.08);
 }
 
 .camera-button{
   position:absolute;
+
   right:-2px;
-  bottom:2px;
-  width:44px;
-  height:44px;
-  border:3px solid var(--card);
+  bottom:3px;
+
+  width:43px;
+  height:43px;
+
+  border:3px solid #0d1b2a;
+
   border-radius:50%;
+
   background:var(--blue);
+
   color:#00111c;
+
   font-size:19px;
+
   cursor:pointer;
 }
 
 .profile-hero h1{
   font-size:24px;
   font-weight:600;
+
   margin-bottom:4px;
 }
 
 .profile-email{
   color:var(--muted);
+
   font-size:13px;
+
   word-break:break-word;
 }
 
 .account-badge{
   display:inline-flex;
+
   align-items:center;
+
   gap:6px;
+
   margin-top:12px;
+
   padding:7px 13px;
+
   border-radius:30px;
+
   background:rgba(56,189,248,.10);
+
   color:var(--blue);
+
   font-size:12px;
 }
 
-/* CARDS */
+
+/* ================================
+   CARDS
+================================ */
 
 .card{
   margin-top:18px;
+
   padding:22px;
+
   border:1px solid var(--border);
+
   border-radius:20px;
+
   background:var(--card);
 }
 
 .card-heading{
   display:flex;
+
   align-items:center;
+
   gap:11px;
+
   margin-bottom:20px;
 }
 
 .card-icon{
-  width:39px;
-  height:39px;
+  width:38px;
+  height:38px;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   border-radius:11px;
+
   background:rgba(56,189,248,.10);
+
   font-size:19px;
 }
 
@@ -220,7 +330,10 @@ main{
   font-size:11px;
 }
 
-/* FORM */
+
+/* ================================
+   FORM
+================================ */
 
 .form-group{
   margin-bottom:17px;
@@ -228,134 +341,220 @@ main{
 
 .form-group label{
   display:block;
+
   margin-bottom:7px;
+
   color:var(--muted);
+
   font-size:12px;
+
   font-weight:500;
 }
 
 .form-group input,
 .form-group textarea{
   width:100%;
+
   padding:14px;
+
   border:1px solid var(--border);
+
   border-radius:12px;
+
   outline:none;
+
   background:var(--card2);
+
   color:white;
+
   font-family:inherit;
+
   font-size:14px;
+
+  transition:.2s;
 }
 
 .form-group input:focus,
 .form-group textarea:focus{
   border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(56,189,248,.07);
+
+  box-shadow:
+    0 0 0 3px rgba(56,189,248,.07);
 }
 
 .form-group input[readonly]{
-  opacity:.6;
+  opacity:.65;
 }
 
 .form-group textarea{
-  min-height:95px;
+  min-height:100px;
+
   resize:vertical;
 }
 
+
+/* ================================
+   LOCATION
+================================ */
+
 .location-grid{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:14px;
 }
 
-/* SAVE */
+
+/* ================================
+   SAVE BUTTON
+================================ */
 
 .save-button{
   width:100%;
+
+  margin-top:5px;
+
   padding:14px;
+
   border:0;
+
   border-radius:12px;
-  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blueDark)
+    );
+
   color:#00111c;
+
   font-family:inherit;
+
   font-size:14px;
+
   font-weight:700;
+
   cursor:pointer;
 }
 
 .save-button:disabled{
   opacity:.55;
+
   cursor:not-allowed;
 }
 
-/* UPLOAD */
+
+/* ================================
+   UPLOAD
+================================ */
 
 .upload-box{
   display:none;
-  margin-bottom:15px;
+
+  margin:0 0 15px;
 }
 
 .upload-track{
   width:100%;
+
   height:7px;
+
   overflow:hidden;
+
   border-radius:20px;
+
   background:#18283a;
 }
 
 .upload-progress{
   width:0%;
+
   height:100%;
+
   border-radius:20px;
+
   background:var(--blue);
+
   transition:.15s;
 }
 
 .upload-text{
   display:block;
+
   margin-top:7px;
+
   color:var(--muted);
+
   font-size:11px;
+
   text-align:center;
 }
 
-/* MESSAGE */
+
+/* ================================
+   MESSAGE
+================================ */
 
 .message{
   display:none;
+
   margin-top:15px;
+
   padding:12px;
+
   border-radius:11px;
+
   text-align:center;
+
   font-size:12px;
 }
 
 .message.success{
   display:block;
+
   background:rgba(34,197,94,.10);
+
   color:#86efac;
 }
 
 .message.error{
   display:block;
+
   background:rgba(239,68,68,.10);
+
   color:#fca5a5;
 }
 
-/* SETTINGS */
+
+/* ================================
+   SETTINGS
+================================ */
 
 .setting-button{
   width:100%;
+
   padding:14px;
+
   margin-top:11px;
+
   border:1px solid var(--border);
+
   border-radius:12px;
+
   background:var(--card2);
+
   color:white;
+
   font-family:inherit;
+
   font-size:13px;
+
   font-weight:600;
+
   text-align:left;
+
   cursor:pointer;
 }
 
@@ -371,61 +570,162 @@ main{
   color:var(--yellow);
 }
 
-/* LOADING */
+
+/* ================================
+   LOADING SCREEN
+================================ */
 
 .loading-screen{
   position:fixed;
+
   inset:0;
+
   z-index:100;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   background:var(--bg);
 }
 
 .loading-content{
   width:90%;
+
   max-width:350px;
+
   text-align:center;
 }
 
 .loading-icon{
-  width:55px;
-  height:55px;
-  margin:0 auto 14px;
+  width:60px;
+  height:60px;
+
+  margin:0 auto 16px;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
-  border-radius:16px;
+
+  border-radius:18px;
+
   background:var(--blue);
+
   color:#00111c;
-  font-size:25px;
+
+  font-size:27px;
+
   animation:pulse 1.3s infinite;
+}
+
+.loading-content h2{
+  font-size:17px;
+
+  margin-bottom:5px;
 }
 
 .loading-content p{
   color:var(--muted);
-  font-size:13px;
-}
 
-.loading-error{
-  display:none;
-  margin-top:15px;
-  color:#fca5a5;
   font-size:12px;
-  line-height:1.5;
 }
 
 @keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.07)}
+
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.07);
+  }
+
 }
+
+
+/* ================================
+   ERROR SCREEN
+================================ */
+
+.error-screen{
+  display:none;
+
+  min-height:100vh;
+
+  padding:30px 20px;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.error-box{
+  width:100%;
+
+  max-width:400px;
+
+  padding:30px 20px;
+
+  border:1px solid var(--border);
+
+  border-radius:20px;
+
+  background:var(--card);
+}
+
+.error-icon{
+  font-size:45px;
+
+  margin-bottom:15px;
+}
+
+.error-box h2{
+  margin-bottom:8px;
+}
+
+.error-box p{
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.6;
+
+  margin-bottom:20px;
+}
+
+.login-button{
+  display:inline-block;
+
+  padding:13px 25px;
+
+  border-radius:12px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  text-decoration:none;
+
+  font-weight:700;
+}
+
+
+/* ================================
+   HIDDEN
+================================ */
 
 .hidden{
   display:none !important;
 }
 
-/* MOBILE */
+
+/* ================================
+   MOBILE
+================================ */
 
 @media(max-width:600px){
 
@@ -453,43 +753,106 @@ main{
   .header-title{
     font-size:15px;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- LOADING SCREEN -->
 
-<div class="loading-screen" id="loadingScreen">
+<!-- =================================
+     LOADING
+================================= -->
+
+<div
+  id="loadingScreen"
+  class="loading-screen"
+>
 
   <div class="loading-content">
 
-    <div class="loading-icon">⚡</div>
+    <div class="loading-icon">
+      ⚡
+    </div>
+
+    <h2>
+      Loading your profile
+    </h2>
 
     <p id="loadingText">
       Checking your account...
     </p>
 
-    <div class="loading-error" id="loadingError"></div>
+  </div>
+
+</div>
+
+
+<!-- =================================
+     ERROR / NO LOGIN
+================================= -->
+
+<div
+  id="errorScreen"
+  class="error-screen"
+>
+
+  <div class="error-box">
+
+    <div class="error-icon">
+      ⚡
+    </div>
+
+    <h2>
+      No Active Login
+    </h2>
+
+    <p id="errorText">
+      Please log in to Danny Smart Power first.
+    </p>
+
+    <a
+      href="login.html"
+      class="login-button"
+    >
+      Go to Login
+    </a>
 
   </div>
 
 </div>
 
-<!-- HEADER -->
+
+<!-- =================================
+     MAIN APP
+================================= -->
+
+<div id="app" class="hidden">
+
+
+<!-- =================================
+     HEADER
+================================= -->
 
 <header>
 
   <div class="header-left">
 
     <button
-      class="back-button"
       id="backButton"
+      class="back-button"
       type="button"
-    >←</button>
+    >
+      ←
+    </button>
 
-    <div class="logo">⚡</div>
+    <div class="logo">
+      ⚡
+    </div>
 
     <div class="header-title">
       My Profile
@@ -499,9 +862,13 @@ main{
 
 </header>
 
+
 <main>
 
-<!-- PROFILE HERO -->
+
+<!-- =================================
+     PROFILE HERO
+================================= -->
 
 <section class="profile-hero">
 
@@ -517,54 +884,82 @@ main{
       id="cameraButton"
       class="camera-button"
       type="button"
-      title="Change profile picture"
-    >📷</button>
+    >
+      📷
+    </button>
 
   </div>
 
-  <h1 id="heroName">Customer</h1>
 
-  <p id="heroEmail">Loading...</p>
+  <h1 id="heroName">
+    Customer
+  </h1>
+
+
+  <p
+    id="heroEmail"
+    class="profile-email"
+  >
+    Loading...
+  </p>
+
 
   <div class="account-badge">
     ✓ Customer Account
   </div>
 
+
   <input
-    type="file"
     id="galleryInput"
     class="hidden"
+    type="file"
     accept="image/jpeg,image/png,image/webp"
   >
 
+
   <input
-    type="file"
     id="cameraInput"
     class="hidden"
+    type="file"
     accept="image/*"
     capture="environment"
   >
 
 </section>
 
-<!-- PERSONAL INFORMATION -->
+
+<!-- =================================
+     PERSONAL INFORMATION
+================================= -->
 
 <section class="card">
 
   <div class="card-heading">
 
-    <div class="card-icon">👤</div>
+    <div class="card-icon">
+      👤
+    </div>
 
     <div>
-      <h2>Personal Information</h2>
-      <p>Keep your customer details up to date</p>
+
+      <h2>
+        Personal Information
+      </h2>
+
+      <p>
+        Keep your customer information updated
+      </p>
+
     </div>
 
   </div>
 
+
   <div class="form-group">
 
-    <label>Full Name</label>
+    <label>
+      Full Name
+    </label>
 
     <input
       id="fullName"
@@ -575,9 +970,12 @@ main{
 
   </div>
 
+
   <div class="form-group">
 
-    <label>Email Address</label>
+    <label>
+      Email Address
+    </label>
 
     <input
       id="email"
@@ -588,9 +986,12 @@ main{
 
   </div>
 
+
   <div class="form-group">
 
-    <label>Phone Number</label>
+    <label>
+      Phone Number
+    </label>
 
     <input
       id="phone"
@@ -601,22 +1002,29 @@ main{
 
   </div>
 
+
   <div class="form-group">
 
-    <label>Delivery Address</label>
+    <label>
+      Address
+    </label>
 
     <textarea
       id="address"
+      autocomplete="street-address"
       placeholder="Enter your delivery address"
     ></textarea>
 
   </div>
 
+
   <div class="location-grid">
 
     <div class="form-group">
 
-      <label>City</label>
+      <label>
+        City
+      </label>
 
       <input
         id="city"
@@ -627,9 +1035,12 @@ main{
 
     </div>
 
+
     <div class="form-group">
 
-      <label>State</label>
+      <label>
+        State
+      </label>
 
       <input
         id="state"
@@ -642,9 +1053,12 @@ main{
 
   </div>
 
+
   <div class="form-group">
 
-    <label>Country</label>
+    <label>
+      Country
+    </label>
 
     <input
       id="country"
@@ -655,30 +1069,32 @@ main{
 
   </div>
 
+
   <!-- PHOTO UPLOAD -->
 
   <div
-    class="upload-box"
     id="uploadBox"
+    class="upload-box"
   >
 
     <div class="upload-track">
 
       <div
-        class="upload-progress"
         id="uploadProgress"
+        class="upload-progress"
       ></div>
 
     </div>
 
     <span
-      class="upload-text"
       id="uploadText"
+      class="upload-text"
     >
       Uploading photo...
     </span>
 
   </div>
+
 
   <button
     id="saveButton"
@@ -688,6 +1104,7 @@ main{
     Save Profile
   </button>
 
+
   <div
     id="message"
     class="message"
@@ -695,20 +1112,33 @@ main{
 
 </section>
 
-<!-- ACCOUNT SETTINGS -->
+
+<!-- =================================
+     ACCOUNT SETTINGS
+================================= -->
 
 <section class="card">
 
   <div class="card-heading">
 
-    <div class="card-icon">⚙️</div>
+    <div class="card-icon">
+      ⚙️
+    </div>
 
     <div>
-      <h2>Account Settings</h2>
-      <p>Manage your account</p>
+
+      <h2>
+        Account Settings
+      </h2>
+
+      <p>
+        Manage your Danny Smart Power account
+      </p>
+
     </div>
 
   </div>
+
 
   <button
     id="passwordButton"
@@ -717,6 +1147,7 @@ main{
   >
     🔐 Change Password
   </button>
+
 
   <button
     id="logoutButton"
@@ -728,34 +1159,61 @@ main{
 
 </section>
 
+
 </main>
 
-<!-- FIREBASE SDK -->
+</div>
+
+
+<!-- =================================
+     FIREBASE
+================================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
 
 <script>
 
 /* =====================================================
-   FIREBASE CONFIG
+   FIREBASE CONFIGURATION
 
    IMPORTANT:
-   This should be the SAME Firebase project used by
-   login.html and your other customer pages.
+   This MUST be exactly the same Firebase project
+   used by login.html.
 ===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
-  authDomain: "danny-smart-power.firebaseapp.com",
-  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
-  projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.firebasestorage.app",
-  messagingSenderId: "6497356458",
-  appId: "1:6497356458:web:cff518b89721a163679827",
-  measurementId: "G-258YKLP5ZS"
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvALgb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
 };
 
 
@@ -763,20 +1221,20 @@ const firebaseConfig = {
    FIREBASE INITIALIZATION
 ===================================================== */
 
-try {
+if(!firebase.apps.length){
 
   firebase.initializeApp(firebaseConfig);
 
-} catch(error) {
-
-  console.error("Firebase initialization error:", error);
-
 }
 
+const auth =
+  firebase.auth();
 
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
+const db =
+  firebase.firestore();
+
+const storage =
+  firebase.storage();
 
 
 /* =====================================================
@@ -784,142 +1242,303 @@ const storage = firebase.storage();
 ===================================================== */
 
 const loadingScreen =
-  document.getElementById("loadingScreen");
+  document.getElementById(
+    "loadingScreen"
+  );
 
 const loadingText =
-  document.getElementById("loadingText");
+  document.getElementById(
+    "loadingText"
+  );
 
-const loadingError =
-  document.getElementById("loadingError");
+const errorScreen =
+  document.getElementById(
+    "errorScreen"
+  );
+
+const errorText =
+  document.getElementById(
+    "errorText"
+  );
+
+const app =
+  document.getElementById(
+    "app"
+  );
 
 const profileAvatar =
-  document.getElementById("profileAvatar");
+  document.getElementById(
+    "profileAvatar"
+  );
 
 const heroName =
-  document.getElementById("heroName");
+  document.getElementById(
+    "heroName"
+  );
 
 const heroEmail =
-  document.getElementById("heroEmail");
+  document.getElementById(
+    "heroEmail"
+  );
 
 const fullName =
-  document.getElementById("fullName");
+  document.getElementById(
+    "fullName"
+  );
 
 const email =
-  document.getElementById("email");
+  document.getElementById(
+    "email"
+  );
 
 const phone =
-  document.getElementById("phone");
+  document.getElementById(
+    "phone"
+  );
 
 const address =
-  document.getElementById("address");
+  document.getElementById(
+    "address"
+  );
 
 const city =
-  document.getElementById("city");
+  document.getElementById(
+    "city"
+  );
 
 const state =
-  document.getElementById("state");
+  document.getElementById(
+    "state"
+  );
 
 const country =
-  document.getElementById("country");
+  document.getElementById(
+    "country"
+  );
 
 const saveButton =
-  document.getElementById("saveButton");
+  document.getElementById(
+    "saveButton"
+  );
 
 const message =
-  document.getElementById("message");
+  document.getElementById(
+    "message"
+  );
 
 const cameraButton =
-  document.getElementById("cameraButton");
+  document.getElementById(
+    "cameraButton"
+  );
 
 const galleryInput =
-  document.getElementById("galleryInput");
+  document.getElementById(
+    "galleryInput"
+  );
 
 const cameraInput =
-  document.getElementById("cameraInput");
+  document.getElementById(
+    "cameraInput"
+  );
 
 const uploadBox =
-  document.getElementById("uploadBox");
+  document.getElementById(
+    "uploadBox"
+  );
 
 const uploadProgress =
-  document.getElementById("uploadProgress");
+  document.getElementById(
+    "uploadProgress"
+  );
 
 const uploadText =
-  document.getElementById("uploadText");
+  document.getElementById(
+    "uploadText"
+  );
 
 const passwordButton =
-  document.getElementById("passwordButton");
+  document.getElementById(
+    "passwordButton"
+  );
 
 const logoutButton =
-  document.getElementById("logoutButton");
+  document.getElementById(
+    "logoutButton"
+  );
 
 const backButton =
-  document.getElementById("backButton");
+  document.getElementById(
+    "backButton"
+  );
 
+
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let currentUser = null;
+
 let selectedPhoto = null;
 
 
 /* =====================================================
-   AUTHENTICATION
+   START
 
-   IMPORTANT:
-   There is NO login form here.
+   We deliberately wait for Firebase Auth to tell us
+   whether a session exists.
 
-   Firebase automatically checks the session created
-   by login.html.
+   NO SECOND LOGIN.
 ===================================================== */
 
-auth.onAuthStateChanged(async function(user) {
+loadingText.textContent =
+  "Checking your login session...";
 
-  console.log("Firebase Auth state:", user);
 
-  /* -----------------------------------------------
-     NO USER
-  ------------------------------------------------ */
+auth.onAuthStateChanged(
+  async function(user){
 
-  if(!user){
+    console.log(
+      "Firebase Auth user:",
+      user
+    );
+
+
+    /*
+      USER IS NOT LOGGED IN
+    */
+
+    if(!user){
+
+      showNoLogin();
+
+      return;
+
+    }
+
+
+    /*
+      USER IS LOGGED IN
+    */
+
+    currentUser =
+      user;
+
+
+    console.log(
+      "Logged in UID:",
+      user.uid
+    );
+
 
     loadingText.textContent =
-      "No active login session.";
+      "Loading your profile...";
 
-    loadingError.style.display =
-      "block";
 
-    loadingError.innerHTML =
-      "Please log in from the website first.<br><br>" +
-      '<button onclick="goToLogin()" style="' +
-      'padding:10px 18px;' +
-      'border:0;' +
-      'border-radius:10px;' +
-      'background:#38bdf8;' +
-      'color:#00111c;' +
-      'font-weight:600;' +
-      'font-family:inherit;' +
-      'cursor:pointer;' +
-      '">Go to Login</button>';
+    try{
 
-    return;
+      await loadProfile();
+
+
+      showApp();
+
+    }
+
+    catch(error){
+
+      console.error(
+        "PROFILE LOAD ERROR:",
+        error
+      );
+
+
+      showApp();
+
+
+      showMessage(
+        "Profile could not be loaded: " +
+        getFirebaseError(error),
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SHOW APP
+===================================================== */
+
+function showApp(){
+
+  loadingScreen.classList.add(
+    "hidden"
+  );
+
+  errorScreen.classList.add(
+    "hidden"
+  );
+
+  app.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =====================================================
+   SHOW NO LOGIN
+===================================================== */
+
+function showNoLogin(){
+
+  loadingScreen.classList.add(
+    "hidden"
+  );
+
+  app.classList.add(
+    "hidden"
+  );
+
+  errorScreen.style.display =
+    "flex";
+
+}
+
+
+/* =====================================================
+   LOAD PROFILE
+
+   Firestore:
+
+   profiles
+      └── USER UID
+===================================================== */
+
+async function loadProfile(){
+
+  if(!currentUser){
+
+    throw new Error(
+      "No authenticated user."
+    );
 
   }
 
 
-  /* -----------------------------------------------
-     USER FOUND
-  ------------------------------------------------ */
+  /*
+    Always use the Firebase Auth UID.
+  */
 
-  currentUser = user;
+  const uid =
+    currentUser.uid;
 
-  console.log(
-    "Logged-in UID:",
-    currentUser.uid
-  );
 
-  console.log(
-    "Logged-in email:",
-    currentUser.email
-  );
-
+  /*
+    Basic account information comes
+    directly from Firebase Auth.
+  */
 
   email.value =
     currentUser.email || "";
@@ -928,58 +1547,28 @@ auth.onAuthStateChanged(async function(user) {
     currentUser.email || "";
 
 
-  try {
+  /*
+    Default name
+  */
 
-    await loadProfile();
-
-    hideLoading();
-
-  }
-
-  catch(error) {
-
-    console.error(
-      "Profile loading error:",
-      error
-    );
-
-    hideLoading();
-
-    showMessage(
-      "Your login works, but the profile could not be loaded: " +
-      error.message,
-      "error"
-    );
-
-  }
-
-});
+  const defaultName =
+    currentUser.displayName ||
+    getDefaultName();
 
 
-/* =====================================================
-   LOAD PROFILE
-===================================================== */
-
-async function loadProfile(){
-
-  if(!currentUser){
-    return;
-  }
-
+  /*
+    Read profiles/{uid}
+  */
 
   const profileRef =
     db
       .collection("profiles")
-      .doc(currentUser.uid);
+      .doc(uid);
 
 
   const snapshot =
     await profileRef.get();
 
-
-  /* -----------------------------------------------
-     EXISTING PROFILE
-  ------------------------------------------------ */
 
   if(snapshot.exists){
 
@@ -987,23 +1576,40 @@ async function loadProfile(){
       snapshot.data();
 
 
+    console.log(
+      "Profile data:",
+      data
+    );
+
+
     fullName.value =
-      data.fullName || getDefaultName();
+      data.fullName ||
+      defaultName;
+
 
     phone.value =
-      data.phone || "";
+      data.phone ||
+      "";
+
 
     address.value =
-      data.address || "";
+      data.address ||
+      "";
+
 
     city.value =
-      data.city || "";
+      data.city ||
+      "";
+
 
     state.value =
-      data.state || "";
+      data.state ||
+      "";
+
 
     country.value =
-      data.country || "";
+      data.country ||
+      "";
 
 
     if(data.photoURL){
@@ -1015,27 +1621,38 @@ async function loadProfile(){
 
     else{
 
-      createAvatar(
+      createDefaultAvatar(
         data.fullName ||
-        getDefaultName()
+        defaultName
       );
 
     }
 
   }
 
-  /* -----------------------------------------------
-     NEW PROFILE
-  ------------------------------------------------ */
+  else{
 
-  else {
+    /*
+      First time opening profile.
+      Create the form from Firebase Auth.
+    */
 
     fullName.value =
-      getDefaultName();
+      defaultName;
 
-    createAvatar(
-      getDefaultName()
+
+    createDefaultAvatar(
+      defaultName
     );
+
+
+    /*
+      We do NOT automatically create the
+      Firestore document here.
+
+      It will be created when the customer
+      presses Save Profile.
+    */
 
   }
 
@@ -1053,24 +1670,14 @@ function getDefaultName(){
 
   if(
     currentUser &&
-    currentUser.displayName
-  ){
-
-    return currentUser.displayName;
-
-  }
-
-
-  if(
-    currentUser &&
     currentUser.email
   ){
 
-    return currentUser.email
+    return currentUser
+      .email
       .split("@")[0];
 
   }
-
 
   return "Customer";
 
@@ -1081,10 +1688,12 @@ function getDefaultName(){
    DEFAULT AVATAR
 ===================================================== */
 
-function createAvatar(name){
+function createDefaultAvatar(name){
 
   const safeName =
-    name || "Customer";
+    name ||
+    "Customer";
+
 
   const letter =
     safeName
@@ -1094,6 +1703,7 @@ function createAvatar(name){
 
   profileAvatar.src =
     "data:image/svg+xml;charset=UTF-8," +
+
     encodeURIComponent(`
 
       <svg
@@ -1111,7 +1721,7 @@ function createAvatar(name){
 
         <text
           x="150"
-          y="175"
+          y="170"
           text-anchor="middle"
           font-family="Arial"
           font-size="125"
@@ -1144,33 +1754,7 @@ function updateHero(){
 
 
   heroEmail.textContent =
-    currentUser
-      ? currentUser.email || ""
-      : "";
-
-}
-
-
-/* =====================================================
-   HIDE LOADING
-===================================================== */
-
-function hideLoading(){
-
-  loadingScreen.style.display =
-    "none";
-
-}
-
-
-/* =====================================================
-   GO TO LOGIN
-===================================================== */
-
-function goToLogin(){
-
-  window.location.href =
-    "login.html";
+    currentUser.email || "";
 
 }
 
@@ -1183,15 +1767,14 @@ cameraButton.addEventListener(
   "click",
   function(){
 
-    const useGallery =
+    const choice =
       confirm(
-        "Choose a photo from your gallery?\n\n" +
-        "OK = Gallery\n" +
-        "Cancel = Camera"
+        "Press OK to choose a photo from your gallery.\n\n" +
+        "Press Cancel to take a new photo with your camera."
       );
 
 
-    if(useGallery){
+    if(choice){
 
       galleryInput.click();
 
@@ -1233,26 +1816,34 @@ function handlePhoto(event){
 
 
   if(!file){
+
     return;
+
   }
 
 
   if(
-    !file.type ||
-    !file.type.startsWith("image/")
+    !file.type.startsWith(
+      "image/"
+    )
   ){
 
     showMessage(
-      "Please select an image file.",
+      "Please choose an image file.",
       "error"
     );
+
+    event.target.value =
+      "";
 
     return;
 
   }
 
 
-  /* Maximum 5 MB */
+  /*
+    Maximum 5MB
+  */
 
   if(
     file.size >
@@ -1264,7 +1855,8 @@ function handlePhoto(event){
       "error"
     );
 
-    event.target.value = "";
+    event.target.value =
+      "";
 
     return;
 
@@ -1274,6 +1866,10 @@ function handlePhoto(event){
   selectedPhoto =
     file;
 
+
+  /*
+    Show preview immediately.
+  */
 
   const reader =
     new FileReader();
@@ -1292,7 +1888,7 @@ function handlePhoto(event){
 
 
   showMessage(
-    "Photo selected. Tap Save Profile to upload it.",
+    "Photo selected. Press Save Profile to upload it.",
     "success"
   );
 
@@ -1300,7 +1896,7 @@ function handlePhoto(event){
 
 
 /* =====================================================
-   SAVE PROFILE
+   SAVE BUTTON
 ===================================================== */
 
 saveButton.addEventListener(
@@ -1309,12 +1905,16 @@ saveButton.addEventListener(
 );
 
 
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
+
 async function saveProfile(){
 
   if(!currentUser){
 
     showMessage(
-      "You are not logged in.",
+      "Your login session has expired. Please log in again.",
       "error"
     );
 
@@ -1346,44 +1946,51 @@ async function saveProfile(){
     "Saving...";
 
 
-  try {
+  try{
 
-    /* ---------------------------------------------
-       GET EXISTING PHOTO
-    --------------------------------------------- */
+    /*
+      Existing profile.
+    */
 
-    let photoURL = "";
-
-
-    const existingProfile =
-      await db
+    const profileRef =
+      db
         .collection("profiles")
-        .doc(currentUser.uid)
-        .get();
+        .doc(currentUser.uid);
 
 
-    if(existingProfile.exists){
+    const existing =
+      await profileRef.get();
+
+
+    let photoURL =
+      "";
+
+
+    if(existing.exists){
 
       photoURL =
-        existingProfile.data().photoURL || "";
+        existing.data().photoURL ||
+        "";
 
     }
 
 
-    /* ---------------------------------------------
-       UPLOAD PHOTO
-    --------------------------------------------- */
+    /*
+      Upload photo if selected.
+    */
 
     if(selectedPhoto){
 
       uploadBox.style.display =
         "block";
 
+
       uploadProgress.style.width =
         "0%";
 
+
       uploadText.textContent =
-        "Uploading photo...";
+        "Starting upload...";
 
 
       const storageRef =
@@ -1406,87 +2013,91 @@ async function saveProfile(){
         );
 
 
-      await new Promise(
-        function(resolve,reject){
+      photoURL =
+        await new Promise(
+          function(resolve,reject){
 
-          uploadTask.on(
+            uploadTask.on(
 
-            "state_changed",
+              "state_changed",
 
-            function(snapshot){
+              function(snapshot){
 
-              const percent =
-                Math.round(
-                  (
-                    snapshot.bytesTransferred /
-                    snapshot.totalBytes
-                  ) * 100
-                );
-
-
-              uploadProgress.style.width =
-                percent + "%";
+                const percent =
+                  Math.round(
+                    (
+                      snapshot.bytesTransferred /
+                      snapshot.totalBytes
+                    ) * 100
+                  );
 
 
-              uploadText.textContent =
-                "Uploading photo... " +
-                percent +
-                "%";
+                uploadProgress.style.width =
+                  percent + "%";
 
-            },
 
-            function(error){
+                uploadText.textContent =
+                  "Uploading photo... " +
+                  percent +
+                  "%";
 
-              reject(error);
+              },
 
-            },
-
-            async function(){
-
-              try {
-
-                photoURL =
-                  await uploadTask
-                    .snapshot
-                    .ref
-                    .getDownloadURL();
-
-                resolve();
-
-              }
-
-              catch(error){
+              function(error){
 
                 reject(error);
 
+              },
+
+              async function(){
+
+                try{
+
+                  const url =
+                    await uploadTask
+                      .snapshot
+                      .ref
+                      .getDownloadURL();
+
+
+                  resolve(url);
+
+                }
+
+                catch(error){
+
+                  reject(error);
+
+                }
+
               }
 
-            }
+            );
 
-          );
-
-        }
-      );
-
-
-      selectedPhoto =
-        null;
+          }
+        );
 
 
       uploadProgress.style.width =
         "100%";
 
+
       uploadText.textContent =
         "Photo uploaded ✓";
+
+
+      selectedPhoto =
+        null;
 
     }
 
 
-    /* ---------------------------------------------
-       PROFILE DATA
+    /*
+      Profile document.
 
-       This matches your profiles collection.
-    --------------------------------------------- */
+      This matches your current
+      profiles structure.
+    */
 
     const profileData = {
 
@@ -1525,24 +2136,23 @@ async function saveProfile(){
     };
 
 
-    /* ---------------------------------------------
-       SAVE TO PROFILES/{UID}
-    --------------------------------------------- */
+    /*
+      Save to:
 
-    await db
-      .collection("profiles")
-      .doc(currentUser.uid)
-      .set(
-        profileData,
-        {
-          merge:true
-        }
-      );
+      profiles/{currentUser.uid}
+    */
+
+    await profileRef.set(
+      profileData,
+      {
+        merge:true
+      }
+    );
 
 
-    /* ---------------------------------------------
-       UPDATE FIREBASE AUTH PROFILE
-    --------------------------------------------- */
+    /*
+      Update Firebase Auth profile.
+    */
 
     await currentUser.updateProfile({
 
@@ -1550,16 +2160,29 @@ async function saveProfile(){
         name,
 
       photoURL:
-        photoURL || null
+        photoURL ||
+        null
 
     });
 
 
+    /*
+      Refresh UI.
+    */
+
     updateHero();
 
 
+    if(photoURL){
+
+      profileAvatar.src =
+        photoURL;
+
+    }
+
+
     showMessage(
-      "Profile saved successfully ✓",
+      "Profile updated successfully ✓",
       "success"
     );
 
@@ -1571,7 +2194,7 @@ async function saveProfile(){
           "none";
 
       },
-      1500
+      1800
     );
 
   }
@@ -1579,14 +2202,14 @@ async function saveProfile(){
   catch(error){
 
     console.error(
-      "PROFILE SAVE ERROR:",
+      "SAVE PROFILE ERROR:",
       error
     );
 
 
     showMessage(
       "Could not save profile: " +
-      error.message,
+      getFirebaseError(error),
       "error"
     );
 
@@ -1616,7 +2239,7 @@ passwordButton.addEventListener(
     ){
 
       showMessage(
-        "No email account is currently signed in.",
+        "No active account found.",
         "error"
       );
 
@@ -1634,21 +2257,22 @@ passwordButton.addEventListener(
 
 
     if(!okay){
+
       return;
+
     }
 
 
-    try {
+    try{
 
-      await auth
-        .sendPasswordResetEmail(
-          currentUser.email
-        );
+      await auth.sendPasswordResetEmail(
+        currentUser.email
+      );
 
 
       alert(
         "Password reset email sent successfully.\n\n" +
-        "Please check your inbox and spam folder."
+        "Check your inbox and spam folder."
       );
 
     }
@@ -1656,8 +2280,7 @@ passwordButton.addEventListener(
     catch(error){
 
       alert(
-        "Could not send password reset email:\n\n" +
-        error.message
+        getFirebaseError(error)
       );
 
     }
@@ -1681,16 +2304,21 @@ logoutButton.addEventListener(
 
 
     if(!okay){
+
       return;
+
     }
 
 
-    try {
+    try{
 
       await auth.signOut();
 
-      window.location.href =
-        "login.html";
+
+      /*
+        Firebase will trigger
+        onAuthStateChanged(null).
+      */
 
     }
 
@@ -1698,7 +2326,7 @@ logoutButton.addEventListener(
 
       showMessage(
         "Could not sign out: " +
-        error.message,
+        getFirebaseError(error),
         "error"
       );
 
@@ -1716,55 +2344,142 @@ backButton.addEventListener(
   "click",
   function(){
 
-    window.history.back();
+    if(
+      document.referrer &&
+      document.referrer
+        .includes(
+          window.location.hostname
+        )
+    ){
+
+      window.history.back();
+
+    }
+
+    else{
+
+      window.location.href =
+        "index.html";
+
+    }
 
   }
 );
 
 
 /* =====================================================
-   MESSAGE
+   NAME LIVE UPDATE
 ===================================================== */
 
-function showMessage(
-  text,
-  type
-){
+fullName.addEventListener(
+  "input",
+  function(){
 
-  message.textContent =
-    text;
+    updateHero();
 
-  message.className =
-    "message " + type;
+  }
+);
 
 
-  setTimeout(
-    function(){
+/* =====================================================
+   FIREBASE ERROR CLEANER
+===================================================== */
 
-      message.className =
-        "message";
+function getFirebaseError(error){
 
-    },
-    5000
-  );
+  if(!error){
+
+    return "Unknown error.";
+
+  }
+
+
+  const code =
+    error.code || "";
+
+
+  if(
+    code ===
+    "permission-denied"
+  ){
+
+    return "Firestore permission denied. Check your Firestore security rules.";
+
+  }
+
+
+  if(
+    code ===
+    "storage/unauthorized"
+  ){
+
+    return "Photo upload permission denied. Check Firebase Storage rules.";
+
+  }
+
+
+  if(
+    code ===
+    "storage/unauthenticated"
+  ){
+
+    return "Photo upload requires an active login.";
+
+  }
+
+
+  if(
+    code ===
+    "unavailable"
+  ){
+
+    return "Firebase is temporarily unavailable. Check your internet connection.";
+
+  }
+
+
+  if(
+    error.message
+  ){
+
+    return error.message;
+
+  }
+
+
+  return "Something went wrong.";
 
 }
 
 
 /* =====================================================
-   FIREBASE ERROR LOG
+   SAFETY TIMEOUT
+
+   If Firebase takes unusually long to respond,
+   don't leave the user staring at Loading forever.
 ===================================================== */
 
-window.addEventListener(
-  "error",
-  function(event){
+setTimeout(
+  function(){
 
-    console.error(
-      "PAGE ERROR:",
-      event.error || event.message
-    );
+    if(
+      !loadingScreen.classList.contains(
+        "hidden"
+      )
+    ){
 
-  }
+      console.warn(
+        "Firebase authentication is taking too long."
+      );
+
+
+      loadingText.textContent =
+        "Firebase is taking longer than expected...";
+
+    }
+
+  },
+  8000
 );
 
 </script>
