@@ -14,12 +14,11 @@ content="width=device-width, initial-scale=1.0">
 href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
+href="https://fonts.googleapis.com"
 crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
 rel="stylesheet">
-
 
 <style>
 
@@ -28,13 +27,9 @@ rel="stylesheet">
 ========================= */
 
 *{
-
   margin:0;
-
   padding:0;
-
   box-sizing:border-box;
-
 }
 
 
@@ -45,25 +40,19 @@ rel="stylesheet">
 :root{
 
   --bg:#0f172a;
-
   --header:#020617;
-
   --card:#111e30;
-
   --card2:#17253a;
 
   --blue:#38bdf8;
-
   --blue2:#0284c7;
 
   --text:#f8fafc;
-
   --muted:#94a3b8;
 
   --border:rgba(148,163,184,.15);
 
   --green:#22c55e;
-
 }
 
 
@@ -80,19 +69,14 @@ body{
   background:
 
     radial-gradient(
-
       circle at top left,
-
       rgba(56,189,248,.10),
-
       transparent 35%
-
     ),
 
     var(--bg);
 
   color:var(--text);
-
 }
 
 
@@ -123,7 +107,6 @@ header{
   backdrop-filter:blur(15px);
 
   border-bottom:1px solid var(--border);
-
 }
 
 
@@ -138,7 +121,6 @@ header{
   font-size:18px;
 
   font-weight:700;
-
 }
 
 
@@ -157,19 +139,14 @@ header{
   border-radius:13px;
 
   background:linear-gradient(
-
     135deg,
-
     var(--blue),
-
     var(--blue2)
-
   );
 
   color:#00111c;
 
   font-size:21px;
-
 }
 
 
@@ -182,7 +159,6 @@ header{
   font-size:13px;
 
   font-weight:500;
-
 }
 
 
@@ -199,14 +175,12 @@ header{
   margin:auto;
 
   padding:30px 18px 60px;
-
 }
 
 
 .page-heading{
 
   margin-bottom:25px;
-
 }
 
 
@@ -215,7 +189,6 @@ header{
   font-size:27px;
 
   margin-bottom:6px;
-
 }
 
 
@@ -224,7 +197,6 @@ header{
   color:var(--muted);
 
   font-size:13px;
-
 }
 
 
@@ -237,13 +209,10 @@ header{
   display:grid;
 
   grid-template-columns:
-
     minmax(0,1.2fr)
-
     minmax(300px,.8fr);
 
   gap:22px;
-
 }
 
 
@@ -254,13 +223,9 @@ header{
 .card{
 
   background:linear-gradient(
-
     145deg,
-
     var(--card),
-
     #0c1727
-
   );
 
   border:1px solid var(--border);
@@ -270,11 +235,8 @@ header{
   padding:23px;
 
   box-shadow:
-
     0 15px 40px
-
     rgba(0,0,0,.15);
-
 }
 
 
@@ -283,7 +245,6 @@ header{
   font-size:18px;
 
   margin-bottom:20px;
-
 }
 
 
@@ -294,7 +255,6 @@ header{
 .form-group{
 
   margin-bottom:17px;
-
 }
 
 
@@ -307,12 +267,10 @@ header{
   color:var(--muted);
 
   font-size:13px;
-
 }
 
 
 input,
-
 textarea{
 
   width:100%;
@@ -334,22 +292,17 @@ textarea{
   font-size:14px;
 
   transition:.2s;
-
 }
 
 
 input:focus,
-
 textarea:focus{
 
   border-color:var(--blue);
 
   box-shadow:
-
     0 0 0 3px
-
     rgba(56,189,248,.08);
-
 }
 
 
@@ -358,16 +311,13 @@ textarea{
   min-height:105px;
 
   resize:vertical;
-
 }
 
 
 input::placeholder,
-
 textarea::placeholder{
 
   color:#64748b;
-
 }
 
 
@@ -382,7 +332,6 @@ textarea::placeholder{
   flex-direction:column;
 
   gap:13px;
-
 }
 
 
@@ -401,7 +350,6 @@ textarea::placeholder{
   border:1px solid var(--border);
 
   border-radius:14px;
-
 }
 
 
@@ -416,7 +364,6 @@ textarea::placeholder{
   border-radius:10px;
 
   background:#020617;
-
 }
 
 
@@ -425,7 +372,6 @@ textarea::placeholder{
   flex:1;
 
   min-width:0;
-
 }
 
 
@@ -438,7 +384,6 @@ textarea::placeholder{
   overflow:hidden;
 
   text-overflow:ellipsis;
-
 }
 
 
@@ -449,7 +394,6 @@ textarea::placeholder{
   font-size:11px;
 
   margin-top:3px;
-
 }
 
 
@@ -462,7 +406,6 @@ textarea::placeholder{
   font-size:13px;
 
   white-space:nowrap;
-
 }
 
 
@@ -483,14 +426,12 @@ textarea::placeholder{
   padding-top:17px;
 
   border-top:1px solid var(--border);
-
 }
 
 
 .summary-line span:first-child{
 
   color:var(--muted);
-
 }
 
 
@@ -501,7 +442,6 @@ textarea::placeholder{
   font-weight:700;
 
   color:var(--blue);
-
 }
 
 
@@ -522,13 +462,9 @@ textarea::placeholder{
   border-radius:13px;
 
   background:linear-gradient(
-
     135deg,
-
     var(--blue),
-
     var(--blue2)
-
   );
 
   color:#00111c;
@@ -542,7 +478,6 @@ textarea::placeholder{
   cursor:pointer;
 
   transition:.2s;
-
 }
 
 
@@ -551,11 +486,8 @@ textarea::placeholder{
   transform:translateY(-2px);
 
   box-shadow:
-
     0 10px 25px
-
     rgba(56,189,248,.2);
-
 }
 
 
@@ -566,7 +498,6 @@ textarea::placeholder{
   cursor:not-allowed;
 
   transform:none;
-
 }
 
 
@@ -589,7 +520,6 @@ textarea::placeholder{
   font-size:12px;
 
   line-height:1.6;
-
 }
 
 
@@ -604,7 +534,6 @@ textarea::placeholder{
   padding:40px 10px;
 
   color:var(--muted);
-
 }
 
 
@@ -617,7 +546,6 @@ textarea::placeholder{
   color:var(--blue);
 
   text-decoration:none;
-
 }
 
 
@@ -671,30 +599,28 @@ textarea::placeholder{
 <body>
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
   <div class="logo">
 
     <div class="logo-icon">
-
       ⚡
-
     </div>
 
     <span>
-
       Danny Smart Power
-
     </span>
 
   </div>
 
 
   <a
-  href="cart.html"
-  class="back-link">
+    href="cart.html"
+    class="back-link">
 
     ← Back to Cart
 
@@ -703,7 +629,9 @@ textarea::placeholder{
 </header>
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="container">
 
@@ -711,79 +639,61 @@ textarea::placeholder{
   <div class="page-heading">
 
     <h1>
-
       Complete Your Order
-
     </h1>
 
-
     <p>
-
       Enter your delivery details and send your order directly to our support chat.
-
     </p>
 
   </div>
 
 
+  <!-- EMPTY -->
+
   <div
-  id="emptyBox"
-  class="empty"
-  style="display:none;">
+    id="emptyBox"
+    class="empty"
+    style="display:none;">
 
     <h3>
-
       Your checkout is empty 🛒
-
     </h3>
 
-
     <a href="shop.html">
-
       Continue Shopping
-
     </a>
 
   </div>
 
 
   <div
-  id="checkoutLayout"
-  class="checkout-layout">
+    id="checkoutLayout"
+    class="checkout-layout">
 
 
-    <!-- DELIVERY DETAILS -->
+    <!-- =========================
+         DELIVERY DETAILS
+    ========================= -->
 
     <section class="card">
 
-
       <h2>
-
         📦 Delivery Details
-
       </h2>
 
 
       <div class="form-group">
 
         <label>
-
           Full Name
-
         </label>
 
-
         <input
-
           type="text"
-
           id="name"
-
           placeholder="Enter your full name"
-
-          autocomplete="name"
-
-        >
+          autocomplete="name">
 
       </div>
 
@@ -791,23 +701,14 @@ textarea::placeholder{
       <div class="form-group">
 
         <label>
-
           Phone Number
-
         </label>
 
-
         <input
-
           type="tel"
-
           id="phone"
-
           placeholder="Enter your phone number"
-
-          autocomplete="tel"
-
-        >
+          autocomplete="tel">
 
       </div>
 
@@ -815,23 +716,31 @@ textarea::placeholder{
       <div class="form-group">
 
         <label>
-
           Delivery Address
-
         </label>
 
+        <input
+          type="text"
+          id="address"
+          placeholder="Enter your complete delivery address"
+          autocomplete="street-address">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Location
+          <span style="color:#64748b;">
+            (Optional)
+          </span>
+        </label>
 
         <input
-
           type="text"
-
-          id="address"
-
-          placeholder="Enter your complete delivery address"
-
-          autocomplete="street-address"
-
-        >
+          id="location"
+          placeholder="City, area or delivery location">
 
       </div>
 
@@ -843,20 +752,15 @@ textarea::placeholder{
           Additional Note
 
           <span style="color:#64748b;">
-
             (Optional)
-
           </span>
 
         </label>
 
 
         <textarea
-
           id="note"
-
           placeholder="Any additional information about your order..."
-
         ></textarea>
 
       </div>
@@ -864,9 +768,11 @@ textarea::placeholder{
 
       <div class="notice">
 
-        💬 Your order will be sent directly to
+        💬 Your complete order will be sent directly to
 
-        <strong>Danny Smart Power Support Chat</strong>
+        <strong>
+          Danny Smart Power Support Chat
+        </strong>
 
         for processing.
 
@@ -876,59 +782,44 @@ textarea::placeholder{
     </section>
 
 
-    <!-- ORDER SUMMARY -->
+    <!-- =========================
+         ORDER SUMMARY
+    ========================= -->
 
     <section class="card">
 
-
       <h2>
-
         🛒 Order Summary
-
       </h2>
 
 
       <div
-
-      id="summaryItems"
-
-      class="order-items">
-
+        id="summaryItems"
+        class="order-items">
       </div>
 
 
       <div class="summary-line">
 
-
         <span>
-
           Total
-
         </span>
 
-
         <span
-
-        id="total"
-
-        class="total">
+          id="total"
+          class="total">
 
           ₦0
 
         </span>
 
-
       </div>
 
 
       <button
-
-      id="placeOrderButton"
-
-      class="place-order"
-
-      onclick="placeOrder()">
-
+        id="placeOrderButton"
+        class="place-order"
+        onclick="placeOrder()">
 
         💬 Place Order in Chat
 
@@ -945,124 +836,251 @@ textarea::placeholder{
 
 <script>
 
+/* =====================================================
+   GET CART
+===================================================== */
 
-/* =========================
-   GET CHECKOUT CART
-========================= */
+/*
+   IMPORTANT:
+
+   Different versions of the Cart page may save
+   products using different localStorage names.
+
+   This function checks BOTH:
+
+   1. checkoutCart
+   2. cart
+
+   Therefore Checkout won't suddenly become empty
+   simply because the Cart page uses "cart".
+*/
 
 function getCart(){
 
-  return JSON.parse(
+  let cart = [];
 
-    localStorage.getItem(
 
-      "checkoutCart"
+  try{
 
-    )
+    const checkoutCart =
+      JSON.parse(
+        localStorage.getItem("checkoutCart")
+      );
 
-  ) || [];
+
+    if(
+      Array.isArray(checkoutCart) &&
+      checkoutCart.length
+    ){
+
+      cart = checkoutCart;
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Error reading checkoutCart:",
+      error
+    );
+
+  }
+
+
+  /* If checkoutCart was empty, check normal cart */
+
+  if(!cart.length){
+
+    try{
+
+      const normalCart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        );
+
+
+      if(
+        Array.isArray(normalCart) &&
+        normalCart.length
+      ){
+
+        cart = normalCart;
+
+      }
+
+    }catch(error){
+
+      console.error(
+        "Error reading cart:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /*
+    Normalize cart items.
+
+    This makes sure different versions
+    of your cart still work.
+  */
+
+  return cart.map(function(item){
+
+    return {
+
+      id:
+        item.id ||
+        item.productId ||
+        "",
+
+      name:
+        item.name ||
+        item.title ||
+        "Product",
+
+      price:
+        Number(
+          item.price ||
+          item.amount ||
+          0
+        ),
+
+      qty:
+        Number(
+          item.qty ||
+          item.quantity ||
+          1
+        ),
+
+      image:
+        item.image ||
+        item.imageUrl ||
+        ""
+
+    };
+
+  });
 
 }
 
 
-/* =========================
+/* =====================================================
    FORMAT PRICE
-========================= */
+===================================================== */
 
 function formatPrice(price){
 
   return "₦" +
 
     Number(price || 0)
-
-      .toLocaleString();
+      .toLocaleString("en-NG");
 
 }
 
 
-/* =========================
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+  return String(value || "")
+
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
    LOAD SUMMARY
-========================= */
+===================================================== */
 
 function loadSummary(){
 
-
   const cart =
-  getCart();
+    getCart();
 
 
   const summaryItems =
-  document.getElementById(
-
-    "summaryItems"
-
-  );
+    document.getElementById(
+      "summaryItems"
+    );
 
 
   const totalElement =
-  document.getElementById(
-
-    "total"
-
-  );
+    document.getElementById(
+      "total"
+    );
 
 
   const checkoutLayout =
-  document.getElementById(
-
-    "checkoutLayout"
-
-  );
+    document.getElementById(
+      "checkoutLayout"
+    );
 
 
   const emptyBox =
-  document.getElementById(
+    document.getElementById(
+      "emptyBox"
+    );
 
-    "emptyBox"
 
-  );
-
+  /*
+    No products
+  */
 
   if(!cart.length){
 
     checkoutLayout.style.display =
-    "none";
-
+      "none";
 
     emptyBox.style.display =
-    "block";
-
+      "block";
 
     return;
 
   }
 
 
-  let total =
-  0;
+  /*
+    Products exist
+  */
+
+  checkoutLayout.style.display =
+    "grid";
+
+  emptyBox.style.display =
+    "none";
 
 
-  summaryItems.innerHTML =
-  "";
+  let total = 0;
 
 
-  cart.forEach(item => {
+  summaryItems.innerHTML = "";
 
+
+  cart.forEach(function(item){
 
     const quantity =
-    Number(item.qty) || 1;
+      Number(item.qty) || 1;
 
 
     const price =
-    Number(item.price) || 0;
+      Number(item.price) || 0;
 
 
     const subtotal =
-    price * quantity;
+      price * quantity;
 
 
-    total +=
-    subtotal;
+    total += subtotal;
 
 
     summaryItems.innerHTML += `
@@ -1070,31 +1088,26 @@ function loadSummary(){
       <div class="order-item">
 
         <img
-
-          src="${item.image || ''}"
-
-          alt="${item.name || 'Product'}"
-
+          src="${escapeHTML(item.image)}"
+          alt="${escapeHTML(item.name)}"
+          onerror="this.style.display='none'"
         >
-
 
         <div class="order-info">
 
           <h4>
-
-            ${item.name || 'Product'}
-
+            ${escapeHTML(item.name)}
           </h4>
 
+          <p>
+            Quantity: ${quantity}
+          </p>
 
           <p>
-
-            Quantity: ${quantity}
-
+            Unit Price: ${formatPrice(price)}
           </p>
 
         </div>
-
 
         <div class="order-price">
 
@@ -1110,31 +1123,258 @@ function loadSummary(){
 
 
   totalElement.textContent =
-  formatPrice(total);
+    formatPrice(total);
 
 }
 
 
-/* =========================
+/* =====================================================
+   CREATE ORDER OBJECT
+===================================================== */
+
+function createOrderData(){
+
+  const name =
+    document
+      .getElementById("name")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("phone")
+      .value
+      .trim();
+
+
+  const address =
+    document
+      .getElementById("address")
+      .value
+      .trim();
+
+
+  const location =
+    document
+      .getElementById("location")
+      .value
+      .trim();
+
+
+  const note =
+    document
+      .getElementById("note")
+      .value
+      .trim();
+
+
+  const cart =
+    getCart();
+
+
+  let total = 0;
+
+
+  const items =
+    cart.map(function(item){
+
+      const quantity =
+        Number(item.qty) || 1;
+
+
+      const price =
+        Number(item.price) || 0;
+
+
+      const subtotal =
+        price * quantity;
+
+
+      total += subtotal;
+
+
+      return {
+
+        id: item.id || "",
+
+        name: item.name,
+
+        price: price,
+
+        quantity: quantity,
+
+        qty: quantity,
+
+        subtotal: subtotal,
+
+        image: item.image || ""
+
+      };
+
+    });
+
+
+  return {
+
+    customerName: name,
+
+    phone: phone,
+
+    address: address,
+
+    location: location,
+
+    note: note,
+
+    items: items,
+
+    total: total,
+
+    totalFormatted:
+      formatPrice(total),
+
+    status:
+      "pending",
+
+    payment:
+      "pending",
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+}
+
+
+/* =====================================================
+   CREATE CHAT MESSAGE
+===================================================== */
+
+function createOrderMessage(order){
+
+  let message =
+
+`🛒 NEW ORDER
+
+👤 CUSTOMER
+${order.customerName}
+
+📞 PHONE
+${order.phone}
+
+📍 DELIVERY ADDRESS
+${order.address}`;
+
+
+  if(order.location){
+
+    message +=
+
+`\n\n📌 LOCATION
+${order.location}`;
+
+  }
+
+
+  if(order.note){
+
+    message +=
+
+`\n\n📝 ADDITIONAL NOTE
+${order.note}`;
+
+  }
+
+
+  message +=
+
+`\n\n📦 ORDER DETAILS`;
+
+
+  order.items.forEach(function(item){
+
+    message +=
+
+`\n\n• ${item.name}
+  Quantity: ${item.quantity}
+  Unit Price: ${formatPrice(item.price)}
+  Subtotal: ${formatPrice(item.subtotal)}`;
+
+  });
+
+
+  message +=
+
+`\n\n💰 TOTAL
+${formatPrice(order.total)}`;
+
+
+  message +=
+
+`\n\n💳 PAYMENT
+Pending`;
+
+
+  message +=
+
+`\n\n📌 STATUS
+Pending Processing`;
+
+
+  message +=
+
+`\n\n⚡ Danny Smart Power Shop`;
+
+
+  return message;
+
+}
+
+
+/* =====================================================
    PLACE ORDER
-========================= */
+===================================================== */
 
 function placeOrder(){
 
+  const button =
+    document.getElementById(
+      "placeOrderButton"
+    );
+
+
   const name =
-    document.getElementById("name").value.trim();
+    document
+      .getElementById("name")
+      .value
+      .trim();
+
 
   const phone =
-    document.getElementById("phone").value.trim();
+    document
+      .getElementById("phone")
+      .value
+      .trim();
+
 
   const address =
-    document.getElementById("address").value.trim();
+    document
+      .getElementById("address")
+      .value
+      .trim();
 
-  const note =
-    document.getElementById("note").value.trim();
 
+  /*
+    Validate customer details
+  */
 
-  if(!name || !phone || !address){
+  if(
+    !name ||
+    !phone ||
+    !address
+  ){
 
     alert(
       "Please fill in your name, phone number and delivery address."
@@ -1144,6 +1384,10 @@ function placeOrder(){
 
   }
 
+
+  /*
+    Get cart
+  */
 
   const cart =
     getCart();
@@ -1160,63 +1404,49 @@ function placeOrder(){
   }
 
 
-  let orderMessage =
+  /*
+    Disable button
+  */
 
-`🛒 NEW ORDER
+  button.disabled = true;
 
-👤 Customer: ${name}
-
-📞 Phone: ${phone}
-
-📍 Address: ${address}`;
-
-
-  if(note){
-
-    orderMessage +=
-
-`\n\n📝 Note: ${note}`;
-
-  }
-
-
-  orderMessage +=
-
-`\n\n📦 ORDER DETAILS\n`;
-
-
-  let total = 0;
-
-
-  cart.forEach(function(item){
-
-    const subtotal =
-      Number(item.price) *
-      Number(item.qty || 1);
-
-
-    total += subtotal;
-
-
-    orderMessage +=
-
-`\n• ${item.name} × ${item.qty || 1} = ₦${subtotal.toLocaleString()}`;
-
-  });
-
-
-  orderMessage +=
-
-`\n\n💰 TOTAL: ₦${total.toLocaleString()}`;
-
-
-  orderMessage +=
-
-`\n\n✅ Order placed from Danny Smart Power Shop.`;
+  button.textContent =
+    "Preparing Order...";
 
 
   /*
-  SAVE ORDER FOR CHAT
+    Build complete order
+  */
+
+  const order =
+    createOrderData();
+
+
+  /*
+    Create complete chat message
+  */
+
+  const orderMessage =
+    createOrderMessage(order);
+
+
+  /*
+    SAVE COMPLETE ORDER DATA
+  */
+
+  localStorage.setItem(
+
+    "pendingOrder",
+
+    JSON.stringify(order)
+
+  );
+
+
+  /*
+    SAVE COMPLETE CHAT MESSAGE
+
+    chat.html should read this.
   */
 
   localStorage.setItem(
@@ -1229,24 +1459,88 @@ function placeOrder(){
 
 
   /*
-  CLEAR CART
+    Extra backup.
+
+    This makes the information available
+    even if another part of the chat system
+    expects "orderMessage".
   */
 
-  localStorage.removeItem("cart");
+  localStorage.setItem(
 
-  localStorage.removeItem("checkoutCart");
+    "orderMessage",
+
+    orderMessage
+
+  );
 
 
   /*
-  OPEN YOUR CHAT
+    Mark that this is an order chat.
+  */
+
+  localStorage.setItem(
+
+    "openOrderChat",
+
+    "true"
+
+  );
+
+
+  /*
+    Save a timestamp.
+  */
+
+  localStorage.setItem(
+
+    "pendingOrderTime",
+
+    String(Date.now())
+
+  );
+
+
+  /*
+    IMPORTANT:
+
+    Do NOT remove the cart until the order
+    information has been successfully prepared.
+  */
+
+  localStorage.removeItem(
+    "cart"
+  );
+
+  localStorage.removeItem(
+    "checkoutCart"
+  );
+
+
+  /*
+    Go to support chat
   */
 
   window.location.href =
     "chat.html?order=1";
 
 }
-    
-   </script>
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    loadSummary();
+
+  }
+);
+
+</script>
 
 </body>
 
