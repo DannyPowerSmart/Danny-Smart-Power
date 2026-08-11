@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My Profile | Danny Smart Power</title>
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -22,34 +15,37 @@
 
 :root{
   --bg:#07111f;
-  --header:#020617;
-  --card:#0d1b2a;
-  --card2:#102234;
-  --border:rgba(255,255,255,.09);
-
-  --blue:#38bdf8;
-  --blue-dark:#0284c7;
-
-  --green:#22c55e;
-  --red:#ef4444;
-  --yellow:#fbbf24;
-
+  --dark:#020617;
+  --panel:#0d1b2a;
+  --panel2:#102234;
+  --border:#203247;
   --text:#f8fafc;
   --muted:#94a3b8;
+  --blue:#38bdf8;
+  --green:#4ade80;
+  --red:#f87171;
 }
 
 body{
-  min-height:100vh;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(56,189,248,.10),
-      transparent 35%
-    ),
-    var(--bg);
-
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
   color:var(--text);
-  font-family:'Poppins',sans-serif;
+  min-height:100vh;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
 }
 
 
@@ -57,77 +53,43 @@ body{
    HEADER
 ========================= */
 
-header{
-  height:72px;
+.header{
+  height:70px;
+  background:var(--dark);
+  border-bottom:1px solid var(--border);
 
   display:flex;
   align-items:center;
+  justify-content:space-between;
 
-  padding:0 16px;
-
-  background:rgba(2,6,23,.97);
-
-  border-bottom:1px solid var(--border);
+  padding:0 20px;
 
   position:sticky;
   top:0;
-
-  z-index:50;
-
-  backdrop-filter:blur(12px);
+  z-index:20;
 }
 
-.header-left{
-  display:flex;
-  align-items:center;
-  gap:11px;
+.brand{
+  font-size:20px;
+  font-weight:bold;
 }
 
-.back-button{
-  width:42px;
-  height:42px;
+.brand span{
+  color:var(--blue);
+}
 
-  border:0;
-  border-radius:50%;
-
-  background:transparent;
-
+.back-btn{
+  border:1px solid var(--border);
+  background:var(--panel);
   color:white;
 
-  font-size:27px;
-
-  cursor:pointer;
+  padding:9px 13px;
+  border-radius:9px;
 }
 
-.back-button:active{
-  background:var(--card2);
-}
-
-.logo{
-  width:42px;
-  height:42px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:13px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue),
-      var(--blue-dark)
-    );
-
-  color:#00111c;
-
-  font-size:22px;
-}
-
-.header-title{
-  font-size:18px;
-  font-weight:600;
+.back-btn:hover{
+  border-color:var(--blue);
+  color:var(--blue);
 }
 
 
@@ -135,13 +97,11 @@ header{
    MAIN
 ========================= */
 
-main{
+.main{
   width:100%;
-  max-width:820px;
-
+  max-width:850px;
   margin:auto;
-
-  padding:22px 14px 50px;
+  padding:30px 16px 50px;
 }
 
 
@@ -150,166 +110,117 @@ main{
 ========================= */
 
 .profile-hero{
-  position:relative;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56,189,248,.12),
+      rgba(13,27,42,.95)
+    );
 
-  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:22px;
+
+  padding:30px 20px;
 
   text-align:center;
 
-  padding:30px 18px;
-
-  border:1px solid var(--border);
-
-  border-radius:25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #102234,
-      #091523
-    );
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.25);
+  margin-bottom:20px;
 }
 
 .avatar-wrapper{
+  width:120px;
+  height:120px;
+
+  margin:0 auto 15px;
+
   position:relative;
-
-  width:135px;
-  height:135px;
-
-  margin:0 auto 18px;
 }
 
-.profile-avatar{
-  width:135px;
-  height:135px;
-
-  display:block;
+.avatar{
+  width:120px;
+  height:120px;
 
   border-radius:50%;
 
   object-fit:cover;
 
-  background:#12324b;
+  background:var(--panel2);
 
-  border:4px solid var(--blue);
-
-  box-shadow:
-    0 0 0 6px rgba(56,189,248,.08);
-}
-
-.camera-button{
-  position:absolute;
-
-  right:-2px;
-  bottom:3px;
-
-  width:44px;
-  height:44px;
-
-  border:3px solid #0d1b2a;
-
-  border-radius:50%;
-
-  background:var(--blue);
-
-  color:#00111c;
-
-  font-size:19px;
-
-  cursor:pointer;
-}
-
-.profile-hero h1{
-  font-size:24px;
-  font-weight:600;
-
-  margin-bottom:5px;
-}
-
-.profile-email{
-  color:var(--muted);
-
-  font-size:13px;
-
-  word-break:break-word;
-}
-
-.account-badge{
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:6px;
-
-  margin-top:12px;
-
-  padding:7px 14px;
-
-  border-radius:30px;
-
-  background:rgba(56,189,248,.10);
-
-  color:var(--blue);
-
-  font-size:12px;
-}
-
-
-/* =========================
-   CARD
-========================= */
-
-.card{
-  margin-top:18px;
-
-  padding:22px;
-
-  border:1px solid var(--border);
-
-  border-radius:21px;
-
-  background:var(--card);
-}
-
-.card-heading{
-  display:flex;
-
-  align-items:center;
-
-  gap:11px;
-
-  margin-bottom:21px;
-}
-
-.card-icon{
-  width:40px;
-  height:40px;
+  border:3px solid var(--blue);
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:12px;
-
-  background:rgba(56,189,248,.10);
-
-  font-size:20px;
+  font-size:45px;
+  color:var(--blue);
 }
 
-.card-heading h2{
-  font-size:17px;
-  font-weight:600;
+.photo-button{
+  position:absolute;
+
+  right:0;
+  bottom:2px;
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+
+  border:3px solid var(--panel);
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-size:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.card-heading p{
+.photo-button:hover{
+  transform:scale(1.05);
+}
+
+.profile-hero h1{
+  font-size:25px;
+  margin-top:5px;
+}
+
+.profile-hero p{
   color:var(--muted);
+  font-size:14px;
+  margin-top:6px;
+}
 
-  font-size:11px;
 
-  margin-top:2px;
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:20px;
+
+  margin-bottom:18px;
+}
+
+.panel-title{
+  font-size:18px;
+  margin-bottom:5px;
+}
+
+.panel-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:20px;
 }
 
 
@@ -317,142 +228,126 @@ main{
    FORM
 ========================= */
 
-.form-group{
-  margin-bottom:17px;
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.form-group label{
+.full{
+  grid-column:1/-1;
+}
+
+label{
   display:block;
 
+  color:#cbd5e1;
+
+  font-size:13px;
+
   margin-bottom:7px;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  font-weight:500;
 }
 
-.form-group input,
-.form-group textarea{
+input,
+textarea,
+select{
   width:100%;
 
-  padding:14px;
-
-  border:1px solid var(--border);
-
-  border-radius:12px;
-
-  outline:none;
-
-  background:var(--card2);
+  background:var(--panel2);
 
   color:white;
 
-  font-family:inherit;
+  border:1px solid var(--border);
 
-  font-size:14px;
+  border-radius:10px;
 
-  transition:.2s;
+  padding:13px;
+
+  outline:none;
 }
 
-.form-group input:focus,
-.form-group textarea:focus{
+input:focus,
+textarea:focus,
+select:focus{
   border-color:var(--blue);
-
-  box-shadow:
-    0 0 0 3px rgba(56,189,248,.07);
 }
 
-.form-group input[readonly]{
+input:disabled{
   opacity:.65;
+  cursor:not-allowed;
 }
 
-.form-group textarea{
-  min-height:95px;
-
+textarea{
+  min-height:100px;
   resize:vertical;
 }
 
 
 /* =========================
-   LOCATION
+   BUTTONS
 ========================= */
 
-.location-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:14px;
-}
-
-
-/* =========================
-   SAVE BUTTON
-========================= */
-
-.save-button{
+.save-btn{
   width:100%;
 
-  margin-top:5px;
-
-  padding:14px;
+  margin-top:20px;
 
   border:0;
 
-  border-radius:13px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue),
-      var(--blue-dark)
-    );
+  background:var(--blue);
 
   color:#00111c;
 
-  font-family:inherit;
+  font-weight:bold;
 
-  font-size:14px;
+  padding:14px;
 
-  font-weight:700;
-
-  cursor:pointer;
+  border-radius:10px;
 }
 
-.save-button:disabled{
-  opacity:.55;
+.save-btn:hover{
+  filter:brightness(1.05);
+}
 
+.save-btn:disabled{
+  opacity:.6;
   cursor:not-allowed;
 }
 
+.secondary-btn{
+  width:100%;
 
-/* =========================
-   PHOTO STATUS
-========================= */
+  border:1px solid var(--border);
 
-.photo-status{
-  display:none;
+  background:var(--panel2);
 
-  margin-bottom:15px;
+  color:white;
 
-  padding:11px;
+  padding:13px;
 
-  border-radius:11px;
+  border-radius:10px;
 
-  background:rgba(56,189,248,.08);
-
-  color:var(--blue);
-
-  text-align:center;
-
-  font-size:12px;
+  margin-top:10px;
 }
 
-.photo-status.show{
-  display:block;
+.secondary-btn:hover{
+  border-color:var(--blue);
+}
+
+.danger-btn{
+  width:100%;
+
+  border:1px solid rgba(248,113,113,.4);
+
+  background:transparent;
+
+  color:var(--red);
+
+  padding:13px;
+
+  border-radius:10px;
+
+  margin-top:10px;
 }
 
 
@@ -461,76 +356,21 @@ main{
 ========================= */
 
 .message{
-  display:none;
-
-  margin-top:15px;
-
-  padding:12px;
-
-  border-radius:11px;
-
   text-align:center;
-
-  font-size:12px;
-}
-
-.message.success{
-  display:block;
-
-  background:rgba(34,197,94,.10);
-
-  color:#86efac;
-}
-
-.message.error{
-  display:block;
-
-  background:rgba(239,68,68,.10);
-
-  color:#fca5a5;
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-.setting-button{
-  width:100%;
-
-  padding:14px;
-
-  margin-top:11px;
-
-  border:1px solid var(--border);
-
-  border-radius:13px;
-
-  background:var(--card2);
-
-  color:white;
-
-  font-family:inherit;
 
   font-size:13px;
 
-  font-weight:600;
+  margin-top:14px;
 
-  text-align:left;
-
-  cursor:pointer;
+  line-height:1.5;
 }
 
-.setting-button:first-of-type{
-  margin-top:0;
+.success{
+  color:var(--green);
 }
 
-.password-button{
-  color:var(--blue);
-}
-
-.logout-button{
-  color:var(--yellow);
+.error{
+  color:var(--red);
 }
 
 
@@ -540,70 +380,39 @@ main{
 
 .loading-screen{
   position:fixed;
-
   inset:0;
 
-  z-index:100;
+  background:var(--bg);
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
-  background:var(--bg);
+  z-index:100;
 }
 
-.loading-content{
-  width:90%;
-
-  max-width:350px;
-
+.loading-box{
   text-align:center;
 }
 
-.loading-icon{
-  width:58px;
-  height:58px;
+.spinner{
+  width:42px;
+  height:42px;
 
-  margin:0 auto 15px;
+  border:4px solid var(--border);
+  border-top-color:var(--blue);
 
-  display:flex;
+  border-radius:50%;
 
-  align-items:center;
-  justify-content:center;
+  animation:spin .8s linear infinite;
 
-  border-radius:17px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue),
-      var(--blue-dark)
-    );
-
-  color:#00111c;
-
-  font-size:26px;
-
-  animation:pulse 1.2s infinite;
+  margin:auto auto 15px;
 }
 
-.loading-content p{
-  color:var(--muted);
-
-  font-size:13px;
-}
-
-@keyframes pulse{
-
-  0%,100%{
-    transform:scale(1);
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
   }
-
-  50%{
-    transform:scale(1.08);
-  }
-
 }
 
 
@@ -611,381 +420,315 @@ main{
    MOBILE
 ========================= */
 
-@media(max-width:600px){
+@media(max-width:650px){
 
-  main{
-    padding:16px 12px 40px;
+  .header{
+    padding:0 12px;
   }
 
-  .card{
-    padding:18px;
+  .brand{
+    font-size:17px;
   }
 
-  .location-grid{
-    grid-template-columns:1fr;
-
-    gap:0;
+  .main{
+    padding:20px 12px 40px;
   }
 
   .profile-hero{
-    padding:27px 15px;
+    padding:25px 15px;
   }
 
-  .profile-hero h1{
-    font-size:21px;
+  .form-grid{
+    grid-template-columns:1fr;
   }
 
-  .header-title{
-    font-size:16px;
+  .full{
+    grid-column:auto;
   }
 
 }
-
 </style>
-
 </head>
-
 
 <body>
 
 
-<!-- =========================
-     LOADING
-========================= -->
+<!-- LOADING -->
 
-<div
-  class="loading-screen"
-  id="loadingScreen"
->
+<div id="loadingScreen" class="loading-screen">
 
-  <div class="loading-content">
+  <div class="loading-box">
 
-    <div class="loading-icon">
-      ⚡
+    <div class="spinner"></div>
+
+    <div>
+      Loading profile...
     </div>
-
-    <p id="loadingText">
-      Checking your account...
-    </p>
 
   </div>
 
 </div>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
-<header>
+<header class="header">
 
-  <div class="header-left">
-
-    <button
-      class="back-button"
-      id="backButton"
-      type="button"
-    >
-      ←
-    </button>
-
-    <div class="logo">
-      ⚡
-    </div>
-
-    <div class="header-title">
-      My Profile
-    </div>
-
+  <div class="brand">
+    ⚡ <span>DSP</span> Profile
   </div>
+
+  <button
+    class="back-btn"
+    onclick="goBack()">
+    ← Back
+  </button>
 
 </header>
 
 
-<main>
+<!-- MAIN -->
+
+<main class="main">
 
 
-<!-- =========================
-     HERO
-========================= -->
+  <!-- HERO -->
 
-<section class="profile-hero">
+  <section class="profile-hero">
 
-  <div class="avatar-wrapper">
+    <div class="avatar-wrapper">
 
-    <img
-      id="profileAvatar"
-      class="profile-avatar"
-      alt="Profile picture"
-    >
+      <img
+        id="profilePhoto"
+        class="avatar"
+        alt="Profile photo"
+        style="display:none"
+      >
+
+      <div
+        id="defaultAvatar"
+        class="avatar">
+        👤
+      </div>
+
+      <button
+        class="photo-button"
+        onclick="choosePhoto()"
+        title="Change photo">
+        📷
+      </button>
+
+      <input
+        id="photoInput"
+        type="file"
+        accept="image/*"
+        hidden
+        onchange="handlePhoto(event)"
+      >
+
+    </div>
+
+
+    <h1 id="heroName">
+      Customer
+    </h1>
+
+    <p id="heroEmail">
+      Loading...
+    </p>
+
+  </section>
+
+
+  <!-- PERSONAL INFORMATION -->
+
+  <section class="panel">
+
+    <h2 class="panel-title">
+      Personal Information
+    </h2>
+
+    <p class="panel-subtitle">
+      Keep your customer information up to date.
+    </p>
+
+
+    <div class="form-grid">
+
+
+      <!-- FULL NAME -->
+
+      <div>
+
+        <label for="fullName">
+          Full Name
+        </label>
+
+        <input
+          id="fullName"
+          type="text"
+          placeholder="Your full name"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <!-- EMAIL -->
+
+      <div>
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          disabled
+        >
+
+      </div>
+
+
+      <!-- PHONE -->
+
+      <div>
+
+        <label for="phone">
+          Phone Number
+        </label>
+
+        <input
+          id="phone"
+          type="tel"
+          placeholder="08012345678"
+          autocomplete="tel"
+        >
+
+      </div>
+
+
+      <!-- COUNTRY -->
+
+      <div>
+
+        <label for="country">
+          Country
+        </label>
+
+        <input
+          id="country"
+          type="text"
+          placeholder="Nigeria"
+          autocomplete="country-name"
+        >
+
+      </div>
+
+
+      <!-- STATE -->
+
+      <div>
+
+        <label for="state">
+          State
+        </label>
+
+        <input
+          id="state"
+          type="text"
+          placeholder="Lagos"
+        >
+
+      </div>
+
+
+      <!-- CITY -->
+
+      <div>
+
+        <label for="city">
+          City
+        </label>
+
+        <input
+          id="city"
+          type="text"
+          placeholder="Ikeja"
+        >
+
+      </div>
+
+
+      <!-- ADDRESS -->
+
+      <div class="full">
+
+        <label for="address">
+          Address
+        </label>
+
+        <textarea
+          id="address"
+          placeholder="Enter your delivery address"
+        ></textarea>
+
+      </div>
+
+
+    </div>
+
 
     <button
-      id="cameraButton"
-      class="camera-button"
-      type="button"
-    >
-      📷
+      id="saveBtn"
+      class="save-btn"
+      onclick="saveProfile()">
+      Save Profile
     </button>
 
-  </div>
 
+    <p
+      id="message"
+      class="message">
+    </p>
 
-  <h1 id="heroName">
-    Loading...
-  </h1>
+  </section>
 
 
-  <p
-    id="heroEmail"
-    class="profile-email"
-  >
-    Loading...
-  </p>
+  <!-- ACCOUNT -->
 
+  <section class="panel">
 
-  <div class="account-badge">
-    ✓ Customer Account
-  </div>
+    <h2 class="panel-title">
+      Account
+    </h2>
 
+    <p class="panel-subtitle">
+      Manage your account.
+    </p>
 
-  <input
-    type="file"
-    id="galleryInput"
-    hidden
-    accept="image/jpeg,image/png,image/webp"
-  >
 
-  <input
-    type="file"
-    id="cameraInput"
-    hidden
-    accept="image/*"
-    capture="environment"
-  >
+    <button
+      class="secondary-btn"
+      onclick="changePassword()">
+      🔐 Change Password
+    </button>
 
-</section>
 
+    <button
+      class="danger-btn"
+      onclick="signOut()">
+      Sign Out
+    </button>
 
-<!-- =========================
-     PERSONAL INFORMATION
-========================= -->
-
-<section class="card">
-
-  <div class="card-heading">
-
-    <div class="card-icon">
-      👤
-    </div>
-
-    <div>
-
-      <h2>
-        Personal Information
-      </h2>
-
-      <p>
-        Keep your customer information up to date
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="form-group">
-
-    <label>
-      Full Name
-    </label>
-
-    <input
-      id="fullName"
-      type="text"
-      autocomplete="name"
-      placeholder="Enter your full name"
-    >
-
-  </div>
-
-
-  <div class="form-group">
-
-    <label>
-      Email Address
-    </label>
-
-    <input
-      id="email"
-      type="email"
-      readonly
-      autocomplete="email"
-    >
-
-  </div>
-
-
-  <div class="form-group">
-
-    <label>
-      Phone Number
-    </label>
-
-    <input
-      id="phone"
-      type="tel"
-      autocomplete="tel"
-      placeholder="Enter your phone number"
-    >
-
-  </div>
-
-
-  <div class="form-group">
-
-    <label>
-      Address
-    </label>
-
-    <textarea
-      id="address"
-      autocomplete="street-address"
-      placeholder="Enter your delivery address"
-    ></textarea>
-
-  </div>
-
-
-  <div class="location-grid">
-
-    <div class="form-group">
-
-      <label>
-        City
-      </label>
-
-      <input
-        id="city"
-        type="text"
-        autocomplete="address-level2"
-        placeholder="City"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        State
-      </label>
-
-      <input
-        id="state"
-        type="text"
-        autocomplete="address-level1"
-        placeholder="State"
-      >
-
-    </div>
-
-  </div>
-
-
-  <div class="form-group">
-
-    <label>
-      Country
-    </label>
-
-    <input
-      id="country"
-      type="text"
-      autocomplete="country-name"
-      placeholder="Country"
-    >
-
-  </div>
-
-
-  <div
-    id="photoStatus"
-    class="photo-status"
-  >
-    Photo selected ✓
-  </div>
-
-
-  <button
-    id="saveButton"
-    class="save-button"
-    type="button"
-  >
-    Save Profile
-  </button>
-
-
-  <div
-    id="message"
-    class="message"
-  ></div>
-
-</section>
-
-
-<!-- =========================
-     ACCOUNT SETTINGS
-========================= -->
-
-<section class="card">
-
-  <div class="card-heading">
-
-    <div class="card-icon">
-      ⚙️
-    </div>
-
-    <div>
-
-      <h2>
-        Account Settings
-      </h2>
-
-      <p>
-        Manage your Danny Smart Power account
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <button
-    id="passwordButton"
-    class="setting-button password-button"
-    type="button"
-  >
-    🔐 Change Password
-  </button>
-
-
-  <button
-    id="logoutButton"
-    class="setting-button logout-button"
-    type="button"
-  >
-    🚪 Sign Out
-  </button>
-
-</section>
+  </section>
 
 
 </main>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
+<!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -996,9 +739,9 @@ main{
 
 <script>
 
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
+/* ==========================================
+   FIREBASE
+========================================== */
 
 const firebaseConfig = {
 
@@ -1029,832 +772,79 @@ const firebaseConfig = {
 };
 
 
-/* =====================================================
-   INITIALIZE FIREBASE
+firebase.initializeApp(firebaseConfig);
 
-   IMPORTANT:
-   NO FIREBASE STORAGE
-===================================================== */
-
-firebase.initializeApp(
-  firebaseConfig
-);
 
 const auth =
   firebase.auth();
+
 
 const db =
   firebase.firestore();
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+/* ==========================================
+   CURRENT USER
+========================================== */
 
 let currentUser = null;
 
-let selectedPhoto = null;
 
+/* ==========================================
+   AUTH STATE
+========================================== */
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+auth.onAuthStateChanged(async user => {
 
-const loadingScreen =
-  document.getElementById(
-    "loadingScreen"
-  );
+  if(!user){
 
-const loadingText =
-  document.getElementById(
-    "loadingText"
-  );
+    window.location.href =
+      "login.html";
 
-const profileAvatar =
-  document.getElementById(
-    "profileAvatar"
-  );
-
-const heroName =
-  document.getElementById(
-    "heroName"
-  );
-
-const heroEmail =
-  document.getElementById(
-    "heroEmail"
-  );
-
-const fullName =
-  document.getElementById(
-    "fullName"
-  );
-
-const email =
-  document.getElementById(
-    "email"
-  );
-
-const phone =
-  document.getElementById(
-    "phone"
-  );
-
-const address =
-  document.getElementById(
-    "address"
-  );
-
-const city =
-  document.getElementById(
-    "city"
-  );
-
-const state =
-  document.getElementById(
-    "state"
-  );
-
-const country =
-  document.getElementById(
-    "country"
-  );
-
-const cameraButton =
-  document.getElementById(
-    "cameraButton"
-  );
-
-const galleryInput =
-  document.getElementById(
-    "galleryInput"
-  );
-
-const cameraInput =
-  document.getElementById(
-    "cameraInput"
-  );
-
-const saveButton =
-  document.getElementById(
-    "saveButton"
-  );
-
-const photoStatus =
-  document.getElementById(
-    "photoStatus"
-  );
-
-const message =
-  document.getElementById(
-    "message"
-  );
-
-
-/* =====================================================
-   DEFAULT AVATAR
-===================================================== */
-
-function createAvatar(name){
-
-  const letter =
-    (name || "C")
-      .trim()
-      .charAt(0)
-      .toUpperCase() || "C";
-
-
-  profileAvatar.src =
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(`
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="300"
-        height="300"
-        viewBox="0 0 300 300"
-      >
-
-        <rect
-          width="300"
-          height="300"
-          rx="150"
-          fill="#12324b"
-        />
-
-        <text
-          x="150"
-          y="175"
-          text-anchor="middle"
-          font-family="Arial"
-          font-size="130"
-          font-weight="bold"
-          fill="#38bdf8"
-        >
-          ${letter}
-        </text>
-
-      </svg>
-
-    `);
-
-}
-
-
-/* =====================================================
-   DEFAULT NAME
-===================================================== */
-
-function getDefaultName(){
-
-  if(
-    currentUser &&
-    currentUser.displayName
-  ){
-
-    return currentUser.displayName;
-
+    return;
   }
 
 
-  if(
-    currentUser &&
-    currentUser.email
-  ){
-
-    return currentUser
-      .email
-      .split("@")[0];
-
-  }
+  currentUser = user;
 
 
-  return "Customer";
-
-}
-
-
-/* =====================================================
-   UPDATE HERO
-===================================================== */
-
-function updateHero(){
-
-  const name =
-    fullName.value.trim() ||
-    getDefaultName();
+  document.getElementById("email").value =
+    user.email || "";
 
 
-  heroName.textContent =
-    name;
+  document.getElementById("heroEmail").textContent =
+    user.email || "";
 
 
-  heroEmail.textContent =
-    currentUser &&
-    currentUser.email
-      ? currentUser.email
-      : "";
-
-}
+  await loadProfile();
 
 
-/* =====================================================
-   AUTH SESSION
+  document
+    .getElementById("loadingScreen")
+    .classList
+    .add("hidden");
 
-   THIS DOES NOT ASK THE USER TO LOGIN AGAIN.
-
-   It reads the Firebase session created by
-   the main website login.
-===================================================== */
-
-auth.onAuthStateChanged(
-  async function(user){
-
-    console.log(
-      "Firebase auth state:",
-      user
-        ? user.uid
-        : "NO USER"
-    );
+});
 
 
-    if(!user){
-
-      loadingText.textContent =
-        "No active login session. Redirecting...";
-
-
-      setTimeout(
-        function(){
-
-          window.location.href =
-            "login.html";
-
-        },
-        800
-      );
-
-
-      return;
-
-    }
-
-
-    /* ==============================
-       EXISTING LOGIN FOUND
-    ============================== */
-
-    currentUser =
-      user;
-
-
-    email.value =
-      user.email || "";
-
-
-    heroEmail.textContent =
-      user.email || "";
-
-
-    createAvatar(
-      getDefaultName()
-    );
-
-
-    try{
-
-      loadingText.textContent =
-        "Loading your profile...";
-
-
-      await loadProfile();
-
-
-      loadingScreen.style.display =
-        "none";
-
-    }
-
-    catch(error){
-
-      console.error(
-        "PROFILE LOAD ERROR:",
-        error
-      );
-
-
-      loadingScreen.style.display =
-        "none";
-
-
-      showMessage(
-        "Could not load your profile: " +
-        error.message,
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =====================================================
+/* ==========================================
    LOAD PROFILE
-
-   profiles/{uid}
-===================================================== */
+========================================== */
 
 async function loadProfile(){
 
-  if(!currentUser){
-
-    throw new Error(
-      "No authenticated user."
-    );
-
-  }
-
-
-  const profileRef =
-    db
-      .collection("profiles")
-      .doc(currentUser.uid);
-
-
-  const snapshot =
-    await profileRef.get();
-
-
-  if(snapshot.exists){
-
-    const data =
-      snapshot.data();
-
-
-    fullName.value =
-      data.fullName || "";
-
-
-    phone.value =
-      data.phone || "";
-
-
-    address.value =
-      data.address || "";
-
-
-    city.value =
-      data.city || "";
-
-
-    state.value =
-      data.state || "";
-
-
-    country.value =
-      data.country || "";
-
-
-    if(
-      data.photoURL &&
-      typeof data.photoURL === "string"
-    ){
-
-      profileAvatar.src =
-        data.photoURL;
-
-    }
-
-    else{
-
-      createAvatar(
-        data.fullName ||
-        getDefaultName()
-      );
-
-    }
-
-  }
-
-  else{
-
-    fullName.value =
-      getDefaultName();
-
-
-    createAvatar(
-      getDefaultName()
-    );
-
-  }
-
-
-  updateHero();
-
-}
-
-
-/* =====================================================
-   PHOTO BUTTON
-===================================================== */
-
-cameraButton.addEventListener(
-  "click",
-  function(){
-
-    const choice =
-      confirm(
-        "Press OK to choose a photo from your gallery.\n\n" +
-        "Press Cancel to take a new photo."
-      );
-
-
-    if(choice){
-
-      galleryInput.click();
-
-    }
-
-    else{
-
-      cameraInput.click();
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   PHOTO INPUTS
-===================================================== */
-
-galleryInput.addEventListener(
-  "change",
-  handlePhoto
-);
-
-cameraInput.addEventListener(
-  "change",
-  handlePhoto
-);
-
-
-/* =====================================================
-   HANDLE PHOTO
-===================================================== */
-
-function handlePhoto(event){
-
-  const file =
-    event.target.files &&
-    event.target.files[0];
-
-
-  if(!file){
-
+  if(!currentUser)
     return;
-
-  }
-
-
-  if(
-    !file.type ||
-    !file.type.startsWith("image/")
-  ){
-
-    showMessage(
-      "Please select a valid image.",
-      "error"
-    );
-
-    event.target.value = "";
-
-    return;
-
-  }
-
-
-  /*
-     We allow larger phone photos here because
-     the browser will compress them before Firestore.
-  */
-
-  if(
-    file.size >
-    15 * 1024 * 1024
-  ){
-
-    showMessage(
-      "That photo is too large. Please choose a photo below 15MB.",
-      "error"
-    );
-
-    event.target.value = "";
-
-    return;
-
-  }
-
-
-  selectedPhoto =
-    file;
-
-
-  /* ==============================
-     SHOW PREVIEW IMMEDIATELY
-  ============================== */
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload =
-    function(e){
-
-      profileAvatar.src =
-        e.target.result;
-
-    };
-
-
-  reader.readAsDataURL(file);
-
-
-  photoStatus.classList.add(
-    "show"
-  );
-
-
-  photoStatus.textContent =
-    "Photo selected ✓ — tap Save Profile to save it.";
-
-}
-
-
-/* =====================================================
-   COMPRESS PHOTO
-
-   This replaces Firebase Storage.
-
-   The image is resized and converted to JPEG
-   before being saved to Firestore.
-===================================================== */
-
-function compressPhoto(file){
-
-  return new Promise(
-    function(resolve,reject){
-
-      const reader =
-        new FileReader();
-
-
-      reader.onerror =
-        function(){
-
-          reject(
-            new Error(
-              "Could not read the selected photo."
-            )
-          );
-
-        };
-
-
-      reader.onload =
-        function(event){
-
-          const image =
-            new Image();
-
-
-          image.onerror =
-            function(){
-
-              reject(
-                new Error(
-                  "Could not process the selected photo."
-                )
-              );
-
-            };
-
-
-          image.onload =
-            function(){
-
-              /*
-                 Maximum image dimension.
-                 This keeps the Firestore document small.
-              */
-
-              const MAX_SIZE = 700;
-
-
-              let width =
-                image.width;
-
-              let height =
-                image.height;
-
-
-              if(width > MAX_SIZE ||
-                 height > MAX_SIZE){
-
-                if(width > height){
-
-                  height =
-                    Math.round(
-                      height *
-                      MAX_SIZE /
-                      width
-                    );
-
-                  width =
-                    MAX_SIZE;
-
-                }
-
-                else{
-
-                  width =
-                    Math.round(
-                      width *
-                      MAX_SIZE /
-                      height
-                    );
-
-                  height =
-                    MAX_SIZE;
-
-                }
-
-              }
-
-
-              const canvas =
-                document.createElement(
-                  "canvas"
-                );
-
-
-              canvas.width =
-                width;
-
-              canvas.height =
-                height;
-
-
-              const ctx =
-                canvas.getContext(
-                  "2d"
-                );
-
-
-              /*
-                 White background prevents transparent
-                 PNG images from looking strange after
-                 JPEG conversion.
-              */
-
-              ctx.fillStyle =
-                "#ffffff";
-
-              ctx.fillRect(
-                0,
-                0,
-                width,
-                height
-              );
-
-
-              ctx.drawImage(
-                image,
-                0,
-                0,
-                width,
-                height
-              );
-
-
-              /*
-                 JPEG quality.
-                 0.65 keeps the image looking good
-                 while greatly reducing the size.
-              */
-
-              const compressed =
-                canvas.toDataURL(
-                  "image/jpeg",
-                  0.65
-                );
-
-
-              /*
-                 Safety check.
-                 Firestore documents cannot hold huge
-                 amounts of data.
-              */
-
-              if(
-                compressed.length >
-                700000
-              ){
-
-                /*
-                   Try a smaller version.
-                */
-
-                const smaller =
-                  canvas.toDataURL(
-                    "image/jpeg",
-                    0.45
-                  );
-
-
-                resolve(
-                  smaller
-                );
-
-                return;
-
-              }
-
-
-              resolve(
-                compressed
-              );
-
-            };
-
-
-          image.src =
-            event.target.result;
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   SAVE PROFILE
-===================================================== */
-
-saveButton.addEventListener(
-  "click",
-  saveProfile
-);
-
-
-async function saveProfile(){
-
-  if(!currentUser){
-
-    showMessage(
-      "Your login session has expired. Please return to the website and log in.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const name =
-    fullName.value.trim();
-
-
-  if(!name){
-
-    showMessage(
-      "Please enter your full name.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  saveButton.disabled =
-    true;
-
-  saveButton.textContent =
-    "Saving...";
 
 
   try{
 
     /*
-       Get existing profile first.
+      IMPORTANT:
+
+      The document ID is the Firebase UID.
+
+      profiles/{UID}
     */
 
     const profileRef =
@@ -1863,54 +853,201 @@ async function saveProfile(){
         .doc(currentUser.uid);
 
 
-    const existingSnapshot =
+    const snapshot =
       await profileRef.get();
 
 
-    let photoURL = "";
+    if(!snapshot.exists){
+
+      /*
+        No profile yet.
+
+        Use information from Firebase Auth.
+      */
+
+      const authName =
+        currentUser.displayName || "";
 
 
-    if(existingSnapshot.exists){
+      document.getElementById("fullName").value =
+        authName;
 
-      photoURL =
-        existingSnapshot.data().photoURL ||
-        "";
+
+      document.getElementById("heroName").textContent =
+        authName || "Customer";
+
+
+      return;
+    }
+
+
+    const data =
+      snapshot.data();
+
+
+    /*
+      Read the EXACT field names
+      expected by your Admin.
+    */
+
+    document.getElementById("fullName").value =
+      data.fullName || "";
+
+
+    document.getElementById("phone").value =
+      data.phone || "";
+
+
+    document.getElementById("address").value =
+      data.address || "";
+
+
+    document.getElementById("city").value =
+      data.city || "";
+
+
+    document.getElementById("state").value =
+      data.state || "";
+
+
+    document.getElementById("country").value =
+      data.country || "";
+
+
+    document.getElementById("heroName").textContent =
+      data.fullName ||
+      currentUser.displayName ||
+      "Customer";
+
+
+    /*
+      Load photo.
+    */
+
+    if(data.photoURL){
+
+      showPhoto(data.photoURL);
 
     }
 
 
-    /* ======================================
-       COMPRESS NEW PHOTO
-    ====================================== */
+  }catch(error){
 
-    if(selectedPhoto){
-
-      photoStatus.classList.add(
-        "show"
-      );
+    console.error(
+      "Profile loading error:",
+      error
+    );
 
 
-      photoStatus.textContent =
-        "Preparing photo...";
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }
+
+}
 
 
-      photoURL =
-        await compressPhoto(
-          selectedPhoto
-        );
+/* ==========================================
+   SAVE PROFILE
+========================================== */
+
+async function saveProfile(){
+
+  if(!currentUser){
+
+    showMessage(
+      "You must be logged in.",
+      "error"
+    );
+
+    return;
+  }
 
 
-      photoStatus.textContent =
-        "Photo prepared ✓";
+  const fullName =
+    document
+      .getElementById("fullName")
+      .value
+      .trim();
 
-    }
+
+  const phone =
+    document
+      .getElementById("phone")
+      .value
+      .trim();
 
 
-    /* ======================================
-       PROFILE DATA
+  const address =
+    document
+      .getElementById("address")
+      .value
+      .trim();
 
-       This matches your Firestore structure.
-    ====================================== */
+
+  const city =
+    document
+      .getElementById("city")
+      .value
+      .trim();
+
+
+  const state =
+    document
+      .getElementById("state")
+      .value
+      .trim();
+
+
+  const country =
+    document
+      .getElementById("country")
+      .value
+      .trim();
+
+
+  const saveBtn =
+    document.getElementById("saveBtn");
+
+
+  if(!fullName){
+
+    showMessage(
+      "Please enter your full name.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  saveBtn.disabled = true;
+
+  saveBtn.textContent =
+    "Saving...";
+
+
+  try{
+
+    /*
+      IMPORTANT FIRESTORE STRUCTURE
+
+      profiles
+        └── Firebase UID
+            ├── uid
+            ├── fullName
+            ├── email
+            ├── phone
+            ├── address
+            ├── city
+            ├── state
+            ├── country
+            ├── photoURL
+            └── updatedAt
+    */
+
 
     const profileData = {
 
@@ -1918,317 +1055,470 @@ async function saveProfile(){
         currentUser.uid,
 
       fullName:
-        name,
+        fullName,
+
+      email:
+        currentUser.email || "",
 
       phone:
-        phone.value.trim(),
+        phone,
 
       address:
-        address.value.trim(),
+        address,
 
       city:
-        city.value.trim(),
+        city,
 
       state:
-        state.value.trim(),
+        state,
 
       country:
-        country.value.trim(),
+        country,
 
       photoURL:
-        photoURL,
+        currentPhotoURL || "",
 
       updatedAt:
-        firebase.firestore
-          .FieldValue
+        firebase.firestore.FieldValue
           .serverTimestamp()
 
     };
 
 
-    /* ======================================
-       SAVE TO PROFILES
-    ====================================== */
+    /*
+      set() with merge makes sure
+      the same customer's profile
+      is updated instead of creating
+      random documents.
+    */
 
-    await profileRef.set(
-      profileData,
-      {
-        merge:true
-      }
-    );
-
-
-    /* ======================================
-       UPDATE AUTH PROFILE
-
-       This is only the Firebase Auth
-       display name/photo information.
-    ====================================== */
-
-    try{
-
-      await currentUser.updateProfile({
-
-        displayName:
-          name,
-
-        photoURL:
-          photoURL || null
-
-      });
-
-    }
-
-    catch(authError){
-
-      console.warn(
-        "Auth profile update warning:",
-        authError
+    await db
+      .collection("profiles")
+      .doc(currentUser.uid)
+      .set(
+        profileData,
+        {
+          merge:true
+        }
       );
 
-      /*
-         Do not fail the entire profile save
-         just because the optional Auth profile
-         update failed.
-      */
 
-    }
+    /*
+      Also update the user's
+      basic customer document.
+
+      This helps your existing
+      Admin customer list.
+    */
+
+    await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .set({
+
+        uid:
+          currentUser.uid,
+
+        name:
+          fullName,
+
+        email:
+          currentUser.email || "",
+
+        role:
+          "customer",
+
+        active:
+          true,
+
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      },{
+        merge:true
+      });
 
 
-    /* ======================================
-       FINISH
-    ====================================== */
+    /*
+      Update hero.
+    */
 
-    selectedPhoto =
-      null;
-
-
-    photoStatus.classList.remove(
-      "show"
-    );
-
-
-    updateHero();
+    document.getElementById("heroName").textContent =
+      fullName;
 
 
     showMessage(
-      "Profile updated successfully ✓",
+      "Profile saved successfully. Your profile is now connected to the Admin.",
       "success"
     );
 
 
-  }
-
-  catch(error){
+  }catch(error){
 
     console.error(
-      "PROFILE SAVE ERROR:",
+      "Save profile error:",
       error
     );
 
 
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+
+  }finally{
+
+    saveBtn.disabled = false;
+
+    saveBtn.textContent =
+      "Save Profile";
+
+  }
+
+}
+
+
+/* ==========================================
+   PHOTO SYSTEM
+========================================== */
+
+let currentPhotoURL = "";
+
+
+/*
+  IMPORTANT:
+
+  This system DOES NOT use Firebase Storage.
+
+  The image is converted to a small
+  data URL and saved directly in Firestore.
+
+  This is suitable for small profile
+  pictures.
+*/
+
+
+function choosePhoto(){
+
+  document
+    .getElementById("photoInput")
+    .click();
+
+}
+
+
+function handlePhoto(event){
+
+  const file =
+    event.target.files[0];
+
+
+  if(!file)
+    return;
+
+
+  /*
+    Keep profile pictures reasonably small.
+  */
+
+  if(file.size > 2 * 1024 * 1024){
+
+    showMessage(
+      "Please choose a photo smaller than 2MB.",
+      "error"
+    );
+
+    event.target.value = "";
+
+    return;
+  }
+
+
+  if(!file.type.startsWith("image/")){
+
+    showMessage(
+      "Please choose an image file.",
+      "error"
+    );
+
+    event.target.value = "";
+
+    return;
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = function(e){
+
+    currentPhotoURL =
+      e.target.result;
+
+
+    showPhoto(
+      currentPhotoURL
+    );
+
+
     /*
-       Make sure the page never remains
-       permanently stuck on Saving...
+      Photo is only saved to
+      Firestore when Save Profile
+      is pressed.
     */
 
     showMessage(
-      "Could not save profile: " +
-      error.message,
+      "Photo selected. Press Save Profile to save it.",
+      "success"
+    );
+
+  };
+
+
+  reader.onerror = function(){
+
+    showMessage(
+      "Could not read the photo.",
+      "error"
+    );
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* ==========================================
+   SHOW PHOTO
+========================================== */
+
+function showPhoto(url){
+
+  if(!url)
+    return;
+
+
+  const image =
+    document.getElementById(
+      "profilePhoto"
+    );
+
+
+  const defaultAvatar =
+    document.getElementById(
+      "defaultAvatar"
+    );
+
+
+  image.src = url;
+
+  image.style.display =
+    "flex";
+
+
+  defaultAvatar.style.display =
+    "none";
+
+
+  currentPhotoURL =
+    url;
+
+}
+
+
+/* ==========================================
+   CHANGE PASSWORD
+========================================== */
+
+async function changePassword(){
+
+  if(!currentUser)
+    return;
+
+
+  const email =
+    currentUser.email;
+
+
+  if(!email){
+
+    showMessage(
+      "Your account does not have an email address.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await auth
+      .sendPasswordResetEmail(email);
+
+
+    showMessage(
+      "Password reset email sent to " + email,
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    showMessage(
+      friendlyError(error),
       "error"
     );
 
   }
 
+}
 
-  saveButton.disabled =
-    false;
 
-  saveButton.textContent =
-    "Save Profile";
+/* ==========================================
+   SIGN OUT
+========================================== */
+
+async function signOut(){
+
+  try{
+
+    await auth.signOut();
+
+    window.location.href =
+      "login.html";
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }
 
 }
 
 
-/* =====================================================
-   CHANGE PASSWORD
-===================================================== */
+/* ==========================================
+   BACK
+========================================== */
 
-document
-  .getElementById(
-    "passwordButton"
-  )
-  .addEventListener(
-    "click",
-    async function(){
+function goBack(){
 
-      if(
-        !currentUser ||
-        !currentUser.email
-      ){
+  if(
+    document.referrer &&
+    document.referrer.includes(
+      window.location.hostname
+    )
+  ){
 
-        showMessage(
-          "No active account found.",
-          "error"
-        );
+    history.back();
 
-        return;
+  }else{
 
-      }
+    window.location.href =
+      "index.html";
+
+  }
+
+}
 
 
-      const okay =
-        confirm(
-          "Send a password reset link to:\n\n" +
-          currentUser.email +
-          "?"
-        );
-
-
-      if(!okay){
-
-        return;
-
-      }
-
-
-      try{
-
-        await auth
-          .sendPasswordResetEmail(
-            currentUser.email
-          );
-
-
-        alert(
-          "Password reset email sent successfully."
-        );
-
-      }
-
-      catch(error){
-
-        alert(
-          "Could not send password reset email:\n\n" +
-          error.message
-        );
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
-   SIGN OUT
-===================================================== */
-
-document
-  .getElementById(
-    "logoutButton"
-  )
-  .addEventListener(
-    "click",
-    async function(){
-
-      const okay =
-        confirm(
-          "Are you sure you want to sign out?"
-        );
-
-
-      if(!okay){
-
-        return;
-
-      }
-
-
-      try{
-
-        await auth.signOut();
-
-
-        window.location.href =
-          "login.html";
-
-      }
-
-      catch(error){
-
-        showMessage(
-          "Could not sign out: " +
-          error.message,
-          "error"
-        );
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
-   BACK BUTTON
-===================================================== */
-
-document
-  .getElementById(
-    "backButton"
-  )
-  .addEventListener(
-    "click",
-    function(){
-
-      if(
-        document.referrer &&
-        document.referrer.includes(
-          window.location.hostname
-        )
-      ){
-
-        window.history.back();
-
-      }
-
-      else{
-
-        window.location.href =
-          "index.html";
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
+/* ==========================================
    MESSAGE
-===================================================== */
+========================================== */
 
 function showMessage(
   text,
   type
 ){
 
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+
   message.textContent =
     text;
 
 
   message.className =
-    "message " +
-    type;
+    "message " + type;
 
 
-  setTimeout(
-    function(){
+  clearTimeout(
+    showMessage.timer
+  );
+
+
+  showMessage.timer =
+    setTimeout(() => {
+
+      message.textContent =
+        "";
 
       message.className =
         "message";
 
-    },
-    6000
-  );
+    },5000);
+
+}
+
+
+/* ==========================================
+   ERROR HANDLER
+========================================== */
+
+function friendlyError(error){
+
+  if(!error)
+    return "Something went wrong.";
+
+
+  if(
+    error.code ===
+    "permission-denied"
+  ){
+
+    return "Permission denied. Check your Firestore Rules.";
+
+  }
+
+
+  if(
+    error.code ===
+    "auth/requires-recent-login"
+  ){
+
+    return "Please sign in again and try again.";
+
+  }
+
+
+  if(
+    error.code ===
+    "auth/too-many-requests"
+  ){
+
+    return "Too many attempts. Try again later.";
+
+  }
+
+
+  return error.message ||
+    "Something went wrong.";
 
 }
 
