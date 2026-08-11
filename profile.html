@@ -28,7 +28,7 @@
   --border:rgba(255,255,255,.09);
 
   --blue:#38bdf8;
-  --blueDark:#0284c7;
+  --blue-dark:#0284c7;
 
   --green:#22c55e;
   --red:#ef4444;
@@ -38,13 +38,8 @@
   --muted:#94a3b8;
 }
 
-html{
-  min-height:100%;
-}
-
 body{
   min-height:100vh;
-
   background:
     radial-gradient(
       circle at top left,
@@ -54,31 +49,30 @@ body{
     var(--bg);
 
   color:var(--text);
-
   font-family:'Poppins',sans-serif;
 }
 
 
-/* ================================
+/* =========================
    HEADER
-================================ */
+========================= */
 
 header{
-  height:70px;
+  height:72px;
 
   display:flex;
   align-items:center;
 
   padding:0 16px;
 
-  background:rgba(2,6,23,.96);
+  background:rgba(2,6,23,.97);
 
   border-bottom:1px solid var(--border);
 
   position:sticky;
   top:0;
 
-  z-index:20;
+  z-index:50;
 
   backdrop-filter:blur(12px);
 }
@@ -100,46 +94,46 @@ header{
 
   color:white;
 
-  font-size:25px;
+  font-size:27px;
 
   cursor:pointer;
 }
 
-.back-button:hover{
+.back-button:active{
   background:var(--card2);
 }
 
 .logo{
-  width:40px;
-  height:40px;
-
-  border-radius:12px;
+  width:42px;
+  height:42px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  border-radius:13px;
+
   background:
     linear-gradient(
       135deg,
       var(--blue),
-      var(--blueDark)
+      var(--blue-dark)
     );
 
   color:#00111c;
 
-  font-size:21px;
+  font-size:22px;
 }
 
 .header-title{
-  font-size:17px;
+  font-size:18px;
   font-weight:600;
 }
 
 
-/* ================================
+/* =========================
    MAIN
-================================ */
+========================= */
 
 main{
   width:100%;
@@ -147,13 +141,13 @@ main{
 
   margin:auto;
 
-  padding:25px 15px 50px;
+  padding:22px 14px 50px;
 }
 
 
-/* ================================
-   HERO
-================================ */
+/* =========================
+   PROFILE HERO
+========================= */
 
 .profile-hero{
   position:relative;
@@ -162,7 +156,7 @@ main{
 
   text-align:center;
 
-  padding:30px 20px;
+  padding:30px 18px;
 
   border:1px solid var(--border);
 
@@ -179,22 +173,6 @@ main{
     0 20px 60px rgba(0,0,0,.25);
 }
 
-.profile-hero::before{
-  content:"";
-
-  position:absolute;
-
-  width:180px;
-  height:180px;
-
-  border-radius:50%;
-
-  background:rgba(56,189,248,.08);
-
-  top:-90px;
-  right:-70px;
-}
-
 .avatar-wrapper{
   position:relative;
 
@@ -207,6 +185,8 @@ main{
 .profile-avatar{
   width:135px;
   height:135px;
+
+  display:block;
 
   border-radius:50%;
 
@@ -226,8 +206,8 @@ main{
   right:-2px;
   bottom:3px;
 
-  width:43px;
-  height:43px;
+  width:44px;
+  height:44px;
 
   border:3px solid #0d1b2a;
 
@@ -246,7 +226,7 @@ main{
   font-size:24px;
   font-weight:600;
 
-  margin-bottom:4px;
+  margin-bottom:5px;
 }
 
 .profile-email{
@@ -266,7 +246,7 @@ main{
 
   margin-top:12px;
 
-  padding:7px 13px;
+  padding:7px 14px;
 
   border-radius:30px;
 
@@ -278,9 +258,9 @@ main{
 }
 
 
-/* ================================
-   CARDS
-================================ */
+/* =========================
+   CARD
+========================= */
 
 .card{
   margin-top:18px;
@@ -289,7 +269,7 @@ main{
 
   border:1px solid var(--border);
 
-  border-radius:20px;
+  border-radius:21px;
 
   background:var(--card);
 }
@@ -301,23 +281,22 @@ main{
 
   gap:11px;
 
-  margin-bottom:20px;
+  margin-bottom:21px;
 }
 
 .card-icon{
-  width:38px;
-  height:38px;
+  width:40px;
+  height:40px;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
-  border-radius:11px;
+  border-radius:12px;
 
   background:rgba(56,189,248,.10);
 
-  font-size:19px;
+  font-size:20px;
 }
 
 .card-heading h2{
@@ -327,13 +306,16 @@ main{
 
 .card-heading p{
   color:var(--muted);
+
   font-size:11px;
+
+  margin-top:2px;
 }
 
 
-/* ================================
+/* =========================
    FORM
-================================ */
+========================= */
 
 .form-group{
   margin-bottom:17px;
@@ -387,28 +369,29 @@ main{
 }
 
 .form-group textarea{
-  min-height:100px;
+  min-height:95px;
 
   resize:vertical;
 }
 
 
-/* ================================
+/* =========================
    LOCATION
-================================ */
+========================= */
 
 .location-grid{
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    repeat(2,1fr);
 
   gap:14px;
 }
 
 
-/* ================================
+/* =========================
    SAVE BUTTON
-================================ */
+========================= */
 
 .save-button{
   width:100%;
@@ -419,13 +402,13 @@ main{
 
   border:0;
 
-  border-radius:12px;
+  border-radius:13px;
 
   background:
     linear-gradient(
       135deg,
       var(--blue),
-      var(--blueDark)
+      var(--blue-dark)
     );
 
   color:#00111c;
@@ -446,56 +429,36 @@ main{
 }
 
 
-/* ================================
-   UPLOAD
-================================ */
+/* =========================
+   PHOTO STATUS
+========================= */
 
-.upload-box{
+.photo-status{
   display:none;
 
-  margin:0 0 15px;
-}
+  margin-bottom:15px;
 
-.upload-track{
-  width:100%;
+  padding:11px;
 
-  height:7px;
+  border-radius:11px;
 
-  overflow:hidden;
+  background:rgba(56,189,248,.08);
 
-  border-radius:20px;
-
-  background:#18283a;
-}
-
-.upload-progress{
-  width:0%;
-
-  height:100%;
-
-  border-radius:20px;
-
-  background:var(--blue);
-
-  transition:.15s;
-}
-
-.upload-text{
-  display:block;
-
-  margin-top:7px;
-
-  color:var(--muted);
-
-  font-size:11px;
+  color:var(--blue);
 
   text-align:center;
+
+  font-size:12px;
+}
+
+.photo-status.show{
+  display:block;
 }
 
 
-/* ================================
+/* =========================
    MESSAGE
-================================ */
+========================= */
 
 .message{
   display:none;
@@ -528,9 +491,9 @@ main{
 }
 
 
-/* ================================
+/* =========================
    SETTINGS
-================================ */
+========================= */
 
 .setting-button{
   width:100%;
@@ -541,7 +504,7 @@ main{
 
   border:1px solid var(--border);
 
-  border-radius:12px;
+  border-radius:13px;
 
   background:var(--card2);
 
@@ -571,9 +534,9 @@ main{
 }
 
 
-/* ================================
-   LOADING SCREEN
-================================ */
+/* =========================
+   LOADING
+========================= */
 
 .loading-screen{
   position:fixed;
@@ -585,7 +548,6 @@ main{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   background:var(--bg);
@@ -600,37 +562,36 @@ main{
 }
 
 .loading-icon{
-  width:60px;
-  height:60px;
+  width:58px;
+  height:58px;
 
-  margin:0 auto 16px;
+  margin:0 auto 15px;
 
   display:flex;
 
   align-items:center;
   justify-content:center;
 
-  border-radius:18px;
+  border-radius:17px;
 
-  background:var(--blue);
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue-dark)
+    );
 
   color:#00111c;
 
-  font-size:27px;
+  font-size:26px;
 
-  animation:pulse 1.3s infinite;
-}
-
-.loading-content h2{
-  font-size:17px;
-
-  margin-bottom:5px;
+  animation:pulse 1.2s infinite;
 }
 
 .loading-content p{
   color:var(--muted);
 
-  font-size:12px;
+  font-size:13px;
 }
 
 @keyframes pulse{
@@ -640,97 +601,20 @@ main{
   }
 
   50%{
-    transform:scale(1.07);
+    transform:scale(1.08);
   }
 
 }
 
 
-/* ================================
-   ERROR SCREEN
-================================ */
-
-.error-screen{
-  display:none;
-
-  min-height:100vh;
-
-  padding:30px 20px;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-}
-
-.error-box{
-  width:100%;
-
-  max-width:400px;
-
-  padding:30px 20px;
-
-  border:1px solid var(--border);
-
-  border-radius:20px;
-
-  background:var(--card);
-}
-
-.error-icon{
-  font-size:45px;
-
-  margin-bottom:15px;
-}
-
-.error-box h2{
-  margin-bottom:8px;
-}
-
-.error-box p{
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.6;
-
-  margin-bottom:20px;
-}
-
-.login-button{
-  display:inline-block;
-
-  padding:13px 25px;
-
-  border-radius:12px;
-
-  background:var(--blue);
-
-  color:#00111c;
-
-  text-decoration:none;
-
-  font-weight:700;
-}
-
-
-/* ================================
-   HIDDEN
-================================ */
-
-.hidden{
-  display:none !important;
-}
-
-
-/* ================================
+/* =========================
    MOBILE
-================================ */
+========================= */
 
 @media(max-width:600px){
 
   main{
-    padding:17px 12px 40px;
+    padding:16px 12px 40px;
   }
 
   .card{
@@ -739,6 +623,7 @@ main{
 
   .location-grid{
     grid-template-columns:1fr;
+
     gap:0;
   }
 
@@ -751,7 +636,7 @@ main{
   }
 
   .header-title{
-    font-size:15px;
+    font-size:16px;
   }
 
 }
@@ -764,13 +649,13 @@ main{
 <body>
 
 
-<!-- =================================
+<!-- =========================
      LOADING
-================================= -->
+========================= -->
 
 <div
-  id="loadingScreen"
   class="loading-screen"
+  id="loadingScreen"
 >
 
   <div class="loading-content">
@@ -778,10 +663,6 @@ main{
     <div class="loading-icon">
       ⚡
     </div>
-
-    <h2>
-      Loading your profile
-    </h2>
 
     <p id="loadingText">
       Checking your account...
@@ -792,59 +673,17 @@ main{
 </div>
 
 
-<!-- =================================
-     ERROR / NO LOGIN
-================================= -->
-
-<div
-  id="errorScreen"
-  class="error-screen"
->
-
-  <div class="error-box">
-
-    <div class="error-icon">
-      ⚡
-    </div>
-
-    <h2>
-      No Active Login
-    </h2>
-
-    <p id="errorText">
-      Please log in to Danny Smart Power first.
-    </p>
-
-    <a
-      href="login.html"
-      class="login-button"
-    >
-      Go to Login
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- =================================
-     MAIN APP
-================================= -->
-
-<div id="app" class="hidden">
-
-
-<!-- =================================
+<!-- =========================
      HEADER
-================================= -->
+========================= -->
 
 <header>
 
   <div class="header-left">
 
     <button
-      id="backButton"
       class="back-button"
+      id="backButton"
       type="button"
     >
       ←
@@ -866,9 +705,9 @@ main{
 <main>
 
 
-<!-- =================================
-     PROFILE HERO
-================================= -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="profile-hero">
 
@@ -892,7 +731,7 @@ main{
 
 
   <h1 id="heroName">
-    Customer
+    Loading...
   </h1>
 
 
@@ -910,17 +749,16 @@ main{
 
 
   <input
-    id="galleryInput"
-    class="hidden"
     type="file"
+    id="galleryInput"
+    hidden
     accept="image/jpeg,image/png,image/webp"
   >
 
-
   <input
-    id="cameraInput"
-    class="hidden"
     type="file"
+    id="cameraInput"
+    hidden
     accept="image/*"
     capture="environment"
   >
@@ -928,9 +766,9 @@ main{
 </section>
 
 
-<!-- =================================
+<!-- =========================
      PERSONAL INFORMATION
-================================= -->
+========================= -->
 
 <section class="card">
 
@@ -947,7 +785,7 @@ main{
       </h2>
 
       <p>
-        Keep your customer information updated
+        Keep your customer information up to date
       </p>
 
     </div>
@@ -1070,29 +908,11 @@ main{
   </div>
 
 
-  <!-- PHOTO UPLOAD -->
-
   <div
-    id="uploadBox"
-    class="upload-box"
+    id="photoStatus"
+    class="photo-status"
   >
-
-    <div class="upload-track">
-
-      <div
-        id="uploadProgress"
-        class="upload-progress"
-      ></div>
-
-    </div>
-
-    <span
-      id="uploadText"
-      class="upload-text"
-    >
-      Uploading photo...
-    </span>
-
+    Photo selected ✓
   </div>
 
 
@@ -1113,9 +933,9 @@ main{
 </section>
 
 
-<!-- =================================
+<!-- =========================
      ACCOUNT SETTINGS
-================================= -->
+========================= -->
 
 <section class="card">
 
@@ -1162,12 +982,10 @@ main{
 
 </main>
 
-</div>
 
-
-<!-- =================================
+<!-- =========================
      FIREBASE
-================================= -->
+========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -1175,41 +993,52 @@ main{
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-
 
 <script>
 
 /* =====================================================
-   FIREBASE CONFIGURATION
-
-   IMPORTANT:
-   This MUST be exactly the same Firebase project
-   used by login.html.
+   FIREBASE CONFIG
 ===================================================== */
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-  authDomain: "danny-smart-power.firebaseapp.com",
-  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
-  projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.firebasestorage.app",
-  messagingSenderId: "649735645158",
-  appId: "1:649735645158:web:cff518b89721a163679827",
-  measurementId: "G-258YKLP5ZS"
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
 };
 
 
-
 /* =====================================================
-   FIREBASE INITIALIZATION
+   INITIALIZE FIREBASE
+
+   IMPORTANT:
+   NO FIREBASE STORAGE
 ===================================================== */
 
-if(!firebase.apps.length){
-
-  firebase.initializeApp(firebaseConfig);
-
-}
+firebase.initializeApp(
+  firebaseConfig
+);
 
 const auth =
   firebase.auth();
@@ -1217,8 +1046,14 @@ const auth =
 const db =
   firebase.firestore();
 
-const storage =
-  firebase.storage();
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentUser = null;
+
+let selectedPhoto = null;
 
 
 /* =====================================================
@@ -1233,21 +1068,6 @@ const loadingScreen =
 const loadingText =
   document.getElementById(
     "loadingText"
-  );
-
-const errorScreen =
-  document.getElementById(
-    "errorScreen"
-  );
-
-const errorText =
-  document.getElementById(
-    "errorText"
-  );
-
-const app =
-  document.getElementById(
-    "app"
   );
 
 const profileAvatar =
@@ -1300,16 +1120,6 @@ const country =
     "country"
   );
 
-const saveButton =
-  document.getElementById(
-    "saveButton"
-  );
-
-const message =
-  document.getElementById(
-    "message"
-  );
-
 const cameraButton =
   document.getElementById(
     "cameraButton"
@@ -1325,323 +1135,68 @@ const cameraInput =
     "cameraInput"
   );
 
-const uploadBox =
+const saveButton =
   document.getElementById(
-    "uploadBox"
+    "saveButton"
   );
 
-const uploadProgress =
+const photoStatus =
   document.getElementById(
-    "uploadProgress"
+    "photoStatus"
   );
 
-const uploadText =
+const message =
   document.getElementById(
-    "uploadText"
-  );
-
-const passwordButton =
-  document.getElementById(
-    "passwordButton"
-  );
-
-const logoutButton =
-  document.getElementById(
-    "logoutButton"
-  );
-
-const backButton =
-  document.getElementById(
-    "backButton"
+    "message"
   );
 
 
 /* =====================================================
-   VARIABLES
+   DEFAULT AVATAR
 ===================================================== */
 
-let currentUser = null;
-
-let selectedPhoto = null;
-
-
-/* =====================================================
-   START
-
-   We deliberately wait for Firebase Auth to tell us
-   whether a session exists.
-
-   NO SECOND LOGIN.
-===================================================== */
-
-loadingText.textContent =
-  "Checking your login session...";
-
-
-auth.onAuthStateChanged(
-  async function(user){
-
-    console.log(
-      "Firebase Auth user:",
-      user
-    );
-
-
-    /*
-      USER IS NOT LOGGED IN
-    */
-
-    if(!user){
-
-      showNoLogin();
-
-      return;
-
-    }
-
-
-    /*
-      USER IS LOGGED IN
-    */
-
-    currentUser =
-      user;
-
-
-    console.log(
-      "Logged in UID:",
-      user.uid
-    );
-
-
-    loadingText.textContent =
-      "Loading your profile...";
-
-
-    try{
-
-      await loadProfile();
-
-
-      showApp();
-
-    }
-
-    catch(error){
-
-      console.error(
-        "PROFILE LOAD ERROR:",
-        error
-      );
-
-
-      showApp();
-
-
-      showMessage(
-        "Profile could not be loaded: " +
-        getFirebaseError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   SHOW APP
-===================================================== */
-
-function showApp(){
-
-  loadingScreen.classList.add(
-    "hidden"
-  );
-
-  errorScreen.classList.add(
-    "hidden"
-  );
-
-  app.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-/* =====================================================
-   SHOW NO LOGIN
-===================================================== */
-
-function showNoLogin(){
-
-  loadingScreen.classList.add(
-    "hidden"
-  );
-
-  app.classList.add(
-    "hidden"
-  );
-
-  errorScreen.style.display =
-    "flex";
-
-}
-
-
-/* =====================================================
-   LOAD PROFILE
-
-   Firestore:
-
-   profiles
-      └── USER UID
-===================================================== */
-
-async function loadProfile(){
-
-  if(!currentUser){
-
-    throw new Error(
-      "No authenticated user."
-    );
-
-  }
-
-
-  /*
-    Always use the Firebase Auth UID.
-  */
-
-  const uid =
-    currentUser.uid;
-
-
-  /*
-    Basic account information comes
-    directly from Firebase Auth.
-  */
-
-  email.value =
-    currentUser.email || "";
-
-  heroEmail.textContent =
-    currentUser.email || "";
-
-
-  /*
-    Default name
-  */
-
-  const defaultName =
-    currentUser.displayName ||
-    getDefaultName();
-
-
-  /*
-    Read profiles/{uid}
-  */
-
-  const profileRef =
-    db
-      .collection("profiles")
-      .doc(uid);
-
-
-  const snapshot =
-    await profileRef.get();
-
-
-  if(snapshot.exists){
-
-    const data =
-      snapshot.data();
-
-
-    console.log(
-      "Profile data:",
-      data
-    );
-
-
-    fullName.value =
-      data.fullName ||
-      defaultName;
-
-
-    phone.value =
-      data.phone ||
-      "";
-
-
-    address.value =
-      data.address ||
-      "";
-
-
-    city.value =
-      data.city ||
-      "";
-
-
-    state.value =
-      data.state ||
-      "";
-
-
-    country.value =
-      data.country ||
-      "";
-
-
-    if(data.photoURL){
-
-      profileAvatar.src =
-        data.photoURL;
-
-    }
-
-    else{
-
-      createDefaultAvatar(
-        data.fullName ||
-        defaultName
-      );
-
-    }
-
-  }
-
-  else{
-
-    /*
-      First time opening profile.
-      Create the form from Firebase Auth.
-    */
-
-    fullName.value =
-      defaultName;
-
-
-    createDefaultAvatar(
-      defaultName
-    );
-
-
-    /*
-      We do NOT automatically create the
-      Firestore document here.
-
-      It will be created when the customer
-      presses Save Profile.
-    */
-
-  }
-
-
-  updateHero();
+function createAvatar(name){
+
+  const letter =
+    (name || "C")
+      .trim()
+      .charAt(0)
+      .toUpperCase() || "C";
+
+
+  profileAvatar.src =
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="300"
+        height="300"
+        viewBox="0 0 300 300"
+      >
+
+        <rect
+          width="300"
+          height="300"
+          rx="150"
+          fill="#12324b"
+        />
+
+        <text
+          x="150"
+          y="175"
+          text-anchor="middle"
+          font-family="Arial"
+          font-size="130"
+          font-weight="bold"
+          fill="#38bdf8"
+        >
+          ${letter}
+        </text>
+
+      </svg>
+
+    `);
 
 }
 
@@ -1654,6 +1209,16 @@ function getDefaultName(){
 
   if(
     currentUser &&
+    currentUser.displayName
+  ){
+
+    return currentUser.displayName;
+
+  }
+
+
+  if(
+    currentUser &&
     currentUser.email
   ){
 
@@ -1663,61 +1228,8 @@ function getDefaultName(){
 
   }
 
+
   return "Customer";
-
-}
-
-
-/* =====================================================
-   DEFAULT AVATAR
-===================================================== */
-
-function createDefaultAvatar(name){
-
-  const safeName =
-    name ||
-    "Customer";
-
-
-  const letter =
-    safeName
-      .charAt(0)
-      .toUpperCase();
-
-
-  profileAvatar.src =
-    "data:image/svg+xml;charset=UTF-8," +
-
-    encodeURIComponent(`
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="300"
-        height="300"
-      >
-
-        <rect
-          width="300"
-          height="300"
-          rx="150"
-          fill="#12324b"
-        />
-
-        <text
-          x="150"
-          y="170"
-          text-anchor="middle"
-          font-family="Arial"
-          font-size="125"
-          font-weight="bold"
-          fill="#38bdf8"
-        >
-          ${letter}
-        </text>
-
-      </svg>
-
-    `);
 
 }
 
@@ -1738,7 +1250,207 @@ function updateHero(){
 
 
   heroEmail.textContent =
-    currentUser.email || "";
+    currentUser &&
+    currentUser.email
+      ? currentUser.email
+      : "";
+
+}
+
+
+/* =====================================================
+   AUTH SESSION
+
+   THIS DOES NOT ASK THE USER TO LOGIN AGAIN.
+
+   It reads the Firebase session created by
+   the main website login.
+===================================================== */
+
+auth.onAuthStateChanged(
+  async function(user){
+
+    console.log(
+      "Firebase auth state:",
+      user
+        ? user.uid
+        : "NO USER"
+    );
+
+
+    if(!user){
+
+      loadingText.textContent =
+        "No active login session. Redirecting...";
+
+
+      setTimeout(
+        function(){
+
+          window.location.href =
+            "login.html";
+
+        },
+        800
+      );
+
+
+      return;
+
+    }
+
+
+    /* ==============================
+       EXISTING LOGIN FOUND
+    ============================== */
+
+    currentUser =
+      user;
+
+
+    email.value =
+      user.email || "";
+
+
+    heroEmail.textContent =
+      user.email || "";
+
+
+    createAvatar(
+      getDefaultName()
+    );
+
+
+    try{
+
+      loadingText.textContent =
+        "Loading your profile...";
+
+
+      await loadProfile();
+
+
+      loadingScreen.style.display =
+        "none";
+
+    }
+
+    catch(error){
+
+      console.error(
+        "PROFILE LOAD ERROR:",
+        error
+      );
+
+
+      loadingScreen.style.display =
+        "none";
+
+
+      showMessage(
+        "Could not load your profile: " +
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   LOAD PROFILE
+
+   profiles/{uid}
+===================================================== */
+
+async function loadProfile(){
+
+  if(!currentUser){
+
+    throw new Error(
+      "No authenticated user."
+    );
+
+  }
+
+
+  const profileRef =
+    db
+      .collection("profiles")
+      .doc(currentUser.uid);
+
+
+  const snapshot =
+    await profileRef.get();
+
+
+  if(snapshot.exists){
+
+    const data =
+      snapshot.data();
+
+
+    fullName.value =
+      data.fullName || "";
+
+
+    phone.value =
+      data.phone || "";
+
+
+    address.value =
+      data.address || "";
+
+
+    city.value =
+      data.city || "";
+
+
+    state.value =
+      data.state || "";
+
+
+    country.value =
+      data.country || "";
+
+
+    if(
+      data.photoURL &&
+      typeof data.photoURL === "string"
+    ){
+
+      profileAvatar.src =
+        data.photoURL;
+
+    }
+
+    else{
+
+      createAvatar(
+        data.fullName ||
+        getDefaultName()
+      );
+
+    }
+
+  }
+
+  else{
+
+    fullName.value =
+      getDefaultName();
+
+
+    createAvatar(
+      getDefaultName()
+    );
+
+  }
+
+
+  updateHero();
 
 }
 
@@ -1754,7 +1466,7 @@ cameraButton.addEventListener(
     const choice =
       confirm(
         "Press OK to choose a photo from your gallery.\n\n" +
-        "Press Cancel to take a new photo with your camera."
+        "Press Cancel to take a new photo."
       );
 
 
@@ -1796,6 +1508,7 @@ cameraInput.addEventListener(
 function handlePhoto(event){
 
   const file =
+    event.target.files &&
     event.target.files[0];
 
 
@@ -1807,18 +1520,16 @@ function handlePhoto(event){
 
 
   if(
-    !file.type.startsWith(
-      "image/"
-    )
+    !file.type ||
+    !file.type.startsWith("image/")
   ){
 
     showMessage(
-      "Please choose an image file.",
+      "Please select a valid image.",
       "error"
     );
 
-    event.target.value =
-      "";
+    event.target.value = "";
 
     return;
 
@@ -1826,21 +1537,21 @@ function handlePhoto(event){
 
 
   /*
-    Maximum 5MB
+     We allow larger phone photos here because
+     the browser will compress them before Firestore.
   */
 
   if(
     file.size >
-    5 * 1024 * 1024
+    15 * 1024 * 1024
   ){
 
     showMessage(
-      "Please choose an image smaller than 5MB.",
+      "That photo is too large. Please choose a photo below 15MB.",
       "error"
     );
 
-    event.target.value =
-      "";
+    event.target.value = "";
 
     return;
 
@@ -1851,9 +1562,9 @@ function handlePhoto(event){
     file;
 
 
-  /*
-    Show preview immediately.
-  */
+  /* ==============================
+     SHOW PREVIEW IMMEDIATELY
+  ============================== */
 
   const reader =
     new FileReader();
@@ -1871,16 +1582,230 @@ function handlePhoto(event){
   reader.readAsDataURL(file);
 
 
-  showMessage(
-    "Photo selected. Press Save Profile to upload it.",
-    "success"
+  photoStatus.classList.add(
+    "show"
+  );
+
+
+  photoStatus.textContent =
+    "Photo selected ✓ — tap Save Profile to save it.";
+
+}
+
+
+/* =====================================================
+   COMPRESS PHOTO
+
+   This replaces Firebase Storage.
+
+   The image is resized and converted to JPEG
+   before being saved to Firestore.
+===================================================== */
+
+function compressPhoto(file){
+
+  return new Promise(
+    function(resolve,reject){
+
+      const reader =
+        new FileReader();
+
+
+      reader.onerror =
+        function(){
+
+          reject(
+            new Error(
+              "Could not read the selected photo."
+            )
+          );
+
+        };
+
+
+      reader.onload =
+        function(event){
+
+          const image =
+            new Image();
+
+
+          image.onerror =
+            function(){
+
+              reject(
+                new Error(
+                  "Could not process the selected photo."
+                )
+              );
+
+            };
+
+
+          image.onload =
+            function(){
+
+              /*
+                 Maximum image dimension.
+                 This keeps the Firestore document small.
+              */
+
+              const MAX_SIZE = 700;
+
+
+              let width =
+                image.width;
+
+              let height =
+                image.height;
+
+
+              if(width > MAX_SIZE ||
+                 height > MAX_SIZE){
+
+                if(width > height){
+
+                  height =
+                    Math.round(
+                      height *
+                      MAX_SIZE /
+                      width
+                    );
+
+                  width =
+                    MAX_SIZE;
+
+                }
+
+                else{
+
+                  width =
+                    Math.round(
+                      width *
+                      MAX_SIZE /
+                      height
+                    );
+
+                  height =
+                    MAX_SIZE;
+
+                }
+
+              }
+
+
+              const canvas =
+                document.createElement(
+                  "canvas"
+                );
+
+
+              canvas.width =
+                width;
+
+              canvas.height =
+                height;
+
+
+              const ctx =
+                canvas.getContext(
+                  "2d"
+                );
+
+
+              /*
+                 White background prevents transparent
+                 PNG images from looking strange after
+                 JPEG conversion.
+              */
+
+              ctx.fillStyle =
+                "#ffffff";
+
+              ctx.fillRect(
+                0,
+                0,
+                width,
+                height
+              );
+
+
+              ctx.drawImage(
+                image,
+                0,
+                0,
+                width,
+                height
+              );
+
+
+              /*
+                 JPEG quality.
+                 0.65 keeps the image looking good
+                 while greatly reducing the size.
+              */
+
+              const compressed =
+                canvas.toDataURL(
+                  "image/jpeg",
+                  0.65
+                );
+
+
+              /*
+                 Safety check.
+                 Firestore documents cannot hold huge
+                 amounts of data.
+              */
+
+              if(
+                compressed.length >
+                700000
+              ){
+
+                /*
+                   Try a smaller version.
+                */
+
+                const smaller =
+                  canvas.toDataURL(
+                    "image/jpeg",
+                    0.45
+                  );
+
+
+                resolve(
+                  smaller
+                );
+
+                return;
+
+              }
+
+
+              resolve(
+                compressed
+              );
+
+            };
+
+
+          image.src =
+            event.target.result;
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
   );
 
 }
 
 
 /* =====================================================
-   SAVE BUTTON
+   SAVE PROFILE
 ===================================================== */
 
 saveButton.addEventListener(
@@ -1889,16 +1814,12 @@ saveButton.addEventListener(
 );
 
 
-/* =====================================================
-   SAVE PROFILE
-===================================================== */
-
 async function saveProfile(){
 
   if(!currentUser){
 
     showMessage(
-      "Your login session has expired. Please log in again.",
+      "Your login session has expired. Please return to the website and log in.",
       "error"
     );
 
@@ -1933,7 +1854,7 @@ async function saveProfile(){
   try{
 
     /*
-      Existing profile.
+       Get existing profile first.
     */
 
     const profileRef =
@@ -1942,146 +1863,54 @@ async function saveProfile(){
         .doc(currentUser.uid);
 
 
-    const existing =
+    const existingSnapshot =
       await profileRef.get();
 
 
-    let photoURL =
-      "";
+    let photoURL = "";
 
 
-    if(existing.exists){
+    if(existingSnapshot.exists){
 
       photoURL =
-        existing.data().photoURL ||
+        existingSnapshot.data().photoURL ||
         "";
 
     }
 
 
-    /*
-      Upload photo if selected.
-    */
+    /* ======================================
+       COMPRESS NEW PHOTO
+    ====================================== */
 
     if(selectedPhoto){
 
-      uploadBox.style.display =
-        "block";
+      photoStatus.classList.add(
+        "show"
+      );
 
 
-      uploadProgress.style.width =
-        "0%";
-
-
-      uploadText.textContent =
-        "Starting upload...";
-
-
-      const storageRef =
-        storage
-          .ref()
-          .child(
-            "profile-images/" +
-            currentUser.uid +
-            "/profile.jpg"
-          );
-
-
-      const uploadTask =
-        storageRef.put(
-          selectedPhoto,
-          {
-            contentType:
-              selectedPhoto.type
-          }
-        );
+      photoStatus.textContent =
+        "Preparing photo...";
 
 
       photoURL =
-        await new Promise(
-          function(resolve,reject){
-
-            uploadTask.on(
-
-              "state_changed",
-
-              function(snapshot){
-
-                const percent =
-                  Math.round(
-                    (
-                      snapshot.bytesTransferred /
-                      snapshot.totalBytes
-                    ) * 100
-                  );
-
-
-                uploadProgress.style.width =
-                  percent + "%";
-
-
-                uploadText.textContent =
-                  "Uploading photo... " +
-                  percent +
-                  "%";
-
-              },
-
-              function(error){
-
-                reject(error);
-
-              },
-
-              async function(){
-
-                try{
-
-                  const url =
-                    await uploadTask
-                      .snapshot
-                      .ref
-                      .getDownloadURL();
-
-
-                  resolve(url);
-
-                }
-
-                catch(error){
-
-                  reject(error);
-
-                }
-
-              }
-
-            );
-
-          }
+        await compressPhoto(
+          selectedPhoto
         );
 
 
-      uploadProgress.style.width =
-        "100%";
-
-
-      uploadText.textContent =
-        "Photo uploaded ✓";
-
-
-      selectedPhoto =
-        null;
+      photoStatus.textContent =
+        "Photo prepared ✓";
 
     }
 
 
-    /*
-      Profile document.
+    /* ======================================
+       PROFILE DATA
 
-      This matches your current
-      profiles structure.
-    */
+       This matches your Firestore structure.
+    ====================================== */
 
     const profileData = {
 
@@ -2090,9 +1919,6 @@ async function saveProfile(){
 
       fullName:
         name,
-
-      email:
-        currentUser.email || "",
 
       phone:
         phone.value.trim(),
@@ -2120,11 +1946,9 @@ async function saveProfile(){
     };
 
 
-    /*
-      Save to:
-
-      profiles/{currentUser.uid}
-    */
+    /* ======================================
+       SAVE TO PROFILES
+    ====================================== */
 
     await profileRef.set(
       profileData,
@@ -2134,35 +1958,57 @@ async function saveProfile(){
     );
 
 
-    /*
-      Update Firebase Auth profile.
-    */
+    /* ======================================
+       UPDATE AUTH PROFILE
 
-    await currentUser.updateProfile({
+       This is only the Firebase Auth
+       display name/photo information.
+    ====================================== */
 
-      displayName:
-        name,
+    try{
 
-      photoURL:
-        photoURL ||
-        null
+      await currentUser.updateProfile({
 
-    });
+        displayName:
+          name,
 
+        photoURL:
+          photoURL || null
 
-    /*
-      Refresh UI.
-    */
-
-    updateHero();
-
-
-    if(photoURL){
-
-      profileAvatar.src =
-        photoURL;
+      });
 
     }
+
+    catch(authError){
+
+      console.warn(
+        "Auth profile update warning:",
+        authError
+      );
+
+      /*
+         Do not fail the entire profile save
+         just because the optional Auth profile
+         update failed.
+      */
+
+    }
+
+
+    /* ======================================
+       FINISH
+    ====================================== */
+
+    selectedPhoto =
+      null;
+
+
+    photoStatus.classList.remove(
+      "show"
+    );
+
+
+    updateHero();
 
 
     showMessage(
@@ -2171,29 +2017,24 @@ async function saveProfile(){
     );
 
 
-    setTimeout(
-      function(){
-
-        uploadBox.style.display =
-          "none";
-
-      },
-      1800
-    );
-
   }
 
   catch(error){
 
     console.error(
-      "SAVE PROFILE ERROR:",
+      "PROFILE SAVE ERROR:",
       error
     );
 
 
+    /*
+       Make sure the page never remains
+       permanently stuck on Saving...
+    */
+
     showMessage(
       "Could not save profile: " +
-      getFirebaseError(error),
+      error.message,
       "error"
     );
 
@@ -2213,258 +2054,183 @@ async function saveProfile(){
    CHANGE PASSWORD
 ===================================================== */
 
-passwordButton.addEventListener(
-  "click",
-  async function(){
+document
+  .getElementById(
+    "passwordButton"
+  )
+  .addEventListener(
+    "click",
+    async function(){
 
-    if(
-      !currentUser ||
-      !currentUser.email
-    ){
+      if(
+        !currentUser ||
+        !currentUser.email
+      ){
 
-      showMessage(
-        "No active account found.",
-        "error"
-      );
+        showMessage(
+          "No active account found.",
+          "error"
+        );
 
-      return;
+        return;
+
+      }
+
+
+      const okay =
+        confirm(
+          "Send a password reset link to:\n\n" +
+          currentUser.email +
+          "?"
+        );
+
+
+      if(!okay){
+
+        return;
+
+      }
+
+
+      try{
+
+        await auth
+          .sendPasswordResetEmail(
+            currentUser.email
+          );
+
+
+        alert(
+          "Password reset email sent successfully."
+        );
+
+      }
+
+      catch(error){
+
+        alert(
+          "Could not send password reset email:\n\n" +
+          error.message
+        );
+
+      }
 
     }
-
-
-    const okay =
-      confirm(
-        "Send a password reset link to:\n\n" +
-        currentUser.email +
-        "?"
-      );
-
-
-    if(!okay){
-
-      return;
-
-    }
-
-
-    try{
-
-      await auth.sendPasswordResetEmail(
-        currentUser.email
-      );
-
-
-      alert(
-        "Password reset email sent successfully.\n\n" +
-        "Check your inbox and spam folder."
-      );
-
-    }
-
-    catch(error){
-
-      alert(
-        getFirebaseError(error)
-      );
-
-    }
-
-  }
-);
+  );
 
 
 /* =====================================================
-   LOGOUT
+   SIGN OUT
 ===================================================== */
 
-logoutButton.addEventListener(
-  "click",
-  async function(){
+document
+  .getElementById(
+    "logoutButton"
+  )
+  .addEventListener(
+    "click",
+    async function(){
 
-    const okay =
-      confirm(
-        "Are you sure you want to sign out?"
-      );
+      const okay =
+        confirm(
+          "Are you sure you want to sign out?"
+        );
 
 
-    if(!okay){
+      if(!okay){
 
-      return;
+        return;
+
+      }
+
+
+      try{
+
+        await auth.signOut();
+
+
+        window.location.href =
+          "login.html";
+
+      }
+
+      catch(error){
+
+        showMessage(
+          "Could not sign out: " +
+          error.message,
+          "error"
+        );
+
+      }
 
     }
-
-
-    try{
-
-      await auth.signOut();
-
-
-      /*
-        Firebase will trigger
-        onAuthStateChanged(null).
-      */
-
-    }
-
-    catch(error){
-
-      showMessage(
-        "Could not sign out: " +
-        getFirebaseError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
+  );
 
 
 /* =====================================================
    BACK BUTTON
 ===================================================== */
 
-backButton.addEventListener(
-  "click",
-  function(){
+document
+  .getElementById(
+    "backButton"
+  )
+  .addEventListener(
+    "click",
+    function(){
 
-    if(
-      document.referrer &&
-      document.referrer
-        .includes(
+      if(
+        document.referrer &&
+        document.referrer.includes(
           window.location.hostname
         )
-    ){
+      ){
 
-      window.history.back();
+        window.history.back();
+
+      }
+
+      else{
+
+        window.location.href =
+          "index.html";
+
+      }
 
     }
-
-    else{
-
-      window.location.href =
-        "index.html";
-
-    }
-
-  }
-);
+  );
 
 
 /* =====================================================
-   NAME LIVE UPDATE
+   MESSAGE
 ===================================================== */
 
-fullName.addEventListener(
-  "input",
-  function(){
+function showMessage(
+  text,
+  type
+){
 
-    updateHero();
-
-  }
-);
-
-
-/* =====================================================
-   FIREBASE ERROR CLEANER
-===================================================== */
-
-function getFirebaseError(error){
-
-  if(!error){
-
-    return "Unknown error.";
-
-  }
+  message.textContent =
+    text;
 
 
-  const code =
-    error.code || "";
+  message.className =
+    "message " +
+    type;
 
 
-  if(
-    code ===
-    "permission-denied"
-  ){
+  setTimeout(
+    function(){
 
-    return "Firestore permission denied. Check your Firestore security rules.";
+      message.className =
+        "message";
 
-  }
-
-
-  if(
-    code ===
-    "storage/unauthorized"
-  ){
-
-    return "Photo upload permission denied. Check Firebase Storage rules.";
-
-  }
-
-
-  if(
-    code ===
-    "storage/unauthenticated"
-  ){
-
-    return "Photo upload requires an active login.";
-
-  }
-
-
-  if(
-    code ===
-    "unavailable"
-  ){
-
-    return "Firebase is temporarily unavailable. Check your internet connection.";
-
-  }
-
-
-  if(
-    error.message
-  ){
-
-    return error.message;
-
-  }
-
-
-  return "Something went wrong.";
+    },
+    6000
+  );
 
 }
-
-
-/* =====================================================
-   SAFETY TIMEOUT
-
-   If Firebase takes unusually long to respond,
-   don't leave the user staring at Loading forever.
-===================================================== */
-
-setTimeout(
-  function(){
-
-    if(
-      !loadingScreen.classList.contains(
-        "hidden"
-      )
-    ){
-
-      console.warn(
-        "Firebase authentication is taking too long."
-      );
-
-
-      loadingText.textContent =
-        "Firebase is taking longer than expected...";
-
-    }
-
-  },
-  8000
-);
 
 </script>
 
