@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -21,310 +20,163 @@
 :root{
   --bg:#0f172a;
   --header:#020617;
-  --card:#111e30;
-  --card2:#17253a;
-  --border:rgba(148,163,184,.14);
+  --card:#17253a;
   --blue:#38bdf8;
   --green:#22c55e;
   --text:#f8fafc;
   --muted:#94a3b8;
+  --border:rgba(148,163,184,.14);
 }
 
-html,
-body{
+html,body{
   width:100%;
   height:100%;
   overflow:hidden;
 }
 
 body{
-  font-family:'Poppins',sans-serif;
+  font-family:Poppins,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
-
-/* =========================
-   APP
-========================= */
 
 .chat-app{
   width:100%;
   height:100dvh;
   display:flex;
   flex-direction:column;
-  position:relative;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 .chat-header{
-  height:106px;
-  min-height:106px;
+  height:86px;
+  flex-shrink:0;
   background:var(--header);
   border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
-  position:relative;
-  z-index:20;
+  padding:0 14px;
 }
 
-.back-button,
-.menu-button{
-  width:48px;
-  height:48px;
-  border:none;
+.header-side{
+  width:45px;
+}
+
+.header-btn{
+  width:44px;
+  height:44px;
+  border:0;
   border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   background:transparent;
   color:white;
+  font-size:28px;
   cursor:pointer;
-  font-size:30px;
-  transition:.2s;
-}
-
-.back-button:hover,
-.menu-button:hover{
-  background:#172033;
 }
 
 .profile{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:11px;
 }
 
-.profile-avatar{
-  width:58px;
-  height:58px;
+.avatar{
+  width:50px;
+  height:50px;
   border-radius:50%;
-  background:linear-gradient(135deg,#38bdf8,#0284c7);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  box-shadow:0 0 20px rgba(56,189,248,.25);
+  background:linear-gradient(135deg,#38bdf8,#0284c7);
+  font-size:24px;
+  overflow:hidden;
 }
 
-.profile-info h2{
-  font-size:20px;
-  line-height:1.2;
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile h2{
+  font-size:17px;
 }
 
 .status{
   color:var(--green);
-  font-size:13px;
-  margin-top:3px;
-}
-
-/* =========================
-   MENU
-========================= */
-
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  z-index:40;
-}
-
-.menu-overlay.active{
-  display:block;
-}
-
-.side-menu{
-  position:fixed;
-  top:0;
-  right:-330px;
-  width:310px;
-  max-width:88%;
-  height:100dvh;
-  background:#020617;
-  z-index:50;
-  transition:right .3s ease;
-  box-shadow:-15px 0 40px rgba(0,0,0,.4);
-  padding:22px 16px;
-}
-
-.side-menu.active{
-  right:0;
-}
-
-.menu-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:8px 4px 20px;
-  border-bottom:1px solid var(--border);
-}
-
-.menu-top h3{
-  font-size:18px;
-}
-
-.close-menu{
-  border:none;
-  background:transparent;
-  color:white;
-  font-size:27px;
-  cursor:pointer;
-}
-
-.menu-user{
-  padding:20px 4px;
-  border-bottom:1px solid var(--border);
-}
-
-.menu-user strong{
-  display:block;
-  font-size:16px;
-}
-
-.menu-user span{
-  display:block;
-  color:var(--muted);
   font-size:12px;
-  margin-top:4px;
-  word-break:break-word;
 }
 
-.menu-links{
-  padding-top:14px;
-}
-
-.menu-link{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:15px 13px;
-  margin-bottom:8px;
-  border:none;
-  border-radius:12px;
-  background:transparent;
-  color:white;
-  text-align:left;
-  font-family:inherit;
-  font-size:14px;
-  cursor:pointer;
-  text-decoration:none;
-}
-
-.menu-link:hover{
-  background:#17253a;
-}
-
-.menu-icon{
-  width:28px;
-  font-size:19px;
-  text-align:center;
-}
-
-.logout{
-  color:#f87171;
-}
-
-/* =========================
-   CHAT AREA
-========================= */
-
-.messages-area{
+.messages{
   flex:1;
   min-height:0;
   overflow-y:auto;
-  padding:22px 16px 20px;
-  scroll-behavior:smooth;
-  background:
-    radial-gradient(circle at top left,rgba(56,189,248,.06),transparent 35%),
-    var(--bg);
+  padding:18px 12px;
 }
 
-/* WELCOME */
-
-.welcome-card{
-  max-width:680px;
-  margin:28px auto 24px;
-  padding:28px 20px;
-  text-align:center;
+.welcome{
+  max-width:600px;
+  margin:20px auto 28px;
+  padding:25px 18px;
   border:1px solid var(--border);
-  border-radius:24px;
-  background:linear-gradient(145deg,#111e30,#0d1828);
+  border-radius:22px;
+  background:#111e30;
+  text-align:center;
 }
 
 .welcome-icon{
-  width:70px;
-  height:70px;
+  width:65px;
+  height:65px;
+  margin:auto;
+  margin-bottom:12px;
   border-radius:50%;
-  margin:0 auto 15px;
+  background:#12324b;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:34px;
-  background:#12324b;
+  font-size:30px;
 }
 
-.welcome-card h1{
-  font-size:22px;
-  margin-bottom:10px;
+.welcome h1{
+  font-size:21px;
+  margin-bottom:8px;
 }
 
-.welcome-card p{
+.welcome p{
   color:var(--muted);
+  font-size:13px;
   line-height:1.7;
-  font-size:14px;
 }
-
-/* DATE */
-
-.date-divider{
-  text-align:center;
-  color:#64748b;
-  font-size:11px;
-  margin:20px 0;
-}
-
-/* MESSAGE ROW */
 
 .message-row{
   display:flex;
-  margin:8px 0;
+  margin:7px 0;
 }
 
-.message-row.user{
+.message-row.customer{
   justify-content:flex-end;
 }
 
-.message-row.danny{
+.message-row.admin{
   justify-content:flex-start;
 }
 
-/* MESSAGE */
-
-.message{
+.bubble{
   max-width:min(78%,520px);
-  padding:11px 13px 8px;
+  padding:10px 12px 7px;
   border-radius:17px;
-  position:relative;
-  word-wrap:break-word;
-  overflow-wrap:anywhere;
   font-size:14px;
   line-height:1.5;
+  overflow-wrap:anywhere;
 }
 
-.message-row.danny .message{
-  background:#1b293d;
-  border-bottom-left-radius:5px;
-}
-
-.message-row.user .message{
+.customer .bubble{
   background:#0284c7;
   border-bottom-right-radius:5px;
+}
+
+.admin .bubble{
+  background:#1b293d;
+  border-bottom-left-radius:5px;
 }
 
 .message-image{
@@ -336,264 +188,162 @@ body{
   cursor:pointer;
 }
 
-.message-meta{
+.meta{
   display:flex;
-  align-items:center;
   justify-content:flex-end;
+  align-items:center;
   gap:5px;
   margin-top:4px;
-  font-size:10px;
+  font-size:9px;
   opacity:.75;
 }
 
 .seen{
   color:#bae6fd;
-  font-size:12px;
+  font-size:11px;
 }
 
-/* TYPING */
-
-.typing-indicator{
+.typing{
   display:none;
-  align-items:center;
-  gap:8px;
+  padding:6px 15px;
   color:var(--muted);
   font-size:12px;
-  padding:8px 4px;
 }
 
-.typing-indicator.active{
-  display:flex;
+.typing.active{
+  display:block;
 }
-
-.typing-dots{
-  display:flex;
-  gap:3px;
-}
-
-.typing-dots span{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--muted);
-  animation:typing 1.2s infinite;
-}
-
-.typing-dots span:nth-child(2){
-  animation-delay:.15s;
-}
-
-.typing-dots span:nth-child(3){
-  animation-delay:.3s;
-}
-
-@keyframes typing{
-  0%,60%,100%{
-    opacity:.3;
-    transform:translateY(0);
-  }
-
-  30%{
-    opacity:1;
-    transform:translateY(-3px);
-  }
-}
-
-/* =========================
-   INPUT AREA
-========================= */
 
 .input-wrapper{
   flex-shrink:0;
   background:var(--header);
   border-top:1px solid var(--border);
-  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  padding:9px 10px calc(9px + env(safe-area-inset-bottom));
 }
 
 .input-area{
-  width:100%;
   max-width:900px;
   margin:auto;
   display:flex;
   align-items:flex-end;
-  gap:8px;
+  gap:7px;
 }
 
-.attach-button,
-.send-button{
-  width:48px;
-  height:48px;
-  min-width:48px;
-  border:none;
+.attach,
+.send{
+  width:47px;
+  height:47px;
+  min-width:47px;
+  border:0;
   border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   cursor:pointer;
-  font-size:25px;
+  font-size:23px;
 }
 
-.attach-button{
+.attach{
   background:#17253a;
   color:white;
 }
 
-.send-button{
-  background:var(--blue);
+.send{
+  background:#38bdf8;
   color:#00111c;
-  font-size:22px;
-  font-weight:bold;
 }
 
-.send-button:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+.send:disabled{
+  opacity:.4;
 }
 
-.message-input{
+textarea{
   flex:1;
   min-width:0;
+  min-height:47px;
   max-height:130px;
-  min-height:48px;
   resize:none;
-  border:none;
-  outline:none;
-  border-radius:25px;
-  padding:14px 17px;
+  border:0;
+  outline:0;
+  border-radius:24px;
   background:#182337;
   color:white;
+  padding:13px 16px;
   font-family:inherit;
   font-size:14px;
-  line-height:1.4;
 }
 
-.message-input::placeholder{
-  color:#718096;
-}
-
-/* =========================
-   ATTACHMENT PREVIEW
-========================= */
-
-.preview-box{
+.preview{
   display:none;
   max-width:900px;
-  margin:0 auto 8px;
-  position:relative;
+  margin:auto;
+  padding-bottom:8px;
 }
 
-.preview-box.active{
+.preview.active{
   display:block;
 }
 
-.preview-box img{
-  width:85px;
-  height:85px;
+.preview img{
+  width:75px;
+  height:75px;
   object-fit:cover;
-  border-radius:12px;
-  border:2px solid var(--blue);
+  border-radius:10px;
 }
 
-.remove-preview{
-  position:absolute;
-  left:68px;
-  top:-8px;
-  width:24px;
-  height:24px;
-  border:none;
-  border-radius:50%;
-  background:#ef4444;
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-/* =========================
-   LOADING / ERROR
-========================= */
-
-.center-message{
-  text-align:center;
-  padding:50px 20px;
-  color:var(--muted);
-}
-
-.error-box{
-  max-width:500px;
-  margin:40px auto;
-  padding:25px;
-  text-align:center;
-  background:#24151a;
-  border:1px solid #7f1d1d;
-  border-radius:18px;
-}
-
-.error-box h2{
-  color:#fca5a5;
-  margin-bottom:8px;
-}
-
-.error-box p{
-  color:#fecaca;
-  font-size:14px;
-}
-
-/* HIDDEN FILE INPUT */
-
-.hidden-input{
+.hidden{
   display:none;
 }
 
-/* MOBILE */
-
-@media(max-width:600px){
-
-  .chat-header{
-    height:86px;
-    min-height:86px;
-    padding:0 10px;
-  }
-
-  .back-button,
-  .menu-button{
-    width:44px;
-    height:44px;
-  }
-
-  .profile-avatar{
-    width:48px;
-    height:48px;
-    font-size:24px;
-  }
-
-  .profile-info h2{
-    font-size:17px;
-  }
-
-  .messages-area{
-    padding:15px 10px;
-  }
-
-  .message{
-    max-width:84%;
-    font-size:14px;
-  }
-
-  .welcome-card{
-    margin:18px auto;
-    padding:25px 15px;
-  }
-
-  .welcome-card h1{
-    font-size:20px;
-  }
-
-  .side-menu{
-    width:300px;
-  }
-
+.side-menu{
+  position:fixed;
+  z-index:100;
+  top:0;
+  right:-320px;
+  width:300px;
+  max-width:88%;
+  height:100dvh;
+  background:#020617;
+  padding:20px;
+  transition:.3s;
 }
 
+.side-menu.active{
+  right:0;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:90;
+  display:none;
+}
+
+.overlay.active{
+  display:block;
+}
+
+.menu-link{
+  display:block;
+  width:100%;
+  padding:14px;
+  margin-top:7px;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  color:white;
+  text-decoration:none;
+  text-align:left;
+  font-family:inherit;
+}
+
+.menu-link:hover{
+  background:#17253a;
+}
+
+@media(max-width:600px){
+  .bubble{
+    max-width:85%;
+  }
+}
 </style>
 </head>
 
@@ -601,292 +351,122 @@ body{
 
 <div class="chat-app">
 
-  <!-- HEADER -->
+<header class="chat-header">
 
-  <header class="chat-header">
+  <div class="header-side">
+    <button class="header-btn" id="backButton">←</button>
+  </div>
 
-    <button
-      class="back-button"
-      id="backButton"
-      aria-label="Go back"
-    >
-      ←
-    </button>
+  <div class="profile">
 
-    <div class="profile">
-
-      <div class="profile-avatar">
-        ⚡
-      </div>
-
-      <div class="profile-info">
-
-        <h2>Danny</h2>
-
-        <div
-          class="status"
-          id="onlineStatus"
-        >
-          Connecting...
-        </div>
-
-      </div>
-
+    <div class="avatar">
+      ⚡
     </div>
 
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="Open menu"
-    >
-      ⋮
-    </button>
-
-  </header>
-
-
-  <!-- MESSAGES -->
-
-  <main
-    class="messages-area"
-    id="messagesArea"
-  >
-
-    <div
-      class="center-message"
-      id="loadingMessage"
-    >
-      Connecting to Danny Chat...
+    <div>
+      <h2>Danny Smart Power</h2>
+      <div class="status" id="status">Connecting...</div>
     </div>
-
-  </main>
-
-
-  <!-- TYPING -->
-
-  <div
-    class="typing-indicator"
-    id="typingIndicator"
-  >
-
-    <div class="typing-dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    Danny is typing...
 
   </div>
 
+  <div class="header-side">
+    <button class="header-btn" id="menuButton">⋮</button>
+  </div>
 
-  <!-- INPUT -->
+</header>
 
-  <div class="input-wrapper">
 
-    <div
-      class="preview-box"
-      id="previewBox"
+<main class="messages" id="messages">
+
+  <div id="loading">
+    Connecting to Danny...
+  </div>
+
+</main>
+
+
+<div class="typing" id="typing">
+  Danny is typing...
+</div>
+
+
+<div class="input-wrapper">
+
+  <div class="preview" id="preview">
+    <img id="previewImage">
+  </div>
+
+  <div class="input-area">
+
+    <button class="attach" id="attachButton">+</button>
+
+    <input
+      class="hidden"
+      type="file"
+      id="fileInput"
+      accept="image/*"
     >
 
-      <img
-        id="previewImage"
-        alt="Image preview"
-      >
+    <textarea
+      id="messageInput"
+      rows="1"
+      placeholder="Type a message..."
+    ></textarea>
 
-      <button
-        class="remove-preview"
-        id="removePreview"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="input-area">
-
-      <button
-        class="attach-button"
-        id="attachButton"
-        aria-label="Attach image"
-      >
-        +
-      </button>
-
-      <!-- Gallery / file upload -->
-
-      <input
-        class="hidden-input"
-        type="file"
-        id="galleryInput"
-        accept="image/*"
-      >
-
-      <!-- Camera -->
-
-      <input
-        class="hidden-input"
-        type="file"
-        id="cameraInput"
-        accept="image/*"
-        capture="environment"
-      >
-
-      <textarea
-        class="message-input"
-        id="messageInput"
-        rows="1"
-        placeholder="Type a message..."
-      ></textarea>
-
-      <button
-        class="send-button"
-        id="sendButton"
-        disabled
-        aria-label="Send message"
-      >
-        ➤
-      </button>
-
-    </div>
+    <button
+      class="send"
+      id="sendButton"
+      disabled
+    >
+      ➤
+    </button>
 
   </div>
 
 </div>
 
-
-<!-- =========================
-     SIDE MENU
-========================= -->
-
-<div
-  class="menu-overlay"
-  id="menuOverlay"
-></div>
-
-<aside
-  class="side-menu"
-  id="sideMenu"
->
-
-  <div class="menu-top">
-
-    <h3>Danny Chat</h3>
-
-    <button
-      class="close-menu"
-      id="closeMenu"
-    >
-      ×
-    </button>
-
-  </div>
+</div>
 
 
-  <div class="menu-user">
+<div class="overlay" id="overlay"></div>
 
-    <strong id="menuUserName">
-      Loading user...
-    </strong>
+<aside class="side-menu" id="sideMenu">
 
-    <span id="menuUserEmail">
-      Loading email...
-    </span>
+  <h3>Danny Chat</h3>
 
-  </div>
+  <br>
 
+  <strong id="customerName">Loading...</strong>
 
-  <div class="menu-links">
+  <small id="customerEmail"></small>
 
-    <a
-      class="menu-link"
-      href="profile.html"
-    >
-      <span class="menu-icon">👤</span>
-      Profile
-    </a>
+  <hr style="margin:20px 0;border-color:#1e293b">
 
-    <a
-      class="menu-link"
-      href="shop.html"
-    >
-      <span class="menu-icon">🛍️</span>
-      Continue Shopping
-    </a>
+  <a class="menu-link" href="profile.html">👤 Profile</a>
 
-    <a
-      class="menu-link"
-      href="cart.html"
-    >
-      <span class="menu-icon">🛒</span>
-      My Cart
-    </a>
+  <a class="menu-link" href="shop.html">🛍️ Continue Shopping</a>
 
-    <a
-      class="menu-link"
-      href="orders.html"
-    >
-      <span class="menu-icon">📦</span>
-      My Orders
-    </a>
+  <a class="menu-link" href="cart.html">🛒 My Cart</a>
 
-    <a
-      class="menu-link"
-      href="settings.html"
-    >
-      <span class="menu-icon">⚙️</span>
-      Settings
-    </a>
+  <a class="menu-link" href="orders.html">📦 My Orders</a>
 
-    <a
-      class="menu-link"
-      href="contact.html"
-    >
-      <span class="menu-icon">📞</span>
-      Contact Danny Smart Power
-    </a>
+  <a class="menu-link" href="settings.html">⚙️ Settings</a>
 
-    <a
-      class="menu-link"
-      href="help.html"
-    >
-      <span class="menu-icon">❓</span>
-      Help Center
-    </a>
+  <a class="menu-link" href="contact.html">📞 Contact</a>
 
-    <button
-      class="menu-link logout"
-      id="logoutButton"
-    >
-      <span class="menu-icon">🚪</span>
-      Sign Out
-    </button>
-
-  </div>
+  <button class="menu-link" id="logout">🚪 Sign Out</button>
 
 </aside>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-
 
 <script>
 
-/* ==================================
-   FIREBASE CONFIGURATION
-================================== */
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
   authDomain: "danny-smart-power.firebaseapp.com",
@@ -898,484 +478,294 @@ const firebaseConfig = {
   measurementId: "G-258YKLP5ZS"
 };
 
-
-
 firebase.initializeApp(firebaseConfig);
 
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
 
-const auth =
-firebase.auth();
+const messagesEl =
+  document.getElementById("messages");
 
-const db =
-firebase.firestore();
-
-const storage =
-firebase.storage();
-
-
-/* ==================================
-   ELEMENTS
-================================== */
-
-const messagesArea =
-document.getElementById("messagesArea");
-
-const loadingMessage =
-document.getElementById("loadingMessage");
-
-const messageInput =
-document.getElementById("messageInput");
+const input =
+  document.getElementById("messageInput");
 
 const sendButton =
-document.getElementById("sendButton");
+  document.getElementById("sendButton");
 
-const attachButton =
-document.getElementById("attachButton");
+const status =
+  document.getElementById("status");
 
-const galleryInput =
-document.getElementById("galleryInput");
+const typing =
+  document.getElementById("typing");
 
-const cameraInput =
-document.getElementById("cameraInput");
+const fileInput =
+  document.getElementById("fileInput");
 
-const previewBox =
-document.getElementById("previewBox");
+const preview =
+  document.getElementById("preview");
 
 const previewImage =
-document.getElementById("previewImage");
+  document.getElementById("previewImage");
 
-const removePreview =
-document.getElementById("removePreview");
-
-const typingIndicator =
-document.getElementById("typingIndicator");
-
-const onlineStatus =
-document.getElementById("onlineStatus");
-
-const menuButton =
-document.getElementById("menuButton");
-
-const closeMenu =
-document.getElementById("closeMenu");
-
-const sideMenu =
-document.getElementById("sideMenu");
-
-const menuOverlay =
-document.getElementById("menuOverlay");
-
-const logoutButton =
-document.getElementById("logoutButton");
-
-const backButton =
-document.getElementById("backButton");
-
-const menuUserName =
-document.getElementById("menuUserName");
-
-const menuUserEmail =
-document.getElementById("menuUserEmail");
-
-
-/* ==================================
-   VARIABLES
-================================== */
-
-let currentUser = null;
-
-let currentChatRef = null;
-
+let user = null;
+let chatRef = null;
 let messagesRef = null;
-
 let selectedFile = null;
-
-let unsubscribeMessages = null;
-
-let unsubscribeTyping = null;
-
+let stopMessages = null;
+let stopChat = null;
 let typingTimer = null;
+let sending = false;
 
-let isSending = false;
 
+/* ================================
+   AUTH
+================================ */
 
-/* ==================================
-   AUTH SESSION
+auth.onAuthStateChanged(async currentUser => {
 
-   IMPORTANT:
-   Firebase automatically restores
-   the login session from login.html.
+  if(!currentUser){
 
-   We do NOT login again here.
-================================== */
-
-auth.onAuthStateChanged(async function(user){
-
-  if(!user){
-
-    onlineStatus.textContent =
-    "Not signed in";
-
-    loadingMessage.innerHTML = `
-
-      <div class="error-box">
-
-        <h2>Account not available</h2>
-
-        <p>
-          Your login session could not be restored.
-          Please return to the login page.
-        </p>
-
-      </div>
-
-    `;
-
-    sendButton.disabled = true;
-
+    window.location.href = "login.html";
     return;
 
   }
 
+  user = currentUser;
 
-  /* USER IS ALREADY LOGGED IN */
+  document.getElementById("customerName").textContent =
+    user.displayName ||
+    user.email.split("@")[0];
 
-  currentUser = user;
-
-  onlineStatus.textContent =
-  "Online";
-
-
-  /* LOAD PROFILE FROM FIREBASE AUTH */
-
-  const displayName =
-  user.displayName ||
-  user.email.split("@")[0];
+  document.getElementById("customerEmail").textContent =
+    user.email;
 
 
-  menuUserName.textContent =
-  displayName;
-
-
-  menuUserEmail.textContent =
-  user.email;
-
-
-  /*
-    PRIVATE CHAT
-
-    Every user gets a different document:
-
-    chats/
-      USER_A_UID/
-      USER_B_UID/
-  */
-
-  currentChatRef =
-  db.collection("chats")
-    .doc(user.uid);
-
+  chatRef =
+    db.collection("chats").doc(user.uid);
 
   messagesRef =
-  currentChatRef
-    .collection("messages");
+    chatRef.collection("messages");
 
 
-  try{
+  await createChat();
 
-    await createChatIfNeeded();
+  status.textContent = "Online";
 
-    await createWelcomeMessageIfNeeded();
+  listenToChat();
 
-    loadMessages();
+  listenToMessages();
 
-    listenToTyping();
-
-    listenForNewMessages();
-
-    sendButton.disabled = false;
-
-  }
-
-  catch(error){
-
-    console.error(error);
-
-    loadingMessage.innerHTML = `
-
-      <div class="error-box">
-
-        <h2>Chat could not load</h2>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
-      </div>
-
-    `;
-
-  }
+  sendButton.disabled = false;
 
 });
 
 
-/* ==================================
-   CREATE PRIVATE CHAT
-================================== */
+/* ================================
+   CREATE CHAT
+================================ */
 
-async function createChatIfNeeded(){
+async function createChat(){
 
-  const chatSnapshot =
-  await currentChatRef.get();
+  const ref = await chatRef.get();
+
+  const data = {
+
+    customerId:user.uid,
+
+    customerName:
+      user.displayName ||
+      user.email.split("@")[0],
+
+    customerEmail:user.email,
+
+    customerPhoto:
+      user.photoURL || "",
+
+    status:"open",
+
+    customerTyping:false,
+
+    adminTyping:false,
+
+    unreadForAdmin:0,
+
+    unreadForCustomer:0,
+
+    lastMessage:"",
+
+    lastMessageAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
+
+    updatedAt:
+      firebase.firestore.FieldValue.serverTimestamp()
+
+  };
 
 
-  if(!chatSnapshot.exists){
+  if(!ref.exists){
 
-    await currentChatRef.set({
+    await chatRef.set({
 
-      userId:currentUser.uid,
-
-      userEmail:currentUser.email,
-
-      userName:
-      currentUser.displayName ||
-      currentUser.email.split("@")[0],
+      ...data,
 
       createdAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
-
-      updatedAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
-
-      lastMessage:""
+        firebase.firestore.FieldValue.serverTimestamp()
 
     });
+
+  }else{
+
+    await chatRef.set(data,{merge:true});
 
   }
 
 }
 
 
-/* ==================================
-   WELCOME MESSAGE
+/* ================================
+   CHAT LISTENER
+================================ */
 
-   Created only once for this user.
-================================== */
+function listenToChat(){
 
-async function createWelcomeMessageIfNeeded(){
+  stopChat =
+    chatRef.onSnapshot(snapshot => {
 
-  const welcomeQuery =
-  await messagesRef
-    .where("type","==","welcome")
-    .limit(1)
-    .get();
+      const data = snapshot.data();
 
+      if(!data) return;
 
-  if(welcomeQuery.empty){
+      if(data.adminTyping === true){
 
-    await messagesRef.add({
+        typing.classList.add("active");
 
-      text:
-      "Hello 👋, this is Danny. We are here to assist you with your electrical, solar and power needs. Feel free to discuss anything with us. We will reply as soon as possible.",
+      }else{
 
-      sender:"danny",
+        typing.classList.remove("active");
 
-      senderId:"danny",
-
-      type:"welcome",
-
-      createdAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
-
-      seen:true
+      }
 
     });
-
-  }
 
 }
 
 
-/* ==================================
-   LOAD MESSAGES REAL-TIME
-================================== */
+/* ================================
+   MESSAGE LISTENER
+================================ */
 
-function loadMessages(){
+function listenToMessages(){
 
-  if(unsubscribeMessages){
-
-    unsubscribeMessages();
-
-  }
+  if(stopMessages)
+    stopMessages();
 
 
-  unsubscribeMessages =
-  messagesRef
-  .orderBy("createdAt","asc")
-  .onSnapshot(function(snapshot){
+  stopMessages =
+    messagesRef
+      .orderBy("createdAt","asc")
+      .onSnapshot(snapshot => {
 
-    const oldScrollHeight =
-    messagesArea.scrollHeight;
+        messagesEl.innerHTML = "";
 
-
-    messagesArea.innerHTML = "";
+        addWelcome();
 
 
-    addWelcomeCard();
+        snapshot.forEach(doc => {
+
+          renderMessage(
+            doc.id,
+            doc.data()
+          );
+
+        });
 
 
-    let hasMessages =
-    false;
+        markAdminMessagesSeen(snapshot);
 
+        scrollBottom();
 
-    snapshot.forEach(function(doc){
-
-      hasMessages = true;
-
-      const message =
-      doc.data();
-
-
-      renderMessage(
-        doc.id,
-        message
-      );
-
-    });
-
-
-    markDannyMessagesAsSeen(snapshot);
-
-
-    if(!hasMessages){
-
-      // The welcome message is created separately.
-
-    }
-
-
-    scrollToBottom();
-
-  },function(error){
-
-    console.error(
-      "Message loading error:",
-      error
-    );
-
-  });
+      });
 
 }
 
 
-/* ==================================
-   WELCOME CARD
-================================== */
+/* ================================
+   WELCOME
+================================ */
 
-function addWelcomeCard(){
+function addWelcome(){
 
-  const welcome =
-  document.createElement("div");
+  const div =
+    document.createElement("div");
 
-  welcome.className =
-  "welcome-card";
+  div.className = "welcome";
 
+  div.innerHTML = `
 
-  welcome.innerHTML = `
+    <div class="welcome-icon">⚡</div>
 
-    <div class="welcome-icon">
-      ⚡
-    </div>
-
-    <h1>
-      Welcome to Danny Smart Power
-    </h1>
+    <h1>Welcome to Danny Smart Power</h1>
 
     <p>
-      Hello 👋, this is Danny. We are here to assist you with your electrical, solar and power needs. Feel free to discuss anything with us. We will reply as soon as possible.
+      Hello 👋. How can we help you today
+      with your electrical, solar and power needs?
     </p>
 
   `;
 
-
-  messagesArea.appendChild(welcome);
+  messagesEl.appendChild(div);
 
 }
 
 
-/* ==================================
+/* ================================
    RENDER MESSAGE
-================================== */
+================================ */
 
-function renderMessage(id,message){
+function renderMessage(id,data){
 
   const row =
-  document.createElement("div");
+    document.createElement("div");
 
-
-  const isUser =
-  message.senderId === currentUser.uid;
-
+  const mine =
+    data.senderRole === "customer";
 
   row.className =
-  "message-row " +
-  (isUser ? "user" : "danny");
+    "message-row " +
+    (mine ? "customer" : "admin");
 
 
   const bubble =
-  document.createElement("div");
+    document.createElement("div");
+
+  bubble.className = "bubble";
 
 
-  bubble.className =
-  "message";
+  if(data.image){
 
+    const img =
+      document.createElement("img");
 
-  if(message.image){
+    img.src = data.image;
 
-    const image =
-    document.createElement("img");
+    img.className =
+      "message-image";
 
+    img.onclick = () =>
+      window.open(data.image,"_blank");
 
-    image.className =
-    "message-image";
-
-
-    image.src =
-    message.image;
-
-
-    image.alt =
-    "Sent image";
-
-
-    image.addEventListener(
-      "click",
-      function(){
-
-        window.open(
-          message.image,
-          "_blank"
-        );
-
-      }
-    );
-
-
-    bubble.appendChild(image);
+    bubble.appendChild(img);
 
   }
 
 
-  if(message.text){
+  if(data.text){
 
     const text =
-    document.createElement("div");
+      document.createElement("div");
 
-
-    text.textContent =
-    message.text;
-
+    text.textContent = data.text;
 
     bubble.appendChild(text);
 
@@ -1383,34 +773,26 @@ function renderMessage(id,message){
 
 
   const meta =
-  document.createElement("div");
+    document.createElement("div");
 
+  meta.className = "meta";
 
-  meta.className =
-  "message-meta";
-
-
-  meta.textContent =
-  formatTime(
-    message.createdAt
+  meta.appendChild(
+    document.createTextNode(
+      formatTime(data.createdAt)
+    )
   );
 
 
-  if(isUser){
+  if(mine){
 
     const seen =
-    document.createElement("span");
+      document.createElement("span");
 
-
-    seen.className =
-    "seen";
-
+    seen.className = "seen";
 
     seen.textContent =
-    message.seen
-    ? "✓✓"
-    : "✓";
-
+      data.seen ? "✓✓" : "✓";
 
     meta.appendChild(seen);
 
@@ -1421,351 +803,185 @@ function renderMessage(id,message){
 
   row.appendChild(bubble);
 
-  messagesArea.appendChild(row);
+  messagesEl.appendChild(row);
 
 }
 
 
-/* ==================================
+/* ================================
    SEND MESSAGE
-================================== */
+================================ */
 
 async function sendMessage(){
 
-  if(!currentUser){
-
+  if(!user || sending)
     return;
-
-  }
-
-
-  if(isSending){
-
-    return;
-
-  }
 
 
   const text =
-  messageInput.value.trim();
+    input.value.trim();
 
 
-  if(!text && !selectedFile){
-
+  if(!text && !selectedFile)
     return;
 
-  }
 
-
-  isSending = true;
+  sending = true;
 
   sendButton.disabled = true;
 
 
   try{
 
-    let imageUrl =
-    null;
+    let imageUrl = "";
 
 
     if(selectedFile){
 
-      const fileName =
-      Date.now() +
-      "_" +
-      currentUser.uid +
-      "_" +
-      selectedFile.name;
-
-
-      const imageRef =
-      storage
-      .ref()
-      .child(
+      const path =
         "chat-images/" +
-        currentUser.uid +
-        "/" +
-        fileName
-      );
+        user.uid + "/" +
+        Date.now() +
+        "_" +
+        selectedFile.name;
 
 
-      await imageRef.put(
-        selectedFile
-      );
+      const upload =
+        await storage
+          .ref(path)
+          .put(selectedFile);
 
 
       imageUrl =
-      await imageRef.getDownloadURL();
+        await upload.ref.getDownloadURL();
 
     }
 
 
-    const messageData = {
+    const batch =
+      db.batch();
 
-      sender:"user",
 
-      senderId:
-      currentUser.uid,
+    const messageRef =
+      messagesRef.doc();
 
-      userEmail:
-      currentUser.email,
 
-      text:
-      text || "",
+    batch.set(messageRef,{
 
-      image:
-      imageUrl || null,
+      text:text,
+
+      image:imageUrl,
+
+      senderId:user.uid,
+
+      senderRole:"customer",
+
+      senderName:
+        user.displayName ||
+        user.email.split("@")[0],
+
+      createdAt:
+        firebase.firestore.FieldValue.serverTimestamp(),
 
       seen:false,
 
-      createdAt:
-      firebase.firestore.FieldValue.serverTimestamp()
-
-    };
-
-
-    await messagesRef.add(
-      messageData
-    );
-
-
-    await currentChatRef.update({
-
-      updatedAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
-
-      lastMessage:
-      text ||
-      "📷 Image"
+      seenAt:null
 
     });
 
 
-    messageInput.value =
-    "";
+    batch.set(chatRef,{
+
+      lastMessage:
+        text || "📷 Image",
+
+      lastMessageAt:
+        firebase.firestore.FieldValue.serverTimestamp(),
+
+      updatedAt:
+        firebase.firestore.FieldValue.serverTimestamp(),
+
+      unreadForAdmin:
+        firebase.firestore.FieldValue.increment(1),
+
+      unreadForCustomer:0,
+
+      customerTyping:false,
+
+      status:"open"
+
+    },{merge:true});
 
 
-    resetTextarea();
+    await batch.commit();
 
-    clearSelectedFile();
+
+    input.value = "";
+
+    selectedFile = null;
+
+    fileInput.value = "";
+
+    preview.classList.remove("active");
+
+    input.style.height = "47px";
 
     stopTyping();
 
-    scrollToBottom();
+    scrollBottom();
 
   }
 
   catch(error){
 
-    console.error(
-      "Send error:",
-      error
-    );
-
+    console.error(error);
 
     alert(
-      "Message could not be sent. Please try again."
+      "Message could not be sent."
     );
 
   }
 
 
-  isSending = false;
+  sending = false;
 
   sendButton.disabled = false;
 
-}
-
-
-/* ==================================
-   TYPING INDICATOR
-================================== */
-
-messageInput.addEventListener(
-  "input",
-  function(){
-
-    autoResize();
-
-    updateSendButton();
-
-    if(!currentUser){
-
-      return;
-
-    }
-
-
-    setTyping(true);
-
-
-    clearTimeout(
-      typingTimer
-    );
-
-
-    typingTimer =
-    setTimeout(
-      stopTyping,
-      1200
-    );
-
-  }
-);
-
-
-function setTyping(value){
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  currentChatRef.set({
-
-    userTyping:value
-
-  },{
-    merge:true
-
-  });
+  updateSendButton();
 
 }
 
 
-function stopTyping(){
+/* ================================
+   MARK ADMIN MESSAGES SEEN
+================================ */
 
-  clearTimeout(
-    typingTimer
-  );
+async function markAdminMessagesSeen(snapshot){
 
+  const batch =
+    db.batch();
 
-  if(currentUser){
-
-    currentChatRef.set({
-
-      userTyping:false
-
-    },{
-      merge:true
-
-    });
-
-  }
-
-}
+  let count = 0;
 
 
-/* ==================================
-   DANNY TYPING
-================================== */
+  snapshot.forEach(doc => {
 
-function listenToTyping(){
-
-  if(unsubscribeTyping){
-
-    unsubscribeTyping();
-
-  }
+    const data = doc.data();
 
 
-  unsubscribeTyping =
-  currentChatRef.onSnapshot(
-    function(snapshot){
+    if(
+      data.senderRole === "admin" &&
+      data.seen === false
+    ){
 
-      const data =
-      snapshot.data();
-
-
-      if(
-        data &&
-        data.dannyTyping === true
-      ){
-
-        typingIndicator.classList.add(
-          "active"
-        );
-
-      }
-
-      else{
-
-        typingIndicator.classList.remove(
-          "active"
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-/* ==================================
-   REAL-TIME SEEN STATUS
-================================== */
-
-function listenForNewMessages(){
-
-  messagesRef
-  .where("senderId","==","danny")
-  .where("seen","==",false)
-  .onSnapshot(function(snapshot){
-
-    snapshot.forEach(function(doc){
-
-      doc.ref.update({
+      batch.update(doc.ref,{
 
         seen:true,
 
         seenAt:
-        firebase.firestore.FieldValue.serverTimestamp()
+          firebase.firestore.FieldValue.serverTimestamp()
 
       });
-
-    });
-
-  });
-
-}
-
-
-async function markDannyMessagesAsSeen(snapshot){
-
-  const batch =
-  db.batch();
-
-
-  let count =
-  0;
-
-
-  snapshot.forEach(function(doc){
-
-    const message =
-    doc.data();
-
-
-    if(
-
-      message.senderId === "danny" &&
-
-      message.seen === false
-
-    ){
-
-      batch.update(
-        doc.ref,
-        {
-          seen:true,
-          seenAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-        }
-      );
-
 
       count++;
 
@@ -1778,169 +994,127 @@ async function markDannyMessagesAsSeen(snapshot){
 
     await batch.commit();
 
+    await chatRef.update({
+      unreadForCustomer:0
+    });
+
   }
 
 }
 
 
-/* ==================================
-   ATTACHMENT MENU
-================================== */
+/* ================================
+   TYPING
+================================ */
 
-attachButton.addEventListener(
-  "click",
-  function(){
+input.addEventListener("input",()=>{
 
-    const choice =
-    confirm(
-      "Press OK to choose an image from your phone.\n\nPress Cancel to take a photo with your camera."
+  autoResize();
+
+  updateSendButton();
+
+  if(!user) return;
+
+
+  chatRef.set({
+
+    customerTyping:true
+
+  },{merge:true});
+
+
+  clearTimeout(typingTimer);
+
+
+  typingTimer =
+    setTimeout(
+      stopTyping,
+      1200
     );
 
+});
 
-    if(choice){
 
-      galleryInput.click();
+function stopTyping(){
 
-    }
+  clearTimeout(typingTimer);
 
-    else{
 
-      cameraInput.click();
+  if(user){
 
-    }
+    chatRef.set({
+
+      customerTyping:false
+
+    },{merge:true});
 
   }
-);
+
+}
 
 
-galleryInput.addEventListener(
-  "change",
-  handleFile
-);
+/* ================================
+   FILE
+================================ */
+
+document
+  .getElementById("attachButton")
+  .onclick = () =>
+    fileInput.click();
 
 
-cameraInput.addEventListener(
-  "change",
-  handleFile
-);
-
-
-function handleFile(event){
+fileInput.onchange = event => {
 
   const file =
-  event.target.files[0];
+    event.target.files[0];
 
-
-  if(!file){
-
-    return;
-
-  }
+  if(!file) return;
 
 
   if(!file.type.startsWith("image/")){
 
-    alert(
-      "Please select an image."
-    );
+    alert("Please select an image.");
 
     return;
 
   }
 
 
-  selectedFile =
-  file;
+  selectedFile = file;
 
 
   const reader =
-  new FileReader();
+    new FileReader();
 
 
-  reader.onload =
-  function(e){
+  reader.onload = e => {
 
     previewImage.src =
-    e.target.result;
+      e.target.result;
 
+    preview.classList.add("active");
 
-    previewBox.classList.add(
-      "active"
-    );
+    updateSendButton();
 
   };
 
 
-  reader.readAsDataURL(
-    file
-  );
+  reader.readAsDataURL(file);
+
+};
 
 
-  updateSendButton();
-
-}
-
-
-removePreview.addEventListener(
-  "click",
-  clearSelectedFile
-);
-
-
-function clearSelectedFile(){
-
-  selectedFile =
-  null;
-
-
-  galleryInput.value =
-  "";
-
-
-  cameraInput.value =
-  "";
-
-
-  previewImage.src =
-  "";
-
-
-  previewBox.classList.remove(
-    "active"
-  );
-
-
-  updateSendButton();
-
-}
-
-
-/* ==================================
+/* ================================
    INPUT
-================================== */
+================================ */
 
-function updateSendButton(){
-
-  const hasText =
-  messageInput.value.trim().length > 0;
+sendButton.onclick =
+  sendMessage;
 
 
-  sendButton.disabled =
-  !hasText &&
-  !selectedFile;
-
-}
-
-
-sendButton.addEventListener(
-  "click",
-  sendMessage
-);
-
-
-messageInput.addEventListener(
+input.addEventListener(
   "keydown",
-  function(event){
+  event => {
 
     if(
       event.key === "Enter" &&
@@ -1957,135 +1131,93 @@ messageInput.addEventListener(
 );
 
 
+function updateSendButton(){
+
+  sendButton.disabled =
+    !input.value.trim() &&
+    !selectedFile;
+
+}
+
+
 function autoResize(){
 
-  messageInput.style.height =
-  "48px";
+  input.style.height = "47px";
 
-
-  messageInput.style.height =
-  Math.min(
-    messageInput.scrollHeight,
-    130
-  ) +
-  "px";
+  input.style.height =
+    Math.min(
+      input.scrollHeight,
+      130
+    ) + "px";
 
 }
 
 
-function resetTextarea(){
-
-  messageInput.style.height =
-  "48px";
-
-}
-
-
-/* ==================================
+/* ================================
    MENU
-================================== */
+================================ */
 
-menuButton.addEventListener(
-  "click",
-  function(){
+const sideMenu =
+  document.getElementById("sideMenu");
 
-    sideMenu.classList.add(
-      "active"
-    );
-
-    menuOverlay.classList.add(
-      "active"
-    );
-
-  }
-);
+const overlay =
+  document.getElementById("overlay");
 
 
-closeMenu.addEventListener(
-  "click",
-  closeSideMenu
-);
+document
+  .getElementById("menuButton")
+  .onclick = () => {
+
+    sideMenu.classList.add("active");
+
+    overlay.classList.add("active");
+
+  };
 
 
-menuOverlay.addEventListener(
-  "click",
-  closeSideMenu
-);
+overlay.onclick =
+closeMenu;
 
 
-function closeSideMenu(){
+function closeMenu(){
 
-  sideMenu.classList.remove(
-    "active"
-  );
+  sideMenu.classList.remove("active");
 
-  menuOverlay.classList.remove(
-    "active"
-  );
+  overlay.classList.remove("active");
 
 }
 
 
-/* ==================================
-   LOGOUT
-================================== */
-
-logoutButton.addEventListener(
-  "click",
-  async function(){
-
-    const confirmLogout =
-    confirm(
-      "Are you sure you want to sign out?"
-    );
-
-
-    if(!confirmLogout){
-
-      return;
-
-    }
-
+document
+  .getElementById("logout")
+  .onclick = async () => {
 
     await auth.signOut();
 
+    location.href =
+      "login.html";
 
-    window.location.href =
-    "login.html";
-
-  }
-);
+  };
 
 
-/* ==================================
-   BACK
-================================== */
-
-backButton.addEventListener(
-  "click",
-  function(){
-
-    window.history.back();
-
-  }
-);
+document
+  .getElementById("backButton")
+  .onclick = () =>
+    history.back();
 
 
-/* ==================================
+/* ================================
    HELPERS
-================================== */
+================================ */
 
-function scrollToBottom(){
+function scrollBottom(){
 
-  setTimeout(
-    function(){
+  setTimeout(()=>{
 
-      messagesArea.scrollTop =
-      messagesArea.scrollHeight;
+    messagesEl.scrollTop =
+      messagesEl.scrollHeight;
 
-    },
-    80
-  );
+  },80);
 
 }
 
@@ -2095,39 +1227,18 @@ function formatTime(timestamp){
   if(
     !timestamp ||
     !timestamp.toDate
-  ){
-
+  )
     return "";
-
-  }
 
 
   return timestamp
-  .toDate()
-  .toLocaleTimeString(
-    [],
-    {
+    .toDate()
+    .toLocaleTimeString([],{
+
       hour:"2-digit",
       minute:"2-digit"
-    }
-  );
 
-}
-
-
-function escapeHtml(text){
-
-  const div =
-  document.createElement(
-    "div"
-  );
-
-
-  div.textContent =
-  text;
-
-
-  return div.innerHTML;
+    });
 
 }
 
