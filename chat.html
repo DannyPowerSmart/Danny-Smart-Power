@@ -421,10 +421,6 @@ textarea::placeholder{
   background:#17253a;
 }
 
-.menu-link:active{
-  background:#1e293b;
-}
-
 @media(max-width:600px){
 
   .bubble{
@@ -451,158 +447,142 @@ textarea::placeholder{
 
 <div class="chat-app">
 
-  <!-- ================= HEADER ================= -->
+<header class="chat-header">
 
-  <header class="chat-header">
-
-    <div class="header-side">
-      <button
-        class="header-btn"
-        id="backButton"
-        aria-label="Go back"
-      >
-        ←
-      </button>
-    </div>
-
-    <div class="profile">
-
-      <div class="avatar" id="adminAvatar">
-        ⚡
-      </div>
-
-      <div>
-
-        <h2>Danny Smart Power</h2>
-
-        <div
-          class="status"
-          id="status"
-        >
-          Connecting...
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="header-side">
-
-      <button
-        class="header-btn"
-        id="menuButton"
-        aria-label="Open menu"
-      >
-        ⋮
-      </button>
-
-    </div>
-
-  </header>
-
-
-  <!-- ================= MESSAGES ================= -->
-
-  <main
-    class="messages"
-    id="messages"
-  >
-
-    <div
-      class="loading"
-      id="loading"
+  <div class="header-side">
+    <button
+      class="header-btn"
+      id="backButton"
+      type="button"
     >
-      Connecting to Danny...
+      ←
+    </button>
+  </div>
+
+  <div class="profile">
+
+    <div class="avatar">
+      ⚡
     </div>
 
-  </main>
+    <div>
+      <h2>Danny Smart Power</h2>
+
+      <div
+        class="status"
+        id="status"
+      >
+        Connecting...
+      </div>
+    </div>
+
+  </div>
+
+  <div class="header-side">
+
+    <button
+      class="header-btn"
+      id="menuButton"
+      type="button"
+    >
+      ⋮
+    </button>
+
+  </div>
+
+</header>
 
 
-  <!-- ================= TYPING ================= -->
+<main
+  class="messages"
+  id="messages"
+>
 
   <div
-    class="typing"
-    id="typing"
+    class="loading"
+    id="loading"
   >
-    Danny is typing...
+    Connecting to Danny...
+  </div>
+
+</main>
+
+
+<div
+  class="typing"
+  id="typing"
+>
+  Danny is typing...
+</div>
+
+
+<div class="input-wrapper">
+
+  <div
+    class="preview"
+    id="preview"
+  >
+
+    <img
+      id="previewImage"
+      alt="Selected image"
+    >
+
+    <button
+      class="preview-remove"
+      id="removePreview"
+      type="button"
+    >
+      ×
+    </button>
+
   </div>
 
 
-  <!-- ================= INPUT ================= -->
+  <div class="input-area">
 
-  <div class="input-wrapper">
+    <button
+      class="attach"
+      id="attachButton"
+      type="button"
+    >
+      +
+    </button>
 
-    <div
-      class="preview"
-      id="preview"
+    <input
+      class="hidden"
+      type="file"
+      id="fileInput"
+      accept="image/*"
     >
 
-      <img
-        id="previewImage"
-        alt="Selected image"
-      >
+    <textarea
+      id="messageInput"
+      rows="1"
+      placeholder="Type a message..."
+    ></textarea>
 
-      <button
-        class="preview-remove"
-        id="removePreview"
-        type="button"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="input-area">
-
-      <button
-        class="attach"
-        id="attachButton"
-        type="button"
-        aria-label="Attach image"
-      >
-        +
-      </button>
-
-      <input
-        class="hidden"
-        type="file"
-        id="fileInput"
-        accept="image/*"
-      >
-
-      <textarea
-        id="messageInput"
-        rows="1"
-        placeholder="Type a message..."
-      ></textarea>
-
-      <button
-        class="send"
-        id="sendButton"
-        type="button"
-        disabled
-        aria-label="Send message"
-      >
-        ➤
-      </button>
-
-    </div>
+    <button
+      class="send"
+      id="sendButton"
+      type="button"
+      disabled
+    >
+      ➤
+    </button>
 
   </div>
 
 </div>
 
+</div>
 
-<!-- ================= OVERLAY ================= -->
 
 <div
   class="overlay"
   id="overlay"
 ></div>
 
-
-<!-- ================= SIDE MENU ================= -->
 
 <aside
   class="side-menu"
@@ -688,10 +668,6 @@ textarea::placeholder{
 
 <script>
 
-/* =========================================================
-   FIREBASE CONFIG
-========================================================= */
-
 const firebaseConfig = {
 
   apiKey:
@@ -720,9 +696,7 @@ const firebaseConfig = {
 
 };
 
-
 firebase.initializeApp(firebaseConfig);
-
 
 const auth =
   firebase.auth();
@@ -734,9 +708,7 @@ const storage =
   firebase.storage();
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+/* ================= VARIABLES ================= */
 
 const messagesEl =
   document.getElementById("messages");
@@ -774,31 +746,17 @@ const sideMenu =
 const overlay =
   document.getElementById("overlay");
 
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 let user = null;
-
 let chatRef = null;
-
 let messagesRef = null;
-
 let selectedFile = null;
-
 let stopMessages = null;
-
 let stopChat = null;
-
 let typingTimer = null;
-
 let sending = false;
 
 
-/* =========================================================
-   AUTH
-========================================================= */
+/* ================= AUTH ================= */
 
 auth.onAuthStateChanged(async currentUser => {
 
@@ -808,19 +766,18 @@ auth.onAuthStateChanged(async currentUser => {
       "login.html";
 
     return;
-
   }
-
 
   user = currentUser;
 
+  const customerName =
+    user.displayName ||
+    user.email.split("@")[0];
 
   document.getElementById(
     "customerName"
   ).textContent =
-    user.displayName ||
-    user.email.split("@")[0];
-
+    customerName;
 
   document.getElementById(
     "customerEmail"
@@ -831,8 +788,11 @@ auth.onAuthStateChanged(async currentUser => {
   /*
     IMPORTANT:
 
-    Each customer gets one chat document
-    using their Firebase UID.
+    The customer's UID is the chat document ID.
+
+    chats
+      └── customer UID
+           └── messages
   */
 
   chatRef =
@@ -840,23 +800,20 @@ auth.onAuthStateChanged(async currentUser => {
       .collection("chats")
       .doc(user.uid);
 
-
   messagesRef =
-    chatRef
-      .collection("messages");
+    chatRef.collection("messages");
 
 
   try{
 
     await createChat();
 
-
     status.textContent =
       "Online";
 
-
-    loadingEl.remove();
-
+    if(loadingEl){
+      loadingEl.remove();
+    }
 
     listenToChat();
 
@@ -869,39 +826,38 @@ auth.onAuthStateChanged(async currentUser => {
   catch(error){
 
     console.error(
-      "Chat initialization error:",
+      "Chat startup error:",
       error
     );
-
 
     status.textContent =
       "Connection error";
 
+    if(loadingEl){
 
-    loadingEl.textContent =
-      "Unable to connect to chat.";
+      loadingEl.textContent =
+        "Unable to connect to chat.";
+
+    }
 
   }
 
 });
 
 
-/* =========================================================
-   CREATE / UPDATE CHAT
-========================================================= */
+/* ================= CREATE CHAT ================= */
 
 async function createChat(){
 
   const snapshot =
     await chatRef.get();
 
-
   const customerName =
     user.displayName ||
     user.email.split("@")[0];
 
 
-  const data = {
+  const chatData = {
 
     customerId:
       user.uid,
@@ -946,7 +902,7 @@ async function createChat(){
 
     await chatRef.set({
 
-      ...data,
+      ...chatData,
 
       createdAt:
         firebase.firestore.FieldValue.serverTimestamp()
@@ -957,25 +913,45 @@ async function createChat(){
 
   else{
 
-    await chatRef.set(
-      data,
-      {merge:true}
-    );
+    /*
+      Do not reset unread counts or
+      lastMessage when the customer
+      opens the chat.
+    */
+
+    await chatRef.set({
+
+      customerId:
+        user.uid,
+
+      customerName:
+        customerName,
+
+      customerEmail:
+        user.email,
+
+      customerPhoto:
+        user.photoURL || "",
+
+      status:
+        "open"
+
+    },{
+      merge:true
+    });
 
   }
 
 }
 
 
-/* =========================================================
-   CHAT LISTENER
-========================================================= */
+/* ================= CHAT LISTENER ================= */
 
 function listenToChat(){
 
-  if(stopChat)
+  if(stopChat){
     stopChat();
-
+  }
 
   stopChat =
     chatRef.onSnapshot(snapshot => {
@@ -983,14 +959,10 @@ function listenToChat(){
       const data =
         snapshot.data();
 
-
-      if(!data)
+      if(!data){
         return;
+      }
 
-
-      /*
-        ADMIN TYPING
-      */
 
       if(data.adminTyping === true){
 
@@ -1013,15 +985,23 @@ function listenToChat(){
 }
 
 
-/* =========================================================
-   MESSAGE LISTENER
-========================================================= */
+/* ================= MESSAGE LISTENER ================= */
 
 function listenToMessages(){
 
-  if(stopMessages)
+  if(stopMessages){
     stopMessages();
+  }
 
+
+  /*
+    Real-time listener.
+
+    Whenever the admin creates a new
+    message in this customer's
+    messages collection, this function
+    runs automatically.
+  */
 
   stopMessages =
     messagesRef
@@ -1034,7 +1014,6 @@ function listenToMessages(){
         snapshot => {
 
           messagesEl.innerHTML = "";
-
 
           addWelcome();
 
@@ -1049,10 +1028,6 @@ function listenToMessages(){
           });
 
 
-          /*
-            Mark admin messages as read
-          */
-
           markAdminMessagesRead(
             snapshot
           );
@@ -1065,7 +1040,7 @@ function listenToMessages(){
         error => {
 
           console.error(
-            "Messages listener error:",
+            "Message listener error:",
             error
           );
 
@@ -1076,19 +1051,15 @@ function listenToMessages(){
 }
 
 
-/* =========================================================
-   WELCOME
-========================================================= */
+/* ================= WELCOME ================= */
 
 function addWelcome(){
 
   const div =
     document.createElement("div");
 
-
   div.className =
     "welcome";
-
 
   div.innerHTML = `
 
@@ -1107,17 +1078,12 @@ function addWelcome(){
 
   `;
 
-
-  messagesEl.appendChild(
-    div
-  );
+  messagesEl.appendChild(div);
 
 }
 
 
-/* =========================================================
-   RENDER MESSAGE
-========================================================= */
+/* ================= RENDER MESSAGE ================= */
 
 function renderMessage(
   id,
@@ -1129,8 +1095,10 @@ function renderMessage(
 
 
   /*
-    CUSTOMER = blue/right
-    ADMIN = dark/left
+    senderRole controls the side.
+
+    customer = right
+    admin = left
   */
 
   const mine =
@@ -1150,7 +1118,6 @@ function renderMessage(
   const bubble =
     document.createElement("div");
 
-
   bubble.className =
     "bubble";
 
@@ -1158,9 +1125,8 @@ function renderMessage(
   /*
     IMAGE
 
-    IMPORTANT:
-    We now use imageUrl,
-    matching Firestore.
+    Firestore field:
+    imageUrl
   */
 
   if(data.imageUrl){
@@ -1168,22 +1134,17 @@ function renderMessage(
     const img =
       document.createElement("img");
 
-
     img.src =
       data.imageUrl;
-
 
     img.className =
       "message-image";
 
-
     img.alt =
       "Chat image";
 
-
     img.loading =
       "lazy";
-
 
     img.onclick = () => {
 
@@ -1194,16 +1155,16 @@ function renderMessage(
 
     };
 
-
-    bubble.appendChild(
-      img
-    );
+    bubble.appendChild(img);
 
   }
 
 
   /*
     TEXT
+
+    Firestore field:
+    text
   */
 
   if(data.text){
@@ -1211,14 +1172,10 @@ function renderMessage(
     const text =
       document.createElement("div");
 
-
     text.textContent =
       data.text;
 
-
-    bubble.appendChild(
-      text
-    );
+    bubble.appendChild(text);
 
   }
 
@@ -1230,27 +1187,27 @@ function renderMessage(
   const meta =
     document.createElement("div");
 
-
   meta.className =
     "meta";
 
 
   meta.appendChild(
-
     document.createTextNode(
       formatTime(
         data.createdAt
       )
     )
-
   );
 
 
   /*
     READ STATUS
 
-    Only customer messages
-    display the check marks.
+    Firestore field:
+    read
+
+    Only customer's messages
+    show check marks.
   */
 
   if(mine){
@@ -1258,16 +1215,13 @@ function renderMessage(
     const read =
       document.createElement("span");
 
-
     read.className =
       "seen";
 
-
     read.textContent =
-      data.read
+      data.read === true
         ? "✓✓"
         : "✓";
-
 
     meta.appendChild(
       read
@@ -1280,11 +1234,9 @@ function renderMessage(
     meta
   );
 
-
   row.appendChild(
     bubble
   );
-
 
   messagesEl.appendChild(
     row
@@ -1293,20 +1245,18 @@ function renderMessage(
 }
 
 
-/* =========================================================
-   SEND MESSAGE
-========================================================= */
+/* ================= SEND MESSAGE ================= */
 
 async function sendMessage(){
 
   if(
     !user ||
     !chatRef ||
+    !messagesRef ||
     sending
   ){
 
     return;
-
   }
 
 
@@ -1320,16 +1270,13 @@ async function sendMessage(){
   ){
 
     return;
-
   }
 
 
   sending =
     true;
 
-
-  sendButton.disabled =
-    true;
+  updateSendButton();
 
 
   try{
@@ -1343,7 +1290,7 @@ async function sendMessage(){
 
     if(selectedFile){
 
-      const safeFileName =
+      const safeName =
         selectedFile.name
           .replace(
             /[^a-zA-Z0-9._-]/g,
@@ -1351,18 +1298,18 @@ async function sendMessage(){
           );
 
 
-      const path =
+      const storagePath =
         "chat-images/" +
         user.uid +
         "/" +
         Date.now() +
         "_" +
-        safeFileName;
+        safeName;
 
 
       const upload =
         await storage
-          .ref(path)
+          .ref(storagePath)
           .put(selectedFile);
 
 
@@ -1374,61 +1321,50 @@ async function sendMessage(){
 
 
     /*
-      CREATE MESSAGE
+      CREATE MESSAGE REFERENCE
     */
 
     const messageRef =
       messagesRef.doc();
 
 
-    const messageData = {
+    /*
+      THIS IS THE EXACT
+      FIRESTORE MESSAGE STRUCTURE
+    */
 
-      /*
-        NEW:
-        Every message stores
-        the chat ID.
-      */
+    const messageData = {
 
       chatId:
         user.uid,
 
-      text:
-        text,
-
-      /*
-        NEW:
-        Use imageUrl, NOT image.
-      */
+      createdAt:
+        firebase.firestore.FieldValue.serverTimestamp(),
 
       imageUrl:
         imageUrl,
 
+      read:
+        false,
+
       senderId:
         user.uid,
-
-      senderRole:
-        "customer",
 
       senderName:
         user.displayName ||
         user.email.split("@")[0],
 
-      createdAt:
-        firebase.firestore.FieldValue.serverTimestamp(),
+      senderRole:
+        "customer",
 
-      /*
-        NEW:
-        Use read, NOT seen.
-      */
-
-      read:
-        false
+      text:
+        text
 
     };
 
 
     /*
-      CREATE BATCH
+      BATCH WRITE
     */
 
     const batch =
@@ -1442,7 +1378,7 @@ async function sendMessage(){
 
 
     /*
-      UPDATE CHAT
+      UPDATE CHAT DOCUMENT
     */
 
     batch.set(
@@ -1474,11 +1410,6 @@ async function sendMessage(){
         updatedAt:
           firebase.firestore.FieldValue.serverTimestamp(),
 
-        /*
-          Customer sent a message,
-          so admin has one unread.
-        */
-
         unreadForAdmin:
           firebase.firestore.FieldValue.increment(1),
 
@@ -1500,10 +1431,6 @@ async function sendMessage(){
     );
 
 
-    /*
-      SAVE EVERYTHING
-    */
-
     await batch.commit();
 
 
@@ -1520,10 +1447,11 @@ async function sendMessage(){
     selectedFile =
       null;
 
-
     fileInput.value =
       "";
 
+    previewImage.src =
+      "";
 
     preview.classList.remove(
       "active"
@@ -1532,9 +1460,7 @@ async function sendMessage(){
 
     stopTyping();
 
-
     updateSendButton();
-
 
     scrollBottom();
 
@@ -1547,7 +1473,6 @@ async function sendMessage(){
       error
     );
 
-
     alert(
       "Message could not be sent. Please try again."
     );
@@ -1559,7 +1484,6 @@ async function sendMessage(){
     sending =
       false;
 
-
     updateSendButton();
 
   }
@@ -1567,9 +1491,7 @@ async function sendMessage(){
 }
 
 
-/* =========================================================
-   MARK ADMIN MESSAGES AS READ
-========================================================= */
+/* ================= MARK ADMIN READ ================= */
 
 async function markAdminMessagesRead(
   snapshot
@@ -1577,7 +1499,6 @@ async function markAdminMessagesRead(
 
   const batch =
     db.batch();
-
 
   let count =
     0;
@@ -1590,8 +1511,8 @@ async function markAdminMessagesRead(
 
 
     /*
-      Only change unread ADMIN
-      messages.
+      Only admin messages that
+      have not been read yet.
     */
 
     if(
@@ -1612,7 +1533,6 @@ async function markAdminMessagesRead(
 
       );
 
-
       count++;
 
     }
@@ -1620,49 +1540,48 @@ async function markAdminMessagesRead(
   });
 
 
-  if(count > 0){
-
-    try{
-
-      await batch.commit();
+  if(count === 0){
+    return;
+  }
 
 
-      await chatRef.set(
+  try{
 
-        {
+    await batch.commit();
 
-          unreadForCustomer:
-            0
 
-        },
+    await chatRef.set(
 
-        {
+      {
 
-          merge:true
+        unreadForCustomer:
+          0
 
-        }
+      },
 
-      );
+      {
 
-    }
+        merge:true
 
-    catch(error){
+      }
 
-      console.error(
-        "Read update error:",
-        error
-      );
+    );
 
-    }
+  }
+
+  catch(error){
+
+    console.error(
+      "Read status error:",
+      error
+    );
 
   }
 
 }
 
 
-/* =========================================================
-   TYPING INDICATOR
-========================================================= */
+/* ================= TYPING ================= */
 
 input.addEventListener(
   "input",
@@ -1673,8 +1592,9 @@ input.addEventListener(
     updateSendButton();
 
 
-    if(!user)
+    if(!user || !chatRef){
       return;
+    }
 
 
     chatRef.set(
@@ -1717,7 +1637,10 @@ function stopTyping(){
   );
 
 
-  if(user && chatRef){
+  if(
+    user &&
+    chatRef
+  ){
 
     chatRef.set(
 
@@ -1741,13 +1664,12 @@ function stopTyping(){
 }
 
 
-/* =========================================================
-   FILE ATTACHMENT
-========================================================= */
+/* ================= FILE ================= */
 
 document
   .getElementById("attachButton")
-  .onclick = () => {
+  .onclick =
+  () => {
 
     fileInput.click();
 
@@ -1761,8 +1683,9 @@ fileInput.onchange =
       event.target.files[0];
 
 
-    if(!file)
+    if(!file){
       return;
+    }
 
 
     if(
@@ -1775,20 +1698,13 @@ fileInput.onchange =
         "Please select an image."
       );
 
-
       fileInput.value =
         "";
-
 
       return;
 
     }
 
-
-    /*
-      Optional size protection:
-      10 MB maximum.
-    */
 
     if(
       file.size >
@@ -1799,10 +1715,8 @@ fileInput.onchange =
         "Please choose an image smaller than 10 MB."
       );
 
-
       fileInput.value =
         "";
-
 
       return;
 
@@ -1823,11 +1737,9 @@ fileInput.onchange =
         previewImage.src =
           event.target.result;
 
-
         preview.classList.add(
           "active"
         );
-
 
         updateSendButton();
 
@@ -1841,9 +1753,7 @@ fileInput.onchange =
   };
 
 
-/* =========================================================
-   REMOVE IMAGE
-========================================================= */
+/* ================= REMOVE IMAGE ================= */
 
 removePreview.onclick =
   () => {
@@ -1851,28 +1761,22 @@ removePreview.onclick =
     selectedFile =
       null;
 
-
     fileInput.value =
       "";
-
 
     previewImage.src =
       "";
 
-
     preview.classList.remove(
       "active"
     );
-
 
     updateSendButton();
 
   };
 
 
-/* =========================================================
-   INPUT / SEND
-========================================================= */
+/* ================= INPUT ================= */
 
 sendButton.onclick =
   sendMessage;
@@ -1882,18 +1786,12 @@ input.addEventListener(
   "keydown",
   event => {
 
-    /*
-      Enter = send
-      Shift + Enter = new line
-    */
-
     if(
       event.key === "Enter" &&
       !event.shiftKey
     ){
 
       event.preventDefault();
-
 
       sendMessage();
 
@@ -1920,7 +1818,6 @@ function autoResize(){
   input.style.height =
     "47px";
 
-
   input.style.height =
     Math.min(
       input.scrollHeight,
@@ -1930,13 +1827,12 @@ function autoResize(){
 }
 
 
-/* =========================================================
-   MENU
-========================================================= */
+/* ================= MENU ================= */
 
 document
   .getElementById("menuButton")
-  .onclick = () => {
+  .onclick =
+  () => {
 
     sideMenu.classList.add(
       "active"
@@ -1966,9 +1862,7 @@ function closeMenu(){
 }
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+/* ================= LOGOUT ================= */
 
 document
   .getElementById("logout")
@@ -1978,7 +1872,6 @@ document
     try{
 
       await auth.signOut();
-
 
       location.href =
         "login.html";
@@ -1997,9 +1890,7 @@ document
   };
 
 
-/* =========================================================
-   BACK BUTTON
-========================================================= */
+/* ================= BACK ================= */
 
 document
   .getElementById("backButton")
@@ -2011,9 +1902,7 @@ document
   };
 
 
-/* =========================================================
-   SCROLL
-========================================================= */
+/* ================= SCROLL ================= */
 
 function scrollBottom(){
 
@@ -2024,15 +1913,13 @@ function scrollBottom(){
         messagesEl.scrollHeight;
 
     },
-    80
+    100
   );
 
 }
 
 
-/* =========================================================
-   TIME FORMAT
-========================================================= */
+/* ================= TIME ================= */
 
 function formatTime(
   timestamp
@@ -2066,20 +1953,19 @@ function formatTime(
 }
 
 
-/* =========================================================
-   CLEANUP
-========================================================= */
+/* ================= CLEANUP ================= */
 
 window.addEventListener(
   "beforeunload",
   () => {
 
-    if(stopMessages)
+    if(stopMessages){
       stopMessages();
+    }
 
-
-    if(stopChat)
+    if(stopChat){
       stopChat();
+    }
 
   }
 );
@@ -2087,4 +1973,4 @@ window.addEventListener(
 </script>
 
 </body>
-</html>
+  </html>
