@@ -28,7 +28,8 @@
   --border:rgba(148,163,184,.14);
 }
 
-html,body{
+html,
+body{
   width:100%;
   height:100%;
   overflow:hidden;
@@ -46,6 +47,8 @@ body{
   display:flex;
   flex-direction:column;
 }
+
+/* ================= HEADER ================= */
 
 .chat-header{
   height:86px;
@@ -73,6 +76,10 @@ body{
   cursor:pointer;
 }
 
+.header-btn:active{
+  background:#17253a;
+}
+
 .profile{
   display:flex;
   align-items:center;
@@ -89,6 +96,7 @@ body{
   background:linear-gradient(135deg,#38bdf8,#0284c7);
   font-size:24px;
   overflow:hidden;
+  flex-shrink:0;
 }
 
 .avatar img{
@@ -99,6 +107,7 @@ body{
 
 .profile h2{
   font-size:17px;
+  font-weight:600;
 }
 
 .status{
@@ -106,11 +115,30 @@ body{
   font-size:12px;
 }
 
+/* ================= MESSAGES ================= */
+
 .messages{
   flex:1;
   min-height:0;
   overflow-y:auto;
-  padding:18px 12px;
+  padding:18px 12px 20px;
+  scroll-behavior:smooth;
+}
+
+.messages::-webkit-scrollbar{
+  width:5px;
+}
+
+.messages::-webkit-scrollbar-thumb{
+  background:#334155;
+  border-radius:10px;
+}
+
+.loading{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:30px;
 }
 
 .welcome{
@@ -186,6 +214,7 @@ body{
   object-fit:cover;
   border-radius:12px;
   cursor:pointer;
+  margin-bottom:5px;
 }
 
 .meta{
@@ -203,16 +232,22 @@ body{
   font-size:11px;
 }
 
+/* ================= TYPING ================= */
+
 .typing{
   display:none;
+  flex-shrink:0;
   padding:6px 15px;
   color:var(--muted);
   font-size:12px;
+  background:var(--bg);
 }
 
 .typing.active{
   display:block;
 }
+
+/* ================= INPUT ================= */
 
 .input-wrapper{
   flex-shrink:0;
@@ -252,6 +287,7 @@ body{
 
 .send:disabled{
   opacity:.4;
+  cursor:not-allowed;
 }
 
 textarea{
@@ -270,11 +306,16 @@ textarea{
   font-size:14px;
 }
 
+textarea::placeholder{
+  color:#64748b;
+}
+
 .preview{
   display:none;
   max-width:900px;
   margin:auto;
   padding-bottom:8px;
+  position:relative;
 }
 
 .preview.active{
@@ -286,11 +327,28 @@ textarea{
   height:75px;
   object-fit:cover;
   border-radius:10px;
+  border:1px solid var(--border);
+}
+
+.preview-remove{
+  position:absolute;
+  top:-7px;
+  left:62px;
+  width:23px;
+  height:23px;
+  border:0;
+  border-radius:50%;
+  background:#ef4444;
+  color:white;
+  cursor:pointer;
+  font-size:14px;
 }
 
 .hidden{
   display:none;
 }
+
+/* ================= SIDE MENU ================= */
 
 .side-menu{
   position:fixed;
@@ -302,11 +360,33 @@ textarea{
   height:100dvh;
   background:#020617;
   padding:20px;
-  transition:.3s;
+  transition:.3s ease;
+  overflow-y:auto;
 }
 
 .side-menu.active{
   right:0;
+}
+
+.side-menu h3{
+  font-size:20px;
+}
+
+.customer-info{
+  margin-top:8px;
+}
+
+#customerName{
+  display:block;
+  font-size:15px;
+}
+
+#customerEmail{
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
+  font-size:11px;
+  word-break:break-all;
 }
 
 .overlay{
@@ -333,15 +413,35 @@ textarea{
   text-decoration:none;
   text-align:left;
   font-family:inherit;
+  font-size:14px;
+  cursor:pointer;
 }
 
 .menu-link:hover{
   background:#17253a;
 }
 
+.menu-link:active{
+  background:#1e293b;
+}
+
 @media(max-width:600px){
+
   .bubble{
     max-width:85%;
+  }
+
+  .profile h2{
+    font-size:15px;
+  }
+
+  .avatar{
+    width:45px;
+    height:45px;
+  }
+
+  .chat-header{
+    height:78px;
   }
 }
 </style>
@@ -351,141 +451,298 @@ textarea{
 
 <div class="chat-app">
 
-<header class="chat-header">
+  <!-- ================= HEADER ================= -->
 
-  <div class="header-side">
-    <button class="header-btn" id="backButton">←</button>
-  </div>
+  <header class="chat-header">
 
-  <div class="profile">
-
-    <div class="avatar">
-      ⚡
+    <div class="header-side">
+      <button
+        class="header-btn"
+        id="backButton"
+        aria-label="Go back"
+      >
+        ←
+      </button>
     </div>
 
-    <div>
-      <h2>Danny Smart Power</h2>
-      <div class="status" id="status">Connecting...</div>
+    <div class="profile">
+
+      <div class="avatar" id="adminAvatar">
+        ⚡
+      </div>
+
+      <div>
+
+        <h2>Danny Smart Power</h2>
+
+        <div
+          class="status"
+          id="status"
+        >
+          Connecting...
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="header-side">
+
+      <button
+        class="header-btn"
+        id="menuButton"
+        aria-label="Open menu"
+      >
+        ⋮
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================= MESSAGES ================= -->
+
+  <main
+    class="messages"
+    id="messages"
+  >
+
+    <div
+      class="loading"
+      id="loading"
+    >
+      Connecting to Danny...
+    </div>
+
+  </main>
+
+
+  <!-- ================= TYPING ================= -->
+
+  <div
+    class="typing"
+    id="typing"
+  >
+    Danny is typing...
+  </div>
+
+
+  <!-- ================= INPUT ================= -->
+
+  <div class="input-wrapper">
+
+    <div
+      class="preview"
+      id="preview"
+    >
+
+      <img
+        id="previewImage"
+        alt="Selected image"
+      >
+
+      <button
+        class="preview-remove"
+        id="removePreview"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="input-area">
+
+      <button
+        class="attach"
+        id="attachButton"
+        type="button"
+        aria-label="Attach image"
+      >
+        +
+      </button>
+
+      <input
+        class="hidden"
+        type="file"
+        id="fileInput"
+        accept="image/*"
+      >
+
+      <textarea
+        id="messageInput"
+        rows="1"
+        placeholder="Type a message..."
+      ></textarea>
+
+      <button
+        class="send"
+        id="sendButton"
+        type="button"
+        disabled
+        aria-label="Send message"
+      >
+        ➤
+      </button>
+
     </div>
 
   </div>
 
-  <div class="header-side">
-    <button class="header-btn" id="menuButton">⋮</button>
-  </div>
-
-</header>
-
-
-<main class="messages" id="messages">
-
-  <div id="loading">
-    Connecting to Danny...
-  </div>
-
-</main>
-
-
-<div class="typing" id="typing">
-  Danny is typing...
 </div>
 
 
-<div class="input-wrapper">
+<!-- ================= OVERLAY ================= -->
 
-  <div class="preview" id="preview">
-    <img id="previewImage">
-  </div>
-
-  <div class="input-area">
-
-    <button class="attach" id="attachButton">+</button>
-
-    <input
-      class="hidden"
-      type="file"
-      id="fileInput"
-      accept="image/*"
-    >
-
-    <textarea
-      id="messageInput"
-      rows="1"
-      placeholder="Type a message..."
-    ></textarea>
-
-    <button
-      class="send"
-      id="sendButton"
-      disabled
-    >
-      ➤
-    </button>
-
-  </div>
-
-</div>
-
-</div>
+<div
+  class="overlay"
+  id="overlay"
+></div>
 
 
-<div class="overlay" id="overlay"></div>
+<!-- ================= SIDE MENU ================= -->
 
-<aside class="side-menu" id="sideMenu">
+<aside
+  class="side-menu"
+  id="sideMenu"
+>
 
   <h3>Danny Chat</h3>
 
-  <br>
+  <div class="customer-info">
 
-  <strong id="customerName">Loading...</strong>
+    <strong id="customerName">
+      Loading...
+    </strong>
 
-  <small id="customerEmail"></small>
+    <small id="customerEmail"></small>
 
-  <hr style="margin:20px 0;border-color:#1e293b">
+  </div>
 
-  <a class="menu-link" href="profile.html">👤 Profile</a>
+  <hr
+    style="margin:20px 0;border-color:#1e293b"
+  >
 
-  <a class="menu-link" href="shop.html">🛍️ Continue Shopping</a>
+  <a
+    class="menu-link"
+    href="profile.html"
+  >
+    👤 Profile
+  </a>
 
-  <a class="menu-link" href="cart.html">🛒 My Cart</a>
+  <a
+    class="menu-link"
+    href="shop.html"
+  >
+    🛍️ Continue Shopping
+  </a>
 
-  <a class="menu-link" href="orders.html">📦 My Orders</a>
+  <a
+    class="menu-link"
+    href="cart.html"
+  >
+    🛒 My Cart
+  </a>
 
-  <a class="menu-link" href="settings.html">⚙️ Settings</a>
+  <a
+    class="menu-link"
+    href="orders.html"
+  >
+    📦 My Orders
+  </a>
 
-  <a class="menu-link" href="contact.html">📞 Contact</a>
+  <a
+    class="menu-link"
+    href="settings.html"
+  >
+    ⚙️ Settings
+  </a>
 
-  <button class="menu-link" id="logout">🚪 Sign Out</button>
+  <a
+    class="menu-link"
+    href="contact.html"
+  >
+    📞 Contact
+  </a>
+
+  <button
+    class="menu-link"
+    id="logout"
+    type="button"
+  >
+    🚪 Sign Out
+  </button>
 
 </aside>
 
+
+<!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 
+
 <script>
 
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
 const firebaseConfig = {
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-  authDomain: "danny-smart-power.firebaseapp.com",
-  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
-  projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.firebasestorage.app",
-  messagingSenderId: "649735645158",
-  appId: "1:649735645158:web:cff518b89721a163679827",
-  measurementId: "G-258YKLP5ZS"
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
 };
+
 
 firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
+
+const auth =
+  firebase.auth();
+
+const db =
+  firebase.firestore();
+
+const storage =
+  firebase.storage();
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const messagesEl =
   document.getElementById("messages");
+
+const loadingEl =
+  document.getElementById("loading");
 
 const input =
   document.getElementById("messageInput");
@@ -508,91 +765,173 @@ const preview =
 const previewImage =
   document.getElementById("previewImage");
 
+const removePreview =
+  document.getElementById("removePreview");
+
+const sideMenu =
+  document.getElementById("sideMenu");
+
+const overlay =
+  document.getElementById("overlay");
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
 let user = null;
+
 let chatRef = null;
+
 let messagesRef = null;
+
 let selectedFile = null;
+
 let stopMessages = null;
+
 let stopChat = null;
+
 let typingTimer = null;
+
 let sending = false;
 
 
-/* ================================
+/* =========================================================
    AUTH
-================================ */
+========================================================= */
 
 auth.onAuthStateChanged(async currentUser => {
 
   if(!currentUser){
 
-    window.location.href = "login.html";
+    window.location.href =
+      "login.html";
+
     return;
 
   }
 
+
   user = currentUser;
 
-  document.getElementById("customerName").textContent =
+
+  document.getElementById(
+    "customerName"
+  ).textContent =
     user.displayName ||
     user.email.split("@")[0];
 
-  document.getElementById("customerEmail").textContent =
+
+  document.getElementById(
+    "customerEmail"
+  ).textContent =
     user.email;
 
 
+  /*
+    IMPORTANT:
+
+    Each customer gets one chat document
+    using their Firebase UID.
+  */
+
   chatRef =
-    db.collection("chats").doc(user.uid);
+    db
+      .collection("chats")
+      .doc(user.uid);
+
 
   messagesRef =
-    chatRef.collection("messages");
+    chatRef
+      .collection("messages");
 
 
-  await createChat();
+  try{
 
-  status.textContent = "Online";
+    await createChat();
 
-  listenToChat();
 
-  listenToMessages();
+    status.textContent =
+      "Online";
 
-  sendButton.disabled = false;
+
+    loadingEl.remove();
+
+
+    listenToChat();
+
+    listenToMessages();
+
+    updateSendButton();
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Chat initialization error:",
+      error
+    );
+
+
+    status.textContent =
+      "Connection error";
+
+
+    loadingEl.textContent =
+      "Unable to connect to chat.";
+
+  }
 
 });
 
 
-/* ================================
-   CREATE CHAT
-================================ */
+/* =========================================================
+   CREATE / UPDATE CHAT
+========================================================= */
 
 async function createChat(){
 
-  const ref = await chatRef.get();
+  const snapshot =
+    await chatRef.get();
+
+
+  const customerName =
+    user.displayName ||
+    user.email.split("@")[0];
+
 
   const data = {
 
-    customerId:user.uid,
+    customerId:
+      user.uid,
 
     customerName:
-      user.displayName ||
-      user.email.split("@")[0],
+      customerName,
 
-    customerEmail:user.email,
+    customerEmail:
+      user.email,
 
     customerPhoto:
       user.photoURL || "",
 
-    status:"open",
+    status:
+      "open",
 
-    customerTyping:false,
+    customerTyping:
+      false,
 
-    adminTyping:false,
+    adminTyping:
+      false,
 
-    unreadForAdmin:0,
+    unreadForAdmin:
+      0,
 
-    unreadForCustomer:0,
+    unreadForCustomer:
+      0,
 
-    lastMessage:"",
+    lastMessage:
+      "",
 
     lastMessageAt:
       firebase.firestore.FieldValue.serverTimestamp(),
@@ -603,7 +942,7 @@ async function createChat(){
   };
 
 
-  if(!ref.exists){
+  if(!snapshot.exists){
 
     await chatRef.set({
 
@@ -614,35 +953,58 @@ async function createChat(){
 
     });
 
-  }else{
+  }
 
-    await chatRef.set(data,{merge:true});
+  else{
+
+    await chatRef.set(
+      data,
+      {merge:true}
+    );
 
   }
 
 }
 
 
-/* ================================
+/* =========================================================
    CHAT LISTENER
-================================ */
+========================================================= */
 
 function listenToChat(){
+
+  if(stopChat)
+    stopChat();
+
 
   stopChat =
     chatRef.onSnapshot(snapshot => {
 
-      const data = snapshot.data();
+      const data =
+        snapshot.data();
 
-      if(!data) return;
+
+      if(!data)
+        return;
+
+
+      /*
+        ADMIN TYPING
+      */
 
       if(data.adminTyping === true){
 
-        typing.classList.add("active");
+        typing.classList.add(
+          "active"
+        );
 
-      }else{
+      }
 
-        typing.classList.remove("active");
+      else{
+
+        typing.classList.remove(
+          "active"
+        );
 
       }
 
@@ -651,9 +1013,9 @@ function listenToChat(){
 }
 
 
-/* ================================
+/* =========================================================
    MESSAGE LISTENER
-================================ */
+========================================================= */
 
 function listenToMessages(){
 
@@ -663,49 +1025,80 @@ function listenToMessages(){
 
   stopMessages =
     messagesRef
-      .orderBy("createdAt","asc")
-      .onSnapshot(snapshot => {
+      .orderBy(
+        "createdAt",
+        "asc"
+      )
+      .onSnapshot(
 
-        messagesEl.innerHTML = "";
+        snapshot => {
 
-        addWelcome();
+          messagesEl.innerHTML = "";
 
 
-        snapshot.forEach(doc => {
+          addWelcome();
 
-          renderMessage(
-            doc.id,
-            doc.data()
+
+          snapshot.forEach(doc => {
+
+            renderMessage(
+              doc.id,
+              doc.data()
+            );
+
+          });
+
+
+          /*
+            Mark admin messages as read
+          */
+
+          markAdminMessagesRead(
+            snapshot
           );
 
-        });
 
+          scrollBottom();
 
-        markAdminMessagesSeen(snapshot);
+        },
 
-        scrollBottom();
+        error => {
 
-      });
+          console.error(
+            "Messages listener error:",
+            error
+          );
+
+        }
+
+      );
 
 }
 
 
-/* ================================
+/* =========================================================
    WELCOME
-================================ */
+========================================================= */
 
 function addWelcome(){
 
   const div =
     document.createElement("div");
 
-  div.className = "welcome";
+
+  div.className =
+    "welcome";
+
 
   div.innerHTML = `
 
-    <div class="welcome-icon">⚡</div>
+    <div class="welcome-icon">
+      ⚡
+    </div>
 
-    <h1>Welcome to Danny Smart Power</h1>
+    <h1>
+      Welcome to Danny Smart Power
+    </h1>
 
     <p>
       Hello 👋. How can we help you today
@@ -714,121 +1107,229 @@ function addWelcome(){
 
   `;
 
-  messagesEl.appendChild(div);
+
+  messagesEl.appendChild(
+    div
+  );
 
 }
 
 
-/* ================================
+/* =========================================================
    RENDER MESSAGE
-================================ */
+========================================================= */
 
-function renderMessage(id,data){
+function renderMessage(
+  id,
+  data
+){
 
   const row =
     document.createElement("div");
 
+
+  /*
+    CUSTOMER = blue/right
+    ADMIN = dark/left
+  */
+
   const mine =
-    data.senderRole === "customer";
+    data.senderRole ===
+    "customer";
+
 
   row.className =
     "message-row " +
-    (mine ? "customer" : "admin");
+    (
+      mine
+        ? "customer"
+        : "admin"
+    );
 
 
   const bubble =
     document.createElement("div");
 
-  bubble.className = "bubble";
+
+  bubble.className =
+    "bubble";
 
 
-  if(data.image){
+  /*
+    IMAGE
+
+    IMPORTANT:
+    We now use imageUrl,
+    matching Firestore.
+  */
+
+  if(data.imageUrl){
 
     const img =
       document.createElement("img");
 
-    img.src = data.image;
+
+    img.src =
+      data.imageUrl;
+
 
     img.className =
       "message-image";
 
-    img.onclick = () =>
-      window.open(data.image,"_blank");
 
-    bubble.appendChild(img);
+    img.alt =
+      "Chat image";
+
+
+    img.loading =
+      "lazy";
+
+
+    img.onclick = () => {
+
+      window.open(
+        data.imageUrl,
+        "_blank"
+      );
+
+    };
+
+
+    bubble.appendChild(
+      img
+    );
 
   }
 
+
+  /*
+    TEXT
+  */
 
   if(data.text){
 
     const text =
       document.createElement("div");
 
-    text.textContent = data.text;
 
-    bubble.appendChild(text);
+    text.textContent =
+      data.text;
+
+
+    bubble.appendChild(
+      text
+    );
 
   }
 
+
+  /*
+    TIME
+  */
 
   const meta =
     document.createElement("div");
 
-  meta.className = "meta";
+
+  meta.className =
+    "meta";
+
 
   meta.appendChild(
+
     document.createTextNode(
-      formatTime(data.createdAt)
+      formatTime(
+        data.createdAt
+      )
     )
+
   );
 
 
+  /*
+    READ STATUS
+
+    Only customer messages
+    display the check marks.
+  */
+
   if(mine){
 
-    const seen =
+    const read =
       document.createElement("span");
 
-    seen.className = "seen";
 
-    seen.textContent =
-      data.seen ? "✓✓" : "✓";
+    read.className =
+      "seen";
 
-    meta.appendChild(seen);
+
+    read.textContent =
+      data.read
+        ? "✓✓"
+        : "✓";
+
+
+    meta.appendChild(
+      read
+    );
 
   }
 
 
-  bubble.appendChild(meta);
+  bubble.appendChild(
+    meta
+  );
 
-  row.appendChild(bubble);
 
-  messagesEl.appendChild(row);
+  row.appendChild(
+    bubble
+  );
+
+
+  messagesEl.appendChild(
+    row
+  );
 
 }
 
 
-/* ================================
+/* =========================================================
    SEND MESSAGE
-================================ */
+========================================================= */
 
 async function sendMessage(){
 
-  if(!user || sending)
+  if(
+    !user ||
+    !chatRef ||
+    sending
+  ){
+
     return;
+
+  }
 
 
   const text =
     input.value.trim();
 
 
-  if(!text && !selectedFile)
+  if(
+    !text &&
+    !selectedFile
+  ){
+
     return;
 
+  }
 
-  sending = true;
 
-  sendButton.disabled = true;
+  sending =
+    true;
+
+
+  sendButton.disabled =
+    true;
 
 
   try{
@@ -836,14 +1337,27 @@ async function sendMessage(){
     let imageUrl = "";
 
 
+    /*
+      UPLOAD IMAGE
+    */
+
     if(selectedFile){
+
+      const safeFileName =
+        selectedFile.name
+          .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+          );
+
 
       const path =
         "chat-images/" +
-        user.uid + "/" +
+        user.uid +
+        "/" +
         Date.now() +
         "_" +
-        selectedFile.name;
+        safeFileName;
 
 
       const upload =
@@ -853,28 +1367,47 @@ async function sendMessage(){
 
 
       imageUrl =
-        await upload.ref.getDownloadURL();
+        await upload.ref
+          .getDownloadURL();
 
     }
 
 
-    const batch =
-      db.batch();
-
+    /*
+      CREATE MESSAGE
+    */
 
     const messageRef =
       messagesRef.doc();
 
 
-    batch.set(messageRef,{
+    const messageData = {
 
-      text:text,
+      /*
+        NEW:
+        Every message stores
+        the chat ID.
+      */
 
-      image:imageUrl,
+      chatId:
+        user.uid,
 
-      senderId:user.uid,
+      text:
+        text,
 
-      senderRole:"customer",
+      /*
+        NEW:
+        Use imageUrl, NOT image.
+      */
+
+      imageUrl:
+        imageUrl,
+
+      senderId:
+        user.uid,
+
+      senderRole:
+        "customer",
 
       senderName:
         user.displayName ||
@@ -883,50 +1416,125 @@ async function sendMessage(){
       createdAt:
         firebase.firestore.FieldValue.serverTimestamp(),
 
-      seen:false,
+      /*
+        NEW:
+        Use read, NOT seen.
+      */
 
-      seenAt:null
+      read:
+        false
 
-    });
+    };
 
 
-    batch.set(chatRef,{
+    /*
+      CREATE BATCH
+    */
 
-      lastMessage:
-        text || "📷 Image",
+    const batch =
+      db.batch();
 
-      lastMessageAt:
-        firebase.firestore.FieldValue.serverTimestamp(),
 
-      updatedAt:
-        firebase.firestore.FieldValue.serverTimestamp(),
+    batch.set(
+      messageRef,
+      messageData
+    );
 
-      unreadForAdmin:
-        firebase.firestore.FieldValue.increment(1),
 
-      unreadForCustomer:0,
+    /*
+      UPDATE CHAT
+    */
 
-      customerTyping:false,
+    batch.set(
 
-      status:"open"
+      chatRef,
 
-    },{merge:true});
+      {
 
+        customerId:
+          user.uid,
+
+        customerName:
+          user.displayName ||
+          user.email.split("@")[0],
+
+        customerEmail:
+          user.email,
+
+        customerPhoto:
+          user.photoURL || "",
+
+        lastMessage:
+          text ||
+          "📷 Image",
+
+        lastMessageAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
+
+        /*
+          Customer sent a message,
+          so admin has one unread.
+        */
+
+        unreadForAdmin:
+          firebase.firestore.FieldValue.increment(1),
+
+        unreadForCustomer:
+          0,
+
+        customerTyping:
+          false,
+
+        status:
+          "open"
+
+      },
+
+      {
+        merge:true
+      }
+
+    );
+
+
+    /*
+      SAVE EVERYTHING
+    */
 
     await batch.commit();
 
 
+    /*
+      RESET INPUT
+    */
+
     input.value = "";
 
-    selectedFile = null;
+    input.style.height =
+      "47px";
 
-    fileInput.value = "";
 
-    preview.classList.remove("active");
+    selectedFile =
+      null;
 
-    input.style.height = "47px";
+
+    fileInput.value =
+      "";
+
+
+    preview.classList.remove(
+      "active"
+    );
+
 
     stopTyping();
+
+
+    updateSendButton();
+
 
     scrollBottom();
 
@@ -934,54 +1542,76 @@ async function sendMessage(){
 
   catch(error){
 
-    console.error(error);
+    console.error(
+      "Send message error:",
+      error
+    );
+
 
     alert(
-      "Message could not be sent."
+      "Message could not be sent. Please try again."
     );
 
   }
 
+  finally{
 
-  sending = false;
+    sending =
+      false;
 
-  sendButton.disabled = false;
 
-  updateSendButton();
+    updateSendButton();
+
+  }
 
 }
 
 
-/* ================================
-   MARK ADMIN MESSAGES SEEN
-================================ */
+/* =========================================================
+   MARK ADMIN MESSAGES AS READ
+========================================================= */
 
-async function markAdminMessagesSeen(snapshot){
+async function markAdminMessagesRead(
+  snapshot
+){
 
   const batch =
     db.batch();
 
-  let count = 0;
+
+  let count =
+    0;
 
 
   snapshot.forEach(doc => {
 
-    const data = doc.data();
+    const data =
+      doc.data();
 
+
+    /*
+      Only change unread ADMIN
+      messages.
+    */
 
     if(
       data.senderRole === "admin" &&
-      data.seen === false
+      data.read === false
     ){
 
-      batch.update(doc.ref,{
+      batch.update(
 
-        seen:true,
+        doc.ref,
 
-        seenAt:
-          firebase.firestore.FieldValue.serverTimestamp()
+        {
 
-      });
+          read:
+            true
+
+        }
+
+      );
+
 
       count++;
 
@@ -992,121 +1622,257 @@ async function markAdminMessagesSeen(snapshot){
 
   if(count > 0){
 
-    await batch.commit();
+    try{
 
-    await chatRef.update({
-      unreadForCustomer:0
-    });
+      await batch.commit();
+
+
+      await chatRef.set(
+
+        {
+
+          unreadForCustomer:
+            0
+
+        },
+
+        {
+
+          merge:true
+
+        }
+
+      );
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Read update error:",
+        error
+      );
+
+    }
 
   }
 
 }
 
 
-/* ================================
-   TYPING
-================================ */
+/* =========================================================
+   TYPING INDICATOR
+========================================================= */
 
-input.addEventListener("input",()=>{
+input.addEventListener(
+  "input",
+  () => {
 
-  autoResize();
+    autoResize();
 
-  updateSendButton();
-
-  if(!user) return;
-
-
-  chatRef.set({
-
-    customerTyping:true
-
-  },{merge:true});
+    updateSendButton();
 
 
-  clearTimeout(typingTimer);
+    if(!user)
+      return;
 
 
-  typingTimer =
-    setTimeout(
-      stopTyping,
-      1200
+    chatRef.set(
+
+      {
+
+        customerTyping:
+          true
+
+      },
+
+      {
+
+        merge:true
+
+      }
+
     );
 
-});
+
+    clearTimeout(
+      typingTimer
+    );
+
+
+    typingTimer =
+      setTimeout(
+        stopTyping,
+        1200
+      );
+
+  }
+);
 
 
 function stopTyping(){
 
-  clearTimeout(typingTimer);
+  clearTimeout(
+    typingTimer
+  );
 
 
-  if(user){
+  if(user && chatRef){
 
-    chatRef.set({
+    chatRef.set(
 
-      customerTyping:false
+      {
 
-    },{merge:true});
+        customerTyping:
+          false
+
+      },
+
+      {
+
+        merge:true
+
+      }
+
+    );
 
   }
 
 }
 
 
-/* ================================
-   FILE
-================================ */
+/* =========================================================
+   FILE ATTACHMENT
+========================================================= */
 
 document
   .getElementById("attachButton")
-  .onclick = () =>
+  .onclick = () => {
+
     fileInput.click();
 
-
-fileInput.onchange = event => {
-
-  const file =
-    event.target.files[0];
-
-  if(!file) return;
+  };
 
 
-  if(!file.type.startsWith("image/")){
+fileInput.onchange =
+  event => {
 
-    alert("Please select an image.");
-
-    return;
-
-  }
+    const file =
+      event.target.files[0];
 
 
-  selectedFile = file;
+    if(!file)
+      return;
 
 
-  const reader =
-    new FileReader();
+    if(
+      !file.type.startsWith(
+        "image/"
+      )
+    ){
+
+      alert(
+        "Please select an image."
+      );
 
 
-  reader.onload = e => {
+      fileInput.value =
+        "";
+
+
+      return;
+
+    }
+
+
+    /*
+      Optional size protection:
+      10 MB maximum.
+    */
+
+    if(
+      file.size >
+      10 * 1024 * 1024
+    ){
+
+      alert(
+        "Please choose an image smaller than 10 MB."
+      );
+
+
+      fileInput.value =
+        "";
+
+
+      return;
+
+    }
+
+
+    selectedFile =
+      file;
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      event => {
+
+        previewImage.src =
+          event.target.result;
+
+
+        preview.classList.add(
+          "active"
+        );
+
+
+        updateSendButton();
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
+
+  };
+
+
+/* =========================================================
+   REMOVE IMAGE
+========================================================= */
+
+removePreview.onclick =
+  () => {
+
+    selectedFile =
+      null;
+
+
+    fileInput.value =
+      "";
+
 
     previewImage.src =
-      e.target.result;
+      "";
 
-    preview.classList.add("active");
+
+    preview.classList.remove(
+      "active"
+    );
+
 
     updateSendButton();
 
   };
 
 
-  reader.readAsDataURL(file);
-
-};
-
-
-/* ================================
-   INPUT
-================================ */
+/* =========================================================
+   INPUT / SEND
+========================================================= */
 
 sendButton.onclick =
   sendMessage;
@@ -1116,12 +1882,18 @@ input.addEventListener(
   "keydown",
   event => {
 
+    /*
+      Enter = send
+      Shift + Enter = new line
+    */
+
     if(
       event.key === "Enter" &&
       !event.shiftKey
     ){
 
       event.preventDefault();
+
 
       sendMessage();
 
@@ -1134,15 +1906,20 @@ input.addEventListener(
 function updateSendButton(){
 
   sendButton.disabled =
-    !input.value.trim() &&
-    !selectedFile;
+    (
+      !input.value.trim() &&
+      !selectedFile
+    ) ||
+    sending;
 
 }
 
 
 function autoResize(){
 
-  input.style.height = "47px";
+  input.style.height =
+    "47px";
+
 
   input.style.height =
     Math.min(
@@ -1153,94 +1930,159 @@ function autoResize(){
 }
 
 
-/* ================================
+/* =========================================================
    MENU
-================================ */
-
-const sideMenu =
-  document.getElementById("sideMenu");
-
-const overlay =
-  document.getElementById("overlay");
-
+========================================================= */
 
 document
   .getElementById("menuButton")
   .onclick = () => {
 
-    sideMenu.classList.add("active");
+    sideMenu.classList.add(
+      "active"
+    );
 
-    overlay.classList.add("active");
+    overlay.classList.add(
+      "active"
+    );
 
   };
 
 
 overlay.onclick =
-closeMenu;
+  closeMenu;
 
 
 function closeMenu(){
 
-  sideMenu.classList.remove("active");
+  sideMenu.classList.remove(
+    "active"
+  );
 
-  overlay.classList.remove("active");
+  overlay.classList.remove(
+    "active"
+  );
 
 }
 
 
+/* =========================================================
+   LOGOUT
+========================================================= */
+
 document
   .getElementById("logout")
-  .onclick = async () => {
+  .onclick =
+  async () => {
 
-    await auth.signOut();
+    try{
 
-    location.href =
-      "login.html";
+      await auth.signOut();
+
+
+      location.href =
+        "login.html";
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Logout error:",
+        error
+      );
+
+    }
 
   };
 
 
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
 document
   .getElementById("backButton")
-  .onclick = () =>
+  .onclick =
+  () => {
+
     history.back();
 
+  };
 
-/* ================================
-   HELPERS
-================================ */
+
+/* =========================================================
+   SCROLL
+========================================================= */
 
 function scrollBottom(){
 
-  setTimeout(()=>{
+  setTimeout(
+    () => {
 
-    messagesEl.scrollTop =
-      messagesEl.scrollHeight;
+      messagesEl.scrollTop =
+        messagesEl.scrollHeight;
 
-  },80);
+    },
+    80
+  );
 
 }
 
 
-function formatTime(timestamp){
+/* =========================================================
+   TIME FORMAT
+========================================================= */
+
+function formatTime(
+  timestamp
+){
 
   if(
     !timestamp ||
     !timestamp.toDate
-  )
+  ){
+
     return "";
+
+  }
 
 
   return timestamp
     .toDate()
-    .toLocaleTimeString([],{
+    .toLocaleTimeString(
+      [],
+      {
 
-      hour:"2-digit",
-      minute:"2-digit"
+        hour:
+          "2-digit",
 
-    });
+        minute:
+          "2-digit"
+
+      }
+    );
 
 }
+
+
+/* =========================================================
+   CLEANUP
+========================================================= */
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if(stopMessages)
+      stopMessages();
+
+
+    if(stopChat)
+      stopChat();
+
+  }
+);
 
 </script>
 
