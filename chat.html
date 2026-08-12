@@ -21,9 +21,9 @@
 :root{
   --bg:#0f172a;
   --header:#020617;
-  --card:#17253a;
-  --blue:#0284c7;
-  --blue-light:#38bdf8;
+  --customer:#0284c7;
+  --admin:#1e293b;
+  --blue:#38bdf8;
   --green:#22c55e;
   --text:#f8fafc;
   --muted:#94a3b8;
@@ -59,30 +59,30 @@ body{
   flex-shrink:0;
   background:var(--header);
   border-bottom:1px solid var(--border);
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:0 14px;
-  z-index:10;
 }
 
 .header-side{
-  width:45px;
+  width:48px;
 }
 
 .header-btn{
   width:44px;
   height:44px;
+
   border:0;
   border-radius:50%;
+
   background:transparent;
   color:white;
+
   font-size:28px;
   cursor:pointer;
-}
-
-.header-btn:active{
-  background:#17253a;
 }
 
 .profile{
@@ -92,18 +92,22 @@ body{
 }
 
 .avatar{
-  width:50px;
-  height:50px;
+  width:52px;
+  height:52px;
+
   border-radius:50%;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   background:linear-gradient(
     135deg,
     #38bdf8,
     #0284c7
   );
-  font-size:24px;
+
+  font-size:27px;
   overflow:hidden;
 }
 
@@ -115,6 +119,7 @@ body{
 
 .profile h2{
   font-size:17px;
+  font-weight:700;
 }
 
 .status{
@@ -129,46 +134,43 @@ body{
 .messages{
   flex:1;
   min-height:0;
+
   overflow-y:auto;
+
   padding:18px 12px 25px;
+
   scroll-behavior:smooth;
 }
 
-.loading{
-  text-align:center;
-  color:var(--muted);
-  padding:30px;
-}
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  padding:40px 20px;
-}
-
-/* =========================
-   WELCOME
-========================= */
-
 .welcome{
   max-width:600px;
+
   margin:20px auto 28px;
+
   padding:25px 18px;
+
   border:1px solid var(--border);
   border-radius:22px;
+
   background:#111e30;
+
   text-align:center;
 }
 
 .welcome-icon{
   width:65px;
   height:65px;
+
   margin:0 auto 12px;
+
   border-radius:50%;
+
   background:#12324b;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:30px;
 }
 
@@ -184,86 +186,124 @@ body{
 }
 
 /* =========================
-   MESSAGE ROW
+   MESSAGE ROWS
 ========================= */
 
 .message-row{
   display:flex;
   width:100%;
-  margin:7px 0;
+
+  margin:8px 0;
 }
-
-/* ADMIN = LEFT */
-
-.message-row.admin{
-  justify-content:flex-start;
-}
-
-/* CUSTOMER = RIGHT */
 
 .message-row.customer{
   justify-content:flex-end;
 }
 
-/* =========================
-   BUBBLE
-========================= */
+.message-row.admin{
+  justify-content:flex-start;
+}
 
 .bubble{
   max-width:min(78%,520px);
+
   padding:10px 12px 7px;
-  border-radius:17px;
+
+  border-radius:18px;
+
   font-size:14px;
   line-height:1.5;
+
   overflow-wrap:anywhere;
-  box-shadow:0 2px 8px rgba(0,0,0,.12);
+
+  box-shadow:0 2px 5px rgba(0,0,0,.12);
 }
 
-/* ADMIN RECEIVED MESSAGE */
-
-.admin .bubble{
-  background:#1b293d;
-  border-bottom-left-radius:5px;
-}
-
-/* CUSTOMER SENT MESSAGE */
+/* CUSTOMER = RIGHT */
 
 .customer .bubble{
-  background:#0284c7;
+  background:var(--customer);
+
   border-bottom-right-radius:5px;
 }
 
-/* =========================
-   MESSAGE IMAGE
-========================= */
+/* ADMIN = LEFT */
+
+.admin .bubble{
+  background:var(--admin);
+
+  border-bottom-left-radius:5px;
+}
 
 .message-image{
   display:block;
-  width:min(280px,100%);
-  max-height:350px;
-  object-fit:cover;
-  border-radius:12px;
-  cursor:pointer;
-  margin-bottom:5px;
-}
 
-/* =========================
-   MESSAGE META
-========================= */
+  width:min(280px,100%);
+
+  max-height:350px;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  margin-bottom:6px;
+}
 
 .meta{
   display:flex;
+
   justify-content:flex-end;
   align-items:center;
+
   gap:5px;
+
   margin-top:4px;
+
   font-size:9px;
+
   opacity:.75;
 }
 
-.read-icon{
+.read-status{
   color:#bae6fd;
   font-size:11px;
+}
+
+/* =========================
+   LOADING / ERROR
+========================= */
+
+.center-message{
+  min-height:300px;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  padding:30px;
+}
+
+.center-message .icon{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.center-message h3{
+  color:white;
+  margin-bottom:8px;
+}
+
+.center-message p{
+  font-size:13px;
+  line-height:1.7;
 }
 
 /* =========================
@@ -272,11 +312,12 @@ body{
 
 .typing{
   display:none;
-  flex-shrink:0;
+
   padding:6px 15px;
+
   color:var(--muted);
+
   font-size:12px;
-  background:var(--header);
 }
 
 .typing.active{
@@ -289,16 +330,24 @@ body{
 
 .input-wrapper{
   flex-shrink:0;
+
   background:var(--header);
+
   border-top:1px solid var(--border);
-  padding:9px 10px calc(9px + env(safe-area-inset-bottom));
+
+  padding:9px 10px
+    calc(9px + env(safe-area-inset-bottom));
 }
 
 .input-area{
   max-width:900px;
+
   margin:auto;
+
   display:flex;
+
   align-items:flex-end;
+
   gap:7px;
 }
 
@@ -306,10 +355,14 @@ body{
 .send{
   width:47px;
   height:47px;
+
   min-width:47px;
+
   border:0;
   border-radius:50%;
+
   cursor:pointer;
+
   font-size:23px;
 }
 
@@ -331,15 +384,22 @@ body{
 textarea{
   flex:1;
   min-width:0;
+
   min-height:47px;
   max-height:130px;
+
   resize:none;
+
   border:0;
   outline:0;
+
   border-radius:24px;
+
   background:#182337;
   color:white;
+
   padding:13px 16px;
+
   font-family:inherit;
   font-size:14px;
 }
@@ -354,8 +414,11 @@ textarea::placeholder{
 
 .preview{
   display:none;
+
   max-width:900px;
+
   margin:auto;
+
   padding-bottom:8px;
 }
 
@@ -365,77 +428,74 @@ textarea::placeholder{
 
 .preview-box{
   position:relative;
+
   display:inline-block;
 }
 
 .preview img{
   width:75px;
   height:75px;
+
   object-fit:cover;
+
   border-radius:10px;
-  border:1px solid var(--border);
 }
 
 .remove-preview{
   position:absolute;
+
   top:-7px;
   right:-7px;
-  width:22px;
-  height:22px;
+
+  width:23px;
+  height:23px;
+
   border:0;
   border-radius:50%;
+
   background:#ef4444;
   color:white;
-  cursor:pointer;
-  font-size:13px;
-}
 
-.hidden{
-  display:none;
+  cursor:pointer;
 }
 
 /* =========================
-   SIDE MENU
+   MENU
 ========================= */
 
 .side-menu{
   position:fixed;
+
   z-index:100;
+
   top:0;
   right:-320px;
+
   width:300px;
   max-width:88%;
+
   height:100dvh;
+
   background:#020617;
+
   padding:20px;
-  transition:.3s ease;
-  overflow-y:auto;
+
+  transition:.3s;
 }
 
 .side-menu.active{
   right:0;
 }
 
-.side-menu h3{
-  font-size:20px;
-}
-
-.side-menu strong{
-  display:block;
-  font-size:15px;
-  margin-bottom:3px;
-}
-
-.side-menu small{
-  color:var(--muted);
-  word-break:break-all;
-}
-
 .overlay{
   position:fixed;
+
   inset:0;
+
   background:rgba(0,0,0,.5);
+
   z-index:90;
+
   display:none;
 }
 
@@ -445,17 +505,26 @@ textarea::placeholder{
 
 .menu-link{
   display:block;
+
   width:100%;
+
   padding:14px;
+
   margin-top:7px;
+
   border:0;
   border-radius:12px;
+
   background:transparent;
+
   color:white;
+
   text-decoration:none;
+
   text-align:left;
+
   font-family:inherit;
-  font-size:14px;
+
   cursor:pointer;
 }
 
@@ -463,32 +532,31 @@ textarea::placeholder{
   background:#17253a;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.menu-email{
+  display:block;
+
+  margin-top:4px;
+
+  color:#64748b;
+
+  font-size:12px;
+
+  word-break:break-word;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #1e293b;
+}
 
 @media(max-width:600px){
-
-  .chat-header{
-    height:78px;
-  }
-
-  .profile h2{
-    font-size:15px;
-  }
-
-  .avatar{
-    width:45px;
-    height:45px;
-  }
 
   .bubble{
     max-width:85%;
   }
 
-  .messages{
-    padding-left:9px;
-    padding-right:9px;
+  .profile h2{
+    font-size:16px;
   }
 
 }
@@ -546,7 +614,7 @@ textarea::placeholder{
     <button
       class="header-btn"
       id="menuButton"
-      aria-label="Open menu"
+      aria-label="Menu"
     >
       ⋮
     </button>
@@ -565,8 +633,16 @@ textarea::placeholder{
   id="messages"
 >
 
-  <div class="loading" id="loading">
-    Connecting to Danny...
+  <div class="center-message">
+
+    <div class="icon">⚡</div>
+
+    <h3>Connecting to Danny...</h3>
+
+    <p>
+      Please wait while your chat is loading.
+    </p>
+
   </div>
 
 </main>
@@ -621,17 +697,16 @@ textarea::placeholder{
       class="attach"
       id="attachButton"
       type="button"
-      aria-label="Attach image"
     >
       +
     </button>
 
 
     <input
-      class="hidden"
       type="file"
       id="fileInput"
       accept="image/*"
+      hidden
     >
 
 
@@ -647,7 +722,6 @@ textarea::placeholder{
       id="sendButton"
       type="button"
       disabled
-      aria-label="Send message"
     >
       ➤
     </button>
@@ -686,15 +760,15 @@ textarea::placeholder{
     Loading...
   </strong>
 
-  <small id="customerEmail"></small>
-
-
-  <hr
-    style="
-      margin:20px 0;
-      border-color:#1e293b
-    "
+  <small
+    class="menu-email"
+    id="customerEmail"
   >
+  </small>
+
+  <br>
+
+  <hr style="margin:20px 0">
 
 
   <a
@@ -804,8 +878,11 @@ const firebaseConfig = {
 };
 
 
-firebase.initializeApp(firebaseConfig);
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
 
+firebase.initializeApp(firebaseConfig);
 
 const auth =
   firebase.auth();
@@ -823,9 +900,6 @@ const storage =
 
 const messagesEl =
   document.getElementById("messages");
-
-const loadingEl =
-  document.getElementById("loading");
 
 const input =
   document.getElementById("messageInput");
@@ -864,7 +938,7 @@ const overlay =
 
 let user = null;
 
-let chatRef = null;
+let chatId = null;
 
 let selectedFile = null;
 
@@ -881,87 +955,76 @@ let sending = false;
    AUTH
 ===================================================== */
 
-auth.onAuthStateChanged(
-  async currentUser => {
+auth.onAuthStateChanged(async currentUser => {
 
-    if(!currentUser){
+  if(!currentUser){
 
-      window.location.href =
-        "login.html";
+    window.location.href =
+      "login.html";
 
-      return;
-
-    }
+    return;
+  }
 
 
-    user = currentUser;
+  user = currentUser;
+
+  /*
+   * IMPORTANT:
+   * The chat ID is the customer's Firebase UID.
+   */
+
+  chatId = user.uid;
 
 
-    document.getElementById(
-      "customerName"
-    ).textContent =
-      user.displayName ||
-      user.email.split("@")[0];
+  const customerName =
+    user.displayName ||
+    (
+      user.email
+        ? user.email.split("@")[0]
+        : "Customer"
+    );
 
 
-    document.getElementById(
-      "customerEmail"
-    ).textContent =
-      user.email;
+  document.getElementById(
+    "customerName"
+  ).textContent =
+    customerName;
 
 
-    /*
-      IMPORTANT:
-
-      The chat document is still:
-
-      chats/{customer UID}
-
-      BUT messages are now stored in:
-
-      messages/{message ID}
-
-      with:
-
-      chatId = customer UID
-    */
-
-    chatRef =
-      db.collection("chats")
-        .doc(user.uid);
+  document.getElementById(
+    "customerEmail"
+  ).textContent =
+    user.email || "";
 
 
-    try{
+  try{
 
-      await createChat();
+    await createChat();
 
-
-      status.textContent =
-        "Online";
-
-
-      listenToChat();
-
-      listenToMessages();
+    status.textContent =
+      "Online";
 
 
-    }catch(error){
+    listenToChat();
 
-      console.error(
-        "Chat initialization error:",
-        error
-      );
+    listenToMessages();
 
-      status.textContent =
-        "Connection error";
 
-      loadingEl.textContent =
-        "Unable to connect to chat.";
+  }catch(error){
 
-    }
+    console.error(
+      "Chat initialization error:",
+      error
+    );
+
+    showError(
+      "Unable to connect to chat.",
+      error.message
+    );
 
   }
-);
+
+});
 
 
 /* =====================================================
@@ -970,12 +1033,21 @@ auth.onAuthStateChanged(
 
 async function createChat(){
 
+  const chatRef =
+    db.collection("chats")
+      .doc(chatId);
+
+
   const customerName =
     user.displayName ||
-    user.email.split("@")[0];
+    (
+      user.email
+        ? user.email.split("@")[0]
+        : "Customer"
+    );
 
 
-  const chatData = {
+  const data = {
 
     customerId:
       user.uid,
@@ -984,7 +1056,7 @@ async function createChat(){
       customerName,
 
     customerEmail:
-      user.email,
+      user.email || "",
 
     customerPhoto:
       user.photoURL || "",
@@ -1008,36 +1080,33 @@ async function createChat(){
       "",
 
     lastMessageAt:
-      firebase.firestore.FieldValue
-        .serverTimestamp(),
+      firebase.firestore.FieldValue.serverTimestamp(),
 
     updatedAt:
-      firebase.firestore.FieldValue
-        .serverTimestamp()
+      firebase.firestore.FieldValue.serverTimestamp()
 
   };
 
 
-  const snapshot =
+  const existing =
     await chatRef.get();
 
 
-  if(!snapshot.exists){
+  if(!existing.exists){
 
     await chatRef.set({
 
-      ...chatData,
+      ...data,
 
       createdAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp()
+        firebase.firestore.FieldValue.serverTimestamp()
 
     });
 
   }else{
 
     await chatRef.set(
-      chatData,
+      data,
       {merge:true}
     );
 
@@ -1052,6 +1121,11 @@ async function createChat(){
 
 function listenToChat(){
 
+  const chatRef =
+    db.collection("chats")
+      .doc(chatId);
+
+
   if(stopChat)
     stopChat();
 
@@ -1061,12 +1135,12 @@ function listenToChat(){
 
       snapshot => {
 
+        if(!snapshot.exists)
+          return;
+
+
         const data =
           snapshot.data();
-
-
-        if(!data)
-          return;
 
 
         if(data.adminTyping === true){
@@ -1101,15 +1175,20 @@ function listenToChat(){
 
 /* =====================================================
    MESSAGE LISTENER
+=====================================================
 
    IMPORTANT:
 
-   We now listen to the TOP-LEVEL
-   "messages" collection.
+   We DO NOT use:
 
-   We only show messages where:
+   .orderBy("createdAt")
 
-   chatId == current customer's UID
+   because that was causing the
+   "query requires an index" error.
+
+   We only query by chatId.
+
+   Then JavaScript sorts the messages.
 ===================================================== */
 
 function listenToMessages(){
@@ -1118,105 +1197,148 @@ function listenToMessages(){
     stopMessages();
 
 
-  stopMessages =
-
+  const messagesQuery =
     db.collection("messages")
-
       .where(
         "chatId",
         "==",
-        user.uid
-      )
-
-      .orderBy(
-        "createdAt",
-        "asc"
-      )
-
-      .onSnapshot(
-
-        snapshot => {
-
-          messagesEl.innerHTML = "";
+        chatId
+      );
 
 
-          addWelcome();
+  stopMessages =
+    messagesQuery.onSnapshot(
+
+      snapshot => {
+
+        const messages = [];
 
 
-          if(snapshot.empty){
+        snapshot.forEach(doc => {
 
-            addEmptyMessage();
+          messages.push({
 
-          }
+            id:
+              doc.id,
+
+            ...doc.data()
+
+          });
+
+        });
 
 
-          snapshot.forEach(
-            doc => {
+        /*
+         * Sort locally.
+         * No Firestore composite index required.
+         */
 
-              renderMessage(
-                doc.id,
-                doc.data()
+        messages.sort(
+          (a,b) => {
+
+            const aTime =
+              getTimestampValue(
+                a.createdAt
               );
 
-            }
-          );
+            const bTime =
+              getTimestampValue(
+                b.createdAt
+              );
+
+            return aTime - bTime;
+
+          }
+        );
 
 
-          markAdminMessagesRead(
-            snapshot
-          );
+        renderMessages(
+          messages
+        );
 
 
-          scrollBottom();
-
-        },
-
-        error => {
-
-          console.error(
-            "Message listener error:",
-            error
-          );
+        markAdminMessagesRead(
+          messages
+        );
 
 
-          messagesEl.innerHTML = "";
+      },
+
+      error => {
+
+        console.error(
+          "Message listener error:",
+          error
+        );
 
 
-          const errorDiv =
-            document.createElement(
-              "div"
-            );
+        showError(
+          "Unable to load messages.",
+          error.message
+        );
 
-          errorDiv.className =
-            "empty";
+      }
 
+    );
 
-          errorDiv.innerHTML = `
-            <div style="font-size:35px;margin-bottom:10px;">
-              ⚠️
-            </div>
-
-            <div>
-              Unable to load messages.
-            </div>
-
-            <small style="
-              display:block;
-              margin-top:8px;
-              color:#64748b;
-            ">
-              ${escapeHtml(error.message)}
-            </small>
-          `;
+}
 
 
-          messagesEl.appendChild(
-            errorDiv
-          );
+/* =====================================================
+   RENDER ALL MESSAGES
+===================================================== */
 
-        }
+function renderMessages(messages){
 
+  messagesEl.innerHTML = "";
+
+
+  addWelcome();
+
+
+  if(messages.length === 0){
+
+    const empty =
+      document.createElement(
+        "div"
       );
+
+    empty.style.textAlign =
+      "center";
+
+    empty.style.color =
+      "#64748b";
+
+    empty.style.fontSize =
+      "13px";
+
+    empty.style.padding =
+      "15px";
+
+
+    empty.textContent =
+      "Start a conversation with Danny.";
+
+
+    messagesEl.appendChild(
+      empty
+    );
+
+    return;
+
+  }
+
+
+  messages.forEach(message => {
+
+    renderMessage(
+      message
+    );
+
+  });
+
+
+  scrollBottom();
 
 }
 
@@ -1247,9 +1369,8 @@ function addWelcome(){
     </h1>
 
     <p>
-      Hello 👋. How can we help you
-      today with your electrical,
-      solar and power needs?
+      Hello 👋. How can we help you today
+      with your electrical, solar and power needs?
     </p>
 
   `;
@@ -1263,48 +1384,22 @@ function addWelcome(){
 
 
 /* =====================================================
-   EMPTY CHAT
+   RENDER ONE MESSAGE
+=====================================================
+
+   EXACT FIRESTORE STRUCTURE:
+
+   chatId
+   createdAt
+   imageUrl
+   read
+   senderId
+   senderName
+   senderRole
+   text
 ===================================================== */
 
-function addEmptyMessage(){
-
-  const div =
-    document.createElement(
-      "div"
-    );
-
-  div.className =
-    "empty";
-
-
-  div.innerHTML = `
-    <div style="font-size:30px;margin-bottom:8px;">
-      💬
-    </div>
-
-    Start a conversation with
-    Danny Smart Power.
-  `;
-
-
-  messagesEl.appendChild(
-    div
-  );
-
-}
-
-
-/* =====================================================
-   RENDER MESSAGE
-
-   ADMIN  = LEFT
-   CUSTOMER = RIGHT
-===================================================== */
-
-function renderMessage(
-  id,
-  data
-){
+function renderMessage(data){
 
   const row =
     document.createElement(
@@ -1313,16 +1408,11 @@ function renderMessage(
 
 
   /*
-    IMPORTANT:
+   * CUSTOMER = RIGHT
+   * ADMIN = LEFT
+   */
 
-    senderRole === "admin"
-      -> left
-
-    senderRole === "customer"
-      -> right
-  */
-
-  const mine =
+  const isCustomer =
     data.senderRole ===
     "customer";
 
@@ -1330,9 +1420,9 @@ function renderMessage(
   row.className =
     "message-row " +
     (
-      mine
-      ? "customer"
-      : "admin"
+      isCustomer
+        ? "customer"
+        : "admin"
     );
 
 
@@ -1349,12 +1439,7 @@ function renderMessage(
      IMAGE
   ========================= */
 
-  const imageUrl =
-    data.imageUrl ||
-    "";
-
-
-  if(imageUrl){
+  if(data.imageUrl){
 
     const img =
       document.createElement(
@@ -1363,7 +1448,7 @@ function renderMessage(
 
 
     img.src =
-      imageUrl;
+      data.imageUrl;
 
 
     img.className =
@@ -1377,7 +1462,7 @@ function renderMessage(
     img.onclick = () => {
 
       window.open(
-        imageUrl,
+        data.imageUrl,
         "_blank"
       );
 
@@ -1395,7 +1480,11 @@ function renderMessage(
      TEXT
   ========================= */
 
-  if(data.text){
+  if(
+    data.text !== undefined &&
+    data.text !== null &&
+    String(data.text).trim() !== ""
+  ){
 
     const text =
       document.createElement(
@@ -1427,39 +1516,48 @@ function renderMessage(
     "meta";
 
 
+  const time =
+    document.createElement(
+      "span"
+    );
+
+
+  time.textContent =
+    formatTime(
+      data.createdAt
+    );
+
+
   meta.appendChild(
-    document.createTextNode(
-      formatTime(
-        data.createdAt
-      )
-    )
+    time
   );
 
 
   /*
-    Only customer's own messages
-    show read status.
-  */
+   * Only customer's own messages
+   * show read status.
+   */
 
-  if(mine){
+  if(isCustomer){
 
-    const readIcon =
+    const readStatus =
       document.createElement(
         "span"
       );
 
-    readIcon.className =
-      "read-icon";
+
+    readStatus.className =
+      "read-status";
 
 
-    readIcon.textContent =
+    readStatus.textContent =
       data.read === true
         ? "✓✓"
         : "✓";
 
 
     meta.appendChild(
-      readIcon
+      readStatus
     );
 
   }
@@ -1483,19 +1581,77 @@ function renderMessage(
 
 
 /* =====================================================
+   MARK ADMIN MESSAGES AS READ
+===================================================== */
+
+async function markAdminMessagesRead(
+  messages
+){
+
+  const unread =
+    messages.filter(message =>
+
+      message.senderRole === "admin" &&
+      message.read !== true
+
+    );
+
+
+  if(unread.length === 0)
+    return;
+
+
+  try{
+
+    const batch =
+      db.batch();
+
+
+    unread.forEach(message => {
+
+      const ref =
+        db.collection("messages")
+          .doc(message.id);
+
+
+      batch.update(
+        ref,
+        {
+          read:true
+        }
+      );
+
+    });
+
+
+    await batch.commit();
+
+
+    await db.collection("chats")
+      .doc(chatId)
+      .set({
+
+        unreadForCustomer:0
+
+      },{
+        merge:true
+      });
+
+
+  }catch(error){
+
+    console.error(
+      "Could not mark messages read:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
    SEND MESSAGE
-
-   SAVES EXACTLY:
-
-   messages
-      chatId
-      createdAt
-      imageUrl
-      read
-      senderId
-      senderName
-      senderRole
-      text
 ===================================================== */
 
 async function sendMessage(){
@@ -1515,11 +1671,8 @@ async function sendMessage(){
   if(
     !text &&
     !selectedFile
-  ){
-
+  )
     return;
-
-  }
 
 
   sending = true;
@@ -1563,7 +1716,7 @@ async function sendMessage(){
 
 
     /* =========================
-       CREATE MESSAGE
+       MESSAGE
     ========================= */
 
     const messageRef =
@@ -1573,8 +1726,12 @@ async function sendMessage(){
 
     await messageRef.set({
 
+      /*
+       * EXACT FIELD NAME
+       */
+
       chatId:
-        user.uid,
+        chatId,
 
       createdAt:
         firebase.firestore.FieldValue
@@ -1591,7 +1748,11 @@ async function sendMessage(){
 
       senderName:
         user.displayName ||
-        user.email.split("@")[0],
+        (
+          user.email
+            ? user.email.split("@")[0]
+            : "Customer"
+        ),
 
       senderRole:
         "customer",
@@ -1606,40 +1767,42 @@ async function sendMessage(){
        UPDATE CHAT
     ========================= */
 
-    await chatRef.set({
+    await db.collection("chats")
+      .doc(chatId)
+      .set({
 
-      lastMessage:
-        text ||
-        "📷 Image",
+        lastMessage:
+          text ||
+          "📷 Image",
 
-      lastMessageAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp(),
+        lastMessageAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
 
-      updatedAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp(),
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
 
-      unreadForAdmin:
-        firebase.firestore.FieldValue
-          .increment(1),
+        unreadForAdmin:
+          firebase.firestore.FieldValue
+            .increment(1),
 
-      unreadForCustomer:
-        0,
+        unreadForCustomer:
+          0,
 
-      customerTyping:
-        false,
+        customerTyping:
+          false,
 
-      status:
-        "open"
+        status:
+          "open"
 
-    },{
-      merge:true
-    });
+      },{
+        merge:true
+      });
 
 
     /* =========================
-       CLEAR INPUT
+       RESET INPUT
     ========================= */
 
     input.value = "";
@@ -1663,15 +1826,7 @@ async function sendMessage(){
 
     stopTyping();
 
-
-    updateSendButton();
-
-
-    scrollBottom();
-
-  }
-
-  catch(error){
+  }catch(error){
 
     console.error(
       "SEND MESSAGE ERROR:",
@@ -1697,95 +1852,6 @@ async function sendMessage(){
 
 
 /* =====================================================
-   MARK ADMIN MESSAGES AS READ
-
-   ADMIN MESSAGE:
-
-   senderRole = admin
-   read = false
-
-   becomes:
-
-   read = true
-===================================================== */
-
-async function markAdminMessagesRead(
-  snapshot
-){
-
-  const batch =
-    db.batch();
-
-
-  let count =
-    0;
-
-
-  snapshot.forEach(
-    doc => {
-
-      const data =
-        doc.data();
-
-
-      if(
-        data.senderRole ===
-          "admin" &&
-        data.read === false
-      ){
-
-        batch.update(
-          doc.ref,
-          {
-
-            read:
-              true
-
-          }
-        );
-
-
-        count++;
-
-      }
-
-    }
-  );
-
-
-  if(count > 0){
-
-    try{
-
-      await batch.commit();
-
-
-      await chatRef.set({
-
-        unreadForCustomer:
-          0
-
-      },{
-        merge:true
-      });
-
-    }
-
-    catch(error){
-
-      console.error(
-        "Mark read error:",
-        error
-      );
-
-    }
-
-  }
-
-}
-
-
-/* =====================================================
    TYPING
 ===================================================== */
 
@@ -1802,14 +1868,23 @@ input.addEventListener(
       return;
 
 
-    chatRef.set({
+    db.collection("chats")
+      .doc(chatId)
+      .set({
 
-      customerTyping:
-        true
+        customerTyping:true
 
-    },{
-      merge:true
-    });
+      },{
+        merge:true
+      })
+      .catch(error => {
+
+        console.error(
+          "Typing error:",
+          error
+        );
+
+      });
 
 
     clearTimeout(
@@ -1834,24 +1909,26 @@ function stopTyping(){
   );
 
 
-  if(user){
+  if(!user)
+    return;
 
-    chatRef.set({
 
-      customerTyping:
-        false
+  db.collection("chats")
+    .doc(chatId)
+    .set({
+
+      customerTyping:false
 
     },{
       merge:true
-    });
-
-  }
+    })
+    .catch(() => {});
 
 }
 
 
 /* =====================================================
-   FILE BUTTON
+   FILE SELECT
 ===================================================== */
 
 document
@@ -1864,10 +1941,6 @@ document
 
   };
 
-
-/* =====================================================
-   FILE SELECTED
-===================================================== */
 
 fileInput.onchange =
   event => {
@@ -1976,8 +2049,7 @@ input.addEventListener(
   event => {
 
     if(
-      event.key ===
-        "Enter" &&
+      event.key === "Enter" &&
       !event.shiftKey
     ){
 
@@ -2001,14 +2073,13 @@ function updateSendButton(){
     (
       !input.value.trim() &&
       !selectedFile
-    ) ||
-    sending;
+    );
 
 }
 
 
 /* =====================================================
-   TEXTAREA RESIZE
+   AUTO RESIZE
 ===================================================== */
 
 function autoResize(){
@@ -2078,12 +2149,10 @@ document
 
       await auth.signOut();
 
-      window.location.href =
+      location.href =
         "login.html";
 
-    }
-
-    catch(error){
+    }catch(error){
 
       console.error(
         error
@@ -2129,6 +2198,53 @@ function scrollBottom(){
 
 
 /* =====================================================
+   TIMESTAMP
+===================================================== */
+
+function getTimestampValue(
+  timestamp
+){
+
+  if(
+    !timestamp
+  )
+    return 0;
+
+
+  if(
+    typeof timestamp.toMillis ===
+    "function"
+  ){
+
+    return timestamp.toMillis();
+
+  }
+
+
+  if(
+    timestamp.seconds !== undefined
+  ){
+
+    return timestamp.seconds * 1000;
+
+  }
+
+
+  if(
+    timestamp instanceof Date
+  ){
+
+    return timestamp.getTime();
+
+  }
+
+
+  return 0;
+
+}
+
+
+/* =====================================================
    FORMAT TIME
 ===================================================== */
 
@@ -2136,9 +2252,46 @@ function formatTime(
   timestamp
 ){
 
+  if(!timestamp)
+    return "";
+
+
+  let date;
+
+
   if(
-    !timestamp ||
-    !timestamp.toDate
+    typeof timestamp.toDate ===
+    "function"
+  ){
+
+    date =
+      timestamp.toDate();
+
+  }
+
+  else if(
+    timestamp.seconds !== undefined
+  ){
+
+    date =
+      new Date(
+        timestamp.seconds * 1000
+      );
+
+  }
+
+  else{
+
+    date =
+      new Date(timestamp);
+
+  }
+
+
+  if(
+    isNaN(
+      date.getTime()
+    )
   ){
 
     return "";
@@ -2146,20 +2299,45 @@ function formatTime(
   }
 
 
-  return timestamp
-    .toDate()
-    .toLocaleTimeString(
-      [],
-      {
+  return date.toLocaleTimeString(
+    [],
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
 
-        hour:
-          "2-digit",
+}
 
-        minute:
-          "2-digit"
 
-      }
-    );
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(
+  title,
+  details
+){
+
+  messagesEl.innerHTML = `
+
+    <div class="center-message">
+
+      <div class="icon">
+        ⚠️
+      </div>
+
+      <h3>
+        ${escapeHtml(title)}
+      </h3>
+
+      <p>
+        ${escapeHtml(details || "")}
+      </p>
+
+    </div>
+
+  `;
 
 }
 
@@ -2169,24 +2347,34 @@ function formatTime(
 ===================================================== */
 
 function escapeHtml(
-  value
+  text
 ){
 
-  const div =
-    document.createElement(
-      "div"
+  return String(text || "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
     );
-
-
-  div.textContent =
-    value;
-
-
-  return div.innerHTML;
 
 }
 
 </script>
 
 </body>
-    </html>
+</html>
