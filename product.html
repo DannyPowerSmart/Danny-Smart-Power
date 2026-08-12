@@ -12,14 +12,11 @@
 
 <title>Product Details | Danny Smart Power</title>
 
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link
   rel="preconnect"
-  href="https://fonts.googleapis.com"
+  href="https://fonts.gstatic.com"
   crossorigin
 >
 
@@ -27,7 +24,6 @@
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
   rel="stylesheet"
 >
-
 
 <style>
 
@@ -49,18 +45,25 @@
 :root{
 
   --bg:#0f172a;
+
   --header:#020617;
+
   --card:#111e30;
+
   --card2:#17253a;
+
   --border:rgba(148,163,184,.15);
 
   --blue:#38bdf8;
+
   --blue2:#0284c7;
 
   --green:#22c55e;
+
   --red:#ef4444;
 
   --text:#f8fafc;
+
   --muted:#94a3b8;
 
 }
@@ -101,7 +104,7 @@ header{
 
   top:0;
 
-  z-index:30;
+  z-index:50;
 
   height:76px;
 
@@ -122,7 +125,9 @@ header{
 }
 
 
-/* BACK BUTTON */
+/* =====================================================
+   BACK BUTTON
+===================================================== */
 
 .back-button{
 
@@ -130,7 +135,7 @@ header{
 
   align-items:center;
 
-  gap:8px;
+  gap:7px;
 
   border:none;
 
@@ -154,7 +159,9 @@ header{
 }
 
 
-/* LOGO */
+/* =====================================================
+   LOGO
+===================================================== */
 
 .logo{
 
@@ -170,7 +177,7 @@ header{
 
   font-weight:700;
 
-  letter-spacing:.5px;
+  letter-spacing:1px;
 
 }
 
@@ -182,7 +189,9 @@ header{
 }
 
 
-/* HEADER RIGHT */
+/* =====================================================
+   HEADER RIGHT
+===================================================== */
 
 .header-right{
 
@@ -241,7 +250,9 @@ header{
 }
 
 
-/* CART COUNT */
+/* =====================================================
+   LIVE CART BADGE
+===================================================== */
 
 .cart-count{
 
@@ -305,8 +316,6 @@ main{
 
   align-items:center;
 
-  flex-wrap:wrap;
-
   gap:7px;
 
   color:var(--muted);
@@ -315,10 +324,12 @@ main{
 
   margin-bottom:25px;
 
+  flex-wrap:wrap;
+
 }
 
 
-.breadcrumb span{
+.breadcrumb .brand{
 
   color:var(--blue);
 
@@ -334,7 +345,9 @@ main{
   display:grid;
 
   grid-template-columns:
+
     minmax(0,1.05fr)
+
     minmax(0,.95fr);
 
   gap:35px;
@@ -351,6 +364,7 @@ main{
 .product-image-box{
 
   background:
+
     linear-gradient(
       145deg,
       var(--card),
@@ -822,7 +836,8 @@ main{
 
   transform:translateY(-4px);
 
-  border-color:rgba(56,189,248,.4);
+  border-color:
+    rgba(56,189,248,.4);
 
 }
 
@@ -929,7 +944,9 @@ main{
 @keyframes spin{
 
   to{
+
     transform:rotate(360deg);
+
   }
 
 }
@@ -1011,7 +1028,8 @@ main{
 
   border:1px solid var(--border);
 
-  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.4);
 
   font-size:13px;
 
@@ -1210,7 +1228,9 @@ main{
         class="cart-count"
         id="cartCount"
       >
+
         0
+
       </span>
 
     </a>
@@ -1257,11 +1277,14 @@ main{
      FIREBASE
 ===================================================== -->
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
+</script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js">
+</script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
+</script>
 
 
 <script>
@@ -1350,7 +1373,7 @@ let toastTimer = null;
 
 
 /* =====================================================
-   PRODUCT ID
+   GET PRODUCT ID
 ===================================================== */
 
 const urlParams =
@@ -1364,62 +1387,15 @@ currentProductId =
 
 
 /* =====================================================
-   AUTH
-===================================================== */
-
-auth.onAuthStateChanged(
-
-  function(user){
-
-    if(user){
-
-      listenToCart(user.uid);
-
-    }
-
-    else{
-
-      stopCartListener();
-
-      cartCount.textContent = "0";
-
-    }
-
-  }
-
-);
-
-
-/* =====================================================
-   STOP OLD CART LISTENER
-===================================================== */
-
-function stopCartListener(){
-
-  if(cartListener){
-
-    cartListener();
-
-    cartListener = null;
-
-  }
-
-}
-
-
-/* =====================================================
-   IMPORTANT:
-   ONE CART SYSTEM ONLY
-
-   cart/{uid}/items/{productId}
-
-   Quantity field = qty
+   EXACT SAME CART REFERENCE
+   AS cart.html
 ===================================================== */
 
 function cartItemsRef(){
 
   const user =
     auth.currentUser;
+
 
   if(!user){
 
@@ -1429,28 +1405,79 @@ function cartItemsRef(){
 
 
   return db
+
     .collection("cart")
+
     .doc(user.uid)
+
     .collection("items");
 
 }
 
 
 /* =====================================================
-   LISTEN TO CART
+   AUTH STATE
+===================================================== */
+
+auth.onAuthStateChanged(
+
+  function(user){
+
+    if(!user){
+
+      currentQuantity = 1;
+
+      cartCount.textContent =
+        "0";
+
+
+      if(cartListener){
+
+        cartListener();
+
+        cartListener = null;
+
+      }
+
+
+      return;
+
+    }
+
+
+    listenToCart(user.uid);
+
+  }
+
+);
+
+
+/* =====================================================
+   LIVE CART BADGE
+   EXACT SAME SYSTEM AS cart.html
 ===================================================== */
 
 function listenToCart(uid){
 
-  stopCartListener();
+  if(cartListener){
+
+    cartListener();
+
+    cartListener = null;
+
+  }
 
 
   cartListener =
 
     db
+
       .collection("cart")
+
       .doc(uid)
+
       .collection("items")
+
       .onSnapshot(
 
         function(snapshot){
@@ -1466,30 +1493,15 @@ function listenToCart(uid){
                 doc.data();
 
 
-              /*
-                IMPORTANT:
-
-                Cart uses "qty".
-                We also support "quantity"
-                temporarily so old items
-                don't break the badge.
-              */
-
               const qty =
-
-                Number(
-                  data.qty
-                ) ||
-
-                Number(
-                  data.quantity
-                ) ||
-
-                0;
+                Math.max(
+                  0,
+                  Number(data.qty) || 0
+                );
 
 
               totalQuantity +=
-                Math.max(0,qty);
+                qty;
 
             }
 
@@ -1504,7 +1516,7 @@ function listenToCart(uid){
         function(error){
 
           console.error(
-            "Cart listener error:",
+            "Cart badge error:",
             error
           );
 
@@ -1538,15 +1550,18 @@ async function loadProduct(){
 
   try{
 
-    const productDoc =
+    const doc =
 
       await db
+
         .collection("products")
+
         .doc(currentProductId)
+
         .get();
 
 
-    if(!productDoc.exists){
+    if(!doc.exists){
 
       showError(
         "This product could not be found."
@@ -1559,25 +1574,17 @@ async function loadProduct(){
 
     currentProduct = {
 
-      id:
-        productDoc.id,
+      id:doc.id,
 
-      ...productDoc.data()
+      ...doc.data()
 
     };
 
 
     displayProduct();
 
+
     loadSimilarProducts();
-
-
-    /*
-      If user already has this product
-      in the cart, load its quantity.
-    */
-
-    loadCurrentProductCartQuantity();
 
   }
 
@@ -1591,89 +1598,6 @@ async function loadProduct(){
 
     showError(
       "Unable to load this product."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   LOAD CURRENT PRODUCT CART QUANTITY
-===================================================== */
-
-async function loadCurrentProductCartQuantity(){
-
-  const user =
-    auth.currentUser;
-
-
-  if(!user || !currentProduct){
-
-    return;
-
-  }
-
-
-  try{
-
-    const ref =
-
-      db
-        .collection("cart")
-        .doc(user.uid)
-        .collection("items")
-        .doc(currentProduct.id);
-
-
-    const snap =
-      await ref.get();
-
-
-    if(!snap.exists){
-
-      return;
-
-    }
-
-
-    const data =
-      snap.data();
-
-
-    const existingQty =
-
-      Number(
-        data.qty
-      ) ||
-
-      Number(
-        data.quantity
-      ) ||
-
-      0;
-
-
-    if(existingQty > 0){
-
-      /*
-        We don't automatically change
-        the selected quantity because
-        the user may want to add more.
-
-        The cart badge already shows
-        the real total.
-      */
-
-    }
-
-  }
-
-  catch(error){
-
-    console.error(
-      "Current cart quantity error:",
-      error
     );
 
   }
@@ -1733,8 +1657,11 @@ function displayProduct(){
     product.available !== false &&
 
     (
+
       isNaN(stock) ||
+
       stock > 0
+
     );
 
 
@@ -1747,7 +1674,7 @@ function displayProduct(){
 
     <div class="breadcrumb">
 
-      <span>
+      <span class="brand">
         Danny Smart Power
       </span>
 
@@ -1790,7 +1717,7 @@ function displayProduct(){
       </div>
 
 
-      <!-- INFO -->
+      <!-- PRODUCT INFO -->
 
       <div class="product-info">
 
@@ -1836,7 +1763,9 @@ function displayProduct(){
 
               ? (
                   !isNaN(stock)
+
                   ? stock + " available"
+
                   : "Available"
                 )
 
@@ -1863,7 +1792,9 @@ function displayProduct(){
             type="button"
             onclick="changeQuantity(-1)"
           >
+
             −
+
           </button>
 
 
@@ -1871,7 +1802,9 @@ function displayProduct(){
             class="quantity-value"
             id="quantityValue"
           >
+
             1
+
           </span>
 
 
@@ -1879,27 +1812,24 @@ function displayProduct(){
             type="button"
             onclick="changeQuantity(1)"
           >
+
             +
+
           </button>
 
         </div>
 
 
-        <!-- BUTTONS -->
+        <!-- ACTIONS -->
 
         <div class="action-buttons">
 
 
           <button
-
             class="add-cart-button"
-
             id="addCartButton"
-
             onclick="addToCart()"
-
             ${available ? "" : "disabled"}
-
           >
 
             🛒 Add to Cart
@@ -1908,13 +1838,9 @@ function displayProduct(){
 
 
           <button
-
             class="buy-button"
-
             onclick="buyOnWhatsApp()"
-
             ${available ? "" : "disabled"}
-
           >
 
             WhatsApp
@@ -1925,7 +1851,7 @@ function displayProduct(){
         </div>
 
 
-        <!-- INFO BOXES -->
+        <!-- INFO -->
 
         <div class="info-boxes">
 
@@ -2068,7 +1994,7 @@ function changeQuantity(change){
 
 
     showToast(
-      "You cannot add more than available stock.",
+      "You cannot add more than the available stock.",
       "error"
     );
 
@@ -2097,6 +2023,7 @@ function changeQuantity(change){
 
 /* =====================================================
    ADD TO CART
+   EXACT SAME SYSTEM AS cart.html
 ===================================================== */
 
 async function addToCart(){
@@ -2160,18 +2087,25 @@ async function addToCart(){
     /*
       IMPORTANT:
 
-      This is the SAME path used
-      by cart.html:
+      This is EXACTLY:
 
       cart/{uid}/items/{productId}
+
+      NOT:
+
+      carts/{uid}/items
     */
 
     const cartRef =
 
       db
+
         .collection("cart")
+
         .doc(user.uid)
+
         .collection("items")
+
         .doc(currentProduct.id);
 
 
@@ -2185,63 +2119,24 @@ async function addToCart(){
         existing.data();
 
 
-      /*
-        Read the correct field "qty".
-
-        quantity is also supported here
-        in case old data exists.
-      */
-
       const oldQty =
 
-        Number(
-          oldData.qty
-        ) ||
-
-        Number(
-          oldData.quantity
-        ) ||
-
-        0;
-
-
-      const newQty =
-
-        oldQty +
-        currentQuantity;
-
-
-      const stock =
-        Number(currentProduct.stock);
-
-
-      if(
-
-        !isNaN(stock) &&
-
-        stock > 0 &&
-
-        newQty > stock
-
-      ){
-
-        showToast(
-          "You cannot add more than available stock.",
-          "error"
+        Math.max(
+          0,
+          Number(oldData.qty) || 0
         );
-
-        return;
-
-      }
 
 
       await cartRef.update({
 
         qty:
-          newQty,
+          oldQty +
+          currentQuantity,
 
         updatedAt:
-          firebase.firestore.FieldValue
+
+          firebase.firestore
+            .FieldValue
             .serverTimestamp()
 
       });
@@ -2273,11 +2168,15 @@ async function addToCart(){
           currentQuantity,
 
         addedAt:
-          firebase.firestore.FieldValue
+
+          firebase.firestore
+            .FieldValue
             .serverTimestamp(),
 
         updatedAt:
-          firebase.firestore.FieldValue
+
+          firebase.firestore
+            .FieldValue
             .serverTimestamp()
 
       });
@@ -2290,6 +2189,11 @@ async function addToCart(){
       "success"
     );
 
+
+    /*
+      Reset product-page quantity
+      after adding.
+    */
 
     currentQuantity = 1;
 
@@ -2341,7 +2245,7 @@ async function addToCart(){
 
 
 /* =====================================================
-   SIMILAR PRODUCTS
+   LOAD SIMILAR PRODUCTS
 ===================================================== */
 
 async function loadSimilarProducts(){
@@ -2382,7 +2286,9 @@ async function loadSimilarProducts(){
     const snapshot =
 
       await db
+
         .collection("products")
+
         .get();
 
 
@@ -2423,8 +2329,7 @@ async function loadSimilarProducts(){
 
           products.push({
 
-            id:
-              doc.id,
+            id:doc.id,
 
             ...data
 
@@ -2441,10 +2346,12 @@ async function loadSimilarProducts(){
 
       box.innerHTML = `
 
-        <p style="
-          color:#94a3b8;
-          font-size:13px;
-        ">
+        <p
+          style="
+            color:#94a3b8;
+            font-size:13px;
+          "
+        >
 
           No similar products available.
 
@@ -2489,7 +2396,8 @@ async function loadSimilarProducts(){
               src="${escapeAttribute(image)}"
 
               alt="${escapeAttribute(
-                product.name || "Product"
+                product.name ||
+                "Product"
               )}"
 
               onerror="
@@ -2500,6 +2408,7 @@ async function loadSimilarProducts(){
 
 
             <div class="similar-content">
+
 
               <div class="similar-category">
 
@@ -2528,6 +2437,7 @@ async function loadSimilarProducts(){
                 )}
 
               </div>
+
 
             </div>
 
@@ -2838,7 +2748,7 @@ function escapeHtml(value){
 function escapeAttribute(value){
 
   return String(
-    value || ""
+    value ?? ""
   )
 
   .replace(
