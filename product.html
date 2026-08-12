@@ -1,130 +1,2725 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Details</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Product Details | Danny Smart Power</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-  padding: 20px;
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-.container {
-  max-width: 800px;
-  margin: auto;
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+  --bg:#0f172a;
+
+  --header:#020617;
+
+  --card:#111e30;
+
+  --card2:#17253a;
+
+  --border:rgba(148,163,184,.15);
+
+  --blue:#38bdf8;
+
+  --blue2:#0284c7;
+
+  --green:#22c55e;
+
+  --red:#ef4444;
+
+  --text:#f8fafc;
+
+  --muted:#94a3b8;
+
 }
 
-img {
-  width: 100%;
-  border-radius: 10px;
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+  min-height:100vh;
+
+  font-family:'Poppins',sans-serif;
+
+  color:var(--text);
+
+  background:
+
+    radial-gradient(
+
+      circle at top left,
+
+      rgba(56,189,248,.08),
+
+      transparent 35%
+
+    ),
+
+    var(--bg);
+
 }
 
-.price {
-  color: #38bdf8;
-  font-size: 20px;
-  margin: 10px 0;
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:30;
+
+  height:76px;
+
+  padding:0 7%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  background:rgba(2,6,23,.96);
+
+  border-bottom:1px solid var(--border);
+
+  backdrop-filter:blur(14px);
+
 }
 
-.btn {
-  padding: 10px;
-  width: 100%;
-  background: #38bdf8;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
+
+/* BACK */
+
+.back-button{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  border:none;
+
+  background:transparent;
+
+  color:white;
+
+  font-family:inherit;
+
+  font-size:14px;
+
+  cursor:pointer;
+
 }
 
-.similar {
-  margin-top: 40px;
+
+.back-button:hover{
+
+  color:var(--blue);
+
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+
+/* LOGO */
+
+.logo{
+
+  position:absolute;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  color:var(--blue);
+
+  font-size:21px;
+
+  font-weight:700;
+
+  letter-spacing:.5px;
+
 }
 
-.card {
-  background: #020617;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
+
+.logo span{
+
+  color:white;
+
 }
+
+
+/* HEADER RIGHT */
+
+.header-right{
+
+  margin-left:auto;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+
+/* CART */
+
+.cart-button{
+
+  position:relative;
+
+  width:45px;
+
+  height:45px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:var(--card2);
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:21px;
+
+  border:1px solid var(--border);
+
+  transition:.2s;
+
+}
+
+
+.cart-button:hover{
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  transform:translateY(-2px);
+
+}
+
+
+.cart-count{
+
+  position:absolute;
+
+  top:-5px;
+
+  right:-5px;
+
+  min-width:21px;
+
+  height:21px;
+
+  padding:0 5px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:20px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  border:2px solid var(--header);
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+
+  width:100%;
+
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:35px 7% 70px;
+
+}
+
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.breadcrumb{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-bottom:25px;
+
+}
+
+
+.breadcrumb span{
+
+  color:var(--blue);
+
+}
+
+
+/* =====================================================
+   PRODUCT AREA
+===================================================== */
+
+.product-details{
+
+  display:grid;
+
+  grid-template-columns:
+
+    minmax(0,1.05fr)
+
+    minmax(0,.95fr);
+
+  gap:35px;
+
+  align-items:start;
+
+}
+
+
+/* =====================================================
+   PRODUCT IMAGE
+===================================================== */
+
+.product-image-box{
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      var(--card),
+
+      #0b1423
+
+    );
+
+  border:1px solid var(--border);
+
+  border-radius:24px;
+
+  overflow:hidden;
+
+}
+
+
+.product-image-wrapper{
+
+  width:100%;
+
+  aspect-ratio:1/1;
+
+  max-height:550px;
+
+  background:#0b1220;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+.product-image{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+}
+
+
+/* =====================================================
+   PRODUCT INFORMATION
+===================================================== */
+
+.product-info{
+
+  padding:5px 0;
+
+}
+
+
+.product-category{
+
+  display:inline-block;
+
+  color:var(--blue);
+
+  background:rgba(56,189,248,.08);
+
+  border:1px solid rgba(56,189,248,.18);
+
+  padding:7px 12px;
+
+  border-radius:30px;
+
+  font-size:11px;
+
+  font-weight:600;
+
+  text-transform:uppercase;
+
+  letter-spacing:.5px;
+
+  margin-bottom:14px;
+
+}
+
+
+.product-name{
+
+  font-size:30px;
+
+  line-height:1.25;
+
+  margin-bottom:13px;
+
+}
+
+
+.product-price{
+
+  color:var(--blue);
+
+  font-size:26px;
+
+  font-weight:700;
+
+  margin-bottom:20px;
+
+}
+
+
+.product-description{
+
+  color:#cbd5e1;
+
+  font-size:14px;
+
+  line-height:1.8;
+
+  margin-bottom:22px;
+
+}
+
+
+/* =====================================================
+   STOCK
+===================================================== */
+
+.stock-status{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  font-size:13px;
+
+  margin-bottom:20px;
+
+}
+
+
+.stock-dot{
+
+  width:9px;
+
+  height:9px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+}
+
+
+.stock-status.out{
+
+  color:#f87171;
+
+}
+
+
+.stock-status.out .stock-dot{
+
+  background:var(--red);
+
+}
+
+
+/* =====================================================
+   QUANTITY
+===================================================== */
+
+.quantity-title{
+
+  font-size:13px;
+
+  color:var(--muted);
+
+  margin-bottom:8px;
+
+}
+
+
+.quantity-box{
+
+  width:max-content;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+  padding:5px;
+
+  border-radius:12px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  margin-bottom:18px;
+
+}
+
+
+.quantity-box button{
+
+  width:34px;
+
+  height:34px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:var(--card2);
+
+  color:white;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+}
+
+
+.quantity-box button:hover{
+
+  background:var(--blue);
+
+  color:#00111c;
+
+}
+
+
+.quantity-value{
+
+  min-width:25px;
+
+  text-align:center;
+
+  font-weight:600;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.action-buttons{
+
+  display:flex;
+
+  gap:10px;
+
+}
+
+
+.add-cart-button{
+
+  flex:1;
+
+  border:none;
+
+  padding:15px;
+
+  border-radius:12px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-family:inherit;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+.add-cart-button:hover{
+
+  background:#7dd3fc;
+
+  transform:translateY(-2px);
+
+}
+
+
+.add-cart-button:disabled{
+
+  opacity:.5;
+
+  cursor:not-allowed;
+
+  transform:none;
+
+}
+
+
+.buy-button{
+
+  flex:1;
+
+  border:1px solid rgba(34,197,94,.3);
+
+  padding:15px;
+
+  border-radius:12px;
+
+  background:rgba(34,197,94,.1);
+
+  color:#86efac;
+
+  font-family:inherit;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+}
+
+
+.buy-button:hover{
+
+  background:var(--green);
+
+  color:white;
+
+}
+
+
+/* =====================================================
+   INFO BOXES
+===================================================== */
+
+.info-boxes{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:22px;
+
+}
+
+
+.info-box{
+
+  padding:14px 10px;
+
+  text-align:center;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:13px;
+
+}
+
+
+.info-box-icon{
+
+  font-size:20px;
+
+  margin-bottom:5px;
+
+}
+
+
+.info-box strong{
+
+  display:block;
+
+  font-size:11px;
+
+}
+
+
+.info-box span{
+
+  display:block;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:2px;
+
+}
+
+
+/* =====================================================
+   SIMILAR PRODUCTS
+===================================================== */
+
+.similar-section{
+
+  margin-top:55px;
+
+}
+
+
+.section-heading{
+
+  display:flex;
+
+  align-items:end;
+
+  justify-content:space-between;
+
+  margin-bottom:18px;
+
+}
+
+
+.section-heading h2{
+
+  font-size:21px;
+
+}
+
+
+.section-heading p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+
+.similar-grid{
+
+  display:grid;
+
+  grid-template-columns:
+
+    repeat(4,minmax(0,1fr));
+
+  gap:16px;
+
+}
+
+
+.similar-card{
+
+  overflow:hidden;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:16px;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+.similar-card:hover{
+
+  transform:translateY(-4px);
+
+  border-color:rgba(56,189,248,.4);
+
+}
+
+
+.similar-image{
+
+  width:100%;
+
+  height:150px;
+
+  object-fit:cover;
+
+  background:#0b1220;
+
+}
+
+
+.similar-content{
+
+  padding:12px;
+
+}
+
+
+.similar-category{
+
+  color:var(--blue);
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+}
+
+
+.similar-name{
+
+  font-size:13px;
+
+  margin:4px 0;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+}
+
+
+.similar-price{
+
+  color:var(--blue);
+
+  font-size:13px;
+
+  font-weight:700;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+  min-height:450px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:var(--muted);
+
+  text-align:center;
+
+}
+
+
+.spinner{
+
+  width:38px;
+
+  height:38px;
+
+  border:3px solid #1e293b;
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:spin 1s linear infinite;
+
+  margin-bottom:15px;
+
+}
+
+
+@keyframes spin{
+
+  to{
+
+    transform:rotate(360deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box{
+
+  text-align:center;
+
+  padding:70px 20px;
+
+  color:var(--muted);
+
+}
+
+
+.error-icon{
+
+  font-size:45px;
+
+  margin-bottom:15px;
+
+}
+
+
+.shop-button{
+
+  display:inline-block;
+
+  margin-top:18px;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  text-decoration:none;
+
+  font-weight:600;
+
+  font-size:13px;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+
+    translate(-50%,20px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  z-index:100;
+
+  padding:13px 18px;
+
+  border-radius:12px;
+
+  background:#020617;
+
+  border:1px solid var(--border);
+
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+
+  font-size:13px;
+
+  transition:.3s;
+
+}
+
+
+.toast.show{
+
+  opacity:1;
+
+  transform:
+
+    translate(-50%,0);
+
+}
+
+
+.toast.success{
+
+  border-color:
+
+    rgba(34,197,94,.35);
+
+}
+
+
+.toast.error{
+
+  border-color:
+
+    rgba(239,68,68,.35);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+  header{
+
+    padding:0 15px;
+
+  }
+
+
+  .logo{
+
+    font-size:18px;
+
+  }
+
+
+  .product-details{
+
+    grid-template-columns:1fr;
+
+    gap:25px;
+
+  }
+
+
+  .product-name{
+
+    font-size:25px;
+
+  }
+
+
+  .similar-grid{
+
+    grid-template-columns:
+
+      repeat(2,1fr);
+
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  main{
+
+    padding:22px 13px 55px;
+
+  }
+
+
+  .back-button{
+
+    font-size:12px;
+
+  }
+
+
+  .logo{
+
+    font-size:16px;
+
+  }
+
+
+  .cart-button{
+
+    width:40px;
+
+    height:40px;
+
+    font-size:19px;
+
+  }
+
+
+  .product-image-wrapper{
+
+    aspect-ratio:1/1;
+
+  }
+
+
+  .product-name{
+
+    font-size:22px;
+
+  }
+
+
+  .product-price{
+
+    font-size:23px;
+
+  }
+
+
+  .product-description{
+
+    font-size:13px;
+
+  }
+
+
+  .action-buttons{
+
+    flex-direction:column;
+
+  }
+
+
+  .info-boxes{
+
+    grid-template-columns:
+
+      repeat(3,1fr);
+
+  }
+
+
+  .similar-image{
+
+    height:125px;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="container">
-  <div id="product"></div>
 
-  <div class="similar">
-    <h3>Similar Products</h3>
-    <div class="grid" id="similar"></div>
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <button
+    class="back-button"
+    onclick="goBackToShop()">
+
+    ← Shop
+
+  </button>
+
+
+  <div class="logo">
+
+    D<span>SP</span>
+
   </div>
+
+
+  <div class="header-right">
+
+    <!-- CART IS ON THE RIGHT -->
+
+    <a
+      href="cart.html"
+      class="cart-button"
+      title="My Cart">
+
+      🛒
+
+      <span
+        class="cart-count"
+        id="cartCount">
+
+        0
+
+      </span>
+
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+  <div
+    id="pageContent">
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      <p>Loading product...</p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast">
+
 </div>
 
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js">
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
+</script>
+
+
 <script>
-let product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+  "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+  "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+  "danny-smart-power",
+
+  storageBucket:
+  "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+  "649735645158",
+
+  appId:
+  "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+  "G-258YKLP5ZS"
+
+};
+
+
+firebase.initializeApp(
+  firebaseConfig
+);
+
+
+const auth =
+firebase.auth();
+
+
+const db =
+firebase.firestore();
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const pageContent =
+document.getElementById(
+  "pageContent"
+);
+
+
+const cartCount =
+document.getElementById(
+  "cartCount"
+);
+
+
+const toast =
+document.getElementById(
+  "toast"
+);
+
+
+/* =====================================================
+   CURRENT PRODUCT
+===================================================== */
+
+let currentProduct = null;
+
+let currentProductId = null;
+
+let currentQuantity = 1;
+
+let cartListener = null;
+
+
+/* =====================================================
+   GET PRODUCT ID FROM URL
+===================================================== */
+
+/*
+
+   IMPORTANT:
+
+   The shop must open this page like:
+
+   product.html?id=FIRESTORE_DOCUMENT_ID
+
+   There is NO localStorage here.
+
+*/
+
+const urlParams =
+new URLSearchParams(
+  window.location.search
+);
+
+
+currentProductId =
+urlParams.get("id");
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+auth.onAuthStateChanged(
+  function(user){
+
+    if(user){
+
+      listenToCart(user.uid);
+
+    }
+
+    else{
+
+      cartCount.textContent = "0";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   LOAD PRODUCT
+===================================================== */
+
+async function loadProduct(){
+
+  if(!currentProductId){
+
+    showError(
+      "No product was selected."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    const doc =
+
+      await db
+      .collection("products")
+      .doc(currentProductId)
+      .get();
+
+
+    if(!doc.exists){
+
+      showError(
+        "This product could not be found."
+      );
+
+      return;
+
+    }
+
+
+    currentProduct = {
+
+      id:doc.id,
+
+      ...doc.data()
+
+    };
+
+
+    displayProduct();
+
+
+    loadSimilarProducts();
+
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Product loading error:",
+      error
+    );
+
+
+    showError(
+      "Unable to load this product."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   DISPLAY PRODUCT
+===================================================== */
 
 function displayProduct(){
-  let box = document.getElementById("product");
 
-  box.innerHTML = `
-    <img src="${product.image}">
-    <h2>${product.name}</h2>
-    <p class="price">₦${product.price}</p>
-    <p>${product.description || "High quality electrical product."}</p>
+  const product =
+  currentProduct;
 
-    <button class="btn" onclick="addToCart()">Add to Cart</button>
-    <button class="btn" onclick="buyNow()">Buy on WhatsApp</button>
-  `;
-}
 
-function addToCart(){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push(product);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Added to cart");
-}
+  const image =
 
-function buyNow(){
-  let phone = "2349036470778";
-  let message = `Hello, I want to buy ${product.name} - ₦${product.price}`;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
-}
+    product.image ||
 
-function loadSimilar(){
-  let all = JSON.parse(localStorage.getItem("allProducts")) || [];
-  let box = document.getElementById("similar");
+    "https://via.placeholder.com/800x800?text=DSP+Product";
 
-  let filtered = all.filter(p =>p.category.toLowerCase() === product.category.toLowerCase() && p.name !== product.name);
 
-  filtered.slice(0,3).forEach(p=>{
-    box.innerHTML += `
-      <div class="card" onclick='openProduct(${JSON.stringify(p)})'>
-        <img src="${p.image}">
-        <p>${p.name}</p>
+  const category =
+
+    product.category ||
+
+    "Electrical";
+
+
+  const name =
+
+    product.name ||
+
+    "Unnamed Product";
+
+
+  const price =
+
+    Number(product.price) || 0;
+
+
+  const description =
+
+    product.description ||
+
+    "Quality power and electrical product from Danny Smart Power.";
+
+
+  const stock =
+
+    Number(product.stock);
+
+
+  const available =
+
+    product.available !== false &&
+
+    (isNaN(stock) || stock > 0);
+
+
+  document.title =
+
+    name +
+
+    " | Danny Smart Power";
+
+
+  pageContent.innerHTML = `
+
+    <div class="breadcrumb">
+
+      <span>Danny Smart Power</span>
+
+      <b>›</b>
+
+      ${escapeHtml(category)}
+
+      <b>›</b>
+
+      Product
+
+    </div>
+
+
+    <section class="product-details">
+
+
+      <!-- PRODUCT IMAGE -->
+
+      <div class="product-image-box">
+
+        <div class="product-image-wrapper">
+
+          <img
+
+            class="product-image"
+
+            src="${escapeAttribute(image)}"
+
+            alt="${escapeAttribute(name)}"
+
+            onerror="this.src='https://via.placeholder.com/800x800?text=DSP+Product'"
+
+          >
+
+        </div>
+
       </div>
-    `;
-  });
+
+
+      <!-- PRODUCT INFORMATION -->
+
+      <div class="product-info">
+
+
+        <span class="product-category">
+
+          ${escapeHtml(category)}
+
+        </span>
+
+
+        <h1 class="product-name">
+
+          ${escapeHtml(name)}
+
+        </h1>
+
+
+        <div class="product-price">
+
+          ₦${formatPrice(price)}
+
+        </div>
+
+
+        <p class="product-description">
+
+          ${escapeHtml(description)}
+
+        </p>
+
+
+        <div
+
+          class="stock-status ${available ? "" : "out"}">
+
+          <span class="stock-dot"></span>
+
+          <span>
+
+            ${
+
+              available
+
+              ? (
+
+                  !isNaN(stock)
+
+                  ? stock + " available"
+
+                  : "Available"
+
+                )
+
+              : "Currently unavailable"
+
+            }
+
+          </span>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <p class="quantity-title">
+
+          Quantity
+
+        </p>
+
+
+        <div class="quantity-box">
+
+          <button
+
+            type="button"
+
+            onclick="changeQuantity(-1)">
+
+            −
+
+          </button>
+
+
+          <span
+
+            class="quantity-value"
+
+            id="quantityValue">
+
+            1
+
+          </span>
+
+
+          <button
+
+            type="button"
+
+            onclick="changeQuantity(1)">
+
+            +
+
+          </button>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="action-buttons">
+
+
+          <button
+
+            class="add-cart-button"
+
+            id="addCartButton"
+
+            onclick="addToCart()"
+
+            ${available ? "" : "disabled"}>
+
+            🛒 Add to Cart
+
+          </button>
+
+
+          <button
+
+            class="buy-button"
+
+            onclick="buyOnWhatsApp()"
+
+            ${available ? "" : "disabled"}>
+
+            WhatsApp
+
+          </button>
+
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="info-boxes">
+
+
+          <div class="info-box">
+
+            <div class="info-box-icon">
+
+              🚚
+
+            </div>
+
+            <strong>
+
+              Delivery
+
+            </strong>
+
+            <span>
+
+              Available
+
+            </span>
+
+          </div>
+
+
+          <div class="info-box">
+
+            <div class="info-box-icon">
+
+              🔒
+
+            </div>
+
+            <strong>
+
+              Secure
+
+            </strong>
+
+            <span>
+
+              Safe ordering
+
+            </span>
+
+          </div>
+
+
+          <div class="info-box">
+
+            <div class="info-box-icon">
+
+              💬
+
+            </div>
+
+            <strong>
+
+              Support
+
+            </strong>
+
+            <span>
+
+              We're here
+
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- SIMILAR PRODUCTS -->
+
+    <section class="similar-section">
+
+
+      <div class="section-heading">
+
+        <div>
+
+          <h2>
+
+            Similar Products
+
+          </h2>
+
+          <p>
+
+            More products you may like
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+
+        class="similar-grid"
+
+        id="similarProducts">
+
+      </div>
+
+
+    </section>
+
+  `;
+
 }
 
-function openProduct(p){
-  localStorage.setItem("selectedProduct", JSON.stringify(p));
-  location.reload();
+
+/* =====================================================
+   QUANTITY
+===================================================== */
+
+function changeQuantity(change){
+
+  if(!currentProduct){
+
+    return;
+
+  }
+
+
+  let newQuantity =
+
+    currentQuantity + change;
+
+
+  if(newQuantity < 1){
+
+    newQuantity = 1;
+
+  }
+
+
+  const stock =
+
+    Number(currentProduct.stock);
+
+
+  if(
+
+    !isNaN(stock) &&
+
+    stock > 0 &&
+
+    newQuantity > stock
+
+  ){
+
+    newQuantity = stock;
+
+
+    showToast(
+
+      "You cannot add more than the available stock.",
+
+      "error"
+
+    );
+
+  }
+
+
+  currentQuantity =
+  newQuantity;
+
+
+  const quantityValue =
+  document.getElementById(
+    "quantityValue"
+  );
+
+
+  if(quantityValue){
+
+    quantityValue.textContent =
+    currentQuantity;
+
+  }
+
 }
 
-displayProduct();
-loadSimilar();
+
+/* =====================================================
+   ADD TO FIRESTORE CART
+===================================================== */
+
+async function addToCart(){
+
+  if(!currentProduct){
+
+    return;
+
+  }
+
+
+  const user =
+  auth.currentUser;
+
+
+  if(!user){
+
+    showToast(
+
+      "Please sign in before adding products to your cart.",
+
+      "error"
+
+    );
+
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+        "login.html";
+
+      },
+      1200
+    );
+
+
+    return;
+
+  }
+
+
+  const button =
+  document.getElementById(
+    "addCartButton"
+  );
+
+
+  if(button){
+
+    button.disabled = true;
+
+    button.textContent =
+    "Adding...";
+
+  }
+
+
+  try{
+
+    const cartRef =
+
+      db
+      .collection("carts")
+      .doc(user.uid)
+      .collection("items")
+      .doc(currentProduct.id);
+
+
+    const existing =
+
+      await cartRef.get();
+
+
+    if(existing.exists){
+
+      const oldData =
+      existing.data();
+
+
+      const oldQuantity =
+
+        Number(
+          oldData.quantity
+        ) || 0;
+
+
+      await cartRef.update({
+
+        quantity:
+          oldQuantity +
+          currentQuantity,
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      });
+
+    }
+
+    else{
+
+      await cartRef.set({
+
+        productId:
+          currentProduct.id,
+
+        name:
+          currentProduct.name ||
+          "Unnamed Product",
+
+        price:
+          Number(currentProduct.price) || 0,
+
+        image:
+          currentProduct.image || "",
+
+        category:
+          currentProduct.category ||
+          "Electrical",
+
+        quantity:
+          currentQuantity,
+
+        addedAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      });
+
+    }
+
+
+    showToast(
+
+      "Product added to your cart ✓",
+
+      "success"
+
+    );
+
+
+    currentQuantity = 1;
+
+
+    const quantityValue =
+    document.getElementById(
+      "quantityValue"
+    );
+
+
+    if(quantityValue){
+
+      quantityValue.textContent = "1";
+
+    }
+
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Cart error:",
+      error
+    );
+
+
+    showToast(
+
+      "Could not add product to cart.",
+
+      "error"
+
+    );
+
+  }
+
+
+  finally{
+
+    if(button){
+
+      button.disabled = false;
+
+      button.textContent =
+      "🛒 Add to Cart";
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   LISTEN TO FIRESTORE CART
+===================================================== */
+
+function listenToCart(uid){
+
+  if(cartListener){
+
+    cartListener();
+
+  }
+
+
+  cartListener =
+
+    db
+    .collection("carts")
+    .doc(uid)
+    .collection("items")
+    .onSnapshot(
+
+      function(snapshot){
+
+        let totalItems = 0;
+
+
+        snapshot.forEach(
+          function(doc){
+
+            const data =
+            doc.data();
+
+
+            totalItems +=
+
+              Number(
+                data.quantity
+              ) || 0;
+
+          }
+        );
+
+
+        cartCount.textContent =
+        totalItems;
+
+      },
+
+      function(error){
+
+        console.error(
+          "Cart listener error:",
+          error
+        );
+
+        cartCount.textContent =
+        "0";
+
+      }
+
+    );
+
+}
+
+
+/* =====================================================
+   LOAD SIMILAR PRODUCTS
+===================================================== */
+
+async function loadSimilarProducts(){
+
+  const box =
+  document.getElementById(
+    "similarProducts"
+  );
+
+
+  if(!box || !currentProduct){
+
+    return;
+
+  }
+
+
+  const category =
+
+    String(
+      currentProduct.category || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  if(!category){
+
+    box.innerHTML = "";
+
+    return;
+
+  }
+
+
+  try{
+
+    const snapshot =
+
+      await db
+      .collection("products")
+      .get();
+
+
+    const products = [];
+
+
+    snapshot.forEach(
+      function(doc){
+
+        if(
+          doc.id ===
+          currentProduct.id
+        ){
+
+          return;
+
+        }
+
+
+        const data =
+        doc.data();
+
+
+        const productCategory =
+
+          String(
+            data.category || ""
+          )
+          .trim()
+          .toLowerCase();
+
+
+        if(
+          productCategory ===
+          category
+        ){
+
+          products.push({
+
+            id:doc.id,
+
+            ...data
+
+          });
+
+        }
+
+      }
+    );
+
+
+    if(products.length === 0){
+
+      box.innerHTML = `
+
+        <p style="color:#94a3b8;font-size:13px;">
+
+          No similar products available.
+
+        </p>
+
+      `;
+
+      return;
+
+    }
+
+
+    products
+    .slice(0,4)
+    .forEach(
+      function(product){
+
+        const card =
+        document.createElement(
+          "article"
+        );
+
+
+        card.className =
+        "similar-card";
+
+
+        const image =
+
+          product.image ||
+
+          "https://via.placeholder.com/600x400?text=DSP";
+
+
+        card.innerHTML = `
+
+          <img
+
+            class="similar-image"
+
+            src="${escapeAttribute(image)}"
+
+            alt="${escapeAttribute(product.name || "Product")}"
+
+            onerror="this.src='https://via.placeholder.com/600x400?text=DSP'"
+
+          >
+
+
+          <div class="similar-content">
+
+            <div class="similar-category">
+
+              ${escapeHtml(
+                product.category ||
+                "Electrical"
+              )}
+
+            </div>
+
+
+            <div class="similar-name">
+
+              ${escapeHtml(
+                product.name ||
+                "Unnamed Product"
+              )}
+
+            </div>
+
+
+            <div class="similar-price">
+
+              ₦${formatPrice(
+                product.price
+              )}
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        card.addEventListener(
+
+          "click",
+
+          function(){
+
+            window.location.href =
+
+              "product.html?id=" +
+
+              encodeURIComponent(
+                product.id
+              );
+
+          }
+
+        );
+
+
+        box.appendChild(card);
+
+      }
+
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Similar products error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function buyOnWhatsApp(){
+
+  if(!currentProduct){
+
+    return;
+
+  }
+
+
+  const user =
+  auth.currentUser;
+
+
+  if(!user){
+
+    showToast(
+
+      "Please sign in before ordering.",
+
+      "error"
+
+    );
+
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+        "login.html";
+
+      },
+      1200
+    );
+
+
+    return;
+
+  }
+
+
+  const phone =
+  "2349036470778";
+
+
+  const price =
+  Number(currentProduct.price) || 0;
+
+
+  const total =
+  price *
+  currentQuantity;
+
+
+  const message =
+
+    "Hello Danny Smart Power ⚡\n\n" +
+
+    "I am interested in ordering:\n\n" +
+
+    "Product: " +
+
+    (currentProduct.name || "Product") +
+
+    "\nQuantity: " +
+
+    currentQuantity +
+
+    "\nPrice: ₦" +
+
+    price.toLocaleString() +
+
+    "\nTotal: ₦" +
+
+    total.toLocaleString() +
+
+    "\n\nThank you.";
+
+
+  window.open(
+
+    "https://wa.me/" +
+
+    phone +
+
+    "?text=" +
+
+    encodeURIComponent(message),
+
+    "_blank"
+
+  );
+
+}
+
+
+/* =====================================================
+   BACK TO SHOP
+===================================================== */
+
+function goBackToShop(){
+
+  window.location.href =
+  "shop.html";
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(message){
+
+  pageContent.innerHTML = `
+
+    <div class="error-box">
+
+      <div class="error-icon">
+
+        ⚠️
+
+      </div>
+
+
+      <h2>
+
+        Product unavailable
+
+      </h2>
+
+
+      <p style="margin-top:8px;">
+
+        ${escapeHtml(message)}
+
+      </p>
+
+
+      <a
+        href="shop.html"
+        class="shop-button">
+
+        ← Back to Shop
+
+      </a>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function showToast(message,type){
+
+  toast.textContent =
+  message;
+
+
+  toast.className =
+  "toast " +
+  (type || "");
+
+
+  setTimeout(
+    function(){
+
+      toast.classList.add(
+        "show"
+      );
+
+    },
+    10
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2800
+    );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function formatPrice(price){
+
+  const number =
+  Number(price);
+
+
+  if(
+    isNaN(number)
+  ){
+
+    return "0";
+
+  }
+
+
+  return number.toLocaleString();
+
+}
+
+
+function escapeHtml(value){
+
+  const div =
+  document.createElement(
+    "div"
+  );
+
+
+  div.textContent =
+  value == null
+  ? ""
+  : String(value);
+
+
+  return div.innerHTML;
+
+}
+
+
+function escapeAttribute(value){
+
+  return String(
+    value || ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadProduct();
+
 </script>
 
 </body>
+
 </html>
