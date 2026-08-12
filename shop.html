@@ -17,15 +17,14 @@ href="https://fonts.googleapis.com">
 href="https://fonts.gstatic.com"
 crossorigin>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
 rel="stylesheet">
 
 <style>
 
-/* =========================================================
+/* =====================================================
    RESET
-========================================================= */
+===================================================== */
 
 *{
   margin:0;
@@ -33,10 +32,16 @@ rel="stylesheet">
   box-sizing:border-box;
 }
 
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root{
 
   --bg:#0f172a;
   --header:#020617;
+
   --card:#111e30;
   --card2:#17253a;
 
@@ -52,6 +57,11 @@ rel="stylesheet">
   --muted:#94a3b8;
 
 }
+
+
+/* =====================================================
+   BODY
+===================================================== */
 
 html{
   scroll-behavior:smooth;
@@ -76,9 +86,9 @@ body{
 }
 
 
-/* =========================================================
+/* =====================================================
    HEADER
-========================================================= */
+===================================================== */
 
 header{
 
@@ -86,7 +96,7 @@ header{
 
   background:rgba(2,6,23,.96);
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
 
   border-bottom:1px solid var(--border);
 
@@ -102,9 +112,10 @@ header{
 
   top:0;
 
-  z-index:100;
+  z-index:20;
 
 }
+
 
 .menu-button{
 
@@ -119,15 +130,19 @@ header{
 
   color:white;
 
-  font-size:25px;
+  font-size:27px;
 
   cursor:pointer;
 
 }
 
+
 .menu-button:hover{
+
   background:var(--card2);
+
 }
+
 
 .logo{
 
@@ -141,9 +156,11 @@ header{
 
 }
 
+
 .logo span{
   color:white;
 }
+
 
 .header-right{
 
@@ -155,6 +172,7 @@ header{
 
 }
 
+
 .home-link{
 
   color:white;
@@ -165,9 +183,11 @@ header{
 
 }
 
+
 .home-link:hover{
   color:var(--blue);
 }
+
 
 .cart-button{
 
@@ -180,6 +200,7 @@ header{
   font-size:22px;
 
 }
+
 
 .cart-count{
 
@@ -214,9 +235,9 @@ header{
 }
 
 
-/* =========================================================
+/* =====================================================
    MENU OVERLAY
-========================================================= */
+===================================================== */
 
 .menu-overlay{
 
@@ -224,22 +245,25 @@ header{
 
   inset:0;
 
-  background:rgba(0,0,0,.58);
+  background:rgba(0,0,0,.62);
 
   display:none;
 
-  z-index:200;
+  z-index:40;
+
+  backdrop-filter:blur(2px);
 
 }
+
 
 .menu-overlay.active{
   display:block;
 }
 
 
-/* =========================================================
+/* =====================================================
    SIDE MENU
-========================================================= */
+===================================================== */
 
 .side-menu{
 
@@ -247,31 +271,37 @@ header{
 
   top:0;
 
-  right:-340px;
+  right:-380px;
 
-  width:320px;
+  width:350px;
 
-  max-width:88%;
+  max-width:90%;
 
   height:100dvh;
 
-  padding:20px 16px;
+  padding:20px;
 
   background:#020617;
 
-  z-index:250;
+  z-index:50;
 
   transition:right .3s ease;
 
-  box-shadow:-15px 0 40px rgba(0,0,0,.5);
+  box-shadow:-20px 0 50px rgba(0,0,0,.55);
 
   overflow-y:auto;
 
 }
 
+
 .side-menu.active{
   right:0;
 }
+
+
+/* =====================================================
+   MENU TOP
+===================================================== */
 
 .menu-top{
 
@@ -281,15 +311,19 @@ header{
 
   justify-content:space-between;
 
-  padding:8px 4px 20px;
+  padding:8px 4px 22px;
 
   border-bottom:1px solid var(--border);
 
 }
 
+
 .menu-top h3{
-  font-size:18px;
+
+  font-size:21px;
+
 }
+
 
 .close-menu{
 
@@ -299,29 +333,84 @@ header{
 
   color:white;
 
-  font-size:28px;
+  font-size:35px;
 
   cursor:pointer;
 
+  line-height:1;
+
 }
 
-.menu-user{
+
+/* =====================================================
+   MENU PROFILE
+===================================================== */
+
+.menu-profile{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
 
   padding:20px 4px;
 
   border-bottom:1px solid var(--border);
 
+  cursor:pointer;
+
 }
 
-.menu-user strong{
+
+.menu-profile:hover{
+  opacity:.9;
+}
+
+
+.menu-avatar{
+
+  width:66px;
+  height:66px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  border:2px solid rgba(56,189,248,.55);
+
+  background:var(--card2);
+
+}
+
+
+.menu-profile-info{
+
+  min-width:0;
+
+  flex:1;
+
+}
+
+
+.menu-profile-name{
 
   display:block;
 
-  font-size:16px;
+  font-size:17px;
+
+  font-weight:600;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 
 }
 
-.menu-user span{
+
+.menu-profile-email{
 
   display:block;
 
@@ -329,15 +418,36 @@ header{
 
   font-size:12px;
 
-  margin-top:4px;
+  margin-top:3px;
 
-  word-break:break-word;
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 
 }
+
+
+.profile-arrow{
+
+  font-size:25px;
+
+  color:var(--muted);
+
+}
+
+
+/* =====================================================
+   MENU LINKS
+===================================================== */
 
 .menu-links{
-  padding-top:14px;
+
+  padding-top:15px;
+
 }
+
 
 .menu-link{
 
@@ -347,11 +457,11 @@ header{
 
   align-items:center;
 
-  gap:13px;
+  gap:14px;
 
-  padding:15px 13px;
+  padding:15px 10px;
 
-  margin-bottom:8px;
+  margin-bottom:5px;
 
   border:none;
 
@@ -365,36 +475,98 @@ header{
 
   font-family:inherit;
 
-  font-size:14px;
+  font-size:15px;
 
   cursor:pointer;
 
   text-decoration:none;
 
+  transition:.2s;
+
 }
 
+
 .menu-link:hover{
+
   background:var(--card2);
+
 }
+
 
 .menu-icon{
 
-  width:28px;
+  width:32px;
 
-  font-size:19px;
+  min-width:32px;
+
+  font-size:20px;
 
   text-align:center;
 
 }
 
-.logout{
-  color:#f87171;
+
+.menu-link-text{
+
+  flex:1;
+
 }
 
 
-/* =========================================================
+.menu-arrow{
+
+  color:var(--muted);
+
+  font-size:20px;
+
+}
+
+
+.menu-cart-badge{
+
+  min-width:24px;
+
+  height:24px;
+
+  padding:0 6px;
+
+  border-radius:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-size:11px;
+
+  font-weight:700;
+
+}
+
+
+.logout{
+
+  margin-top:15px;
+
+  color:#f87171;
+
+  border-top:1px solid var(--border);
+
+  border-radius:0;
+
+  padding-top:20px;
+
+}
+
+
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 .search-section{
 
@@ -406,6 +578,7 @@ header{
 
 }
 
+
 .search-box{
 
   display:flex;
@@ -413,6 +586,7 @@ header{
   gap:10px;
 
 }
+
 
 .search-box input{
 
@@ -438,17 +612,22 @@ header{
 
 }
 
+
 .search-box input:focus{
 
   border-color:var(--blue);
 
-  box-shadow:0 0 0 3px rgba(56,189,248,.08);
+  box-shadow:
+    0 0 0 3px
+    rgba(56,189,248,.08);
 
 }
+
 
 .search-box input::placeholder{
   color:#718096;
 }
+
 
 .search-button{
 
@@ -468,20 +647,47 @@ header{
 
 }
 
+
 .search-button:hover{
   background:#7dd3fc;
 }
 
 
-/* =========================================================
+/* =====================================================
+   SEARCH STATUS
+===================================================== */
+
+.search-status{
+
+  max-width:1200px;
+
+  margin:10px auto 0;
+
+  padding:0 7%;
+
+  min-height:20px;
+
+}
+
+
+.search-status span{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+
+/* =====================================================
    BANNER
-========================================================= */
+===================================================== */
 
 .banner{
 
   max-width:1200px;
 
-  height:240px;
+  height:250px;
 
   margin:22px auto;
 
@@ -509,9 +715,15 @@ header{
 
 }
 
+
 .banner:hover{
+
   transform:translateY(-2px);
+
+  border-color:rgba(56,189,248,.4);
+
 }
+
 
 .banner::before{
 
@@ -524,11 +736,12 @@ header{
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.82),
+      rgba(0,0,0,.86),
       rgba(0,0,0,.08)
     );
 
 }
+
 
 .banner-content{
 
@@ -538,6 +751,7 @@ header{
 
 }
 
+
 .banner-content small{
 
   color:var(--blue);
@@ -546,13 +760,15 @@ header{
 
 }
 
+
 .banner-content h2{
 
-  font-size:25px;
+  font-size:26px;
 
   margin-top:5px;
 
 }
+
 
 .banner-content p{
 
@@ -565,9 +781,20 @@ header{
 }
 
 
-/* =========================================================
+.banner-hint{
+
+  margin-top:8px;
+
+  color:#cbd5e1;
+
+  font-size:11px;
+
+}
+
+
+/* =====================================================
    CATEGORIES
-========================================================= */
+===================================================== */
 
 .category-section{
 
@@ -579,6 +806,7 @@ header{
 
 }
 
+
 .category-section h3{
 
   margin-bottom:12px;
@@ -586,6 +814,7 @@ header{
   font-size:17px;
 
 }
+
 
 .categories{
 
@@ -599,9 +828,11 @@ header{
 
 }
 
+
 .categories::-webkit-scrollbar{
   display:none;
 }
+
 
 .cat-btn{
 
@@ -625,6 +856,7 @@ header{
 
 }
 
+
 .cat-btn:hover,
 .cat-btn.active{
 
@@ -637,9 +869,9 @@ header{
 }
 
 
-/* =========================================================
+/* =====================================================
    PRODUCTS
-========================================================= */
+===================================================== */
 
 .products-section{
 
@@ -647,9 +879,10 @@ header{
 
   margin:auto;
 
-  padding:0 7% 50px;
+  padding:0 7% 60px;
 
 }
+
 
 .products-header{
 
@@ -663,9 +896,13 @@ header{
 
 }
 
+
 .products-header h2{
+
   font-size:21px;
+
 }
+
 
 #resultText{
 
@@ -674,6 +911,11 @@ header{
   font-size:12px;
 
 }
+
+
+/* =====================================================
+   PRODUCT GRID
+===================================================== */
 
 .product-grid{
 
@@ -687,9 +929,9 @@ header{
 }
 
 
-/* =========================================================
+/* =====================================================
    PRODUCT CARD
-========================================================= */
+===================================================== */
 
 .product-card{
 
@@ -707,16 +949,20 @@ header{
 
 }
 
+
 .product-card:hover{
 
   transform:translateY(-5px);
 
-  border-color:rgba(56,189,248,.45);
+  border-color:
+    rgba(56,189,248,.45);
 
   box-shadow:
-    0 15px 35px rgba(0,0,0,.18);
+    0 12px 35px
+    rgba(0,0,0,.2);
 
 }
+
 
 .product-image-wrapper{
 
@@ -726,7 +972,10 @@ header{
 
   overflow:hidden;
 
+  position:relative;
+
 }
+
 
 .product-image{
 
@@ -740,13 +989,56 @@ header{
 
 }
 
+
 .product-card:hover .product-image{
   transform:scale(1.05);
 }
 
-.product-content{
-  padding:14px;
+
+/* =====================================================
+   PRODUCT BADGE
+===================================================== */
+
+.stock-badge{
+
+  position:absolute;
+
+  top:10px;
+
+  left:10px;
+
+  padding:5px 8px;
+
+  border-radius:8px;
+
+  background:rgba(2,6,23,.85);
+
+  color:#86efac;
+
+  font-size:10px;
+
+  font-weight:600;
+
 }
+
+
+.stock-badge.unavailable{
+
+  color:#fca5a5;
+
+}
+
+
+/* =====================================================
+   PRODUCT CONTENT
+===================================================== */
+
+.product-content{
+
+  padding:14px;
+
+}
+
 
 .product-category{
 
@@ -759,6 +1051,7 @@ header{
   letter-spacing:.5px;
 
 }
+
 
 .product-name{
 
@@ -774,19 +1067,23 @@ header{
 
 }
 
+
 .product-description{
 
   color:var(--muted);
 
   font-size:12px;
 
-  height:36px;
+  min-height:36px;
+
+  max-height:36px;
 
   overflow:hidden;
 
   line-height:1.5;
 
 }
+
 
 .product-bottom{
 
@@ -802,6 +1099,7 @@ header{
 
 }
 
+
 .product-price{
 
   color:var(--blue);
@@ -811,6 +1109,7 @@ header{
   font-weight:700;
 
 }
+
 
 .add-cart{
 
@@ -834,22 +1133,77 @@ header{
 
 }
 
+
 .add-cart:hover{
   background:#7dd3fc;
 }
 
+
 .add-cart:disabled{
 
-  opacity:.6;
+  background:#334155;
+
+  color:#94a3b8;
 
   cursor:not-allowed;
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  background:#020617;
+
+  border:1px solid
+    rgba(56,189,248,.35);
+
+  color:white;
+
+  padding:13px 18px;
+
+  border-radius:12px;
+
+  box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.4);
+
+  font-size:13px;
+
+  z-index:100;
+
+  opacity:0;
+
+  transition:.3s;
+
+}
+
+
+.toast.show{
+
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+
+}
+
+
+/* =====================================================
    LOADING
-========================================================= */
+===================================================== */
 
 .loading{
 
@@ -862,6 +1216,7 @@ header{
   color:var(--muted);
 
 }
+
 
 .spinner{
 
@@ -881,6 +1236,7 @@ header{
 
 }
 
+
 @keyframes spin{
 
   to{
@@ -890,9 +1246,9 @@ header{
 }
 
 
-/* =========================================================
-   EMPTY
-========================================================= */
+/* =====================================================
+   EMPTY STATE
+===================================================== */
 
 .empty-state{
 
@@ -906,6 +1262,7 @@ header{
 
 }
 
+
 .empty-state div{
 
   font-size:40px;
@@ -915,65 +1272,30 @@ header{
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-
-  position:fixed;
-
-  left:50%;
-
-  bottom:25px;
-
-  transform:
-    translate(-50%,120px);
-
-  background:#020617;
-
-  border:1px solid var(--border);
+.empty-state h3{
 
   color:white;
 
-  padding:13px 18px;
-
-  border-radius:12px;
-
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
-
-  z-index:500;
-
-  opacity:0;
-
-  transition:.3s;
-
-  font-size:13px;
-
-}
-
-.toast.show{
-
-  opacity:1;
-
-  transform:
-    translate(-50%,0);
+  margin-bottom:5px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RESPONSIVE
-========================================================= */
+===================================================== */
 
 @media(max-width:900px){
 
   .product-grid{
+
     grid-template-columns:
       repeat(3,1fr);
+
   }
 
 }
+
 
 @media(max-width:700px){
 
@@ -981,11 +1303,14 @@ header{
     padding:0 15px;
   }
 
+
   .home-link{
     display:none;
   }
 
+
   .search-section,
+  .search-status,
   .category-section,
   .products-section{
 
@@ -994,14 +1319,18 @@ header{
 
   }
 
+
   .banner{
 
     margin-left:14px;
     margin-right:14px;
 
-    height:210px;
+    height:215px;
+
+    border-radius:18px;
 
   }
+
 
   .product-grid{
 
@@ -1012,36 +1341,48 @@ header{
 
   }
 
+
   .product-image-wrapper{
     height:145px;
   }
+
 
   .product-content{
     padding:11px;
   }
 
+
   .product-name{
     font-size:13px;
   }
+
 
   .product-price{
     font-size:14px;
   }
 
+
   .add-cart{
     padding:8px;
   }
 
+
+  .side-menu{
+    width:350px;
+    max-width:92%;
+  }
+
 }
+
 
 @media(max-width:400px){
 
-  .product-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
   .product-image-wrapper{
     height:130px;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr 1fr;
   }
 
 }
@@ -1054,9 +1395,9 @@ header{
 <body>
 
 
-<!-- =======================================================
+<!-- =====================================================
      MENU OVERLAY
-======================================================= -->
+===================================================== -->
 
 <div
 class="menu-overlay"
@@ -1064,13 +1405,14 @@ id="menuOverlay">
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      SIDE MENU
-======================================================= -->
+===================================================== -->
 
 <aside
 class="side-menu"
 id="sideMenu">
+
 
   <div class="menu-top">
 
@@ -1080,8 +1422,7 @@ id="sideMenu">
 
     <button
     class="close-menu"
-    id="closeMenu"
-    aria-label="Close menu">
+    id="closeMenu">
 
       ×
 
@@ -1090,28 +1431,69 @@ id="sideMenu">
   </div>
 
 
-  <div class="menu-user">
+  <!-- USER PROFILE -->
 
-    <strong id="menuUserName">
-      Loading user...
-    </strong>
+  <div
+  class="menu-profile"
+  id="menuProfile">
 
-    <span id="menuUserEmail">
-      Loading email...
+
+    <img
+    id="menuAvatar"
+    class="menu-avatar"
+    src="https://via.placeholder.com/100?text=👤"
+    alt="Profile photo">
+
+
+    <div class="menu-profile-info">
+
+      <strong
+      class="menu-profile-name"
+      id="menuUserName">
+
+        Loading...
+
+      </strong>
+
+
+      <span
+      class="menu-profile-email"
+      id="menuUserEmail">
+
+        Loading...
+
+      </span>
+
+    </div>
+
+
+    <span class="profile-arrow">
+      ›
     </span>
 
   </div>
 
 
+  <!-- MENU LINKS -->
+
   <div class="menu-links">
+
 
     <a
     class="menu-link"
     href="profile.html">
 
-      <span class="menu-icon">👤</span>
+      <span class="menu-icon">
+        👤
+      </span>
 
-      Profile
+      <span class="menu-link-text">
+        Profile
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
@@ -1120,9 +1502,17 @@ id="sideMenu">
     class="menu-link"
     href="shop.html">
 
-      <span class="menu-icon">🛍️</span>
+      <span class="menu-icon">
+        🛍️
+      </span>
 
-      Continue Shopping
+      <span class="menu-link-text">
+        Continue Shopping
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
@@ -1131,9 +1521,21 @@ id="sideMenu">
     class="menu-link"
     href="cart.html">
 
-      <span class="menu-icon">🛒</span>
+      <span class="menu-icon">
+        🛒
+      </span>
 
-      My Cart
+      <span class="menu-link-text">
+        My Cart
+      </span>
+
+      <span
+      class="menu-cart-badge"
+      id="menuCartCount">
+
+        0
+
+      </span>
 
     </a>
 
@@ -1142,22 +1544,36 @@ id="sideMenu">
     class="menu-link"
     href="orders.html">
 
-      <span class="menu-icon">📦</span>
+      <span class="menu-icon">
+        📦
+      </span>
 
-      My Orders
+      <span class="menu-link-text">
+        My Orders
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
-
-    <!-- TRACK ORDER -->
 
     <a
     class="menu-link"
     href="track-order.html">
 
-      <span class="menu-icon">🚚</span>
+      <span class="menu-icon">
+        🚚
+      </span>
 
-      Track Order
+      <span class="menu-link-text">
+        Track Order
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
@@ -1166,9 +1582,17 @@ id="sideMenu">
     class="menu-link"
     href="settings.html">
 
-      <span class="menu-icon">⚙️</span>
+      <span class="menu-icon">
+        ⚙️
+      </span>
 
-      Settings
+      <span class="menu-link-text">
+        Settings
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
@@ -1177,9 +1601,17 @@ id="sideMenu">
     class="menu-link"
     href="contact.html">
 
-      <span class="menu-icon">📞</span>
+      <span class="menu-icon">
+        📞
+      </span>
 
-      Contact Danny Smart Power
+      <span class="menu-link-text">
+        Contact Danny Smart Power
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
@@ -1188,9 +1620,17 @@ id="sideMenu">
     class="menu-link"
     href="help.html">
 
-      <span class="menu-icon">❓</span>
+      <span class="menu-icon">
+        ❓
+      </span>
 
-      Help Center
+      <span class="menu-link-text">
+        Help Center
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
 
     </a>
 
@@ -1199,27 +1639,32 @@ id="sideMenu">
     class="menu-link logout"
     id="logoutButton">
 
-      <span class="menu-icon">🚪</span>
+      <span class="menu-icon">
+        🚪
+      </span>
 
-      Sign Out
+      <span class="menu-link-text">
+        Sign Out
+      </span>
 
     </button>
+
 
   </div>
 
 </aside>
 
 
-<!-- =======================================================
+<!-- =====================================================
      HEADER
-======================================================= -->
+===================================================== -->
 
 <header>
 
+
   <button
   class="menu-button"
-  id="menuButton"
-  aria-label="Open menu">
+  id="menuButton">
 
     ☰
 
@@ -1235,6 +1680,7 @@ id="sideMenu">
 
   <div class="header-right">
 
+
     <a
     class="home-link"
     href="index.html">
@@ -1246,14 +1692,13 @@ id="sideMenu">
 
     <a
     class="cart-button"
-    href="cart.html"
-    aria-label="Shopping cart">
+    href="cart.html">
 
       🛒
 
       <span
       class="cart-count"
-      id="cart-count">
+      id="cartCount">
 
         0
 
@@ -1266,9 +1711,9 @@ id="sideMenu">
 </header>
 
 
-<!-- =======================================================
+<!-- =====================================================
      SEARCH
-======================================================= -->
+===================================================== -->
 
 <section class="search-section">
 
@@ -1279,6 +1724,7 @@ id="sideMenu">
     id="search"
     autocomplete="off"
     placeholder="Search electrical, solar, lighting products...">
+
 
     <button
     class="search-button"
@@ -1293,14 +1739,20 @@ id="sideMenu">
 </section>
 
 
-<!-- =======================================================
-     BANNER
-======================================================= -->
+<div class="search-status">
+
+  <span id="searchStatus"></span>
+
+</div>
+
+
+<!-- =====================================================
+     RANDOM PRODUCT BANNER
+===================================================== -->
 
 <section
 class="banner"
-id="banner"
-aria-label="Featured product">
+id="banner">
 
   <div class="banner-content">
 
@@ -1308,22 +1760,29 @@ aria-label="Featured product">
       DANNY SMART POWER
     </small>
 
-    <h2 id="banner-text">
+
+    <h2 id="bannerText">
       Loading products...
     </h2>
 
+
     <p>
-      Quality power and electrical solutions
+      Quality power and electrical solutions.
     </p>
+
+
+    <div class="banner-hint">
+      Tap to view this product →
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- =======================================================
+<!-- =====================================================
      CATEGORIES
-======================================================= -->
+===================================================== -->
 
 <section class="category-section">
 
@@ -1331,7 +1790,9 @@ aria-label="Featured product">
     Browse Categories
   </h3>
 
+
   <div class="categories">
+
 
     <button
     class="cat-btn active"
@@ -1341,6 +1802,7 @@ aria-label="Featured product">
 
     </button>
 
+
     <button
     class="cat-btn"
     data-category="solar">
@@ -1348,6 +1810,7 @@ aria-label="Featured product">
       ☀️ Solar
 
     </button>
+
 
     <button
     class="cat-btn"
@@ -1357,6 +1820,7 @@ aria-label="Featured product">
 
     </button>
 
+
     <button
     class="cat-btn"
     data-category="electrical">
@@ -1365,22 +1829,25 @@ aria-label="Featured product">
 
     </button>
 
+
   </div>
 
 </section>
 
 
-<!-- =======================================================
+<!-- =====================================================
      PRODUCTS
-======================================================= -->
+===================================================== -->
 
 <section class="products-section">
+
 
   <div class="products-header">
 
     <h2>
       Products
     </h2>
+
 
     <span id="resultText">
       Loading...
@@ -1391,7 +1858,7 @@ aria-label="Featured product">
 
   <div
   class="product-grid"
-  id="product-list">
+  id="productList">
 
     <div class="loading">
 
@@ -1414,28 +1881,25 @@ id="toast">
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      FIREBASE
-======================================================= -->
+===================================================== -->
 
-<script
-src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
 </script>
 
-<script
-src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js">
 </script>
 
-<script
-src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
 </script>
 
 
 <script>
 
-/* =========================================================
+/* =====================================================
    FIREBASE CONFIG
-========================================================= */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1470,66 +1934,78 @@ firebase.initializeApp(firebaseConfig);
 
 
 const auth =
-  firebase.auth();
+firebase.auth();
 
 
 const db =
-  firebase.firestore();
+firebase.firestore();
 
 
-/* =========================================================
+/* =====================================================
    ELEMENTS
-========================================================= */
+===================================================== */
 
 const menuButton =
-  document.getElementById("menuButton");
+document.getElementById("menuButton");
 
 const closeMenu =
-  document.getElementById("closeMenu");
+document.getElementById("closeMenu");
 
 const sideMenu =
-  document.getElementById("sideMenu");
+document.getElementById("sideMenu");
 
 const menuOverlay =
-  document.getElementById("menuOverlay");
+document.getElementById("menuOverlay");
 
 const logoutButton =
-  document.getElementById("logoutButton");
+document.getElementById("logoutButton");
+
+const menuProfile =
+document.getElementById("menuProfile");
+
+const menuAvatar =
+document.getElementById("menuAvatar");
 
 const menuUserName =
-  document.getElementById("menuUserName");
+document.getElementById("menuUserName");
 
 const menuUserEmail =
-  document.getElementById("menuUserEmail");
-
-const productList =
-  document.getElementById("product-list");
-
-const searchInput =
-  document.getElementById("search");
-
-const searchButton =
-  document.getElementById("searchButton");
-
-const resultText =
-  document.getElementById("resultText");
-
-const banner =
-  document.getElementById("banner");
-
-const bannerText =
-  document.getElementById("banner-text");
+document.getElementById("menuUserEmail");
 
 const cartCount =
-  document.getElementById("cart-count");
+document.getElementById("cartCount");
+
+const menuCartCount =
+document.getElementById("menuCartCount");
+
+const searchInput =
+document.getElementById("search");
+
+const searchButton =
+document.getElementById("searchButton");
+
+const searchStatus =
+document.getElementById("searchStatus");
+
+const productList =
+document.getElementById("productList");
+
+const resultText =
+document.getElementById("resultText");
+
+const banner =
+document.getElementById("banner");
+
+const bannerText =
+document.getElementById("bannerText");
 
 const toast =
-  document.getElementById("toast");
+document.getElementById("toast");
 
 
-/* =========================================================
-   APP STATE
-========================================================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let allProducts = [];
 
@@ -1539,76 +2015,24 @@ let currentBannerProduct = null;
 
 let bannerInterval = null;
 
-let currentUser = null;
-
 let cartUnsubscribe = null;
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
-auth.onAuthStateChanged(function(user){
-
-  currentUser = user;
-
-
-  if(user){
-
-    menuUserName.textContent =
-      user.displayName ||
-      (user.email
-        ? user.email.split("@")[0]
-        : "Customer");
-
-
-    menuUserEmail.textContent =
-      user.email || "";
-
-
-    startCartListener(user.uid);
-
-  }
-
-  else{
-
-    menuUserName.textContent =
-      "Guest User";
-
-
-    menuUserEmail.textContent =
-      "Please sign in to your account";
-
-
-    cartCount.textContent = "0";
-
-
-    if(cartUnsubscribe){
-
-      cartUnsubscribe();
-
-      cartUnsubscribe = null;
-
-    }
-
-  }
-
-});
-
-
-/* =========================================================
+/* =====================================================
    MENU
-========================================================= */
+===================================================== */
 
 menuButton.addEventListener(
   "click",
   openMenu
 );
 
+
 closeMenu.addEventListener(
   "click",
   closeSideMenu
 );
+
 
 menuOverlay.addEventListener(
   "click",
@@ -1622,6 +2046,8 @@ function openMenu(){
 
   menuOverlay.classList.add("active");
 
+  document.body.style.overflow = "hidden";
+
 }
 
 
@@ -1631,80 +2057,148 @@ function closeSideMenu(){
 
   menuOverlay.classList.remove("active");
 
+  document.body.style.overflow = "";
+
 }
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+/* =====================================================
+   PROFILE
+   READS FROM FIRESTORE
+   NO LOCAL STORAGE
+===================================================== */
 
-logoutButton.addEventListener(
-  "click",
-  async function(){
+auth.onAuthStateChanged(
+  async function(user){
 
-    const confirmed =
-      confirm(
-        "Are you sure you want to sign out?"
-      );
+    if(!user){
 
+      menuUserName.textContent =
+        "Guest User";
 
-    if(!confirmed){
+      menuUserEmail.textContent =
+        "Please sign in";
+
+      menuAvatar.src =
+        "https://via.placeholder.com/100?text=👤";
+
+      cartCount.textContent = "0";
+
+      menuCartCount.textContent = "0";
+
       return;
+
     }
 
 
+    /* Firebase Auth fallback */
+
+    menuUserName.textContent =
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "Customer";
+
+
+    menuUserEmail.textContent =
+      user.email || "";
+
+
+    if(user.photoURL){
+
+      menuAvatar.src =
+        user.photoURL;
+
+    }
+
+
+    /* Read profile document */
+
     try{
 
-      await auth.signOut();
+      const profileDoc =
 
-      window.location.href =
-        "login.html";
+        await db
+        .collection("profiles")
+        .doc(user.uid)
+        .get();
+
+
+      if(profileDoc.exists){
+
+        const profile =
+          profileDoc.data();
+
+
+        const profileName =
+
+          profile.name ||
+          profile.displayName;
+
+
+        const profilePhoto =
+
+          profile.photoURL ||
+          profile.photo ||
+          profile.profilePhoto ||
+          profile.image;
+
+
+        if(profileName){
+
+          menuUserName.textContent =
+            profileName;
+
+        }
+
+
+        if(profilePhoto){
+
+          menuAvatar.src =
+            profilePhoto;
+
+        }
+
+      }
 
     }
 
     catch(error){
 
-      showToast(
-        error.message
+      console.warn(
+        "Profile could not be loaded:",
+        error
       );
 
     }
+
+
+    listenToUserCart(user.uid);
 
   }
 );
 
 
-/* =========================================================
-   FIRESTORE CART
-========================================================= */
+/* =====================================================
+   PROFILE CLICK
+===================================================== */
 
-/*
-   NO localStorage.
-   NO sessionStorage.
+menuProfile.addEventListener(
+  "click",
+  function(){
 
-   Cart structure:
+    window.location.href =
+      "profile.html";
 
-   carts
-      └── USER_UID
-           └── items
-                └── PRODUCT_ID
-*/
-
-function cartCollection(uid){
-
-  return db
-    .collection("carts")
-    .doc(uid)
-    .collection("items");
-
-}
+  }
+);
 
 
-/* =========================================================
-   CART COUNT
-========================================================= */
+/* =====================================================
+   CART
+   FIRESTORE ONLY
+===================================================== */
 
-function startCartListener(uid){
+function listenToUserCart(uid){
 
   if(cartUnsubscribe){
 
@@ -1714,177 +2208,234 @@ function startCartListener(uid){
 
 
   cartUnsubscribe =
-    cartCollection(uid)
-      .onSnapshot(
 
-        function(snapshot){
+    db
+    .collection("carts")
+    .doc(uid)
+    .onSnapshot(
 
-          let quantity = 0;
+      function(doc){
 
+        if(!doc.exists){
 
-          snapshot.forEach(function(doc){
+          updateCartCount(0);
 
-            const data = doc.data();
-
-
-            quantity +=
-              Number(data.quantity) || 0;
-
-          });
-
-
-          cartCount.textContent =
-            quantity;
-
-        },
-
-        function(error){
-
-          console.error(
-            "Cart listener error:",
-            error
-          );
-
-          cartCount.textContent =
-            "0";
+          return;
 
         }
 
-      );
+
+        const data =
+          doc.data();
+
+
+        const items =
+          Array.isArray(data.items)
+          ? data.items
+          : [];
+
+
+        let count = 0;
+
+
+        items.forEach(
+          function(item){
+
+            count +=
+              Number(item.qty) || 0;
+
+          }
+        );
+
+
+        updateCartCount(count);
+
+      },
+
+      function(error){
+
+        console.error(
+          "Cart listener error:",
+          error
+        );
+
+        updateCartCount(0);
+
+      }
+
+    );
 
 }
 
 
-/* =========================================================
-   ADD TO CART
-========================================================= */
+/* =====================================================
+   UPDATE CART COUNT
+===================================================== */
+
+function updateCartCount(count){
+
+  cartCount.textContent =
+    count;
+
+  menuCartCount.textContent =
+    count;
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT TO FIRESTORE CART
+===================================================== */
 
 async function addToCart(product){
 
-  if(!currentUser){
+  const user =
+    auth.currentUser;
+
+
+  if(!user){
 
     showToast(
       "Please sign in before adding products to your cart."
     );
 
-    setTimeout(function(){
+    setTimeout(
+      function(){
 
-      window.location.href =
-        "login.html";
+        window.location.href =
+          "login.html";
 
-    },1200);
+      },
+      1000
+    );
 
     return;
 
   }
 
 
-  if(!product.id){
+  if(product.available === false){
 
     showToast(
-      "This product cannot be added right now."
+      "This product is currently unavailable."
     );
 
     return;
-
-  }
-
-
-  const button =
-    document.querySelector(
-      `[data-add-product="${CSS.escape(product.id)}"]`
-    );
-
-
-  if(button){
-
-    button.disabled = true;
-
-    button.textContent =
-      "Adding...";
 
   }
 
 
   try{
 
-    const ref =
-      cartCollection(currentUser.uid)
-        .doc(product.id);
+    const cartRef =
+
+      db
+      .collection("carts")
+      .doc(user.uid);
 
 
-    const existing =
-      await ref.get();
+    const cartDoc =
+      await cartRef.get();
 
 
-    if(existing.exists){
-
-      const oldData =
-        existing.data();
+    let items = [];
 
 
-      const oldQuantity =
-        Number(oldData.quantity) || 1;
+    if(cartDoc.exists){
+
+      const data =
+        cartDoc.data();
 
 
-      await ref.update({
+      if(Array.isArray(data.items)){
 
-        quantity:
-          oldQuantity + 1,
+        items =
+          data.items;
 
-        updatedAt:
-          firebase.firestore.FieldValue.serverTimestamp()
+      }
 
-      });
+    }
+
+
+    const existingIndex =
+
+      items.findIndex(
+        function(item){
+
+          return item.productId ===
+            product.id;
+
+        }
+      );
+
+
+    const cartItem = {
+
+      productId:
+        product.id,
+
+      name:
+        product.name || "",
+
+      price:
+        Number(product.price) || 0,
+
+      image:
+        product.image || "",
+
+      category:
+        product.category || "",
+
+      qty:1
+
+    };
+
+
+    if(existingIndex !== -1){
+
+      items[existingIndex].qty =
+
+        (Number(
+          items[existingIndex].qty
+        ) || 0) + 1;
 
     }
 
     else{
 
-      await ref.set({
-
-        productId:
-          product.id,
-
-        name:
-          product.name || "Unnamed Product",
-
-        price:
-          Number(product.price) || 0,
-
-        image:
-          product.image || "",
-
-        category:
-          product.category || "",
-
-        quantity:
-          1,
-
-        addedAt:
-          firebase.firestore.FieldValue.serverTimestamp(),
-
-        updatedAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-
-      });
+      items.push(cartItem);
 
     }
 
 
+    await cartRef.set({
+
+      userId:
+        user.uid,
+
+      items:
+        items,
+
+      updatedAt:
+        firebase.firestore.FieldValue.serverTimestamp()
+
+    },{
+
+      merge:true
+
+    });
+
+
     showToast(
-      `${product.name || "Product"} added to cart ✓`
+      product.name +
+      " added to your cart ✓"
     );
 
   }
 
   catch(error){
 
-    console.error(
-      "Add to cart error:",
-      error
-    );
-
+    console.error(error);
 
     showToast(
       "Could not add product to cart."
@@ -1892,127 +2443,76 @@ async function addToCart(product){
 
   }
 
-  finally{
-
-    if(button){
-
-      button.disabled = false;
-
-      button.textContent =
-        "Add";
-
-    }
-
-  }
-
 }
 
 
-/* =========================================================
+/* =====================================================
    LOAD PRODUCTS
-========================================================= */
+===================================================== */
 
 async function loadProducts(){
 
-  productList.innerHTML = `
-
-    <div class="loading">
-
-      <div class="spinner"></div>
-
-      Loading products...
-
-    </div>
-
-  `;
-
-
   try{
 
+    resultText.textContent =
+      "Loading...";
+
+
     const snapshot =
+
       await db
-        .collection("products")
-        .where("available","==",true)
-        .get();
+      .collection("products")
+      .get();
 
 
     allProducts = [];
 
 
-    snapshot.forEach(function(doc){
-
-      const data =
-        doc.data();
-
-
-      allProducts.push({
-
-        id:
-          doc.id,
-
-        ...data
-
-      });
-
-    });
-
-
-    /*
-      If your products do not have
-      available:true, the fallback below
-      loads all products.
-    */
-
-    if(allProducts.length === 0){
-
-      const fallback =
-        await db
-          .collection("products")
-          .get();
-
-
-      fallback.forEach(function(doc){
+    snapshot.forEach(
+      function(doc){
 
         const data =
           doc.data();
 
 
-        if(
-          data.available !== false
-        ){
+        allProducts.push({
 
-          allProducts.push({
+          id:
+            doc.id,
 
-            id:
-              doc.id,
+          ...data
 
-            ...data
+        });
 
-          });
-
-        }
-
-      });
-
-    }
-
-
-    displayProducts(
-      getFilteredProducts()
+      }
     );
 
 
-    startBanner();
+    allProducts.sort(
+      function(a,b){
 
+        return String(
+          a.name || ""
+        ).localeCompare(
+          String(
+            b.name || ""
+          )
+        );
+
+      }
+    );
+
+
+    applyFilters();
+
+
+    startBanner();
 
   }
 
   catch(error){
 
-    console.error(
-      "Products error:",
-      error
-    );
+    console.error(error);
 
 
     productList.innerHTML = `
@@ -2026,7 +2526,9 @@ async function loadProducts(){
         </h3>
 
         <p>
-          Please refresh and try again.
+          ${escapeHtml(
+            error.message
+          )}
         </p>
 
       </div>
@@ -2042,97 +2544,244 @@ async function loadProducts(){
 }
 
 
-/* =========================================================
+/* =====================================================
    FILTER PRODUCTS
-========================================================= */
+===================================================== */
 
-function getFilteredProducts(){
+function applyFilters(){
 
-  const search =
+  const searchValue =
+
     searchInput.value
-      .toLowerCase()
-      .trim();
+    .toLowerCase()
+    .trim();
 
 
-  return allProducts.filter(function(product){
+  const filtered =
 
-    const name =
-      String(
-        product.name || ""
-      ).toLowerCase();
+    allProducts.filter(
+      function(product){
 
+        const name =
 
-    const category =
-      String(
-        product.category || ""
-      ).toLowerCase();
+          normalize(
+            product.name
+          );
 
 
-    const description =
-      String(
-        product.description || ""
-      ).toLowerCase();
+        const category =
+
+          normalize(
+            product.category
+          );
 
 
-    const searchMatch =
-      !search ||
+        const description =
 
-      name.includes(search) ||
-
-      category.includes(search) ||
-
-      description.includes(search);
+          normalize(
+            product.description
+          );
 
 
-    /*
-      This handles category values such as:
+        const searchMatches =
 
-      Solar
-      solar
-      SOLAR
-      Solar Panel
+          !searchValue ||
 
-      instead of requiring an exact
-      lowercase match.
-    */
+          name.includes(
+            searchValue
+          ) ||
 
-    const categoryMatch =
-      currentCategory === "all" ||
+          category.includes(
+            searchValue
+          ) ||
 
-      category
-        .trim()
-        .toLowerCase()
-        .startsWith(
-          currentCategory.toLowerCase()
-        );
+          description.includes(
+            searchValue
+          );
 
 
-    return (
-      searchMatch &&
-      categoryMatch
+        const categoryMatches =
+
+          currentCategory ===
+          "all"
+
+          ||
+
+          category ===
+          currentCategory
+
+          ||
+
+          category.includes(
+            currentCategory
+          );
+
+
+        return
+
+          searchMatches &&
+          categoryMatches;
+
+      }
     );
 
-  });
+
+  displayProducts(
+    filtered
+  );
+
+
+  updateSearchStatus(
+    searchValue,
+    filtered.length
+  );
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchInput.addEventListener(
+  "input",
+  applyFilters
+);
+
+
+searchButton.addEventListener(
+  "click",
+  applyFilters
+);
+
+
+searchInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      applyFilters();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SEARCH STATUS
+===================================================== */
+
+function updateSearchStatus(
+  value,
+  count
+){
+
+  if(value){
+
+    searchStatus.textContent =
+
+      count +
+
+      " result" +
+
+      (
+        count === 1
+        ? ""
+        : "s"
+      ) +
+
+      " for \"" +
+
+      value +
+
+      "\"";
+
+  }
+
+  else{
+
+    searchStatus.textContent =
+      "";
+
+  }
+
+}
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+document
+.querySelectorAll(".cat-btn")
+.forEach(
+  function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        document
+        .querySelectorAll(
+          ".cat-btn"
+        )
+        .forEach(
+          function(btn){
+
+            btn.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+
+        button.classList.add(
+          "active"
+        );
+
+
+        currentCategory =
+          normalize(
+            button.dataset.category
+          );
+
+
+        applyFilters();
+
+      }
+    );
+
+  }
+);
+
+
+/* =====================================================
    DISPLAY PRODUCTS
-========================================================= */
+===================================================== */
 
-function displayProducts(products){
+function displayProducts(
+  products
+){
 
-  productList.innerHTML = "";
+  productList.innerHTML =
+    "";
 
 
   resultText.textContent =
+
     products.length +
+
     " product" +
+
     (
-      products.length !== 1
-        ? "s"
-        : ""
+      products.length === 1
+      ? ""
+      : "s"
     );
 
 
@@ -2161,249 +2810,186 @@ function displayProducts(products){
   }
 
 
-  products.forEach(function(product){
+  products.forEach(
+    function(product){
 
-    const card =
-      document.createElement("article");
-
-
-    card.className =
-      "product-card";
-
-
-    const image =
-      product.image ||
-      "https://via.placeholder.com/600x400?text=DSP+Product";
+      const card =
+        document.createElement(
+          "article"
+        );
 
 
-    card.innerHTML = `
+      card.className =
+        "product-card";
 
-      <div class="product-image-wrapper">
 
-        <img
+      const image =
+
+        product.image ||
+
+        "https://via.placeholder.com/600x400?text=DSP+Product";
+
+
+      const available =
+
+        product.available !== false;
+
+
+      const stockText =
+
+        available
+        ? "Available"
+        : "Unavailable";
+
+
+      card.innerHTML = `
+
+        <div
+        class="product-image-wrapper">
+
+          <img
           class="product-image"
           src="${escapeAttribute(image)}"
           alt="${escapeAttribute(
-            product.name || "Product"
-          )}"
-        >
+            product.name ||
+            "Product"
+          )}">
 
-      </div>
+          <span
+          class="stock-badge
+          ${available ? "" : "unavailable"}">
 
+            ${stockText}
 
-      <div class="product-content">
-
-        <div class="product-category">
-
-          ${escapeHtml(
-            product.category ||
-            "Electrical"
-          )}
+          </span>
 
         </div>
 
 
-        <h3 class="product-name">
+        <div
+        class="product-content">
 
-          ${escapeHtml(
-            product.name ||
-            "Unnamed Product"
-          )}
+          <div
+          class="product-category">
 
-        </h3>
-
-
-        <p class="product-description">
-
-          ${escapeHtml(
-            product.description ||
-            "Quality product from Danny Smart Power."
-          )}
-
-        </p>
-
-
-        <div class="product-bottom">
-
-          <div class="product-price">
-
-            ₦${formatPrice(
-              product.price
+            ${escapeHtml(
+              product.category ||
+              "Electrical"
             )}
 
           </div>
 
 
-          <button
+          <h3
+          class="product-name">
+
+            ${escapeHtml(
+              product.name ||
+              "Unnamed Product"
+            )}
+
+          </h3>
+
+
+          <p
+          class="product-description">
+
+            ${escapeHtml(
+              product.description ||
+              "Quality product from Danny Smart Power."
+            )}
+
+          </p>
+
+
+          <div
+          class="product-bottom">
+
+            <div
+            class="product-price">
+
+              ₦${formatPrice(
+                product.price
+              )}
+
+            </div>
+
+
+            <button
             class="add-cart"
-            data-add-product="${escapeAttribute(
-              product.id
-            )}">
+            ${available ? "" : "disabled"}>
 
-            Add
+              ${available
+                ? "Add to Cart"
+                : "Unavailable"}
 
-          </button>
+            </button>
+
+          </div>
 
         </div>
 
-      </div>
-
-    `;
+      `;
 
 
-    /*
-      Clicking the card opens the exact
-      Firestore product.
-    */
+      /* PRODUCT CARD */
 
-    card.addEventListener(
-      "click",
-      function(){
+      card.addEventListener(
+        "click",
+        function(){
 
-        openProduct(
-          product
-        );
+          openProduct(
+            product.id
+          );
 
-      }
-    );
-
-
-    const addButton =
-      card.querySelector(
-        ".add-cart"
+        }
       );
 
 
-    addButton.addEventListener(
-      "click",
-      function(event){
+      /* ADD TO CART */
 
-        event.stopPropagation();
+      const addButton =
 
-        addToCart(
-          product
+        card.querySelector(
+          ".add-cart"
         );
 
-      }
-    );
+
+      addButton.addEventListener(
+        "click",
+        function(event){
+
+          event.stopPropagation();
 
 
-    productList.appendChild(
-      card
-    );
-
-  });
-
-}
+          if(!available){
+            return;
+          }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+          addToCart(
+            product
+          );
 
-function searchProducts(){
+        }
+      );
 
-  displayProducts(
-    getFilteredProducts()
+
+      productList.appendChild(
+        card
+      );
+
+    }
   );
 
 }
 
 
-searchInput.addEventListener(
-  "input",
-  searchProducts
-);
-
-
-searchButton.addEventListener(
-  "click",
-  searchProducts
-);
-
-
-searchInput.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      searchProducts();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CATEGORIES
-========================================================= */
-
-document
-  .querySelectorAll(".cat-btn")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        document
-          .querySelectorAll(".cat-btn")
-          .forEach(function(btn){
-
-            btn.classList.remove(
-              "active"
-            );
-
-          });
-
-
-        button.classList.add(
-          "active"
-        );
-
-
-        currentCategory =
-          button.dataset.category
-            .toLowerCase();
-
-
-        searchProducts();
-
-
-        /*
-          Smoothly move customer
-          to the product section.
-        */
-
-        document
-          .querySelector(".products-section")
-          .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-          });
-
-      }
-    );
-
-  });
-
-
-/* =========================================================
-   RANDOM PRODUCT BANNER
-========================================================= */
+/* =====================================================
+   RANDOM BANNER
+===================================================== */
 
 function startBanner(){
-
-  if(bannerInterval){
-
-    clearInterval(
-      bannerInterval
-    );
-
-  }
-
 
   if(!allProducts.length){
 
@@ -2415,10 +3001,20 @@ function startBanner(){
   }
 
 
+  if(bannerInterval){
+
+    clearInterval(
+      bannerInterval
+    );
+
+  }
+
+
   changeBanner();
 
 
   bannerInterval =
+
     setInterval(
       changeBanner,
       5000
@@ -2430,6 +3026,7 @@ function startBanner(){
 function changeBanner(){
 
   const randomIndex =
+
     Math.floor(
       Math.random() *
       allProducts.length
@@ -2437,44 +3034,48 @@ function changeBanner(){
 
 
   currentBannerProduct =
-    allProducts[
-      randomIndex
-    ];
+    allProducts[randomIndex];
 
 
   const image =
+
     currentBannerProduct.image ||
-    "https://via.placeholder.com/1200x500?text=Danny+Smart+Power";
+
+    "https://via.placeholder.com/1200x500?text=DSP";
 
 
   banner.style.backgroundImage =
+
     `url("${escapeAttribute(image)}")`;
 
 
   bannerText.textContent =
+
     (
       currentBannerProduct.name ||
       "Featured Product"
     ) +
+
     " ⚡";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CLICK BANNER
-========================================================= */
+===================================================== */
 
 banner.addEventListener(
   "click",
   function(){
 
     if(
-      currentBannerProduct
+      currentBannerProduct &&
+      currentBannerProduct.id
     ){
 
       openProduct(
-        currentBannerProduct
+        currentBannerProduct.id
       );
 
     }
@@ -2483,34 +3084,14 @@ banner.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    OPEN PRODUCT
-========================================================= */
+   NO LOCAL STORAGE
+===================================================== */
 
-/*
-   IMPORTANT:
+function openProduct(productId){
 
-   No localStorage.
-
-   The product ID is placed in the URL.
-
-   Example:
-
-   product.html?id=ABC123
-
-   Your product.html should read the ID
-   from URLSearchParams and then load:
-
-   products/ABC123
-*/
-
-function openProduct(product){
-
-  if(!product.id){
-
-    showToast(
-      "Product information is unavailable."
-    );
+  if(!productId){
 
     return;
 
@@ -2518,17 +3099,67 @@ function openProduct(product){
 
 
   window.location.href =
+
     "product.html?id=" +
+
     encodeURIComponent(
-      product.id
+      productId
     );
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+logoutButton.addEventListener(
+  "click",
+  async function(){
+
+    const confirmed =
+      confirm(
+        "Are you sure you want to sign out?"
+      );
+
+
+    if(!confirmed){
+      return;
+    }
+
+
+    try{
+
+      if(cartUnsubscribe){
+
+        cartUnsubscribe();
+
+      }
+
+
+      await auth.signOut();
+
+
+      window.location.href =
+        "login.html";
+
+    }
+
+    catch(error){
+
+      showToast(
+        error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 let toastTimer = null;
 
@@ -2550,20 +3181,43 @@ function showToast(message){
 
 
   toastTimer =
-    setTimeout(function(){
 
-      toast.classList.remove(
-        "show"
-      );
+    setTimeout(
+      function(){
 
-    },3000);
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2500
+    );
 
 }
 
 
-/* =========================================================
-   FORMAT PRICE
-========================================================= */
+/* =====================================================
+   NORMALIZE
+===================================================== */
+
+function normalize(value){
+
+  return String(
+    value || ""
+  )
+  .toLowerCase()
+  .trim()
+  .replace(
+    /\s+/g,
+    " "
+  );
+
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
 
 function formatPrice(price){
 
@@ -2578,25 +3232,27 @@ function formatPrice(price){
   }
 
 
-  return number.toLocaleString(
-    "en-NG"
-  );
+  return number.toLocaleString();
 
 }
 
 
-/* =========================================================
-   HTML ESCAPING
-========================================================= */
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
 
 function escapeHtml(value){
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
 
   div.textContent =
-    String(value);
+    String(
+      value ?? ""
+    );
 
 
   return div.innerHTML;
@@ -2604,36 +3260,42 @@ function escapeHtml(value){
 }
 
 
+/* =====================================================
+   ATTRIBUTE ESCAPE
+===================================================== */
+
 function escapeAttribute(value){
 
-  return String(value)
+  return String(
+    value ?? ""
+  )
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
+  .replace(
+    /</g,
+    "&lt;"
+  )
 
-    .replace(
-      />/g,
-      "&gt;"
-    );
+  .replace(
+    />/g,
+    "&gt;"
+  );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
 loadProducts();
 
