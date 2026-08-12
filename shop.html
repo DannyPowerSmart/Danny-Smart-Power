@@ -17,14 +17,15 @@ href="https://fonts.googleapis.com">
 href="https://fonts.gstatic.com"
 crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
 rel="stylesheet">
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 *{
   margin:0;
@@ -36,7 +37,6 @@ rel="stylesheet">
 
   --bg:#0f172a;
   --header:#020617;
-
   --card:#111e30;
   --card2:#17253a;
 
@@ -50,12 +50,8 @@ rel="stylesheet">
 
   --text:#f8fafc;
   --muted:#94a3b8;
+
 }
-
-
-/* =====================================================
-   BODY
-===================================================== */
 
 html{
   scroll-behavior:smooth;
@@ -76,12 +72,13 @@ body{
   color:var(--text);
 
   font-family:'Poppins',sans-serif;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    HEADER
-===================================================== */
+========================================================= */
 
 header{
 
@@ -105,9 +102,9 @@ header{
 
   top:0;
 
-  z-index:20;
-}
+  z-index:100;
 
+}
 
 .menu-button{
 
@@ -125,13 +122,12 @@ header{
   font-size:25px;
 
   cursor:pointer;
-}
 
+}
 
 .menu-button:hover{
   background:var(--card2);
 }
-
 
 .logo{
 
@@ -142,13 +138,12 @@ header{
   color:var(--blue);
 
   letter-spacing:1px;
-}
 
+}
 
 .logo span{
   color:white;
 }
-
 
 .header-right{
 
@@ -157,8 +152,8 @@ header{
   align-items:center;
 
   gap:20px;
-}
 
+}
 
 .home-link{
 
@@ -167,13 +162,12 @@ header{
   text-decoration:none;
 
   font-size:14px;
-}
 
+}
 
 .home-link:hover{
   color:var(--blue);
 }
-
 
 .cart-button{
 
@@ -184,8 +178,8 @@ header{
   text-decoration:none;
 
   font-size:22px;
-}
 
+}
 
 .cart-count{
 
@@ -216,12 +210,13 @@ header{
   font-size:11px;
 
   font-weight:bold;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MENU OVERLAY
-===================================================== */
+========================================================= */
 
 .menu-overlay{
 
@@ -229,22 +224,22 @@ header{
 
   inset:0;
 
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.58);
 
   display:none;
 
-  z-index:40;
-}
+  z-index:200;
 
+}
 
 .menu-overlay.active{
   display:block;
 }
 
 
-/* =====================================================
+/* =========================================================
    SIDE MENU
-===================================================== */
+========================================================= */
 
 .side-menu{
 
@@ -264,20 +259,19 @@ header{
 
   background:#020617;
 
-  z-index:50;
+  z-index:250;
 
   transition:right .3s ease;
 
   box-shadow:-15px 0 40px rgba(0,0,0,.5);
 
   overflow-y:auto;
-}
 
+}
 
 .side-menu.active{
   right:0;
 }
-
 
 .menu-top{
 
@@ -290,13 +284,12 @@ header{
   padding:8px 4px 20px;
 
   border-bottom:1px solid var(--border);
-}
 
+}
 
 .menu-top h3{
   font-size:18px;
 }
-
 
 .close-menu{
 
@@ -309,24 +302,24 @@ header{
   font-size:28px;
 
   cursor:pointer;
-}
 
+}
 
 .menu-user{
 
   padding:20px 4px;
 
   border-bottom:1px solid var(--border);
-}
 
+}
 
 .menu-user strong{
 
   display:block;
 
   font-size:16px;
-}
 
+}
 
 .menu-user span{
 
@@ -339,13 +332,12 @@ header{
   margin-top:4px;
 
   word-break:break-word;
-}
 
+}
 
 .menu-links{
   padding-top:14px;
 }
-
 
 .menu-link{
 
@@ -378,13 +370,12 @@ header{
   cursor:pointer;
 
   text-decoration:none;
-}
 
+}
 
 .menu-link:hover{
   background:var(--card2);
 }
-
 
 .menu-icon{
 
@@ -393,17 +384,17 @@ header{
   font-size:19px;
 
   text-align:center;
-}
 
+}
 
 .logout{
   color:#f87171;
 }
 
 
-/* =====================================================
+/* =========================================================
    SEARCH
-===================================================== */
+========================================================= */
 
 .search-section{
 
@@ -412,16 +403,16 @@ header{
   margin:25px auto 0;
 
   padding:0 7%;
-}
 
+}
 
 .search-box{
 
   display:flex;
 
   gap:10px;
-}
 
+}
 
 .search-box input{
 
@@ -444,18 +435,20 @@ header{
   font-family:inherit;
 
   font-size:14px;
-}
 
+}
 
 .search-box input:focus{
-  border-color:var(--blue);
-}
 
+  border-color:var(--blue);
+
+  box-shadow:0 0 0 3px rgba(56,189,248,.08);
+
+}
 
 .search-box input::placeholder{
   color:#718096;
 }
-
 
 .search-button{
 
@@ -472,37 +465,17 @@ header{
   font-size:20px;
 
   cursor:pointer;
-}
 
+}
 
 .search-button:hover{
   background:#7dd3fc;
 }
 
 
-/* =====================================================
-   SEARCH STATUS
-===================================================== */
-
-.search-status{
-
-  max-width:1200px;
-
-  margin:10px auto 0;
-
-  padding:0 7%;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  min-height:18px;
-}
-
-
-/* =====================================================
+/* =========================================================
    BANNER
-===================================================== */
+========================================================= */
 
 .banner{
 
@@ -533,16 +506,12 @@ header{
   border:1px solid var(--border);
 
   transition:.25s;
-}
 
+}
 
 .banner:hover{
-
   transform:translateY(-2px);
-
-  border-color:rgba(56,189,248,.45);
 }
-
 
 .banner::before{
 
@@ -555,35 +524,35 @@ header{
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.85),
+      rgba(0,0,0,.82),
       rgba(0,0,0,.08)
     );
-}
 
+}
 
 .banner-content{
 
   position:relative;
 
   z-index:1;
-}
 
+}
 
 .banner-content small{
 
   color:var(--blue);
 
   font-weight:600;
-}
 
+}
 
 .banner-content h2{
 
   font-size:25px;
 
   margin-top:5px;
-}
 
+}
 
 .banner-content p{
 
@@ -592,24 +561,13 @@ header{
   font-size:13px;
 
   margin-top:5px;
+
 }
 
 
-.banner-hint{
-
-  display:inline-block;
-
-  margin-top:8px;
-
-  color:#bae6fd;
-
-  font-size:11px;
-}
-
-
-/* =====================================================
+/* =========================================================
    CATEGORIES
-===================================================== */
+========================================================= */
 
 .category-section{
 
@@ -618,16 +576,16 @@ header{
   margin:0 auto 25px;
 
   padding:0 7%;
-}
 
+}
 
 .category-section h3{
 
   margin-bottom:12px;
 
   font-size:17px;
-}
 
+}
 
 .categories{
 
@@ -638,13 +596,12 @@ header{
   overflow-x:auto;
 
   padding-bottom:5px;
-}
 
+}
 
 .categories::-webkit-scrollbar{
   display:none;
 }
-
 
 .cat-btn{
 
@@ -665,8 +622,8 @@ header{
   font-family:inherit;
 
   transition:.2s;
-}
 
+}
 
 .cat-btn:hover,
 .cat-btn.active{
@@ -676,12 +633,13 @@ header{
   color:#00111c;
 
   border-color:var(--blue);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCTS
-===================================================== */
+========================================================= */
 
 .products-section{
 
@@ -690,8 +648,8 @@ header{
   margin:auto;
 
   padding:0 7% 50px;
-}
 
+}
 
 .products-header{
 
@@ -702,25 +660,20 @@ header{
   align-items:center;
 
   margin-bottom:18px;
-}
 
+}
 
 .products-header h2{
   font-size:21px;
 }
-
 
 #resultText{
 
   color:var(--muted);
 
   font-size:12px;
+
 }
-
-
-/* =====================================================
-   PRODUCT GRID
-===================================================== */
 
 .product-grid{
 
@@ -730,12 +683,13 @@ header{
     repeat(4,minmax(0,1fr));
 
   gap:18px;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCT CARD
-===================================================== */
+========================================================= */
 
 .product-card{
 
@@ -751,9 +705,7 @@ header{
 
   transition:.25s ease;
 
-  position:relative;
 }
-
 
 .product-card:hover{
 
@@ -762,9 +714,9 @@ header{
   border-color:rgba(56,189,248,.45);
 
   box-shadow:
-    0 12px 30px rgba(0,0,0,.2);
-}
+    0 15px 35px rgba(0,0,0,.18);
 
+}
 
 .product-image-wrapper{
 
@@ -774,9 +726,7 @@ header{
 
   overflow:hidden;
 
-  position:relative;
 }
-
 
 .product-image{
 
@@ -787,45 +737,16 @@ header{
   object-fit:cover;
 
   transition:.3s;
-}
 
+}
 
 .product-card:hover .product-image{
   transform:scale(1.05);
 }
 
-
-.stock-badge{
-
-  position:absolute;
-
-  top:10px;
-
-  left:10px;
-
-  padding:5px 9px;
-
-  border-radius:20px;
-
-  background:rgba(2,6,23,.85);
-
-  backdrop-filter:blur(5px);
-
-  font-size:10px;
-
-  color:#bbf7d0;
-}
-
-
-.stock-badge.out{
-  color:#fecaca;
-}
-
-
 .product-content{
   padding:14px;
 }
-
 
 .product-category{
 
@@ -836,8 +757,8 @@ header{
   text-transform:uppercase;
 
   letter-spacing:.5px;
-}
 
+}
 
 .product-name{
 
@@ -850,8 +771,8 @@ header{
   overflow:hidden;
 
   text-overflow:ellipsis;
-}
 
+}
 
 .product-description{
 
@@ -864,8 +785,8 @@ header{
   overflow:hidden;
 
   line-height:1.5;
-}
 
+}
 
 .product-bottom{
 
@@ -878,8 +799,8 @@ header{
   gap:8px;
 
   margin-top:14px;
-}
 
+}
 
 .product-price{
 
@@ -888,8 +809,8 @@ header{
   font-size:16px;
 
   font-weight:700;
-}
 
+}
 
 .add-cart{
 
@@ -911,26 +832,24 @@ header{
 
   cursor:pointer;
 
-  transition:.2s;
 }
-
 
 .add-cart:hover{
   background:#7dd3fc;
 }
 
-
 .add-cart:disabled{
 
-  opacity:.45;
+  opacity:.6;
 
   cursor:not-allowed;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    LOADING
-===================================================== */
+========================================================= */
 
 .loading{
 
@@ -941,8 +860,8 @@ header{
   padding:60px 20px;
 
   color:var(--muted);
-}
 
+}
 
 .spinner{
 
@@ -959,8 +878,8 @@ header{
   border-radius:50%;
 
   animation:spin 1s linear infinite;
-}
 
+}
 
 @keyframes spin{
 
@@ -971,9 +890,9 @@ header{
 }
 
 
-/* =====================================================
-   EMPTY STATE
-===================================================== */
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .empty-state{
 
@@ -984,33 +903,21 @@ header{
   padding:60px 20px;
 
   color:var(--muted);
-}
 
+}
 
 .empty-state div{
 
   font-size:40px;
 
   margin-bottom:10px;
+
 }
 
 
-.empty-state h3{
-
-  color:white;
-
-  margin-bottom:6px;
-}
-
-
-.empty-state p{
-  font-size:13px;
-}
-
-
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 .toast{
 
@@ -1023,8 +930,6 @@ header{
   transform:
     translate(-50%,120px);
 
-  z-index:100;
-
   background:#020617;
 
   border:1px solid var(--border);
@@ -1035,18 +940,17 @@ header{
 
   border-radius:12px;
 
-  box-shadow:
-    0 10px 35px rgba(0,0,0,.35);
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
 
-  font-size:13px;
+  z-index:500;
 
   opacity:0;
 
   transition:.3s;
 
-  pointer-events:none;
-}
+  font-size:13px;
 
+}
 
 .toast.show{
 
@@ -1054,34 +958,22 @@ header{
 
   transform:
     translate(-50%,0);
+
 }
 
 
-.toast.success{
-  border-color:rgba(34,197,94,.45);
-}
-
-
-.toast.error{
-  border-color:rgba(239,68,68,.45);
-}
-
-
-/* =====================================================
+/* =========================================================
    RESPONSIVE
-===================================================== */
+========================================================= */
 
 @media(max-width:900px){
 
   .product-grid{
-
     grid-template-columns:
       repeat(3,1fr);
-
   }
 
 }
-
 
 @media(max-width:700px){
 
@@ -1089,22 +981,18 @@ header{
     padding:0 15px;
   }
 
-
   .home-link{
     display:none;
   }
 
-
   .search-section,
   .category-section,
-  .products-section,
-  .search-status{
+  .products-section{
 
     padding-left:14px;
     padding-right:14px;
 
   }
-
 
   .banner{
 
@@ -1115,7 +1003,6 @@ header{
 
   }
 
-
   .product-grid{
 
     grid-template-columns:
@@ -1125,26 +1012,21 @@ header{
 
   }
 
-
   .product-image-wrapper{
     height:145px;
   }
-
 
   .product-content{
     padding:11px;
   }
 
-
   .product-name{
     font-size:13px;
   }
 
-
   .product-price{
     font-size:14px;
   }
-
 
   .add-cart{
     padding:8px;
@@ -1152,8 +1034,11 @@ header{
 
 }
 
-
 @media(max-width:400px){
+
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+  }
 
   .product-image-wrapper{
     height:130px;
@@ -1169,9 +1054,9 @@ header{
 <body>
 
 
-<!-- =====================================================
+<!-- =======================================================
      MENU OVERLAY
-===================================================== -->
+======================================================= -->
 
 <div
 class="menu-overlay"
@@ -1179,14 +1064,13 @@ id="menuOverlay">
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      SIDE MENU
-===================================================== -->
+======================================================= -->
 
 <aside
 class="side-menu"
 id="sideMenu">
-
 
   <div class="menu-top">
 
@@ -1196,7 +1080,8 @@ id="sideMenu">
 
     <button
     class="close-menu"
-    id="closeMenu">
+    id="closeMenu"
+    aria-label="Close menu">
 
       ×
 
@@ -1220,7 +1105,6 @@ id="sideMenu">
 
   <div class="menu-links">
 
-
     <a
     class="menu-link"
     href="profile.html">
@@ -1238,7 +1122,7 @@ id="sideMenu">
 
       <span class="menu-icon">🛍️</span>
 
-      Shop
+      Continue Shopping
 
     </a>
 
@@ -1254,7 +1138,18 @@ id="sideMenu">
     </a>
 
 
-    <!-- NEW TRACK ORDER -->
+    <a
+    class="menu-link"
+    href="orders.html">
+
+      <span class="menu-icon">📦</span>
+
+      My Orders
+
+    </a>
+
+
+    <!-- TRACK ORDER -->
 
     <a
     class="menu-link"
@@ -1263,17 +1158,6 @@ id="sideMenu">
       <span class="menu-icon">🚚</span>
 
       Track Order
-
-    </a>
-
-
-    <a
-    class="menu-link"
-    href="orders.html">
-
-      <span class="menu-icon">📦</span>
-
-      My Orders
 
     </a>
 
@@ -1321,22 +1205,21 @@ id="sideMenu">
 
     </button>
 
-
   </div>
 
 </aside>
 
 
-<!-- =====================================================
+<!-- =======================================================
      HEADER
-===================================================== -->
+======================================================= -->
 
 <header>
 
-
   <button
   class="menu-button"
-  id="menuButton">
+  id="menuButton"
+  aria-label="Open menu">
 
     ☰
 
@@ -1351,7 +1234,6 @@ id="sideMenu">
 
 
   <div class="header-right">
-
 
     <a
     class="home-link"
@@ -1379,108 +1261,77 @@ id="sideMenu">
 
     </a>
 
-
   </div>
 
 </header>
 
 
-<!-- =====================================================
+<!-- =======================================================
      SEARCH
-===================================================== -->
+======================================================= -->
 
-<section
-class="search-section">
-
+<section class="search-section">
 
   <div class="search-box">
-
 
     <input
     type="search"
     id="search"
     autocomplete="off"
-    placeholder="Search products by name, category or description...">
-
+    placeholder="Search electrical, solar, lighting products...">
 
     <button
     class="search-button"
-    id="searchButton"
-    aria-label="Search">
+    id="searchButton">
 
       🔍
 
     </button>
-
 
   </div>
 
 </section>
 
 
-<div
-class="search-status"
-id="searchStatus">
-</div>
-
-
-<!-- =====================================================
+<!-- =======================================================
      BANNER
-===================================================== -->
+======================================================= -->
 
 <section
 class="banner"
 id="banner"
 aria-label="Featured product">
 
-
   <div class="banner-content">
-
 
     <small>
       DANNY SMART POWER
     </small>
 
-
-    <h2
-    id="banner-text">
-
+    <h2 id="banner-text">
       Loading products...
-
     </h2>
-
 
     <p>
       Quality power and electrical solutions
     </p>
-
-
-    <span class="banner-hint">
-      Tap to view this product →
-    </span>
-
 
   </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =======================================================
      CATEGORIES
-===================================================== -->
+======================================================= -->
 
-<section
-class="category-section">
-
+<section class="category-section">
 
   <h3>
     Browse Categories
   </h3>
 
-
-  <div
-  class="categories">
-
+  <div class="categories">
 
     <button
     class="cat-btn active"
@@ -1490,7 +1341,6 @@ class="category-section">
 
     </button>
 
-
     <button
     class="cat-btn"
     data-category="solar">
@@ -1498,7 +1348,6 @@ class="category-section">
       ☀️ Solar
 
     </button>
-
 
     <button
     class="cat-btn"
@@ -1508,7 +1357,6 @@ class="category-section">
 
     </button>
 
-
     <button
     class="cat-btn"
     data-category="electrical">
@@ -1517,19 +1365,16 @@ class="category-section">
 
     </button>
 
-
   </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =======================================================
      PRODUCTS
-===================================================== -->
+======================================================= -->
 
-<section
-class="products-section">
-
+<section class="products-section">
 
   <div class="products-header">
 
@@ -1548,7 +1393,6 @@ class="products-section">
   class="product-grid"
   id="product-list">
 
-
     <div class="loading">
 
       <div class="spinner"></div>
@@ -1556,7 +1400,6 @@ class="products-section">
       Loading products...
 
     </div>
-
 
   </div>
 
@@ -1571,9 +1414,9 @@ id="toast">
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      FIREBASE
-===================================================== -->
+======================================================= -->
 
 <script
 src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
@@ -1590,9 +1433,9 @@ src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
 
 <script>
 
-/* =====================================================
+/* =========================================================
    FIREBASE CONFIG
-===================================================== */
+========================================================= */
 
 const firebaseConfig = {
 
@@ -1626,67 +1469,67 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const auth = firebase.auth();
+const auth =
+  firebase.auth();
 
-const db = firebase.firestore();
+
+const db =
+  firebase.firestore();
 
 
-/* =====================================================
+/* =========================================================
    ELEMENTS
-===================================================== */
+========================================================= */
 
 const menuButton =
-document.getElementById("menuButton");
+  document.getElementById("menuButton");
 
 const closeMenu =
-document.getElementById("closeMenu");
+  document.getElementById("closeMenu");
 
 const sideMenu =
-document.getElementById("sideMenu");
+  document.getElementById("sideMenu");
 
 const menuOverlay =
-document.getElementById("menuOverlay");
+  document.getElementById("menuOverlay");
 
 const logoutButton =
-document.getElementById("logoutButton");
+  document.getElementById("logoutButton");
 
 const menuUserName =
-document.getElementById("menuUserName");
+  document.getElementById("menuUserName");
 
 const menuUserEmail =
-document.getElementById("menuUserEmail");
+  document.getElementById("menuUserEmail");
 
 const productList =
-document.getElementById("product-list");
+  document.getElementById("product-list");
 
 const searchInput =
-document.getElementById("search");
+  document.getElementById("search");
 
 const searchButton =
-document.getElementById("searchButton");
+  document.getElementById("searchButton");
 
 const resultText =
-document.getElementById("resultText");
-
-const searchStatus =
-document.getElementById("searchStatus");
+  document.getElementById("resultText");
 
 const banner =
-document.getElementById("banner");
+  document.getElementById("banner");
 
 const bannerText =
-document.getElementById("banner-text");
+  document.getElementById("banner-text");
 
 const cartCount =
-document.getElementById("cart-count");
+  document.getElementById("cart-count");
 
 const toast =
-document.getElementById("toast");
+  document.getElementById("toast");
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+/* =========================================================
+   APP STATE
+========================================================= */
 
 let allProducts = [];
 
@@ -1701,9 +1544,9 @@ let currentUser = null;
 let cartUnsubscribe = null;
 
 
-/* =====================================================
-   AUTH
-===================================================== */
+/* =========================================================
+   AUTH STATE
+========================================================= */
 
 auth.onAuthStateChanged(function(user){
 
@@ -1723,10 +1566,10 @@ auth.onAuthStateChanged(function(user){
       user.email || "";
 
 
-    listenToCart();
-
+    startCartListener(user.uid);
 
   }
+
   else{
 
     menuUserName.textContent =
@@ -1734,7 +1577,7 @@ auth.onAuthStateChanged(function(user){
 
 
     menuUserEmail.textContent =
-      "Sign in to use your cart";
+      "Please sign in to your account";
 
 
     cartCount.textContent = "0";
@@ -1753,32 +1596,33 @@ auth.onAuthStateChanged(function(user){
 });
 
 
-/* =====================================================
+/* =========================================================
    MENU
-===================================================== */
+========================================================= */
 
 menuButton.addEventListener(
   "click",
-  function(){
-
-    sideMenu.classList.add("active");
-
-    menuOverlay.classList.add("active");
-
-  }
+  openMenu
 );
-
 
 closeMenu.addEventListener(
   "click",
   closeSideMenu
 );
 
-
 menuOverlay.addEventListener(
   "click",
   closeSideMenu
 );
+
+
+function openMenu(){
+
+  sideMenu.classList.add("active");
+
+  menuOverlay.classList.add("active");
+
+}
 
 
 function closeSideMenu(){
@@ -1790,9 +1634,9 @@ function closeSideMenu(){
 }
 
 
-/* =====================================================
+/* =========================================================
    LOGOUT
-===================================================== */
+========================================================= */
 
 logoutButton.addEventListener(
   "click",
@@ -1820,11 +1664,8 @@ logoutButton.addEventListener(
 
     catch(error){
 
-      console.error(error);
-
       showToast(
-        "Could not sign out.",
-        "error"
+        error.message
       );
 
     }
@@ -1833,16 +1674,37 @@ logoutButton.addEventListener(
 );
 
 
-/* =====================================================
-   FIREBASE CART LISTENER
-===================================================== */
+/* =========================================================
+   FIRESTORE CART
+========================================================= */
 
-function listenToCart(){
+/*
+   NO localStorage.
+   NO sessionStorage.
 
-  if(!currentUser){
-    return;
-  }
+   Cart structure:
 
+   carts
+      └── USER_UID
+           └── items
+                └── PRODUCT_ID
+*/
+
+function cartCollection(uid){
+
+  return db
+    .collection("carts")
+    .doc(uid)
+    .collection("items");
+
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+function startCartListener(uid){
 
   if(cartUnsubscribe){
 
@@ -1852,80 +1714,75 @@ function listenToCart(){
 
 
   cartUnsubscribe =
+    cartCollection(uid)
+      .onSnapshot(
 
-    db
-    .collection("carts")
-    .doc(currentUser.uid)
-    .collection("items")
-    .onSnapshot(
+        function(snapshot){
 
-      function(snapshot){
-
-        let count = 0;
+          let quantity = 0;
 
 
-        snapshot.forEach(function(doc){
+          snapshot.forEach(function(doc){
 
-          const data = doc.data();
-
-          count +=
-            Number(data.quantity) || 1;
-
-        });
+            const data = doc.data();
 
 
-        cartCount.textContent =
-          count;
+            quantity +=
+              Number(data.quantity) || 0;
 
-      },
+          });
 
-      function(error){
 
-        console.error(
-          "Cart listener error:",
-          error
-        );
+          cartCount.textContent =
+            quantity;
 
-        cartCount.textContent = "0";
+        },
 
-      }
+        function(error){
 
-    );
+          console.error(
+            "Cart listener error:",
+            error
+          );
+
+          cartCount.textContent =
+            "0";
+
+        }
+
+      );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD TO CART
-===================================================== */
+========================================================= */
 
 async function addToCart(product){
 
   if(!currentUser){
 
-    const shouldLogin =
-      confirm(
-        "Please sign in before adding products to your cart.\n\nGo to login now?"
-      );
+    showToast(
+      "Please sign in before adding products to your cart."
+    );
 
-
-    if(shouldLogin){
+    setTimeout(function(){
 
       window.location.href =
-        "login.html?redirect=shop.html";
+        "login.html";
 
-    }
+    },1200);
 
     return;
 
   }
 
 
-  if(!product || !product.id){
+  if(!product.id){
 
     showToast(
-      "Product information is unavailable.",
-      "error"
+      "This product cannot be added right now."
     );
 
     return;
@@ -1933,19 +1790,31 @@ async function addToCart(product){
   }
 
 
-  const productRef =
+  const button =
+    document.querySelector(
+      `[data-add-product="${CSS.escape(product.id)}"]`
+    );
 
-    db
-    .collection("carts")
-    .doc(currentUser.uid)
-    .collection("items")
-    .doc(product.id);
+
+  if(button){
+
+    button.disabled = true;
+
+    button.textContent =
+      "Adding...";
+
+  }
 
 
   try{
 
+    const ref =
+      cartCollection(currentUser.uid)
+        .doc(product.id);
+
+
     const existing =
-      await productRef.get();
+      await ref.get();
 
 
     if(existing.exists){
@@ -1954,29 +1823,25 @@ async function addToCart(product){
         existing.data();
 
 
-      await productRef.update({
+      const oldQuantity =
+        Number(oldData.quantity) || 1;
+
+
+      await ref.update({
 
         quantity:
-          (Number(oldData.quantity) || 1) + 1,
+          oldQuantity + 1,
 
         updatedAt:
-          firebase.firestore.FieldValue
-          .serverTimestamp()
+          firebase.firestore.FieldValue.serverTimestamp()
 
       });
-
-
-      showToast(
-        product.name +
-        " quantity increased ✓",
-        "success"
-      );
 
     }
 
     else{
 
-      await productRef.set({
+      await ref.set({
 
         productId:
           product.id,
@@ -1993,29 +1858,23 @@ async function addToCart(product){
         category:
           product.category || "",
 
-        description:
-          product.description || "",
+        quantity:
+          1,
 
-        quantity:1,
-
-        createdAt:
-          firebase.firestore.FieldValue
-          .serverTimestamp(),
+        addedAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
 
         updatedAt:
-          firebase.firestore.FieldValue
-          .serverTimestamp()
+          firebase.firestore.FieldValue.serverTimestamp()
 
       });
 
-
-      showToast(
-        product.name +
-        " added to cart ✓",
-        "success"
-      );
-
     }
+
+
+    showToast(
+      `${product.name || "Product"} added to cart ✓`
+    );
 
   }
 
@@ -2028,28 +1887,53 @@ async function addToCart(product){
 
 
     showToast(
-      "Could not add product to cart.",
-      "error"
+      "Could not add product to cart."
     );
+
+  }
+
+  finally{
+
+    if(button){
+
+      button.disabled = false;
+
+      button.textContent =
+        "Add";
+
+    }
 
   }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    LOAD PRODUCTS
-===================================================== */
+========================================================= */
 
 async function loadProducts(){
+
+  productList.innerHTML = `
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading products...
+
+    </div>
+
+  `;
+
 
   try{
 
     const snapshot =
-
       await db
-      .collection("products")
-      .get();
+        .collection("products")
+        .where("available","==",true)
+        .get();
 
 
     allProducts = [];
@@ -2059,21 +1943,6 @@ async function loadProducts(){
 
       const data =
         doc.data();
-
-
-      /*
-       Only keep products that are
-       actually available when the
-       field exists.
-      */
-
-      if(
-        data.available === false
-      ){
-
-        return;
-
-      }
 
 
       allProducts.push({
@@ -2088,8 +1957,48 @@ async function loadProducts(){
     });
 
 
+    /*
+      If your products do not have
+      available:true, the fallback below
+      loads all products.
+    */
+
+    if(allProducts.length === 0){
+
+      const fallback =
+        await db
+          .collection("products")
+          .get();
+
+
+      fallback.forEach(function(doc){
+
+        const data =
+          doc.data();
+
+
+        if(
+          data.available !== false
+        ){
+
+          allProducts.push({
+
+            id:
+              doc.id,
+
+            ...data
+
+          });
+
+        }
+
+      });
+
+    }
+
+
     displayProducts(
-      allProducts
+      getFilteredProducts()
     );
 
 
@@ -2112,10 +2021,12 @@ async function loadProducts(){
 
         <div>⚠️</div>
 
-        <h3>Products could not load</h3>
+        <h3>
+          Products could not load
+        </h3>
 
         <p>
-          Please refresh the page and try again.
+          Please refresh and try again.
         </p>
 
       </div>
@@ -2131,149 +2042,84 @@ async function loadProducts(){
 }
 
 
-/* =====================================================
-   NORMALIZE CATEGORY
-===================================================== */
-
-function normalizeCategory(value){
-
-  return String(value || "")
-
-    .toLowerCase()
-
-    .trim()
-
-    .replace(/[\s_-]+/g,"");
-
-}
-
-
-/* =====================================================
-   SEARCH TEXT
-===================================================== */
-
-function normalizeSearch(value){
-
-  return String(value || "")
-
-    .toLowerCase()
-
-    .trim()
-
-    .replace(/\s+/g," ");
-
-}
-
-
-/* =====================================================
+/* =========================================================
    FILTER PRODUCTS
-===================================================== */
+========================================================= */
 
-function filterProducts(){
+function getFilteredProducts(){
 
   const search =
-    normalizeSearch(
-      searchInput.value
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+
+  return allProducts.filter(function(product){
+
+    const name =
+      String(
+        product.name || ""
+      ).toLowerCase();
+
+
+    const category =
+      String(
+        product.category || ""
+      ).toLowerCase();
+
+
+    const description =
+      String(
+        product.description || ""
+      ).toLowerCase();
+
+
+    const searchMatch =
+      !search ||
+
+      name.includes(search) ||
+
+      category.includes(search) ||
+
+      description.includes(search);
+
+
+    /*
+      This handles category values such as:
+
+      Solar
+      solar
+      SOLAR
+      Solar Panel
+
+      instead of requiring an exact
+      lowercase match.
+    */
+
+    const categoryMatch =
+      currentCategory === "all" ||
+
+      category
+        .trim()
+        .toLowerCase()
+        .startsWith(
+          currentCategory.toLowerCase()
+        );
+
+
+    return (
+      searchMatch &&
+      categoryMatch
     );
 
-
-  const category =
-    normalizeCategory(
-      currentCategory
-    );
-
-
-  const filtered =
-    allProducts.filter(function(product){
-
-      const name =
-        normalizeSearch(
-          product.name
-        );
-
-
-      const productCategory =
-        normalizeCategory(
-          product.category
-        );
-
-
-      const description =
-        normalizeSearch(
-          product.description
-        );
-
-
-      /*
-       Search across:
-       - name
-       - category
-       - description
-      */
-
-      const searchMatch =
-
-        !search ||
-
-        name.includes(search) ||
-
-        productCategory.includes(search) ||
-
-        description.includes(search);
-
-
-      /*
-       Category filter.
-       "all" always displays every
-       available product.
-      */
-
-      const categoryMatch =
-
-        category === "all" ||
-
-        productCategory === category;
-
-
-      return (
-        searchMatch &&
-        categoryMatch
-      );
-
-    });
-
-
-  displayProducts(filtered);
-
-
-  if(search){
-
-    searchStatus.textContent =
-
-      `Showing results for "${searchInput.value.trim()}"`;
-
-  }
-
-  else if(category !== "all"){
-
-    searchStatus.textContent =
-
-      `Showing ${currentCategory} products`;
-
-  }
-
-  else{
-
-    searchStatus.textContent = "";
-
-  }
+  });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    DISPLAY PRODUCTS
-===================================================== */
+========================================================= */
 
 function displayProducts(products){
 
@@ -2281,15 +2127,12 @@ function displayProducts(products){
 
 
   resultText.textContent =
-
     products.length +
-
     " product" +
-
     (
       products.length !== 1
-      ? "s"
-      : ""
+        ? "s"
+        : ""
     );
 
 
@@ -2301,10 +2144,12 @@ function displayProducts(products){
 
         <div>🔍</div>
 
-        <h3>No products found</h3>
+        <h3>
+          No products found
+        </h3>
 
         <p>
-          Try another product name or category.
+          Try another search or category.
         </p>
 
       </div>
@@ -2328,91 +2173,7 @@ function displayProducts(products){
 
     const image =
       product.image ||
-
       "https://via.placeholder.com/600x400?text=DSP+Product";
-
-
-    const name =
-      product.name ||
-      "Unnamed Product";
-
-
-    const category =
-      product.category ||
-      "Electrical";
-
-
-    const description =
-      product.description ||
-
-      "Quality product from Danny Smart Power.";
-
-
-    const price =
-      Number(product.price) || 0;
-
-
-    const stock =
-      Number(product.stock);
-
-
-    let stockHTML = "";
-
-
-    if(
-      product.available === false ||
-      (
-        Number.isFinite(stock) &&
-        stock <= 0
-      )
-    ){
-
-      stockHTML = `
-
-        <span class="stock-badge out">
-          Out of stock
-        </span>
-
-      `;
-
-    }
-
-    else if(
-      Number.isFinite(stock) &&
-      stock <= 5
-    ){
-
-      stockHTML = `
-
-        <span class="stock-badge">
-          Only ${stock} left
-        </span>
-
-      `;
-
-    }
-
-    else{
-
-      stockHTML = `
-
-        <span class="stock-badge">
-          Available
-        </span>
-
-      `;
-
-    }
-
-
-    const unavailable =
-
-      product.available === false ||
-
-      (
-        Number.isFinite(stock) &&
-        stock <= 0
-      );
 
 
     card.innerHTML = `
@@ -2422,11 +2183,10 @@ function displayProducts(products){
         <img
           class="product-image"
           src="${escapeAttribute(image)}"
-          alt="${escapeAttribute(name)}"
-          onerror="this.src='https://via.placeholder.com/600x400?text=DSP+Product'"
+          alt="${escapeAttribute(
+            product.name || "Product"
+          )}"
         >
-
-        ${stockHTML}
 
       </div>
 
@@ -2435,21 +2195,30 @@ function displayProducts(products){
 
         <div class="product-category">
 
-          ${escapeHtml(category)}
+          ${escapeHtml(
+            product.category ||
+            "Electrical"
+          )}
 
         </div>
 
 
         <h3 class="product-name">
 
-          ${escapeHtml(name)}
+          ${escapeHtml(
+            product.name ||
+            "Unnamed Product"
+          )}
 
         </h3>
 
 
         <p class="product-description">
 
-          ${escapeHtml(description)}
+          ${escapeHtml(
+            product.description ||
+            "Quality product from Danny Smart Power."
+          )}
 
         </p>
 
@@ -2458,20 +2227,20 @@ function displayProducts(products){
 
           <div class="product-price">
 
-            ₦${formatPrice(price)}
+            ₦${formatPrice(
+              product.price
+            )}
 
           </div>
 
 
           <button
             class="add-cart"
-            ${unavailable ? "disabled" : ""}>
+            data-add-product="${escapeAttribute(
+              product.id
+            )}">
 
-            ${
-              unavailable
-              ? "Unavailable"
-              : "Add to Cart"
-            }
+            Add
 
           </button>
 
@@ -2483,27 +2252,26 @@ function displayProducts(products){
 
 
     /*
-      Clicking anywhere on the card
-      opens the exact product.
+      Clicking the card opens the exact
+      Firestore product.
     */
 
     card.addEventListener(
       "click",
       function(){
 
-        openProduct(product);
+        openProduct(
+          product
+        );
 
       }
     );
 
 
-    /*
-      Add-to-cart button does NOT
-      open the product.
-    */
-
     const addButton =
-      card.querySelector(".add-cart");
+      card.querySelector(
+        ".add-cart"
+      );
 
 
     addButton.addEventListener(
@@ -2512,38 +2280,45 @@ function displayProducts(products){
 
         event.stopPropagation();
 
-
-        if(unavailable){
-          return;
-        }
-
-
-        addToCart(product);
+        addToCart(
+          product
+        );
 
       }
     );
 
 
-    productList.appendChild(card);
+    productList.appendChild(
+      card
+    );
 
   });
 
 }
 
 
-/* =====================================================
-   SEARCH EVENTS
-===================================================== */
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchProducts(){
+
+  displayProducts(
+    getFilteredProducts()
+  );
+
+}
+
 
 searchInput.addEventListener(
   "input",
-  filterProducts
+  searchProducts
 );
 
 
 searchButton.addEventListener(
   "click",
-  filterProducts
+  searchProducts
 );
 
 
@@ -2553,9 +2328,7 @@ searchInput.addEventListener(
 
     if(event.key === "Enter"){
 
-      event.preventDefault();
-
-      filterProducts();
+      searchProducts();
 
     }
 
@@ -2563,51 +2336,74 @@ searchInput.addEventListener(
 );
 
 
-/* =====================================================
-   CATEGORY EVENTS
-===================================================== */
+/* =========================================================
+   CATEGORIES
+========================================================= */
 
 document
-.querySelectorAll(".cat-btn")
-.forEach(function(button){
+  .querySelectorAll(".cat-btn")
+  .forEach(function(button){
 
-  button.addEventListener(
-    "click",
-    function(){
+    button.addEventListener(
+      "click",
+      function(){
 
-      document
-      .querySelectorAll(".cat-btn")
-      .forEach(function(btn){
+        document
+          .querySelectorAll(".cat-btn")
+          .forEach(function(btn){
 
-        btn.classList.remove(
+            btn.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        button.classList.add(
           "active"
         );
 
-      });
+
+        currentCategory =
+          button.dataset.category
+            .toLowerCase();
 
 
-      button.classList.add(
-        "active"
-      );
+        searchProducts();
 
 
-      currentCategory =
-        button.dataset.category;
+        /*
+          Smoothly move customer
+          to the product section.
+        */
+
+        document
+          .querySelector(".products-section")
+          .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+
+      }
+    );
+
+  });
 
 
-      filterProducts();
-
-    }
-  );
-
-});
-
-
-/* =====================================================
-   RANDOM BANNER
-===================================================== */
+/* =========================================================
+   RANDOM PRODUCT BANNER
+========================================================= */
 
 function startBanner(){
+
+  if(bannerInterval){
+
+    clearInterval(
+      bannerInterval
+    );
+
+  }
+
 
   if(!allProducts.length){
 
@@ -2619,20 +2415,10 @@ function startBanner(){
   }
 
 
-  if(bannerInterval){
-
-    clearInterval(
-      bannerInterval
-    );
-
-  }
-
-
   changeBanner();
 
 
   bannerInterval =
-
     setInterval(
       changeBanner,
       5000
@@ -2643,13 +2429,7 @@ function startBanner(){
 
 function changeBanner(){
 
-  if(!allProducts.length){
-    return;
-  }
-
-
   const randomIndex =
-
     Math.floor(
       Math.random() *
       allProducts.length
@@ -2657,30 +2437,21 @@ function changeBanner(){
 
 
   currentBannerProduct =
-    allProducts[randomIndex];
+    allProducts[
+      randomIndex
+    ];
 
 
   const image =
-    currentBannerProduct.image;
+    currentBannerProduct.image ||
+    "https://via.placeholder.com/1200x500?text=Danny+Smart+Power";
 
 
-  if(image){
-
-    banner.style.backgroundImage =
-      `url("${escapeAttribute(image)}")`;
-
-  }
-
-  else{
-
-    banner.style.backgroundImage =
-      "linear-gradient(135deg,#0f172a,#0284c7)";
-
-  }
+  banner.style.backgroundImage =
+    `url("${escapeAttribute(image)}")`;
 
 
   bannerText.textContent =
-
     (
       currentBannerProduct.name ||
       "Featured Product"
@@ -2690,15 +2461,17 @@ function changeBanner(){
 }
 
 
-/* =====================================================
-   CLICK RANDOM BANNER
-===================================================== */
+/* =========================================================
+   CLICK BANNER
+========================================================= */
 
 banner.addEventListener(
   "click",
   function(){
 
-    if(currentBannerProduct){
+    if(
+      currentBannerProduct
+    ){
 
       openProduct(
         currentBannerProduct
@@ -2710,29 +2483,42 @@ banner.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
    OPEN PRODUCT
-===================================================== */
+========================================================= */
+
+/*
+   IMPORTANT:
+
+   No localStorage.
+
+   The product ID is placed in the URL.
+
+   Example:
+
+   product.html?id=ABC123
+
+   Your product.html should read the ID
+   from URLSearchParams and then load:
+
+   products/ABC123
+*/
 
 function openProduct(product){
 
-  if(!product || !product.id){
+  if(!product.id){
+
+    showToast(
+      "Product information is unavailable."
+    );
+
     return;
+
   }
 
 
-  /*
-    No localStorage.
-
-    The product ID is placed in
-    the URL so product.html can
-    load the exact Firebase product.
-  */
-
   window.location.href =
-
     "product.html?id=" +
-
     encodeURIComponent(
       product.id
     );
@@ -2740,22 +2526,22 @@ function openProduct(product){
 }
 
 
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 let toastTimer = null;
 
 
-function showToast(message,type){
+function showToast(message){
 
   toast.textContent =
     message;
 
 
-  toast.className =
-    "toast show " +
-    (type || "");
+  toast.classList.add(
+    "show"
+  );
 
 
   clearTimeout(
@@ -2764,7 +2550,6 @@ function showToast(message,type){
 
 
   toastTimer =
-
     setTimeout(function(){
 
       toast.classList.remove(
@@ -2776,9 +2561,9 @@ function showToast(message,type){
 }
 
 
-/* =====================================================
-   PRICE
-===================================================== */
+/* =========================================================
+   FORMAT PRICE
+========================================================= */
 
 function formatPrice(price){
 
@@ -2787,18 +2572,22 @@ function formatPrice(price){
 
 
   if(!Number.isFinite(number)){
+
     return "0";
+
   }
 
 
-  return number.toLocaleString();
+  return number.toLocaleString(
+    "en-NG"
+  );
 
 }
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+/* =========================================================
+   HTML ESCAPING
+========================================================= */
 
 function escapeHtml(value){
 
@@ -2807,9 +2596,7 @@ function escapeHtml(value){
 
 
   div.textContent =
-    value == null
-    ? ""
-    : String(value);
+    String(value);
 
 
   return div.innerHTML;
@@ -2817,13 +2604,9 @@ function escapeHtml(value){
 }
 
 
-/* =====================================================
-   ESCAPE ATTRIBUTE
-===================================================== */
-
 function escapeAttribute(value){
 
-  return String(value || "")
+  return String(value)
 
     .replace(
       /&/g,
@@ -2848,9 +2631,9 @@ function escapeAttribute(value){
 }
 
 
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
 
 loadProducts();
 
