@@ -19,7 +19,7 @@
 
 <link
   rel="preconnect"
-  href="https://fonts.gstatic.com"
+  href="https://fonts.googleapis.com"
   crossorigin
 >
 
@@ -27,7 +27,6 @@
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
   rel="stylesheet"
 >
-
 
 <style>
 
@@ -49,25 +48,20 @@
 :root{
 
   --bg:#0f172a;
-
   --header:#020617;
 
   --card:#111e30;
-
   --card2:#17253a;
 
   --border:rgba(148,163,184,.15);
 
   --blue:#38bdf8;
-
   --blue2:#0284c7;
 
   --green:#22c55e;
-
   --red:#ef4444;
 
   --text:#f8fafc;
-
   --muted:#94a3b8;
 
 }
@@ -257,7 +251,7 @@ main{
 
 
 /* =====================================================
-   CART ITEMS
+   CART LIST
 ===================================================== */
 
 .cart-list{
@@ -272,7 +266,7 @@ main{
 
 
 /* =====================================================
-   CART CARD
+   CART ITEM
 ===================================================== */
 
 .cart-item{
@@ -313,7 +307,7 @@ main{
 
 
 /* =====================================================
-   IMAGE
+   PRODUCT IMAGE
 ===================================================== */
 
 .product-image{
@@ -422,6 +416,8 @@ main{
 
   cursor:pointer;
 
+  transition:.2s;
+
 }
 
 
@@ -487,6 +483,8 @@ main{
 
   cursor:pointer;
 
+  transition:.2s;
+
 }
 
 
@@ -540,6 +538,8 @@ main{
   display:flex;
 
   justify-content:space-between;
+
+  gap:15px;
 
   margin-bottom:13px;
 
@@ -755,7 +755,7 @@ main{
 
 
 /* =====================================================
-   LOGIN MESSAGE
+   LOGIN
 ===================================================== */
 
 .login-box{
@@ -1017,9 +1017,7 @@ main{
   <div class="logo">
 
     <div class="logo-icon">
-
       ⚡
-
     </div>
 
     Danny Smart Power
@@ -1052,9 +1050,7 @@ main{
       My Cart 🛒
 
       <span id="cartCount">
-
         (0)
-
       </span>
 
     </h1>
@@ -1083,6 +1079,8 @@ main{
 
 </main>
 
+
+<!-- TOAST -->
 
 <div
   class="toast"
@@ -1136,9 +1134,7 @@ const firebaseConfig = {
 };
 
 
-firebase.initializeApp(
-  firebaseConfig
-);
+firebase.initializeApp(firebaseConfig);
 
 
 const auth =
@@ -1172,36 +1168,74 @@ const toast =
 
 
 /* =====================================================
-   CURRENT USER
+   VARIABLES
 ===================================================== */
 
 let currentUser = null;
+
+let cartUnsubscribe = null;
+
+
+/* =====================================================
+   CART REFERENCE
+   IMPORTANT:
+   SAME STRUCTURE USED BY SHOP.HTML
+
+   carts
+      └── UID
+           └── items: ARRAY
+===================================================== */
+
+function cartRef(){
+
+  if(!currentUser){
+
+    return null;
+
+  }
+
+
+  return db
+    .collection("carts")
+    .doc(currentUser.uid);
+
+}
 
 
 /* =====================================================
    TOAST
 ===================================================== */
 
+let toastTimer = null;
+
+
 function showToast(message){
 
   toast.textContent =
     message;
+
 
   toast.classList.add(
     "show"
   );
 
 
-  setTimeout(
-    function(){
-
-      toast.classList.remove(
-        "show"
-      );
-
-    },
-    2200
+  clearTimeout(
+    toastTimer
   );
+
+
+  toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2300
+    );
 
 }
 
@@ -1213,6 +1247,17 @@ function showToast(message){
 auth.onAuthStateChanged(
 
   function(user){
+
+    /* Stop old listener */
+
+    if(cartUnsubscribe){
+
+      cartUnsubscribe();
+
+      cartUnsubscribe = null;
+
+    }
+
 
     if(!user){
 
@@ -1230,7 +1275,7 @@ auth.onAuthStateChanged(
 
     currentUser = user;
 
-    loadCart();
+    listenToCart();
 
   }
 
@@ -1251,20 +1296,25 @@ function showLogin(){
         🔐
       </div>
 
+
       <h2>
         Sign in to view your cart
       </h2>
+
 
       <p>
         Your cart is securely connected
         to your Danny Smart Power account.
       </p>
 
+
       <a
         href="login.html"
         class="login-button"
       >
+
         Sign In
+
       </a>
 
     </div>
@@ -1275,24 +1325,17 @@ function showLogin(){
 
 
 /* =====================================================
-   CART REFERENCE
+   LISTEN TO CART
 ===================================================== */
 
-function cartItemsRef(){
+function listenToCart(){
 
-  return db
-    .collection("cart")
-    .doc(currentUser.uid)
-    .collection("items");
+  if(!currentUser){
 
-}
+    return;
 
+  }
 
-/* =====================================================
-   LOAD CART
-===================================================== */
-
-function loadCart(){
 
   mainContent.innerHTML = `
 
@@ -1307,45 +1350,57 @@ function loadCart(){
   `;
 
 
-  cartItemsRef()
-    .orderBy(
-      "addedAt",
-      "desc"
-    )
-    .onSnapshot(
+  cartUnsubscribe =
 
-      function(snapshot){
+    cartRef().onSnapshot(
 
-        const items = [];
+      function(doc){
 
+        if(!doc.exists){
 
-        snapshot.forEach(
+          displayCart([]);
 
-          function(doc){
+          return;
 
-            items.push({
-
-              id:doc.id,
-
-              ...doc.data()
-
-            });
-
-          }
-
-        );
+        }
 
 
-        displayCart(
-          items
-        );
+        const data =
+          doc.data();
+
+
+        const rawItems =
+          Array.isArray(data.items)
+          ? data.items
+          : [];
+
+
+        /* Add array index internally */
+
+        const items =
+          rawItems.map(
+            function(item,index){
+
+              return {
+
+                ...item,
+
+                _index:index
+
+              };
+
+            }
+          );
+
+
+        displayCart(items);
 
       },
 
       function(error){
 
         console.error(
-          "Cart error:",
+          "Cart listener error:",
           error
         );
 
@@ -1358,12 +1413,16 @@ function loadCart(){
               ⚠️
             </div>
 
+
             <h2>
               Unable to load cart
             </h2>
 
+
             <p>
-              ${escapeHtml(error.message)}
+              ${escapeHtml(
+                error.message
+              )}
             </p>
 
           </div>
@@ -1383,7 +1442,7 @@ function loadCart(){
 
 function displayCart(items){
 
-  if(items.length === 0){
+  if(!items.length){
 
     cartCount.textContent =
       "(0)";
@@ -1397,20 +1456,25 @@ function displayCart(items){
           🛒
         </div>
 
+
         <h2>
           Your cart is empty
         </h2>
 
+
         <p>
           You have not added any products yet.
         </p>
+
 
         <button
           class="action-button checkout"
           style="max-width:230px"
           onclick="goShopping()"
         >
+
           Start Shopping
+
         </button>
 
       </div>
@@ -1455,7 +1519,9 @@ function displayCart(items){
 
 
   cartCount.textContent =
-    "(" + totalQuantity + ")";
+    "(" +
+    totalQuantity +
+    ")";
 
 
   let html = `
@@ -1499,7 +1565,8 @@ function displayCart(items){
             class="product-image"
             src="${escapeAttribute(image)}"
             alt="${escapeAttribute(
-              item.name || "Product"
+              item.name ||
+              "Product"
             )}"
             onerror="
               this.src='https://via.placeholder.com/500x400?text=DSP'
@@ -1540,11 +1607,13 @@ function displayCart(items){
 
               <button
                 onclick="changeQuantity(
-                  '${escapeJs(item.id)}',
+                  ${item._index},
                   -1
                 )"
               >
+
                 −
+
               </button>
 
 
@@ -1557,11 +1626,13 @@ function displayCart(items){
 
               <button
                 onclick="changeQuantity(
-                  '${escapeJs(item.id)}',
+                  ${item._index},
                   1
                 )"
               >
+
                 +
+
               </button>
 
             </div>
@@ -1581,7 +1652,7 @@ function displayCart(items){
             <button
               class="remove"
               onclick="removeItem(
-                '${escapeJs(item.id)}'
+                ${item._index}
               )"
             >
 
@@ -1657,6 +1728,7 @@ function displayCart(items){
             Total
           </span>
 
+
           <span class="total-price">
 
             ₦${formatPrice(total)}
@@ -1700,10 +1772,11 @@ function displayCart(items){
 
 /* =====================================================
    CHANGE QUANTITY
+   ARRAY ITEM
 ===================================================== */
 
 async function changeQuantity(
-  itemId,
+  index,
   change
 ){
 
@@ -1714,18 +1787,13 @@ async function changeQuantity(
   }
 
 
-  const ref =
-    cartItemsRef()
-      .doc(itemId);
-
-
   try{
 
-    const snap =
-      await ref.get();
+    const doc =
+      await cartRef().get();
 
 
-    if(!snap.exists){
+    if(!doc.exists){
 
       return;
 
@@ -1733,22 +1801,51 @@ async function changeQuantity(
 
 
     const data =
-      snap.data();
+      doc.data();
+
+
+    let items =
+      Array.isArray(data.items)
+      ? [...data.items]
+      : [];
+
+
+    if(
+      index < 0 ||
+      index >= items.length
+    ){
+
+      return;
+
+    }
 
 
     let qty =
-      Number(data.qty) || 1;
+      Number(
+        items[index].qty
+      ) || 1;
 
 
     qty += change;
 
 
+    /* Remove if quantity reaches zero */
+
     if(qty <= 0){
 
-      await ref.delete();
+      items.splice(
+        index,
+        1
+      );
+
+
+      await saveCart(
+        items
+      );
+
 
       showToast(
-        "Product removed from cart"
+        "Product removed from cart ✓"
       );
 
       return;
@@ -1756,15 +1853,18 @@ async function changeQuantity(
     }
 
 
-    await ref.update({
+    items[index] = {
 
-      qty:qty,
+      ...items[index],
 
-      updatedAt:
-        firebase.firestore.FieldValue
-        .serverTimestamp()
+      qty:qty
 
-    });
+    };
+
+
+    await saveCart(
+      items
+    );
 
   }
 
@@ -1773,7 +1873,7 @@ async function changeQuantity(
     console.error(error);
 
     showToast(
-      "Could not update quantity"
+      "Could not update quantity."
     );
 
   }
@@ -1786,7 +1886,7 @@ async function changeQuantity(
 ===================================================== */
 
 async function removeItem(
-  itemId
+  index
 ){
 
   if(!currentUser){
@@ -1798,9 +1898,46 @@ async function removeItem(
 
   try{
 
-    await cartItemsRef()
-      .doc(itemId)
-      .delete();
+    const doc =
+      await cartRef().get();
+
+
+    if(!doc.exists){
+
+      return;
+
+    }
+
+
+    const data =
+      doc.data();
+
+
+    let items =
+      Array.isArray(data.items)
+      ? [...data.items]
+      : [];
+
+
+    if(
+      index < 0 ||
+      index >= items.length
+    ){
+
+      return;
+
+    }
+
+
+    items.splice(
+      index,
+      1
+    );
+
+
+    await saveCart(
+      items
+    );
 
 
     showToast(
@@ -1814,10 +1951,47 @@ async function removeItem(
     console.error(error);
 
     showToast(
-      "Could not remove product"
+      "Could not remove product."
     );
 
   }
+
+}
+
+
+/* =====================================================
+   SAVE CART
+===================================================== */
+
+async function saveCart(
+  items
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  await cartRef().set({
+
+    userId:
+      currentUser.uid,
+
+    items:
+      items,
+
+    updatedAt:
+      firebase.firestore
+      .FieldValue
+      .serverTimestamp()
+
+  },{
+
+    merge:true
+
+  });
 
 }
 
@@ -1857,16 +2031,25 @@ function goShopping(){
 
 
 /* =====================================================
-   FORMAT PRICE
+   PRICE FORMAT
 ===================================================== */
 
 function formatPrice(
   price
 ){
 
-  return Number(
-    price || 0
-  ).toLocaleString(
+  const number =
+    Number(price);
+
+
+  if(!Number.isFinite(number)){
+
+    return "0";
+
+  }
+
+
+  return number.toLocaleString(
     "en-NG"
   );
 
@@ -1888,7 +2071,9 @@ function escapeHtml(
 
 
   div.textContent =
-    String(value ?? "");
+    String(
+      value ?? ""
+    );
 
 
   return div.innerHTML;
@@ -1926,31 +2111,6 @@ function escapeAttribute(
   .replace(
     />/g,
     "&gt;"
-  );
-
-}
-
-
-/* =====================================================
-   ESCAPE JAVASCRIPT VALUE
-===================================================== */
-
-function escapeJs(
-  value
-){
-
-  return String(
-    value ?? ""
-  )
-
-  .replace(
-    /\\/g,
-    "\\\\"
-  )
-
-  .replace(
-    /'/g,
-    "\\'"
   );
 
 }
