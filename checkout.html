@@ -19,12 +19,12 @@
 
 <link
   rel="preconnect"
-  href="https://fonts.gstatic.com"
+  href="https://fonts.googleapis.com"
   crossorigin
 >
 
 <link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
   rel="stylesheet"
 >
 
@@ -48,21 +48,29 @@
 :root{
 
   --bg:#0f172a;
+
   --header:#020617;
 
   --card:#111e30;
+
   --card2:#17253a;
+
+  --input:#0b1525;
 
   --border:rgba(148,163,184,.15);
 
   --blue:#38bdf8;
+
   --blue2:#0284c7;
 
   --green:#22c55e;
+
   --red:#ef4444;
+
   --yellow:#facc15;
 
   --text:#f8fafc;
+
   --muted:#94a3b8;
 
 }
@@ -76,7 +84,9 @@ body{
 
   min-height:100vh;
 
-  font-family:'Poppins',sans-serif;
+  font-family:
+    'Poppins',
+    sans-serif;
 
   color:var(--text);
 
@@ -115,11 +125,14 @@ header{
 
   justify-content:space-between;
 
-  background:rgba(2,6,23,.97);
+  background:
+    rgba(2,6,23,.97);
 
-  border-bottom:1px solid var(--border);
+  border-bottom:
+    1px solid var(--border);
 
-  backdrop-filter:blur(14px);
+  backdrop-filter:
+    blur(14px);
 
 }
 
@@ -156,7 +169,6 @@ header{
   border-radius:50%;
 
   background:
-
     linear-gradient(
       135deg,
       var(--blue),
@@ -177,6 +189,8 @@ header{
   text-decoration:none;
 
   font-size:14px;
+
+  transition:.2s;
 
 }
 
@@ -206,7 +220,7 @@ main{
 
 
 /* =====================================================
-   TOP HEADING
+   HEADING
 ===================================================== */
 
 .checkout-heading{
@@ -252,7 +266,7 @@ main{
 
 
 /* =====================================================
-   CHECKOUT LAYOUT
+   LAYOUT
 ===================================================== */
 
 .checkout-layout{
@@ -269,10 +283,6 @@ main{
 
 }
 
-
-/* =====================================================
-   LEFT COLUMN
-===================================================== */
 
 .left-column{
 
@@ -299,7 +309,8 @@ main{
       #0d1828
     );
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:20px;
 
@@ -337,7 +348,8 @@ main{
 
   border-radius:10px;
 
-  background:rgba(56,189,248,.12);
+  background:
+    rgba(56,189,248,.12);
 
   color:var(--blue);
 
@@ -418,7 +430,8 @@ main{
 
   width:100%;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   outline:none;
 
@@ -426,7 +439,7 @@ main{
 
   padding:13px 14px;
 
-  background:#0b1525;
+  background:var(--input);
 
   color:white;
 
@@ -479,14 +492,70 @@ main{
 
 
 /* =====================================================
-   DELIVERY METHODS
+   LOCATION STATUS
+===================================================== */
+
+.location-status{
+
+  margin-top:8px;
+
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  background:
+    rgba(56,189,248,.06);
+
+  border:
+    1px solid
+    rgba(56,189,248,.12);
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.5;
+
+}
+
+
+.location-status.ready{
+
+  color:#86efac;
+
+  background:
+    rgba(34,197,94,.06);
+
+  border-color:
+    rgba(34,197,94,.15);
+
+}
+
+
+.location-status.warning{
+
+  color:#fde68a;
+
+  background:
+    rgba(250,204,21,.06);
+
+  border-color:
+    rgba(250,204,21,.15);
+
+}
+
+
+/* =====================================================
+   DELIVERY
 ===================================================== */
 
 .delivery-options{
 
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr
+    1fr;
 
   gap:12px;
 
@@ -513,9 +582,12 @@ main{
 
   display:block;
 
+  min-height:180px;
+
   padding:16px;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:14px;
 
@@ -536,7 +608,8 @@ main{
 }
 
 
-.delivery-option input:checked + .delivery-label{
+.delivery-option input:checked +
+.delivery-label{
 
   border-color:var(--blue);
 
@@ -552,7 +625,7 @@ main{
 
 .delivery-icon{
 
-  font-size:24px;
+  font-size:25px;
 
   margin-bottom:8px;
 
@@ -580,6 +653,8 @@ main{
 
   margin-top:3px;
 
+  line-height:1.5;
+
 }
 
 
@@ -589,11 +664,24 @@ main{
 
   color:var(--blue);
 
-  font-size:12px;
+  font-size:13px;
 
-  font-weight:600;
+  font-weight:700;
 
-  margin-top:8px;
+  margin-top:12px;
+
+}
+
+
+.delivery-note{
+
+  display:block;
+
+  color:#64748b;
+
+  font-size:9px;
+
+  margin-top:4px;
 
 }
 
@@ -639,7 +727,8 @@ main{
 
   padding:15px;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:13px;
 
@@ -660,7 +749,8 @@ main{
 }
 
 
-.payment-option input:checked + .payment-label{
+.payment-option input:checked +
+.payment-label{
 
   border-color:var(--blue);
 
@@ -672,9 +762,11 @@ main{
 
 .payment-icon{
 
-  width:40px;
+  width:42px;
 
-  height:40px;
+  height:42px;
+
+  flex-shrink:0;
 
   display:flex;
 
@@ -682,7 +774,7 @@ main{
 
   justify-content:center;
 
-  border-radius:10px;
+  border-radius:11px;
 
   background:var(--card2);
 
@@ -719,6 +811,45 @@ main{
 
   margin-top:2px;
 
+  line-height:1.5;
+
+}
+
+
+/* =====================================================
+   PAYMENT NOTICE
+===================================================== */
+
+.payment-notice{
+
+  display:none;
+
+  margin-top:12px;
+
+  padding:12px;
+
+  border-radius:11px;
+
+  background:
+    rgba(56,189,248,.06);
+
+  border:
+    1px solid
+    rgba(56,189,248,.15);
+
+  color:#cbd5e1;
+
+  font-size:10px;
+
+  line-height:1.6;
+
+}
+
+
+.payment-notice.show{
+
+  display:block;
+
 }
 
 
@@ -751,7 +882,8 @@ main{
 
   background:#0b1525;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
 }
 
@@ -822,7 +954,7 @@ main{
 
 
 /* =====================================================
-   RIGHT SUMMARY
+   SUMMARY
 ===================================================== */
 
 .summary{
@@ -841,7 +973,8 @@ main{
       #0d1828
     );
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:20px;
 
@@ -859,7 +992,7 @@ main{
 
 .summary-items{
 
-  max-height:280px;
+  max-height:300px;
 
   overflow-y:auto;
 
@@ -898,7 +1031,8 @@ main{
 
   border:none;
 
-  border-top:1px solid var(--border);
+  border-top:
+    1px solid var(--border);
 
   margin:15px 0;
 
@@ -929,8 +1063,60 @@ main{
 }
 
 
+.delivery-summary-status{
+
+  margin-top:5px;
+
+  color:#64748b;
+
+  font-size:9px;
+
+  text-align:right;
+
+}
+
+
 /* =====================================================
-   PLACE ORDER BUTTON
+   TERMS
+===================================================== */
+
+.terms{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:9px;
+
+  margin-top:14px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.5;
+
+}
+
+
+.terms input{
+
+  margin-top:3px;
+
+  accent-color:var(--blue);
+
+}
+
+
+.terms a{
+
+  color:var(--blue);
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
 ===================================================== */
 
 .place-order{
@@ -985,50 +1171,13 @@ main{
 
 .place-order:disabled{
 
-  opacity:.6;
+  opacity:.45;
 
   cursor:not-allowed;
 
   transform:none;
 
-}
-
-
-/* =====================================================
-   TERMS
-===================================================== */
-
-.terms{
-
-  display:flex;
-
-  align-items:flex-start;
-
-  gap:9px;
-
-  margin-top:14px;
-
-  color:var(--muted);
-
-  font-size:10px;
-
-  line-height:1.5;
-
-}
-
-
-.terms input{
-
-  margin-top:3px;
-
-  accent-color:var(--blue);
-
-}
-
-
-.terms a{
-
-  color:var(--blue);
+  box-shadow:none;
 
 }
 
@@ -1049,7 +1198,8 @@ main{
 
   background:var(--card);
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:22px;
 
@@ -1079,6 +1229,8 @@ main{
   color:var(--muted);
 
   font-size:13px;
+
+  line-height:1.6;
 
 }
 
@@ -1128,7 +1280,8 @@ main{
       #0d1828
     );
 
-  border:1px solid
+  border:
+    1px solid
     rgba(34,197,94,.25);
 
   border-radius:24px;
@@ -1152,7 +1305,10 @@ main{
 
   border-radius:50%;
 
-  background:rgba(34,197,94,.12);
+  background:
+    rgba(34,197,94,.12);
+
+  color:#86efac;
 
   font-size:40px;
 
@@ -1174,6 +1330,8 @@ main{
 
   font-size:13px;
 
+  line-height:1.6;
+
 }
 
 
@@ -1189,13 +1347,16 @@ main{
 
   background:#0b1525;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   color:var(--blue);
 
-  font-size:13px;
+  font-size:12px;
 
   font-weight:600;
+
+  word-break:break-all;
 
 }
 
@@ -1245,7 +1406,8 @@ main{
 
   color:white;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
 }
 
@@ -1271,9 +1433,12 @@ main{
 
   z-index:200;
 
+  max-width:90%;
+
   background:#020617;
 
-  border:1px solid
+  border:
+    1px solid
     rgba(56,189,248,.35);
 
   color:white;
@@ -1285,6 +1450,8 @@ main{
   font-size:12px;
 
   transition:.3s;
+
+  text-align:center;
 
 }
 
@@ -1300,7 +1467,7 @@ main{
 
 
 /* =====================================================
-   LOADING OVERLAY
+   PROCESSING
 ===================================================== */
 
 .processing{
@@ -1317,7 +1484,8 @@ main{
 
   justify-content:center;
 
-  background:rgba(2,6,23,.78);
+  background:
+    rgba(2,6,23,.78);
 
   backdrop-filter:blur(7px);
 
@@ -1341,7 +1509,8 @@ main{
 
   background:var(--card);
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:20px;
 
@@ -1356,13 +1525,15 @@ main{
 
   margin:0 auto 15px;
 
-  border:3px solid #1e293b;
+  border:
+    3px solid #1e293b;
 
   border-top-color:var(--blue);
 
   border-radius:50%;
 
-  animation:spin 1s linear infinite;
+  animation:
+    spin 1s linear infinite;
 
 }
 
@@ -1370,8 +1541,17 @@ main{
 @keyframes spin{
 
   to{
+
     transform:rotate(360deg);
+
   }
+
+}
+
+
+.processing-box h3{
+
+  font-size:16px;
 
 }
 
@@ -1381,6 +1561,8 @@ main{
   color:var(--muted);
 
   font-size:12px;
+
+  margin-top:5px;
 
 }
 
@@ -1489,6 +1671,13 @@ main{
   }
 
 
+  .delivery-label{
+
+    min-height:auto;
+
+  }
+
+
   .checkout-heading{
 
     margin-bottom:20px;
@@ -1551,7 +1740,9 @@ main{
     </p>
 
     <div class="secure-line">
+
       🔒 Your checkout is connected to your DSP account.
+
     </div>
 
   </div>
@@ -1561,13 +1752,15 @@ main{
 
 
     <!-- =================================================
-         LEFT
+         LEFT COLUMN
     ================================================= -->
 
     <div class="left-column">
 
 
-      <!-- CUSTOMER INFORMATION -->
+      <!-- =================================================
+           CUSTOMER INFORMATION
+      ================================================= -->
 
       <section class="checkout-card">
 
@@ -1635,7 +1828,7 @@ main{
 
             <textarea
               id="address"
-              placeholder="House number, street, area, city..."
+              placeholder="House number, street, area..."
               autocomplete="street-address"
             ></textarea>
 
@@ -1645,13 +1838,13 @@ main{
           <div class="form-group">
 
             <label for="city">
-              City
+              City / Area
             </label>
 
             <input
               id="city"
               type="text"
-              placeholder="e.g. Lagos"
+              placeholder="e.g. Ikeja"
               autocomplete="address-level2"
             >
 
@@ -1664,12 +1857,74 @@ main{
               State
             </label>
 
-            <input
+            <select
               id="state"
-              type="text"
-              placeholder="e.g. Lagos State"
               autocomplete="address-level1"
             >
+
+              <option value="">
+                Select your state
+              </option>
+
+              <option value="Abia">Abia</option>
+              <option value="Adamawa">Adamawa</option>
+              <option value="Akwa Ibom">Akwa Ibom</option>
+              <option value="Anambra">Anambra</option>
+              <option value="Bauchi">Bauchi</option>
+              <option value="Bayelsa">Bayelsa</option>
+              <option value="Benue">Benue</option>
+              <option value="Borno">Borno</option>
+              <option value="Cross River">Cross River</option>
+              <option value="Delta">Delta</option>
+              <option value="Ebonyi">Ebonyi</option>
+              <option value="Edo">Edo</option>
+              <option value="Ekiti">Ekiti</option>
+              <option value="Enugu">Enugu</option>
+              <option value="Gombe">Gombe</option>
+              <option value="Imo">Imo</option>
+              <option value="Jigawa">Jigawa</option>
+              <option value="Kaduna">Kaduna</option>
+              <option value="Kano">Kano</option>
+              <option value="Katsina">Katsina</option>
+              <option value="Kebbi">Kebbi</option>
+              <option value="Kogi">Kogi</option>
+              <option value="Kwara">Kwara</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Nasarawa">Nasarawa</option>
+              <option value="Niger">Niger</option>
+              <option value="Ogun">Ogun</option>
+              <option value="Ondo">Ondo</option>
+              <option value="Osun">Osun</option>
+              <option value="Oyo">Oyo</option>
+              <option value="Plateau">Plateau</option>
+              <option value="Rivers">Rivers</option>
+              <option value="Sokoto">Sokoto</option>
+              <option value="Taraba">Taraba</option>
+              <option value="Yobe">Yobe</option>
+              <option value="Zamfara">Zamfara</option>
+
+              <option value="FCT">
+                Federal Capital Territory (FCT)
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div
+            class="form-group full"
+          >
+
+            <div
+              id="locationStatus"
+              class="location-status"
+            >
+
+              Select your state and city to calculate
+              your delivery fee.
+
+            </div>
 
           </div>
 
@@ -1677,10 +1932,13 @@ main{
           <div class="form-group full">
 
             <label for="note">
+
               Order Note
+
               <span style="color:#64748b;">
                 (Optional)
               </span>
+
             </label>
 
             <textarea
@@ -1696,7 +1954,9 @@ main{
       </section>
 
 
-      <!-- DELIVERY -->
+      <!-- =================================================
+           DELIVERY
+      ================================================= -->
 
       <section class="checkout-card">
 
@@ -1724,13 +1984,15 @@ main{
         <div class="delivery-options">
 
 
+          <!-- STANDARD -->
+
           <div class="delivery-option">
 
             <input
               type="radio"
               name="delivery"
               id="standardDelivery"
-              value="1500"
+              value="standard"
               checked
             >
 
@@ -1748,11 +2010,19 @@ main{
               </span>
 
               <span class="delivery-description">
-                Delivery to your address
+                We deliver your order to the address
+                you provide.
               </span>
 
-              <span class="delivery-price">
-                ₦1,500
+              <span
+                class="delivery-price"
+                id="standardDeliveryPrice"
+              >
+                Enter your location
+              </span>
+
+              <span class="delivery-note">
+                Price is calculated from your location.
               </span>
 
             </label>
@@ -1760,13 +2030,15 @@ main{
           </div>
 
 
+          <!-- PICKUP -->
+
           <div class="delivery-option">
 
             <input
               type="radio"
               name="delivery"
               id="pickup"
-              value="0"
+              value="pickup"
             >
 
             <label
@@ -1783,11 +2055,16 @@ main{
               </span>
 
               <span class="delivery-description">
-                Pick up your order
+                Pick up your order directly from
+                Danny Smart Power.
               </span>
 
               <span class="delivery-price">
                 Free
+              </span>
+
+              <span class="delivery-note">
+                No delivery charge.
               </span>
 
             </label>
@@ -1800,7 +2077,9 @@ main{
       </section>
 
 
-      <!-- PAYMENT -->
+      <!-- =================================================
+           PAYMENT
+      ================================================= -->
 
       <section class="checkout-card">
 
@@ -1827,6 +2106,8 @@ main{
 
         <div class="payment-options">
 
+
+          <!-- PAY ON DELIVERY -->
 
           <div class="payment-option">
 
@@ -1864,6 +2145,8 @@ main{
           </div>
 
 
+          <!-- BANK TRANSFER -->
+
           <div class="payment-option">
 
             <input
@@ -1889,7 +2172,44 @@ main{
                 </span>
 
                 <span class="payment-description">
-                  Transfer payment using DSP bank details.
+                  Transfer using DSP payment details.
+                </span>
+
+              </div>
+
+            </label>
+
+          </div>
+
+
+          <!-- OPAY -->
+
+          <div class="payment-option">
+
+            <input
+              type="radio"
+              name="payment"
+              id="opay"
+              value="OPay"
+            >
+
+            <label
+              for="opay"
+              class="payment-label"
+            >
+
+              <div class="payment-icon">
+                🟢
+              </div>
+
+              <div class="payment-info">
+
+                <span class="payment-name">
+                  OPay
+                </span>
+
+                <span class="payment-description">
+                  Secure online payment through OPay.
                 </span>
 
               </div>
@@ -1901,10 +2221,18 @@ main{
 
         </div>
 
+
+        <div
+          id="paymentNotice"
+          class="payment-notice"
+        ></div>
+
       </section>
 
 
-      <!-- ITEMS -->
+      <!-- =================================================
+           PRODUCTS
+      ================================================= -->
 
       <section class="checkout-card">
 
@@ -1934,7 +2262,7 @@ main{
           id="orderItems"
         >
 
-          <!-- Loaded from Firestore -->
+          Loading your products...
 
         </div>
 
@@ -1956,6 +2284,7 @@ main{
 
 
       <div class="summary-items">
+
 
         <div class="summary-row">
 
@@ -1990,9 +2319,17 @@ main{
           </span>
 
           <span id="summaryDelivery">
-            ₦1,500
+            Enter location
           </span>
 
+        </div>
+
+
+        <div
+          id="deliverySummaryStatus"
+          class="delivery-summary-status"
+        >
+          Delivery fee not calculated yet.
         </div>
 
 
@@ -2006,10 +2343,11 @@ main{
           </span>
 
           <span id="summaryTotal">
-            ₦0
+            —
           </span>
 
         </div>
+
 
       </div>
 
@@ -2023,7 +2361,7 @@ main{
 
         <span>
 
-          I confirm that my delivery details are correct
+          I confirm that my details are correct
           and I want to place this order.
 
         </span>
@@ -2034,6 +2372,7 @@ main{
       <button
         class="place-order"
         id="placeOrderButton"
+        disabled
       >
 
         Place Order ⚡
@@ -2219,6 +2558,24 @@ const summaryTotal =
   );
 
 
+const deliverySummaryStatus =
+  document.getElementById(
+    "deliverySummaryStatus"
+  );
+
+
+const locationStatus =
+  document.getElementById(
+    "locationStatus"
+  );
+
+
+const standardDeliveryPrice =
+  document.getElementById(
+    "standardDeliveryPrice"
+  );
+
+
 const terms =
   document.getElementById(
     "terms"
@@ -2243,6 +2600,12 @@ const toast =
   );
 
 
+const paymentNotice =
+  document.getElementById(
+    "paymentNotice"
+  );
+
+
 /* =====================================================
    STATE
 ===================================================== */
@@ -2254,6 +2617,144 @@ let cartItems = [];
 let cartUnsubscribe = null;
 
 let orderBeingPlaced = false;
+
+
+/* =====================================================
+   DSP DELIVERY RATES
+===================================================== */
+
+/*
+  These are EXAMPLE rates.
+
+  Replace these values with your REAL
+  Danny Smart Power delivery charges.
+
+  A city-specific price can be added inside
+  CITY_DELIVERY_RATES.
+
+  Example:
+
+  Lagos: 1200
+
+  and:
+
+  CITY_DELIVERY_RATES.Lagos = {
+    Ikeja: 1000,
+    Lekki: 1500
+  }
+
+  City price takes priority over state price.
+*/
+
+
+const DELIVERY_RATES = {
+
+  Abia: 3000,
+
+  Adamawa: 4500,
+
+  "Akwa Ibom": 3000,
+
+  Anambra: 3000,
+
+  Bauchi: 4000,
+
+  Bayelsa: 3500,
+
+  Benue: 3200,
+
+  Borno: 4800,
+
+  "Cross River": 3200,
+
+  Delta: 2800,
+
+  Ebonyi: 3200,
+
+  Edo: 2500,
+
+  Ekiti: 2200,
+
+  Enugu: 3000,
+
+  Gombe: 4300,
+
+  Imo: 3000,
+
+  Jigawa: 4500,
+
+  Kaduna: 3800,
+
+  Kano: 4000,
+
+  Katsina: 4200,
+
+  Kebbi: 4500,
+
+  Kogi: 2800,
+
+  Kwara: 2500,
+
+  Lagos: 1000,
+
+  Nasarawa: 3500,
+
+  Niger: 3500,
+
+  Ogun: 1500,
+
+  Ondo: 2200,
+
+  Osun: 2000,
+
+  Oyo: 1800,
+
+  Plateau: 3800,
+
+  Rivers: 3000,
+
+  Sokoto: 4800,
+
+  Taraba: 4500,
+
+  Yobe: 4700,
+
+  Zamfara: 4700,
+
+  FCT: 3500
+
+};
+
+
+/*
+  Optional city/area overrides.
+
+  Add your exact areas here when you know
+  the real delivery prices.
+
+  Example:
+
+  Lagos: {
+    Ikeja: 1000,
+    Lekki: 1500,
+    Surulere: 1200
+  }
+
+*/
+
+const CITY_DELIVERY_RATES = {
+
+  Lagos: {},
+
+  Ogun: {},
+
+  Oyo: {},
+
+  Abuja: {},
+
+  FCT: {}
+
+};
 
 
 /* =====================================================
@@ -2316,7 +2817,7 @@ auth.onAuthStateChanged(
 
 
 /* =====================================================
-   CUSTOMER PROFILE
+   LOAD CUSTOMER PROFILE
 ===================================================== */
 
 async function loadCustomerProfile(){
@@ -2329,8 +2830,11 @@ async function loadCustomerProfile(){
 
 
   customerName.value =
+
     currentUser.displayName ||
+
     currentUser.email?.split("@")[0] ||
+
     "";
 
 
@@ -2374,7 +2878,6 @@ async function loadCustomerProfile(){
       profile.phoneNumber ||
 
       "";
-
 
   }
 
@@ -2447,7 +2950,9 @@ function listenToCart(){
       text-align:center;
       color:#94a3b8;
     ">
+
       Loading your products...
+
     </div>
 
   `;
@@ -2480,13 +2985,19 @@ function listenToCart(){
 
           ? data.items.map(
               function(item){
+
                 return {
+
                   ...item,
-                  qty:Math.max(
-                    1,
-                    Number(item.qty) || 1
-                  )
+
+                  qty:
+                    Math.max(
+                      1,
+                      Number(item.qty) || 1
+                    )
+
                 };
+
               }
             )
 
@@ -2503,6 +3014,7 @@ function listenToCart(){
           "Checkout cart error:",
           error
         );
+
 
         showToast(
           "Unable to load your cart."
@@ -2555,69 +3067,42 @@ function displayCheckoutCart(){
     summaryItems.textContent =
       "0";
 
+
     summarySubtotal.textContent =
       "₦0";
 
+
     summaryDelivery.textContent =
-      "₦0";
+      "—";
+
 
     summaryTotal.textContent =
-      "₦0";
+      "—";
+
+
+    deliverySummaryStatus.textContent =
+      "No products in cart.";
+
 
     placeOrderButton.disabled =
       true;
+
 
     return;
 
   }
 
 
-  placeOrderButton.disabled =
-    false;
-
-
-  let subtotal = 0;
-
-  let totalQuantity = 0;
-
-
-  cartItems.forEach(
-    function(item){
-
-      const price =
-        Number(item.price) || 0;
-
-      const qty =
-        Math.max(
-          1,
-          Number(item.qty) || 1
-        );
-
-
-      subtotal +=
-        price * qty;
-
-
-      totalQuantity +=
-        qty;
-
-    }
-  );
-
-
   renderOrderItems();
 
 
-  updateSummary(
-    subtotal,
-    totalQuantity
-  );
+  calculateCurrentSummary();
 
 }
 
 
 /* =====================================================
-   ORDER ITEMS
+   RENDER ORDER ITEMS
 ===================================================== */
 
 function renderOrderItems(){
@@ -2663,6 +3148,7 @@ function renderOrderItems(){
             "
           >
 
+
           <div class="order-item-info">
 
             <div class="order-item-name">
@@ -2674,20 +3160,24 @@ function renderOrderItems(){
 
             </div>
 
+
             <div class="order-item-meta">
 
               Qty: ${qty}
 
-              ${item.category
-                ? " • " +
-                  escapeHtml(
-                    item.category
-                  )
-                : ""}
+              ${
+                item.category
+                  ? " • " +
+                    escapeHtml(
+                      item.category
+                    )
+                  : ""
+              }
 
             </div>
 
           </div>
+
 
           <div class="order-item-price">
 
@@ -2710,7 +3200,28 @@ function renderOrderItems(){
 
 
 /* =====================================================
-   DELIVERY PRICE
+   NORMALIZE TEXT
+===================================================== */
+
+function normalizeLocation(
+  value
+){
+
+  return String(
+    value || ""
+  )
+  .trim()
+  .toLowerCase()
+  .replace(
+    /\s+/g,
+    " "
+  );
+
+}
+
+
+/* =====================================================
+   GET DELIVERY FEE
 ===================================================== */
 
 function getDeliveryFee(){
@@ -2721,16 +3232,299 @@ function getDeliveryFee(){
     );
 
 
-  if(!selected){
+  /*
+    STORE PICKUP
+  */
 
-    return 1500;
+  if(
+    selected &&
+    selected.value === "pickup"
+  ){
+
+    return 0;
 
   }
 
 
-  return Number(
-    selected.value
-  ) || 0;
+  /*
+    STANDARD DELIVERY
+  */
+
+  const selectedState =
+    state.value.trim();
+
+
+  if(!selectedState){
+
+    return null;
+
+  }
+
+
+  /*
+    CITY OVERRIDE
+  */
+
+  const selectedCity =
+    normalizeLocation(
+      city.value
+    );
+
+
+  const cityRates =
+    CITY_DELIVERY_RATES[
+      selectedState
+    ] || {};
+
+
+  const cityKeys =
+    Object.keys(
+      cityRates
+    );
+
+
+  for(
+    const cityKey of cityKeys
+  ){
+
+    if(
+      normalizeLocation(cityKey) ===
+      selectedCity
+    ){
+
+      return Number(
+        cityRates[cityKey]
+      );
+
+    }
+
+  }
+
+
+  /*
+    STATE RATE
+  */
+
+  const stateFee =
+    DELIVERY_RATES[
+      selectedState
+    ];
+
+
+  if(
+    typeof stateFee !== "number"
+  ){
+
+    return null;
+
+  }
+
+
+  return stateFee;
+
+}
+
+
+/* =====================================================
+   DELIVERY DESCRIPTION
+===================================================== */
+
+function getDeliveryDescription(){
+
+  const selected =
+    document.querySelector(
+      'input[name="delivery"]:checked'
+    );
+
+
+  if(
+    selected &&
+    selected.value === "pickup"
+  ){
+
+    return "Store Pickup";
+
+  }
+
+
+  const selectedState =
+    state.value.trim();
+
+
+  const selectedCity =
+    normalizeLocation(
+      city.value
+    );
+
+
+  if(!selectedState){
+
+    return "Location not selected";
+
+  }
+
+
+  const cityRates =
+    CITY_DELIVERY_RATES[
+      selectedState
+    ] || {};
+
+
+  for(
+    const cityKey of Object.keys(cityRates)
+  ){
+
+    if(
+      normalizeLocation(cityKey) ===
+      selectedCity
+    ){
+
+      return (
+        selectedCity
+          ? "City delivery rate"
+          : "Location delivery rate"
+      );
+
+    }
+
+  }
+
+
+  return (
+    selectedCity
+      ? "State delivery rate"
+      : "State rate"
+  );
+
+}
+
+
+/* =====================================================
+   UPDATE DELIVERY CARD
+===================================================== */
+
+function updateDeliveryCard(){
+
+  const selected =
+    document.querySelector(
+      'input[name="delivery"]:checked'
+    );
+
+
+  if(
+    selected &&
+    selected.value === "pickup"
+  ){
+
+    standardDeliveryPrice.textContent =
+      "Select Standard Delivery";
+
+
+    return;
+
+  }
+
+
+  const fee =
+    getDeliveryFee();
+
+
+  if(fee === null){
+
+    standardDeliveryPrice.textContent =
+      "Enter your location";
+
+    return;
+
+  }
+
+
+  standardDeliveryPrice.textContent =
+    "₦" +
+    formatPrice(fee);
+
+}
+
+
+/* =====================================================
+   UPDATE LOCATION STATUS
+===================================================== */
+
+function updateLocationStatus(){
+
+  const selected =
+    document.querySelector(
+      'input[name="delivery"]:checked'
+    );
+
+
+  if(
+    selected &&
+    selected.value === "pickup"
+  ){
+
+    locationStatus.className =
+      "location-status ready";
+
+
+    locationStatus.textContent =
+      "Store Pickup selected. Delivery is free.";
+
+    return;
+
+  }
+
+
+  const selectedState =
+    state.value.trim();
+
+
+  if(!selectedState){
+
+    locationStatus.className =
+      "location-status";
+
+
+    locationStatus.textContent =
+      "Select your state and city to calculate your delivery fee.";
+
+    return;
+
+  }
+
+
+  const fee =
+    getDeliveryFee();
+
+
+  if(fee === null){
+
+    locationStatus.className =
+      "location-status warning";
+
+
+    locationStatus.textContent =
+      "Delivery is not currently configured for this location.";
+
+    return;
+
+  }
+
+
+  const source =
+    getDeliveryDescription();
+
+
+  locationStatus.className =
+    "location-status ready";
+
+
+  locationStatus.textContent =
+
+    "Delivery calculated: ₦" +
+    formatPrice(fee) +
+    " • " +
+    source;
 
 }
 
@@ -2748,10 +3542,6 @@ function updateSummary(
     getDeliveryFee();
 
 
-  const total =
-    subtotal + delivery;
-
-
   summaryItems.textContent =
     quantity;
 
@@ -2761,42 +3551,75 @@ function updateSummary(
     formatPrice(subtotal);
 
 
+  updateDeliveryCard();
+
+
+  updateLocationStatus();
+
+
+  /*
+    DELIVERY NOT AVAILABLE YET
+  */
+
+  if(delivery === null){
+
+    summaryDelivery.textContent =
+      "Enter location";
+
+
+    summaryTotal.textContent =
+      "—";
+
+
+    deliverySummaryStatus.textContent =
+      "Delivery fee not calculated yet.";
+
+
+    placeOrderButton.disabled =
+      true;
+
+
+    return;
+
+  }
+
+
+  /*
+    DELIVERY AVAILABLE
+  */
+
   summaryDelivery.textContent =
+
     delivery === 0
+
       ? "Free"
+
       : "₦" +
         formatPrice(delivery);
+
+
+  const total =
+    subtotal + delivery;
 
 
   summaryTotal.textContent =
     "₦" +
     formatPrice(total);
 
+
+  deliverySummaryStatus.textContent =
+
+    delivery === 0
+
+      ? "Store pickup — free"
+
+      : getDeliveryDescription();
+
+
+  placeOrderButton.disabled =
+    !cartItems.length;
+
 }
-
-
-/* =====================================================
-   DELIVERY CHANGE
-===================================================== */
-
-document
-.querySelectorAll(
-  'input[name="delivery"]'
-)
-.forEach(
-  function(input){
-
-    input.addEventListener(
-      "change",
-      function(){
-
-        calculateCurrentSummary();
-
-      }
-    );
-
-  }
-);
 
 
 /* =====================================================
@@ -2844,6 +3667,62 @@ function calculateCurrentSummary(){
 
 
 /* =====================================================
+   DELIVERY CHANGE
+===================================================== */
+
+document
+.querySelectorAll(
+  'input[name="delivery"]'
+)
+.forEach(
+  function(input){
+
+    input.addEventListener(
+      "change",
+      function(){
+
+        calculateCurrentSummary();
+
+      }
+    );
+
+  }
+);
+
+
+/* =====================================================
+   LOCATION CHANGE
+===================================================== */
+
+state.addEventListener(
+  "change",
+  calculateCurrentSummary
+);
+
+
+city.addEventListener(
+  "input",
+  calculateCurrentSummary
+);
+
+
+address.addEventListener(
+  "input",
+  function(){
+
+    /*
+      Address itself doesn't determine
+      the rate in this version, but we
+      recalculate the checkout state.
+    */
+
+    calculateCurrentSummary();
+
+  }
+);
+
+
+/* =====================================================
    PAYMENT SELECTION
 ===================================================== */
 
@@ -2858,8 +3737,7 @@ document
       "change",
       function(){
 
-        console.log(
-          "Payment selected:",
+        updatePaymentNotice(
           input.value
         );
 
@@ -2868,6 +3746,70 @@ document
 
   }
 );
+
+
+/* =====================================================
+   PAYMENT NOTICE
+===================================================== */
+
+function updatePaymentNotice(
+  payment
+){
+
+  paymentNotice.classList.remove(
+    "show"
+  );
+
+
+  if(
+    payment === "Bank Transfer"
+  ){
+
+    paymentNotice.textContent =
+      "After your order is created, your bank transfer instructions can be shown from your DSP payment page.";
+
+
+    paymentNotice.classList.add(
+      "show"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    payment === "OPay"
+  ){
+
+    paymentNotice.textContent =
+      "OPay will use a secure payment flow. Your OPay PIN or password must never be entered into the DSP website.";
+
+
+    paymentNotice.classList.add(
+      "show"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    payment === "Pay on Delivery"
+  ){
+
+    paymentNotice.textContent =
+      "You will pay when your order is delivered. Availability may depend on your delivery location.";
+
+
+    paymentNotice.classList.add(
+      "show"
+    );
+
+  }
+
+}
 
 
 /* =====================================================
@@ -2910,6 +3852,10 @@ async function placeOrder(){
   }
 
 
+  /*
+    CUSTOMER NAME
+  */
+
   if(!customerName.value.trim()){
 
     showToast(
@@ -2922,6 +3868,10 @@ async function placeOrder(){
 
   }
 
+
+  /*
+    PHONE
+  */
 
   if(!phone.value.trim()){
 
@@ -2936,44 +3886,91 @@ async function placeOrder(){
   }
 
 
-  if(!address.value.trim()){
+  /*
+    DELIVERY METHOD
+  */
 
-    showToast(
-      "Please enter your delivery address."
+  const selectedDelivery =
+    document.querySelector(
+      'input[name="delivery"]:checked'
     );
 
-    address.focus();
+
+  const isPickup =
+
+    selectedDelivery &&
+    selectedDelivery.value === "pickup";
+
+
+  /*
+    ADDRESS REQUIRED ONLY FOR DELIVERY
+  */
+
+  if(!isPickup){
+
+    if(!address.value.trim()){
+
+      showToast(
+        "Please enter your delivery address."
+      );
+
+      address.focus();
+
+      return;
+
+    }
+
+
+    if(!city.value.trim()){
+
+      showToast(
+        "Please enter your city or area."
+      );
+
+      city.focus();
+
+      return;
+
+    }
+
+
+    if(!state.value.trim()){
+
+      showToast(
+        "Please select your state."
+      );
+
+      state.focus();
+
+      return;
+
+    }
+
+  }
+
+
+  /*
+    DELIVERY FEE
+  */
+
+  const delivery =
+    getDeliveryFee();
+
+
+  if(delivery === null){
+
+    showToast(
+      "We cannot calculate delivery for this location yet."
+    );
 
     return;
 
   }
 
 
-  if(!city.value.trim()){
-
-    showToast(
-      "Please enter your city."
-    );
-
-    city.focus();
-
-    return;
-
-  }
-
-
-  if(!state.value.trim()){
-
-    showToast(
-      "Please enter your state."
-    );
-
-    state.focus();
-
-    return;
-
-  }
-
+  /*
+    TERMS
+  */
 
   if(!terms.checked){
 
@@ -2985,6 +3982,10 @@ async function placeOrder(){
 
   }
 
+
+  /*
+    PAYMENT
+  */
 
   const paymentInput =
     document.querySelector(
@@ -2998,31 +3999,12 @@ async function placeOrder(){
       : "Pay on Delivery";
 
 
-  const delivery =
-    getDeliveryFee();
-
-
-  let subtotal = 0;
-
-
-  cartItems.forEach(
-    function(item){
-
-      subtotal +=
-
-        (Number(item.price) || 0) *
-
-        Math.max(
-          1,
-          Number(item.qty) || 1
-        );
-
-    }
-  );
-
-
-  const total =
-    subtotal + delivery;
+  /*
+    NOTE:
+    OPay is displayed in the checkout,
+    but the actual OPay transaction should
+    be completed through a secure backend/API.
+  */
 
 
   orderBeingPlaced =
@@ -3041,15 +4023,16 @@ async function placeOrder(){
   try{
 
     /*
-      Re-read the cart immediately before
-      creating the order.
-
-      This prevents an old checkout page
-      from placing an outdated order.
+      Re-read Firestore cart.
+      We NEVER use localStorage.
     */
 
+    const cartRef =
+      getCartRef();
+
+
     const cartSnapshot =
-      await getCartRef().get();
+      await cartRef.get();
 
 
     if(!cartSnapshot.exists){
@@ -3083,8 +4066,7 @@ async function placeOrder(){
 
 
     /*
-      Create a clean copy of the cart
-      for the order.
+      Create clean order items.
     */
 
     const orderItemsData =
@@ -3121,7 +4103,7 @@ async function placeOrder(){
 
 
     /*
-      Recalculate from the actual Firestore cart.
+      Recalculate subtotal from Firestore.
     */
 
     let latestSubtotal = 0;
@@ -3139,33 +4121,85 @@ async function placeOrder(){
     );
 
 
+    /*
+      Calculate final total.
+    */
+
     const latestTotal =
       latestSubtotal +
       delivery;
 
 
     /*
-      Address saved as ONE string.
-
-      This matches your current
-      orders.address field.
+      ADDRESS
     */
 
-    const fullAddress =
+    let fullAddress = "";
 
-      address.value.trim() +
 
-      ", " +
+    if(isPickup){
 
-      city.value.trim() +
+      fullAddress =
+        "Store Pickup";
 
-      ", " +
+    }
+    else{
 
-      state.value.trim();
+      fullAddress =
+
+        address.value.trim() +
+
+        ", " +
+
+        city.value.trim() +
+
+        ", " +
+
+        state.value.trim();
+
+    }
 
 
     /*
-      Save order.
+      ORDER STATUS
+    */
+
+    let orderStatus =
+      "Pending";
+
+
+    if(
+      payment === "Pay on Delivery"
+    ){
+
+      orderStatus =
+        "Pending";
+
+    }
+
+
+    if(
+      payment === "Bank Transfer"
+    ){
+
+      orderStatus =
+        "Awaiting Payment";
+
+    }
+
+
+    if(
+      payment === "OPay"
+    ){
+
+      orderStatus =
+        "Awaiting Payment";
+
+    }
+
+
+    /*
+      CREATE ORDER
     */
 
     const orderRef =
@@ -3190,6 +4224,9 @@ async function placeOrder(){
       customerName:
         customerName.value.trim(),
 
+      email:
+        currentUser.email || "",
+
       items:
         orderItemsData,
 
@@ -3200,7 +4237,7 @@ async function placeOrder(){
         phone.value.trim(),
 
       status:
-        "Pending",
+        orderStatus,
 
       total:
         String(latestTotal),
@@ -3211,7 +4248,7 @@ async function placeOrder(){
         .serverTimestamp(),
 
       deliveryMethod:
-        delivery === 0
+        isPickup
           ? "Store Pickup"
           : "Standard Delivery",
 
@@ -3224,18 +4261,30 @@ async function placeOrder(){
       note:
         note.value.trim(),
 
-      email:
-        currentUser.email || ""
+      city:
+        isPickup
+          ? ""
+          : city.value.trim(),
+
+      state:
+        isPickup
+          ? ""
+          : state.value.trim(),
+
+      paymentStatus:
+        payment === "Pay on Delivery"
+          ? "Pending"
+          : "Unpaid"
 
     });
 
 
     /*
-      Clear cart only after the order
-      was successfully created.
+      CLEAR FIRESTORE CART
+      ONLY AFTER ORDER CREATION.
     */
 
-    await getCartRef().set({
+    await cartRef.set({
 
       userId:
         currentUser.uid,
@@ -3255,12 +4304,13 @@ async function placeOrder(){
 
 
     /*
-      Show success screen.
+      SUCCESS
     */
 
     showOrderSuccess(
       orderRef.id,
-      latestTotal
+      latestTotal,
+      payment
     );
 
   }
@@ -3302,12 +4352,46 @@ async function placeOrder(){
 
 function showOrderSuccess(
   orderId,
-  total
+  total,
+  payment
 ){
 
   processing.classList.remove(
     "active"
   );
+
+
+  let paymentMessage = "";
+
+
+  if(
+    payment === "Pay on Delivery"
+  ){
+
+    paymentMessage =
+      "You will pay when your order is delivered.";
+
+  }
+
+
+  if(
+    payment === "Bank Transfer"
+  ){
+
+    paymentMessage =
+      "Your order is awaiting bank transfer payment.";
+
+  }
+
+
+  if(
+    payment === "OPay"
+  ){
+
+    paymentMessage =
+      "Your order has been created and is awaiting secure OPay payment.";
+
+  }
 
 
   mainContent.innerHTML = `
@@ -3320,7 +4404,7 @@ function showOrderSuccess(
 
 
       <h1>
-        Order Placed Successfully! 🎉
+        Order Created Successfully! 🎉
       </h1>
 
 
@@ -3341,9 +4425,22 @@ function showOrderSuccess(
       <p style="margin-top:15px;">
 
         Order Total:
+
         <strong style="color:#38bdf8;">
+
           ₦${formatPrice(total)}
+
         </strong>
+
+      </p>
+
+
+      <p style="
+        margin-top:12px;
+        color:#86efac;
+      ">
+
+        ${escapeHtml(paymentMessage)}
 
       </p>
 
@@ -3354,7 +4451,9 @@ function showOrderSuccess(
           href="orders.html"
           class="success-button primary"
         >
+
           📦 View My Orders
+
         </a>
 
 
@@ -3362,7 +4461,9 @@ function showOrderSuccess(
           href="shop.html"
           class="success-button secondary"
         >
+
           🛍️ Continue Shopping
+
         </a>
 
       </div>
@@ -3408,7 +4509,7 @@ function showToast(
         );
 
       },
-      2800
+      3000
     );
 
 }
@@ -3499,8 +4600,17 @@ function escapeAttribute(
 
 }
 
+
+/* =====================================================
+   INITIAL PAYMENT MESSAGE
+===================================================== */
+
+updatePaymentNotice(
+  "Pay on Delivery"
+);
+
 </script>
 
 </body>
 
-   </html>
+  </html>
