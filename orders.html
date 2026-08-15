@@ -1,128 +1,3163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Orders - Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>My Orders | Danny Smart Power</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-  margin: 0;
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* HEADER */
-header {
-  background: #020617;
-  padding: 15px 8%;
-  display: flex;
-  justify-content: space-between;
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+  --bg:#0f172a;
+  --header:#020617;
+  --card:#111e30;
+  --card2:#17253a;
+  --input:#0b1525;
+
+  --border:rgba(148,163,184,.15);
+
+  --blue:#38bdf8;
+  --blue2:#0284c7;
+
+  --green:#22c55e;
+  --yellow:#facc15;
+  --red:#ef4444;
+
+  --text:#f8fafc;
+  --muted:#94a3b8;
 }
 
-a { color: #38bdf8; text-decoration: none; }
 
-/* CONTAINER */
-.container {
-  padding: 20px 8%;
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    'Poppins',
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+
+    radial-gradient(
+      circle at top left,
+      rgba(56,189,248,.08),
+      transparent 35%
+    ),
+
+    var(--bg);
 }
 
-/* ORDER CARD */
-.order {
-  background: #020617;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:50;
+
+  min-height:76px;
+
+  padding:12px 7%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  background:
+    rgba(2,6,23,.97);
+
+  border-bottom:
+    1px solid var(--border);
+
+  backdrop-filter:blur(14px);
 }
 
-.order h3 {
-  margin-bottom: 10px;
+
+.logo{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  color:var(--blue);
+
+  font-size:20px;
+
+  font-weight:700;
 }
 
-.item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  font-size: 14px;
+
+.logo-icon{
+
+  width:40px;
+
+  height:40px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
+
+  color:#00111c;
+
+  font-size:20px;
 }
 
-.total {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #38bdf8;
+
+.back-link{
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:13px;
+
+  white-space:nowrap;
+
+  transition:.2s;
 }
 
-.date {
-  font-size: 12px;
-  color: #aaa;
+
+.back-link:hover{
+
+  color:var(--blue);
 }
 
-/* EMPTY */
-.empty {
-  text-align: center;
-  margin-top: 50px;
-  color: #aaa;
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+
+  width:100%;
+
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:30px 7% 70px;
 }
+
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.page-heading{
+
+  margin-bottom:25px;
+}
+
+
+.page-heading h1{
+
+  font-size:30px;
+
+  margin-bottom:6px;
+}
+
+
+.page-heading p{
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+
+.account-line{
+
+  margin-top:10px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  color:#86efac;
+
+  font-size:11px;
+}
+
+
+/* =====================================================
+   TOP STATS
+===================================================== */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:13px;
+
+  margin-bottom:25px;
+}
+
+
+.stat{
+
+  padding:17px;
+
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--card),
+      #0d1828
+    );
+
+  border:
+    1px solid var(--border);
+}
+
+
+.stat-icon{
+
+  font-size:21px;
+
+  margin-bottom:7px;
+}
+
+
+.stat-number{
+
+  font-size:20px;
+
+  font-weight:700;
+
+  color:white;
+}
+
+
+.stat-label{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:2px;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:15px;
+
+  flex-wrap:wrap;
+}
+
+
+.toolbar-title{
+
+  font-size:17px;
+
+  font-weight:700;
+}
+
+
+.filter{
+
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  border:
+    1px solid var(--border);
+
+  outline:none;
+
+  background:var(--input);
+
+  color:white;
+
+  font-family:inherit;
+
+  font-size:11px;
+}
+
+
+.filter option{
+
+  background:#020617;
+
+  color:white;
+}
+
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+.orders{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+}
+
+
+.order-card{
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--card),
+      #0d1828
+    );
+
+  border:
+    1px solid var(--border);
+
+  border-radius:19px;
+
+  overflow:hidden;
+
+  transition:.2s;
+}
+
+
+.order-card:hover{
+
+  border-color:
+    rgba(56,189,248,.25);
+
+  transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   ORDER HEADER
+===================================================== */
+
+.order-header{
+
+  padding:17px 19px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  background:
+    rgba(255,255,255,.015);
+}
+
+
+.order-id{
+
+  font-size:12px;
+
+  font-weight:700;
+
+  word-break:break-all;
+}
+
+
+.order-date{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:4px;
+}
+
+
+/* =====================================================
+   STATUS BADGES
+===================================================== */
+
+.badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  padding:7px 10px;
+
+  border-radius:999px;
+
+  font-size:9px;
+
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+
+.badge.pending{
+
+  color:#fde68a;
+
+  background:
+    rgba(250,204,21,.10);
+
+  border:
+    1px solid rgba(250,204,21,.20);
+}
+
+
+.badge.processing{
+
+  color:#bae6fd;
+
+  background:
+    rgba(56,189,248,.10);
+
+  border:
+    1px solid rgba(56,189,248,.20);
+}
+
+
+.badge.shipping{
+
+  color:#c4b5fd;
+
+  background:
+    rgba(139,92,246,.10);
+
+  border:
+    1px solid rgba(139,92,246,.20);
+}
+
+
+.badge.delivered{
+
+  color:#86efac;
+
+  background:
+    rgba(34,197,94,.10);
+
+  border:
+    1px solid rgba(34,197,94,.20);
+}
+
+
+.badge.cancelled{
+
+  color:#fca5a5;
+
+  background:
+    rgba(239,68,68,.10);
+
+  border:
+    1px solid rgba(239,68,68,.20);
+}
+
+
+/* =====================================================
+   ORDER BODY
+===================================================== */
+
+.order-body{
+
+  padding:17px 19px;
+}
+
+
+.order-summary{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr 1fr;
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+
+.info-box{
+
+  padding:12px;
+
+  border-radius:12px;
+
+  background:#0b1525;
+
+  border:
+    1px solid var(--border);
+}
+
+
+.info-label{
+
+  color:#64748b;
+
+  font-size:9px;
+
+  margin-bottom:4px;
+}
+
+
+.info-value{
+
+  color:#e2e8f0;
+
+  font-size:11px;
+
+  font-weight:600;
+
+  word-break:break-word;
+}
+
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+.products{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:9px;
+
+  margin-bottom:16px;
+}
+
+
+.product{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+  padding:10px;
+
+  border-radius:12px;
+
+  background:#0b1525;
+
+  border:
+    1px solid var(--border);
+}
+
+
+.product-image{
+
+  width:55px;
+
+  height:55px;
+
+  flex-shrink:0;
+
+  object-fit:cover;
+
+  border-radius:9px;
+
+  background:var(--card2);
+}
+
+
+.product-info{
+
+  flex:1;
+
+  min-width:0;
+}
+
+
+.product-name{
+
+  font-size:11px;
+
+  font-weight:600;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+
+.product-meta{
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+
+.product-price{
+
+  color:var(--blue);
+
+  font-size:11px;
+
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+
+/* =====================================================
+   TOTAL
+===================================================== */
+
+.order-total{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding-top:14px;
+
+  border-top:
+    1px solid var(--border);
+}
+
+
+.total-label{
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+
+.total-value{
+
+  color:var(--blue);
+
+  font-size:19px;
+
+  font-weight:800;
+}
+
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+.payment-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-top:12px;
+
+  flex-wrap:wrap;
+}
+
+
+.payment-method{
+
+  color:#cbd5e1;
+
+  font-size:10px;
+}
+
+
+.payment-status{
+
+  font-size:9px;
+
+  padding:6px 9px;
+
+  border-radius:8px;
+
+  font-weight:600;
+}
+
+
+.payment-status.paid{
+
+  color:#86efac;
+
+  background:
+    rgba(34,197,94,.08);
+}
+
+
+.payment-status.unpaid{
+
+  color:#fde68a;
+
+  background:
+    rgba(250,204,21,.08);
+}
+
+
+.payment-status.pending{
+
+  color:#bae6fd;
+
+  background:
+    rgba(56,189,248,.08);
+}
+
+
+/* =====================================================
+   ADDRESS
+===================================================== */
+
+.address-box{
+
+  margin-top:12px;
+
+  padding:12px;
+
+  border-radius:11px;
+
+  background:
+    rgba(56,189,248,.035);
+
+  border:
+    1px solid
+    rgba(56,189,248,.10);
+}
+
+
+.address-title{
+
+  color:#64748b;
+
+  font-size:9px;
+
+  margin-bottom:4px;
+}
+
+
+.address-text{
+
+  color:#cbd5e1;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   TRACKING
+===================================================== */
+
+.tracking{
+
+  margin-top:18px;
+
+  padding:15px;
+
+  border-radius:13px;
+
+  background:#0b1525;
+
+  border:
+    1px solid var(--border);
+}
+
+
+.tracking-title{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  margin-bottom:15px;
+}
+
+
+.timeline{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  position:relative;
+}
+
+
+.timeline::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:10%;
+
+  right:10%;
+
+  top:13px;
+
+  height:2px;
+
+  background:#1e293b;
+
+  z-index:0;
+}
+
+
+.step{
+
+  position:relative;
+
+  z-index:1;
+
+  text-align:center;
+}
+
+
+.step-dot{
+
+  width:27px;
+
+  height:27px;
+
+  margin:auto;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#1e293b;
+
+  border:2px solid #334155;
+
+  font-size:10px;
+
+  color:#64748b;
+}
+
+
+.step.active .step-dot{
+
+  background:
+    rgba(56,189,248,.15);
+
+  border-color:var(--blue);
+
+  color:var(--blue);
+}
+
+
+.step.done .step-dot{
+
+  background:
+    rgba(34,197,94,.15);
+
+  border-color:var(--green);
+
+  color:#86efac;
+}
+
+
+.step-label{
+
+  margin-top:7px;
+
+  color:#64748b;
+
+  font-size:8px;
+}
+
+
+.step.active .step-label,
+.step.done .step-label{
+
+  color:#cbd5e1;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.order-actions{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:9px;
+
+  margin-top:15px;
+
+  flex-wrap:wrap;
+}
+
+
+.action-button{
+
+  border:none;
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  font-family:inherit;
+
+  font-size:10px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  text-decoration:none;
+
+  transition:.2s;
+}
+
+
+.action-button.primary{
+
+  background:var(--blue);
+
+  color:#00111c;
+}
+
+
+.action-button.secondary{
+
+  background:var(--card2);
+
+  color:white;
+
+  border:
+    1px solid var(--border);
+}
+
+
+.action-button:hover{
+
+  transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+  margin:50px auto;
+
+  max-width:600px;
+
+  padding:45px 25px;
+
+  text-align:center;
+
+  border-radius:22px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+}
+
+
+.empty-icon{
+
+  font-size:55px;
+
+  margin-bottom:15px;
+}
+
+
+.empty h2{
+
+  font-size:21px;
+
+  margin-bottom:8px;
+}
+
+
+.empty p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+
+.empty-button{
+
+  display:inline-block;
+
+  margin-top:18px;
+
+  padding:12px 20px;
+
+  border-radius:11px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  text-decoration:none;
+
+  font-size:11px;
+
+  font-weight:700;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+  padding:45px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+.spinner{
+
+  width:34px;
+
+  height:34px;
+
+  margin:0 auto 13px;
+
+  border:
+    3px solid #1e293b;
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:
+    spin .8s linear infinite;
+}
+
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  z-index:100;
+
+  max-width:90%;
+
+  padding:12px 17px;
+
+  border-radius:11px;
+
+  background:#020617;
+
+  border:
+    1px solid
+    rgba(56,189,248,.35);
+
+  color:white;
+
+  font-size:11px;
+
+  text-align:center;
+
+  transform:
+    translate(-50%,120px);
+
+  opacity:0;
+
+  transition:.3s;
+}
+
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+  opacity:1;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+  header{
+
+    padding:11px 15px;
+
+  }
+
+
+  .logo{
+
+    font-size:15px;
+
+  }
+
+
+  .logo-icon{
+
+    width:35px;
+
+    height:35px;
+
+    font-size:17px;
+
+  }
+
+
+  .back-link{
+
+    font-size:11px;
+
+  }
+
+
+  main{
+
+    padding:
+      22px 12px 50px;
+
+  }
+
+
+  .page-heading h1{
+
+    font-size:24px;
+
+  }
+
+
+  .stats{
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+
+  .stats .stat:last-child{
+
+    grid-column:1/-1;
+
+  }
+
+
+  .order-summary{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .order-header{
+
+    align-items:flex-start;
+
+    flex-direction:column;
+
+  }
+
+
+  .timeline{
+
+    grid-template-columns:
+      repeat(4,1fr);
+
+  }
+
+
+  .step-label{
+
+    font-size:7px;
+
+  }
+
+
+  .product-price{
+
+    font-size:10px;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
-  <h2>My Orders 📦</h2>
-  <a href="shop.html">← Back to Shop</a>
+
+  <div class="logo">
+
+    <div class="logo-icon">
+      ⚡
+    </div>
+
+    Danny Smart Power
+
+  </div>
+
+
+  <a
+    href="shop.html"
+    class="back-link"
+  >
+
+    ← Continue Shopping
+
+  </a>
+
 </header>
 
-<div class="container" id="orders-container"></div>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+  <section class="page-heading">
+
+    <h1>
+      My Orders 📦
+    </h1>
+
+    <p>
+      Track and manage your Danny Smart Power orders.
+    </p>
+
+    <div class="account-line">
+
+      🔒 Orders are shown only for your account.
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       STATS
+  ================================================= -->
+
+  <section class="stats">
+
+    <div class="stat">
+
+      <div class="stat-icon">
+        📦
+      </div>
+
+      <div
+        class="stat-number"
+        id="totalOrders"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        Total Orders
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-icon">
+        🚚
+      </div>
+
+      <div
+        class="stat-number"
+        id="activeOrders"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        Active Orders
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-icon">
+        ✅
+      </div>
+
+      <div
+        class="stat-number"
+        id="deliveredOrders"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        Delivered
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       TOOLBAR
+  ================================================= -->
+
+  <div class="toolbar">
+
+    <div class="toolbar-title">
+      Your Order History
+    </div>
+
+
+    <select
+      id="filter"
+      class="filter"
+    >
+
+      <option value="all">
+        All Orders
+      </option>
+
+      <option value="active">
+        Active
+      </option>
+
+      <option value="Pending">
+        Pending
+      </option>
+
+      <option value="Processing">
+        Processing
+      </option>
+
+      <option value="Shipped">
+        Shipped
+      </option>
+
+      <option value="Out for Delivery">
+        Out for Delivery
+      </option>
+
+      <option value="Delivered">
+        Delivered
+      </option>
+
+      <option value="Cancelled">
+        Cancelled
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- =================================================
+       ORDERS
+  ================================================= -->
+
+  <section
+    id="orders"
+    class="orders"
+  >
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading your orders...
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 
 <script>
-function loadOrders(){
-  let orders = JSON.parse(localStorage.getItem("orders")) || [];
-  let container = document.getElementById("orders-container");
 
-  if(orders.length === 0){
-    container.innerHTML = `<p class="empty">No orders yet 📭</p>`;
-    return;
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
+};
+
+
+firebase.initializeApp(
+  firebaseConfig
+);
+
+
+const auth =
+  firebase.auth();
+
+
+const db =
+  firebase.firestore();
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const ordersContainer =
+  document.getElementById(
+    "orders"
+  );
+
+
+const filter =
+  document.getElementById(
+    "filter"
+  );
+
+
+const totalOrders =
+  document.getElementById(
+    "totalOrders"
+  );
+
+
+const activeOrders =
+  document.getElementById(
+    "activeOrders"
+  );
+
+
+const deliveredOrders =
+  document.getElementById(
+    "deliveredOrders"
+  );
+
+
+const toast =
+  document.getElementById(
+    "toast"
+  );
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentUser = null;
+
+let allOrders = [];
+
+let ordersUnsubscribe = null;
+
+
+/* =====================================================
+   AUTH
+===================================================== */
+
+auth.onAuthStateChanged(
+  function(user){
+
+    if(ordersUnsubscribe){
+
+      ordersUnsubscribe();
+
+      ordersUnsubscribe = null;
+
+    }
+
+
+    currentUser = user;
+
+
+    if(!user){
+
+      showLoginRequired();
+
+      return;
+
+    }
+
+
+    listenToOrders();
+
   }
+);
 
-  container.innerHTML = "";
 
-  orders.reverse().forEach(order => {
+/* =====================================================
+   LOGIN REQUIRED
+===================================================== */
 
-    let itemsHTML = "";
-    let total = 0;
+function showLoginRequired(){
 
-    order.cart.forEach(item=>{
-      let subtotal = item.price * item.qty;
-      total += subtotal;
+  ordersContainer.innerHTML = `
 
-      itemsHTML += `
-        <div class="item">
-          <span>${item.name} x${item.qty}</span>
-          <span>₦${subtotal}</span>
-        </div>
-      `;
-    });
+    <div class="empty">
 
-    container.innerHTML += `
-      <div class="order">
-        <h3>${order.name}</h3>
-        <p>${order.address}</p>
-
-        ${itemsHTML}
-
-        <p class="total">Total: ₦${total}</p>
-        <p class="date">${order.date}</p>
+      <div class="empty-icon">
+        🔐
       </div>
-    `;
-  });
+
+      <h2>
+        Sign in to view your orders
+      </h2>
+
+      <p>
+        Please sign in to your Danny Smart Power
+        account to see your order history.
+      </p>
+
+      <a
+        href="login.html"
+        class="empty-button"
+      >
+        Sign In
+
+      </a>
+
+    </div>
+
+  `;
+
+
+  totalOrders.textContent =
+    "0";
+
+
+  activeOrders.textContent =
+    "0";
+
+
+  deliveredOrders.textContent =
+    "0";
+
 }
 
-loadOrders();
+
+/* =====================================================
+   LISTEN TO ORDERS
+===================================================== */
+
+function listenToOrders(){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  /*
+    We filter only by customerId.
+
+    We intentionally do NOT use:
+      orderBy("createdAt")
+
+    here so this page can work without
+    requiring a composite Firestore index.
+
+    We sort the returned orders in JavaScript.
+  */
+
+  ordersUnsubscribe =
+
+    db
+    .collection("orders")
+    .where(
+      "customerId",
+      "==",
+      currentUser.uid
+    )
+    .onSnapshot(
+
+      function(snapshot){
+
+        allOrders = [];
+
+
+        snapshot.forEach(
+          function(doc){
+
+            allOrders.push({
+
+              id:doc.id,
+
+              ...doc.data()
+
+            });
+
+          }
+        );
+
+
+        sortOrders();
+
+
+        updateStats();
+
+
+        renderOrders();
+
+      },
+
+      function(error){
+
+        console.error(
+          "Orders error:",
+          error
+        );
+
+
+        ordersContainer.innerHTML = `
+
+          <div class="empty">
+
+            <div class="empty-icon">
+              ⚠️
+            </div>
+
+            <h2>
+              Could not load orders
+            </h2>
+
+            <p>
+              ${escapeHtml(
+                error.message ||
+                "Please try again."
+              )}
+            </p>
+
+          </div>
+
+        `;
+
+      }
+
+    );
+
+}
+
+
+/* =====================================================
+   SORT ORDERS
+===================================================== */
+
+function sortOrders(){
+
+  allOrders.sort(
+    function(a,b){
+
+      const dateA =
+        getTimestampMillis(
+          a.createdAt
+        );
+
+
+      const dateB =
+        getTimestampMillis(
+          b.createdAt
+        );
+
+
+      return dateB - dateA;
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+  const total =
+    allOrders.length;
+
+
+  const delivered =
+    allOrders.filter(
+      function(order){
+
+        return normalizeStatus(
+          order.status
+        ) === "delivered";
+
+      }
+    ).length;
+
+
+  const active =
+    allOrders.filter(
+      function(order){
+
+        const status =
+          normalizeStatus(
+            order.status
+          );
+
+
+        return (
+
+          status !== "delivered" &&
+
+          status !== "cancelled"
+
+        );
+
+      }
+    ).length;
+
+
+  totalOrders.textContent =
+    total;
+
+
+  activeOrders.textContent =
+    active;
+
+
+  deliveredOrders.textContent =
+    delivered;
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+filter.addEventListener(
+  "change",
+  renderOrders
+);
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderOrders(){
+
+  let orders =
+    [...allOrders];
+
+
+  const selectedFilter =
+    filter.value;
+
+
+  if(
+    selectedFilter === "active"
+  ){
+
+    orders =
+      orders.filter(
+        function(order){
+
+          const status =
+            normalizeStatus(
+              order.status
+            );
+
+
+          return (
+
+            status !== "delivered" &&
+
+            status !== "cancelled"
+
+          );
+
+        }
+      );
+
+  }
+
+
+  else if(
+    selectedFilter !== "all"
+  ){
+
+    orders =
+      orders.filter(
+        function(order){
+
+          return normalizeStatus(
+            order.status
+          ) === normalizeStatus(
+            selectedFilter
+          );
+
+        }
+      );
+
+  }
+
+
+  if(!orders.length){
+
+    ordersContainer.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          📦
+        </div>
+
+        <h2>
+          No orders found
+        </h2>
+
+        <p>
+          ${
+            allOrders.length
+              ? "There are no orders in this filter."
+              : "You have not placed an order yet."
+          }
+        </p>
+
+        ${
+          !allOrders.length
+          ? `
+            <a
+              href="shop.html"
+              class="empty-button"
+            >
+              Start Shopping
+            </a>
+          `
+          : ""
+        }
+
+      </div>
+
+    `;
+
+
+    return;
+
+  }
+
+
+  ordersContainer.innerHTML =
+    orders
+      .map(
+        renderOrderCard
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   ORDER CARD
+===================================================== */
+
+function renderOrderCard(
+  order
+){
+
+  const status =
+    order.status ||
+    "Pending";
+
+
+  const normalized =
+    normalizeStatus(
+      status
+    );
+
+
+  const statusClass =
+    getStatusClass(
+      normalized
+    );
+
+
+  const createdDate =
+    formatDate(
+      order.createdAt
+    );
+
+
+  const items =
+    Array.isArray(
+      order.items
+    )
+      ? order.items
+      : [];
+
+
+  const total =
+    Number(
+      order.total
+    ) || 0;
+
+
+  const subtotal =
+    Number(
+      order.subtotal
+    ) || 0;
+
+
+  const deliveryFee =
+    Number(
+      order.deliveryFee
+    ) || 0;
+
+
+  const payment =
+    order.payment ||
+    "Not specified";
+
+
+  const paymentStatus =
+    order.paymentStatus ||
+    "Pending";
+
+
+  const deliveryMethod =
+    order.deliveryMethod ||
+    "Standard Delivery";
+
+
+  const address =
+    order.address ||
+    "No address provided";
+
+
+  return `
+
+    <article
+      class="order-card"
+      data-order-id="${escapeAttribute(order.id)}"
+    >
+
+
+      <!-- ORDER HEADER -->
+
+      <div class="order-header">
+
+        <div>
+
+          <div class="order-id">
+
+            Order #${escapeHtml(
+              shortOrderId(order.id)
+            )}
+
+          </div>
+
+          <div class="order-date">
+
+            ${escapeHtml(createdDate)}
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="badge ${statusClass}"
+        >
+
+          ${getStatusIcon(normalized)}
+
+          ${escapeHtml(status)}
+
+        </div>
+
+      </div>
+
+
+      <!-- ORDER BODY -->
+
+      <div class="order-body">
+
+
+        <!-- SUMMARY -->
+
+        <div class="order-summary">
+
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Delivery
+            </div>
+
+            <div class="info-value">
+
+              ${escapeHtml(
+                deliveryMethod
+              )}
+
+            </div>
+
+          </div>
+
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Payment
+            </div>
+
+            <div class="info-value">
+
+              ${escapeHtml(
+                payment
+              )}
+
+            </div>
+
+          </div>
+
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Items
+            </div>
+
+            <div class="info-value">
+
+              ${getItemCount(items)}
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="products">
+
+          ${
+            items.length
+              ? items
+                  .map(
+                    renderProduct
+                  )
+                  .join("")
+              : `
+                <div
+                  style="
+                    color:#64748b;
+                    font-size:10px;
+                    padding:10px;
+                  "
+                >
+                  No product information available.
+                </div>
+              `
+          }
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="order-total">
+
+          <div>
+
+            <div class="total-label">
+              Order Total
+            </div>
+
+            <div
+              style="
+                color:#64748b;
+                font-size:9px;
+                margin-top:3px;
+              "
+            >
+
+              Subtotal:
+              ₦${formatPrice(subtotal)}
+
+              ${
+                deliveryFee > 0
+                  ? `
+                    • Delivery:
+                    ₦${formatPrice(deliveryFee)}
+                  `
+                  : " • Free delivery"
+              }
+
+            </div>
+
+          </div>
+
+
+          <div class="total-value">
+
+            ₦${formatPrice(total)}
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT STATUS -->
+
+        <div class="payment-row">
+
+          <div class="payment-method">
+
+            💳 ${escapeHtml(payment)}
+
+          </div>
+
+
+          <div
+            class="
+              payment-status
+              ${getPaymentClass(paymentStatus)}
+            "
+          >
+
+            ${getPaymentIcon(paymentStatus)}
+
+            ${escapeHtml(paymentStatus)}
+
+          </div>
+
+        </div>
+
+
+        <!-- ADDRESS -->
+
+        <div class="address-box">
+
+          <div class="address-title">
+
+            📍 Delivery Address
+
+          </div>
+
+          <div class="address-text">
+
+            ${escapeHtml(address)}
+
+          </div>
+
+        </div>
+
+
+        <!-- TRACKING -->
+
+        ${renderTracking(normalized)}
+
+
+        <!-- ACTIONS -->
+
+        <div class="order-actions">
+
+          <button
+            class="action-button secondary"
+            onclick="copyOrderId('${escapeAttribute(order.id)}')"
+          >
+
+            Copy Order ID
+
+          </button>
+
+
+          <a
+            href="shop.html"
+            class="action-button primary"
+          >
+
+            Continue Shopping
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PRODUCT
+===================================================== */
+
+function renderProduct(
+  item
+){
+
+  const name =
+    item.name ||
+    "Product";
+
+
+  const price =
+    Number(
+      item.price
+    ) || 0;
+
+
+  const qty =
+    Math.max(
+      1,
+      Number(
+        item.qty
+      ) || 1
+    );
+
+
+  const subtotal =
+    price * qty;
+
+
+  const image =
+    item.image ||
+    "https://via.placeholder.com/300x300?text=DSP";
+
+
+  return `
+
+    <div class="product">
+
+      <img
+        class="product-image"
+        src="${escapeAttribute(image)}"
+        alt="${escapeAttribute(name)}"
+        onerror="
+          this.src='https://via.placeholder.com/300x300?text=DSP'
+        "
+      >
+
+
+      <div class="product-info">
+
+        <div class="product-name">
+
+          ${escapeHtml(name)}
+
+        </div>
+
+
+        <div class="product-meta">
+
+          Qty: ${qty}
+
+          ${
+            item.category
+              ? " • " +
+                escapeHtml(
+                  item.category
+                )
+              : ""
+          }
+
+        </div>
+
+      </div>
+
+
+      <div class="product-price">
+
+        ₦${formatPrice(subtotal)}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TRACKING
+===================================================== */
+
+function renderTracking(
+  status
+){
+
+  if(
+    status === "cancelled"
+  ){
+
+    return `
+
+      <div class="tracking">
+
+        <div class="tracking-title">
+
+          ❌ Order Cancelled
+
+        </div>
+
+        <div
+          style="
+            color:#94a3b8;
+            font-size:10px;
+            line-height:1.6;
+          "
+        >
+
+          This order has been cancelled.
+          Please contact DSP support if you
+          believe this is incorrect.
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  const steps = [
+
+    {
+      key:"pending",
+      icon:"✓",
+      label:"Order Placed"
+    },
+
+    {
+      key:"processing",
+      icon:"⚙",
+      label:"Processing"
+    },
+
+    {
+      key:"shipped",
+      icon:"🚚",
+      label:"Shipped"
+    },
+
+    {
+      key:"delivered",
+      icon:"✓",
+      label:"Delivered"
+    }
+
+  ];
+
+
+  const currentIndex =
+    getTrackingIndex(
+      status
+    );
+
+
+  return `
+
+    <div class="tracking">
+
+      <div class="tracking-title">
+
+        📍 Order Tracking
+
+      </div>
+
+
+      <div class="timeline">
+
+        ${
+          steps
+            .map(
+              function(step,index){
+
+                let className = "";
+
+
+                if(
+                  index <
+                  currentIndex
+                ){
+
+                  className =
+                    "done";
+
+                }
+
+
+                else if(
+                  index ===
+                  currentIndex
+                ){
+
+                  className =
+                    "active";
+
+                }
+
+
+                return `
+
+                  <div
+                    class="step ${className}"
+                  >
+
+                    <div class="step-dot">
+
+                      ${step.icon}
+
+                    </div>
+
+                    <div class="step-label">
+
+                      ${step.label}
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+            )
+            .join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TRACKING INDEX
+===================================================== */
+
+function getTrackingIndex(
+  status
+){
+
+  switch(status){
+
+    case "pending":
+      return 0;
+
+    case "processing":
+      return 1;
+
+    case "shipped":
+      return 2;
+
+    case "out for delivery":
+      return 2;
+
+    case "delivered":
+      return 3;
+
+    default:
+      return 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   STATUS CLASS
+===================================================== */
+
+function getStatusClass(
+  status
+){
+
+  if(
+    status === "delivered"
+  ){
+
+    return "delivered";
+
+  }
+
+
+  if(
+    status === "cancelled"
+  ){
+
+    return "cancelled";
+
+  }
+
+
+  if(
+    status === "shipped" ||
+    status === "out for delivery"
+  ){
+
+    return "shipping";
+
+  }
+
+
+  if(
+    status === "processing"
+  ){
+
+    return "processing";
+
+  }
+
+
+  return "pending";
+
+}
+
+
+/* =====================================================
+   STATUS ICON
+===================================================== */
+
+function getStatusIcon(
+  status
+){
+
+  if(
+    status === "delivered"
+  ){
+
+    return "✓";
+
+  }
+
+
+  if(
+    status === "cancelled"
+  ){
+
+    return "✕";
+
+  }
+
+
+  if(
+    status === "processing"
+  ){
+
+    return "⚙";
+
+  }
+
+
+  if(
+    status === "shipped" ||
+    status === "out for delivery"
+  ){
+
+    return "🚚";
+
+  }
+
+
+  return "⏳";
+
+}
+
+
+/* =====================================================
+   PAYMENT CLASS
+===================================================== */
+
+function getPaymentClass(
+  status
+){
+
+  const value =
+    String(
+      status || ""
+    )
+    .toLowerCase();
+
+
+  if(
+    value === "paid" ||
+    value === "successful" ||
+    value === "completed"
+  ){
+
+    return "paid";
+
+  }
+
+
+  if(
+    value === "unpaid"
+  ){
+
+    return "unpaid";
+
+  }
+
+
+  return "pending";
+
+}
+
+
+/* =====================================================
+   PAYMENT ICON
+===================================================== */
+
+function getPaymentIcon(
+  status
+){
+
+  const value =
+    String(
+      status || ""
+    )
+    .toLowerCase();
+
+
+  if(
+    value === "paid" ||
+    value === "successful" ||
+    value === "completed"
+  ){
+
+    return "✓";
+
+  }
+
+
+  if(
+    value === "unpaid"
+  ){
+
+    return "○";
+
+  }
+
+
+  return "◷";
+
+}
+
+
+/* =====================================================
+   NORMALIZE STATUS
+===================================================== */
+
+function normalizeStatus(
+  value
+){
+
+  return String(
+    value || "pending"
+  )
+  .trim()
+  .toLowerCase()
+  .replace(
+    /\s+/g,
+    " "
+  );
+
+}
+
+
+/* =====================================================
+   ITEM COUNT
+===================================================== */
+
+function getItemCount(
+  items
+){
+
+  return items.reduce(
+    function(total,item){
+
+      return total +
+        Math.max(
+          1,
+          Number(
+            item.qty
+          ) || 1
+        );
+
+    },
+    0
+  );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function getTimestampMillis(
+  timestamp
+){
+
+  if(
+    timestamp &&
+    typeof timestamp.toMillis ===
+      "function"
+  ){
+
+    return timestamp.toMillis();
+
+  }
+
+
+  if(
+    timestamp instanceof Date
+  ){
+
+    return timestamp.getTime();
+
+  }
+
+
+  if(
+    typeof timestamp === "number"
+  ){
+
+    return timestamp;
+
+  }
+
+
+  if(
+    typeof timestamp === "string"
+  ){
+
+    const date =
+      new Date(timestamp);
+
+
+    return Number.isNaN(
+      date.getTime()
+    )
+      ? 0
+      : date.getTime();
+
+  }
+
+
+  return 0;
+
+}
+
+
+function formatDate(
+  timestamp
+){
+
+  const millis =
+    getTimestampMillis(
+      timestamp
+    );
+
+
+  if(!millis){
+
+    return "Date unavailable";
+
+  }
+
+
+  return new Intl.DateTimeFormat(
+    "en-NG",
+    {
+      dateStyle:"medium",
+      timeStyle:"short"
+    }
+  ).format(
+    new Date(millis)
+  );
+
+}
+
+
+/* =====================================================
+   SHORT ORDER ID
+===================================================== */
+
+function shortOrderId(
+  id
+){
+
+  const value =
+    String(
+      id || ""
+    );
+
+
+  if(
+    value.length <= 12
+  ){
+
+    return value;
+
+  }
+
+
+  return (
+    value.slice(0,6) +
+    "..." +
+    value.slice(-5)
+  );
+
+}
+
+
+/* =====================================================
+   COPY ORDER ID
+===================================================== */
+
+async function copyOrderId(
+  id
+){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      id
+    );
+
+
+    showToast(
+      "Order ID copied."
+    );
+
+  }
+
+  catch(error){
+
+    showToast(
+      "Could not copy Order ID."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+function formatPrice(
+  price
+){
+
+  const number =
+    Number(price);
+
+
+  if(
+    !Number.isFinite(number)
+  ){
+
+    return "0";
+
+  }
+
+
+  return number.toLocaleString(
+    "en-NG"
+  );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(
+  value
+){
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+
+  div.textContent =
+    String(
+      value ?? ""
+    );
+
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   ESCAPE ATTRIBUTE
+===================================================== */
+
+function escapeAttribute(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer = null;
+
+
+function showToast(
+  message
+){
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2500
+    );
+
+}
+
 </script>
 
 </body>
-</html>
+
+  </html>
