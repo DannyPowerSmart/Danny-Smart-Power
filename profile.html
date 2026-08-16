@@ -1,51 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>My Profile | Danny Smart Power</title>
 
+
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
+
 :root{
+
   --bg:#07111f;
   --dark:#020617;
+
   --panel:#0d1b2a;
   --panel2:#102234;
+
   --border:#203247;
+
   --text:#f8fafc;
   --muted:#94a3b8;
+
   --blue:#38bdf8;
   --green:#4ade80;
   --red:#f87171;
+
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 body{
-  font-family:Arial,Helvetica,sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
   background:var(--bg);
+
   color:var(--text);
+
   min-height:100vh;
+
 }
+
 
 button,
 input,
 textarea,
 select{
+
   font:inherit;
+
 }
+
 
 button{
+
   cursor:pointer;
+
 }
 
+
 .hidden{
+
   display:none!important;
+
 }
 
 
@@ -54,42 +95,418 @@ button{
 ========================= */
 
 .header{
+
   height:70px;
+
   background:var(--dark);
-  border-bottom:1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   padding:0 20px;
 
   position:sticky;
+
   top:0;
-  z-index:20;
+
+  z-index:100;
+
 }
+
 
 .brand{
+
   font-size:20px;
+
   font-weight:bold;
+
 }
+
 
 .brand span{
+
   color:var(--blue);
+
 }
 
-.back-btn{
-  border:1px solid var(--border);
+
+/* =========================
+   HEADER RIGHT
+========================= */
+
+.header-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+/* =========================
+   NOTIFICATION BUTTON
+========================= */
+
+.notification-wrapper{
+
+  position:relative;
+
+}
+
+
+.notification-btn{
+
+  width:42px;
+  height:42px;
+
+  border-radius:10px;
+
+  border:
+    1px solid var(--border);
+
   background:var(--panel);
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+  position:relative;
+
+}
+
+
+.notification-btn:hover{
+
+  border-color:var(--blue);
+
+  color:var(--blue);
+
+}
+
+
+.notification-badge{
+
+  position:absolute;
+
+  top:-5px;
+
+  right:-5px;
+
+  min-width:19px;
+
+  height:19px;
+
+  padding:0 5px;
+
+  border-radius:20px;
+
+  background:#ef4444;
+
+  color:white;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border:2px solid var(--dark);
+
+}
+
+
+/* =========================
+   NOTIFICATION PANEL
+========================= */
+
+.notification-panel{
+
+  position:absolute;
+
+  right:0;
+
+  top:52px;
+
+  width:350px;
+
+  max-width:
+    calc(100vw - 24px);
+
+  background:var(--panel);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:16px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.45);
+
+  overflow:hidden;
+
+  display:none;
+
+}
+
+
+.notification-panel.show{
+
+  display:block;
+
+}
+
+
+.notification-header{
+
+  padding:15px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+.notification-title{
+
+  font-size:16px;
+
+  font-weight:bold;
+
+}
+
+
+.mark-all-btn{
+
+  border:0;
+
+  background:transparent;
+
+  color:var(--blue);
+
+  font-size:12px;
+
+}
+
+
+.mark-all-btn:hover{
+
+  text-decoration:underline;
+
+}
+
+
+/* =========================
+   NOTIFICATION LIST
+========================= */
+
+.notification-list{
+
+  max-height:420px;
+
+  overflow-y:auto;
+
+}
+
+
+.notification-item{
+
+  padding:14px;
+
+  border-bottom:
+    1px solid
+    rgba(32,50,71,.7);
+
+  display:flex;
+
+  gap:12px;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+.notification-item:hover{
+
+  background:var(--panel2);
+
+}
+
+
+.notification-item.unread{
+
+  background:
+    rgba(56,189,248,.06);
+
+}
+
+
+.notification-icon{
+
+  width:38px;
+
+  height:38px;
+
+  min-width:38px;
+
+  border-radius:10px;
+
+  background:
+    rgba(56,189,248,.12);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:18px;
+
+}
+
+
+.notification-content{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.notification-item-title{
+
+  font-size:14px;
+
+  font-weight:bold;
+
+  margin-bottom:4px;
+
+}
+
+
+.notification-message{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.45;
+
+}
+
+
+.notification-time{
+
+  color:#64748b;
+
+  font-size:10px;
+
+  margin-top:6px;
+
+}
+
+
+.unread-dot{
+
+  width:8px;
+
+  height:8px;
+
+  min-width:8px;
+
+  border-radius:50%;
+
+  background:var(--blue);
+
+  margin-top:6px;
+
+}
+
+
+.no-notifications{
+
+  padding:35px 20px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+}
+
+
+.no-notifications-icon{
+
+  font-size:35px;
+
+  margin-bottom:10px;
+
+}
+
+
+.no-notifications-title{
+
+  color:white;
+
+  font-size:15px;
+
+  margin-bottom:5px;
+
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+
+  border:
+    1px solid var(--border);
+
+  background:var(--panel);
+
   color:white;
 
   padding:9px 13px;
+
   border-radius:9px;
+
 }
 
+
 .back-btn:hover{
+
   border-color:var(--blue);
+
   color:var(--blue);
+
 }
 
 
@@ -98,10 +515,15 @@ button{
 ========================= */
 
 .main{
+
   width:100%;
+
   max-width:850px;
+
   margin:auto;
+
   padding:30px 16px 50px;
+
 }
 
 
@@ -110,14 +532,18 @@ button{
 ========================= */
 
 .profile-hero{
+
   background:
+
     linear-gradient(
       135deg,
       rgba(56,189,248,.12),
       rgba(13,27,42,.95)
     );
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
+
   border-radius:22px;
 
   padding:30px 20px;
@@ -125,18 +551,24 @@ button{
   text-align:center;
 
   margin-bottom:20px;
+
 }
 
+
 .avatar-wrapper{
+
   width:120px;
   height:120px;
 
   margin:0 auto 15px;
 
   position:relative;
+
 }
 
+
 .avatar{
+
   width:120px;
   height:120px;
 
@@ -146,20 +578,28 @@ button{
 
   background:var(--panel2);
 
-  border:3px solid var(--blue);
+  border:
+    3px solid var(--blue);
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   font-size:45px;
+
   color:var(--blue);
+
 }
 
+
 .photo-button{
+
   position:absolute;
 
   right:0;
+
   bottom:2px;
 
   width:38px;
@@ -167,7 +607,8 @@ button{
 
   border-radius:50%;
 
-  border:3px solid var(--panel);
+  border:
+    3px solid var(--panel);
 
   background:var(--blue);
 
@@ -176,23 +617,38 @@ button{
   font-size:18px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
 }
+
 
 .photo-button:hover{
+
   transform:scale(1.05);
+
 }
+
 
 .profile-hero h1{
+
   font-size:25px;
+
   margin-top:5px;
+
 }
 
+
 .profile-hero p{
+
   color:var(--muted);
+
   font-size:14px;
+
   margin-top:6px;
+
 }
 
 
@@ -201,26 +657,38 @@ button{
 ========================= */
 
 .panel{
+
   background:var(--panel);
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:18px;
 
   padding:20px;
 
   margin-bottom:18px;
+
 }
+
 
 .panel-title{
+
   font-size:18px;
+
   margin-bottom:5px;
+
 }
 
+
 .panel-subtitle{
+
   color:var(--muted);
+
   font-size:13px;
+
   margin-bottom:20px;
+
 }
 
 
@@ -229,16 +697,27 @@ button{
 ========================= */
 
 .form-grid{
+
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:15px;
+
 }
+
 
 .full{
-  grid-column:1/-1;
+
+  grid-column:
+    1/-1;
+
 }
 
+
 label{
+
   display:block;
 
   color:#cbd5e1;
@@ -246,40 +725,56 @@ label{
   font-size:13px;
 
   margin-bottom:7px;
+
 }
+
 
 input,
 textarea,
 select{
+
   width:100%;
 
   background:var(--panel2);
 
   color:white;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:10px;
 
   padding:13px;
 
   outline:none;
+
 }
+
 
 input:focus,
 textarea:focus,
 select:focus{
+
   border-color:var(--blue);
+
 }
+
 
 input:disabled{
+
   opacity:.65;
+
   cursor:not-allowed;
+
 }
 
+
 textarea{
+
   min-height:100px;
+
   resize:vertical;
+
 }
 
 
@@ -288,6 +783,7 @@ textarea{
 ========================= */
 
 .save-btn{
+
   width:100%;
 
   margin-top:20px;
@@ -303,21 +799,32 @@ textarea{
   padding:14px;
 
   border-radius:10px;
+
 }
+
 
 .save-btn:hover{
+
   filter:brightness(1.05);
+
 }
+
 
 .save-btn:disabled{
+
   opacity:.6;
+
   cursor:not-allowed;
+
 }
 
+
 .secondary-btn{
+
   width:100%;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   background:var(--panel2);
 
@@ -328,16 +835,24 @@ textarea{
   border-radius:10px;
 
   margin-top:10px;
+
 }
+
 
 .secondary-btn:hover{
+
   border-color:var(--blue);
+
 }
 
+
 .danger-btn{
+
   width:100%;
 
-  border:1px solid rgba(248,113,113,.4);
+  border:
+    1px solid
+    rgba(248,113,113,.4);
 
   background:transparent;
 
@@ -348,6 +863,7 @@ textarea{
   border-radius:10px;
 
   margin-top:10px;
+
 }
 
 
@@ -356,6 +872,7 @@ textarea{
 ========================= */
 
 .message{
+
   text-align:center;
 
   font-size:13px;
@@ -363,14 +880,21 @@ textarea{
   margin-top:14px;
 
   line-height:1.5;
+
 }
+
 
 .success{
+
   color:var(--green);
+
 }
 
+
 .error{
+
   color:var(--red);
+
 }
 
 
@@ -379,40 +903,59 @@ textarea{
 ========================= */
 
 .loading-screen{
+
   position:fixed;
+
   inset:0;
 
   background:var(--bg);
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
-  z-index:100;
+  z-index:200;
+
 }
+
 
 .loading-box{
+
   text-align:center;
+
 }
 
+
 .spinner{
+
   width:42px;
   height:42px;
 
-  border:4px solid var(--border);
+  border:
+    4px solid var(--border);
+
   border-top-color:var(--blue);
 
   border-radius:50%;
 
-  animation:spin .8s linear infinite;
+  animation:
+    spin .8s linear infinite;
 
   margin:auto auto 15px;
+
 }
 
+
 @keyframes spin{
+
   to{
+
     transform:rotate(360deg);
+
   }
+
 }
 
 
@@ -423,39 +966,110 @@ textarea{
 @media(max-width:650px){
 
   .header{
+
     padding:0 12px;
+
   }
+
 
   .brand{
+
     font-size:17px;
+
   }
+
+
+  .header-right{
+
+    gap:6px;
+
+  }
+
+
+  .back-btn{
+
+    padding:8px 9px;
+
+  }
+
+
+  .notification-btn{
+
+    width:40px;
+    height:40px;
+
+  }
+
 
   .main{
-    padding:20px 12px 40px;
+
+    padding:
+      20px 12px 40px;
+
   }
+
 
   .profile-hero{
+
     padding:25px 15px;
+
   }
+
 
   .form-grid{
+
     grid-template-columns:1fr;
+
   }
 
+
   .full{
+
     grid-column:auto;
+
+  }
+
+
+  .notification-panel{
+
+    right:-5px;
+
+    width:340px;
+
   }
 
 }
+
+
+@media(max-width:380px){
+
+  .notification-panel{
+
+    width:
+      calc(100vw - 20px);
+
+    right:-5px;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 
-<!-- LOADING -->
+<!-- =========================
+     LOADING
+========================= -->
 
-<div id="loadingScreen" class="loading-screen">
+<div
+  id="loadingScreen"
+  class="loading-screen"
+>
 
   <div class="loading-box">
 
@@ -470,33 +1084,134 @@ textarea{
 </div>
 
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
+
   <div class="brand">
+
     ⚡ <span>DSP</span> Profile
+
   </div>
 
-  <button
-    class="back-btn"
-    onclick="goBack()">
-    ← Back
-  </button>
+
+  <div class="header-right">
+
+
+    <!-- NOTIFICATION -->
+
+    <div class="notification-wrapper">
+
+
+      <button
+        id="notificationBtn"
+        class="notification-btn"
+        onclick="toggleNotifications()"
+        aria-label="Notifications"
+      >
+
+        🔔
+
+        <span
+          id="notificationBadge"
+          class="notification-badge hidden"
+        >
+          0
+        </span>
+
+      </button>
+
+
+      <!-- NOTIFICATION PANEL -->
+
+      <div
+        id="notificationPanel"
+        class="notification-panel"
+      >
+
+
+        <div class="notification-header">
+
+          <div class="notification-title">
+            Notifications
+          </div>
+
+
+          <button
+            class="mark-all-btn"
+            onclick="markAllNotificationsRead()"
+          >
+            Mark all as read
+          </button>
+
+        </div>
+
+
+        <div
+          id="notificationList"
+          class="notification-list"
+        >
+
+          <div class="no-notifications">
+
+            <div class="no-notifications-icon">
+              🔔
+            </div>
+
+            <div class="no-notifications-title">
+              No notifications
+            </div>
+
+            <div>
+              You're all caught up.
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <button
+      class="back-btn"
+      onclick="goBack()"
+    >
+      ← Back
+    </button>
+
+
+  </div>
 
 </header>
 
 
-<!-- MAIN -->
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="main">
 
 
-  <!-- HERO -->
+  <!-- =========================
+       PROFILE HERO
+  ========================= -->
 
   <section class="profile-hero">
 
+
     <div class="avatar-wrapper">
+
 
       <img
         id="profilePhoto"
@@ -505,18 +1220,23 @@ textarea{
         style="display:none"
       >
 
+
       <div
         id="defaultAvatar"
-        class="avatar">
+        class="avatar"
+      >
         👤
       </div>
+
 
       <button
         class="photo-button"
         onclick="choosePhoto()"
-        title="Change photo">
+        title="Change photo"
+      >
         📷
       </button>
+
 
       <input
         id="photoInput"
@@ -526,6 +1246,7 @@ textarea{
         onchange="handlePhoto(event)"
       >
 
+
     </div>
 
 
@@ -533,20 +1254,27 @@ textarea{
       Customer
     </h1>
 
+
     <p id="heroEmail">
       Loading...
     </p>
 
+
   </section>
 
 
-  <!-- PERSONAL INFORMATION -->
+
+  <!-- =========================
+       PERSONAL INFORMATION
+  ========================= -->
 
   <section class="panel">
+
 
     <h2 class="panel-title">
       Personal Information
     </h2>
+
 
     <p class="panel-subtitle">
       Keep your customer information up to date.
@@ -564,6 +1292,7 @@ textarea{
           Full Name
         </label>
 
+
         <input
           id="fullName"
           type="text"
@@ -574,6 +1303,7 @@ textarea{
       </div>
 
 
+
       <!-- EMAIL -->
 
       <div>
@@ -581,6 +1311,7 @@ textarea{
         <label for="email">
           Email Address
         </label>
+
 
         <input
           id="email"
@@ -591,6 +1322,7 @@ textarea{
       </div>
 
 
+
       <!-- PHONE -->
 
       <div>
@@ -598,6 +1330,7 @@ textarea{
         <label for="phone">
           Phone Number
         </label>
+
 
         <input
           id="phone"
@@ -609,6 +1342,7 @@ textarea{
       </div>
 
 
+
       <!-- COUNTRY -->
 
       <div>
@@ -616,6 +1350,7 @@ textarea{
         <label for="country">
           Country
         </label>
+
 
         <input
           id="country"
@@ -627,6 +1362,7 @@ textarea{
       </div>
 
 
+
       <!-- STATE -->
 
       <div>
@@ -634,6 +1370,7 @@ textarea{
         <label for="state">
           State
         </label>
+
 
         <input
           id="state"
@@ -644,6 +1381,7 @@ textarea{
       </div>
 
 
+
       <!-- CITY -->
 
       <div>
@@ -651,6 +1389,7 @@ textarea{
         <label for="city">
           City
         </label>
+
 
         <input
           id="city"
@@ -661,6 +1400,7 @@ textarea{
       </div>
 
 
+
       <!-- ADDRESS -->
 
       <div class="full">
@@ -668,6 +1408,7 @@ textarea{
         <label for="address">
           Address
         </label>
+
 
         <textarea
           id="address"
@@ -680,29 +1421,37 @@ textarea{
     </div>
 
 
+
     <button
       id="saveBtn"
       class="save-btn"
-      onclick="saveProfile()">
+      onclick="saveProfile()"
+    >
       Save Profile
     </button>
 
 
     <p
       id="message"
-      class="message">
-    </p>
+      class="message"
+    ></p>
+
 
   </section>
 
 
-  <!-- ACCOUNT -->
+
+  <!-- =========================
+       ACCOUNT
+  ========================= -->
 
   <section class="panel">
+
 
     <h2 class="panel-title">
       Account
     </h2>
+
 
     <p class="panel-subtitle">
       Manage your account.
@@ -711,16 +1460,19 @@ textarea{
 
     <button
       class="secondary-btn"
-      onclick="changePassword()">
+      onclick="changePassword()"
+    >
       🔐 Change Password
     </button>
 
 
     <button
       class="danger-btn"
-      onclick="signOut()">
+      onclick="signOut()"
+    >
       Sign Out
     </button>
+
 
   </section>
 
@@ -728,13 +1480,17 @@ textarea{
 </main>
 
 
-<!-- FIREBASE -->
+
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 
 
 <script>
@@ -772,7 +1528,9 @@ const firebaseConfig = {
 };
 
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(
+  firebaseConfig
+);
 
 
 const auth =
@@ -783,48 +1541,73 @@ const db =
   firebase.firestore();
 
 
+
 /* ==========================================
-   CURRENT USER
+   GLOBAL VARIABLES
 ========================================== */
 
 let currentUser = null;
+
+let currentPhotoURL = "";
+
+let notificationUnsubscribe = null;
+
 
 
 /* ==========================================
    AUTH STATE
 ========================================== */
 
-auth.onAuthStateChanged(async user => {
+auth.onAuthStateChanged(
+  async user => {
 
-  if(!user){
 
-    window.location.href =
-      "login.html";
+    if(!user){
 
-    return;
+      window.location.href =
+        "login.html";
+
+      return;
+
+    }
+
+
+    currentUser =
+      user;
+
+
+    document
+      .getElementById("email")
+      .value =
+      user.email || "";
+
+
+    document
+      .getElementById("heroEmail")
+      .textContent =
+      user.email || "";
+
+
+    await loadProfile();
+
+
+    /*
+      Start real-time
+      notification listener.
+    */
+
+    startNotificationListener();
+
+
+    document
+      .getElementById("loadingScreen")
+      .classList
+      .add("hidden");
+
+
   }
+);
 
-
-  currentUser = user;
-
-
-  document.getElementById("email").value =
-    user.email || "";
-
-
-  document.getElementById("heroEmail").textContent =
-    user.email || "";
-
-
-  await loadProfile();
-
-
-  document
-    .getElementById("loadingScreen")
-    .classList
-    .add("hidden");
-
-});
 
 
 /* ==========================================
@@ -839,13 +1622,6 @@ async function loadProfile(){
 
   try{
 
-    /*
-      IMPORTANT:
-
-      The document ID is the Firebase UID.
-
-      profiles/{UID}
-    */
 
     const profileRef =
       db
@@ -859,25 +1635,26 @@ async function loadProfile(){
 
     if(!snapshot.exists){
 
-      /*
-        No profile yet.
-
-        Use information from Firebase Auth.
-      */
 
       const authName =
         currentUser.displayName || "";
 
 
-      document.getElementById("fullName").value =
+      document
+        .getElementById("fullName")
+        .value =
         authName;
 
 
-      document.getElementById("heroName").textContent =
-        authName || "Customer";
+      document
+        .getElementById("heroName")
+        .textContent =
+        authName ||
+        "Customer";
 
 
       return;
+
     }
 
 
@@ -885,53 +1662,61 @@ async function loadProfile(){
       snapshot.data();
 
 
-    /*
-      Read the EXACT field names
-      expected by your Admin.
-    */
-
-    document.getElementById("fullName").value =
+    document
+      .getElementById("fullName")
+      .value =
       data.fullName || "";
 
 
-    document.getElementById("phone").value =
+    document
+      .getElementById("phone")
+      .value =
       data.phone || "";
 
 
-    document.getElementById("address").value =
+    document
+      .getElementById("address")
+      .value =
       data.address || "";
 
 
-    document.getElementById("city").value =
+    document
+      .getElementById("city")
+      .value =
       data.city || "";
 
 
-    document.getElementById("state").value =
+    document
+      .getElementById("state")
+      .value =
       data.state || "";
 
 
-    document.getElementById("country").value =
+    document
+      .getElementById("country")
+      .value =
       data.country || "";
 
 
-    document.getElementById("heroName").textContent =
+    document
+      .getElementById("heroName")
+      .textContent =
       data.fullName ||
       currentUser.displayName ||
       "Customer";
 
 
-    /*
-      Load photo.
-    */
-
     if(data.photoURL){
 
-      showPhoto(data.photoURL);
+      showPhoto(
+        data.photoURL
+      );
 
     }
 
 
   }catch(error){
+
 
     console.error(
       "Profile loading error:",
@@ -944,9 +1729,11 @@ async function loadProfile(){
       "error"
     );
 
+
   }
 
 }
+
 
 
 /* ==========================================
@@ -963,6 +1750,7 @@ async function saveProfile(){
     );
 
     return;
+
   }
 
 
@@ -1009,7 +1797,8 @@ async function saveProfile(){
 
 
   const saveBtn =
-    document.getElementById("saveBtn");
+    document
+      .getElementById("saveBtn");
 
 
   if(!fullName){
@@ -1020,33 +1809,19 @@ async function saveProfile(){
     );
 
     return;
+
   }
 
 
-  saveBtn.disabled = true;
+  saveBtn.disabled =
+    true;
+
 
   saveBtn.textContent =
     "Saving...";
 
 
   try{
-
-    /*
-      IMPORTANT FIRESTORE STRUCTURE
-
-      profiles
-        └── Firebase UID
-            ├── uid
-            ├── fullName
-            ├── email
-            ├── phone
-            ├── address
-            ├── city
-            ├── state
-            ├── country
-            ├── photoURL
-            └── updatedAt
-    */
 
 
     const profileData = {
@@ -1079,18 +1854,12 @@ async function saveProfile(){
         currentPhotoURL || "",
 
       updatedAt:
-        firebase.firestore.FieldValue
+        firebase.firestore
+          .FieldValue
           .serverTimestamp()
 
     };
 
-
-    /*
-      set() with merge makes sure
-      the same customer's profile
-      is updated instead of creating
-      random documents.
-    */
 
     await db
       .collection("profiles")
@@ -1102,14 +1871,6 @@ async function saveProfile(){
         }
       );
 
-
-    /*
-      Also update the user's
-      basic customer document.
-
-      This helps your existing
-      Admin customer list.
-    */
 
     await db
       .collection("users")
@@ -1132,7 +1893,8 @@ async function saveProfile(){
           true,
 
         updatedAt:
-          firebase.firestore.FieldValue
+          firebase.firestore
+            .FieldValue
             .serverTimestamp()
 
       },{
@@ -1140,11 +1902,9 @@ async function saveProfile(){
       });
 
 
-    /*
-      Update hero.
-    */
-
-    document.getElementById("heroName").textContent =
+    document
+      .getElementById("heroName")
+      .textContent =
       fullName;
 
 
@@ -1155,6 +1915,7 @@ async function saveProfile(){
 
 
   }catch(error){
+
 
     console.error(
       "Save profile error:",
@@ -1170,35 +1931,24 @@ async function saveProfile(){
 
   }finally{
 
-    saveBtn.disabled = false;
+
+    saveBtn.disabled =
+      false;
+
 
     saveBtn.textContent =
       "Save Profile";
+
 
   }
 
 }
 
 
+
 /* ==========================================
-   PHOTO SYSTEM
+   PHOTO
 ========================================== */
-
-let currentPhotoURL = "";
-
-
-/*
-  IMPORTANT:
-
-  This system DOES NOT use Firebase Storage.
-
-  The image is converted to a small
-  data URL and saved directly in Firestore.
-
-  This is suitable for small profile
-  pictures.
-*/
-
 
 function choosePhoto(){
 
@@ -1207,6 +1957,7 @@ function choosePhoto(){
     .click();
 
 }
+
 
 
 function handlePhoto(event){
@@ -1219,33 +1970,44 @@ function handlePhoto(event){
     return;
 
 
-  /*
-    Keep profile pictures reasonably small.
-  */
-
-  if(file.size > 2 * 1024 * 1024){
+  if(
+    file.size >
+    2 * 1024 * 1024
+  ){
 
     showMessage(
       "Please choose a photo smaller than 2MB.",
       "error"
     );
 
-    event.target.value = "";
+
+    event.target.value =
+      "";
+
 
     return;
+
   }
 
 
-  if(!file.type.startsWith("image/")){
+  if(
+    !file.type.startsWith(
+      "image/"
+    )
+  ){
 
     showMessage(
       "Please choose an image file.",
       "error"
     );
 
-    event.target.value = "";
+
+    event.target.value =
+      "";
+
 
     return;
+
   }
 
 
@@ -1253,44 +2015,47 @@ function handlePhoto(event){
     new FileReader();
 
 
-  reader.onload = function(e){
-
-    currentPhotoURL =
-      e.target.result;
+  reader.onload =
+    function(e){
 
 
-    showPhoto(
-      currentPhotoURL
-    );
+      currentPhotoURL =
+        e.target.result;
 
 
-    /*
-      Photo is only saved to
-      Firestore when Save Profile
-      is pressed.
-    */
-
-    showMessage(
-      "Photo selected. Press Save Profile to save it.",
-      "success"
-    );
-
-  };
+      showPhoto(
+        currentPhotoURL
+      );
 
 
-  reader.onerror = function(){
-
-    showMessage(
-      "Could not read the photo.",
-      "error"
-    );
-
-  };
+      showMessage(
+        "Photo selected. Press Save Profile to save it.",
+        "success"
+      );
 
 
-  reader.readAsDataURL(file);
+    };
+
+
+  reader.onerror =
+    function(){
+
+
+      showMessage(
+        "Could not read the photo.",
+        "error"
+      );
+
+
+    };
+
+
+  reader.readAsDataURL(
+    file
+  );
 
 }
+
 
 
 /* ==========================================
@@ -1304,18 +2069,22 @@ function showPhoto(url){
 
 
   const image =
-    document.getElementById(
-      "profilePhoto"
-    );
+    document
+      .getElementById(
+        "profilePhoto"
+      );
 
 
   const defaultAvatar =
-    document.getElementById(
-      "defaultAvatar"
-    );
+    document
+      .getElementById(
+        "defaultAvatar"
+      );
 
 
-  image.src = url;
+  image.src =
+    url;
+
 
   image.style.display =
     "flex";
@@ -1329,6 +2098,689 @@ function showPhoto(url){
     url;
 
 }
+
+
+
+/* ==========================================
+   NOTIFICATION SYSTEM
+========================================== */
+
+
+/*
+  Start real-time listener.
+
+  Only notifications where:
+
+  userId == currentUser.uid
+
+  are shown to the customer.
+*/
+
+function startNotificationListener(){
+
+  if(!currentUser)
+    return;
+
+
+  /*
+    Remove previous listener
+    if one exists.
+  */
+
+  if(notificationUnsubscribe){
+
+    notificationUnsubscribe();
+
+    notificationUnsubscribe =
+      null;
+
+  }
+
+
+  notificationUnsubscribe =
+    db
+      .collection("notifications")
+      .where(
+        "userId",
+        "==",
+        currentUser.uid
+      )
+      .orderBy(
+        "createdAt",
+        "desc"
+      )
+      .limit(50)
+      .onSnapshot(
+        snapshot => {
+
+
+          const notifications =
+            [];
+
+
+          snapshot.forEach(
+            doc => {
+
+              notifications.push({
+
+                id:
+                  doc.id,
+
+                ...doc.data()
+
+              });
+
+            }
+          );
+
+
+          renderNotifications(
+            notifications
+          );
+
+
+        },
+
+        error => {
+
+
+          console.error(
+            "Notification listener error:",
+            error
+          );
+
+
+          /*
+            If the composite index
+            is not created yet, Firestore
+            may show an error.
+
+            Notifications can still
+            be implemented after creating
+            the required index.
+          */
+
+        }
+      );
+
+}
+
+
+
+/* ==========================================
+   RENDER NOTIFICATIONS
+========================================== */
+
+function renderNotifications(
+  notifications
+){
+
+  const list =
+    document
+      .getElementById(
+        "notificationList"
+      );
+
+
+  const badge =
+    document
+      .getElementById(
+        "notificationBadge"
+      );
+
+
+  /*
+    Count unread notifications.
+  */
+
+  const unread =
+    notifications.filter(
+      notification =>
+        notification.read !== true
+    ).length;
+
+
+  /*
+    Update badge.
+  */
+
+  if(unread > 0){
+
+    badge.textContent =
+      unread > 99
+        ? "99+"
+        : unread;
+
+
+    badge.classList.remove(
+      "hidden"
+    );
+
+  }else{
+
+    badge.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  /*
+    Empty state.
+  */
+
+  if(notifications.length === 0){
+
+    list.innerHTML = `
+
+      <div class="no-notifications">
+
+        <div class="no-notifications-icon">
+          🔔
+        </div>
+
+        <div class="no-notifications-title">
+          No notifications
+        </div>
+
+        <div>
+          You're all caught up.
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  /*
+    Build notification list.
+  */
+
+  list.innerHTML =
+    notifications
+      .map(
+        notification => {
+
+          const isUnread =
+            notification.read !== true;
+
+
+          return `
+
+            <div
+              class="
+                notification-item
+                ${isUnread ? "unread" : ""}
+              "
+              onclick="
+                markNotificationRead(
+                  '${notification.id}'
+                )
+              "
+            >
+
+              <div class="notification-icon">
+
+                ${getNotificationIcon(
+                  notification.type
+                )}
+
+              </div>
+
+
+              <div class="notification-content">
+
+                <div
+                  class="notification-item-title"
+                >
+                  ${escapeHTML(
+                    notification.title ||
+                    "Notification"
+                  )}
+                </div>
+
+
+                <div
+                  class="notification-message"
+                >
+                  ${escapeHTML(
+                    notification.message ||
+                    ""
+                  )}
+                </div>
+
+
+                <div
+                  class="notification-time"
+                >
+                  ${formatNotificationTime(
+                    notification.createdAt
+                  )}
+                </div>
+
+              </div>
+
+
+              ${
+                isUnread
+                ?
+                `
+                  <div
+                    class="unread-dot"
+                  ></div>
+                `
+                :
+                ""
+              }
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+
+/* ==========================================
+   NOTIFICATION ICON
+========================================== */
+
+function getNotificationIcon(type){
+
+  switch(type){
+
+    case "order":
+      return "📦";
+
+    case "payment":
+      return "💳";
+
+    case "delivery":
+      return "🚚";
+
+    case "success":
+      return "✅";
+
+    case "warning":
+      return "⚠️";
+
+    case "message":
+      return "💬";
+
+    case "promotion":
+      return "🎁";
+
+    default:
+      return "🔔";
+
+  }
+
+}
+
+
+
+/* ==========================================
+   FORMAT TIME
+========================================== */
+
+function formatNotificationTime(
+  timestamp
+){
+
+  if(!timestamp)
+    return "Just now";
+
+
+  let date;
+
+
+  if(
+    timestamp.toDate
+  ){
+
+    date =
+      timestamp.toDate();
+
+  }else{
+
+    date =
+      new Date(timestamp);
+
+  }
+
+
+  if(
+    isNaN(
+      date.getTime()
+    )
+  ){
+
+    return "Just now";
+
+  }
+
+
+  const now =
+    new Date();
+
+
+  const difference =
+    now.getTime()
+    -
+    date.getTime();
+
+
+  const seconds =
+    Math.floor(
+      difference / 1000
+    );
+
+
+  if(seconds < 60){
+
+    return "Just now";
+
+  }
+
+
+  const minutes =
+    Math.floor(
+      seconds / 60
+    );
+
+
+  if(minutes < 60){
+
+    return (
+      minutes +
+      (minutes === 1
+        ? " minute ago"
+        : " minutes ago")
+    );
+
+  }
+
+
+  const hours =
+    Math.floor(
+      minutes / 60
+    );
+
+
+  if(hours < 24){
+
+    return (
+      hours +
+      (hours === 1
+        ? " hour ago"
+        : " hours ago")
+    );
+
+  }
+
+
+  const days =
+    Math.floor(
+      hours / 24
+    );
+
+
+  if(days < 7){
+
+    return (
+      days +
+      (days === 1
+        ? " day ago"
+        : " days ago")
+    );
+
+  }
+
+
+  return date.toLocaleDateString();
+
+}
+
+
+
+/* ==========================================
+   MARK ONE NOTIFICATION READ
+========================================== */
+
+async function markNotificationRead(
+  notificationId
+){
+
+  if(!currentUser)
+    return;
+
+
+  try{
+
+
+    await db
+      .collection("notifications")
+      .doc(notificationId)
+      .update({
+
+        read:true,
+
+        readAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      });
+
+
+  }catch(error){
+
+    console.error(
+      "Could not mark notification read:",
+      error
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================
+   MARK ALL NOTIFICATIONS READ
+========================================== */
+
+async function markAllNotificationsRead(){
+
+  if(!currentUser)
+    return;
+
+
+  try{
+
+
+    const snapshot =
+      await db
+        .collection("notifications")
+        .where(
+          "userId",
+          "==",
+          currentUser.uid
+        )
+        .where(
+          "read",
+          "==",
+          false
+        )
+        .get();
+
+
+    if(snapshot.empty){
+
+      return;
+
+    }
+
+
+    const batch =
+      db.batch();
+
+
+    snapshot.forEach(
+      doc => {
+
+        batch.update(
+          doc.ref,
+          {
+
+            read:true,
+
+            readAt:
+              firebase.firestore
+                .FieldValue
+                .serverTimestamp()
+
+          }
+        );
+
+      }
+    );
+
+
+    await batch.commit();
+
+
+  }catch(error){
+
+    console.error(
+      "Could not mark all notifications read:",
+      error
+    );
+
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================
+   TOGGLE NOTIFICATIONS
+========================================== */
+
+function toggleNotifications(){
+
+  const panel =
+    document
+      .getElementById(
+        "notificationPanel"
+      );
+
+
+  panel.classList.toggle(
+    "show"
+  );
+
+}
+
+
+
+/* ==========================================
+   CLOSE NOTIFICATIONS
+   WHEN CLICKING OUTSIDE
+========================================== */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    const wrapper =
+      document.querySelector(
+        ".notification-wrapper"
+      );
+
+
+    const panel =
+      document
+        .getElementById(
+          "notificationPanel"
+        );
+
+
+    if(
+      wrapper &&
+      !wrapper.contains(
+        event.target
+      )
+    ){
+
+      panel.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+);
+
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value){
+
+  if(value === null ||
+     value === undefined){
+
+    return "";
+
+  }
+
+
+  return String(value)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
 
 
 /* ==========================================
@@ -1353,22 +2805,28 @@ async function changePassword(){
     );
 
     return;
+
   }
 
 
   try{
 
+
     await auth
-      .sendPasswordResetEmail(email);
+      .sendPasswordResetEmail(
+        email
+      );
 
 
     showMessage(
-      "Password reset email sent to " + email,
+      "Password reset email sent to " +
+      email,
       "success"
     );
 
 
   }catch(error){
+
 
     console.error(error);
 
@@ -1378,9 +2836,11 @@ async function changePassword(){
       "error"
     );
 
+
   }
 
 }
+
 
 
 /* ==========================================
@@ -1391,23 +2851,40 @@ async function signOut(){
 
   try{
 
+
+    if(notificationUnsubscribe){
+
+      notificationUnsubscribe();
+
+      notificationUnsubscribe =
+        null;
+
+    }
+
+
     await auth.signOut();
+
 
     window.location.href =
       "login.html";
 
+
   }catch(error){
 
+
     console.error(error);
+
 
     showMessage(
       friendlyError(error),
       "error"
     );
 
+
   }
 
 }
+
 
 
 /* ==========================================
@@ -1435,6 +2912,7 @@ function goBack(){
 }
 
 
+
 /* ==========================================
    MESSAGE
 ========================================== */
@@ -1445,9 +2923,10 @@ function showMessage(
 ){
 
   const message =
-    document.getElementById(
-      "message"
-    );
+    document
+      .getElementById(
+        "message"
+      );
 
 
   message.textContent =
@@ -1455,7 +2934,8 @@ function showMessage(
 
 
   message.className =
-    "message " + type;
+    "message " +
+    type;
 
 
   clearTimeout(
@@ -1464,27 +2944,36 @@ function showMessage(
 
 
   showMessage.timer =
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      message.textContent =
-        "";
+        message.textContent =
+          "";
 
-      message.className =
-        "message";
+        message.className =
+          "message";
 
-    },5000);
+      },
+      5000
+    );
 
 }
+
 
 
 /* ==========================================
    ERROR HANDLER
 ========================================== */
 
-function friendlyError(error){
+function friendlyError(
+  error
+){
 
-  if(!error)
+  if(!error){
+
     return "Something went wrong.";
+
+  }
 
 
   if(
@@ -1524,5 +3013,7 @@ function friendlyError(error){
 
 </script>
 
+
 </body>
-</html>
+
+  </html>
