@@ -19,7 +19,7 @@
 
 <link
   rel="preconnect"
-  href="https://fonts.googleapis.com"
+  href="https://fonts.gstatic.com"
   crossorigin
 >
 
@@ -165,6 +165,176 @@ header{
   color:#00111c;
 
   font-size:20px;
+
+}
+
+
+.header-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+}
+
+
+/* =====================================================
+   NOTIFICATION BUTTON
+===================================================== */
+
+.notification-button{
+
+  position:relative;
+
+  width:42px;
+
+  height:42px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:transparent;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:21px;
+
+  transition:.2s;
+
+}
+
+
+.notification-button:hover{
+
+  background:var(--card2);
+
+  color:var(--blue);
+
+}
+
+
+.notification-badge{
+
+  position:absolute;
+
+  top:0;
+
+  right:-2px;
+
+  min-width:19px;
+
+  height:19px;
+
+  padding:0 5px;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--red);
+
+  color:white;
+
+  border:2px solid var(--header);
+
+  border-radius:20px;
+
+  font-size:9px;
+
+  font-weight:700;
+
+}
+
+
+.notification-badge.show{
+
+  display:flex;
+
+}
+
+
+/* =====================================================
+   CART HEADER BUTTON
+===================================================== */
+
+.header-cart{
+
+  position:relative;
+
+  width:42px;
+
+  height:42px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:21px;
+
+  transition:.2s;
+
+}
+
+
+.header-cart:hover{
+
+  background:var(--card2);
+
+  color:var(--blue);
+
+}
+
+
+.header-cart-count{
+
+  position:absolute;
+
+  top:0;
+
+  right:-2px;
+
+  min-width:19px;
+
+  height:19px;
+
+  padding:0 5px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  border:2px solid var(--header);
+
+  border-radius:20px;
+
+  font-size:9px;
+
+  font-weight:700;
 
 }
 
@@ -897,32 +1067,53 @@ main{
 
   header{
 
-    padding:0 15px;
+    padding:0 12px;
 
   }
 
 
   .logo{
 
-    font-size:17px;
+    font-size:15px;
+
+    gap:7px;
 
   }
 
 
   .logo-icon{
 
-    width:35px;
+    width:34px;
 
-    height:35px;
+    height:34px;
 
     font-size:17px;
 
   }
 
 
+  .header-right{
+
+    gap:5px;
+
+  }
+
+
+  .notification-button,
+  .header-cart{
+
+    width:38px;
+
+    height:38px;
+
+    font-size:20px;
+
+  }
+
+
   .back-link{
 
-    font-size:12px;
+    display:none;
 
   }
 
@@ -1025,14 +1216,63 @@ main{
   </div>
 
 
-  <a
-    href="shop.html"
-    class="back-link"
-  >
+  <div class="header-right">
 
-    ← Continue Shopping
 
-  </a>
+    <!-- NOTIFICATION BUTTON -->
+
+    <a
+      href="notification.html"
+      class="notification-button"
+      title="Notifications"
+      aria-label="Notifications"
+    >
+
+      🔔
+
+      <span
+        class="notification-badge"
+        id="notificationBadge"
+      >
+        0
+      </span>
+
+    </a>
+
+
+    <!-- CART BUTTON -->
+
+    <a
+      href="cart.html"
+      class="header-cart"
+      title="My Cart"
+      aria-label="My Cart"
+    >
+
+      🛒
+
+      <span
+        class="header-cart-count"
+        id="headerCartCount"
+      >
+        0
+      </span>
+
+    </a>
+
+
+    <!-- CONTINUE SHOPPING -->
+
+    <a
+      href="shop.html"
+      class="back-link"
+    >
+
+      ← Continue Shopping
+
+    </a>
+
+  </div>
 
 </header>
 
@@ -1161,6 +1401,18 @@ const cartCount =
   );
 
 
+const headerCartCount =
+  document.getElementById(
+    "headerCartCount"
+  );
+
+
+const notificationBadge =
+  document.getElementById(
+    "notificationBadge"
+  );
+
+
 const toast =
   document.getElementById(
     "toast"
@@ -1175,15 +1427,11 @@ let currentUser = null;
 
 let cartUnsubscribe = null;
 
+let notificationUnsubscribe = null;
+
 
 /* =====================================================
    CART REFERENCE
-   IMPORTANT:
-   SAME STRUCTURE USED BY SHOP.HTML
-
-   carts
-      └── UID
-           └── items: ARRAY
 ===================================================== */
 
 function cartRef(){
@@ -1198,6 +1446,163 @@ function cartRef(){
   return db
     .collection("carts")
     .doc(currentUser.uid);
+
+}
+
+
+/* =====================================================
+   NOTIFICATION LISTENER
+===================================================== */
+
+/*
+   Firestore structure:
+
+   notifications
+      └── AUTO_NOTIFICATION_ID
+           ├── userId
+           ├── title
+           ├── message
+           ├── type
+           ├── read
+           ├── createdAt
+           └── adminId
+
+   This listener reads only notifications
+   belonging to the currently signed-in customer.
+
+   We intentionally do NOT use:
+
+   where("read","==",false)
+
+   so that the customer does not need a
+   compound Firestore index just to display
+   the notification count.
+*/
+
+function listenToNotifications(){
+
+  if(!currentUser){
+
+    hideNotificationBadge();
+
+    return;
+
+  }
+
+
+  /* Stop previous listener */
+
+  if(notificationUnsubscribe){
+
+    notificationUnsubscribe();
+
+    notificationUnsubscribe = null;
+
+  }
+
+
+  notificationUnsubscribe =
+
+    db
+    .collection("notifications")
+    .where(
+      "userId",
+      "==",
+      currentUser.uid
+    )
+    .onSnapshot(
+
+      function(snapshot){
+
+        let unreadCount = 0;
+
+
+        snapshot.forEach(
+
+          function(doc){
+
+            const data =
+              doc.data();
+
+
+            if(data.read !== true){
+
+              unreadCount++;
+
+            }
+
+          }
+
+        );
+
+
+        updateNotificationBadge(
+          unreadCount
+        );
+
+      },
+
+      function(error){
+
+        console.error(
+          "Notification listener error:",
+          error
+        );
+
+
+        hideNotificationBadge();
+
+      }
+
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE NOTIFICATION BADGE
+===================================================== */
+
+function updateNotificationBadge(count){
+
+  const number =
+    Number(count) || 0;
+
+
+  if(number <= 0){
+
+    hideNotificationBadge();
+
+    return;
+
+  }
+
+
+  notificationBadge.textContent =
+    number > 99
+      ? "99+"
+      : number;
+
+
+  notificationBadge.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =====================================================
+   HIDE NOTIFICATION BADGE
+===================================================== */
+
+function hideNotificationBadge(){
+
+  notificationBadge.textContent =
+    "0";
+
+  notificationBadge.classList.remove(
+    "show"
+  );
 
 }
 
@@ -1248,7 +1653,7 @@ auth.onAuthStateChanged(
 
   function(user){
 
-    /* Stop old listener */
+    /* Stop old cart listener */
 
     if(cartUnsubscribe){
 
@@ -1259,12 +1664,32 @@ auth.onAuthStateChanged(
     }
 
 
+    /* Stop old notification listener */
+
+    if(notificationUnsubscribe){
+
+      notificationUnsubscribe();
+
+      notificationUnsubscribe = null;
+
+    }
+
+
     if(!user){
 
       currentUser = null;
 
+
       cartCount.textContent =
         "(0)";
+
+
+      headerCartCount.textContent =
+        "0";
+
+
+      hideNotificationBadge();
+
 
       showLogin();
 
@@ -1274,6 +1699,14 @@ auth.onAuthStateChanged(
 
 
     currentUser = user;
+
+
+    /*
+      Start both listeners for this
+      authenticated customer.
+    */
+
+    listenToNotifications();
 
     listenToCart();
 
@@ -1375,8 +1808,6 @@ function listenToCart(){
           : [];
 
 
-        /* Add array index internally */
-
         const items =
           rawItems.map(
             function(item,index){
@@ -1446,6 +1877,10 @@ function displayCart(items){
 
     cartCount.textContent =
       "(0)";
+
+
+    headerCartCount.textContent =
+      "0";
 
 
     mainContent.innerHTML = `
@@ -1522,6 +1957,10 @@ function displayCart(items){
     "(" +
     totalQuantity +
     ")";
+
+
+  headerCartCount.textContent =
+    totalQuantity;
 
 
   let html = `
@@ -1772,7 +2211,6 @@ function displayCart(items){
 
 /* =====================================================
    CHANGE QUANTITY
-   ARRAY ITEM
 ===================================================== */
 
 async function changeQuantity(
@@ -1828,8 +2266,6 @@ async function changeQuantity(
 
     qty += change;
 
-
-    /* Remove if quantity reaches zero */
 
     if(qty <= 0){
 
@@ -2119,4 +2555,4 @@ function escapeAttribute(
 
 </body>
 
-</html>
+    </html>
