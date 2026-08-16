@@ -3,129 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin | Danny Smart Power</title>
+<meta name="theme-color" content="#020617">
+
+<title>Admin Dashboard | Danny Smart Power</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 :root{
-  --bg:#07111f;
-  --dark:#020617;
-  --panel:#0d1b2a;
-  --panel2:#102234;
-  --border:#203247;
+  --bg:#020617;
+  --sidebar:#050b16;
+  --card:#0b1424;
+  --card2:#101c30;
+  --border:#1e3047;
   --text:#f8fafc;
-  --muted:#94a3b8;
+  --muted:#8fa3b8;
   --blue:#38bdf8;
+  --blue2:#0ea5e9;
   --green:#4ade80;
   --red:#f87171;
   --yellow:#facc15;
   --purple:#c084fc;
+  --orange:#fb923c;
+  --shadow:0 15px 45px rgba(0,0,0,.25);
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Inter,Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
 
-/* LOGIN */
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:white;
+  border-radius:12px;
+  padding:13px 14px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(56,189,248,.08);
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
 
 #loginScreen{
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   padding:20px;
+  background:
+    radial-gradient(circle at top,#08223a 0,#020617 45%);
 }
 
-.login-box{
+.login-card{
   width:100%;
-  max-width:400px;
-  background:var(--panel);
+  max-width:430px;
+  background:rgba(11,20,36,.96);
   border:1px solid var(--border);
-  border-radius:22px;
+  border-radius:25px;
   padding:32px;
-  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  box-shadow:var(--shadow);
 }
 
-.logo{
-  width:70px;
-  height:70px;
+.login-logo{
+  width:72px;
+  height:72px;
+  border-radius:22px;
   margin:0 auto 18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:var(--blue);
+  background:linear-gradient(135deg,var(--blue),#0284c7);
   color:#00111c;
-  border-radius:20px;
-  font-size:32px;
+  font-size:34px;
+  box-shadow:0 12px 35px rgba(14,165,233,.2);
 }
 
-.login-box h1{text-align:center;font-size:25px}
+.login-card h1{
+  text-align:center;
+  font-size:25px;
+}
 
-.login-subtitle{
+.login-card p{
   text-align:center;
   color:var(--muted);
-  margin-top:8px;
-  font-size:14px;
-}
-
-label{
-  display:block;
-  margin:17px 0 7px;
   font-size:13px;
+  margin-top:8px;
+}
+
+.login-form{
+  margin-top:24px;
+}
+
+.login-form label{
+  display:block;
   color:#cbd5e1;
+  font-size:13px;
+  margin:16px 0 7px;
 }
 
-input,select,textarea{
+.login-btn{
   width:100%;
-  background:var(--panel2);
-  color:white;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:13px;
-  outline:none;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:var(--blue);
-}
-
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-.primary-btn{
-  width:100%;
+  border:0;
   margin-top:20px;
   padding:14px;
-  border:0;
-  border-radius:10px;
-  background:var(--blue);
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:#00111c;
-  font-weight:bold;
+  font-weight:800;
 }
 
-.primary-btn:disabled{opacity:.6}
-
 .message{
+  margin-top:12px;
   text-align:center;
-  margin-top:14px;
   font-size:13px;
   line-height:1.5;
 }
 
-.error{color:var(--red)}
-.success{color:var(--green)}
+.error{
+  color:var(--red);
+}
 
-/* SIDEBAR */
+.success{
+  color:var(--green);
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+  min-height:100vh;
+}
 
 .sidebar{
   position:fixed;
@@ -133,11 +188,11 @@ textarea{
   top:0;
   bottom:0;
   width:255px;
-  background:var(--dark);
+  background:var(--sidebar);
   border-right:1px solid var(--border);
-  z-index:50;
-  padding:22px 14px;
-  transition:.25s;
+  padding:20px 14px;
+  z-index:100;
+  overflow-y:auto;
 }
 
 .brand{
@@ -145,41 +200,59 @@ textarea{
   align-items:center;
   gap:9px;
   font-size:19px;
-  font-weight:bold;
-  padding:0 10px;
-  margin-bottom:28px;
+  font-weight:800;
+  padding:10px;
+  margin-bottom:25px;
 }
 
-.brand span{color:var(--blue)}
+.brand-icon{
+  font-size:23px;
+}
+
+.brand span{
+  color:var(--blue);
+}
+
+.nav-title{
+  color:#52677f;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:1px;
+  padding:0 11px;
+  margin:18px 0 7px;
+  text-transform:uppercase;
+}
 
 .nav-btn{
   width:100%;
   border:0;
   background:transparent;
-  color:#cbd5e1;
-  padding:13px;
-  margin-bottom:4px;
-  border-radius:10px;
+  color:#b8c6d6;
+  padding:12px 13px;
+  border-radius:11px;
   text-align:left;
+  margin-bottom:4px;
+  transition:.2s;
 }
 
-.nav-btn:hover,
+.nav-btn:hover{
+  background:rgba(56,189,248,.07);
+  color:white;
+}
+
 .nav-btn.active{
   background:rgba(56,189,248,.12);
   color:var(--blue);
 }
 
 .sidebar-bottom{
-  position:absolute;
-  bottom:20px;
-  left:15px;
-  right:15px;
-  color:#64748b;
-  text-align:center;
+  margin-top:35px;
+  padding:15px 10px;
+  color:#52677f;
   font-size:11px;
+  line-height:1.6;
+  border-top:1px solid var(--border);
 }
-
-/* TOPBAR */
 
 .topbar{
   position:fixed;
@@ -187,175 +260,363 @@ textarea{
   left:255px;
   right:0;
   height:70px;
-  z-index:40;
-  background:var(--dark);
+  background:rgba(2,6,23,.94);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
+  z-index:90;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 22px;
+  padding:0 24px;
 }
 
-.top-title{font-size:18px;font-weight:bold}
-
-.top-right{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-.admin-badge{
-  color:var(--blue);
-  background:rgba(56,189,248,.1);
-  border:1px solid rgba(56,189,248,.2);
-  padding:7px 11px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-.logout{
-  background:transparent;
-  border:1px solid var(--border);
-  color:white;
-  padding:8px 12px;
-  border-radius:8px;
-}
-
-.menu{
+.menu-btn{
   display:none;
-  background:none;
   border:0;
+  background:none;
   color:white;
   font-size:25px;
 }
 
-/* MAIN */
+.top-title{
+  font-weight:800;
+}
+
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.admin-pill{
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:11px;
+  color:var(--green);
+  background:rgba(74,222,128,.08);
+  border:1px solid rgba(74,222,128,.2);
+}
+
+.logout-btn{
+  border:1px solid var(--border);
+  background:transparent;
+  color:white;
+  padding:8px 12px;
+  border-radius:9px;
+}
+
+/* =========================
+   MAIN
+========================= */
 
 .main{
   margin-left:255px;
-  padding:95px 23px 40px;
+  padding:95px 25px 40px;
 }
 
-.page{display:none}
-.page.active{display:block}
+.page{
+  display:none;
+  animation:fade .2s ease;
+}
 
-.page-title{font-size:28px;margin-bottom:6px}
-.page-subtitle{color:var(--muted);font-size:14px;margin-bottom:23px}
+.page.active{
+  display:block;
+}
 
-/* DASHBOARD */
+@keyframes fade{
+  from{opacity:0;transform:translateY(3px)}
+  to{opacity:1;transform:none}
+}
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:13px;
+.page-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:15px;
   margin-bottom:22px;
 }
 
-.stat{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:17px;
+.page-title{
+  font-size:28px;
+  font-weight:850;
 }
 
-.stat-icon{font-size:23px;margin-bottom:11px}
-.stat-label{font-size:12px;color:var(--muted)}
-.stat-value{font-size:25px;font-weight:bold;margin-top:5px}
-
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:19px;
-  margin-bottom:18px;
+.page-subtitle{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:13px;
 }
 
-.panel-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:16px;
-}
-
-.panel-head h2{font-size:17px}
-
-.toolbar{
-  display:flex;
-  gap:10px;
-  margin-bottom:16px;
-}
-
-.toolbar input{flex:1}
+/* =========================
+   BUTTONS
+========================= */
 
 .btn{
   border:1px solid var(--border);
-  background:var(--panel2);
+  background:var(--card2);
   color:white;
-  border-radius:9px;
   padding:10px 13px;
+  border-radius:10px;
+}
+
+.btn:hover{
+  border-color:#36506d;
 }
 
 .btn-blue{
   border:0;
   background:var(--blue);
   color:#00111c;
-  font-weight:bold;
-}
-
-.btn-red{
-  border:1px solid var(--red);
-  color:var(--red);
-  background:transparent;
+  font-weight:800;
 }
 
 .btn-green{
-  border:1px solid var(--green);
   color:var(--green);
-  background:transparent;
+  border-color:rgba(74,222,128,.3);
+  background:rgba(74,222,128,.06);
 }
 
-/* TABLE */
+.btn-red{
+  color:var(--red);
+  border-color:rgba(248,113,113,.3);
+  background:rgba(248,113,113,.05);
+}
+
+.btn-yellow{
+  color:var(--yellow);
+  border-color:rgba(250,204,21,.3);
+  background:rgba(250,204,21,.05);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:13px;
+  margin-bottom:20px;
+}
+
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:17px;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.stat-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stat-icon{
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:rgba(56,189,248,.1);
+  font-size:20px;
+}
+
+.stat-label{
+  margin-top:15px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.stat-value{
+  font-size:25px;
+  font-weight:850;
+  margin-top:4px;
+}
+
+.panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:19px;
+  margin-bottom:18px;
+}
+
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.panel-title{
+  font-size:16px;
+  font-weight:800;
+}
+
+.toolbar{
+  display:flex;
+  gap:9px;
+  margin-bottom:15px;
+}
+
+.toolbar input{
+  flex:1;
+}
+
+.toolbar select{
+  max-width:190px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:18px;
+}
+
+.revenue-box{
+  background:
+    linear-gradient(135deg,rgba(56,189,248,.1),rgba(14,165,233,.02));
+  border:1px solid rgba(56,189,248,.12);
+  border-radius:16px;
+  padding:20px;
+}
+
+.revenue-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.revenue-value{
+  font-size:31px;
+  font-weight:900;
+  margin-top:7px;
+}
+
+.revenue-note{
+  color:var(--green);
+  font-size:12px;
+  margin-top:7px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.quick-btn{
+  padding:17px;
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:white;
+  border-radius:13px;
+  text-align:left;
+}
+
+.quick-btn:hover{
+  border-color:var(--blue);
+}
+
+.quick-icon{
+  font-size:22px;
+  margin-bottom:9px;
+}
+
+.quick-title{
+  font-weight:bold;
+}
+
+.quick-text{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+/* =========================
+   TABLE
+========================= */
 
 .table-wrap{
+  width:100%;
   overflow-x:auto;
 }
 
 table{
   width:100%;
+  min-width:760px;
   border-collapse:collapse;
-  min-width:700px;
 }
 
-th,td{
-  padding:12px 9px;
+th,
+td{
   border-bottom:1px solid var(--border);
+  padding:13px 9px;
   text-align:left;
-  font-size:13px;
+  font-size:12px;
+  vertical-align:middle;
 }
 
-th{color:var(--muted);font-weight:normal}
+th{
+  color:var(--muted);
+  font-weight:600;
+}
+
+td{
+  color:#dbe5ef;
+}
 
 .status{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
   padding:5px 9px;
   border-radius:20px;
-  font-size:11px;
+  font-size:10px;
+  font-weight:700;
 }
 
-.pending{color:var(--yellow);background:rgba(250,204,21,.1)}
-.processing{color:var(--blue);background:rgba(56,189,248,.1)}
-.shipped{color:var(--purple);background:rgba(192,132,252,.1)}
-.completed{color:var(--green);background:rgba(74,222,128,.1)}
-.cancelled{color:var(--red);background:rgba(248,113,113,.1)}
+.status-Pending{
+  color:var(--yellow);
+  background:rgba(250,204,21,.09);
+}
+
+.status-Processing{
+  color:var(--blue);
+  background:rgba(56,189,248,.09);
+}
+
+.status-Shipped{
+  color:var(--purple);
+  background:rgba(192,132,252,.09);
+}
+
+.status-Completed{
+  color:var(--green);
+  background:rgba(74,222,128,.09);
+}
+
+.status-Cancelled{
+  color:var(--red);
+  background:rgba(248,113,113,.09);
+}
 
 .empty{
   text-align:center;
-  padding:35px;
+  padding:40px 20px;
   color:var(--muted);
+  font-size:13px;
 }
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .products-grid{
   display:grid;
@@ -363,26 +624,46 @@ th{color:var(--muted);font-weight:normal}
   gap:15px;
 }
 
-.product{
-  background:var(--panel2);
-  border:1px solid var(--border);
-  border-radius:14px;
+.product-card{
   overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--card2);
+  border-radius:15px;
 }
 
-.product img{
+.product-image{
   width:100%;
-  height:170px;
+  height:175px;
   object-fit:cover;
-  background:var(--dark);
+  background:#020617;
 }
 
-.product-body{padding:14px}
+.product-body{
+  padding:14px;
+}
 
-.product-name{font-weight:bold}
-.product-category{font-size:12px;color:var(--muted);margin-top:5px}
-.product-price{color:var(--blue);font-weight:bold;margin-top:9px}
-.product-stock{font-size:12px;color:var(--muted);margin-top:5px}
+.product-name{
+  font-weight:800;
+}
+
+.product-category{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.product-price{
+  color:var(--blue);
+  font-size:16px;
+  font-weight:800;
+  margin-top:9px;
+}
+
+.product-meta{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:6px;
+}
 
 .product-actions{
   display:flex;
@@ -390,9 +671,13 @@ th{color:var(--muted);font-weight:normal}
   margin-top:13px;
 }
 
-.product-actions button{flex:1}
+.product-actions button{
+  flex:1;
+}
 
-/* FORMS */
+/* =========================
+   FORMS
+========================= */
 
 .form-grid{
   display:grid;
@@ -400,57 +685,80 @@ th{color:var(--muted);font-weight:normal}
   gap:14px;
 }
 
-.full{grid-column:1/-1}
+.form-group label{
+  display:block;
+  color:#cbd5e1;
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+.full{
+  grid-column:1/-1;
+}
 
 .form-actions{
   display:flex;
-  gap:10px;
-  margin-top:17px;
+  gap:9px;
+  margin-top:18px;
 }
 
-.form-actions button{flex:1}
+/* =========================
+   CUSTOMERS
+========================= */
 
-/* CUSTOMERS */
-
-.customer{
+.customer-row{
   display:flex;
   align-items:center;
-  gap:13px;
+  gap:12px;
   padding:13px 0;
   border-bottom:1px solid var(--border);
 }
 
 .avatar{
-  width:44px;
-  height:44px;
+  width:45px;
+  height:45px;
+  flex-shrink:0;
   border-radius:50%;
   object-fit:cover;
-  background:var(--panel2);
+  background:var(--card2);
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   color:var(--blue);
-  flex-shrink:0;
 }
 
-.customer-name{font-weight:bold}
-.customer-info{font-size:12px;color:var(--muted);margin-top:4px}
+.customer-main{
+  flex:1;
+  min-width:0;
+}
 
-/* CHAT */
+.customer-name{
+  font-weight:800;
+}
+
+.customer-info{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+/* =========================
+   CHAT
+========================= */
 
 .chat-layout{
   display:grid;
-  grid-template-columns:310px 1fr;
-  min-height:600px;
-  border:1px solid var(--border);
-  border-radius:15px;
+  grid-template-columns:300px 1fr;
+  height:650px;
   overflow:hidden;
-  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:var(--card);
 }
 
 .chat-list{
-  border-right:1px solid var(--border);
   overflow-y:auto;
+  border-right:1px solid var(--border);
 }
 
 .chat-item{
@@ -461,7 +769,7 @@ th{color:var(--muted);font-weight:normal}
 
 .chat-item:hover,
 .chat-item.active{
-  background:rgba(56,189,248,.08);
+  background:rgba(56,189,248,.07);
 }
 
 .chat-item-top{
@@ -470,24 +778,27 @@ th{color:var(--muted);font-weight:normal}
   gap:8px;
 }
 
-.chat-name{font-weight:bold;font-size:14px}
+.chat-name{
+  font-weight:800;
+  font-size:13px;
+}
 
 .unread{
-  background:var(--blue);
-  color:#00111c;
   min-width:20px;
   height:20px;
-  border-radius:20px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:10px;
-  font-weight:bold;
+  background:var(--blue);
+  color:#00111c;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:900;
 }
 
 .last-message{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
   margin-top:5px;
   white-space:nowrap;
   overflow:hidden;
@@ -495,9 +806,9 @@ th{color:var(--muted);font-weight:normal}
 }
 
 .chat-window{
+  min-width:0;
   display:flex;
   flex-direction:column;
-  min-width:0;
 }
 
 .chat-header{
@@ -505,11 +816,13 @@ th{color:var(--muted);font-weight:normal}
   border-bottom:1px solid var(--border);
 }
 
-.chat-header-name{font-weight:bold}
+.chat-header-name{
+  font-weight:800;
+}
 
 .chat-header-info{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
   margin-top:4px;
 }
 
@@ -517,30 +830,27 @@ th{color:var(--muted);font-weight:normal}
   flex:1;
   padding:17px;
   overflow-y:auto;
-  min-height:400px;
-  max-height:500px;
 }
 
-.msg{
+.message-bubble{
   max-width:75%;
   padding:10px 12px;
   border-radius:13px;
   margin-bottom:9px;
-  font-size:13px;
-  line-height:1.4;
+  font-size:12px;
+  line-height:1.5;
 }
 
-.msg.admin{
+.message-bubble.admin{
   margin-left:auto;
   background:#075985;
 }
 
-.msg.customer{
-  margin-right:auto;
-  background:var(--panel2);
+.message-bubble.customer{
+  background:var(--card2);
 }
 
-.msg-time{
+.message-time{
   display:block;
   color:#94a3b8;
   font-size:9px;
@@ -554,54 +864,65 @@ th{color:var(--muted);font-weight:normal}
   border-top:1px solid var(--border);
 }
 
-.chat-input input{flex:1}
-.chat-input button{width:80px}
+.chat-input input{
+  flex:1;
+}
 
-/* WISHLIST */
+.chat-input button{
+  width:80px;
+}
 
-.wishlist{
-  background:var(--panel2);
+/* =========================
+   WISHLIST
+========================= */
+
+.wishlist-card{
   border:1px solid var(--border);
-  border-radius:12px;
+  background:var(--card2);
+  border-radius:13px;
   padding:15px;
   margin-bottom:10px;
 }
 
-.wishlist-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
+.wishlist-title{
+  font-weight:800;
 }
 
-.wishlist-items{
-  margin-top:10px;
+.wishlist-info{
   color:var(--muted);
-  font-size:13px;
+  font-size:11px;
+  margin-top:7px;
+  line-height:1.6;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.72);
-  z-index:100;
+  z-index:500;
   display:none;
   align-items:center;
   justify-content:center;
   padding:18px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(5px);
 }
 
-.modal.show{display:flex}
+.modal.show{
+  display:flex;
+}
 
 .modal-box{
   width:100%;
-  max-width:650px;
+  max-width:700px;
   max-height:90vh;
-  overflow:auto;
-  background:var(--panel);
+  overflow-y:auto;
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:17px;
+  border-radius:18px;
   padding:20px;
 }
 
@@ -609,14 +930,20 @@ th{color:var(--muted);font-weight:normal}
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  gap:10px;
+  margin-bottom:15px;
 }
 
-.close{
+.modal-title{
+  font-size:18px;
+  font-weight:850;
+}
+
+.close-btn{
   background:none;
   border:0;
   color:white;
-  font-size:25px;
+  font-size:26px;
 }
 
 .detail{
@@ -624,20 +951,74 @@ th{color:var(--muted);font-weight:normal}
   border-bottom:1px solid var(--border);
 }
 
-.detail-label{font-size:11px;color:var(--muted);margin-bottom:5px}
-.detail-value{line-height:1.5}
-
-/* RESPONSIVE */
-
-@media(max-width:1100px){
-  .stats{grid-template-columns:repeat(3,1fr)}
-  .products-grid{grid-template-columns:repeat(2,1fr)}
+.detail-label{
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:5px;
+  text-transform:uppercase;
 }
 
-@media(max-width:750px){
+.detail-value{
+  line-height:1.55;
+  font-size:13px;
+}
+
+.order-items{
+  margin-top:7px;
+}
+
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:9px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.order-item-name{
+  font-weight:700;
+}
+
+.order-item-small{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:18px;
+}
+
+.modal-actions button{
+  flex:1;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1150px){
+
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:760px){
 
   .sidebar{
     transform:translateX(-100%);
+    transition:.25s;
   }
 
   .sidebar.open{
@@ -649,9 +1030,17 @@ th{color:var(--muted);font-weight:normal}
     padding:0 14px;
   }
 
-  .menu{display:block}
-  .top-title{display:none}
-  .admin-badge{display:none}
+  .menu-btn{
+    display:block;
+  }
+
+  .top-title{
+    display:none;
+  }
+
+  .admin-pill{
+    display:none;
+  }
 
   .main{
     margin-left:0;
@@ -670,20 +1059,35 @@ th{color:var(--muted);font-weight:normal}
     grid-template-columns:1fr;
   }
 
-  .full{grid-column:auto}
+  .full{
+    grid-column:auto;
+  }
 
   .toolbar{
     flex-direction:column;
   }
 
+  .toolbar select{
+    max-width:none;
+  }
+
   .chat-layout{
+    height:650px;
     grid-template-columns:1fr;
   }
 
   .chat-list{
-    max-height:260px;
+    max-height:230px;
     border-right:0;
     border-bottom:1px solid var(--border);
+  }
+
+  .page-heading{
+    align-items:flex-start;
+  }
+
+  .page-title{
+    font-size:23px;
   }
 }
 </style>
@@ -691,66 +1095,80 @@ th{color:var(--muted);font-weight:normal}
 
 <body>
 
-<!-- LOGIN -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
 <section id="loginScreen">
 
-  <div class="login-box">
+  <div class="login-card">
 
-    <div class="logo">⚡</div>
+    <div class="login-logo">⚡</div>
 
-    <h1>Admin Control Center</h1>
+    <h1>Danny Smart Power</h1>
 
-    <p class="login-subtitle">
-      Danny Smart Power
-    </p>
+    <p>Administrator Control Center</p>
 
-    <label>Email Address</label>
+    <div class="login-form">
 
-    <input
-      id="adminEmail"
-      type="email"
-      placeholder="Admin email"
-      autocomplete="email"
-    >
+      <label>Email Address</label>
 
-    <label>Password</label>
+      <input
+        id="adminEmail"
+        type="email"
+        autocomplete="email"
+        placeholder="Enter admin email"
+      >
 
-    <input
-      id="adminPassword"
-      type="password"
-      placeholder="Password"
-      autocomplete="current-password"
-    >
+      <label>Password</label>
 
-    <button
-      class="primary-btn"
-      id="loginBtn"
-      onclick="loginAdmin()"
-    >
-      Login
-    </button>
+      <input
+        id="adminPassword"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter password"
+      >
 
-    <p id="loginMessage" class="message"></p>
+      <button
+        id="loginBtn"
+        class="login-btn"
+        onclick="loginAdmin()"
+      >
+        Login to Dashboard
+      </button>
+
+      <div id="loginMessage" class="message"></div>
+
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- APP -->
+<!-- =====================================================
+     APP
+===================================================== -->
+
 <section id="app" class="hidden">
 
   <!-- SIDEBAR -->
+
   <aside id="sidebar" class="sidebar">
 
     <div class="brand">
-      ⚡ <span>DSP</span> Admin
+      <span class="brand-icon">⚡</span>
+      <span>DSP</span> Admin
     </div>
+
+    <div class="nav-title">Overview</div>
 
     <button class="nav-btn active"
       onclick="openPage('dashboard',this)">
       📊 Dashboard
     </button>
+
+    <div class="nav-title">Store</div>
 
     <button class="nav-btn"
       onclick="openPage('products',this)">
@@ -768,49 +1186,61 @@ th{color:var(--muted);font-weight:normal}
     </button>
 
     <button class="nav-btn"
-      onclick="openPage('chat',this)">
-      💬 Chat with Danny
-    </button>
-
-    <button class="nav-btn"
       onclick="openPage('wishlists',this)">
       ❤️ Wishlists
     </button>
 
+    <div class="nav-title">Communication</div>
+
+    <button class="nav-btn"
+      onclick="openPage('chat',this)">
+      💬 Customer Chat
+    </button>
+
+    <div class="nav-title">System</div>
+
     <button class="nav-btn"
       onclick="openPage('settings',this)">
-      ⚙️ Settings
+      ⚙️ Store Settings
     </button>
 
     <button class="nav-btn"
       onclick="openPage('admins',this)">
-      🔐 Admin
+      🔐 Administrators
     </button>
 
     <div class="sidebar-bottom">
       Danny Smart Power<br>
-      Control Center
+      Admin Control Center<br><br>
+      Protected Store Management
     </div>
 
   </aside>
 
 
-  <!-- TOP -->
+  <!-- TOPBAR -->
+
   <header class="topbar">
 
-    <button class="menu" onclick="toggleSidebar()">☰</button>
+    <button
+      class="menu-btn"
+      onclick="toggleSidebar()">
+      ☰
+    </button>
 
     <div class="top-title">
-      Danny Smart Power Admin
+      Danny Smart Power
     </div>
 
     <div class="top-right">
 
-      <span class="admin-badge">
+      <span class="admin-pill">
         ● Administrator
       </span>
 
-      <button class="logout" onclick="logout()">
+      <button
+        class="logout-btn"
+        onclick="logout()">
         Logout
       </button>
 
@@ -819,66 +1249,289 @@ th{color:var(--muted);font-weight:normal}
   </header>
 
 
+  <!-- MAIN -->
+
   <main class="main">
 
 
-    <!-- DASHBOARD -->
+    <!-- =================================================
+         DASHBOARD
+    ================================================= -->
+
     <section id="page-dashboard" class="page active">
 
-      <h1 class="page-title">Dashboard</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Manage your Danny Smart Power store.
-      </p>
+        <div>
+          <h1 class="page-title">Dashboard</h1>
+
+          <p class="page-subtitle">
+            Welcome back. Here's what's happening in your store.
+          </p>
+        </div>
+
+        <button
+          class="btn btn-blue"
+          onclick="openPage('orders')">
+          View Orders
+        </button>
+
+      </div>
+
 
       <div class="stats">
 
-        <div class="stat">
-          <div class="stat-icon">📦</div>
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon">📦</div>
+          </div>
+
           <div class="stat-label">Products</div>
-          <div class="stat-value" id="statProducts">0</div>
+
+          <div
+            id="statProducts"
+            class="stat-value">
+            0
+          </div>
+
         </div>
 
-        <div class="stat">
-          <div class="stat-icon">🛒</div>
-          <div class="stat-label">Orders</div>
-          <div class="stat-value" id="statOrders">0</div>
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon">🛒</div>
+          </div>
+
+          <div class="stat-label">Total Orders</div>
+
+          <div
+            id="statOrders"
+            class="stat-value">
+            0
+          </div>
+
         </div>
 
-        <div class="stat">
-          <div class="stat-icon">👥</div>
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon">👥</div>
+          </div>
+
           <div class="stat-label">Customers</div>
-          <div class="stat-value" id="statCustomers">0</div>
+
+          <div
+            id="statCustomers"
+            class="stat-value">
+            0
+          </div>
+
         </div>
 
-        <div class="stat">
-          <div class="stat-icon">⏳</div>
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon">⏳</div>
+          </div>
+
           <div class="stat-label">Pending Orders</div>
-          <div class="stat-value" id="statPending">0</div>
+
+          <div
+            id="statPending"
+            class="stat-value">
+            0
+          </div>
+
         </div>
 
-        <div class="stat">
-          <div class="stat-icon">💬</div>
-          <div class="stat-label">Unread Chats</div>
-          <div class="stat-value" id="statUnread">0</div>
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon">💬</div>
+          </div>
+
+          <div class="stat-label">Unread Messages</div>
+
+          <div
+            id="statUnread"
+            class="stat-value">
+            0
+          </div>
+
         </div>
 
       </div>
 
 
-      <div class="panel">
+      <div class="dashboard-grid">
 
-        <div class="panel-head">
-          <h2>Recent Orders</h2>
+        <div>
 
-          <button class="btn"
-            onclick="openPage('orders')">
-            View Orders
-          </button>
+          <div class="panel">
+
+            <div class="panel-head">
+
+              <div class="panel-title">
+                Store Revenue
+              </div>
+
+            </div>
+
+            <div class="revenue-box">
+
+              <div class="revenue-label">
+                Completed order revenue
+              </div>
+
+              <div
+                id="dashboardRevenue"
+                class="revenue-value">
+                ₦0
+              </div>
+
+              <div class="revenue-note">
+                ● Based on completed orders
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-head">
+
+              <div class="panel-title">
+                Recent Orders
+              </div>
+
+              <button
+                class="btn"
+                onclick="openPage('orders')">
+                See All
+              </button>
+
+            </div>
+
+            <div
+              id="recentOrders"
+              class="table-wrap">
+              <div class="empty">
+                Loading orders...
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        <div id="recentOrders" class="table-wrap">
-          <div class="empty">Loading...</div>
+
+        <div>
+
+          <div class="panel">
+
+            <div class="panel-head">
+              <div class="panel-title">
+                Quick Actions
+              </div>
+            </div>
+
+            <div class="quick-grid">
+
+              <button
+                class="quick-btn"
+                onclick="openPage('products')">
+
+                <div class="quick-icon">📦</div>
+
+                <div class="quick-title">
+                  Products
+                </div>
+
+                <div class="quick-text">
+                  Manage inventory
+                </div>
+
+              </button>
+
+
+              <button
+                class="quick-btn"
+                onclick="openPage('orders')">
+
+                <div class="quick-icon">🛒</div>
+
+                <div class="quick-title">
+                  Orders
+                </div>
+
+                <div class="quick-text">
+                  Process orders
+                </div>
+
+              </button>
+
+
+              <button
+                class="quick-btn"
+                onclick="openPage('customers')">
+
+                <div class="quick-icon">👥</div>
+
+                <div class="quick-title">
+                  Customers
+                </div>
+
+                <div class="quick-text">
+                  View customers
+                </div>
+
+              </button>
+
+
+              <button
+                class="quick-btn"
+                onclick="openPage('chat')">
+
+                <div class="quick-icon">💬</div>
+
+                <div class="quick-title">
+                  Chat
+                </div>
+
+                <div class="quick-text">
+                  Reply to customers
+                </div>
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-head">
+
+              <div class="panel-title">
+                Order Summary
+              </div>
+
+            </div>
+
+            <div id="orderSummary">
+              Loading...
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -886,85 +1539,170 @@ th{color:var(--muted);font-weight:normal}
     </section>
 
 
-    <!-- PRODUCTS -->
+    <!-- =================================================
+         PRODUCTS
+    ================================================= -->
+
     <section id="page-products" class="page">
 
-      <h1 class="page-title">Products</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Add and manage your store products.
-      </p>
+        <div>
+          <h1 class="page-title">Products</h1>
+
+          <p class="page-subtitle">
+            Add and manage your electrical and solar products.
+          </p>
+        </div>
+
+      </div>
 
 
       <div class="panel">
 
         <div class="panel-head">
-          <h2 id="productFormTitle">
-            Add Product
-          </h2>
+
+          <div
+            id="productFormTitle"
+            class="panel-title">
+            Add New Product
+          </div>
+
         </div>
+
 
         <div class="form-grid">
 
-          <div>
+          <div class="form-group">
+
             <label>Product Name</label>
-            <input id="pName"
-              placeholder="Solar Panel 200W">
+
+            <input
+              id="pName"
+              placeholder="Solar Panel 200W"
+            >
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Price (₦)</label>
-            <input id="pPrice"
+
+            <input
+              id="pPrice"
               type="number"
-              placeholder="85000">
+              min="0"
+              placeholder="85000"
+            >
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Category</label>
+
             <select id="pCategory">
-              <option>Solar</option>
-              <option>Lighting</option>
-              <option>Electrical</option>
-              <option>Accessories</option>
+
+              <option value="Solar">
+                Solar
+              </option>
+
+              <option value="Lighting">
+                Lighting
+              </option>
+
+              <option value="Electrical">
+                Electrical
+              </option>
+
+              <option value="Accessories">
+                Accessories
+              </option>
+
             </select>
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Stock</label>
-            <input id="pStock"
+
+            <input
+              id="pStock"
               type="number"
-              value="0">
+              min="0"
+              value="0"
+            >
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Image URL</label>
-            <input id="pImage"
-              placeholder="https://...">
+
+            <input
+              id="pImage"
+              placeholder="https://..."
+            >
+
           </div>
 
-          <div>
-            <label>Available</label>
+
+          <div class="form-group">
+
+            <label>Availability</label>
+
             <select id="pAvailable">
-              <option value="true">Available</option>
-              <option value="false">Unavailable</option>
+
+              <option value="true">
+                Available
+              </option>
+
+              <option value="false">
+                Unavailable
+              </option>
+
             </select>
+
           </div>
 
-          <div>
-            <label>Featured</label>
+
+          <div class="form-group">
+
+            <label>Featured Product</label>
+
             <select id="pFeatured">
-              <option value="false">No</option>
-              <option value="true">Yes</option>
+
+              <option value="false">
+                No
+              </option>
+
+              <option value="true">
+                Yes
+              </option>
+
             </select>
+
           </div>
 
-          <div class="full">
+
+          <div class="form-group full">
+
             <label>Description</label>
-            <textarea id="pDescription"
-              placeholder="Product description"></textarea>
+
+            <textarea
+              id="pDescription"
+              placeholder="Describe this product..."
+            ></textarea>
+
           </div>
 
         </div>
+
 
         <div class="form-actions">
 
@@ -984,7 +1722,10 @@ th{color:var(--muted);font-weight:normal}
 
         </div>
 
-        <p id="productMessage" class="message"></p>
+        <div
+          id="productMessage"
+          class="message">
+        </div>
 
       </div>
 
@@ -993,20 +1734,28 @@ th{color:var(--muted);font-weight:normal}
 
         <div class="toolbar">
 
-          <input id="productSearch"
+          <input
+            id="productSearch"
             placeholder="🔎 Search products..."
-            oninput="renderProducts()">
+            oninput="renderProducts()"
+          >
 
-          <button class="btn btn-blue"
+          <button
+            class="btn"
             onclick="resetProductForm()">
             + New Product
           </button>
 
         </div>
 
-        <div id="productsGrid"
+        <div
+          id="productsGrid"
           class="products-grid">
-          <div class="empty">Loading products...</div>
+
+          <div class="empty">
+            Loading products...
+          </div>
+
         </div>
 
       </div>
@@ -1014,40 +1763,80 @@ th{color:var(--muted);font-weight:normal}
     </section>
 
 
-    <!-- ORDERS -->
+    <!-- =================================================
+         ORDERS
+    ================================================= -->
+
     <section id="page-orders" class="page">
 
-      <h1 class="page-title">Orders</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Manage customer orders.
-      </p>
+        <div>
+
+          <h1 class="page-title">
+            Orders
+          </h1>
+
+          <p class="page-subtitle">
+            Manage customer purchases, payments and delivery.
+          </p>
+
+        </div>
+
+      </div>
+
 
       <div class="panel">
 
         <div class="toolbar">
 
-          <input id="orderSearch"
-            placeholder="🔎 Search customer, phone or order ID..."
-            oninput="renderOrders()">
+          <input
+            id="orderSearch"
+            placeholder="🔎 Search order, customer, phone..."
+            oninput="renderOrders()"
+          >
 
-          <select id="orderFilter"
+          <select
+            id="orderFilter"
             onchange="renderOrders()">
 
-            <option value="all">All Orders</option>
-            <option>Pending</option>
-            <option>Processing</option>
-            <option>Shipped</option>
-            <option>Completed</option>
-            <option>Cancelled</option>
+            <option value="all">
+              All Orders
+            </option>
+
+            <option value="Pending">
+              Pending
+            </option>
+
+            <option value="Processing">
+              Processing
+            </option>
+
+            <option value="Shipped">
+              Shipped
+            </option>
+
+            <option value="Completed">
+              Completed
+            </option>
+
+            <option value="Cancelled">
+              Cancelled
+            </option>
 
           </select>
 
         </div>
 
-        <div id="ordersTable"
+
+        <div
+          id="ordersTable"
           class="table-wrap">
-          <div class="empty">Loading orders...</div>
+
+          <div class="empty">
+            Loading orders...
+          </div>
+
         </div>
 
       </div>
@@ -1055,27 +1844,49 @@ th{color:var(--muted);font-weight:normal}
     </section>
 
 
-    <!-- CUSTOMERS -->
+    <!-- =================================================
+         CUSTOMERS
+    ================================================= -->
+
     <section id="page-customers" class="page">
 
-      <h1 class="page-title">Customers</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        View registered customers and their profiles.
-      </p>
+        <div>
+
+          <h1 class="page-title">
+            Customers
+          </h1>
+
+          <p class="page-subtitle">
+            View customer accounts and profiles.
+          </p>
+
+        </div>
+
+      </div>
+
 
       <div class="panel">
 
         <div class="toolbar">
 
-          <input id="customerSearch"
-            placeholder="🔎 Search customers..."
-            oninput="renderCustomers()">
+          <input
+            id="customerSearch"
+            placeholder="🔎 Search name, email or phone..."
+            oninput="renderCustomers()"
+          >
 
         </div>
 
-        <div id="customersList">
-          <div class="empty">Loading customers...</div>
+
+        <div
+          id="customersList">
+
+          <div class="empty">
+            Loading customers...
+          </div>
+
         </div>
 
       </div>
@@ -1083,50 +1894,77 @@ th{color:var(--muted);font-weight:normal}
     </section>
 
 
-    <!-- CHAT -->
+    <!-- =================================================
+         CHAT
+    ================================================= -->
+
     <section id="page-chat" class="page">
 
-      <h1 class="page-title">Chat with Danny</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Communicate directly with your customers.
-      </p>
+        <div>
+
+          <h1 class="page-title">
+            Customer Chat
+          </h1>
+
+          <p class="page-subtitle">
+            Reply to customers from your admin dashboard.
+          </p>
+
+        </div>
+
+      </div>
+
 
       <div class="chat-layout">
 
-        <div class="chat-list" id="chatList">
-          <div class="empty">Loading chats...</div>
+        <div
+          id="chatList"
+          class="chat-list">
+
+          <div class="empty">
+            Loading chats...
+          </div>
+
         </div>
+
 
         <div class="chat-window">
 
           <div class="chat-header">
 
-            <div class="chat-header-name"
-              id="chatCustomerName">
-              Select a customer
+            <div
+              id="chatCustomerName"
+              class="chat-header-name">
+              Select a conversation
             </div>
 
-            <div class="chat-header-info"
-              id="chatCustomerInfo">
-              Choose a conversation from the left.
+            <div
+              id="chatCustomerInfo"
+              class="chat-header-info">
+              Choose a customer from the list.
             </div>
 
           </div>
 
-          <div class="messages"
-            id="messages">
+
+          <div
+            id="messages"
+            class="messages">
+
             <div class="empty">
               No conversation selected.
             </div>
+
           </div>
+
 
           <div class="chat-input">
 
             <input
               id="chatInput"
               placeholder="Type your reply..."
-              autocomplete="off"
               disabled
               onkeydown="handleChatEnter(event)"
             >
@@ -1134,8 +1972,8 @@ th{color:var(--muted);font-weight:normal}
             <button
               id="sendChatBtn"
               class="btn btn-blue"
-              onclick="sendMessage()"
-              disabled>
+              disabled
+              onclick="sendMessage()">
               Send
             </button>
 
@@ -1148,19 +1986,38 @@ th{color:var(--muted);font-weight:normal}
     </section>
 
 
-    <!-- WISHLISTS -->
+    <!-- =================================================
+         WISHLISTS
+    ================================================= -->
+
     <section id="page-wishlists" class="page">
 
-      <h1 class="page-title">Wishlists</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Products saved by your customers.
-      </p>
+        <div>
+
+          <h1 class="page-title">
+            Wishlists
+          </h1>
+
+          <p class="page-subtitle">
+            Products customers have saved.
+          </p>
+
+        </div>
+
+      </div>
+
 
       <div class="panel">
 
-        <div id="wishlistsList">
-          <div class="empty">Loading wishlists...</div>
+        <div
+          id="wishlistsList">
+
+          <div class="empty">
+            Loading wishlists...
+          </div>
+
         </div>
 
       </div>
@@ -1168,89 +2025,164 @@ th{color:var(--muted);font-weight:normal}
     </section>
 
 
-    <!-- SETTINGS -->
+    <!-- =================================================
+         SETTINGS
+    ================================================= -->
+
     <section id="page-settings" class="page">
 
-      <h1 class="page-title">Store Settings</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Manage your store information.
-      </p>
+        <div>
+
+          <h1 class="page-title">
+            Store Settings
+          </h1>
+
+          <p class="page-subtitle">
+            Control your store information.
+          </p>
+
+        </div>
+
+      </div>
+
 
       <div class="panel">
 
         <div class="form-grid">
 
-          <div>
+          <div class="form-group">
+
             <label>Store Name</label>
+
             <input id="sName">
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Email</label>
-            <input id="sEmail" type="email">
+
+            <input
+              id="sEmail"
+              type="email">
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Phone</label>
+
             <input id="sPhone">
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>WhatsApp</label>
+
             <input id="sWhatsapp">
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Currency</label>
-            <input id="sCurrency"
-              placeholder="NGN">
+
+            <input
+              id="sCurrency"
+              value="NGN">
+
           </div>
 
-          <div>
+
+          <div class="form-group">
+
             <label>Logo URL</label>
+
             <input id="sLogo">
+
           </div>
 
-          <div class="full">
-            <label>Address</label>
+
+          <div class="form-group full">
+
+            <label>Store Address</label>
+
             <input id="sAddress">
+
           </div>
 
-          <div class="full">
-            <label>Description</label>
+
+          <div class="form-group full">
+
+            <label>Store Description</label>
+
             <textarea id="sDescription"></textarea>
+
           </div>
 
         </div>
 
-        <button
-          class="primary-btn"
-          onclick="saveSettings()">
-          Save Settings
-        </button>
 
-        <p id="settingsMessage"
-          class="message"></p>
+        <div class="form-actions">
+
+          <button
+            class="btn btn-blue"
+            onclick="saveSettings()">
+            Save Store Settings
+          </button>
+
+        </div>
+
+
+        <div
+          id="settingsMessage"
+          class="message">
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- ADMINS -->
+    <!-- =================================================
+         ADMINS
+    ================================================= -->
+
     <section id="page-admins" class="page">
 
-      <h1 class="page-title">Admin</h1>
+      <div class="page-heading">
 
-      <p class="page-subtitle">
-        Administrator accounts.
-      </p>
+        <div>
+
+          <h1 class="page-title">
+            Administrators
+          </h1>
+
+          <p class="page-subtitle">
+            Accounts authorized to manage the store.
+          </p>
+
+        </div>
+
+      </div>
+
 
       <div class="panel">
 
-        <div id="adminsList">
-          <div class="empty">Loading admins...</div>
+        <div
+          id="adminsList">
+
+          <div class="empty">
+            Loading administrators...
+          </div>
+
         </div>
 
       </div>
@@ -1262,8 +2194,12 @@ th{color:var(--muted);font-weight:normal}
 </section>
 
 
-<!-- MODAL -->
-<div id="modal"
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+  id="modal"
   class="modal"
   onclick="closeModalOutside(event)">
 
@@ -1271,14 +2207,20 @@ th{color:var(--muted);font-weight:normal}
 
     <div class="modal-head">
 
-      <h2 id="modalTitle">Details</h2>
+      <div
+        id="modalTitle"
+        class="modal-title">
+        Details
+      </div>
 
-      <button class="close"
+      <button
+        class="close-btn"
         onclick="closeModal()">
         ×
       </button>
 
     </div>
+
 
     <div id="modalContent"></div>
 
@@ -1287,7 +2229,10 @@ th{color:var(--muted);font-weight:normal}
 </div>
 
 
-<!-- FIREBASE -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -1295,20 +2240,19 @@ th{color:var(--muted);font-weight:normal}
 
 <script>
 
-/* ==========================================
+/* =====================================================
    FIREBASE
-========================================== */
+===================================================== */
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-  authDomain: "danny-smart-power.firebaseapp.com",
-  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
-  projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.firebasestorage.app",
-  messagingSenderId: "649735645158",
-  appId: "1:649735645158:web:cff518b89721a163679827",
-  measurementId: "G-258YKLP5ZS"
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain:"danny-smart-power.firebaseapp.com",
+  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId:"danny-smart-power",
+  storageBucket:"danny-smart-power.firebasestorage.app",
+  messagingSenderId:"649735645158",
+  appId:"1:649735645158:web:cff518b89721a163679827",
+  measurementId:"G-258YKLP5ZS"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -1317,13 +2261,17 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 
-/* YOUR ADMIN UID */
+/* =====================================================
+   ADMIN
+===================================================== */
 
 const ADMIN_UID =
   "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
 
 
-/* DATA */
+/* =====================================================
+   DATA
+===================================================== */
 
 let products = [];
 let orders = [];
@@ -1336,38 +2284,42 @@ let admins = [];
 let editingProductId = null;
 let selectedChatId = null;
 let messageUnsubscribe = null;
+let settingsDocId = null;
 
 
-/* ==========================================
+/* =====================================================
    LOGIN
-========================================== */
+===================================================== */
 
 async function loginAdmin(){
 
   const email =
-    document.getElementById("adminEmail").value.trim();
+    document.getElementById("adminEmail")
+      .value.trim();
 
   const password =
-    document.getElementById("adminPassword").value;
+    document.getElementById("adminPassword")
+      .value;
 
-  const msg =
+  const message =
     document.getElementById("loginMessage");
 
-  const btn =
+  const button =
     document.getElementById("loginBtn");
 
   if(!email || !password){
 
-    msg.textContent =
-      "Enter your email and password.";
+    message.textContent =
+      "Please enter your email and password.";
 
-    msg.className = "message error";
+    message.className =
+      "message error";
 
     return;
   }
 
-  btn.disabled = true;
-  btn.textContent = "Checking...";
+  button.disabled = true;
+  button.textContent = "Signing in...";
 
   try{
 
@@ -1382,22 +2334,22 @@ async function loginAdmin(){
       await auth.signOut();
 
       throw new Error(
-        "This account is not authorized as administrator."
+        "This account is not authorized as an administrator."
       );
     }
 
-    const adminDoc =
+    const admin =
       await db
         .collection("admins")
         .doc(result.user.uid)
         .get();
 
-    if(!adminDoc.exists){
+    if(!admin.exists){
 
       await auth.signOut();
 
       throw new Error(
-        "Admin document was not found."
+        "Administrator record was not found."
       );
     }
 
@@ -1407,19 +2359,21 @@ async function loginAdmin(){
 
     console.error(error);
 
-    msg.textContent =
+    message.textContent =
       friendlyError(error);
 
-    msg.className =
+    message.className =
       "message error";
 
-    btn.disabled = false;
-    btn.textContent = "Login";
+  }finally{
+
+    button.disabled = false;
+    button.textContent =
+      "Login to Dashboard";
+
   }
 }
 
-
-/* AUTH */
 
 auth.onAuthStateChanged(async user => {
 
@@ -1432,7 +2386,6 @@ auth.onAuthStateChanged(async user => {
   if(user.uid !== ADMIN_UID){
 
     await auth.signOut();
-    showLogin();
     return;
   }
 
@@ -1451,14 +2404,14 @@ auth.onAuthStateChanged(async user => {
     }else{
 
       await auth.signOut();
-      showLogin();
 
     }
 
   }catch(error){
 
     console.error(error);
-    showLogin();
+
+    await auth.signOut();
 
   }
 
@@ -1469,13 +2422,11 @@ function showLogin(){
 
   document
     .getElementById("loginScreen")
-    .classList
-    .remove("hidden");
+    .classList.remove("hidden");
 
   document
     .getElementById("app")
-    .classList
-    .add("hidden");
+    .classList.add("hidden");
 }
 
 
@@ -1483,13 +2434,11 @@ function showApp(){
 
   document
     .getElementById("loginScreen")
-    .classList
-    .add("hidden");
+    .classList.add("hidden");
 
   document
     .getElementById("app")
-    .classList
-    .remove("hidden");
+    .classList.remove("hidden");
 
   loadEverything();
 }
@@ -1497,23 +2446,27 @@ function showApp(){
 
 async function logout(){
 
-  if(messageUnsubscribe)
+  if(messageUnsubscribe){
     messageUnsubscribe();
+    messageUnsubscribe = null;
+  }
+
+  selectedChatId = null;
 
   await auth.signOut();
 }
 
 
-/* ==========================================
+/* =====================================================
    NAVIGATION
-========================================== */
+===================================================== */
 
-function openPage(page, button){
+function openPage(page,button){
 
   document
     .querySelectorAll(".page")
-    .forEach(x =>
-      x.classList.remove("active")
+    .forEach(p =>
+      p.classList.remove("active")
     );
 
   const target =
@@ -1526,8 +2479,8 @@ function openPage(page, button){
 
   document
     .querySelectorAll(".nav-btn")
-    .forEach(x =>
-      x.classList.remove("active")
+    .forEach(b =>
+      b.classList.remove("active")
     );
 
   if(button){
@@ -1536,19 +2489,19 @@ function openPage(page, button){
 
   }else{
 
-    const buttons =
-      document.querySelectorAll(".nav-btn");
-
     const index = {
       dashboard:0,
       products:1,
       orders:2,
       customers:3,
-      chat:4,
-      wishlists:5,
+      wishlists:4,
+      chat:5,
       settings:6,
       admins:7
     }[page];
+
+    const buttons =
+      document.querySelectorAll(".nav-btn");
 
     if(index !== undefined && buttons[index])
       buttons[index].classList.add("active");
@@ -1558,11 +2511,17 @@ function openPage(page, button){
     .getElementById("sidebar")
     .classList.remove("open");
 
-  if(page === "chat")
-    loadChats();
+  if(page === "orders")
+    renderOrders();
+
+  if(page === "customers")
+    renderCustomers();
 
   if(page === "wishlists")
-    loadWishlists();
+    renderWishlists();
+
+  if(page === "chat")
+    loadChats();
 
   if(page === "settings")
     loadSettings();
@@ -1580,9 +2539,9 @@ function toggleSidebar(){
 }
 
 
-/* ==========================================
+/* =====================================================
    LOAD EVERYTHING
-========================================== */
+===================================================== */
 
 async function loadEverything(){
 
@@ -1603,27 +2562,32 @@ async function loadEverything(){
 }
 
 
-/* ==========================================
+/* =====================================================
    PRODUCTS
-========================================== */
+===================================================== */
 
 async function loadProducts(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("products")
         .get();
 
     products =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
 
-    renderProducts();
+    products.sort(
+      (a,b) =>
+        timeOf(b.updatedAt || b.createdAt) -
+        timeOf(a.updatedAt || a.createdAt)
+    );
 
+    renderProducts();
     updateDashboard();
 
   }catch(error){
@@ -1645,26 +2609,31 @@ function renderProducts(){
   const box =
     document.getElementById("productsGrid");
 
+  if(!box) return;
+
   const search =
-    document.getElementById("productSearch")
-      .value
-      .toLowerCase()
-      .trim();
+    (
+      document.getElementById("productSearch")
+        ?.value || ""
+    )
+    .toLowerCase()
+    .trim();
 
   const list =
-    products.filter(p =>
+    products.filter(product => {
 
-      String(p.name || "")
-        .toLowerCase()
-        .includes(search)
+      const text =
+        [
+          product.name,
+          product.category,
+          product.description
+        ]
+        .join(" ")
+        .toLowerCase();
 
-      ||
+      return text.includes(search);
 
-      String(p.category || "")
-        .toLowerCase()
-        .includes(search)
-
-    );
+    });
 
   if(!list.length){
 
@@ -1677,55 +2646,66 @@ function renderProducts(){
   }
 
   box.innerHTML =
-    list.map(p => {
+    list.map(product => {
 
       const image =
-        p.image ||
+        product.image ||
         "https://via.placeholder.com/600x400?text=DSP";
+
+      const stock =
+        Number(product.stock || 0);
 
       return `
 
-        <div class="product">
+        <div class="product-card">
 
           <img
+            class="product-image"
             src="${escapeHTML(image)}"
+            alt="${escapeHTML(product.name || "Product")}"
             onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
           >
 
           <div class="product-body">
 
             <div class="product-name">
-              ${escapeHTML(p.name || "Unnamed")}
+              ${escapeHTML(product.name || "Unnamed product")}
             </div>
 
             <div class="product-category">
-              ${escapeHTML(p.category || "—")}
+              ${escapeHTML(product.category || "Uncategorized")}
             </div>
 
             <div class="product-price">
-              ₦${money(p.price)}
+              ₦${money(product.price)}
             </div>
 
-            <div class="product-stock">
-              Stock: ${escapeHTML(p.stock ?? 0)}
+            <div class="product-meta">
+              Stock: ${stock}
               ·
-              ${p.available === false
+              ${
+                product.available === false
                 ? "Unavailable"
-                : "Available"}
-              ${p.featured ? " · ⭐ Featured" : ""}
+                : "Available"
+              }
+              ${
+                product.featured
+                ? " · ⭐ Featured"
+                : ""
+              }
             </div>
 
             <div class="product-actions">
 
               <button
                 class="btn"
-                onclick="editProduct('${p.id}')">
+                onclick="editProduct('${product.id}')">
                 Edit
               </button>
 
               <button
                 class="btn btn-red"
-                onclick="deleteProduct('${p.id}')">
+                onclick="deleteProduct('${product.id}')">
                 Delete
               </button>
 
@@ -1756,11 +2736,13 @@ function resetProductForm(){
 
   document.getElementById(
     "productFormTitle"
-  ).textContent = "Add Product";
+  ).textContent =
+    "Add New Product";
 
   document.getElementById(
     "saveProductBtn"
-  ).textContent = "Add Product";
+  ).textContent =
+    "Add Product";
 
   document.getElementById(
     "cancelProductBtn"
@@ -1774,52 +2756,56 @@ function resetProductForm(){
 
 function editProduct(id){
 
-  const p =
-    products.find(x => x.id === id);
+  const product =
+    products.find(p => p.id === id);
 
-  if(!p) return;
+  if(!product) return;
 
   editingProductId = id;
 
   document.getElementById("pName").value =
-    p.name || "";
+    product.name || "";
 
   document.getElementById("pPrice").value =
-    p.price ?? "";
+    product.price ?? "";
 
   document.getElementById("pCategory").value =
-    p.category || "Solar";
+    product.category || "Solar";
 
   document.getElementById("pStock").value =
-    p.stock ?? 0;
+    product.stock ?? 0;
 
   document.getElementById("pImage").value =
-    p.image || "";
+    product.image || "";
 
   document.getElementById("pAvailable").value =
-    p.available === false
+    product.available === false
       ? "false"
       : "true";
 
   document.getElementById("pFeatured").value =
-    p.featured === true
+    product.featured === true
       ? "true"
       : "false";
 
   document.getElementById("pDescription").value =
-    p.description || "";
+    product.description || "";
 
   document.getElementById(
     "productFormTitle"
-  ).textContent = "Edit Product";
+  ).textContent =
+    "Edit Product";
 
   document.getElementById(
     "saveProductBtn"
-  ).textContent = "Save Changes";
+  ).textContent =
+    "Save Changes";
 
   document.getElementById(
     "cancelProductBtn"
   ).classList.remove("hidden");
+
+  openPage("products");
 
   window.scrollTo({
     top:0,
@@ -1831,43 +2817,71 @@ function editProduct(id){
 async function saveProduct(){
 
   const name =
-    document.getElementById("pName").value.trim();
+    document.getElementById("pName")
+      .value.trim();
 
   const price =
-    Number(document.getElementById("pPrice").value);
+    Number(
+      document.getElementById("pPrice").value
+    );
 
   const category =
     document.getElementById("pCategory").value;
 
   const stock =
-    Number(document.getElementById("pStock").value);
+    Number(
+      document.getElementById("pStock").value
+    );
 
   const image =
-    document.getElementById("pImage").value.trim();
+    document.getElementById("pImage")
+      .value.trim();
 
   const available =
-    document.getElementById("pAvailable").value === "true";
+    document.getElementById("pAvailable")
+      .value === "true";
 
   const featured =
-    document.getElementById("pFeatured").value === "true";
+    document.getElementById("pFeatured")
+      .value === "true";
 
   const description =
-    document.getElementById("pDescription").value.trim();
+    document.getElementById("pDescription")
+      .value.trim();
 
-  const msg =
+  const message =
     document.getElementById("productMessage");
 
   if(!name){
 
-    msg.textContent = "Enter a product name.";
-    msg.className = "message error";
+    message.textContent =
+      "Enter a product name.";
+
+    message.className =
+      "message error";
+
     return;
   }
 
-  if(isNaN(price) || price < 0){
+  if(!Number.isFinite(price) || price < 0){
 
-    msg.textContent = "Enter a valid price.";
-    msg.className = "message error";
+    message.textContent =
+      "Enter a valid price.";
+
+    message.className =
+      "message error";
+
+    return;
+  }
+
+  if(!Number.isFinite(stock) || stock < 0){
+
+    message.textContent =
+      "Enter a valid stock quantity.";
+
+    message.className =
+      "message error";
+
     return;
   }
 
@@ -1888,10 +2902,10 @@ async function saveProduct(){
 
   };
 
-  const btn =
+  const button =
     document.getElementById("saveProductBtn");
 
-  btn.disabled = true;
+  button.disabled = true;
 
   try{
 
@@ -1902,7 +2916,7 @@ async function saveProduct(){
         .doc(editingProductId)
         .update(data);
 
-      msg.textContent =
+      message.textContent =
         "Product updated successfully.";
 
     }else{
@@ -1919,30 +2933,33 @@ async function saveProduct(){
 
         });
 
-      msg.textContent =
+      message.textContent =
         "Product added successfully.";
     }
 
-    msg.className =
+    message.className =
       "message success";
 
-    resetProductForm();
-
     await loadProducts();
+
+    setTimeout(
+      resetProductForm,
+      900
+    );
 
   }catch(error){
 
     console.error(error);
 
-    msg.textContent =
+    message.textContent =
       friendlyError(error);
 
-    msg.className =
+    message.className =
       "message error";
 
   }finally{
 
-    btn.disabled = false;
+    button.disabled = false;
 
   }
 }
@@ -1950,14 +2967,17 @@ async function saveProduct(){
 
 async function deleteProduct(id){
 
-  const p =
-    products.find(x => x.id === id);
+  const product =
+    products.find(p => p.id === id);
 
-  if(!p) return;
+  if(!product) return;
 
-  if(!confirm(
-    `Delete "${p.name || "this product"}"?`
-  )) return;
+  const confirmed =
+    confirm(
+      `Delete "${product.name || "this product"}"?`
+    );
+
+  if(!confirmed) return;
 
   try{
 
@@ -1976,21 +2996,21 @@ async function deleteProduct(id){
 }
 
 
-/* ==========================================
+/* =====================================================
    ORDERS
-========================================== */
+===================================================== */
 
 async function loadOrders(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("orders")
         .get();
 
     orders =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
@@ -2024,38 +3044,46 @@ function renderOrders(){
   const box =
     document.getElementById("ordersTable");
 
+  if(!box) return;
+
   const search =
-    document.getElementById("orderSearch")
-      .value
-      .toLowerCase()
-      .trim();
+    (
+      document.getElementById("orderSearch")
+        ?.value || ""
+    )
+    .toLowerCase()
+    .trim();
 
   const filter =
     document.getElementById("orderFilter")
-      .value;
+      ?.value || "all";
 
   const list =
-    orders.filter(o => {
+    orders.filter(order => {
 
-      const text =
-        (
-          String(o.id || "") +
-          " " +
-          String(o.customerName || "") +
-          " " +
-          String(o.phone || "")
-        ).toLowerCase();
+      const searchText =
+        [
+          order.id,
+          order.customerName,
+          order.phone,
+          order.payment,
+          order.address
+        ]
+        .join(" ")
+        .toLowerCase();
 
       const searchOK =
-        text.includes(search);
+        searchText.includes(search);
+
+      const currentStatus =
+        order.status || "Pending";
 
       const statusOK =
         filter === "all" ||
-        String(o.status || "Pending")
-          .toLowerCase() ===
-        filter.toLowerCase();
+        currentStatus === filter;
 
       return searchOK && statusOK;
+
     });
 
   if(!list.length){
@@ -2073,73 +3101,104 @@ function renderOrders(){
     <table>
 
       <thead>
+
         <tr>
+
           <th>Order</th>
           <th>Customer</th>
-          <th>Phone</th>
           <th>Total</th>
           <th>Payment</th>
           <th>Status</th>
           <th>Date</th>
           <th></th>
+
         </tr>
+
       </thead>
 
       <tbody>
 
-        ${list.map(o => `
+        ${list.map(order => {
 
-          <tr>
+          const status =
+            order.status || "Pending";
 
-            <td>
-              #${escapeHTML(o.id.slice(0,8))}
-            </td>
+          return `
 
-            <td>
-              ${escapeHTML(o.customerName || "Unknown")}
-            </td>
+            <tr>
 
-            <td>
-              ${escapeHTML(o.phone || "—")}
-            </td>
+              <td>
+                <strong>
+                  #${escapeHTML(order.id.slice(0,8))}
+                </strong>
+              </td>
 
-            <td>
-              ₦${escapeHTML(o.total || "0")}
-            </td>
+              <td>
 
-            <td>
-              ${escapeHTML(o.payment || "—")}
-            </td>
+                ${escapeHTML(
+                  order.customerName ||
+                  "Customer"
+                )}
 
-            <td>
+                <div style="color:#64748b;font-size:10px;margin-top:3px">
+                  ${escapeHTML(
+                    order.phone || ""
+                  )}
+                </div>
 
-              <span class="status ${statusClass(o.status)}">
-                ${escapeHTML(o.status || "Pending")}
-              </span>
+              </td>
 
-            </td>
+              <td>
+                <strong>
+                  ₦${money(
+                    numericTotal(order.total)
+                  )}
+                </strong>
+              </td>
 
-            <td>
-              ${dateOf(o.createdAt)}
-            </td>
+              <td>
+                ${escapeHTML(
+                  order.payment ||
+                  order.paymentMethod ||
+                  "—"
+                )}
+              </td>
 
-            <td>
+              <td>
 
-              <button
-                class="btn"
-                onclick="viewOrder('${o.id}')">
-                View
-              </button>
+                <span
+                  class="status status-${escapeHTML(status)}">
 
-            </td>
+                  ${escapeHTML(status)}
 
-          </tr>
+                </span>
 
-        `).join("")}
+              </td>
+
+              <td>
+                ${dateOf(order.createdAt)}
+              </td>
+
+              <td>
+
+                <button
+                  class="btn"
+                  onclick="viewOrder('${order.id}')">
+                  View
+                </button>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }).join("")}
 
       </tbody>
 
     </table>
+
   `;
 }
 
@@ -2148,6 +3207,8 @@ function renderRecentOrders(){
 
   const box =
     document.getElementById("recentOrders");
+
+  if(!box) return;
 
   const list =
     orders.slice(0,5);
@@ -2167,110 +3228,321 @@ function renderRecentOrders(){
     <table>
 
       <thead>
+
         <tr>
           <th>Customer</th>
           <th>Total</th>
           <th>Status</th>
           <th>Date</th>
         </tr>
+
       </thead>
 
       <tbody>
 
-        ${list.map(o => `
+        ${list.map(order => {
 
-          <tr>
+          const status =
+            order.status || "Pending";
 
-            <td>
-              ${escapeHTML(o.customerName || "Unknown")}
-            </td>
+          return `
 
-            <td>
-              ₦${escapeHTML(o.total || "0")}
-            </td>
+            <tr>
 
-            <td>
-              <span class="status ${statusClass(o.status)}">
-                ${escapeHTML(o.status || "Pending")}
-              </span>
-            </td>
+              <td>
+                ${escapeHTML(
+                  order.customerName ||
+                  "Customer"
+                )}
+              </td>
 
-            <td>
-              ${dateOf(o.createdAt)}
-            </td>
+              <td>
+                ₦${money(
+                  numericTotal(order.total)
+                )}
+              </td>
 
-          </tr>
+              <td>
 
-        `).join("")}
+                <span
+                  class="status status-${escapeHTML(status)}">
+
+                  ${escapeHTML(status)}
+
+                </span>
+
+              </td>
+
+              <td>
+                ${dateOf(order.createdAt)}
+              </td>
+
+            </tr>
+
+          `;
+
+        }).join("")}
 
       </tbody>
 
     </table>
+
   `;
 }
 
 
 function viewOrder(id){
 
-  const o =
-    orders.find(x => x.id === id);
+  const order =
+    orders.find(o => o.id === id);
 
-  if(!o) return;
+  if(!order) return;
 
   const items =
-    Array.isArray(o.items)
-      ? o.items.map(x =>
-          `<div>• ${escapeHTML(x)}</div>`
-        ).join("")
-      : escapeHTML(o.items || "—");
+    normalizeItems(order.items);
 
   document.getElementById(
     "modalTitle"
-  ).textContent = "Order Details";
+  ).textContent =
+    "Order Details";
+
+
+  const itemsHTML =
+    items.length
+
+    ?
+
+    `<div class="order-items">
+
+      ${items.map(item => {
+
+        const name =
+          item.name ||
+          item.productName ||
+          item.title ||
+          "Product";
+
+        const quantity =
+          Number(
+            item.quantity ||
+            item.qty ||
+            1
+          );
+
+        const price =
+          Number(
+            item.price ||
+            0
+          );
+
+        return `
+
+          <div class="order-item">
+
+            <div>
+
+              <div class="order-item-name">
+                ${escapeHTML(name)}
+              </div>
+
+              <div class="order-item-small">
+                Quantity: ${quantity}
+              </div>
+
+            </div>
+
+            <strong>
+              ₦${money(price * quantity)}
+            </strong>
+
+          </div>
+
+        `;
+
+      }).join("")}
+
+    </div>`
+
+    :
+
+    `<div class="detail-value">
+      No item details available.
+    </div>`;
+
 
   document.getElementById(
     "modalContent"
   ).innerHTML = `
 
     <div class="detail">
-      <div class="detail-label">Order ID</div>
-      <div class="detail-value">${escapeHTML(o.id)}</div>
+
+      <div class="detail-label">
+        Order ID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(order.id)}
+      </div>
+
     </div>
 
-    <div class="detail">
-      <div class="detail-label">Customer</div>
-      <div class="detail-value">${escapeHTML(o.customerName || "—")}</div>
-    </div>
 
     <div class="detail">
-      <div class="detail-label">Phone</div>
-      <div class="detail-value">${escapeHTML(o.phone || "—")}</div>
+
+      <div class="detail-label">
+        Customer
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          order.customerName ||
+          "—"
+        )}
+
+      </div>
+
     </div>
 
-    <div class="detail">
-      <div class="detail-label">Address</div>
-      <div class="detail-value">${escapeHTML(o.address || "—")}</div>
-    </div>
 
     <div class="detail">
-      <div class="detail-label">Items</div>
-      <div class="detail-value">${items}</div>
+
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          order.phone ||
+          "—"
+        )}
+
+      </div>
+
     </div>
 
-    <div class="detail">
-      <div class="detail-label">Total</div>
-      <div class="detail-value">₦${escapeHTML(o.total || "0")}</div>
-    </div>
 
     <div class="detail">
-      <div class="detail-label">Payment</div>
-      <div class="detail-value">${escapeHTML(o.payment || "—")}</div>
+
+      <div class="detail-label">
+        Delivery Address
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          order.address ||
+          "—"
+        )}
+
+      </div>
+
     </div>
 
+
     <div class="detail">
-      <div class="detail-label">Created</div>
-      <div class="detail-value">${dateOf(o.createdAt)}</div>
+
+      <div class="detail-label">
+        City / Area
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          [
+            order.city,
+            order.area,
+            order.state
+          ]
+          .filter(Boolean)
+          .join(" · ")
+          ||
+          "—"
+        )}
+
+      </div>
+
     </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Order Items
+      </div>
+
+      ${itemsHTML}
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Total
+      </div>
+
+      <div class="detail-value">
+
+        <strong style="font-size:18px;color:#38bdf8">
+
+          ₦${money(
+            numericTotal(order.total)
+          )}
+
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment Method
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          order.payment ||
+          order.paymentMethod ||
+          "—"
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment Status
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          order.paymentStatus ||
+          (
+            String(
+              order.payment ||
+              ""
+            )
+            .toLowerCase()
+            .includes("pay on delivery")
+            ? "Pay on Delivery"
+            : "Not specified"
+          )
+        )}
+
+      </div>
+
+    </div>
+
 
     <div class="detail">
 
@@ -2279,14 +3551,33 @@ function viewOrder(id){
       </div>
 
       <select
-        onchange="changeOrderStatus('${o.id}',this.value)">
+        id="modalOrderStatus"
+        onchange="changeOrderStatus('${order.id}',this.value)">
 
-        ${orderStatusOptions(o.status)}
+        ${orderStatusOptions(
+          order.status ||
+          "Pending"
+        )}
 
       </select>
 
     </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Created
+      </div>
+
+      <div class="detail-value">
+        ${dateOf(order.createdAt)}
+      </div>
+
+    </div>
+
   `;
+
 
   document
     .getElementById("modal")
@@ -2312,7 +3603,7 @@ async function changeOrderStatus(id,status){
       });
 
     const order =
-      orders.find(x => x.id === id);
+      orders.find(o => o.id === id);
 
     if(order)
       order.status = status;
@@ -2323,27 +3614,29 @@ async function changeOrderStatus(id,status){
 
   }catch(error){
 
-    alert(friendlyError(error));
+    alert(
+      friendlyError(error)
+    );
 
   }
 }
 
 
-/* ==========================================
+/* =====================================================
    CUSTOMERS
-========================================== */
+===================================================== */
 
 async function loadUsers(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("users")
         .get();
 
     users =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
@@ -2354,6 +3647,7 @@ async function loadUsers(){
   }catch(error){
 
     console.error(error);
+
   }
 }
 
@@ -2362,13 +3656,13 @@ async function loadProfiles(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("profiles")
         .get();
 
     profiles =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
@@ -2378,6 +3672,7 @@ async function loadProfiles(){
   }catch(error){
 
     console.error(error);
+
   }
 }
 
@@ -2385,38 +3680,48 @@ async function loadProfiles(){
 function renderCustomers(){
 
   const box =
-    document.getElementById("customersList");
+    document.getElementById(
+      "customersList"
+    );
 
   if(!box) return;
 
   const search =
     (
-      document.getElementById("customerSearch")?.value
-      || ""
-    ).toLowerCase().trim();
+      document.getElementById(
+        "customerSearch"
+      )?.value || ""
+    )
+    .toLowerCase()
+    .trim();
 
   const customerUsers =
-    users.filter(u =>
-      String(u.role || "").toLowerCase()
-      !== "admin"
+    users.filter(
+      user =>
+        String(user.role || "")
+          .toLowerCase() !== "admin"
     );
 
   const list =
-    customerUsers.filter(u => {
+    customerUsers.filter(user => {
 
       const profile =
         profiles.find(
-          p => p.uid === u.uid
+          p =>
+            p.uid === user.uid ||
+            p.id === user.uid ||
+            p.id === user.id
         );
 
       const text =
-        (
-          u.name || "" +
-          " " +
-          u.email || "" +
-          " " +
-          profile?.phone || ""
-        ).toLowerCase();
+        [
+          user.name,
+          user.email,
+          profile?.fullName,
+          profile?.phone
+        ]
+        .join(" ")
+        .toLowerCase();
 
       return text.includes(search);
 
@@ -2433,52 +3738,82 @@ function renderCustomers(){
   }
 
   box.innerHTML =
-    list.map(u => {
+    list.map(user => {
 
       const profile =
         profiles.find(
-          p => p.uid === u.uid
+          p =>
+            p.uid === user.uid ||
+            p.id === user.uid ||
+            p.id === user.id
         );
 
       const photo =
-        profile?.photoURL;
+        profile?.photoURL ||
+        profile?.photoUrl ||
+        user.photoURL ||
+        "";
 
       return `
 
-        <div class="customer">
+        <div class="customer-row">
 
           ${
             photo
-            ? `<img class="avatar"
-                src="${escapeHTML(photo)}"
-                onerror="this.style.display='none'">`
-            : `<div class="avatar">👤</div>`
+
+            ?
+
+            `<img
+              class="avatar"
+              src="${escapeHTML(photo)}"
+              alt="Customer"
+            >`
+
+            :
+
+            `<div class="avatar">
+              👤
+            </div>`
           }
 
-          <div style="flex:1">
+
+          <div class="customer-main">
 
             <div class="customer-name">
+
               ${escapeHTML(
                 profile?.fullName ||
-                u.name ||
+                user.name ||
                 "Customer"
               )}
+
             </div>
 
             <div class="customer-info">
-              ${escapeHTML(u.email || "No email")}
-            </div>
 
-            <div class="customer-info">
-              ${escapeHTML(profile?.phone || "No phone")}
+              ${escapeHTML(
+                user.email ||
+                "No email"
+              )}
+
+              ·
+
+              ${escapeHTML(
+                profile?.phone ||
+                "No phone"
+              )}
+
             </div>
 
           </div>
 
+
           <button
             class="btn"
-            onclick="viewCustomer('${u.uid}')">
+            onclick="viewCustomer('${escapeHTML(user.uid || user.id)}')">
+
             View
+
           </button>
 
         </div>
@@ -2491,77 +3826,144 @@ function renderCustomers(){
 
 function viewCustomer(uid){
 
-  const u =
-    users.find(x => x.uid === uid);
+  const user =
+    users.find(
+      u =>
+        u.uid === uid ||
+        u.id === uid
+    );
 
-  const p =
-    profiles.find(x => x.uid === uid);
+  const profile =
+    profiles.find(
+      p =>
+        p.uid === uid ||
+        p.id === uid
+    );
 
-  if(!u) return;
+  if(!user) return;
 
   document.getElementById(
     "modalTitle"
-  ).textContent = "Customer";
+  ).textContent =
+    "Customer Profile";
 
   document.getElementById(
     "modalContent"
   ).innerHTML = `
 
     <div class="detail">
-      <div class="detail-label">Name</div>
-      <div class="detail-value">
-        ${escapeHTML(p?.fullName || u.name || "—")}
+
+      <div class="detail-label">
+        Name
       </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          profile?.fullName ||
+          user.name ||
+          "—"
+        )}
+
+      </div>
+
     </div>
 
-    <div class="detail">
-      <div class="detail-label">Email</div>
-      <div class="detail-value">
-        ${escapeHTML(u.email || "—")}
-      </div>
-    </div>
 
     <div class="detail">
-      <div class="detail-label">Phone</div>
-      <div class="detail-value">
-        ${escapeHTML(p?.phone || "—")}
+
+      <div class="detail-label">
+        Email
       </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          user.email ||
+          "—"
+        )}
+
+      </div>
+
     </div>
 
-    <div class="detail">
-      <div class="detail-label">Address</div>
-      <div class="detail-value">
-        ${escapeHTML(p?.address || "—")}
-      </div>
-    </div>
 
     <div class="detail">
-      <div class="detail-label">Location</div>
+
+      <div class="detail-label">
+        Phone
+      </div>
+
       <div class="detail-value">
+
+        ${escapeHTML(
+          profile?.phone ||
+          "—"
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Address
+      </div>
+
+      <div class="detail-value">
+
+        ${escapeHTML(
+          profile?.address ||
+          "—"
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Location
+      </div>
+
+      <div class="detail-value">
+
         ${escapeHTML(
           [
-            p?.city,
-            p?.state,
-            p?.country
-          ].filter(Boolean).join(", ")
-          || "—"
+            profile?.city,
+            profile?.area,
+            profile?.state,
+            profile?.country
+          ]
+          .filter(Boolean)
+          .join(", ")
+          ||
+          "—"
         )}
+
       </div>
+
     </div>
 
+
     <div class="detail">
-      <div class="detail-label">UID</div>
+
+      <div class="detail-label">
+        Account ID
+      </div>
+
       <div class="detail-value">
+
         ${escapeHTML(uid)}
+
       </div>
+
     </div>
 
-    <div class="detail">
-      <div class="detail-label">Account Status</div>
-      <div class="detail-value">
-        ${u.active === false ? "Inactive" : "Active"}
-      </div>
-    </div>
   `;
 
   document
@@ -2570,21 +3972,21 @@ function viewCustomer(uid){
 }
 
 
-/* ==========================================
-   CHATS
-========================================== */
+/* =====================================================
+   CHAT
+===================================================== */
 
 async function loadChats(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("chats")
         .get();
 
     chats =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
@@ -2596,7 +3998,6 @@ async function loadChats(){
     );
 
     renderChats();
-
     updateDashboard();
 
   }catch(error){
@@ -2622,52 +4023,72 @@ function renderChats(){
 
     box.innerHTML =
       `<div class="empty">
-        No chats yet.
+        No customer chats yet.
       </div>`;
 
     return;
   }
 
   box.innerHTML =
-    chats.map(c => `
+    chats.map(chat => {
 
-      <div
-        class="chat-item ${
-          selectedChatId === c.id
+      const unread =
+        Number(
+          chat.unreadForAdmin || 0
+        );
+
+      return `
+
+        <div
+          class="chat-item ${
+            selectedChatId === chat.id
             ? "active"
             : ""
-        }"
-        onclick="selectChat('${c.id}')">
+          }"
+          onclick="selectChat('${chat.id}')">
 
-        <div class="chat-item-top">
+          <div class="chat-item-top">
 
-          <div class="chat-name">
-            ${escapeHTML(
-              c.customerName ||
-              "Customer"
-            )}
+            <div class="chat-name">
+
+              ${escapeHTML(
+                chat.customerName ||
+                "Customer"
+              )}
+
+            </div>
+
+            ${
+              unread > 0
+
+              ?
+
+              `<span class="unread">
+                ${unread}
+              </span>`
+
+              :
+
+              ""
+            }
+
           </div>
 
-          ${
-            Number(c.unreadForAdmin || 0) > 0
-            ? `<span class="unread">
-                ${c.unreadForAdmin}
-              </span>`
-            : ""
-          }
+
+          <div class="last-message">
+
+            ${escapeHTML(
+              chat.lastMessage ||
+              "No messages yet"
+            )}
+
+          </div>
 
         </div>
 
-        <div class="last-message">
-          ${escapeHTML(
-            c.lastMessage ||
-            "No messages yet"
-          )}
-        </div>
+      `;
 
-      </div>
-
-    `).join("");
+    }).join("");
 }
 
 
@@ -2676,7 +4097,9 @@ async function selectChat(chatId){
   selectedChatId = chatId;
 
   const chat =
-    chats.find(x => x.id === chatId);
+    chats.find(
+      c => c.id === chatId
+    );
 
   if(!chat) return;
 
@@ -2685,7 +4108,8 @@ async function selectChat(chatId){
   document.getElementById(
     "chatCustomerName"
   ).textContent =
-    chat.customerName || "Customer";
+    chat.customerName ||
+    "Customer";
 
   document.getElementById(
     "chatCustomerInfo"
@@ -2703,11 +4127,11 @@ async function selectChat(chatId){
 
   listenToMessages(chatId);
 
-  /*
-    Mark admin unread count as zero.
-  */
-
-  if(Number(chat.unreadForAdmin || 0) > 0){
+  if(
+    Number(
+      chat.unreadForAdmin || 0
+    ) > 0
+  ){
 
     try{
 
@@ -2738,93 +4162,119 @@ function listenToMessages(chatId){
     messageUnsubscribe();
 
   const box =
-    document.getElementById("messages");
+    document.getElementById(
+      "messages"
+    );
 
   box.innerHTML =
     `<div class="empty">
       Loading messages...
     </div>`;
 
-  /*
-    We only use where().
-    Sorting happens in JavaScript,
-    which avoids requiring a composite index.
-  */
-
   messageUnsubscribe =
     db
       .collection("messages")
-      .where("chatId","==",chatId)
-      .onSnapshot(snapshot => {
+      .where(
+        "chatId",
+        "==",
+        chatId
+      )
+      .onSnapshot(
+        snapshot => {
 
-        const list =
-          snapshot.docs.map(doc => ({
-            id:doc.id,
-            ...doc.data()
-          }));
+          const list =
+            snapshot.docs.map(doc => ({
+              id:doc.id,
+              ...doc.data()
+            }));
 
-        list.sort(
-          (a,b) =>
-            timeOf(a.createdAt) -
-            timeOf(b.createdAt)
-        );
+          list.sort(
+            (a,b) =>
+              timeOf(a.createdAt) -
+              timeOf(b.createdAt)
+          );
 
-        if(!list.length){
+          if(!list.length){
+
+            box.innerHTML =
+              `<div class="empty">
+                No messages yet.
+              </div>`;
+
+            return;
+          }
+
+          box.innerHTML =
+            list.map(message => {
+
+              const isAdmin =
+                message.senderRole === "admin";
+
+              return `
+
+                <div
+                  class="message-bubble ${
+                    isAdmin
+                    ? "admin"
+                    : "customer"
+                  }">
+
+                  ${escapeHTML(
+                    message.text || ""
+                  )}
+
+                  ${
+                    message.imageUrl
+
+                    ?
+
+                    `<div style="margin-top:8px">
+                      <img
+                        src="${escapeHTML(message.imageUrl)}"
+                        style="max-width:180px;border-radius:10px"
+                      >
+                    </div>`
+
+                    :
+
+                    ""
+                  }
+
+                  <span class="message-time">
+
+                    ${escapeHTML(
+                      message.senderName ||
+                      ""
+                    )}
+
+                    ·
+
+                    ${dateOf(
+                      message.createdAt
+                    )}
+
+                  </span>
+
+                </div>
+
+              `;
+
+            }).join("");
+
+          box.scrollTop =
+            box.scrollHeight;
+
+        },
+        error => {
+
+          console.error(error);
 
           box.innerHTML =
             `<div class="empty">
-              No messages yet.
+              ${escapeHTML(error.message)}
             </div>`;
-
-          return;
         }
-
-        box.innerHTML =
-          list.map(m => `
-
-            <div class="msg ${
-              m.senderRole === "admin"
-                ? "admin"
-                : "customer"
-            }">
-
-              ${escapeHTML(m.text || "")}
-
-              ${
-                m.imageUrl
-                ? `<div style="margin-top:8px">
-                    <img
-                      src="${escapeHTML(m.imageUrl)}"
-                      style="max-width:180px;border-radius:9px"
-                    >
-                  </div>`
-                : ""
-              }
-
-              <span class="msg-time">
-                ${escapeHTML(
-                  m.senderName || ""
-                )}
-                ·
-                ${dateOf(m.createdAt)}
-              </span>
-
-            </div>
-
-          `).join("");
-
-        box.scrollTop =
-          box.scrollHeight;
-
-      },error => {
-
-        console.error(error);
-
-        box.innerHTML =
-          `<div class="empty">
-            ${escapeHTML(error.message)}
-          </div>`;
-      });
+      );
 }
 
 
@@ -2842,25 +4292,33 @@ function handleChatEnter(event){
 
 async function sendMessage(){
 
-  if(!selectedChatId) return;
+  if(!selectedChatId)
+    return;
 
   const input =
-    document.getElementById("chatInput");
+    document.getElementById(
+      "chatInput"
+    );
 
   const text =
     input.value.trim();
 
-  if(!text) return;
+  if(!text)
+    return;
 
   const user =
     auth.currentUser;
 
-  if(!user) return;
+  if(!user)
+    return;
 
   const chat =
-    chats.find(x => x.id === selectedChatId);
+    chats.find(
+      c => c.id === selectedChatId
+    );
 
-  if(!chat) return;
+  if(!chat)
+    return;
 
   input.disabled = true;
 
@@ -2874,13 +4332,11 @@ async function sendMessage(){
 
         senderId:user.uid,
 
-        senderName:
-          "Danny",
+        senderName:"Danny",
 
-        senderRole:
-          "admin",
+        senderRole:"admin",
 
-        text:text,
+        text,
 
         imageUrl:"",
 
@@ -2912,11 +4368,9 @@ async function sendMessage(){
 
       });
 
-
     input.value = "";
 
     chat.lastMessage = text;
-
     chat.unreadForAdmin = 0;
 
     renderChats();
@@ -2930,27 +4384,28 @@ async function sendMessage(){
   }finally{
 
     input.disabled = false;
+
     input.focus();
 
   }
 }
 
 
-/* ==========================================
+/* =====================================================
    WISHLISTS
-========================================== */
+===================================================== */
 
 async function loadWishlists(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("wishlists")
         .get();
 
     wishlists =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
@@ -2989,60 +4444,67 @@ function renderWishlists(){
   }
 
   box.innerHTML =
-    wishlists.map(w => {
+    wishlists.map(wishlist => {
 
       const items =
-        Array.isArray(w.items)
-          ? w.items
-          : [];
+        Array.isArray(
+          wishlist.items
+        )
+        ? wishlist.items
+        : [];
 
       return `
 
-        <div class="wishlist">
+        <div class="wishlist-card">
 
-          <div class="wishlist-head">
-
-            <strong>
-              Customer
-            </strong>
-
-            <span>
-              ${items.length} saved
-            </span>
-
+          <div class="wishlist-title">
+            Customer Wishlist
           </div>
 
-          <div class="wishlist-items">
+          <div class="wishlist-info">
 
             Customer ID:
             ${escapeHTML(
-              w.customerId || w.id
+              wishlist.customerId ||
+              wishlist.id
             )}
+
+            <br>
+
+            Saved products:
+            ${items.length}
 
             <br><br>
 
             ${
               items.length
-              ? items.map(item => {
 
-                  const product =
-                    products.find(
-                      p =>
-                        p.id === item.productId
-                    );
+              ?
 
-                  return `
-                    • ${
-                      escapeHTML(
-                        product?.name ||
-                        item.productId ||
-                        "Unknown product"
-                      )
-                    }
-                  `;
+              items.map(item => {
 
-                }).join("<br>")
-              : "No saved products."
+                const product =
+                  products.find(
+                    p =>
+                      p.id ===
+                      item.productId
+                  );
+
+                return `
+                  • ${escapeHTML(
+                    product?.name ||
+                    item.name ||
+                    item.productId ||
+                    "Unknown product"
+                  )}
+                `;
+
+              }).join("<br>")
+
+              :
+
+              "No saved products."
+
             }
 
           </div>
@@ -3055,57 +4517,71 @@ function renderWishlists(){
 }
 
 
-/* ==========================================
+/* =====================================================
    SETTINGS
-========================================== */
-
-let settingsDocId = null;
-
+===================================================== */
 
 async function loadSettings(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("settings")
         .limit(1)
         .get();
 
-    if(snap.empty)
+    if(snapshot.empty)
       return;
 
     const doc =
-      snap.docs[0];
+      snapshot.docs[0];
 
-    settingsDocId = doc.id;
+    settingsDocId =
+      doc.id;
 
-    const s =
+    const data =
       doc.data();
 
-    document.getElementById("sName").value =
-      s.storeName || "";
+    document.getElementById(
+      "sName"
+    ).value =
+      data.storeName || "";
 
-    document.getElementById("sDescription").value =
-      s.description || "";
+    document.getElementById(
+      "sEmail"
+    ).value =
+      data.email || "";
 
-    document.getElementById("sEmail").value =
-      s.email || "";
+    document.getElementById(
+      "sPhone"
+    ).value =
+      data.phone || "";
 
-    document.getElementById("sPhone").value =
-      s.phone || "";
+    document.getElementById(
+      "sWhatsapp"
+    ).value =
+      data.whatsapp || "";
 
-    document.getElementById("sWhatsapp").value =
-      s.whatsapp || "";
+    document.getElementById(
+      "sCurrency"
+    ).value =
+      data.currency || "NGN";
 
-    document.getElementById("sAddress").value =
-      s.address || "";
+    document.getElementById(
+      "sLogo"
+    ).value =
+      data.logoUrl || "";
 
-    document.getElementById("sLogo").value =
-      s.logoUrl || "";
+    document.getElementById(
+      "sAddress"
+    ).value =
+      data.address || "";
 
-    document.getElementById("sCurrency").value =
-      s.currency || "NGN";
+    document.getElementById(
+      "sDescription"
+    ).value =
+      data.description || "";
 
   }catch(error){
 
@@ -3120,34 +4596,56 @@ async function saveSettings(){
   const data = {
 
     storeName:
-      document.getElementById("sName").value.trim(),
-
-    description:
-      document.getElementById("sDescription").value.trim(),
+      document.getElementById(
+        "sName"
+      ).value.trim(),
 
     email:
-      document.getElementById("sEmail").value.trim(),
+      document.getElementById(
+        "sEmail"
+      ).value.trim(),
 
     phone:
-      document.getElementById("sPhone").value.trim(),
+      document.getElementById(
+        "sPhone"
+      ).value.trim(),
 
     whatsapp:
-      document.getElementById("sWhatsapp").value.trim(),
-
-    address:
-      document.getElementById("sAddress").value.trim(),
-
-    logoUrl:
-      document.getElementById("sLogo").value.trim(),
+      document.getElementById(
+        "sWhatsapp"
+      ).value.trim(),
 
     currency:
-      document.getElementById("sCurrency").value.trim(),
+      document.getElementById(
+        "sCurrency"
+      ).value.trim() ||
+      "NGN",
+
+    logoUrl:
+      document.getElementById(
+        "sLogo"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "sAddress"
+      ).value.trim(),
+
+    description:
+      document.getElementById(
+        "sDescription"
+      ).value.trim(),
 
     updatedAt:
       firebase.firestore.FieldValue
         .serverTimestamp()
 
   };
+
+  const message =
+    document.getElementById(
+      "settingsMessage"
+    );
 
   try{
 
@@ -3160,57 +4658,49 @@ async function saveSettings(){
 
     }else{
 
-      const ref =
+      const reference =
         await db
           .collection("settings")
           .add(data);
 
-      settingsDocId = ref.id;
+      settingsDocId =
+        reference.id;
 
     }
 
-    const msg =
-      document.getElementById(
-        "settingsMessage"
-      );
+    message.textContent =
+      "Store settings saved.";
 
-    msg.textContent =
-      "Settings saved successfully.";
-
-    msg.className =
+    message.className =
       "message success";
 
   }catch(error){
 
-    const msg =
-      document.getElementById(
-        "settingsMessage"
-      );
-
-    msg.textContent =
+    message.textContent =
       friendlyError(error);
 
-    msg.className =
+    message.className =
       "message error";
+
   }
 }
 
 
-/* ==========================================
+/* =====================================================
    ADMINS
-========================================== */
+===================================================== */
 
 async function loadAdmins(){
 
   try{
 
-    const snap =
+    const snapshot =
       await db
         .collection("admins")
         .get();
 
     admins =
-      snap.docs.map(doc => ({
+      snapshot.docs.map(doc => ({
         id:doc.id,
         ...doc.data()
       }));
@@ -3234,46 +4724,65 @@ async function loadAdmins(){
 function renderAdmins(){
 
   const box =
-    document.getElementById("adminsList");
+    document.getElementById(
+      "adminsList"
+    );
 
   if(!admins.length){
 
     box.innerHTML =
       `<div class="empty">
-        No admins found.
+        No administrators found.
       </div>`;
 
     return;
   }
 
   box.innerHTML =
-    admins.map(a => `
+    admins.map(admin => `
 
-      <div class="customer">
+      <div class="customer-row">
 
         <div class="avatar">
           🔐
         </div>
 
-        <div style="flex:1">
+        <div class="customer-main">
 
           <div class="customer-name">
-            ${escapeHTML(a.name || "Admin")}
+
+            ${escapeHTML(
+              admin.name ||
+              "Administrator"
+            )}
+
           </div>
 
           <div class="customer-info">
-            ${escapeHTML(a.email || "—")}
+
+            ${escapeHTML(
+              admin.email ||
+              "No email"
+            )}
+
           </div>
 
           <div class="customer-info">
+
             Role:
-            ${escapeHTML(a.role || "admin")}
+            ${escapeHTML(
+              admin.role ||
+              "admin"
+            )}
+
             ·
+
             ${
-              a.active === false
+              admin.active === false
               ? "Inactive"
               : "Active"
             }
+
           </div>
 
         </div>
@@ -3284,9 +4793,9 @@ function renderAdmins(){
 }
 
 
-/* ==========================================
+/* =====================================================
    DASHBOARD
-========================================== */
+===================================================== */
 
 function updateDashboard(){
 
@@ -3295,58 +4804,162 @@ function updateDashboard(){
   ).textContent =
     products.length;
 
+
   document.getElementById(
     "statOrders"
   ).textContent =
     orders.length;
 
+
   const pending =
-    orders.filter(o =>
-      String(o.status || "Pending")
-        .toLowerCase() === "pending"
+    orders.filter(
+      order =>
+        String(
+          order.status ||
+          "Pending"
+        ).toLowerCase()
+        === "pending"
     ).length;
+
 
   document.getElementById(
     "statPending"
   ).textContent =
     pending;
 
+
   const customers =
-    users.filter(u =>
-      String(u.role || "").toLowerCase()
-      !== "admin"
+    users.filter(
+      user =>
+        String(
+          user.role || ""
+        ).toLowerCase()
+        !== "admin"
     );
+
 
   document.getElementById(
     "statCustomers"
   ).textContent =
     customers.length;
 
+
   const unread =
     chats.reduce(
-      (total,c) =>
+      (total,chat) =>
         total +
-        Number(c.unreadForAdmin || 0),
+        Number(
+          chat.unreadForAdmin ||
+          0
+        ),
       0
     );
+
 
   document.getElementById(
     "statUnread"
   ).textContent =
     unread;
+
+
+  const completedRevenue =
+    orders
+      .filter(
+        order =>
+          String(
+            order.status ||
+            ""
+          ).toLowerCase()
+          === "completed"
+      )
+      .reduce(
+        (total,order) =>
+          total +
+          numericTotal(
+            order.total
+          ),
+        0
+      );
+
+
+  document.getElementById(
+    "dashboardRevenue"
+  ).textContent =
+    "₦" +
+    money(
+      completedRevenue
+    );
+
+
+  renderOrderSummary();
+
 }
 
 
-/* ==========================================
+function renderOrderSummary(){
+
+  const box =
+    document.getElementById(
+      "orderSummary"
+    );
+
+  if(!box) return;
+
+  const statuses = [
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ];
+
+  box.innerHTML =
+    statuses.map(status => {
+
+      const count =
+        orders.filter(
+          order =>
+            (
+              order.status ||
+              "Pending"
+            ) === status
+        ).length;
+
+      return `
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          padding:9px 0;
+          border-bottom:1px solid var(--border);
+        ">
+
+          <span class="status status-${status}">
+            ${status}
+          </span>
+
+          <strong>
+            ${count}
+          </strong>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+/* =====================================================
    MODAL
-========================================== */
+===================================================== */
 
 function closeModal(){
 
   document
     .getElementById("modal")
-    .classList
-    .remove("show");
+    .classList.remove("show");
 }
 
 
@@ -3357,16 +4970,63 @@ function closeModalOutside(event){
 }
 
 
-/* ==========================================
+/* =====================================================
    HELPERS
-========================================== */
+===================================================== */
 
 function money(value){
 
-  const n =
-    Number(value || 0);
+  return Number(
+    value || 0
+  ).toLocaleString(
+    "en-NG"
+  );
+}
 
-  return n.toLocaleString("en-NG");
+
+function numericTotal(value){
+
+  if(typeof value === "number")
+    return value;
+
+  if(typeof value === "string"){
+
+    const cleaned =
+      value
+        .replace(/[₦,\s]/g,"");
+
+    const number =
+      Number(cleaned);
+
+    return Number.isFinite(number)
+      ? number
+      : 0;
+  }
+
+  return 0;
+}
+
+
+function normalizeItems(items){
+
+  if(!Array.isArray(items))
+    return [];
+
+  return items.map(item => {
+
+    if(typeof item === "string"){
+
+      return {
+        name:item,
+        quantity:1,
+        price:0
+      };
+
+    }
+
+    return item || {};
+
+  });
 }
 
 
@@ -3377,29 +5037,53 @@ function timeOf(value){
 
   try{
 
-    return value.toDate
-      ? value.toDate().getTime()
-      : new Date(value).getTime();
+    if(
+      value.toDate &&
+      typeof value.toDate ===
+      "function"
+    ){
+
+      return value
+        .toDate()
+        .getTime();
+
+    }
+
+    if(
+      value.seconds !== undefined
+    ){
+
+      return Number(
+        value.seconds
+      ) * 1000;
+
+    }
+
+    const time =
+      new Date(value).getTime();
+
+    return Number.isNaN(time)
+      ? 0
+      : time;
 
   }catch{
+
     return 0;
+
   }
 }
 
 
 function dateOf(value){
 
-  if(!value)
+  const time =
+    timeOf(value);
+
+  if(!time)
     return "—";
 
-  try{
-
-    const date =
-      value.toDate
-      ? value.toDate()
-      : new Date(value);
-
-    return date.toLocaleString(
+  return new Date(time)
+    .toLocaleString(
       "en-NG",
       {
         day:"numeric",
@@ -3409,26 +5093,12 @@ function dateOf(value){
         minute:"2-digit"
       }
     );
-
-  }catch{
-    return "—";
-  }
-}
-
-
-function statusClass(status){
-
-  return String(
-    status || "Pending"
-  )
-  .toLowerCase()
-  .replace(/\s+/g,"-");
 }
 
 
 function orderStatusOptions(current){
 
-  const list = [
+  const statuses = [
     "Pending",
     "Processing",
     "Shipped",
@@ -3436,27 +5106,36 @@ function orderStatusOptions(current){
     "Cancelled"
   ];
 
-  return list.map(s => `
+  return statuses
+    .map(status => `
 
-    <option
-      value="${s}"
-      ${s === current ? "selected" : ""}
-    >
-      ${s}
-    </option>
+      <option
+        value="${status}"
+        ${
+          status === current
+          ? "selected"
+          : ""
+        }>
 
-  `).join("");
+        ${status}
+
+      </option>
+
+    `)
+    .join("");
 }
 
 
 function escapeHTML(value){
 
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  return String(
+    value ?? ""
+  )
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
 }
 
 
@@ -3465,24 +5144,77 @@ function friendlyError(error){
   if(!error)
     return "Something went wrong.";
 
-  if(error.code === "permission-denied")
-    return "Firestore permission denied. Check your Firestore Rules.";
+  if(
+    error.code ===
+    "permission-denied"
+  ){
 
-  if(error.code === "auth/invalid-credential")
+    return "Permission denied. Check your Firestore Rules.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/invalid-credential"
+  ){
+
     return "Incorrect email or password.";
 
-  if(error.code === "auth/user-not-found")
+  }
+
+  if(
+    error.code ===
+    "auth/user-not-found"
+  ){
+
     return "No account was found.";
 
-  if(error.code === "auth/wrong-password")
+  }
+
+  if(
+    error.code ===
+    "auth/wrong-password"
+  ){
+
     return "Incorrect password.";
 
-  if(error.code === "auth/too-many-requests")
-    return "Too many attempts. Try again later.";
+  }
 
-  return error.message ||
-    "Something went wrong.";
+  if(
+    error.code ===
+    "auth/too-many-requests"
+  ){
+
+    return "Too many login attempts. Try again later.";
+
+  }
+
+  return (
+    error.message ||
+    "Something went wrong."
+  );
+
 }
+
+
+/* =====================================================
+   KEYBOARD SHORTCUT
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape"
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
 
 </script>
 
