@@ -1,0 +1,1865 @@
+notification.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications | Danny Smart Power</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#07111f;
+  --dark:#020617;
+  --panel:#0d1b2a;
+  --panel2:#102234;
+  --border:#203247;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --blue2:#0ea5e9;
+  --green:#4ade80;
+  --red:#f87171;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(56,189,248,.08),
+      transparent 35%
+    ),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:20;
+
+  height:68px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  background:rgba(2,6,23,.95);
+  backdrop-filter:blur(12px);
+
+  border-bottom:1px solid var(--border);
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back-btn{
+  width:40px;
+  height:40px;
+
+  border:1px solid var(--border);
+  border-radius:11px;
+
+  background:var(--panel);
+  color:white;
+
+  font-size:20px;
+}
+
+.back-btn:hover{
+  border-color:var(--blue);
+  color:var(--blue);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  font-size:18px;
+  font-weight:bold;
+}
+
+.logo-icon{
+  width:36px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:10px;
+
+  background:var(--blue);
+  color:#00111c;
+
+  font-size:19px;
+}
+
+.header-title{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.notification-count{
+  min-width:24px;
+  height:24px;
+
+  padding:0 7px;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:20px;
+
+  background:#ef4444;
+  color:white;
+
+  font-size:11px;
+  font-weight:bold;
+}
+
+.notification-count.show{
+  display:flex;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+  width:100%;
+  max-width:900px;
+
+  margin:auto;
+
+  padding:30px 18px 50px;
+}
+
+.page-heading{
+  margin-bottom:24px;
+}
+
+.page-heading h1{
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.page-heading p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+
+/* =========================
+   INFO CARD
+========================= */
+
+.info-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  padding:16px;
+
+  margin-bottom:18px;
+
+  background:rgba(56,189,248,.07);
+
+  border:1px solid rgba(56,189,248,.18);
+
+  border-radius:15px;
+}
+
+.info-icon{
+  width:44px;
+  height:44px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:rgba(56,189,248,.13);
+
+  font-size:21px;
+}
+
+.info-text strong{
+  display:block;
+  margin-bottom:3px;
+}
+
+.info-text span{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notifications{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.notification{
+  position:relative;
+
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:17px;
+
+  padding:17px;
+
+  transition:.2s;
+}
+
+.notification:hover{
+  border-color:#2d4861;
+  transform:translateY(-1px);
+}
+
+.notification.unread{
+  border-color:rgba(56,189,248,.38);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56,189,248,.08),
+      transparent
+    ),
+    var(--panel);
+}
+
+.notification-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:13px;
+}
+
+.sender{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.sender-avatar{
+  width:42px;
+  height:42px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:linear-gradient(
+    135deg,
+    var(--blue),
+    var(--blue2)
+  );
+
+  color:#00111c;
+
+  font-size:18px;
+  font-weight:bold;
+}
+
+.sender-name{
+  font-weight:bold;
+  font-size:14px;
+}
+
+.sender-role{
+  color:var(--blue);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.time{
+  color:var(--muted);
+  font-size:10px;
+  white-space:nowrap;
+}
+
+.unread-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:var(--blue);
+
+  display:inline-block;
+
+  margin-right:5px;
+}
+
+.message-text{
+  color:#e2e8f0;
+
+  font-size:14px;
+
+  line-height:1.65;
+
+  white-space:pre-wrap;
+
+  word-break:break-word;
+
+  margin-bottom:13px;
+}
+
+.message-image{
+  width:100%;
+  max-width:360px;
+
+  max-height:320px;
+
+  object-fit:cover;
+
+  display:block;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  margin-bottom:14px;
+}
+
+.notification-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  padding-top:12px;
+
+  border-top:1px solid var(--border);
+}
+
+.read-label{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.respond-btn{
+  border:0;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-weight:bold;
+
+  padding:10px 15px;
+
+  border-radius:10px;
+
+  transition:.2s;
+}
+
+.respond-btn:hover{
+  background:#7dd3fc;
+  transform:translateY(-1px);
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+  text-align:center;
+
+  padding:60px 20px;
+
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  color:var(--muted);
+}
+
+.empty-icon{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.empty h2{
+  color:white;
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.empty p{
+  font-size:13px;
+  line-height:1.5;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:60px 20px;
+
+  color:var(--muted);
+}
+
+.spinner{
+  width:35px;
+  height:35px;
+
+  border:3px solid var(--border);
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:spin .8s linear infinite;
+
+  margin-bottom:13px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =========================
+   LOGIN MESSAGE
+========================= */
+
+.login-box{
+  max-width:420px;
+
+  margin:80px auto;
+
+  padding:25px;
+
+  text-align:center;
+
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+}
+
+.login-box h2{
+  margin-bottom:8px;
+}
+
+.login-box p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.login-btn{
+  margin-top:18px;
+
+  display:inline-block;
+
+  text-decoration:none;
+
+  padding:11px 18px;
+
+  border-radius:10px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-weight:bold;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  transform:
+    translate(-50%,20px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  z-index:100;
+
+  background:#0f2436;
+
+  border:1px solid var(--border);
+
+  color:white;
+
+  padding:12px 17px;
+
+  border-radius:11px;
+
+  font-size:13px;
+
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+  .header{
+    padding:0 12px;
+  }
+
+  .header-title{
+    font-size:16px;
+  }
+
+  .logo{
+    display:none;
+  }
+
+  .container{
+    padding:23px 12px 40px;
+  }
+
+  .page-heading h1{
+    font-size:26px;
+  }
+
+  .notification{
+    padding:14px;
+  }
+
+  .notification-top{
+    gap:8px;
+  }
+
+  .time{
+    font-size:9px;
+  }
+
+  .notification-footer{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .respond-btn{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-left">
+
+    <button
+      class="back-btn"
+      onclick="goBack()"
+      aria-label="Go back">
+      ←
+    </button>
+
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      DSP
+    </div>
+
+    <div class="header-title">
+      Notifications
+    </div>
+
+  </div>
+
+
+  <div class="header-right">
+
+    <span
+      id="notificationCount"
+      class="notification-count">
+      0
+    </span>
+
+    🔔
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<main id="app" class="hidden">
+
+  <div class="container">
+
+    <div class="page-heading">
+
+      <h1>Notifications</h1>
+
+      <p>
+        Messages and updates sent to you by Danny Smart Power.
+      </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <div class="info-icon">
+        💬
+      </div>
+
+      <div class="info-text">
+
+        <strong>
+          Messages from Danny
+        </strong>
+
+        <span>
+          You can read messages here. If you want to respond,
+          use the button below to continue the conversation in
+          Chat with Danny.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div id="notifications"
+         class="notifications">
+
+      <div class="loading">
+
+        <div class="spinner"></div>
+
+        Loading notifications...
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+
+<!-- =========================
+     LOGIN REQUIRED
+========================= -->
+
+<section
+  id="loginRequired"
+  class="hidden">
+
+  <div class="container">
+
+    <div class="login-box">
+
+      <div style="font-size:42px;margin-bottom:12px">
+        🔐
+      </div>
+
+      <h2>Login Required</h2>
+
+      <p>
+        Please sign in to your Danny Smart Power account
+        to view your notifications.
+      </p>
+
+      <a
+        href="login.html"
+        class="login-btn">
+        Login
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<div id="toast"
+     class="toast">
+</div>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+
+<script>
+
+/* ==========================================
+   FIREBASE
+========================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+
+const auth =
+  firebase.auth();
+
+const db =
+  firebase.firestore();
+
+
+
+/* ==========================================
+   DATA
+========================================== */
+
+let currentUser = null;
+
+let notificationListeners = [];
+
+let allNotifications = [];
+
+
+
+/* ==========================================
+   AUTH
+========================================== */
+
+auth.onAuthStateChanged(async user => {
+
+  currentUser = user;
+
+  if(!user){
+
+    showLoginRequired();
+
+    return;
+
+  }
+
+  showApp();
+
+  await loadNotifications();
+
+});
+
+
+
+function showApp(){
+
+  document
+    .getElementById("app")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("loginRequired")
+    .classList
+    .add("hidden");
+
+}
+
+
+
+function showLoginRequired(){
+
+  document
+    .getElementById("app")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("loginRequired")
+    .classList
+    .remove("hidden");
+
+}
+
+
+
+/* ==========================================
+   LOAD NOTIFICATIONS
+========================================== */
+
+async function loadNotifications(){
+
+  const box =
+    document.getElementById(
+      "notifications"
+    );
+
+  box.innerHTML = `
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading notifications...
+
+    </div>
+
+  `;
+
+
+  try{
+
+    /*
+      First get all chats belonging
+      to the logged-in customer.
+
+      We do NOT allow the customer
+      to read another customer's chat.
+    */
+
+    const chatSnapshot =
+      await db
+        .collection("chats")
+        .where(
+          "customerId",
+          "==",
+          currentUser.uid
+        )
+        .get();
+
+
+    if(chatSnapshot.empty){
+
+      showEmpty();
+
+      return;
+
+    }
+
+
+    const chatIds =
+      chatSnapshot.docs.map(
+        doc => doc.id
+      );
+
+
+    /*
+      Get messages from each customer's
+      own chat.
+
+      We only keep messages where:
+
+      senderRole === "admin"
+
+      Therefore customer messages
+      never appear as notifications.
+    */
+
+    const requests =
+      chatIds.map(async chatId => {
+
+        const snapshot =
+          await db
+            .collection("messages")
+            .where(
+              "chatId",
+              "==",
+              chatId
+            )
+            .get();
+
+
+        return snapshot.docs
+          .map(doc => ({
+
+            id:doc.id,
+
+            chatId,
+
+            ...doc.data()
+
+          }))
+          .filter(message =>
+
+            String(
+              message.senderRole || ""
+            ).toLowerCase()
+            === "admin"
+
+          );
+
+      });
+
+
+    const results =
+      await Promise.all(requests);
+
+
+    allNotifications =
+      results
+        .flat()
+        .sort(
+          (a,b) =>
+            timeOf(b.createdAt) -
+            timeOf(a.createdAt)
+        );
+
+
+    renderNotifications();
+
+
+    /*
+      Listen for future changes.
+    */
+
+    startRealtimeListeners(
+      chatIds
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Notification error:",
+      error
+    );
+
+
+    box.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          ⚠️
+        </div>
+
+        <h2>
+          Unable to load notifications
+        </h2>
+
+        <p>
+          ${escapeHTML(
+            friendlyError(error)
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+
+/* ==========================================
+   REALTIME LISTENERS
+========================================== */
+
+function startRealtimeListeners(chatIds){
+
+  stopRealtimeListeners();
+
+
+  chatIds.forEach(chatId => {
+
+    const unsubscribe =
+      db
+        .collection("messages")
+        .where(
+          "chatId",
+          "==",
+          chatId
+        )
+        .onSnapshot(
+          snapshot => {
+
+            const adminMessages =
+              snapshot.docs
+                .map(doc => ({
+
+                  id:doc.id,
+
+                  chatId,
+
+                  ...doc.data()
+
+                }))
+                .filter(message =>
+
+                  String(
+                    message.senderRole || ""
+                  ).toLowerCase()
+                  === "admin"
+
+                );
+
+
+            /*
+              Remove old messages from
+              this chat.
+            */
+
+            allNotifications =
+              allNotifications.filter(
+                message =>
+                  message.chatId !== chatId
+              );
+
+
+            /*
+              Add current admin messages.
+            */
+
+            allNotifications.push(
+              ...adminMessages
+            );
+
+
+            /*
+              Sort newest first.
+            */
+
+            allNotifications.sort(
+              (a,b) =>
+                timeOf(b.createdAt) -
+                timeOf(a.createdAt)
+            );
+
+
+            renderNotifications();
+
+          },
+
+          error => {
+
+            console.error(
+              "Realtime notification error:",
+              error
+            );
+
+          }
+        );
+
+
+    notificationListeners.push(
+      unsubscribe
+    );
+
+  });
+
+}
+
+
+
+function stopRealtimeListeners(){
+
+  notificationListeners.forEach(
+    unsubscribe => {
+
+      try{
+        unsubscribe();
+      }catch{}
+
+    }
+  );
+
+
+  notificationListeners = [];
+
+}
+
+
+
+/* ==========================================
+   RENDER
+========================================== */
+
+function renderNotifications(){
+
+  const box =
+    document.getElementById(
+      "notifications"
+    );
+
+
+  if(!allNotifications.length){
+
+    showEmpty();
+
+    updateNotificationCount();
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    allNotifications
+      .map(
+        notification =>
+          notificationHTML(
+            notification
+          )
+      )
+      .join("");
+
+
+  updateNotificationCount();
+
+
+  /*
+    Mark unread admin messages as read.
+  */
+
+  markMessagesAsRead();
+
+}
+
+
+
+function notificationHTML(message){
+
+  const unread =
+    message.read !== true;
+
+
+  const text =
+    message.text ||
+    "";
+
+
+  const senderName =
+    message.senderName ||
+    "Danny";
+
+
+  const date =
+    dateOf(
+      message.createdAt
+    );
+
+
+  return `
+
+    <article
+      class="notification ${
+        unread ? "unread" : ""
+      }"
+      data-id="${escapeHTML(message.id)}"
+    >
+
+      <div class="notification-top">
+
+        <div class="sender">
+
+          <div class="sender-avatar">
+            ⚡
+          </div>
+
+          <div>
+
+            <div class="sender-name">
+
+              ${
+                unread
+                ? `<span class="unread-dot"></span>`
+                : ""
+              }
+
+              ${escapeHTML(
+                senderName
+              )}
+
+            </div>
+
+            <div class="sender-role">
+              Danny Smart Power · Admin
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="time">
+          ${escapeHTML(date)}
+        </div>
+
+      </div>
+
+
+      ${
+        text
+        ? `
+          <div class="message-text">
+            ${escapeHTML(text)}
+          </div>
+        `
+        : ""
+      }
+
+
+      ${
+        message.imageUrl
+        ? `
+          <img
+            class="message-image"
+            src="${escapeHTML(
+              message.imageUrl
+            )}"
+            alt="Image from Danny"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          >
+        `
+        : ""
+      }
+
+
+      <div class="notification-footer">
+
+        <span class="read-label">
+
+          ${
+            unread
+            ? "● New message"
+            : "✓ Read"
+          }
+
+        </span>
+
+
+        <button
+          class="respond-btn"
+          onclick="respondToDanny('${escapeHTML(
+            message.chatId
+          )}')">
+
+          💬 Respond to Danny
+
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+function showEmpty(){
+
+  document.getElementById(
+    "notifications"
+  ).innerHTML = `
+
+    <div class="empty">
+
+      <div class="empty-icon">
+        🔔
+      </div>
+
+      <h2>
+        No notifications yet
+      </h2>
+
+      <p>
+        When Danny Smart Power sends you a message,
+        it will appear here.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* ==========================================
+   RESPOND
+========================================== */
+
+function respondToDanny(chatId){
+
+  if(!chatId){
+
+    showToast(
+      "Chat is not available yet."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Pass the chat ID to chat.html.
+
+    Your chat page can read:
+
+    ?chatId=XXXX
+  */
+
+  window.location.href =
+    "chat.html?chatId=" +
+    encodeURIComponent(chatId);
+
+}
+
+
+
+/* ==========================================
+   MARK AS READ
+========================================== */
+
+async function markMessagesAsRead(){
+
+  const unread =
+    allNotifications.filter(
+      message =>
+        message.read !== true
+    );
+
+
+  if(!unread.length)
+    return;
+
+
+  /*
+    Firestore batches can contain
+    up to 500 operations.
+  */
+
+  const chunks = [];
+
+
+  for(
+    let i = 0;
+    i < unread.length;
+    i += 450
+  ){
+
+    chunks.push(
+      unread.slice(
+        i,
+        i + 450
+      )
+    );
+
+  }
+
+
+  for(const chunk of chunks){
+
+    try{
+
+      const batch =
+        db.batch();
+
+
+      chunk.forEach(message => {
+
+        const ref =
+          db
+            .collection("messages")
+            .doc(message.id);
+
+
+        batch.update(
+          ref,
+          {
+            read:true
+          }
+        );
+
+      });
+
+
+      await batch.commit();
+
+
+      /*
+        Update local data.
+      */
+
+      chunk.forEach(message => {
+
+        message.read = true;
+
+      });
+
+
+      /*
+        Also reset the customer's
+        unread chat counter.
+      */
+
+      const chatIds =
+        [
+          ...new Set(
+            chunk.map(
+              message =>
+                message.chatId
+            )
+          )
+        ];
+
+
+      for(const chatId of chatIds){
+
+        try{
+
+          await db
+            .collection("chats")
+            .doc(chatId)
+            .update({
+
+              unreadForCustomer:0
+
+            });
+
+        }catch(error){
+
+          console.warn(
+            "Could not update unread count:",
+            error
+          );
+
+        }
+
+      }
+
+
+      renderNotifications();
+
+    }catch(error){
+
+      console.error(
+        "Could not mark messages read:",
+        error
+      );
+
+    }
+
+  }
+
+}
+
+
+
+/* ==========================================
+   NOTIFICATION COUNT
+========================================== */
+
+function updateNotificationCount(){
+
+  const count =
+    allNotifications.filter(
+      message =>
+        message.read !== true
+    ).length;
+
+
+  const badge =
+    document.getElementById(
+      "notificationCount"
+    );
+
+
+  if(count > 0){
+
+    badge.textContent =
+      count > 99
+      ? "99+"
+      : count;
+
+    badge.classList.add(
+      "show"
+    );
+
+  }else{
+
+    badge.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================
+   BACK
+========================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer
+      .includes(location.host)
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "index.html";
+
+  }
+
+}
+
+
+
+/* ==========================================
+   HELPERS
+========================================== */
+
+function timeOf(value){
+
+  if(!value)
+    return 0;
+
+
+  try{
+
+    if(
+      value &&
+      typeof value.toDate === "function"
+    ){
+
+      return value
+        .toDate()
+        .getTime();
+
+    }
+
+
+    if(
+      value &&
+      typeof value.seconds === "number"
+    ){
+
+      return value.seconds * 1000;
+
+    }
+
+
+    return new Date(value)
+      .getTime();
+
+
+  }catch{
+
+    return 0;
+
+  }
+
+}
+
+
+
+function dateOf(value){
+
+  const time =
+    timeOf(value);
+
+
+  if(!time)
+    return "Date unavailable";
+
+
+  try{
+
+    return new Date(time)
+      .toLocaleString(
+        "en-NG",
+        {
+          day:"numeric",
+          month:"short",
+          year:"numeric",
+          hour:"numeric",
+          minute:"2-digit"
+        }
+      );
+
+  }catch{
+
+    return "Date unavailable";
+
+  }
+
+}
+
+
+
+function escapeHTML(value){
+
+  return String(
+    value ?? ""
+  )
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
+
+}
+
+
+
+function friendlyError(error){
+
+  if(!error)
+    return "Something went wrong.";
+
+
+  if(
+    error.code ===
+    "permission-denied"
+  ){
+
+    return (
+      "Permission denied. " +
+      "Check your Firestore Rules."
+    );
+
+  }
+
+
+  if(
+    error.code ===
+    "failed-precondition"
+  ){
+
+    return (
+      "Firestore needs an index " +
+      "for this request."
+    );
+
+  }
+
+
+  if(
+    error.code ===
+    "unavailable"
+  ){
+
+    return (
+      "Network unavailable. " +
+      "Please check your internet connection."
+    );
+
+  }
+
+
+  return (
+    error.message ||
+    "Something went wrong."
+  );
+
+}
+
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  setTimeout(() => {
+
+    toast.classList.remove(
+      "show"
+    );
+
+  },2500);
+
+}
+
+
+
+/* ==========================================
+   CLEANUP
+========================================== */
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    stopRealtimeListeners();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
