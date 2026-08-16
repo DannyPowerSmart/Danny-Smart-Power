@@ -108,11 +108,57 @@ header{
   color:var(--blue);
 }
 
+/* ================= NOTIFICATION ================= */
+
+.notification-button{
+  position:relative;
+  color:white;
+  text-decoration:none;
+  font-size:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.2s;
+}
+
+.notification-button:hover{
+  color:var(--blue);
+  transform:scale(1.05);
+}
+
+.notification-count{
+  position:absolute;
+  top:-10px;
+  right:-12px;
+  min-width:20px;
+  height:20px;
+  padding:0 5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--red);
+  color:white;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  border:2px solid var(--header);
+}
+
+.notification-count.hidden{
+  display:none;
+}
+
+/* ================= CART ================= */
+
 .cart-button{
   position:relative;
   color:white;
   text-decoration:none;
   font-size:22px;
+}
+
+.cart-button:hover{
+  color:var(--blue);
 }
 
 .cart-count{
@@ -130,6 +176,7 @@ header{
   border-radius:20px;
   font-size:11px;
   font-weight:bold;
+  border:2px solid var(--header);
 }
 
 /* ================= MENU ================= */
@@ -662,6 +709,10 @@ header{
     display:none;
   }
 
+  .header-right{
+    gap:16px;
+  }
+
   .search-section,
   .category-section,
   .products-section{
@@ -775,6 +826,23 @@ header{
       <span class="menu-cart-badge" id="menuCartCount">0</span>
     </a>
 
+    <!-- NOTIFICATIONS IN MENU -->
+    <a class="menu-link" href="notification.html">
+
+      <span class="menu-icon">🔔</span>
+
+      <span class="menu-link-text">
+        Notifications
+      </span>
+
+      <span
+        class="menu-cart-badge"
+        id="menuNotificationCount">
+        0
+      </span>
+
+    </a>
+
     <a class="menu-link" href="orders.html">
       <span class="menu-icon">📦</span>
       <span class="menu-link-text">My Orders</span>
@@ -806,8 +874,13 @@ header{
     </a>
 
     <button class="menu-link logout" id="logoutButton">
+
       <span class="menu-icon">🚪</span>
-      <span class="menu-link-text">Sign Out</span>
+
+      <span class="menu-link-text">
+        Sign Out
+      </span>
+
     </button>
 
   </div>
@@ -817,7 +890,9 @@ header{
 <!-- HEADER -->
 <header>
 
-  <button class="menu-button" id="menuButton">☰</button>
+  <button class="menu-button" id="menuButton">
+    ☰
+  </button>
 
   <div class="logo">
     D<span>SP</span>
@@ -829,9 +904,40 @@ header{
       Home
     </a>
 
-    <a class="cart-button" href="cart.html">
+    <!-- ================= NOTIFICATION BUTTON ================= -->
+
+    <a
+      class="notification-button"
+      href="notification.html"
+      aria-label="Notifications"
+      title="Notifications">
+
+      🔔
+
+      <span
+        class="notification-count hidden"
+        id="notificationCount">
+        0
+      </span>
+
+    </a>
+
+    <!-- ================= CART BUTTON ================= -->
+
+    <a
+      class="cart-button"
+      href="cart.html"
+      aria-label="Cart"
+      title="Cart">
+
       🛒
-      <span class="cart-count" id="cartCount">0</span>
+
+      <span
+        class="cart-count"
+        id="cartCount">
+        0
+      </span>
+
     </a>
 
   </div>
@@ -976,6 +1082,7 @@ const firebaseConfig = {
 
   measurementId:
     "G-258YKLP5ZS"
+
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -1022,6 +1129,14 @@ const cartCount =
 const menuCartCount =
   document.getElementById("menuCartCount");
 
+/* NOTIFICATION ELEMENTS */
+
+const notificationCount =
+  document.getElementById("notificationCount");
+
+const menuNotificationCount =
+  document.getElementById("menuNotificationCount");
+
 const searchInput =
   document.getElementById("search");
 
@@ -1058,6 +1173,10 @@ let bannerTimer = null;
 
 let cartUnsubscribe = null;
 
+/* NOTIFICATION LISTENER */
+
+let notificationUnsubscribe = null;
+
 
 /* =====================================================
    MENU
@@ -1073,9 +1192,15 @@ menuButton.addEventListener("click", () => {
 
 });
 
-closeMenu.addEventListener("click", closeMenuNow);
+closeMenu.addEventListener(
+  "click",
+  closeMenuNow
+);
 
-menuOverlay.addEventListener("click", closeMenuNow);
+menuOverlay.addEventListener(
+  "click",
+  closeMenuNow
+);
 
 function closeMenuNow(){
 
@@ -1094,6 +1219,27 @@ function closeMenuNow(){
 
 auth.onAuthStateChanged(async (user) => {
 
+  /*
+    Stop previous listeners when user changes
+  */
+
+  if(cartUnsubscribe){
+
+    cartUnsubscribe();
+
+    cartUnsubscribe = null;
+
+  }
+
+  if(notificationUnsubscribe){
+
+    notificationUnsubscribe();
+
+    notificationUnsubscribe = null;
+
+  }
+
+
   if(!user){
 
     menuUserName.textContent =
@@ -1107,13 +1253,7 @@ auth.onAuthStateChanged(async (user) => {
 
     updateCartCount(0);
 
-    /*
-      Because your current Firestore rules require:
-
-      request.auth != null
-
-      products cannot be read while signed out.
-    */
+    updateNotificationCount(0);
 
     showLoginRequired();
 
@@ -1133,6 +1273,7 @@ auth.onAuthStateChanged(async (user) => {
   menuUserEmail.textContent =
     user.email || "";
 
+
   if(user.photoURL){
 
     menuAvatar.src =
@@ -1149,18 +1290,24 @@ auth.onAuthStateChanged(async (user) => {
 
 
   /*
-    Now that authentication exists,
-    products can safely be requested.
+    Load products
   */
 
   loadProducts();
 
 
   /*
-    Listen to Firestore cart
+    Listen to cart
   */
 
   listenToCart(user.uid);
+
+
+  /*
+    Listen to admin notifications
+  */
+
+  listenToNotifications(user.uid);
 
 });
 
@@ -1183,17 +1330,13 @@ async function loadProfile(user){
     if(!doc.exists){
 
       return;
+
     }
 
 
     const profile =
       doc.data();
 
-
-    /*
-      Supports common name fields.
-      Your profile should ideally save `name`.
-    */
 
     const name =
       profile.name ||
@@ -1232,6 +1375,171 @@ async function loadProfile(user){
       "Profile loading error:",
       error
     );
+
+  }
+
+}
+
+
+/* =====================================================
+   ADMIN NOTIFICATIONS
+===================================================== */
+
+/*
+  Expected Firestore structure:
+
+  notifications
+      └── notificationId
+            customerId
+            title
+            message
+            type
+            read
+            createdAt
+            adminId
+            adminName
+
+  customerId MUST equal the customer's
+  Firebase Authentication UID.
+
+  Example:
+
+  customerId: "USER_FIREBASE_UID"
+
+  title: "Order Update"
+
+  message: "Your order has been confirmed."
+
+  type: "order"
+
+  read: false
+
+  createdAt: serverTimestamp()
+
+*/
+
+
+function listenToNotifications(uid){
+
+  /*
+    Make sure an old listener is removed first.
+  */
+
+  if(notificationUnsubscribe){
+
+    notificationUnsubscribe();
+
+    notificationUnsubscribe = null;
+
+  }
+
+
+  /*
+    Listen only to this customer's notifications.
+
+    We intentionally do NOT listen to every
+    notification in the database.
+  */
+
+  notificationUnsubscribe =
+
+    db
+    .collection("notifications")
+    .where("customerId","==",uid)
+    .where("read","==",false)
+    .onSnapshot(
+
+      snapshot => {
+
+        const unreadCount =
+          snapshot.size;
+
+        updateNotificationCount(
+          unreadCount
+        );
+
+      },
+
+      error => {
+
+        console.error(
+          "Notification listener error:",
+          error
+        );
+
+        /*
+          Do not show a fake notification count
+          if Firestore returns an error.
+        */
+
+        updateNotificationCount(0);
+
+      }
+
+    );
+
+}
+
+
+/* =====================================================
+   NOTIFICATION COUNT
+===================================================== */
+
+function updateNotificationCount(count){
+
+  const safeCount =
+    Math.max(
+      0,
+      Number(count) || 0
+    );
+
+
+  /*
+    Header badge
+  */
+
+  if(safeCount > 0){
+
+    notificationCount.textContent =
+      safeCount > 99
+        ? "99+"
+        : safeCount;
+
+    notificationCount.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  else{
+
+    notificationCount.textContent =
+      "";
+
+    notificationCount.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  /*
+    Side menu badge
+  */
+
+  if(safeCount > 0){
+
+    menuNotificationCount.textContent =
+      safeCount > 99
+        ? "99+"
+        : safeCount;
+
+  }
+
+  else{
+
+    menuNotificationCount.textContent =
+      "0";
 
   }
 
@@ -1367,6 +1675,7 @@ async function loadProducts(){
       showNoProducts();
 
       return;
+
     }
 
 
@@ -1593,6 +1902,7 @@ function displayProducts(products){
     `;
 
     return;
+
   }
 
 
@@ -1694,11 +2004,6 @@ function displayProducts(products){
     `;
 
 
-    /*
-      Clicking the card opens product.html
-      using the Firestore document ID.
-    */
-
     card.addEventListener(
       "click",
       () => {
@@ -1708,10 +2013,6 @@ function displayProducts(products){
       }
     );
 
-
-    /*
-      Add to cart
-    */
 
     const button =
       card.querySelector(".add-cart");
@@ -1790,10 +2091,6 @@ function startBanner(){
 
 
 function changeBanner(){
-
-  /*
-    Prefer featured products.
-  */
 
   const featured =
     allProducts.filter(
@@ -1958,6 +2255,7 @@ async function addToCart(product){
     );
 
     return;
+
   }
 
 
@@ -2097,7 +2395,9 @@ logoutButton.addEventListener(
   "click",
   async () => {
 
-    if(!confirm("Are you sure you want to sign out?")){
+    if(!confirm(
+      "Are you sure you want to sign out?"
+    )){
       return;
     }
 
@@ -2107,6 +2407,17 @@ logoutButton.addEventListener(
       if(cartUnsubscribe){
 
         cartUnsubscribe();
+
+        cartUnsubscribe = null;
+
+      }
+
+
+      if(notificationUnsubscribe){
+
+        notificationUnsubscribe();
+
+        notificationUnsubscribe = null;
 
       }
 
