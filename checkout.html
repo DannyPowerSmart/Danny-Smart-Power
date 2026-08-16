@@ -73,6 +73,12 @@ header{
   font-size:20px;
 }
 
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
 .back-link{
   color:white;
   text-decoration:none;
@@ -80,6 +86,54 @@ header{
 }
 
 .back-link:hover{color:var(--blue)}
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.notification-btn{
+  position:relative;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#0b1525;
+  color:white;
+  text-decoration:none;
+  font-size:19px;
+  transition:.2s;
+}
+
+.notification-btn:hover{
+  border-color:rgba(56,189,248,.5);
+  background:#122238;
+  transform:translateY(-1px);
+}
+
+.notification-badge{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  min-width:18px;
+  height:18px;
+  padding:0 5px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  border-radius:20px;
+  background:#ef4444;
+  border:2px solid #020617;
+  color:white;
+  font-size:9px;
+  font-weight:700;
+}
+
+.notification-badge.show{
+  display:flex;
+}
 
 main{
   width:100%;
@@ -147,6 +201,7 @@ main{
 }
 
 .card-title h2{font-size:18px}
+
 .card-title p{
   color:var(--muted);
   font-size:11px;
@@ -223,12 +278,6 @@ main{
   color:#86efac;
   background:rgba(34,197,94,.06);
   border-color:rgba(34,197,94,.15);
-}
-
-.location-status.warning{
-  color:#fde68a;
-  background:rgba(250,204,21,.06);
-  border-color:rgba(250,204,21,.15);
 }
 
 .delivery-options{
@@ -480,11 +529,6 @@ main{
   cursor:pointer;
 }
 
-.transfer-confirm:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
 .order-items{
   display:flex;
   flex-direction:column;
@@ -715,6 +759,7 @@ main{
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .processing-box h3{font-size:16px}
+
 .processing-box p{
   color:var(--muted);
   font-size:12px;
@@ -754,6 +799,8 @@ main{
   header{padding:12px 15px}
   .logo{font-size:16px}
   .back-link{font-size:12px}
+  .header-actions{gap:7px}
+  .notification-btn{width:38px;height:38px}
   main{padding:22px 12px 50px}
   .checkout-heading h1{font-size:23px}
   .checkout-card,.summary{padding:17px;border-radius:17px}
@@ -767,14 +814,31 @@ main{
 <body>
 
 <header>
+
   <div class="logo">
     <div class="logo-icon">⚡</div>
     Danny Smart Power
   </div>
 
-  <a href="cart.html" class="back-link">
-    ← Back to Cart
-  </a>
+  <div class="header-actions">
+
+    <!-- NOTIFICATION -->
+    <a
+      href="notification.html"
+      class="notification-btn"
+      aria-label="Notifications"
+      title="Notifications"
+    >
+      🔔
+      <span id="notificationBadge" class="notification-badge">0</span>
+    </a>
+
+    <a href="cart.html" class="back-link">
+      ← Back to Cart
+    </a>
+
+  </div>
+
 </header>
 
 <main id="mainContent">
@@ -782,6 +846,7 @@ main{
   <div class="checkout-heading">
     <h1>Secure Checkout ⚡</h1>
     <p>Complete your details and place your order.</p>
+
     <div class="secure-line">
       🔒 Your checkout is connected to your DSP account.
     </div>
@@ -797,6 +862,7 @@ main{
 
         <div class="card-title">
           <div class="card-number">1</div>
+
           <div>
             <h2>Customer Information</h2>
             <p>Tell us where we should reach you.</p>
@@ -807,33 +873,60 @@ main{
 
           <div class="form-group">
             <label>Full Name</label>
-            <input id="customerName" type="text" placeholder="Enter your full name">
+            <input
+              id="customerName"
+              type="text"
+              placeholder="Enter your full name"
+            >
           </div>
 
           <div class="form-group">
             <label>Phone Number</label>
-            <input id="phone" type="tel" placeholder="08012345678">
+            <input
+              id="phone"
+              type="tel"
+              placeholder="08012345678"
+            >
           </div>
 
           <div class="form-group full">
             <label>Delivery Address</label>
-            <textarea id="address" placeholder="House number, street, area..."></textarea>
+
+            <textarea
+              id="address"
+              placeholder="House number, street, area..."
+            ></textarea>
           </div>
 
           <div class="form-group">
             <label>City</label>
-            <input id="city" type="text" placeholder="e.g. Ibadan">
+
+            <input
+              id="city"
+              type="text"
+              placeholder="e.g. Ibadan"
+            >
           </div>
 
           <div class="form-group">
             <label>Area</label>
-            <input id="area" type="text" placeholder="e.g. Boluwaji">
+
+            <input
+              id="area"
+              type="text"
+              placeholder="e.g. Boluwaji"
+            >
           </div>
 
           <div class="form-group">
             <label>State</label>
+
             <select id="state">
-              <option value="">Select your state</option>
+
+              <option value="">
+                Select your state
+              </option>
+
               <option>Abia</option>
               <option>Adamawa</option>
               <option>Akwa Ibom</option>
@@ -871,21 +964,39 @@ main{
               <option>Yobe</option>
               <option>Zamfara</option>
               <option>FCT</option>
+
             </select>
           </div>
 
           <div class="form-group full">
-            <div id="locationStatus" class="location-status">
+
+            <div
+              id="locationStatus"
+              class="location-status"
+            >
               Select your state to calculate delivery.
             </div>
+
           </div>
 
           <div class="form-group full">
-            <label>Order Note <span style="color:#64748b">(Optional)</span></label>
-            <textarea id="note" placeholder="Any special instruction?"></textarea>
+
+            <label>
+              Order Note
+              <span style="color:#64748b">
+                (Optional)
+              </span>
+            </label>
+
+            <textarea
+              id="note"
+              placeholder="Any special instruction?"
+            ></textarea>
+
           </div>
 
         </div>
+
       </section>
 
 
@@ -894,20 +1005,35 @@ main{
       <section class="checkout-card">
 
         <div class="card-title">
+
           <div class="card-number">2</div>
+
           <div>
             <h2>Delivery Method</h2>
-            <p>Choose how you want to receive your order.</p>
+
+            <p>
+              Choose how you want to receive your order.
+            </p>
           </div>
+
         </div>
 
         <div class="delivery-options">
 
           <div class="delivery-option">
 
-            <input type="radio" name="delivery" id="standardDelivery" value="standard" checked>
+            <input
+              type="radio"
+              name="delivery"
+              id="standardDelivery"
+              value="standard"
+              checked
+            >
 
-            <label for="standardDelivery" class="delivery-label">
+            <label
+              for="standardDelivery"
+              class="delivery-label"
+            >
 
               <div class="delivery-icon">🚚</div>
 
@@ -919,7 +1045,10 @@ main{
                 We deliver directly to your Nigerian address.
               </span>
 
-              <span class="delivery-price" id="standardDeliveryPrice">
+              <span
+                class="delivery-price"
+                id="standardDeliveryPrice"
+              >
                 Enter your location
               </span>
 
@@ -928,13 +1057,23 @@ main{
               </span>
 
             </label>
+
           </div>
+
 
           <div class="delivery-option">
 
-            <input type="radio" name="delivery" id="pickup" value="pickup">
+            <input
+              type="radio"
+              name="delivery"
+              id="pickup"
+              value="pickup"
+            >
 
-            <label for="pickup" class="delivery-label">
+            <label
+              for="pickup"
+              class="delivery-label"
+            >
 
               <div class="delivery-icon">🏪</div>
 
@@ -955,9 +1094,11 @@ main{
               </span>
 
             </label>
+
           </div>
 
         </div>
+
       </section>
 
 
@@ -966,12 +1107,19 @@ main{
       <section class="checkout-card">
 
         <div class="card-title">
+
           <div class="card-number">3</div>
+
           <div>
             <h2>Payment Method</h2>
-            <p>Select how you want to pay.</p>
+
+            <p>
+              Select how you want to pay.
+            </p>
           </div>
+
         </div>
+
 
         <div class="payment-options">
 
@@ -979,37 +1127,71 @@ main{
 
           <div class="payment-option">
 
-            <input type="radio" name="payment" id="pod" value="Pay on Delivery">
+            <input
+              type="radio"
+              name="payment"
+              id="pod"
+              value="Pay on Delivery"
+            >
 
-            <label for="pod" class="payment-label">
+            <label
+              for="pod"
+              class="payment-label"
+            >
 
-              <div class="payment-icon">💵</div>
+              <div class="payment-icon">
+                💵
+              </div>
 
               <div class="payment-info">
-                <span class="payment-name">Pay on Delivery</span>
+
+                <span class="payment-name">
+                  Pay on Delivery
+                </span>
+
                 <span class="payment-description">
                   Pay when your order arrives.
                 </span>
+
               </div>
 
-              <span class="payment-arrow">⌄</span>
+              <span class="payment-arrow">
+                ⌄
+              </span>
 
             </label>
 
-            <div class="payment-details" id="podDetails">
 
-              <h3>Pay on Delivery</h3>
+            <div
+              class="payment-details"
+              id="podDetails"
+            >
+
+              <h3>
+                Pay on Delivery
+              </h3>
 
               <div class="amount-box">
-                <small>Amount to pay on delivery</small>
-                <strong id="podAmount">₦0</strong>
+
+                <small>
+                  Amount to pay on delivery
+                </small>
+
+                <strong id="podAmount">
+                  ₦0
+                </strong>
+
               </div>
 
               <div class="transfer-warning">
-                💡 Please make sure someone is available to receive the order and make payment.
+
+                💡 Please make sure someone is available
+                to receive the order and make payment.
+
               </div>
 
             </div>
+
           </div>
 
 
@@ -1017,137 +1199,66 @@ main{
 
           <div class="payment-option">
 
-            <input type="radio" name="payment" id="bank" value="Bank Transfer">
+            <input
+              type="radio"
+              name="payment"
+              id="bank"
+              value="Bank Transfer"
+            >
 
-            <label for="bank" class="payment-label">
+            <label
+              for="bank"
+              class="payment-label"
+            >
 
-              <div class="payment-icon">🏦</div>
+              <div class="payment-icon">
+                🏦
+              </div>
 
               <div class="payment-info">
-                <span class="payment-name">Bank Transfer</span>
+
+                <span class="payment-name">
+                  Bank Transfer
+                </span>
+
                 <span class="payment-description">
                   Transfer directly to DSP receiving accounts.
                 </span>
+
               </div>
 
-              <span class="payment-arrow">⌄</span>
+              <span class="payment-arrow">
+                ⌄
+              </span>
 
             </label>
 
-            <div class="payment-details" id="bankDetails">
 
-              <h3>Bank Transfer</h3>
+            <div
+              class="payment-details"
+              id="bankDetails"
+            >
+
+              <h3>
+                Bank Transfer
+              </h3>
 
               <div class="amount-box">
-                <small>Amount to transfer</small>
-                <strong id="bankAmount">₦0</strong>
+
+                <small>
+                  Amount to transfer
+                </small>
+
+                <strong id="bankAmount">
+                  ₦0
+                </strong>
+
               </div>
+
 
               <div class="account-box">
 
                 <h4>OPay</h4>
-
-                <div class="account-row">
-                  <span>Bank</span>
-                  <span>OPay</span>
-                </div>
-
-                <div class="account-row">
-                  <span>Account Name</span>
-                  <span>Babalola Damilare moses</span>
-                </div>
-
-                <div class="account-row">
-                  <span>Account Number</span>
-                  <span id="opayNumber">7054700008</span>
-                </div>
-
-                <button class="copy-btn" onclick="copyAccount('7054700008')">
-                  Copy OPay Account Number
-                </button>
-
-              </div>
-
-              <div class="account-box">
-
-                <h4>UBA</h4>
-
-                <div class="account-row">
-                  <span>Bank</span>
-                  <span>UBA</span>
-                </div>
-
-                <div class="account-row">
-                  <span>Account Name</span>
-                  <span>Babalola Damilare moses</span>
-                </div>
-
-                <div class="account-row">
-                  <span>Account Number</span>
-                  <span>2222261182</span>
-                </div>
-
-                <button class="copy-btn" onclick="copyAccount('2222261182')">
-                  Copy UBA Account Number
-                </button>
-
-              </div>
-
-              <div class="transfer-warning">
-                ⚠️ Transfer exactly the amount shown above. After transferring, enter your transfer reference below and confirm the payment.
-              </div>
-
-              <input
-                id="bankReference"
-                class="reference-input"
-                placeholder="Transfer reference (optional)"
-              >
-
-              <button
-                class="transfer-confirm"
-                id="bankConfirm"
-                type="button"
-              >
-                I Have Made the Transfer
-              </button>
-
-            </div>
-          </div>
-
-
-          <!-- OPAY TRANSFER -->
-
-          <div class="payment-option">
-
-            <input type="radio" name="payment" id="opay" value="OPay Transfer">
-
-            <label for="opay" class="payment-label">
-
-              <div class="payment-icon">🟢</div>
-
-              <div class="payment-info">
-                <span class="payment-name">OPay Transfer</span>
-                <span class="payment-description">
-                  Pay directly to the DSP OPay account.
-                </span>
-              </div>
-
-              <span class="payment-arrow">⌄</span>
-
-            </label>
-
-            <div class="payment-details" id="opayDetails">
-
-              <h3>OPay Transfer</h3>
-
-              <div class="amount-box">
-                <small>Amount to transfer</small>
-                <strong id="opayAmount">₦0</strong>
-              </div>
-
-              <div class="account-box">
-
-                <h4>DSP OPay Receiving Account</h4>
 
                 <div class="account-row">
                   <span>Bank</span>
@@ -1173,15 +1284,172 @@ main{
 
               </div>
 
-              <div class="transfer-warning">
-                🔐 You do not need to enter your OPay PIN, password or OTP on this website. Open your OPay app separately and make the transfer.
+
+              <div class="account-box">
+
+                <h4>UBA</h4>
+
+                <div class="account-row">
+                  <span>Bank</span>
+                  <span>UBA</span>
+                </div>
+
+                <div class="account-row">
+                  <span>Account Name</span>
+                  <span>Babalola Damilare moses</span>
+                </div>
+
+                <div class="account-row">
+                  <span>Account Number</span>
+                  <span>2222261182</span>
+                </div>
+
+                <button
+                  class="copy-btn"
+                  onclick="copyAccount('2222261182')"
+                >
+                  Copy UBA Account Number
+                </button>
+
               </div>
+
+
+              <div class="transfer-warning">
+
+                ⚠️ Transfer exactly the amount shown above.
+                After transferring, enter your transfer reference
+                below and confirm the payment.
+
+              </div>
+
+
+              <input
+                id="bankReference"
+                class="reference-input"
+                placeholder="Transfer reference (optional)"
+              >
+
+
+              <button
+                class="transfer-confirm"
+                id="bankConfirm"
+                type="button"
+              >
+                I Have Made the Transfer
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- OPAY TRANSFER -->
+
+          <div class="payment-option">
+
+            <input
+              type="radio"
+              name="payment"
+              id="opay"
+              value="OPay Transfer"
+            >
+
+            <label
+              for="opay"
+              class="payment-label"
+            >
+
+              <div class="payment-icon">
+                🟢
+              </div>
+
+              <div class="payment-info">
+
+                <span class="payment-name">
+                  OPay Transfer
+                </span>
+
+                <span class="payment-description">
+                  Pay directly to the DSP OPay account.
+                </span>
+
+              </div>
+
+              <span class="payment-arrow">
+                ⌄
+              </span>
+
+            </label>
+
+
+            <div
+              class="payment-details"
+              id="opayDetails"
+            >
+
+              <h3>
+                OPay Transfer
+              </h3>
+
+              <div class="amount-box">
+
+                <small>
+                  Amount to transfer
+                </small>
+
+                <strong id="opayAmount">
+                  ₦0
+                </strong>
+
+              </div>
+
+
+              <div class="account-box">
+
+                <h4>
+                  DSP OPay Receiving Account
+                </h4>
+
+                <div class="account-row">
+                  <span>Bank</span>
+                  <span>OPay</span>
+                </div>
+
+                <div class="account-row">
+                  <span>Account Name</span>
+                  <span>Babalola Damilare moses</span>
+                </div>
+
+                <div class="account-row">
+                  <span>Account Number</span>
+                  <span>7054700008</span>
+                </div>
+
+                <button
+                  class="copy-btn"
+                  onclick="copyAccount('7054700008')"
+                >
+                  Copy OPay Account Number
+                </button>
+
+              </div>
+
+
+              <div class="transfer-warning">
+
+                🔐 You do not need to enter your OPay PIN,
+                password or OTP on this website.
+                Open your OPay app separately and make the transfer.
+
+              </div>
+
 
               <input
                 id="opayReference"
                 class="reference-input"
                 placeholder="OPay transfer reference (optional)"
               >
+
 
               <button
                 class="transfer-confirm"
@@ -1192,9 +1460,11 @@ main{
               </button>
 
             </div>
+
           </div>
 
         </div>
+
       </section>
 
 
@@ -1203,14 +1473,23 @@ main{
       <section class="checkout-card">
 
         <div class="card-title">
+
           <div class="card-number">4</div>
+
           <div>
             <h2>Your Products</h2>
-            <p>Products currently in your cart.</p>
+
+            <p>
+              Products currently in your cart.
+            </p>
           </div>
+
         </div>
 
-        <div id="orderItems" class="order-items">
+        <div
+          id="orderItems"
+          class="order-items"
+        >
           Loading your products...
         </div>
 
@@ -1237,10 +1516,15 @@ main{
 
       <div class="summary-row">
         <span>Delivery</span>
-        <span id="summaryDelivery">Enter location</span>
+        <span id="summaryDelivery">
+          Enter location
+        </span>
       </div>
 
-      <div id="deliverySummaryStatus" class="delivery-summary-status">
+      <div
+        id="deliverySummaryStatus"
+        class="delivery-summary-status"
+      >
         Delivery fee not calculated yet.
       </div>
 
@@ -1252,31 +1536,60 @@ main{
       </div>
 
       <label class="terms">
-        <input type="checkbox" id="terms">
+
+        <input
+          type="checkbox"
+          id="terms"
+        >
+
         <span>
-          I confirm that my details are correct and I want to place this order.
+          I confirm that my details are correct
+          and I want to place this order.
         </span>
+
       </label>
 
-      <button class="place-order" id="placeOrderButton" disabled>
+      <button
+        class="place-order"
+        id="placeOrderButton"
+        disabled
+      >
         Place Order ⚡
       </button>
 
     </aside>
 
   </div>
+
 </main>
 
 
-<div class="processing" id="processing">
+<div
+  class="processing"
+  id="processing"
+>
+
   <div class="processing-box">
+
     <div class="spinner"></div>
-    <h3>Placing your order...</h3>
-    <p>Please don't close this page.</p>
+
+    <h3>
+      Placing your order...
+    </h3>
+
+    <p>
+      Please don't close this page.
+    </p>
+
   </div>
+
 </div>
 
-<div class="toast" id="toast"></div>
+
+<div
+  class="toast"
+  id="toast"
+></div>
 
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -1286,61 +1599,121 @@ main{
 <script>
 
 const firebaseConfig = {
+
   apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-  authDomain:"danny-smart-power.firebaseapp.com",
-  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
-  projectId:"danny-smart-power",
-  storageBucket:"danny-smart-power.firebasestorage.app",
-  messagingSenderId:"649735645158",
-  appId:"1:649735645158:web:cff518b89721a163679827",
-  measurementId:"G-258YKLP5ZS"
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const auth=firebase.auth();
+
 const db=firebase.firestore();
 
-const mainContent=document.getElementById("mainContent");
-const customerName=document.getElementById("customerName");
-const phone=document.getElementById("phone");
-const address=document.getElementById("address");
-const city=document.getElementById("city");
-const area=document.getElementById("area");
-const state=document.getElementById("state");
-const note=document.getElementById("note");
 
-const orderItems=document.getElementById("orderItems");
-const summaryItems=document.getElementById("summaryItems");
-const summarySubtotal=document.getElementById("summarySubtotal");
-const summaryDelivery=document.getElementById("summaryDelivery");
-const summaryTotal=document.getElementById("summaryTotal");
-const deliverySummaryStatus=document.getElementById("deliverySummaryStatus");
-const locationStatus=document.getElementById("locationStatus");
-const standardDeliveryPrice=document.getElementById("standardDeliveryPrice");
-const terms=document.getElementById("terms");
-const placeOrderButton=document.getElementById("placeOrderButton");
-const processing=document.getElementById("processing");
-const toast=document.getElementById("toast");
+const mainContent=
+  document.getElementById("mainContent");
+
+const customerName=
+  document.getElementById("customerName");
+
+const phone=
+  document.getElementById("phone");
+
+const address=
+  document.getElementById("address");
+
+const city=
+  document.getElementById("city");
+
+const area=
+  document.getElementById("area");
+
+const state=
+  document.getElementById("state");
+
+const note=
+  document.getElementById("note");
+
+const orderItems=
+  document.getElementById("orderItems");
+
+const summaryItems=
+  document.getElementById("summaryItems");
+
+const summarySubtotal=
+  document.getElementById("summarySubtotal");
+
+const summaryDelivery=
+  document.getElementById("summaryDelivery");
+
+const summaryTotal=
+  document.getElementById("summaryTotal");
+
+const deliverySummaryStatus=
+  document.getElementById("deliverySummaryStatus");
+
+const locationStatus=
+  document.getElementById("locationStatus");
+
+const standardDeliveryPrice=
+  document.getElementById("standardDeliveryPrice");
+
+const terms=
+  document.getElementById("terms");
+
+const placeOrderButton=
+  document.getElementById("placeOrderButton");
+
+const processing=
+  document.getElementById("processing");
+
+const toast=
+  document.getElementById("toast");
+
+const notificationBadge=
+  document.getElementById("notificationBadge");
+
 
 let currentUser=null;
+
 let cartItems=[];
+
 let cartUnsubscribe=null;
+
+let notificationUnsubscribe=null;
+
 let orderBeingPlaced=false;
 
 let paymentConfirmed=false;
+
 let confirmedPaymentReference="";
 
 
 /*
 =========================================================
 DELIVERY RATES
-
-NO ₦1,500 DEFAULT EXISTS HERE.
-
-Each Nigerian state has its own rate.
-Change these rates whenever your real DSP delivery
-prices are ready.
 =========================================================
 */
 
@@ -1389,7 +1762,7 @@ const DELIVERY_RATES={
 
 /*
 =========================================================
-CART
+CART REFERENCE
 =========================================================
 */
 
@@ -1413,15 +1786,34 @@ AUTH
 auth.onAuthStateChanged(async user=>{
 
   if(cartUnsubscribe){
+
     cartUnsubscribe();
+
     cartUnsubscribe=null;
+
   }
 
-  if(!user){
-    currentUser=null;
-    showLoginRequired();
-    return;
+  if(notificationUnsubscribe){
+
+    notificationUnsubscribe();
+
+    notificationUnsubscribe=null;
+
   }
+
+
+  if(!user){
+
+    currentUser=null;
+
+    notificationBadge.classList.remove("show");
+
+    showLoginRequired();
+
+    return;
+
+  }
+
 
   currentUser=user;
 
@@ -1429,7 +1821,59 @@ auth.onAuthStateChanged(async user=>{
 
   listenToCart();
 
+  listenToNotifications();
+
 });
+
+
+/*
+=========================================================
+NOTIFICATIONS
+=========================================================
+*/
+
+function listenToNotifications(){
+
+  if(!currentUser) return;
+
+
+  notificationUnsubscribe=
+
+    db
+    .collection("notifications")
+    .where("userId","==",currentUser.uid)
+    .where("read","==",false)
+    .onSnapshot(snapshot=>{
+
+      const count=snapshot.size;
+
+      if(count>0){
+
+        notificationBadge.textContent=
+          count>99 ? "99+" : count;
+
+        notificationBadge.classList.add("show");
+
+      }else{
+
+        notificationBadge.textContent="0";
+
+        notificationBadge.classList.remove("show");
+
+      }
+
+    },error=>{
+
+      console.error(
+        "Notification listener error:",
+        error
+      );
+
+      notificationBadge.classList.remove("show");
+
+    });
+
+}
 
 
 /*
@@ -1442,33 +1886,51 @@ async function loadCustomerProfile(){
 
   if(!currentUser) return;
 
+
   customerName.value=
+
     currentUser.displayName ||
+
     currentUser.email?.split("@")[0] ||
+
     "";
+
 
   try{
 
     const doc=
+
       await db
       .collection("profiles")
       .doc(currentUser.uid)
       .get();
 
+
     if(!doc.exists) return;
+
 
     const data=doc.data();
 
+
     customerName.value=
+
       data.name ||
+
       data.displayName ||
+
       data.fullName ||
+
       data.username ||
+
       customerName.value;
 
+
     phone.value=
+
       data.phone ||
+
       data.phoneNumber ||
+
       "";
 
   }catch(error){
@@ -1482,7 +1944,7 @@ async function loadCustomerProfile(){
 
 /*
 =========================================================
-LOGIN
+LOGIN REQUIRED
 =========================================================
 */
 
@@ -1492,16 +1954,23 @@ function showLoginRequired(){
 
     <div class="empty">
 
-      <div class="empty-icon">🔐</div>
+      <div class="empty-icon">
+        🔐
+      </div>
 
-      <h2>Sign in to checkout</h2>
+      <h2>
+        Sign in to checkout
+      </h2>
 
       <p>
         Please sign in to your Danny Smart Power
         account before continuing.
       </p>
 
-      <a href="login.html" class="empty-button">
+      <a
+        href="login.html"
+        class="empty-button"
+      >
         Sign In
       </a>
 
@@ -1521,6 +1990,7 @@ LISTEN TO CART
 function listenToCart(){
 
   cartUnsubscribe=
+
     getCartRef().onSnapshot(doc=>{
 
       if(!doc.exists){
@@ -1533,10 +2003,14 @@ function listenToCart(){
 
       }
 
+
       const data=doc.data();
 
+
       cartItems=
+
         Array.isArray(data.items)
+
         ? data.items.map(item=>({
 
             ...item,
@@ -1547,15 +2021,20 @@ function listenToCart(){
             )
 
           }))
+
         : [];
 
+
       displayCheckoutCart();
+
 
     },error=>{
 
       console.error(error);
 
-      showToast("Unable to load your cart.");
+      showToast(
+        "Unable to load your cart."
+      );
 
     });
 
@@ -1599,17 +2078,24 @@ function displayCheckoutCart(){
 
     `;
 
+
     summaryItems.textContent="0";
+
     summarySubtotal.textContent="₦0";
+
     summaryDelivery.textContent="—";
+
     summaryTotal.textContent="—";
 
     placeOrderButton.disabled=true;
 
     return;
+
   }
 
+
   renderOrderItems();
+
   calculateCurrentSummary();
 
 }
@@ -1625,10 +2111,18 @@ function renderOrderItems(){
 
   let html="";
 
+
   cartItems.forEach(item=>{
 
-    const price=Number(item.price)||0;
-    const qty=Math.max(1,Number(item.qty)||1);
+    const price=
+      Number(item.price)||0;
+
+    const qty=
+      Math.max(
+        1,
+        Number(item.qty)||1
+      );
+
 
     html+=`
 
@@ -1640,13 +2134,18 @@ function renderOrderItems(){
             item.image ||
             "https://via.placeholder.com/500x400?text=DSP"
           )}"
-          alt="${escapeAttribute(item.name||"Product")}"
+          alt="${escapeAttribute(
+            item.name||"Product"
+          )}"
         >
 
         <div class="order-item-info">
 
           <div class="order-item-name">
-            ${escapeHtml(item.name||"Unnamed Product")}
+            ${escapeHtml(
+              item.name||
+              "Unnamed Product"
+            )}
           </div>
 
           <div class="order-item-meta">
@@ -1665,6 +2164,7 @@ function renderOrderItems(){
 
   });
 
+
   orderItems.innerHTML=html;
 
 }
@@ -1679,22 +2179,32 @@ DELIVERY
 function getDeliveryFee(){
 
   const selected=
+
     document.querySelector(
       'input[name="delivery"]:checked'
     );
+
 
   if(
     selected &&
     selected.value==="pickup"
   ){
+
     return 0;
+
   }
 
-  const selectedState=state.value.trim();
+
+  const selectedState=
+    state.value.trim();
+
 
   if(!selectedState) return null;
 
-  const fee=DELIVERY_RATES[selectedState];
+
+  const fee=
+    DELIVERY_RATES[selectedState];
+
 
   return typeof fee==="number"
     ? fee
@@ -1712,37 +2222,70 @@ SUMMARY
 function calculateCurrentSummary(){
 
   let subtotal=0;
+
   let quantity=0;
+
 
   cartItems.forEach(item=>{
 
-    const price=Number(item.price)||0;
-    const qty=Math.max(1,Number(item.qty)||1);
+    const price=
+      Number(item.price)||0;
+
+    const qty=
+      Math.max(
+        1,
+        Number(item.qty)||1
+      );
+
 
     subtotal+=price*qty;
+
     quantity+=qty;
 
   });
 
-  const delivery=getDeliveryFee();
 
-  summaryItems.textContent=quantity;
-  summarySubtotal.textContent="₦"+formatPrice(subtotal);
+  const delivery=
+    getDeliveryFee();
 
-  updatePaymentAmounts(subtotal,delivery);
+
+  summaryItems.textContent=
+    quantity;
+
+  summarySubtotal.textContent=
+    "₦"+formatPrice(subtotal);
+
+
+  updatePaymentAmounts(
+    subtotal,
+    delivery
+  );
+
 
   if(delivery===null){
 
-    summaryDelivery.textContent="Enter location";
-    summaryTotal.textContent="—";
+    summaryDelivery.textContent=
+      "Enter location";
+
+    summaryTotal.textContent=
+      "—";
+
 
     standardDeliveryPrice.textContent=
       "Enter your location";
 
-    locationStatus.className="location-status";
+
+    locationStatus.className=
+      "location-status";
+
 
     locationStatus.textContent=
       "Select your state to calculate delivery.";
+
+
+    deliverySummaryStatus.textContent=
+      "Delivery fee not calculated yet.";
+
 
     placeOrderButton.disabled=true;
 
@@ -1750,31 +2293,53 @@ function calculateCurrentSummary(){
 
   }
 
+
   standardDeliveryPrice.textContent=
     "₦"+formatPrice(delivery);
 
-  locationStatus.className="location-status ready";
+
+  locationStatus.className=
+    "location-status ready";
+
 
   locationStatus.textContent=
+
     delivery===0
+
     ? "Store Pickup selected. Delivery is free."
-    : "Delivery calculated for "+state.value+
-      ": ₦"+formatPrice(delivery);
+
+    : "Delivery calculated for "+
+      state.value+
+      ": ₦"+
+      formatPrice(delivery);
+
 
   summaryDelivery.textContent=
+
     delivery===0
+
     ? "Free"
+
     : "₦"+formatPrice(delivery);
 
-  const total=subtotal+delivery;
+
+  const total=
+    subtotal+delivery;
+
 
   summaryTotal.textContent=
     "₦"+formatPrice(total);
 
+
   deliverySummaryStatus.textContent=
+
     delivery===0
+
     ? "Store pickup — free"
-    : "Standard delivery — "+state.value;
+
+    : "Standard delivery — "+
+      state.value;
+
 
   placeOrderButton.disabled=
     !cartItems.length;
@@ -1788,19 +2353,33 @@ PAYMENT AMOUNTS
 =========================================================
 */
 
-function updatePaymentAmounts(subtotal,delivery){
+function updatePaymentAmounts(
+  subtotal,
+  delivery
+){
 
   if(delivery===null) return;
 
-  const total=subtotal+delivery;
 
-  document.getElementById("podAmount").textContent=
+  const total=
+    subtotal+delivery;
+
+
+  document.getElementById(
+    "podAmount"
+  ).textContent=
     "₦"+formatPrice(total);
 
-  document.getElementById("bankAmount").textContent=
+
+  document.getElementById(
+    "bankAmount"
+  ).textContent=
     "₦"+formatPrice(total);
 
-  document.getElementById("opayAmount").textContent=
+
+  document.getElementById(
+    "opayAmount"
+  ).textContent=
     "₦"+formatPrice(total);
 
 }
@@ -1813,39 +2392,76 @@ PAYMENT ACCORDION
 */
 
 document
-.querySelectorAll('input[name="payment"]')
+.querySelectorAll(
+  'input[name="payment"]'
+)
 .forEach(input=>{
 
-  input.addEventListener("change",()=>{
+  input.addEventListener(
+    "change",
+    ()=>{
 
-    document
-    .querySelectorAll(".payment-details")
-    .forEach(box=>{
-      box.classList.remove("show");
-    });
-
-    paymentConfirmed=false;
-    confirmedPaymentReference="";
-
-    if(input.value==="Pay on Delivery"){
       document
-      .getElementById("podDetails")
-      .classList.add("show");
-    }
+      .querySelectorAll(
+        ".payment-details"
+      )
+      .forEach(box=>{
 
-    if(input.value==="Bank Transfer"){
-      document
-      .getElementById("bankDetails")
-      .classList.add("show");
-    }
+        box.classList.remove(
+          "show"
+        );
 
-    if(input.value==="OPay Transfer"){
-      document
-      .getElementById("opayDetails")
-      .classList.add("show");
-    }
+      });
 
-  });
+
+      paymentConfirmed=false;
+
+      confirmedPaymentReference="";
+
+
+      if(
+        input.value===
+        "Pay on Delivery"
+      ){
+
+        document
+        .getElementById(
+          "podDetails"
+        )
+        .classList.add("show");
+
+      }
+
+
+      if(
+        input.value===
+        "Bank Transfer"
+      ){
+
+        document
+        .getElementById(
+          "bankDetails"
+        )
+        .classList.add("show");
+
+      }
+
+
+      if(
+        input.value===
+        "OPay Transfer"
+      ){
+
+        document
+        .getElementById(
+          "opayDetails"
+        )
+        .classList.add("show");
+
+      }
+
+    }
+  );
 
 });
 
@@ -1857,7 +2473,9 @@ DELIVERY EVENTS
 */
 
 document
-.querySelectorAll('input[name="delivery"]')
+.querySelectorAll(
+  'input[name="delivery"]'
+)
 .forEach(input=>{
 
   input.addEventListener(
@@ -1867,23 +2485,9 @@ document
 
 });
 
+
 state.addEventListener(
   "change",
-  calculateCurrentSummary
-);
-
-city.addEventListener(
-  "input",
-  calculateCurrentSummary
-);
-
-area.addEventListener(
-  "input",
-  calculateCurrentSummary
-);
-
-address.addEventListener(
-  "input",
   calculateCurrentSummary
 );
 
@@ -1898,7 +2502,8 @@ async function copyAccount(number){
 
   try{
 
-    await navigator.clipboard.writeText(number);
+    await navigator.clipboard
+      .writeText(number);
 
     showToast(
       "Account number copied."
@@ -1923,52 +2528,84 @@ TRANSFER CONFIRMATION
 
 document
 .getElementById("opayConfirm")
-.addEventListener("click",()=>{
+.addEventListener(
+  "click",
+  ()=>{
 
-  if(!currentUser){
-    showToast("Please sign in first.");
-    return;
+    if(!currentUser){
+
+      showToast(
+        "Please sign in first."
+      );
+
+      return;
+
+    }
+
+
+    const reference=
+
+      document
+      .getElementById(
+        "opayReference"
+      )
+      .value
+      .trim();
+
+
+    paymentConfirmed=true;
+
+    confirmedPaymentReference=
+      reference;
+
+
+    showToast(
+      "OPay transfer marked for verification."
+    );
+
   }
-
-  const reference=
-    document
-    .getElementById("opayReference")
-    .value
-    .trim();
-
-  paymentConfirmed=true;
-  confirmedPaymentReference=reference;
-
-  showToast(
-    "OPay transfer marked for verification."
-  );
-
-});
+);
 
 
 document
 .getElementById("bankConfirm")
-.addEventListener("click",()=>{
+.addEventListener(
+  "click",
+  ()=>{
 
-  if(!currentUser){
-    showToast("Please sign in first.");
-    return;
+    if(!currentUser){
+
+      showToast(
+        "Please sign in first."
+      );
+
+      return;
+
+    }
+
+
+    const reference=
+
+      document
+      .getElementById(
+        "bankReference"
+      )
+      .value
+      .trim();
+
+
+    paymentConfirmed=true;
+
+    confirmedPaymentReference=
+      reference;
+
+
+    showToast(
+      "Bank transfer marked for verification."
+    );
+
   }
-
-  const reference=
-    document
-    .getElementById("bankReference")
-    .value
-    .trim();
-
-  paymentConfirmed=true;
-  confirmedPaymentReference=reference;
-
-  showToast(
-    "Bank transfer marked for verification."
-  );
-
-});
+);
 
 
 /*
@@ -1987,82 +2624,127 @@ async function placeOrder(){
 
   if(orderBeingPlaced) return;
 
+
   if(!currentUser){
 
-    window.location.href="login.html";
+    window.location.href=
+      "login.html";
+
     return;
 
   }
+
 
   if(!cartItems.length){
 
-    showToast("Your cart is empty.");
+    showToast(
+      "Your cart is empty."
+    );
+
     return;
 
   }
+
 
   if(!customerName.value.trim()){
 
-    showToast("Please enter your full name.");
+    showToast(
+      "Please enter your full name."
+    );
+
     customerName.focus();
+
     return;
 
   }
+
 
   if(!phone.value.trim()){
 
-    showToast("Please enter your phone number.");
+    showToast(
+      "Please enter your phone number."
+    );
+
     phone.focus();
+
     return;
 
   }
 
+
   const selectedDelivery=
+
     document.querySelector(
       'input[name="delivery"]:checked'
     );
 
+
   const isPickup=
+
     selectedDelivery &&
-    selectedDelivery.value==="pickup";
+    selectedDelivery.value===
+      "pickup";
+
 
   if(!isPickup){
 
     if(!address.value.trim()){
 
-      showToast("Please enter your delivery address.");
+      showToast(
+        "Please enter your delivery address."
+      );
+
       address.focus();
+
       return;
 
     }
+
 
     if(!city.value.trim()){
 
-      showToast("Please enter your city.");
+      showToast(
+        "Please enter your city."
+      );
+
       city.focus();
+
       return;
 
     }
+
 
     if(!area.value.trim()){
 
-      showToast("Please enter your area.");
+      showToast(
+        "Please enter your area."
+      );
+
       area.focus();
+
       return;
 
     }
 
+
     if(!state.value.trim()){
 
-      showToast("Please select your state.");
+      showToast(
+        "Please select your state."
+      );
+
       state.focus();
+
       return;
 
     }
 
   }
 
-  const delivery=getDeliveryFee();
+
+  const delivery=
+    getDeliveryFee();
+
 
   if(delivery===null){
 
@@ -2074,6 +2756,7 @@ async function placeOrder(){
 
   }
 
+
   if(!terms.checked){
 
     showToast(
@@ -2084,10 +2767,13 @@ async function placeOrder(){
 
   }
 
+
   const paymentInput=
+
     document.querySelector(
       'input[name="payment"]:checked'
     );
+
 
   if(!paymentInput){
 
@@ -2099,17 +2785,16 @@ async function placeOrder(){
 
   }
 
-  const payment=paymentInput.value;
 
+  const payment=
+    paymentInput.value;
 
-  /*
-    Transfer payments must be confirmed
-    before the order is created.
-  */
 
   if(
-    payment==="OPay Transfer" ||
-    payment==="Bank Transfer"
+    payment===
+      "OPay Transfer" ||
+    payment===
+      "Bank Transfer"
   ){
 
     if(!paymentConfirmed){
@@ -2126,15 +2811,23 @@ async function placeOrder(){
 
 
   orderBeingPlaced=true;
+
   placeOrderButton.disabled=true;
-  processing.classList.add("active");
+
+  processing.classList.add(
+    "active"
+  );
 
 
   try{
 
-    const cartRef=getCartRef();
+    const cartRef=
+      getCartRef();
 
-    const snapshot=await cartRef.get();
+
+    const snapshot=
+      await cartRef.get();
+
 
     if(!snapshot.exists){
 
@@ -2144,12 +2837,19 @@ async function placeOrder(){
 
     }
 
-    const data=snapshot.data();
+
+    const data=
+      snapshot.data();
+
 
     const latestItems=
+
       Array.isArray(data.items)
+
       ? data.items
+
       : [];
+
 
     if(!latestItems.length){
 
@@ -2160,26 +2860,36 @@ async function placeOrder(){
     }
 
 
-    /*
-    RECALCULATE EVERYTHING FROM FIRESTORE CART
-    */
-
     const cleanItems=
+
       latestItems.map(item=>({
 
-        productId:item.productId||"",
-        name:item.name||"",
-        price:Number(item.price)||0,
-        image:item.image||"",
-        category:item.category||"",
-        qty:Math.max(
-          1,
-          Number(item.qty)||1
-        )
+        productId:
+          item.productId||"",
+
+        name:
+          item.name||"",
+
+        price:
+          Number(item.price)||0,
+
+        image:
+          item.image||"",
+
+        category:
+          item.category||"",
+
+        qty:
+          Math.max(
+            1,
+            Number(item.qty)||1
+          )
 
       }));
 
+
     let subtotal=0;
+
 
     cleanItems.forEach(item=>{
 
@@ -2189,14 +2899,19 @@ async function placeOrder(){
 
     });
 
-    const total=subtotal+delivery;
+
+    const total=
+      subtotal+delivery;
 
 
-    let fullAddress="Store Pickup";
+    let fullAddress=
+      "Store Pickup";
+
 
     if(!isPickup){
 
       fullAddress=
+
         address.value.trim()+
         ", "+
         area.value.trim()+
@@ -2208,40 +2923,57 @@ async function placeOrder(){
     }
 
 
-    /*
-    PAYMENT STATUS
-    */
+    let orderStatus=
+      "Pending";
 
-    let orderStatus="Pending";
-    let paymentStatus="Pending";
+    let paymentStatus=
+      "Pending";
 
-    if(payment==="Pay on Delivery"){
 
-      orderStatus="Pending";
-      paymentStatus="Pay on Delivery";
+    if(
+      payment===
+      "Pay on Delivery"
+    ){
 
-    }
+      orderStatus=
+        "Pending";
 
-    if(payment==="Bank Transfer"){
-
-      orderStatus="Payment Verification";
-      paymentStatus="Awaiting Verification";
-
-    }
-
-    if(payment==="OPay Transfer"){
-
-      orderStatus="Payment Verification";
-      paymentStatus="Awaiting Verification";
+      paymentStatus=
+        "Pay on Delivery";
 
     }
 
 
-    /*
-    CREATE ORDER
-    */
+    if(
+      payment===
+      "Bank Transfer"
+    ){
+
+      orderStatus=
+        "Payment Verification";
+
+      paymentStatus=
+        "Awaiting Verification";
+
+    }
+
+
+    if(
+      payment===
+      "OPay Transfer"
+    ){
+
+      orderStatus=
+        "Payment Verification";
+
+      paymentStatus=
+        "Awaiting Verification";
+
+    }
+
 
     const orderRef=
+
       db
       .collection("orders")
       .doc();
@@ -2249,21 +2981,26 @@ async function placeOrder(){
 
     await orderRef.set({
 
-      address:fullAddress,
+      address:
+        fullAddress,
 
-      area:isPickup
+      area:
+        isPickup
         ? ""
         : area.value.trim(),
 
-      city:isPickup
+      city:
+        isPickup
         ? ""
         : city.value.trim(),
 
-      state:isPickup
+      state:
+        isPickup
         ? ""
         : state.value.trim(),
 
       createdAt:
+
         firebase.firestore
         .FieldValue
         .serverTimestamp(),
@@ -2283,30 +3020,38 @@ async function placeOrder(){
       items:
         cleanItems,
 
-      subtotal:subtotal,
+      subtotal:
+        subtotal,
 
-      deliveryFee:delivery,
+      deliveryFee:
+        delivery,
 
-      total:String(total),
+      total:
+        String(total),
 
       deliveryMethod:
+
         isPickup
         ? "Store Pickup"
         : "Standard Delivery",
 
-      payment:payment,
+      payment:
+        payment,
 
-      paymentStatus:paymentStatus,
+      paymentStatus:
+        paymentStatus,
 
       paymentReference:
         confirmedPaymentReference,
 
-      status:orderStatus,
+      status:
+        orderStatus,
 
       note:
         note.value.trim(),
 
       updatedAt:
+
         firebase.firestore
         .FieldValue
         .serverTimestamp()
@@ -2315,7 +3060,53 @@ async function placeOrder(){
 
 
     /*
-    CLEAR FIRESTORE CART
+    ==========================================
+    CREATE CUSTOMER NOTIFICATION
+    ==========================================
+    */
+
+    await db
+      .collection("notifications")
+      .add({
+
+        userId:
+          currentUser.uid,
+
+        title:
+          "Order Placed Successfully 🎉",
+
+        message:
+          "Your DSP order "+
+          orderRef.id+
+          " has been created. Total: ₦"+
+          formatPrice(total)+
+          ".",
+
+        type:
+          "order",
+
+        orderId:
+          orderRef.id,
+
+        read:
+          false,
+
+        createdAt:
+
+          firebase.firestore
+          .FieldValue
+          .serverTimestamp(),
+
+        adminId:
+          ""
+
+      });
+
+
+    /*
+    ==========================================
+    CLEAR CART
+    ==========================================
     */
 
     await cartRef.set({
@@ -2326,6 +3117,7 @@ async function placeOrder(){
       items:[],
 
       updatedAt:
+
         firebase.firestore
         .FieldValue
         .serverTimestamp()
@@ -2348,11 +3140,15 @@ async function placeOrder(){
       error
     );
 
+
     orderBeingPlaced=false;
 
     placeOrderButton.disabled=false;
 
-    processing.classList.remove("active");
+    processing.classList.remove(
+      "active"
+    );
+
 
     showToast(
       error.message||
@@ -2377,30 +3173,46 @@ function showSuccess(
   paymentStatus
 ){
 
-  processing.classList.remove("active");
+  processing.classList.remove(
+    "active"
+  );
+
 
   let message="";
 
-  if(payment==="Pay on Delivery"){
+
+  if(
+    payment===
+    "Pay on Delivery"
+  ){
 
     message=
       "Your order has been created. You will pay when it is delivered.";
 
   }
 
-  if(payment==="Bank Transfer"){
+
+  if(
+    payment===
+    "Bank Transfer"
+  ){
 
     message=
       "Your transfer has been submitted for payment verification.";
 
   }
 
-  if(payment==="OPay Transfer"){
+
+  if(
+    payment===
+    "OPay Transfer"
+  ){
 
     message=
       "Your OPay transfer has been submitted for payment verification.";
 
   }
+
 
   mainContent.innerHTML=`
 
@@ -2420,9 +3232,12 @@ function showSuccess(
       </p>
 
       <div class="order-number">
+
         Order ID:
         ${escapeHtml(orderId)}
+
       </div>
+
 
       <p style="margin-top:15px">
 
@@ -2434,6 +3249,7 @@ function showSuccess(
 
       </p>
 
+
       <p style="
         margin-top:12px;
         color:#86efac;
@@ -2442,6 +3258,7 @@ function showSuccess(
         ${escapeHtml(message)}
 
       </p>
+
 
       <div style="
         margin-top:18px;
@@ -2453,11 +3270,13 @@ function showSuccess(
       ">
 
         Payment Status:
+
         <strong>
           ${escapeHtml(paymentStatus)}
         </strong>
 
       </div>
+
 
       <div style="
         display:flex;
@@ -2473,6 +3292,7 @@ function showSuccess(
         >
           📦 View My Orders
         </a>
+
 
         <a
           href="shop.html"
@@ -2502,68 +3322,107 @@ TOAST
 
 let toastTimer=null;
 
+
 function showToast(message){
 
-  toast.textContent=message;
+  toast.textContent=
+    message;
 
-  toast.classList.add("show");
 
-  clearTimeout(toastTimer);
+  toast.classList.add(
+    "show"
+  );
 
-  toastTimer=setTimeout(()=>{
 
-    toast.classList.remove("show");
+  clearTimeout(
+    toastTimer
+  );
 
-  },3500);
+
+  toastTimer=
+
+    setTimeout(()=>{
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },3500);
 
 }
 
 
 /*
 =========================================================
-FORMAT
+FORMAT PRICE
 =========================================================
 */
 
 function formatPrice(price){
 
-  const number=Number(price);
+  const number=
+    Number(price);
+
 
   if(!Number.isFinite(number))
     return "0";
 
-  return number.toLocaleString("en-NG");
+
+  return number.toLocaleString(
+    "en-NG"
+  );
 
 }
 
 
 /*
 =========================================================
-ESCAPE
+ESCAPE HTML
 =========================================================
 */
 
 function escapeHtml(value){
 
-  const div=document.createElement("div");
+  const div=
+    document.createElement("div");
 
-  div.textContent=String(value??"");
+
+  div.textContent=
+    String(value??"");
+
 
   return div.innerHTML;
 
 }
 
+
 function escapeAttribute(value){
 
   return String(value??"")
-    .replace(/&/g,"&amp;")
-    .replace(/"/g,"&quot;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    );
 
 }
 
 </script>
 
 </body>
-</html>
+    </html>
