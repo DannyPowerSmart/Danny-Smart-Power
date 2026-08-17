@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Track Order | Danny Smart Power</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#07111f;
+  --dark:#020617;
+  --panel:#0d1b2a;
+  --panel2:#102234;
+  --border:#203247;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --green:#4ade80;
+  --orange:#fb923c;
+  --red:#f87171;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  height:70px;
+  background:var(--dark);
+  border-bottom:1px solid var(--border);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.brand{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.brand span{
+  color:var(--blue);
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+
+/* =========================
+   HEADER BUTTONS
+========================= */
+
+.header-btn{
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:white;
+
+  min-width:42px;
+  height:40px;
+
+  padding:0 11px;
+
+  border-radius:10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  transition:.2s;
+}
+
+.header-btn:hover{
+  border-color:var(--blue);
+  color:var(--blue);
+}
+
+.notification-btn{
+  position:relative;
+  font-size:20px;
+}
+
+.notification-dot{
+  position:absolute;
+
+  top:5px;
+  right:5px;
+
+  width:8px;
+  height:8px;
+
+  background:var(--red);
+
+  border-radius:50%;
+
+  display:none;
+}
+
+.back-btn{
+  font-size:14px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  width:100%;
+  max-width:900px;
+
+  margin:auto;
+
+  padding:28px 16px 60px;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-title{
+  text-align:center;
+
+  margin-bottom:24px;
+}
+
+.page-title h1{
+  font-size:28px;
+}
+
+.page-title p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:7px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-panel{
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  margin-bottom:20px;
+}
+
+.search-title{
+  font-size:17px;
+  margin-bottom:5px;
+}
+
+.search-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.search-row{
+  display:flex;
+  gap:10px;
+}
+
+.search-row input{
+  flex:1;
+
+  min-width:0;
+
+  background:var(--panel2);
+
+  color:white;
+
+  border:1px solid var(--border);
+
+  border-radius:10px;
+
+  padding:13px;
+
+  outline:none;
+}
+
+.search-row input:focus{
+  border-color:var(--blue);
+}
+
+.search-btn{
+  border:0;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-weight:bold;
+
+  padding:0 18px;
+
+  border-radius:10px;
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+.orders-title{
+  font-size:19px;
+
+  margin:20px 0 12px;
+}
+
+.order-list{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+}
+
+
+/* =========================
+   ORDER CARD
+========================= */
+
+.order-card{
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:18px;
+}
+
+.order-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+  padding-bottom:15px;
+
+  border-bottom:1px solid var(--border);
+}
+
+.order-id{
+  font-size:14px;
+  font-weight:bold;
+  word-break:break-all;
+}
+
+.order-date{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+}
+
+.status{
+  padding:6px 10px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:bold;
+
+  white-space:nowrap;
+}
+
+.status-pending{
+  color:#fed7aa;
+  background:rgba(251,146,60,.15);
+}
+
+.status-processing{
+  color:#bae6fd;
+  background:rgba(56,189,248,.15);
+}
+
+.status-shipped{
+  color:#c4b5fd;
+  background:rgba(139,92,246,.15);
+}
+
+.status-delivered{
+  color:#bbf7d0;
+  background:rgba(74,222,128,.15);
+}
+
+.status-cancelled{
+  color:#fecaca;
+  background:rgba(248,113,113,.15);
+}
+
+
+/* =========================
+   TRACKING
+========================= */
+
+.tracking{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  margin:24px 0;
+
+  position:relative;
+}
+
+.tracking-line{
+  position:absolute;
+
+  top:15px;
+
+  left:12%;
+
+  right:12%;
+
+  height:3px;
+
+  background:var(--border);
+
+  z-index:0;
+}
+
+.step{
+  position:relative;
+
+  z-index:1;
+
+  text-align:center;
+}
+
+.step-circle{
+  width:30px;
+  height:30px;
+
+  border-radius:50%;
+
+  margin:auto;
+
+  background:var(--panel2);
+
+  border:2px solid var(--border);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+}
+
+.step.active .step-circle{
+  background:var(--blue);
+
+  border-color:var(--blue);
+
+  color:#00111c;
+}
+
+.step.completed .step-circle{
+  background:var(--green);
+
+  border-color:var(--green);
+
+  color:#001b0b;
+}
+
+.step span{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin-top:7px;
+}
+
+.step.active span,
+.step.completed span{
+  color:white;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.details{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:10px;
+
+  margin-top:15px;
+}
+
+.detail{
+  background:var(--panel2);
+
+  border-radius:10px;
+
+  padding:12px;
+}
+
+.detail-label{
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin-bottom:5px;
+}
+
+.detail-value{
+  font-size:13px;
+
+  word-break:break-word;
+}
+
+
+/* =========================
+   ITEMS
+========================= */
+
+.items{
+  margin-top:15px;
+}
+
+.items-title{
+  font-size:14px;
+
+  margin-bottom:9px;
+}
+
+.item{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  background:var(--panel2);
+
+  padding:10px;
+
+  border-radius:9px;
+
+  margin-bottom:7px;
+
+  font-size:13px;
+}
+
+.item-name{
+  flex:1;
+}
+
+.item-price{
+  white-space:nowrap;
+
+  color:var(--blue);
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:35px 20px;
+
+  text-align:center;
+}
+
+.empty-icon{
+  font-size:42px;
+
+  margin-bottom:12px;
+}
+
+.empty h3{
+  font-size:18px;
+}
+
+.empty p{
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.5;
+
+  margin-top:7px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+  text-align:center;
+
+  font-size:13px;
+
+  margin:15px 0;
+
+  line-height:1.5;
+}
+
+.success{
+  color:var(--green);
+}
+
+.error{
+  color:var(--red);
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-screen{
+  position:fixed;
+
+  inset:0;
+
+  background:var(--bg);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:100;
+}
+
+.loading-box{
+  text-align:center;
+}
+
+.spinner{
+  width:42px;
+  height:42px;
+
+  border:4px solid var(--border);
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:spin .8s linear infinite;
+
+  margin:auto auto 15px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+  .header{
+    padding:0 10px;
+  }
+
+  .brand{
+    font-size:17px;
+  }
+
+  .header-btn{
+    min-width:38px;
+    height:38px;
+
+    padding:0 9px;
+  }
+
+  .back-btn{
+    font-size:0;
+  }
+
+  .back-btn::before{
+    content:"←";
+    font-size:19px;
+  }
+
+  .main{
+    padding:22px 12px 45px;
+  }
+
+  .page-title h1{
+    font-size:24px;
+  }
+
+  .search-row{
+    flex-direction:column;
+  }
+
+  .search-btn{
+    height:46px;
+  }
+
+  .tracking{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .step span{
+    font-size:9px;
+  }
+
+  .details{
+    grid-template-columns:1fr;
+  }
+
+  .order-top{
+    flex-direction:column;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div id="loadingScreen" class="loading-screen">
+
+  <div class="loading-box">
+
+    <div class="spinner"></div>
+
+    <div>
+      Loading your orders...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="brand">
+    ⚡ <span>DSP</span> Track Order
+  </div>
+
+  <div class="header-actions">
+
+    <!-- NOTIFICATION -->
+
+    <a
+      href="notification.html"
+      class="header-btn notification-btn"
+      title="Notifications"
+    >
+      🔔
+
+      <span
+        id="notificationDot"
+        class="notification-dot"
+      ></span>
+
+    </a>
+
+
+    <!-- BACK -->
+
+    <button
+      class="header-btn back-btn"
+      onclick="goBack()"
+      title="Back"
+    >
+      ← Back
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+  <!-- PAGE TITLE -->
+
+  <section class="page-title">
+
+    <h1>
+      Track Your Order
+    </h1>
+
+    <p>
+      Check the latest status of your DSP order.
+    </p>
+
+  </section>
+
+
+  <!-- SEARCH -->
+
+  <section class="search-panel">
+
+    <h2 class="search-title">
+      Find an Order
+    </h2>
+
+    <p class="search-subtitle">
+      Enter your order ID to check its current status.
+    </p>
+
+    <div class="search-row">
+
+      <input
+        id="orderSearch"
+        type="text"
+        placeholder="Enter order ID"
+        autocomplete="off"
+      >
+
+      <button
+        class="search-btn"
+        onclick="searchOrder()"
+      >
+        Track
+      </button>
+
+    </div>
+
+    <p
+      id="message"
+      class="message"
+    ></p>
+
+  </section>
+
+
+  <!-- MY ORDERS -->
+
+  <h2 class="orders-title">
+    My Orders
+  </h2>
+
+  <div
+    id="orderList"
+    class="order-list"
+  ></div>
+
+
+</main>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+/* ==========================================
+   FIREBASE
+========================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+
+const auth =
+  firebase.auth();
+
+
+const db =
+  firebase.firestore();
+
+
+/* ==========================================
+   CURRENT USER
+========================================== */
+
+let currentUser = null;
+
+let orders = [];
+
+let unsubscribeOrders = null;
+
+
+/* ==========================================
+   AUTH STATE
+========================================== */
+
+auth.onAuthStateChanged(async user => {
+
+  if(!user){
+
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
+
+  currentUser = user;
+
+
+  await loadOrders();
+
+
+  /*
+    Notification indicator.
+
+    The actual notification page is:
+    notification.html
+
+    This only checks whether there
+    are unread notifications.
+  */
+
+  listenForNotifications();
+
+
+  document
+    .getElementById("loadingScreen")
+    .classList
+    .add("hidden");
+
+});
+
+
+/* ==========================================
+   LOAD ORDERS
+========================================== */
+
+function loadOrders(){
+
+  if(!currentUser)
+    return;
+
+
+  const orderList =
+    document.getElementById("orderList");
+
+
+  /*
+    Listen to this customer's orders.
+
+    orders.customerId must contain
+    the Firebase Authentication UID.
+  */
+
+  unsubscribeOrders =
+    db
+      .collection("orders")
+      .where(
+        "customerId",
+        "==",
+        currentUser.uid
+      )
+      .onSnapshot(
+
+        snapshot => {
+
+          orders = [];
+
+
+          snapshot.forEach(doc => {
+
+            orders.push({
+
+              id:doc.id,
+
+              ...doc.data()
+
+            });
+
+          });
+
+
+          /*
+            Newest orders first.
+          */
+
+          orders.sort((a,b) => {
+
+            const dateA =
+              getTimestamp(a.createdAt);
+
+            const dateB =
+              getTimestamp(b.createdAt);
+
+            return dateB - dateA;
+
+          });
+
+
+          renderOrders(orders);
+
+        },
+
+        error => {
+
+          console.error(
+            "Orders error:",
+            error
+          );
+
+
+          orderList.innerHTML = `
+
+            <div class="empty">
+
+              <div class="empty-icon">
+                ⚠️
+              </div>
+
+              <h3>
+                Could not load orders
+              </h3>
+
+              <p>
+                ${escapeHTML(
+                  friendlyError(error)
+                )}
+              </p>
+
+            </div>
+
+          `;
+
+        }
+
+      );
+
+}
+
+
+/* ==========================================
+   RENDER ORDERS
+========================================== */
+
+function renderOrders(list){
+
+  const orderList =
+    document.getElementById("orderList");
+
+
+  if(!list.length){
+
+    orderList.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          📦
+        </div>
+
+        <h3>
+          No orders yet
+        </h3>
+
+        <p>
+          When you place an order,
+          it will appear here so you
+          can track it.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  orderList.innerHTML =
+    list
+      .map(order => createOrderCard(order))
+      .join("");
+
+}
+
+
+/* ==========================================
+   CREATE ORDER CARD
+========================================== */
+
+function createOrderCard(order){
+
+  const status =
+    normalizeStatus(order.status);
+
+
+  const date =
+    formatDate(order.createdAt);
+
+
+  const total =
+    formatMoney(order.total);
+
+
+  const payment =
+    order.payment ||
+    "Not specified";
+
+
+  const address =
+    order.address ||
+    "Not provided";
+
+
+  const items =
+    Array.isArray(order.items)
+      ? order.items
+      : [];
+
+
+  const itemsHTML =
+    items.length
+
+      ? items.map(item => {
+
+          const name =
+            item.name ||
+            item.productName ||
+            "Product";
+
+
+          const quantity =
+            Number(
+              item.quantity ||
+              item.qty ||
+              1
+            );
+
+
+          const price =
+            item.price != null
+              ? formatMoney(item.price)
+              : "";
+
+
+          return `
+
+            <div class="item">
+
+              <div class="item-name">
+
+                ${escapeHTML(name)}
+
+                × ${quantity}
+
+              </div>
+
+              <div class="item-price">
+
+                ${escapeHTML(price)}
+
+              </div>
+
+            </div>
+
+          `;
+
+        }).join("")
+
+      : `
+
+        <div class="item">
+
+          <div class="item-name">
+            Order items
+          </div>
+
+        </div>
+
+      `;
+
+
+  return `
+
+    <article
+      class="order-card"
+      data-order-id="${escapeHTML(order.id)}"
+    >
+
+      <div class="order-top">
+
+        <div>
+
+          <div class="order-id">
+
+            Order ID:
+            ${escapeHTML(order.id)}
+
+          </div>
+
+          <div class="order-date">
+
+            ${escapeHTML(date)}
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="status status-${escapeHTML(status.className)}"
+        >
+          ${escapeHTML(status.label)}
+        </div>
+
+      </div>
+
+
+      <!-- TRACKING -->
+
+      ${createTracking(status.key)}
+
+
+      <!-- DETAILS -->
+
+      <div class="details">
+
+        <div class="detail">
+
+          <div class="detail-label">
+            TOTAL
+          </div>
+
+          <div class="detail-value">
+            ${escapeHTML(total)}
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            PAYMENT
+          </div>
+
+          <div class="detail-value">
+            ${escapeHTML(payment)}
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            PHONE
+          </div>
+
+          <div class="detail-value">
+            ${escapeHTML(
+              order.phone || "Not provided"
+            )}
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            DELIVERY ADDRESS
+          </div>
+
+          <div class="detail-value">
+            ${escapeHTML(address)}
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ITEMS -->
+
+      <div class="items">
+
+        <div class="items-title">
+          Order Items
+        </div>
+
+        ${itemsHTML}
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* ==========================================
+   TRACKING UI
+========================================== */
+
+function createTracking(status){
+
+  const steps = [
+
+    {
+      key:"pending",
+      label:"Pending",
+      icon:"1"
+    },
+
+    {
+      key:"processing",
+      label:"Processing",
+      icon:"2"
+    },
+
+    {
+      key:"shipped",
+      label:"Shipped",
+      icon:"3"
+    },
+
+    {
+      key:"delivered",
+      label:"Delivered",
+      icon:"✓"
+    }
+
+  ];
+
+
+  const statusIndex = {
+
+    pending:0,
+
+    processing:1,
+
+    shipped:2,
+
+    delivered:3
+
+  };
+
+
+  /*
+    Cancelled order.
+  */
+
+  if(status === "cancelled"){
+
+    return `
+
+      <div class="tracking">
+
+        <div class="tracking-line"></div>
+
+        <div class="step completed">
+
+          <div class="step-circle">
+            !
+          </div>
+
+          <span>
+            Cancelled
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  const current =
+    statusIndex[status] ?? 0;
+
+
+  return `
+
+    <div class="tracking">
+
+      <div class="tracking-line"></div>
+
+      ${steps.map((step,index) => {
+
+        let className = "";
+
+        if(index < current){
+
+          className =
+            "completed";
+
+        }else if(index === current){
+
+          className =
+            "active";
+
+        }
+
+
+        return `
+
+          <div class="step ${className}">
+
+            <div class="step-circle">
+
+              ${step.icon}
+
+            </div>
+
+            <span>
+              ${step.label}
+            </span>
+
+          </div>
+
+        `;
+
+      }).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* ==========================================
+   SEARCH ORDER
+========================================== */
+
+async function searchOrder(){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  const input =
+    document
+      .getElementById("orderSearch");
+
+
+  const orderId =
+    input.value.trim();
+
+
+  if(!orderId){
+
+    showMessage(
+      "Please enter an order ID.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const found =
+    orders.find(
+      order => order.id === orderId
+    );
+
+
+  if(found){
+
+    renderOrders([found]);
+
+
+    const card =
+      document.querySelector(
+        `[data-order-id="${CSS.escape(found.id)}"]`
+      );
+
+
+    if(card){
+
+      card.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+      });
+
+    }
+
+
+    showMessage(
+      "Order found.",
+      "success"
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+    Also check Firestore directly.
+
+    Security Rules should make sure
+    customers can only read their own
+    orders.
+  */
+
+  try{
+
+    const doc =
+      await db
+        .collection("orders")
+        .doc(orderId)
+        .get();
+
+
+    if(!doc.exists){
+
+      showMessage(
+        "Order not found.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const data =
+      doc.data();
+
+
+    /*
+      Extra client-side protection.
+    */
+
+    if(
+      data.customerId !==
+      currentUser.uid
+    ){
+
+      showMessage(
+        "This order does not belong to your account.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    renderOrders([{
+
+      id:doc.id,
+
+      ...data
+
+    }]);
+
+
+    showMessage(
+      "Order found.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   NOTIFICATIONS
+========================================== */
+
+function listenForNotifications(){
+
+  if(!currentUser)
+    return;
+
+
+  /*
+    This is intentionally lightweight.
+
+    The notification button ALWAYS opens:
+
+    notification.html
+
+    This listener only controls the
+    small red unread indicator.
+  */
+
+  db
+    .collection("notifications")
+    .where(
+      "userId",
+      "==",
+      currentUser.uid
+    )
+    .where(
+      "read",
+      "==",
+      false
+    )
+    .limit(1)
+    .onSnapshot(
+
+      snapshot => {
+
+        const dot =
+          document.getElementById(
+            "notificationDot"
+          );
+
+
+        if(snapshot.empty){
+
+          dot.style.display =
+            "none";
+
+        }else{
+
+          dot.style.display =
+            "block";
+
+        }
+
+      },
+
+      error => {
+
+        /*
+          Do not break Track Order
+          if notification rules are
+          not configured yet.
+        */
+
+        console.log(
+          "Notification indicator:",
+          error.message
+        );
+
+      }
+
+    );
+
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+function normalizeStatus(status){
+
+  const value =
+    String(
+      status ||
+      "pending"
+    )
+      .toLowerCase()
+      .trim();
+
+
+  if(
+    value.includes("cancel")
+  ){
+
+    return {
+
+      key:"cancelled",
+
+      label:"Cancelled",
+
+      className:"cancelled"
+
+    };
+
+  }
+
+
+  if(
+    value.includes("deliver")
+  ){
+
+    return {
+
+      key:"delivered",
+
+      label:"Delivered",
+
+      className:"delivered"
+
+    };
+
+  }
+
+
+  if(
+    value.includes("ship")
+    ||
+    value.includes("dispatch")
+    ||
+    value.includes("out")
+  ){
+
+    return {
+
+      key:"shipped",
+
+      label:"Shipped",
+
+      className:"shipped"
+
+    };
+
+  }
+
+
+  if(
+    value.includes("process")
+    ||
+    value.includes("confirm")
+  ){
+
+    return {
+
+      key:"processing",
+
+      label:"Processing",
+
+      className:"processing"
+
+    };
+
+  }
+
+
+  return {
+
+    key:"pending",
+
+    label:"Pending",
+
+    className:"pending"
+
+  };
+
+}
+
+
+/* ==========================================
+   DATE
+========================================== */
+
+function getTimestamp(value){
+
+  if(!value)
+    return 0;
+
+
+  if(
+    value.seconds !== undefined
+  ){
+
+    return value.seconds * 1000;
+
+  }
+
+
+  if(
+    value.toDate
+  ){
+
+    return value.toDate().getTime();
+
+  }
+
+
+  if(
+    value instanceof Date
+  ){
+
+    return value.getTime();
+
+  }
+
+
+  const date =
+    new Date(value);
+
+
+  return isNaN(date.getTime())
+    ? 0
+    : date.getTime();
+
+}
+
+
+function formatDate(value){
+
+  const timestamp =
+    getTimestamp(value);
+
+
+  if(!timestamp)
+    return "Date unavailable";
+
+
+  return new Date(timestamp)
+    .toLocaleString(
+      "en-NG",
+      {
+        dateStyle:"medium",
+        timeStyle:"short"
+      }
+    );
+
+}
+
+
+/* ==========================================
+   MONEY
+========================================== */
+
+function formatMoney(value){
+
+  if(value === undefined || value === null)
+    return "₦0";
+
+
+  /*
+    Supports:
+
+    15000
+    "15000"
+    "₦15,000"
+  */
+
+  const cleaned =
+    String(value)
+      .replace(/[₦,\s]/g,"");
+
+
+  const number =
+    Number(cleaned);
+
+
+  if(isNaN(number)){
+
+    return String(value);
+
+  }
+
+
+  return "₦" +
+    number.toLocaleString(
+      "en-NG"
+    );
+
+}
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+function showMessage(
+  text,
+  type
+){
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+
+  message.textContent =
+    text;
+
+
+  message.className =
+    "message " + type;
+
+
+  clearTimeout(
+    showMessage.timer
+  );
+
+
+  showMessage.timer =
+    setTimeout(() => {
+
+      message.textContent =
+        "";
+
+      message.className =
+        "message";
+
+    },5000);
+
+}
+
+
+/* ==========================================
+   BACK
+========================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer.includes(
+      window.location.hostname
+    )
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "index.html";
+
+  }
+
+}
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value){
+
+  if(value === undefined || value === null)
+    return "";
+
+
+  return String(value)
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================
+   ERROR HANDLER
+========================================== */
+
+function friendlyError(error){
+
+  if(!error)
+    return "Something went wrong.";
+
+
+  if(
+    error.code ===
+    "permission-denied"
+  ){
+
+    return "Permission denied. Check your Firestore Rules.";
+
+  }
+
+
+  if(
+    error.code ===
+    "failed-precondition"
+  ){
+
+    return "Firestore needs an index for this query. Check the Firebase console.";
+
+  }
+
+
+  if(
+    error.code ===
+    "unavailable"
+  ){
+
+    return "Internet connection problem. Please try again.";
+
+  }
+
+
+  return error.message ||
+    "Something went wrong.";
+
+}
+
+
+/* ==========================================
+   ENTER KEY SEARCH
+========================================== */
+
+document
+  .getElementById("orderSearch")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if(event.key === "Enter"){
+
+        searchOrder();
+
+      }
+
+    }
+  );
+
+
+/* ==========================================
+   CLEANUP
+========================================== */
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if(unsubscribeOrders){
+
+      unsubscribeOrders();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
