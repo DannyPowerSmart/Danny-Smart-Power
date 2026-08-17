@@ -1,116 +1,1803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Contact Support | Danny Smart Power</title>
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-  margin: 0;
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-/* HEADER */
-header {
-  background: #020617;
-  padding: 15px 8%;
-  display: flex;
-  justify-content: space-between;
+:root{
+  --bg:#07111f;
+  --dark:#020617;
+  --panel:#0d1b2a;
+  --panel2:#102234;
+  --border:#203247;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --green:#4ade80;
+  --red:#f87171;
 }
 
-a { color: #38bdf8; text-decoration: none; }
-
-/* CONTAINER */
-.container {
-  padding: 20px 8%;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
 }
 
-/* FORM */
-form {
-  background: #020617;
-  padding: 20px;
-  border-radius: 12px;
+button,
+input,
+textarea,
+select{
+  font:inherit;
 }
 
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border-radius: 8px;
-  border: none;
-  background: #0f172a;
-  color: white;
+button{
+  cursor:pointer;
 }
 
-textarea {
-  resize: none;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-/* BUTTON */
-.btn {
-  margin-top: 15px;
-  padding: 12px;
-  background: #38bdf8;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
+.hidden{
+  display:none!important;
 }
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+  min-height:70px;
+
+  background:var(--dark);
+
+  border-bottom:1px solid var(--border);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:50;
+
+}
+
+.brand{
+
+  font-size:20px;
+
+  font-weight:bold;
+
+}
+
+.brand span{
+  color:var(--blue);
+}
+
+.header-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+}
+
+.header-btn{
+
+  border:1px solid var(--border);
+
+  background:var(--panel);
+
+  color:white;
+
+  padding:9px 12px;
+
+  border-radius:9px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+.header-btn:hover{
+
+  border-color:var(--blue);
+
+  color:var(--blue);
+
+}
+
+.notification-btn{
+
+  width:42px;
+
+  height:40px;
+
+  padding:0;
+
+  font-size:19px;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+
+  width:100%;
+
+  max-width:850px;
+
+  margin:auto;
+
+  padding:25px 16px 50px;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      rgba(56,189,248,.13),
+
+      rgba(13,27,42,.96)
+
+    );
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  padding:30px 20px;
+
+  margin-bottom:20px;
+
+}
+
+.hero-icon{
+
+  width:65px;
+
+  height:65px;
+
+  border-radius:18px;
+
+  background:rgba(56,189,248,.12);
+
+  border:1px solid rgba(56,189,248,.25);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:32px;
+
+  margin-bottom:16px;
+
+}
+
+.hero h1{
+
+  font-size:27px;
+
+  margin-bottom:8px;
+
+}
+
+.hero p{
+
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.6;
+
+}
+
+
+/* =========================
+   USER INFO
+========================= */
+
+.user-card{
+
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:16px;
+
+  padding:16px;
+
+  margin-bottom:18px;
+
+}
+
+.user-row{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+.user-avatar{
+
+  width:48px;
+
+  height:48px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  background:var(--panel2);
+
+  border:2px solid var(--blue);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-shrink:0;
+
+}
+
+.user-name{
+
+  font-weight:bold;
+
+  font-size:15px;
+
+}
+
+.user-email{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-top:4px;
+
+}
+
+
+/* =========================
+   CONTACT PANEL
+========================= */
+
+.panel{
+
+  background:var(--panel);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:20px;
+
+  margin-bottom:18px;
+
+}
+
+.panel-title{
+
+  font-size:19px;
+
+  margin-bottom:6px;
+
+}
+
+.panel-subtitle{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.5;
+
+  margin-bottom:20px;
+
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.field{
+
+  margin-bottom:16px;
+
+}
+
+label{
+
+  display:block;
+
+  color:#cbd5e1;
+
+  font-size:13px;
+
+  margin-bottom:7px;
+
+}
+
+input,
+textarea,
+select{
+
+  width:100%;
+
+  background:var(--panel2);
+
+  color:white;
+
+  border:1px solid var(--border);
+
+  border-radius:10px;
+
+  padding:13px;
+
+  outline:none;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+  border-color:var(--blue);
+
+}
+
+input:disabled{
+
+  opacity:.65;
+
+  cursor:not-allowed;
+
+}
+
+textarea{
+
+  min-height:150px;
+
+  resize:vertical;
+
+}
+
+
+/* =========================
+   SEND BUTTON
+========================= */
+
+.send-btn{
+
+  width:100%;
+
+  border:0;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-weight:bold;
+
+  padding:14px;
+
+  border-radius:10px;
+
+  margin-top:4px;
+
+}
+
+.send-btn:hover{
+
+  filter:brightness(1.06);
+
+}
+
+.send-btn:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.status-message{
+
+  text-align:center;
+
+  font-size:13px;
+
+  line-height:1.5;
+
+  margin-top:14px;
+
+}
+
+.success{
+
+  color:var(--green);
+
+}
+
+.error{
+
+  color:var(--red);
+
+}
+
+
+/* =========================
+   QUICK CONTACT
+========================= */
+
+.quick-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:12px;
+
+}
+
+.quick-card{
+
+  background:var(--panel2);
+
+  border:1px solid var(--border);
+
+  border-radius:13px;
+
+  padding:16px;
+
+  transition:.2s;
+
+}
+
+.quick-card:hover{
+
+  border-color:var(--blue);
+
+  transform:translateY(-2px);
+
+}
+
+.quick-icon{
+
+  font-size:23px;
+
+  margin-bottom:9px;
+
+}
+
+.quick-title{
+
+  font-weight:bold;
+
+  font-size:14px;
+
+  margin-bottom:4px;
+
+}
+
+.quick-text{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+}
+
+
+/* =========================
+   LOGIN MESSAGE
+========================= */
+
+.login-box{
+
+  text-align:center;
+
+  padding:35px 20px;
+
+}
+
+.login-box .icon{
+
+  font-size:45px;
+
+  margin-bottom:15px;
+
+}
+
+.login-box h2{
+
+  margin-bottom:8px;
+
+}
+
+.login-box p{
+
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.6;
+
+  margin-bottom:20px;
+
+}
+
+.login-btn{
+
+  display:inline-flex;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  background:var(--blue);
+
+  color:#00111c;
+
+  font-weight:bold;
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-screen{
+
+  position:fixed;
+
+  inset:0;
+
+  background:var(--bg);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:100;
+
+}
+
+.loading-box{
+
+  text-align:center;
+
+}
+
+.spinner{
+
+  width:42px;
+
+  height:42px;
+
+  border:4px solid var(--border);
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:spin .8s linear infinite;
+
+  margin:auto auto 15px;
+
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+  .header{
+
+    padding:0 10px;
+
+  }
+
+  .brand{
+
+    font-size:17px;
+
+  }
+
+  .header-right{
+
+    gap:5px;
+
+  }
+
+  .header-btn{
+
+    padding:8px 9px;
+
+  }
+
+  .notification-btn{
+
+    width:40px;
+
+    height:38px;
+
+  }
+
+  .main{
+
+    padding:20px 12px 40px;
+
+  }
+
+  .hero{
+
+    padding:25px 17px;
+
+  }
+
+  .hero h1{
+
+    font-size:23px;
+
+  }
+
+  .quick-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<header>
-  <h2>Contact Us 📞</h2>
-  <a href="shop.html">← Back</a>
-</header>
 
-<div class="container">
+<!-- =========================
+     LOADING
+========================= -->
 
-  <form onsubmit="sendMessage(event)">
-    <h3>Send us a message</h3>
+<div
+  id="loadingScreen"
+  class="loading-screen"
+>
 
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="tel" id="phone" placeholder="Your Phone Number" required>
-    <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+  <div class="loading-box">
 
-    <button type="submit" class="btn">Send Message</button>
-  </form>
+    <div class="spinner"></div>
+
+    <div>
+      Loading support...
+    </div>
+
+  </div>
 
 </div>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="brand">
+
+    ⚡ <span>DSP</span> Support
+
+  </div>
+
+
+  <div class="header-right">
+
+
+    <!-- NOTIFICATION -->
+
+    <a
+      href="notification.html"
+      class="header-btn notification-btn"
+      title="Notifications"
+      aria-label="Notifications"
+    >
+      🔔
+    </a>
+
+
+    <!-- BACK -->
+
+    <button
+      class="header-btn"
+      onclick="goBack()"
+    >
+      ← Back
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      💬
+    </div>
+
+    <h1>
+      Contact Danny Smart Power
+    </h1>
+
+    <p>
+      Have a question about a product, order,
+      payment, delivery, installation, or anything
+      else? Send us a message and our support team
+      will get back to you.
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       LOGIN AREA
+  ========================= -->
+
+  <section
+    id="loginRequired"
+    class="panel hidden"
+  >
+
+    <div class="login-box">
+
+      <div class="icon">
+        🔐
+      </div>
+
+      <h2>
+        Login Required
+      </h2>
+
+      <p>
+        Please sign in to your Danny Smart Power
+        account before contacting support.
+      </p>
+
+      <a
+        href="login.html"
+        class="login-btn"
+      >
+        Login
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CUSTOMER INFO
+  ========================= -->
+
+  <section
+    id="customerSection"
+    class="user-card hidden"
+  >
+
+    <div class="user-row">
+
+      <img
+        id="userPhoto"
+        class="user-avatar"
+        alt="Customer"
+        style="display:none"
+      >
+
+      <div
+        id="defaultUserAvatar"
+        class="user-avatar"
+      >
+        👤
+      </div>
+
+      <div>
+
+        <div
+          id="userName"
+          class="user-name"
+        >
+          Customer
+        </div>
+
+        <div
+          id="userEmail"
+          class="user-email"
+        >
+          Loading...
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT FORM
+  ========================= -->
+
+  <section
+    id="contactSection"
+    class="panel hidden"
+  >
+
+    <h2 class="panel-title">
+      Send a Message
+    </h2>
+
+    <p class="panel-subtitle">
+      Your message will be sent directly to the
+      Danny Smart Power Admin support system.
+    </p>
+
+
+    <!-- SUBJECT -->
+
+    <div class="field">
+
+      <label for="subject">
+        Subject
+      </label>
+
+      <input
+        id="subject"
+        type="text"
+        placeholder="e.g. Question about solar panel"
+        maxlength="120"
+      >
+
+    </div>
+
+
+    <!-- CATEGORY -->
+
+    <div class="field">
+
+      <label for="category">
+        What is this about?
+      </label>
+
+      <select id="category">
+
+        <option value="General">
+          General Question
+        </option>
+
+        <option value="Product">
+          Product
+        </option>
+
+        <option value="Order">
+          Order
+        </option>
+
+        <option value="Payment">
+          Payment
+        </option>
+
+        <option value="Delivery">
+          Delivery
+        </option>
+
+        <option value="Installation">
+          Installation
+        </option>
+
+        <option value="Complaint">
+          Complaint
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div class="field">
+
+      <label for="messageInput">
+        Message
+      </label>
+
+      <textarea
+        id="messageInput"
+        placeholder="Write your message here..."
+        maxlength="3000"
+      ></textarea>
+
+    </div>
+
+
+    <button
+      id="sendBtn"
+      class="send-btn"
+      onclick="sendMessage()"
+    >
+      📤 Send Message
+    </button>
+
+
+    <p
+      id="statusMessage"
+      class="status-message"
+    ></p>
+
+  </section>
+
+
+  <!-- =========================
+       QUICK CONTACT
+  ========================= -->
+
+  <section class="panel">
+
+    <h2 class="panel-title">
+      Need Help?
+    </h2>
+
+    <p class="panel-subtitle">
+      You can also use these support options.
+    </p>
+
+
+    <div class="quick-grid">
+
+
+      <a
+        href="notification.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+          🔔
+        </div>
+
+        <div class="quick-title">
+          Notifications
+        </div>
+
+        <div class="quick-text">
+          Check updates and messages from DSP.
+        </div>
+
+      </a>
+
+
+      <a
+        href="shop.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+          🛒
+        </div>
+
+        <div class="quick-title">
+          Shop
+        </div>
+
+        <div class="quick-text">
+          Browse our electrical, lighting and solar
+          products.
+        </div>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
 <script>
-function sendMessage(e){
-  e.preventDefault();
 
-  let name = document.getElementById("name").value.trim();
-  let phone = document.getElementById("phone").value.trim();
-  let message = document.getElementById("message").value.trim();
+/* ==========================================
+   FIREBASE CONFIG
+========================================== */
 
-  if(!name || !phone || !message){
-    alert("Please fill all fields");
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
+
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:
+    "danny-smart-power",
+
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+    "649735645158",
+
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+
+const auth =
+  firebase.auth();
+
+
+const db =
+  firebase.firestore();
+
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
+let currentUser = null;
+
+let currentProfile = {};
+
+let currentChatId = null;
+
+
+/* ==========================================
+   AUTH STATE
+========================================== */
+
+auth.onAuthStateChanged(async user => {
+
+  if(!user){
+
+    document
+      .getElementById("loadingScreen")
+      .classList
+      .add("hidden");
+
+    document
+      .getElementById("loginRequired")
+      .classList
+      .remove("hidden");
+
     return;
+
   }
 
-  let text = `Hello, I want to contact you.%0A%0A`;
-  text += `Name: ${name}%0A`;
-  text += `Phone: ${phone}%0A`;
-  text += `Message: ${message}`;
 
-  let adminNumber = "2349036470778";
+  currentUser = user;
 
-  let url = `https://wa.me/${adminNumber}?text=${text}`;
 
-  window.open(url, "_blank");
+  try{
+
+    await loadCustomerProfile();
+
+    await findOrCreateChat();
+
+
+    document
+      .getElementById("customerSection")
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById("contactSection")
+      .classList
+      .remove("hidden");
+
+
+  }catch(error){
+
+    console.error(
+      "Contact initialization error:",
+      error
+    );
+
+
+    showStatus(
+      friendlyError(error),
+      "error"
+    );
+
+  }
+
+
+  document
+    .getElementById("loadingScreen")
+    .classList
+    .add("hidden");
+
+});
+
+
+/* ==========================================
+   LOAD CUSTOMER PROFILE
+========================================== */
+
+async function loadCustomerProfile(){
+
+  if(!currentUser)
+    return;
+
+
+  try{
+
+    const profileSnapshot =
+      await db
+        .collection("profiles")
+        .doc(currentUser.uid)
+        .get();
+
+
+    if(profileSnapshot.exists){
+
+      currentProfile =
+        profileSnapshot.data();
+
+    }else{
+
+      currentProfile = {};
+
+    }
+
+
+    const name =
+      currentProfile.fullName ||
+      currentUser.displayName ||
+      "Customer";
+
+
+    const email =
+      currentUser.email || "";
+
+
+    document.getElementById("userName")
+      .textContent =
+      name;
+
+
+    document.getElementById("userEmail")
+      .textContent =
+      email;
+
+
+    if(currentProfile.photoURL){
+
+      const photo =
+        document.getElementById("userPhoto");
+
+
+      const defaultAvatar =
+        document.getElementById(
+          "defaultUserAvatar"
+        );
+
+
+      photo.src =
+        currentProfile.photoURL;
+
+
+      photo.style.display =
+        "flex";
+
+
+      defaultAvatar.style.display =
+        "none";
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "Profile error:",
+      error
+    );
+
+
+    throw error;
+
+  }
+
 }
+
+
+/* ==========================================
+   FIND OR CREATE CHAT
+========================================== */
+
+async function findOrCreateChat(){
+
+  if(!currentUser)
+    return;
+
+
+  try{
+
+    /*
+      We use customerId to find
+      this customer's support chat.
+
+      This prevents a new chat from
+      being created every time the
+      contact page opens.
+    */
+
+    const existing =
+      await db
+        .collection("chats")
+        .where(
+          "customerId",
+          "==",
+          currentUser.uid
+        )
+        .limit(1)
+        .get();
+
+
+    if(!existing.empty){
+
+      currentChatId =
+        existing.docs[0].id;
+
+      return;
+
+    }
+
+
+    /*
+      Create the customer's chat.
+    */
+
+    const chatRef =
+      await db
+        .collection("chats")
+        .add({
+
+          customerId:
+            currentUser.uid,
+
+          customerName:
+            currentProfile.fullName ||
+            currentUser.displayName ||
+            "Customer",
+
+          customerPhoto:
+            currentProfile.photoURL ||
+            "",
+
+          lastMessage:
+            "",
+
+          lastMessageAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp(),
+
+          unreadForAdmin:
+            0,
+
+          unreadForCustomer:
+            0,
+
+          status:
+            "open",
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+
+
+    currentChatId =
+      chatRef.id;
+
+
+  }catch(error){
+
+    console.error(
+      "Chat creation error:",
+      error
+    );
+
+    throw error;
+
+  }
+
+}
+
+
+/* ==========================================
+   SEND MESSAGE
+========================================== */
+
+async function sendMessage(){
+
+  if(!currentUser){
+
+    showStatus(
+      "Please login first.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const subject =
+    document
+      .getElementById("subject")
+      .value
+      .trim();
+
+
+  const category =
+    document
+      .getElementById("category")
+      .value;
+
+
+  const messageText =
+    document
+      .getElementById("messageInput")
+      .value
+      .trim();
+
+
+  const sendBtn =
+    document.getElementById("sendBtn");
+
+
+  if(!subject){
+
+    showStatus(
+      "Please enter a subject.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!messageText){
+
+    showStatus(
+      "Please write your message.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(messageText.length < 3){
+
+    showStatus(
+      "Please write a little more about your request.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  sendBtn.disabled =
+    true;
+
+
+  sendBtn.textContent =
+    "Sending...";
+
+
+  try{
+
+    /*
+      Make sure a chat exists.
+    */
+
+    if(!currentChatId){
+
+      await findOrCreateChat();
+
+    }
+
+
+    const now =
+      firebase.firestore.FieldValue
+        .serverTimestamp();
+
+
+    /*
+      Combine subject, category and
+      message into the actual message.
+    */
+
+    const fullMessage =
+      "Subject: " +
+      subject +
+      "\nCategory: " +
+      category +
+      "\n\n" +
+      messageText;
+
+
+    /*
+      Create message document.
+
+      IMPORTANT:
+
+      This uses:
+
+      messages/{messageId}
+
+      with chatId connecting it
+      to chats/{chatId}.
+    */
+
+    await db
+      .collection("messages")
+      .add({
+
+        chatId:
+          currentChatId,
+
+        senderId:
+          currentUser.uid,
+
+        senderType:
+          "customer",
+
+        senderName:
+          currentProfile.fullName ||
+          currentUser.displayName ||
+          "Customer",
+
+        senderEmail:
+          currentUser.email ||
+          "",
+
+        text:
+          fullMessage,
+
+        message:
+          fullMessage,
+
+        read:
+          false,
+
+        createdAt:
+          now
+
+      });
+
+
+    /*
+      Update the main chat document
+      so Admin sees the latest message.
+    */
+
+    await db
+      .collection("chats")
+      .doc(currentChatId)
+      .set({
+
+        customerId:
+          currentUser.uid,
+
+        customerName:
+          currentProfile.fullName ||
+          currentUser.displayName ||
+          "Customer",
+
+        customerPhoto:
+          currentProfile.photoURL ||
+          "",
+
+        lastMessage:
+          messageText,
+
+        lastMessageAt:
+          now,
+
+        unreadForAdmin:
+          firebase.firestore.FieldValue
+            .increment(1),
+
+        status:
+          "open"
+
+      },{
+        merge:true
+      });
+
+
+    /*
+      Clear form.
+    */
+
+    document
+      .getElementById("subject")
+      .value = "";
+
+
+    document
+      .getElementById("messageInput")
+      .value = "";
+
+
+    document
+      .getElementById("category")
+      .value =
+      "General";
+
+
+    showStatus(
+      "Message sent successfully. Admin support has received your message.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Send message error:",
+      error
+    );
+
+
+    showStatus(
+      friendlyError(error),
+      "error"
+    );
+
+
+  }finally{
+
+    sendBtn.disabled =
+      false;
+
+    sendBtn.textContent =
+      "📤 Send Message";
+
+  }
+
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+function showStatus(
+  text,
+  type
+){
+
+  const status =
+    document.getElementById(
+      "statusMessage"
+    );
+
+
+  status.textContent =
+    text;
+
+
+  status.className =
+    "status-message " +
+    type;
+
+
+  clearTimeout(
+    showStatus.timer
+  );
+
+
+  showStatus.timer =
+    setTimeout(() => {
+
+      status.textContent =
+        "";
+
+      status.className =
+        "status-message";
+
+    },6000);
+
+}
+
+
+/* ==========================================
+   BACK
+========================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer.includes(
+      window.location.hostname
+    )
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "index.html";
+
+  }
+
+}
+
+
+/* ==========================================
+   FRIENDLY ERRORS
+========================================== */
+
+function friendlyError(error){
+
+  if(!error)
+    return "Something went wrong.";
+
+
+  if(
+    error.code ===
+    "permission-denied"
+  ){
+
+    return "Permission denied. Check your Firestore Rules.";
+
+  }
+
+
+  if(
+    error.code ===
+    "failed-precondition"
+  ){
+
+    return "Firebase needs an index for this request. Check the Firebase console.";
+
+  }
+
+
+  if(
+    error.code ===
+    "unavailable"
+  ){
+
+    return "Firebase is temporarily unavailable. Please try again.";
+
+  }
+
+
+  return error.message ||
+    "Something went wrong.";
+
+}
+
 </script>
 
 </body>
 </html>
+
+This version uses your existing "chats" and "messages" collections, so the contact form isn't just sending an email or displaying a fake success message—the customer's message is stored in Firebase for the Admin system to pick up.
