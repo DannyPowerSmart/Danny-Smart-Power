@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -177,6 +178,393 @@ header{
 .back-link:hover{
 
   color:var(--blue);
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+.notification-wrapper{
+
+  position:relative;
+}
+
+
+.notification-button{
+
+  width:40px;
+
+  height:40px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  position:relative;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:var(--card2);
+
+  color:white;
+
+  border:
+    1px solid var(--border);
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  transition:.2s;
+}
+
+
+.notification-button:hover{
+
+  color:var(--blue);
+
+  border-color:
+    rgba(56,189,248,.3);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.notification-button:active{
+
+  transform:
+    scale(.96);
+}
+
+
+.notification-count{
+
+  position:absolute;
+
+  top:-5px;
+
+  right:-5px;
+
+  min-width:18px;
+
+  height:18px;
+
+  padding:0 4px;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:999px;
+
+  background:var(--red);
+
+  color:white;
+
+  border:
+    2px solid var(--header);
+
+  font-size:8px;
+
+  font-weight:800;
+}
+
+
+.notification-count.show{
+
+  display:flex;
+}
+
+
+.notification-panel{
+
+  position:absolute;
+
+  top:52px;
+
+  right:0;
+
+  width:350px;
+
+  max-width:
+    calc(100vw - 24px);
+
+  background:#020617;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.45);
+
+  overflow:hidden;
+
+  display:none;
+
+  z-index:100;
+}
+
+
+.notification-panel.show{
+
+  display:block;
+}
+
+
+.notification-panel-header{
+
+  padding:14px 15px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+
+.notification-panel-title{
+
+  font-size:13px;
+
+  font-weight:700;
+}
+
+
+.notification-header-actions{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+}
+
+
+.mark-all{
+
+  border:none;
+
+  background:transparent;
+
+  color:var(--blue);
+
+  font-family:inherit;
+
+  font-size:9px;
+
+  font-weight:600;
+
+  cursor:pointer;
+}
+
+
+.mark-all:hover{
+
+  text-decoration:underline;
+}
+
+
+.notification-close{
+
+  width:25px;
+
+  height:25px;
+
+  border:none;
+
+  border-radius:7px;
+
+  background:var(--card2);
+
+  color:#94a3b8;
+
+  cursor:pointer;
+
+  font-size:12px;
+}
+
+
+.notification-close:hover{
+
+  color:white;
+}
+
+
+.notification-list{
+
+  max-height:390px;
+
+  overflow-y:auto;
+}
+
+
+.notification-list::-webkit-scrollbar{
+
+  width:5px;
+}
+
+
+.notification-list::-webkit-scrollbar-track{
+
+  background:#020617;
+}
+
+
+.notification-list::-webkit-scrollbar-thumb{
+
+  background:#1e293b;
+
+  border-radius:999px;
+}
+
+
+.notification-item{
+
+  padding:13px 15px;
+
+  display:flex;
+
+  gap:11px;
+
+  cursor:pointer;
+
+  border-bottom:
+    1px solid
+    rgba(148,163,184,.08);
+
+  transition:.2s;
+}
+
+
+.notification-item:hover{
+
+  background:
+    rgba(255,255,255,.035);
+}
+
+
+.notification-item.unread{
+
+  background:
+    rgba(56,189,248,.045);
+}
+
+
+.notification-icon{
+
+  width:34px;
+
+  height:34px;
+
+  flex-shrink:0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:10px;
+
+  background:
+    rgba(56,189,248,.10);
+
+  font-size:15px;
+}
+
+
+.notification-content{
+
+  flex:1;
+
+  min-width:0;
+}
+
+
+.notification-title{
+
+  color:#f8fafc;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  line-height:1.4;
+}
+
+
+.notification-message{
+
+  color:#94a3b8;
+
+  font-size:9px;
+
+  line-height:1.5;
+
+  margin-top:3px;
+}
+
+
+.notification-time{
+
+  color:#475569;
+
+  font-size:8px;
+
+  margin-top:5px;
+}
+
+
+.notification-dot{
+
+  width:7px;
+
+  height:7px;
+
+  flex-shrink:0;
+
+  margin-top:5px;
+
+  border-radius:50%;
+
+  background:var(--blue);
+}
+
+
+.notification-empty{
+
+  padding:35px 20px;
+
+  text-align:center;
+
+  color:#64748b;
+
+  font-size:10px;
+}
+
+
+.notification-empty-icon{
+
+  font-size:30px;
+
+  margin-bottom:9px;
 }
 
 
@@ -397,7 +785,8 @@ main{
   border-color:
     rgba(56,189,248,.25);
 
-  transform:translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 
@@ -477,7 +866,8 @@ main{
     rgba(250,204,21,.10);
 
   border:
-    1px solid rgba(250,204,21,.20);
+    1px solid
+    rgba(250,204,21,.20);
 }
 
 
@@ -489,7 +879,8 @@ main{
     rgba(56,189,248,.10);
 
   border:
-    1px solid rgba(56,189,248,.20);
+    1px solid
+    rgba(56,189,248,.20);
 }
 
 
@@ -501,7 +892,8 @@ main{
     rgba(139,92,246,.10);
 
   border:
-    1px solid rgba(139,92,246,.20);
+    1px solid
+    rgba(139,92,246,.20);
 }
 
 
@@ -513,7 +905,8 @@ main{
     rgba(34,197,94,.10);
 
   border:
-    1px solid rgba(34,197,94,.20);
+    1px solid
+    rgba(34,197,94,.20);
 }
 
 
@@ -525,7 +918,8 @@ main{
     rgba(239,68,68,.10);
 
   border:
-    1px solid rgba(239,68,68,.20);
+    1px solid
+    rgba(239,68,68,.20);
 }
 
 
@@ -917,7 +1311,8 @@ main{
 
   background:#1e293b;
 
-  border:2px solid #334155;
+  border:
+    2px solid #334155;
 
   font-size:10px;
 
@@ -1025,7 +1420,8 @@ main{
 
 .action-button:hover{
 
-  transform:translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 
@@ -1157,7 +1553,7 @@ main{
 
   bottom:25px;
 
-  z-index:100;
+  z-index:200;
 
   max-width:90%;
 
@@ -1300,6 +1696,64 @@ main{
 
   }
 
+
+  .notification-panel{
+
+    position:fixed;
+
+    top:67px;
+
+    right:12px;
+
+    width:
+      calc(100vw - 24px);
+
+    max-width:none;
+
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:400px){
+
+  .logo{
+
+    font-size:13px;
+
+  }
+
+
+  .logo-icon{
+
+    width:32px;
+
+    height:32px;
+
+    font-size:15px;
+
+  }
+
+
+  .back-link{
+
+    font-size:10px;
+
+  }
+
+
+  .notification-button{
+
+    width:36px;
+
+    height:36px;
+
+  }
+
 }
 
 </style>
@@ -1316,6 +1770,7 @@ main{
 
 <header>
 
+
   <div class="logo">
 
     <div class="logo-icon">
@@ -1327,14 +1782,134 @@ main{
   </div>
 
 
-  <a
-    href="shop.html"
-    class="back-link"
-  >
+  <div style="
+    display:flex;
+    align-items:center;
+    gap:10px;
+  ">
 
-    ← Continue Shopping
 
-  </a>
+    <!-- =================================================
+         NOTIFICATION BUTTON
+    ================================================== -->
+
+    <div class="notification-wrapper">
+
+
+      <button
+        id="notificationButton"
+        class="notification-button"
+        aria-label="Notifications"
+        aria-expanded="false"
+        type="button"
+      >
+
+        🔔
+
+
+        <span
+          id="notificationCount"
+          class="notification-count"
+        >
+          0
+        </span>
+
+      </button>
+
+
+      <!-- =================================================
+           NOTIFICATION PANEL
+      ================================================== -->
+
+      <div
+        id="notificationPanel"
+        class="notification-panel"
+      >
+
+
+        <div class="notification-panel-header">
+
+
+          <div class="notification-panel-title">
+
+            Notifications
+
+          </div>
+
+
+          <div class="notification-header-actions">
+
+
+            <button
+              id="markAllRead"
+              class="mark-all"
+              type="button"
+            >
+
+              Mark all as read
+
+            </button>
+
+
+            <button
+              id="notificationClose"
+              class="notification-close"
+              type="button"
+              aria-label="Close notifications"
+            >
+
+              ✕
+
+            </button>
+
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="notificationList"
+          class="notification-list"
+        >
+
+
+          <div class="notification-empty">
+
+            <div class="notification-empty-icon">
+              🔔
+            </div>
+
+            No notifications yet.
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         SHOP LINK
+    ================================================== -->
+
+    <a
+      href="shop.html"
+      class="back-link"
+    >
+
+      ← Continue Shopping
+
+    </a>
+
+
+  </div>
+
 
 </header>
 
@@ -1345,15 +1920,23 @@ main{
 
 <main>
 
+
+  <!-- =================================================
+       PAGE HEADING
+  ================================================== -->
+
   <section class="page-heading">
+
 
     <h1>
       My Orders 📦
     </h1>
 
+
     <p>
       Track and manage your Danny Smart Power orders.
     </p>
+
 
     <div class="account-line">
 
@@ -1361,14 +1944,16 @@ main{
 
     </div>
 
+
   </section>
 
 
   <!-- =================================================
        STATS
-  ================================================= -->
+  ================================================== -->
 
   <section class="stats">
+
 
     <div class="stat">
 
@@ -1376,12 +1961,14 @@ main{
         📦
       </div>
 
+
       <div
         class="stat-number"
         id="totalOrders"
       >
         0
       </div>
+
 
       <div class="stat-label">
         Total Orders
@@ -1396,12 +1983,14 @@ main{
         🚚
       </div>
 
+
       <div
         class="stat-number"
         id="activeOrders"
       >
         0
       </div>
+
 
       <div class="stat-label">
         Active Orders
@@ -1416,6 +2005,7 @@ main{
         ✅
       </div>
 
+
       <div
         class="stat-number"
         id="deliveredOrders"
@@ -1423,20 +2013,23 @@ main{
         0
       </div>
 
+
       <div class="stat-label">
         Delivered
       </div>
 
     </div>
 
+
   </section>
 
 
   <!-- =================================================
        TOOLBAR
-  ================================================= -->
+  ================================================== -->
 
   <div class="toolbar">
+
 
     <div class="toolbar-title">
       Your Order History
@@ -1482,17 +2075,19 @@ main{
 
     </select>
 
+
   </div>
 
 
   <!-- =================================================
        ORDERS
-  ================================================= -->
+  ================================================== -->
 
   <section
     id="orders"
     class="orders"
   >
+
 
     <div class="loading">
 
@@ -1502,7 +2097,9 @@ main{
 
     </div>
 
+
   </section>
+
 
 </main>
 
@@ -1617,6 +2214,46 @@ const toast =
 
 
 /* =====================================================
+   NOTIFICATION ELEMENTS
+===================================================== */
+
+const notificationButton =
+  document.getElementById(
+    "notificationButton"
+  );
+
+
+const notificationPanel =
+  document.getElementById(
+    "notificationPanel"
+  );
+
+
+const notificationList =
+  document.getElementById(
+    "notificationList"
+  );
+
+
+const notificationCount =
+  document.getElementById(
+    "notificationCount"
+  );
+
+
+const markAllRead =
+  document.getElementById(
+    "markAllRead"
+  );
+
+
+const notificationClose =
+  document.getElementById(
+    "notificationClose"
+  );
+
+
+/* =====================================================
    STATE
 ===================================================== */
 
@@ -1626,6 +2263,10 @@ let allOrders = [];
 
 let ordersUnsubscribe = null;
 
+let notifications = [];
+
+let notificationsUnsubscribe = null;
+
 
 /* =====================================================
    AUTH
@@ -1633,6 +2274,10 @@ let ordersUnsubscribe = null;
 
 auth.onAuthStateChanged(
   function(user){
+
+    /* -----------------------------------------------
+       Stop old order listener
+    ------------------------------------------------ */
 
     if(ordersUnsubscribe){
 
@@ -1643,10 +2288,31 @@ auth.onAuthStateChanged(
     }
 
 
+    /* -----------------------------------------------
+       Stop old notification listener
+    ------------------------------------------------ */
+
+    if(notificationsUnsubscribe){
+
+      notificationsUnsubscribe();
+
+      notificationsUnsubscribe = null;
+
+    }
+
+
     currentUser = user;
 
 
+    /* -----------------------------------------------
+       User logged out
+    ------------------------------------------------ */
+
     if(!user){
+
+      allOrders = [];
+
+      resetNotifications();
 
       showLoginRequired();
 
@@ -1655,7 +2321,13 @@ auth.onAuthStateChanged(
     }
 
 
+    /* -----------------------------------------------
+       User logged in
+    ------------------------------------------------ */
+
     listenToOrders();
+
+    listenToNotifications();
 
   }
 );
@@ -1689,7 +2361,6 @@ function showLoginRequired(){
         class="empty-button"
       >
         Sign In
-
       </a>
 
     </div>
@@ -1728,6 +2399,7 @@ function listenToOrders(){
     We filter only by customerId.
 
     We intentionally do NOT use:
+
       orderBy("createdAt")
 
     here so this page can work without
@@ -1769,13 +2441,12 @@ function listenToOrders(){
 
         sortOrders();
 
-
         updateStats();
-
 
         renderOrders();
 
       },
+
 
       function(error){
 
@@ -1999,12 +2670,14 @@ function renderOrders(){
         ${
           !allOrders.length
           ? `
+
             <a
               href="shop.html"
               class="empty-button"
             >
               Start Shopping
             </a>
+
           `
           : ""
         }
@@ -2020,6 +2693,7 @@ function renderOrders(){
 
 
   ordersContainer.innerHTML =
+
     orders
       .map(
         renderOrderCard
@@ -2118,6 +2792,7 @@ function renderOrderCard(
 
       <div class="order-header">
 
+
         <div>
 
           <div class="order-id">
@@ -2127,6 +2802,7 @@ function renderOrderCard(
             )}
 
           </div>
+
 
           <div class="order-date">
 
@@ -2146,6 +2822,7 @@ function renderOrderCard(
           ${escapeHtml(status)}
 
         </div>
+
 
       </div>
 
@@ -2224,6 +2901,7 @@ function renderOrderCard(
                   )
                   .join("")
               : `
+
                 <div
                   style="
                     color:#64748b;
@@ -2231,8 +2909,11 @@ function renderOrderCard(
                     padding:10px;
                   "
                 >
+
                   No product information available.
+
                 </div>
+
               `
           }
 
@@ -2243,11 +2924,13 @@ function renderOrderCard(
 
         <div class="order-total">
 
+
           <div>
 
             <div class="total-label">
               Order Total
             </div>
+
 
             <div
               style="
@@ -2263,8 +2946,10 @@ function renderOrderCard(
               ${
                 deliveryFee > 0
                   ? `
+
                     • Delivery:
                     ₦${formatPrice(deliveryFee)}
+
                   `
                   : " • Free delivery"
               }
@@ -2280,12 +2965,14 @@ function renderOrderCard(
 
           </div>
 
+
         </div>
 
 
         <!-- PAYMENT STATUS -->
 
         <div class="payment-row">
+
 
           <div class="payment-method">
 
@@ -2307,6 +2994,7 @@ function renderOrderCard(
 
           </div>
 
+
         </div>
 
 
@@ -2314,17 +3002,20 @@ function renderOrderCard(
 
         <div class="address-box">
 
+
           <div class="address-title">
 
             📍 Delivery Address
 
           </div>
 
+
           <div class="address-text">
 
             ${escapeHtml(address)}
 
           </div>
+
 
         </div>
 
@@ -2338,9 +3029,11 @@ function renderOrderCard(
 
         <div class="order-actions">
 
+
           <button
             class="action-button secondary"
             onclick="copyOrderId('${escapeAttribute(order.id)}')"
+            type="button"
           >
 
             Copy Order ID
@@ -2357,7 +3050,9 @@ function renderOrderCard(
 
           </a>
 
+
         </div>
+
 
       </div>
 
@@ -2409,6 +3104,7 @@ function renderProduct(
 
     <div class="product">
 
+
       <img
         class="product-image"
         src="${escapeAttribute(image)}"
@@ -2420,6 +3116,7 @@ function renderProduct(
 
 
       <div class="product-info">
+
 
         <div class="product-name">
 
@@ -2443,6 +3140,7 @@ function renderProduct(
 
         </div>
 
+
       </div>
 
 
@@ -2451,6 +3149,7 @@ function renderProduct(
         ₦${formatPrice(subtotal)}
 
       </div>
+
 
     </div>
 
@@ -2475,11 +3174,13 @@ function renderTracking(
 
       <div class="tracking">
 
+
         <div class="tracking-title">
 
           ❌ Order Cancelled
 
         </div>
+
 
         <div
           style="
@@ -2494,6 +3195,7 @@ function renderTracking(
           believe this is incorrect.
 
         </div>
+
 
       </div>
 
@@ -2541,6 +3243,7 @@ function renderTracking(
 
     <div class="tracking">
 
+
       <div class="tracking-title">
 
         📍 Order Tracking
@@ -2549,6 +3252,7 @@ function renderTracking(
 
 
       <div class="timeline">
+
 
         ${
           steps
@@ -2592,6 +3296,7 @@ function renderTracking(
 
                     </div>
 
+
                     <div class="step-label">
 
                       ${step.label}
@@ -2606,6 +3311,7 @@ function renderTracking(
             )
             .join("")
         }
+
 
       </div>
 
@@ -2862,6 +3568,7 @@ function getItemCount(
     function(total,item){
 
       return total +
+
         Math.max(
           1,
           Number(
@@ -2989,9 +3696,13 @@ function shortOrderId(
 
 
   return (
+
     value.slice(0,6) +
+
     "..." +
+
     value.slice(-5)
+
   );
 
 }
@@ -3019,6 +3730,11 @@ async function copyOrderId(
   }
 
   catch(error){
+
+    console.error(
+      error
+    );
+
 
     showToast(
       "Could not copy Order ID."
@@ -3112,6 +3828,853 @@ function escapeAttribute(
   .replace(
     />/g,
     "&gt;"
+  );
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+
+/* =====================================================
+   OPEN NOTIFICATION PANEL
+===================================================== */
+
+notificationButton.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+
+    const isOpen =
+      notificationPanel.classList.toggle(
+        "show"
+      );
+
+
+    notificationButton.setAttribute(
+      "aria-expanded",
+      isOpen
+        ? "true"
+        : "false"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   CLOSE NOTIFICATION PANEL
+===================================================== */
+
+notificationClose.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+    closeNotificationPanel();
+
+  }
+);
+
+
+/* =====================================================
+   CLICK OUTSIDE
+===================================================== */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      !event.target.closest(
+        ".notification-wrapper"
+      )
+    ){
+
+      closeNotificationPanel();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   CLOSE FUNCTION
+===================================================== */
+
+function closeNotificationPanel(){
+
+  notificationPanel.classList.remove(
+    "show"
+  );
+
+
+  notificationButton.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+}
+
+
+/* =====================================================
+   LISTEN TO NOTIFICATIONS
+===================================================== */
+
+function listenToNotifications(){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  notificationsUnsubscribe =
+
+    db
+    .collection("notifications")
+    .where(
+      "userId",
+      "==",
+      currentUser.uid
+    )
+    .onSnapshot(
+
+      function(snapshot){
+
+        notifications = [];
+
+
+        snapshot.forEach(
+          function(doc){
+
+            notifications.push({
+
+              id:doc.id,
+
+              ...doc.data()
+
+            });
+
+          }
+        );
+
+
+        sortNotifications();
+
+        renderNotifications();
+
+        updateNotificationCount();
+
+      },
+
+
+      function(error){
+
+        console.error(
+          "Notifications error:",
+          error
+        );
+
+
+        notificationList.innerHTML = `
+
+          <div class="notification-empty">
+
+            <div class="notification-empty-icon">
+              ⚠️
+            </div>
+
+            Could not load notifications.
+
+          </div>
+
+        `;
+
+      }
+
+    );
+
+}
+
+
+/* =====================================================
+   SORT NOTIFICATIONS
+===================================================== */
+
+function sortNotifications(){
+
+  notifications.sort(
+    function(a,b){
+
+      return (
+
+        getTimestampMillis(
+          b.createdAt
+        )
+
+        -
+
+        getTimestampMillis(
+          a.createdAt
+        )
+
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   RENDER NOTIFICATIONS
+===================================================== */
+
+function renderNotifications(){
+
+  if(!notifications.length){
+
+    notificationList.innerHTML = `
+
+      <div class="notification-empty">
+
+        <div class="notification-empty-icon">
+          🔔
+        </div>
+
+        No notifications yet.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  notificationList.innerHTML =
+
+    notifications
+      .map(
+        renderNotification
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   RENDER SINGLE NOTIFICATION
+===================================================== */
+
+function renderNotification(
+  notification
+){
+
+  const read =
+    notification.read === true;
+
+
+  const icon =
+    notification.icon ||
+    getNotificationIcon(
+      notification.type
+    );
+
+
+  const title =
+    notification.title ||
+    "Order Update";
+
+
+  const message =
+    notification.message ||
+    "Your order has been updated.";
+
+
+  const time =
+    formatNotificationTime(
+      notification.createdAt
+    );
+
+
+  return `
+
+    <div
+      class="
+        notification-item
+        ${read ? "" : "unread"}
+      "
+      data-notification-id="${escapeAttribute(notification.id)}"
+      onclick="
+        markNotificationRead(
+          '${escapeAttribute(notification.id)}'
+        )
+      "
+    >
+
+
+      <div class="notification-icon">
+
+        ${escapeHtml(icon)}
+
+      </div>
+
+
+      <div class="notification-content">
+
+
+        <div class="notification-title">
+
+          ${escapeHtml(title)}
+
+        </div>
+
+
+        <div class="notification-message">
+
+          ${escapeHtml(message)}
+
+        </div>
+
+
+        <div class="notification-time">
+
+          ${escapeHtml(time)}
+
+        </div>
+
+
+      </div>
+
+
+      ${
+        !read
+          ? `
+
+            <div
+              class="notification-dot"
+            ></div>
+
+          `
+          : ""
+      }
+
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   NOTIFICATION ICON
+===================================================== */
+
+function getNotificationIcon(
+  type
+){
+
+  const value =
+    String(
+      type || ""
+    )
+    .toLowerCase();
+
+
+  if(
+    value.includes("delivered")
+  ){
+
+    return "✅";
+
+  }
+
+
+  if(
+    value.includes("cancel")
+  ){
+
+    return "❌";
+
+  }
+
+
+  if(
+    value.includes("shipping") ||
+    value.includes("shipped")
+  ){
+
+    return "🚚";
+
+  }
+
+
+  if(
+    value.includes("delivery")
+  ){
+
+    return "🛵";
+
+  }
+
+
+  if(
+    value.includes("processing")
+  ){
+
+    return "⚙️";
+
+  }
+
+
+  if(
+    value.includes("payment")
+  ){
+
+    return "💳";
+
+  }
+
+
+  if(
+    value.includes("placed") ||
+    value.includes("order")
+  ){
+
+    return "📦";
+
+  }
+
+
+  return "🔔";
+
+}
+
+
+/* =====================================================
+   UNREAD COUNT
+===================================================== */
+
+function updateNotificationCount(){
+
+  const unread =
+    notifications.filter(
+      function(notification){
+
+        return notification.read !== true;
+
+      }
+    ).length;
+
+
+  if(unread > 0){
+
+    notificationCount.textContent =
+      unread > 99
+        ? "99+"
+        : unread;
+
+
+    notificationCount.classList.add(
+      "show"
+    );
+
+  }
+
+  else{
+
+    notificationCount.textContent =
+      "0";
+
+
+    notificationCount.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   MARK ONE NOTIFICATION AS READ
+===================================================== */
+
+async function markNotificationRead(
+  notificationId
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    const notificationRef =
+
+      db
+      .collection("notifications")
+      .doc(notificationId);
+
+
+    const notificationDoc =
+      await notificationRef.get();
+
+
+    if(
+      !notificationDoc.exists
+    ){
+
+      return;
+
+    }
+
+
+    const data =
+      notificationDoc.data();
+
+
+    /*
+      Security check:
+      A customer can only mark
+      their own notification as read.
+    */
+
+    if(
+      data.userId !==
+      currentUser.uid
+    ){
+
+      console.warn(
+        "Notification does not belong to current user."
+      );
+
+      return;
+
+    }
+
+
+    if(
+      data.read === true
+    ){
+
+      return;
+
+    }
+
+
+    await notificationRef.update({
+
+      read:true,
+
+      readAt:
+        firebase.firestore
+          .FieldValue
+          .serverTimestamp()
+
+    });
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Mark notification error:",
+      error
+    );
+
+
+    showToast(
+      "Could not update notification."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   MARK ALL AS READ
+===================================================== */
+
+markAllRead.addEventListener(
+  "click",
+  async function(event){
+
+    event.stopPropagation();
+
+
+    if(!currentUser){
+
+      return;
+
+    }
+
+
+    const unread =
+      notifications.filter(
+        function(notification){
+
+          return notification.read !== true;
+
+        }
+      );
+
+
+    if(!unread.length){
+
+      showToast(
+        "All notifications are already read."
+      );
+
+      return;
+
+    }
+
+
+    try{
+
+      const batch =
+        db.batch();
+
+
+      unread.forEach(
+        function(notification){
+
+          /*
+            Extra protection:
+            Only update notifications
+            belonging to this customer.
+          */
+
+          if(
+            notification.userId !==
+            currentUser.uid
+          ){
+
+            return;
+
+          }
+
+
+          const ref =
+
+            db
+            .collection("notifications")
+            .doc(
+              notification.id
+            );
+
+
+          batch.update(
+            ref,
+            {
+
+              read:true,
+
+              readAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp()
+
+            }
+          );
+
+        }
+      );
+
+
+      await batch.commit();
+
+
+      showToast(
+        "All notifications marked as read."
+      );
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Mark all notifications error:",
+        error
+      );
+
+
+      showToast(
+        "Could not update notifications."
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   RESET NOTIFICATIONS
+===================================================== */
+
+function resetNotifications(){
+
+  notifications = [];
+
+
+  notificationCount.textContent =
+    "0";
+
+
+  notificationCount.classList.remove(
+    "show"
+  );
+
+
+  closeNotificationPanel();
+
+
+  notificationList.innerHTML = `
+
+    <div class="notification-empty">
+
+      <div class="notification-empty-icon">
+        🔐
+      </div>
+
+      Sign in to view notifications.
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   NOTIFICATION TIME
+===================================================== */
+
+function formatNotificationTime(
+  timestamp
+){
+
+  const millis =
+    getTimestampMillis(
+      timestamp
+    );
+
+
+  if(!millis){
+
+    return "Just now";
+
+  }
+
+
+  const difference =
+    Math.max(
+      0,
+      Date.now() - millis
+    );
+
+
+  const seconds =
+    Math.floor(
+      difference / 1000
+    );
+
+
+  if(seconds < 60){
+
+    return "Just now";
+
+  }
+
+
+  const minutes =
+    Math.floor(
+      seconds / 60
+    );
+
+
+  if(minutes < 60){
+
+    return (
+
+      minutes +
+
+      (
+        minutes === 1
+          ? " minute ago"
+          : " minutes ago"
+      )
+
+    );
+
+  }
+
+
+  const hours =
+    Math.floor(
+      minutes / 60
+    );
+
+
+  if(hours < 24){
+
+    return (
+
+      hours +
+
+      (
+        hours === 1
+          ? " hour ago"
+          : " hours ago"
+      )
+
+    );
+
+  }
+
+
+  const days =
+    Math.floor(
+      hours / 24
+    );
+
+
+  if(days < 7){
+
+    return (
+
+      days +
+
+      (
+        days === 1
+          ? " day ago"
+          : " days ago"
+      )
+
+    );
+
+  }
+
+
+  return formatDate(
+    timestamp
   );
 
 }
