@@ -28,13 +28,9 @@ rel="stylesheet">
 ========================= */
 
 *{
-
   box-sizing:border-box;
-
   margin:0;
-
   padding:0;
-
 }
 
 
@@ -45,29 +41,20 @@ rel="stylesheet">
 :root{
 
   --bg:#0f172a;
-
   --header:#020617;
-
   --card:#111e30;
-
   --card2:#17253a;
-
   --border:rgba(148,163,184,.15);
 
   --blue:#38bdf8;
-
   --blue2:#0284c7;
 
   --green:#22c55e;
-
   --red:#ef4444;
-
   --yellow:#facc15;
 
   --text:#f8fafc;
-
   --muted:#94a3b8;
-
 }
 
 
@@ -78,19 +65,13 @@ rel="stylesheet">
 body.light{
 
   --bg:#f1f5f9;
-
   --header:#ffffff;
-
   --card:#ffffff;
-
   --card2:#e2e8f0;
-
   --border:rgba(15,23,42,.12);
 
   --text:#0f172a;
-
   --muted:#64748b;
-
 }
 
 
@@ -107,13 +88,9 @@ body{
   background:
 
     radial-gradient(
-
       circle at top left,
-
       rgba(56,189,248,.10),
-
       transparent 35%
-
     ),
 
     var(--bg);
@@ -121,7 +98,6 @@ body{
   color:var(--text);
 
   transition:.3s;
-
 }
 
 
@@ -150,7 +126,6 @@ header{
   top:0;
 
   z-index:10;
-
 }
 
 
@@ -161,14 +136,12 @@ header{
   align-items:center;
 
   gap:12px;
-
 }
 
 
 .back-button{
 
   width:44px;
-
   height:44px;
 
   border:none;
@@ -182,21 +155,18 @@ header{
   font-size:28px;
 
   cursor:pointer;
-
 }
 
 
 .back-button:hover{
 
   background:var(--card2);
-
 }
 
 
 .logo{
 
   width:42px;
-
   height:42px;
 
   border-radius:50%;
@@ -210,26 +180,19 @@ header{
   font-size:22px;
 
   background:
-
     linear-gradient(
-
       135deg,
-
       var(--blue),
-
       var(--blue2)
-
     );
 
   color:#00111c;
-
 }
 
 
 header h1{
 
   font-size:18px;
-
 }
 
 
@@ -246,7 +209,6 @@ main{
   margin:auto;
 
   padding:25px 15px 50px;
-
 }
 
 
@@ -271,14 +233,12 @@ main{
   border-radius:20px;
 
   margin-bottom:20px;
-
 }
 
 
 .account-avatar{
 
   width:65px;
-
   height:65px;
 
   border-radius:50%;
@@ -288,14 +248,12 @@ main{
   border:3px solid var(--blue);
 
   background:#12324b;
-
 }
 
 
 .account-info{
 
   min-width:0;
-
 }
 
 
@@ -304,7 +262,6 @@ main{
   font-size:18px;
 
   word-break:break-word;
-
 }
 
 
@@ -315,7 +272,6 @@ main{
   font-size:12px;
 
   word-break:break-word;
-
 }
 
 
@@ -334,7 +290,6 @@ main{
   background:rgba(34,197,94,.12);
 
   color:#86efac;
-
 }
 
 
@@ -353,7 +308,6 @@ main{
   background:rgba(250,204,21,.12);
 
   color:#fde68a;
-
 }
 
 
@@ -364,7 +318,6 @@ main{
 .settings-section{
 
   margin-top:20px;
-
 }
 
 
@@ -379,7 +332,6 @@ main{
   letter-spacing:.8px;
 
   margin:0 5px 9px;
-
 }
 
 
@@ -396,7 +348,6 @@ main{
   border:1px solid var(--border);
 
   border-radius:20px;
-
 }
 
 
@@ -427,28 +378,24 @@ main{
   text-align:left;
 
   cursor:pointer;
-
 }
 
 
 .setting-item:last-child{
 
   border-bottom:none;
-
 }
 
 
 .setting-item:hover{
 
   background:var(--card2);
-
 }
 
 
 .setting-icon{
 
   width:42px;
-
   height:42px;
 
   min-width:42px;
@@ -465,6 +412,7 @@ main{
 
   font-size:20px;
 
+  position:relative;
 }
 
 
@@ -473,7 +421,6 @@ main{
   flex:1;
 
   min-width:0;
-
 }
 
 
@@ -482,7 +429,6 @@ main{
   display:block;
 
   font-size:14px;
-
 }
 
 
@@ -495,7 +441,6 @@ main{
   font-size:11px;
 
   margin-top:3px;
-
 }
 
 
@@ -504,7 +449,50 @@ main{
   color:var(--muted);
 
   font-size:20px;
+}
 
+
+/* =========================
+   NOTIFICATION BADGE
+========================= */
+
+.notification-badge{
+
+  position:absolute;
+
+  top:-5px;
+
+  right:-5px;
+
+  min-width:20px;
+
+  height:20px;
+
+  padding:0 5px;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:999px;
+
+  background:var(--red);
+
+  color:white;
+
+  border:2px solid var(--card);
+
+  font-size:8px;
+
+  font-weight:700;
+}
+
+
+.notification-badge.show{
+
+  display:flex;
 }
 
 
@@ -519,7 +507,6 @@ main{
   width:48px;
 
   height:26px;
-
 }
 
 
@@ -528,9 +515,7 @@ main{
   opacity:0;
 
   width:0;
-
   height:0;
-
 }
 
 
@@ -547,7 +532,6 @@ main{
   background:#475569;
 
   transition:.3s;
-
 }
 
 
@@ -558,11 +542,9 @@ main{
   position:absolute;
 
   width:20px;
-
   height:20px;
 
   left:3px;
-
   top:3px;
 
   border-radius:50%;
@@ -570,21 +552,37 @@ main{
   background:white;
 
   transition:.3s;
-
 }
 
 
 .switch input:checked + .slider{
 
   background:var(--blue2);
-
 }
 
 
 .switch input:checked + .slider:before{
 
   transform:translateX(22px);
+}
 
+
+/* =========================
+   NOTIFICATION ITEM
+========================= */
+
+.notification-access{
+
+  position:relative;
+}
+
+
+.notification-access .setting-icon{
+
+  background:
+    rgba(56,189,248,.10);
+
+  color:var(--blue);
 }
 
 
@@ -595,21 +593,18 @@ main{
 .danger-card{
 
   border-color:rgba(239,68,68,.25);
-
 }
 
 
 .danger-item{
 
   color:#fca5a5;
-
 }
 
 
 .danger-item .setting-icon{
 
   background:rgba(239,68,68,.12);
-
 }
 
 
@@ -626,7 +621,6 @@ main{
   bottom:25px;
 
   transform:
-
     translate(-50%,120px);
 
   opacity:0;
@@ -646,18 +640,15 @@ main{
   transition:.3s;
 
   z-index:100;
-
 }
 
 
 .toast.show{
 
   transform:
-
     translate(-50%,0);
 
   opacity:1;
-
 }
 
 
@@ -682,14 +673,12 @@ main{
   color:var(--muted);
 
   z-index:200;
-
 }
 
 
 .loading.hidden{
 
   display:none;
-
 }
 
 
@@ -702,21 +691,18 @@ main{
   main{
 
     padding:18px 12px 40px;
-
   }
 
 
   header h1{
 
     font-size:16px;
-
   }
 
 
   .account-card{
 
     padding:16px;
-
   }
 
 }
@@ -846,7 +832,6 @@ Loading settings...
       class="setting-item"
       id="profileButton">
 
-
         <div
         class="setting-icon">
 
@@ -881,14 +866,12 @@ Loading settings...
 
         </div>
 
-
       </button>
 
 
       <button
       class="setting-item"
       id="passwordButton">
-
 
         <div
         class="setting-icon">
@@ -924,14 +907,12 @@ Loading settings...
 
         </div>
 
-
       </button>
 
 
       <button
       class="setting-item"
       id="verificationButton">
-
 
         <div
         class="setting-icon">
@@ -966,7 +947,6 @@ Loading settings...
           ›
 
         </div>
-
 
       </button>
 
@@ -1031,18 +1011,15 @@ Loading settings...
         <label
         class="switch">
 
-
           <input
           type="checkbox"
           id="themeToggle"
           checked>
 
-
           <span
           class="slider">
 
           </span>
-
 
         </label>
 
@@ -1073,9 +1050,10 @@ Loading settings...
           </strong>
 
 
-          <span>
+          <span
+          id="notificationText">
 
-            Allow app notifications
+            Allow order and account notifications
 
           </span>
 
@@ -1085,18 +1063,15 @@ Loading settings...
         <label
         class="switch">
 
-
           <input
           type="checkbox"
           id="notificationToggle"
           checked>
 
-
           <span
           class="slider">
 
           </span>
-
 
         </label>
 
@@ -1125,6 +1100,62 @@ Loading settings...
     <div
     class="settings-card">
 
+
+      <!-- NOTIFICATIONS -->
+
+      <button
+      class="setting-item notification-access"
+      id="notificationsButton">
+
+
+        <div
+        class="setting-icon">
+
+          🔔
+
+          <span
+          id="notificationBadge"
+          class="notification-badge">
+
+            0
+
+          </span>
+
+        </div>
+
+
+        <div
+        class="setting-content">
+
+          <strong>
+
+            Notifications
+
+          </strong>
+
+
+          <span
+          id="notificationSummary">
+
+            View your order and account notifications
+
+          </span>
+
+        </div>
+
+
+        <div
+        class="arrow">
+
+          ›
+
+        </div>
+
+
+      </button>
+
+
+      <!-- CHAT -->
 
       <button
       class="setting-item"
@@ -1169,6 +1200,8 @@ Loading settings...
       </button>
 
 
+      <!-- SHOP -->
+
       <button
       class="setting-item"
       id="shopButton">
@@ -1212,6 +1245,8 @@ Loading settings...
       </button>
 
 
+      <!-- ORDERS -->
+
       <button
       class="setting-item"
       id="ordersButton">
@@ -1250,7 +1285,6 @@ Loading settings...
           ›
 
         </div>
-
 
       </button>
 
@@ -1383,7 +1417,6 @@ Loading settings...
 
         </div>
 
-
       </button>
 
 
@@ -1415,6 +1448,11 @@ src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
 
 <script
 src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js">
+</script>
+
+
+<script
+src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
 </script>
 
 
@@ -1461,6 +1499,10 @@ firebase.initializeApp(
 
 const auth =
 firebase.auth();
+
+
+const db =
+firebase.firestore();
 
 
 /* =========================
@@ -1515,10 +1557,35 @@ document.getElementById(
 );
 
 
+const notificationText =
+document.getElementById(
+  "notificationText"
+);
+
+
+const notificationBadge =
+document.getElementById(
+  "notificationBadge"
+);
+
+
+const notificationSummary =
+document.getElementById(
+  "notificationSummary"
+);
+
+
 const toast =
 document.getElementById(
   "toast"
 );
+
+
+/* =========================
+   STATE
+========================= */
+
+let notificationUnsubscribe = null;
 
 
 /* =========================
@@ -1549,7 +1616,6 @@ function setDefaultAvatar(name){
         height="100%"
         fill="#12324b"/>
 
-
         <text
         x="50%"
         y="55%"
@@ -1579,6 +1645,15 @@ auth.onAuthStateChanged(
   function(user){
 
     if(!user){
+
+      if(notificationUnsubscribe){
+
+        notificationUnsubscribe();
+
+        notificationUnsubscribe = null;
+
+      }
+
 
       window.location.href =
       "login.html";
@@ -1642,6 +1717,9 @@ auth.onAuthStateChanged(
     loadSettings();
 
 
+    listenToNotifications();
+
+
     loading.classList.add(
       "hidden"
     );
@@ -1698,12 +1776,20 @@ function loadSettings(){
     notificationToggle.checked =
       false;
 
+
+    notificationText.textContent =
+      "Notifications are turned off";
+
   }
 
   else{
 
     notificationToggle.checked =
       true;
+
+
+    notificationText.textContent =
+      "Allow order and account notifications";
 
   }
 
@@ -1767,7 +1853,7 @@ themeToggle.addEventListener(
 
 
 /* =========================
-   NOTIFICATIONS
+   NOTIFICATION SETTING
 ========================= */
 
 notificationToggle.addEventListener(
@@ -1776,24 +1862,230 @@ notificationToggle.addEventListener(
 
   function(){
 
+    const enabled =
+      notificationToggle.checked;
+
+
     localStorage.setItem(
 
       "dspNotifications",
 
-      notificationToggle.checked
+      enabled
       ? "true"
       : "false"
 
     );
 
 
-    showToast(
-      "Notification setting saved ✓"
-    );
+    if(enabled){
+
+      notificationText.textContent =
+        "Allow order and account notifications";
+
+
+      showToast(
+        "Notifications enabled ✓"
+      );
+
+
+      listenToNotifications();
+
+    }
+
+    else{
+
+      notificationText.textContent =
+        "Notifications are turned off";
+
+
+      showToast(
+        "Notifications turned off"
+      );
+
+    }
 
   }
 
 );
+
+
+/* =========================
+   LISTEN TO NOTIFICATIONS
+========================= */
+
+function listenToNotifications(){
+
+  if(notificationUnsubscribe){
+
+    notificationUnsubscribe();
+
+    notificationUnsubscribe = null;
+
+  }
+
+
+  if(!auth.currentUser){
+
+    return;
+
+  }
+
+
+  /*
+    If the customer has disabled
+    notifications, we don't show
+    the unread badge.
+  */
+
+  if(
+    localStorage.getItem(
+      "dspNotifications"
+    ) === "false"
+  ){
+
+    updateNotificationBadge(0);
+
+    return;
+
+  }
+
+
+  /*
+    Notifications collection expected:
+
+    notifications
+      └── notificationId
+
+          customerId
+          title
+          message
+          type
+          orderId
+          read
+          createdAt
+
+    customerId must equal the
+    logged-in Firebase user's UID.
+  */
+
+  notificationUnsubscribe =
+
+    db
+    .collection("notifications")
+    .where(
+      "customerId",
+      "==",
+      auth.currentUser.uid
+    )
+    .onSnapshot(
+
+      function(snapshot){
+
+        let unreadCount = 0;
+
+
+        snapshot.forEach(
+
+          function(doc){
+
+            const data =
+              doc.data();
+
+
+            if(
+              data.read !== true
+            ){
+
+              unreadCount++;
+
+            }
+
+          }
+
+        );
+
+
+        updateNotificationBadge(
+          unreadCount
+        );
+
+      },
+
+      function(error){
+
+        console.error(
+          "Notification listener error:",
+          error
+        );
+
+
+        /*
+          Do not break the settings page
+          if notification permissions/rules
+          have not been configured yet.
+        */
+
+        updateNotificationBadge(0);
+
+      }
+
+    );
+
+}
+
+
+/* =========================
+   UPDATE NOTIFICATION BADGE
+========================= */
+
+function updateNotificationBadge(
+  count
+){
+
+  const safeCount =
+    Math.max(
+      0,
+      Number(count) || 0
+    );
+
+
+  if(safeCount > 0){
+
+    notificationBadge.textContent =
+
+      safeCount > 99
+      ? "99+"
+      : safeCount;
+
+
+    notificationBadge.classList.add(
+      "show"
+    );
+
+
+    notificationSummary.textContent =
+
+      safeCount === 1
+
+      ? "You have 1 unread notification"
+
+      : `You have ${safeCount} unread notifications`;
+
+  }
+
+  else{
+
+    notificationBadge.classList.remove(
+      "show"
+    );
+
+
+    notificationSummary.textContent =
+      "View your order and account notifications";
+
+  }
+
+}
 
 
 /* =========================
@@ -1835,6 +2127,32 @@ document
 );
 
 
+/* =========================
+   NOTIFICATIONS PAGE
+========================= */
+
+document
+.getElementById(
+  "notificationsButton"
+)
+.addEventListener(
+
+  "click",
+
+  function(){
+
+    window.location.href =
+      "notifications.html";
+
+  }
+
+);
+
+
+/* =========================
+   CHAT
+========================= */
+
 document
 .getElementById(
   "chatButton"
@@ -1853,6 +2171,10 @@ document
 );
 
 
+/* =========================
+   SHOP
+========================= */
+
 document
 .getElementById(
   "shopButton"
@@ -1870,6 +2192,10 @@ document
 
 );
 
+
+/* =========================
+   ORDERS
+========================= */
 
 document
 .getElementById(
@@ -2054,6 +2380,15 @@ document
     }
 
 
+    if(notificationUnsubscribe){
+
+      notificationUnsubscribe();
+
+      notificationUnsubscribe = null;
+
+    }
+
+
     await auth.signOut();
 
 
@@ -2163,6 +2498,9 @@ document
    TOAST
 ========================= */
 
+let toastTimer = null;
+
+
 function showToast(text){
 
   toast.textContent =
@@ -2174,19 +2512,26 @@ function showToast(text){
   );
 
 
-  setTimeout(
-
-    function(){
-
-      toast.classList.remove(
-        "show"
-      );
-
-    },
-
-    2500
-
+  clearTimeout(
+    toastTimer
   );
+
+
+  toastTimer =
+
+    setTimeout(
+
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+
+      2500
+
+    );
 
 }
 
