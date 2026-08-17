@@ -54,7 +54,7 @@ button{
 ========================= */
 
 .header{
-  height:70px;
+  min-height:70px;
   background:var(--dark);
   border-bottom:1px solid var(--border);
 
@@ -78,95 +78,39 @@ button{
   color:var(--blue);
 }
 
-.header-actions{
+.header-right{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
 }
 
-
-/* =========================
-   NOTIFICATION BUTTON
-========================= */
-
-.notification-btn{
-  width:42px;
-  height:42px;
-
+.header-btn{
   border:1px solid var(--border);
-
   background:var(--panel);
-
   color:white;
 
-  border-radius:10px;
+  padding:9px 12px;
+  border-radius:9px;
 
-  display:flex;
+  text-decoration:none;
+
+  display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  font-size:21px;
-
-  position:relative;
-
-  transition:.2s ease;
+  white-space:nowrap;
 }
 
-.notification-btn:hover{
+.header-btn:hover{
   border-color:var(--blue);
   color:var(--blue);
-  transform:translateY(-1px);
 }
 
-.notification-btn:active{
-  transform:scale(.96);
-}
-
-
-/* Small notification dot.
-   This is only a visual indicator.
-   The actual notifications are handled
-   inside notifications.html.
-*/
-
-.notification-dot{
-  position:absolute;
-
-  top:7px;
-  right:7px;
-
-  width:7px;
-  height:7px;
-
-  background:var(--red);
-
-  border-radius:50%;
-
-  border:1px solid var(--dark);
-
-  display:none;
-}
-
-
-/* =========================
-   BACK BUTTON
-========================= */
-
-.back-btn{
-  border:1px solid var(--border);
-
-  background:var(--panel);
-
-  color:white;
-
-  padding:9px 13px;
-
-  border-radius:9px;
-}
-
-.back-btn:hover{
-  border-color:var(--blue);
-  color:var(--blue);
+.notification-btn{
+  font-size:19px;
+  width:43px;
+  height:40px;
+  padding:0;
 }
 
 
@@ -177,9 +121,7 @@ button{
 .main{
   width:100%;
   max-width:850px;
-
   margin:auto;
-
   padding:30px 16px 50px;
 }
 
@@ -197,7 +139,6 @@ button{
     );
 
   border:1px solid var(--border);
-
   border-radius:22px;
 
   padding:30px 20px;
@@ -233,7 +174,6 @@ button{
   justify-content:center;
 
   font-size:45px;
-
   color:var(--blue);
 }
 
@@ -311,9 +251,7 @@ button{
 
 .form-grid{
   display:grid;
-
   grid-template-columns:repeat(2,1fr);
-
   gap:15px;
 }
 
@@ -433,10 +371,6 @@ textarea{
   margin-top:10px;
 }
 
-.danger-btn:hover{
-  background:rgba(248,113,113,.08);
-}
-
 
 /* =========================
    MESSAGE
@@ -467,15 +401,12 @@ textarea{
 
 .loading-screen{
   position:fixed;
-
   inset:0;
 
   background:var(--bg);
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   z-index:100;
@@ -490,7 +421,6 @@ textarea{
   height:42px;
 
   border:4px solid var(--border);
-
   border-top-color:var(--blue);
 
   border-radius:50%;
@@ -514,25 +444,25 @@ textarea{
 @media(max-width:650px){
 
   .header{
-    padding:0 12px;
+    padding:0 10px;
   }
 
   .brand{
     font-size:17px;
   }
 
-  .header-actions{
-    gap:6px;
+  .header-right{
+    gap:5px;
+  }
+
+  .header-btn{
+    padding:8px 9px;
   }
 
   .notification-btn{
     width:40px;
-    height:40px;
-    font-size:20px;
-  }
-
-  .back-btn{
-    padding:8px 10px;
+    height:38px;
+    font-size:18px;
   }
 
   .main{
@@ -588,34 +518,27 @@ textarea{
   </div>
 
 
-  <div class="header-actions">
+  <div class="header-right">
 
-    <!-- NOTIFICATIONS -->
+    <!-- NOTIFICATION BUTTON -->
 
-    <button
-      class="notification-btn"
-      onclick="openNotifications()"
+    <a
+      href="notification.html"
+      class="header-btn notification-btn"
       title="Notifications"
-      aria-label="Open notification.html">
-
+      aria-label="Open notifications"
+    >
       🔔
-
-      <span
-        id="notificationDot"
-        class="notification-dot">
-      </span>
-
-    </button>
+    </a>
 
 
-    <!-- BACK -->
+    <!-- BACK BUTTON -->
 
     <button
-      class="back-btn"
-      onclick="goBack()">
-
+      class="header-btn"
+      onclick="goBack()"
+    >
       ← Back
-
     </button>
 
   </div>
@@ -632,7 +555,7 @@ textarea{
 
   <!-- =========================
        PROFILE HERO
-  ========================== -->
+  ========================= -->
 
   <section class="profile-hero">
 
@@ -648,20 +571,18 @@ textarea{
 
       <div
         id="defaultAvatar"
-        class="avatar">
-
+        class="avatar"
+      >
         👤
-
       </div>
 
 
       <button
         class="photo-button"
         onclick="choosePhoto()"
-        title="Change photo">
-
+        title="Change photo"
+      >
         📷
-
       </button>
 
 
@@ -690,7 +611,7 @@ textarea{
 
   <!-- =========================
        PERSONAL INFORMATION
-  ========================== -->
+  ========================= -->
 
   <section class="panel">
 
@@ -827,30 +748,30 @@ textarea{
 
       </div>
 
+
     </div>
 
 
     <button
       id="saveBtn"
       class="save-btn"
-      onclick="saveProfile()">
-
+      onclick="saveProfile()"
+    >
       Save Profile
-
     </button>
 
 
     <p
       id="message"
-      class="message">
-    </p>
+      class="message"
+    ></p>
 
   </section>
 
 
   <!-- =========================
        ACCOUNT
-  ========================== -->
+  ========================= -->
 
   <section class="panel">
 
@@ -866,19 +787,17 @@ textarea{
 
     <button
       class="secondary-btn"
-      onclick="changePassword()">
-
+      onclick="changePassword()"
+    >
       🔐 Change Password
-
     </button>
 
 
     <button
       class="danger-btn"
-      onclick="signOut()">
-
+      onclick="signOut()"
+    >
       Sign Out
-
     </button>
 
   </section>
@@ -901,7 +820,7 @@ textarea{
 <script>
 
 /* ==========================================
-   FIREBASE
+   FIREBASE CONFIG
 ========================================== */
 
 const firebaseConfig = {
@@ -965,6 +884,7 @@ auth.onAuthStateChanged(async user => {
       "login.html";
 
     return;
+
   }
 
 
@@ -982,38 +902,12 @@ auth.onAuthStateChanged(async user => {
   await loadProfile();
 
 
-  /*
-    Profile is protected by Firebase Auth.
-
-    The notification button simply opens
-    notifications.html.
-  */
-
   document
     .getElementById("loadingScreen")
     .classList
     .add("hidden");
 
 });
-
-
-/* ==========================================
-   OPEN NOTIFICATIONS
-========================================== */
-
-function openNotifications(){
-
-  /*
-    Keep notifications on their own page.
-
-    No duplicate notification system
-    is created inside profile.html.
-  */
-
-  window.location.href =
-    "notifications.html";
-
-}
 
 
 /* ==========================================
@@ -1053,6 +947,7 @@ async function loadProfile(){
 
 
       return;
+
     }
 
 
@@ -1129,6 +1024,7 @@ async function saveProfile(){
     );
 
     return;
+
   }
 
 
@@ -1186,6 +1082,7 @@ async function saveProfile(){
     );
 
     return;
+
   }
 
 
@@ -1342,6 +1239,7 @@ function handlePhoto(event){
     event.target.value = "";
 
     return;
+
   }
 
 
@@ -1355,6 +1253,7 @@ function handlePhoto(event){
     event.target.value = "";
 
     return;
+
   }
 
 
@@ -1456,6 +1355,7 @@ async function changePassword(){
     );
 
     return;
+
   }
 
 
@@ -1496,15 +1396,12 @@ async function signOut(){
 
     await auth.signOut();
 
-
     window.location.href =
       "login.html";
-
 
   }catch(error){
 
     console.error(error);
-
 
     showMessage(
       friendlyError(error),
@@ -1534,7 +1431,7 @@ function goBack(){
   }else{
 
     window.location.href =
-      "notification.html";
+      "index.html";
 
   }
 
@@ -1631,4 +1528,4 @@ function friendlyError(error){
 </script>
 
 </body>
-</html>
+  </html>
