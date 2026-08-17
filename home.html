@@ -8,7 +8,16 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Help & Support | Danny Smart Power</title>
+<meta name="theme-color"
+content="#020617">
+
+<meta name="description"
+content="Danny Smart Power provides smart electrical solutions, solar installation, electrical products, and modern power systems.">
+
+<title>Home | Danny Smart Power</title>
+
+
+<!-- GOOGLE FONT -->
 
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
@@ -17,8 +26,7 @@ href="https://fonts.googleapis.com">
 href="https://fonts.gstatic.com"
 crossorigin>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
 rel="stylesheet">
 
 
@@ -29,12 +37,9 @@ rel="stylesheet">
 ===================================================== */
 
 *{
-
   margin:0;
   padding:0;
-
   box-sizing:border-box;
-
 }
 
 
@@ -44,58 +49,27 @@ rel="stylesheet">
 
 :root{
 
-  --bg:#0f172a;
+  --bg:#020617;
 
-  --header:#020617;
+  --bg2:#061426;
 
-  --card:#111e30;
+  --card:rgba(15,23,42,.72);
 
-  --card2:#17253a;
-
-  --input:#0b1525;
-
-  --border:rgba(148,163,184,.15);
+  --card2:#0f1f33;
 
   --blue:#38bdf8;
 
   --blue2:#0284c7;
 
+  --cyan:#06b6d4;
+
   --green:#22c55e;
 
-  --yellow:#facc15;
-
-  --red:#ef4444;
-
-  --purple:#8b5cf6;
-
-  --text:#f8fafc;
+  --white:#f8fafc;
 
   --muted:#94a3b8;
 
-}
-
-
-/* =====================================================
-   LIGHT MODE
-===================================================== */
-
-body.light{
-
-  --bg:#f1f5f9;
-
-  --header:#ffffff;
-
-  --card:#ffffff;
-
-  --card2:#e2e8f0;
-
-  --input:#f8fafc;
-
-  --border:rgba(15,23,42,.12);
-
-  --text:#0f172a;
-
-  --muted:#64748b;
+  --border:rgba(148,163,184,.15);
 
 }
 
@@ -108,21 +82,68 @@ body{
 
   min-height:100vh;
 
-  font-family:'Poppins',sans-serif;
+  font-family:
+    'Poppins',
+    sans-serif;
 
-  color:var(--text);
+  color:var(--white);
 
   background:
 
     radial-gradient(
-      circle at top left,
-      rgba(56,189,248,.10),
-      transparent 35%
+      circle at 15% 10%,
+      rgba(14,165,233,.18),
+      transparent 28%
     ),
 
-    var(--bg);
+    radial-gradient(
+      circle at 90% 35%,
+      rgba(6,182,212,.12),
+      transparent 30%
+    ),
 
-  transition:.3s;
+    linear-gradient(
+      145deg,
+      #020617,
+      #061426 45%,
+      #031b2d
+    );
+
+  overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:420px;
+
+  height:420px;
+
+  top:20%;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(14,165,233,.12),
+      transparent 68%
+    );
+
+  pointer-events:none;
+
+  z-index:-1;
 
 }
 
@@ -133,15 +154,15 @@ body{
 
 header{
 
+  width:100%;
+
+  height:78px;
+
   position:sticky;
 
   top:0;
 
-  z-index:50;
-
-  min-height:76px;
-
-  padding:12px 6%;
+  z-index:100;
 
   display:flex;
 
@@ -149,29 +170,28 @@ header{
 
   justify-content:space-between;
 
-  gap:15px;
+  padding:0 6%;
 
   background:
-
-    rgba(2,6,23,.96);
+    rgba(2,6,23,.86);
 
   border-bottom:
-
     1px solid var(--border);
 
-  backdrop-filter:blur(15px);
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
 
 }
 
 
-body.light header{
+/* =====================================================
+   LOGO
+===================================================== */
 
-  background:rgba(255,255,255,.96);
-
-}
-
-
-.header-left{
+.logo{
 
   display:flex;
 
@@ -179,44 +199,18 @@ body.light header{
 
   gap:11px;
 
-}
+  text-decoration:none;
 
-
-.back-button{
-
-  width:40px;
-
-  height:40px;
-
-  border:none;
-
-  border-radius:50%;
-
-  background:transparent;
-
-  color:var(--text);
-
-  font-size:25px;
-
-  cursor:pointer;
+  color:white;
 
 }
 
 
-.back-button:hover{
+.logo-icon{
 
-  background:var(--card2);
+  width:43px;
 
-}
-
-
-.logo{
-
-  width:40px;
-
-  height:40px;
-
-  border-radius:50%;
+  height:43px;
 
   display:flex;
 
@@ -224,8 +218,9 @@ body.light header{
 
   justify-content:center;
 
-  background:
+  border-radius:13px;
 
+  background:
     linear-gradient(
       135deg,
       var(--blue),
@@ -234,92 +229,80 @@ body.light header{
 
   color:#00111c;
 
-  font-size:20px;
+  font-size:22px;
+
+  font-weight:800;
+
+  box-shadow:
+    0 8px 25px
+    rgba(14,165,233,.25);
 
 }
 
 
-.header-title{
+.logo-text{
 
-  font-size:17px;
+  font-size:18px;
 
-  font-weight:700;
+  font-weight:800;
 
-}
-
-
-/* =====================================================
-   HEADER NOTIFICATION
-===================================================== */
-
-.notification-button{
-
-  position:relative;
-
-  width:42px;
-
-  height:42px;
-
-  border:none;
-
-  border-radius:13px;
-
-  background:var(--card2);
-
-  color:var(--text);
-
-  font-size:20px;
-
-  cursor:pointer;
+  letter-spacing:-.4px;
 
 }
 
 
-.notification-button:hover{
+.logo-text span{
 
   color:var(--blue);
 
 }
 
 
-.notification-badge{
+/* =====================================================
+   HEADER BUTTON
+===================================================== */
 
-  position:absolute;
+.header-shop{
 
-  top:-5px;
-
-  right:-5px;
-
-  min-width:19px;
-
-  height:19px;
-
-  padding:0 5px;
-
-  display:none;
+  display:flex;
 
   align-items:center;
 
-  justify-content:center;
+  gap:6px;
 
-  border-radius:50px;
+  padding:9px 14px;
 
-  background:var(--red);
+  border-radius:10px;
 
-  border:2px solid var(--header);
+  text-decoration:none;
 
-  color:white;
+  color:#dbeafe;
 
-  font-size:8px;
+  background:
+    rgba(56,189,248,.08);
 
-  font-weight:800;
+  border:
+    1px solid
+    rgba(56,189,248,.18);
+
+  font-size:10px;
+
+  font-weight:600;
+
+  transition:.25s;
 
 }
 
 
-.notification-badge.show{
+.header-shop:hover{
 
-  display:flex;
+  background:
+    rgba(56,189,248,.15);
+
+  border-color:
+    rgba(56,189,248,.35);
+
+  transform:translateY(-1px);
 
 }
 
@@ -332,12 +315,6 @@ main{
 
   width:100%;
 
-  max-width:950px;
-
-  margin:auto;
-
-  padding:30px 6% 70px;
-
 }
 
 
@@ -347,234 +324,8 @@ main{
 
 .hero{
 
-  padding:25px;
-
-  border-radius:22px;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(56,189,248,.13),
-      rgba(2,132,199,.05)
-    );
-
-  border:
-
-    1px solid
-    rgba(56,189,248,.18);
-
-  margin-bottom:25px;
-
-}
-
-
-.hero h1{
-
-  font-size:28px;
-
-  margin-bottom:7px;
-
-}
-
-
-.hero p{
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  line-height:1.7;
-
-}
-
-
-.hero-actions{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:10px;
-
-  margin-top:18px;
-
-}
-
-
-.hero-button{
-
-  border:none;
-
-  text-decoration:none;
-
-  padding:11px 15px;
-
-  border-radius:10px;
-
-  font-family:inherit;
-
-  font-size:10px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-}
-
-
-.hero-button.primary{
-
-  background:var(--blue);
-
-  color:#00111c;
-
-}
-
-
-.hero-button.secondary{
-
-  background:var(--card2);
-
-  color:var(--text);
-
-  border:1px solid var(--border);
-
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.section{
-
-  margin-top:25px;
-
-}
-
-
-.section-title{
-
-  margin:0 4px 10px;
-
-  color:var(--muted);
-
-  font-size:11px;
-
-  text-transform:uppercase;
-
-  letter-spacing:.8px;
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-box{
-
-  position:relative;
-
-  margin-bottom:20px;
-
-}
-
-
-.search-box input{
-
-  width:100%;
-
-  padding:14px 45px 14px 15px;
-
-  border-radius:13px;
-
-  border:1px solid var(--border);
-
-  outline:none;
-
-  background:var(--input);
-
-  color:var(--text);
-
-  font-family:inherit;
-
-  font-size:11px;
-
-}
-
-
-.search-box input:focus{
-
-  border-color:rgba(56,189,248,.45);
-
-}
-
-
-.search-icon{
-
-  position:absolute;
-
-  right:15px;
-
-  top:50%;
-
-  transform:translateY(-50%);
-
-  color:var(--muted);
-
-}
-
-
-/* =====================================================
-   FAQ GRID
-===================================================== */
-
-.faq-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:13px;
-
-}
-
-
-.faq-card{
-
-  padding:18px;
-
-  background:var(--card);
-
-  border:1px solid var(--border);
-
-  border-radius:17px;
-
-  cursor:pointer;
-
-  transition:.2s;
-
-}
-
-
-.faq-card:hover{
-
-  transform:translateY(-2px);
-
-  border-color:
-    rgba(56,189,248,.3);
-
-}
-
-
-.faq-icon{
-
-  width:40px;
-
-  height:40px;
+  min-height:
+    calc(100vh - 78px);
 
   display:flex;
 
@@ -582,303 +333,604 @@ main{
 
   justify-content:center;
 
-  border-radius:12px;
+  text-align:center;
 
-  background:var(--card2);
+  padding:
+    60px 18px
+    80px;
 
-  font-size:19px;
-
-  margin-bottom:12px;
-
-}
-
-
-.faq-card h3{
-
-  font-size:13px;
-
-  margin-bottom:5px;
+  position:relative;
 
 }
 
 
-.faq-card p{
+/* =====================================================
+   HERO CONTENT
+===================================================== */
 
-  color:var(--muted);
+.hero-content{
+
+  width:100%;
+
+  max-width:850px;
+
+  margin:auto;
+
+}
+
+
+/* =====================================================
+   POWER BADGE
+===================================================== */
+
+.power-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:8px 14px;
+
+  margin-bottom:22px;
+
+  border-radius:999px;
+
+  color:#bae6fd;
+
+  background:
+    rgba(56,189,248,.07);
+
+  border:
+    1px solid
+    rgba(56,189,248,.20);
 
   font-size:10px;
 
-  line-height:1.6;
+  font-weight:600;
+
+  letter-spacing:.3px;
+
+}
+
+
+.power-dot{
+
+  width:7px;
+
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 10px
+    rgba(34,197,94,.8);
 
 }
 
 
 /* =====================================================
-   FAQ ANSWER
+   HERO TITLE
 ===================================================== */
 
-.answer{
+.hero h1{
 
-  display:none;
+  max-width:850px;
 
-  margin-top:12px;
+  margin:auto;
 
-  padding-top:12px;
+  font-size:
+    clamp(
+      42px,
+      9vw,
+      76px
+    );
 
-  border-top:1px solid var(--border);
+  line-height:1.02;
 
-  color:var(--muted);
+  letter-spacing:-2.8px;
 
-  font-size:10px;
-
-  line-height:1.7;
+  font-weight:800;
 
 }
 
 
-.faq-card.open .answer{
+.hero h1 .blue{
 
-  display:block;
+  color:var(--blue);
+
+  text-shadow:
+    0 0 35px
+    rgba(56,189,248,.18);
 
 }
 
 
 /* =====================================================
-   CONTACT CARD
+   HERO DESCRIPTION
 ===================================================== */
 
-.contact-grid{
+.hero-description{
 
-  display:grid;
+  max-width:680px;
 
-  grid-template-columns:
-    repeat(3,1fr);
+  margin:
+    22px auto 0;
 
-  gap:12px;
+  color:#cbd5e1;
 
-}
+  font-size:
+    clamp(
+      13px,
+      2.4vw,
+      16px
+    );
 
-
-.contact-card{
-
-  padding:18px;
-
-  text-decoration:none;
-
-  color:var(--text);
-
-  background:var(--card);
-
-  border:1px solid var(--border);
-
-  border-radius:16px;
-
-  transition:.2s;
-
-}
-
-
-.contact-card:hover{
-
-  transform:translateY(-2px);
-
-  border-color:
-    rgba(56,189,248,.3);
-
-}
-
-
-.contact-icon{
-
-  font-size:24px;
-
-  margin-bottom:10px;
-
-}
-
-
-.contact-card strong{
-
-  display:block;
-
-  font-size:12px;
-
-}
-
-
-.contact-card span{
-
-  display:block;
-
-  color:var(--muted);
-
-  font-size:9px;
-
-  margin-top:4px;
+  line-height:1.8;
 
 }
 
 
 /* =====================================================
-   NOTIFICATION CARD
+   HERO HIGHLIGHTS
 ===================================================== */
 
-.notification-card{
-
-  padding:18px;
-
-  border-radius:18px;
-
-  background:var(--card);
-
-  border:1px solid var(--border);
-
-}
-
-
-.notification-top{
+.highlights{
 
   display:flex;
 
   align-items:center;
 
-  justify-content:space-between;
+  justify-content:center;
+
+  flex-wrap:wrap;
 
   gap:10px;
+
+  margin-top:22px;
 
 }
 
 
-.notification-title{
+.highlight{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  color:#94a3b8;
+
+  font-size:9px;
+
+}
+
+
+.highlight strong{
+
+  color:#e2e8f0;
+
+}
+
+
+.highlight-separator{
+
+  width:4px;
+
+  height:4px;
+
+  border-radius:50%;
+
+  background:#334155;
+
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions{
+
+  width:100%;
+
+  max-width:560px;
+
+  margin:
+    38px auto 0;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr;
+
+  gap:13px;
+
+}
+
+
+/* =====================================================
+   ACTION CARD
+===================================================== */
+
+.action{
+
+  min-height:76px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:15px 17px;
+
+  border-radius:17px;
+
+  text-decoration:none;
+
+  text-align:left;
+
+  color:white;
+
+  border:
+    1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,30,48,.88),
+      rgba(8,20,35,.88)
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.16);
+
+  transition:
+    transform .25s,
+    border-color .25s,
+    background .25s,
+    box-shadow .25s;
+
+}
+
+
+.action:hover{
+
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(56,189,248,.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,42,65,.95),
+      rgba(8,25,43,.95)
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   ACTION ICON
+===================================================== */
+
+.action-icon{
+
+  width:48px;
+
+  height:48px;
+
+  min-width:48px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:14px;
+
+  font-size:22px;
+
+  background:
+    rgba(56,189,248,.09);
+
+  border:
+    1px solid
+    rgba(56,189,248,.13);
+
+}
+
+
+.action:first-child
+.action-icon{
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56,189,248,.18),
+      rgba(2,132,199,.10)
+    );
+
+}
+
+
+.action:nth-child(2)
+.action-icon{
+
+  background:
+    rgba(250,204,21,.09);
+
+  border-color:
+    rgba(250,204,21,.15);
+
+}
+
+
+.action:nth-child(3)
+.action-icon{
+
+  background:
+    rgba(34,197,94,.09);
+
+  border-color:
+    rgba(34,197,94,.15);
+
+}
+
+
+/* =====================================================
+   ACTION CONTENT
+===================================================== */
+
+.action-content{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.action-title{
+
+  display:block;
 
   font-size:13px;
 
   font-weight:700;
 
+  color:white;
+
 }
 
 
-.notification-status{
+.action-description{
 
-  padding:5px 8px;
+  display:block;
 
-  border-radius:8px;
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  line-height:1.5;
+
+}
+
+
+/* =====================================================
+   ACTION ARROW
+===================================================== */
+
+.action-arrow{
+
+  width:31px;
+
+  height:31px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#64748b;
 
   background:
-    rgba(56,189,248,.1);
+    rgba(255,255,255,.035);
+
+  font-size:17px;
+
+  transition:.25s;
+
+}
+
+
+.action:hover
+.action-arrow{
 
   color:var(--blue);
 
-  font-size:8px;
+  background:
+    rgba(56,189,248,.10);
 
-  font-weight:700;
-
-}
-
-
-.notification-card p{
-
-  color:var(--muted);
-
-  font-size:10px;
-
-  line-height:1.6;
-
-  margin-top:8px;
+  transform:
+    translateX(2px);
 
 }
 
 
 /* =====================================================
-   TOAST
+   TRUST SECTION
 ===================================================== */
 
-.toast{
+.trust{
 
-  position:fixed;
+  margin:
+    45px auto 0;
 
-  left:50%;
+  display:flex;
 
-  bottom:25px;
+  align-items:center;
 
-  z-index:200;
+  justify-content:center;
 
-  max-width:90%;
+  flex-wrap:wrap;
 
-  padding:12px 18px;
-
-  border-radius:12px;
-
-  background:#020617;
-
-  color:white;
-
-  font-size:11px;
-
-  text-align:center;
-
-  transform:
-    translate(-50%,120px);
-
-  opacity:0;
-
-  transition:.3s;
+  gap:22px;
 
 }
 
 
-.toast.show{
+.trust-item{
 
-  transform:
-    translate(-50%,0);
+  display:flex;
 
-  opacity:1;
+  align-items:center;
+
+  gap:7px;
+
+  color:#64748b;
+
+  font-size:9px;
+
+}
+
+
+.trust-icon{
+
+  color:var(--blue);
+
+  font-size:13px;
 
 }
 
 
 /* =====================================================
-   EMPTY
+   BOTTOM MESSAGE
 ===================================================== */
 
-.empty{
+.bottom-message{
 
-  padding:35px 20px;
+  margin-top:48px;
+
+  color:#475569;
+
+  font-size:9px;
+
+  letter-spacing:.2px;
+
+}
+
+
+.bottom-message span{
+
+  color:#64748b;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+  padding:
+    20px 15px 30px;
 
   text-align:center;
 
-  border-radius:17px;
+  color:#475569;
 
-  background:var(--card);
-
-  border:1px solid var(--border);
+  font-size:9px;
 
 }
 
 
-.empty-icon{
+footer strong{
 
-  font-size:40px;
-
-  margin-bottom:10px;
+  color:#64748b;
 
 }
 
 
-.empty h3{
+/* =====================================================
+   ANIMATIONS
+===================================================== */
 
-  font-size:15px;
+@keyframes fadeUp{
 
-  margin-bottom:5px;
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(18px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+
+  }
 
 }
 
 
-.empty p{
+.hero-content{
 
-  color:var(--muted);
+  animation:
+    fadeUp .7s ease both;
 
-  font-size:10px;
+}
+
+
+.action{
+
+  animation:
+    fadeUp .7s ease both;
+
+}
+
+
+.action:nth-child(1){
+
+  animation-delay:.12s;
+
+}
+
+
+.action:nth-child(2){
+
+  animation-delay:.20s;
+
+}
+
+
+.action:nth-child(3){
+
+  animation-delay:.28s;
 
 }
 
@@ -887,40 +939,245 @@ main{
    MOBILE
 ===================================================== */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
   header{
 
-    padding:11px 14px;
+    height:70px;
+
+    padding:
+      0 14px;
 
   }
 
 
-  main{
+  .logo-icon{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:11px;
+
+    font-size:19px;
+
+  }
+
+
+  .logo-text{
+
+    font-size:15px;
+
+  }
+
+
+  .header-shop{
+
+    padding:8px 10px;
+
+    font-size:9px;
+
+  }
+
+
+  .hero{
+
+    min-height:
+      calc(100vh - 70px);
 
     padding:
-      20px 12px 50px;
+      45px 15px 55px;
+
+    align-items:flex-start;
+
+  }
+
+
+  .hero-content{
+
+    padding-top:15px;
+
+  }
+
+
+  .power-badge{
+
+    margin-bottom:19px;
+
+    font-size:9px;
 
   }
 
 
   .hero h1{
 
-    font-size:23px;
+    font-size:
+      clamp(
+        40px,
+        13vw,
+        58px
+      );
+
+    letter-spacing:
+      -2px;
 
   }
 
 
-  .faq-grid{
+  .hero-description{
 
-    grid-template-columns:1fr;
+    font-size:12px;
+
+    line-height:1.75;
+
+    margin-top:19px;
 
   }
 
 
-  .contact-grid{
+  .highlights{
 
-    grid-template-columns:1fr;
+    gap:8px;
+
+  }
+
+
+  .highlight{
+
+    font-size:8px;
+
+  }
+
+
+  .actions{
+
+    margin-top:30px;
+
+    gap:10px;
+
+  }
+
+
+  .action{
+
+    min-height:72px;
+
+    padding:13px;
+
+    border-radius:15px;
+
+  }
+
+
+  .action-icon{
+
+    width:44px;
+
+    height:44px;
+
+    min-width:44px;
+
+    font-size:20px;
+
+  }
+
+
+  .action-title{
+
+    font-size:12px;
+
+  }
+
+
+  .action-description{
+
+    font-size:8px;
+
+  }
+
+
+  .trust{
+
+    margin-top:35px;
+
+    gap:13px;
+
+  }
+
+
+  .trust-item{
+
+    font-size:8px;
+
+  }
+
+
+  .bottom-message{
+
+    margin-top:35px;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:380px){
+
+  .logo-text{
+
+    font-size:13px;
+
+  }
+
+
+  .header-shop{
+
+    font-size:8px;
+
+    padding:
+      7px 8px;
+
+  }
+
+
+  .hero h1{
+
+    font-size:38px;
+
+  }
+
+
+  .hero-description{
+
+    font-size:11px;
+
+  }
+
+
+  .action-description{
+
+    display:none;
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+
+    animation:none !important;
+
+    transition:none !important;
 
   }
 
@@ -940,51 +1197,34 @@ main{
 
 <header>
 
-  <div class="header-left">
+  <a
+    href="home.html"
+    class="logo"
+    aria-label="Danny Smart Power Home">
 
-    <button
-    class="back-button"
-    id="backButton">
-
-      ←
-
-    </button>
-
-
-    <div class="logo">
-
+    <div class="logo-icon">
       ⚡
-
     </div>
 
-
-    <div class="header-title">
-
-      Help & Support
-
+    <div class="logo-text">
+      Danny Smart <span>Power</span>
     </div>
 
-  </div>
+  </a>
 
 
-  <button
-  class="notification-button"
-  id="notificationButton"
-  title="Notifications">
+  <a
+    href="shop.html"
+    class="header-shop">
 
-    🔔
+    🛒
 
-    <span
-    id="notificationBadge"
-    class="notification-badge">
+    Shop
 
-      0
-
-    </span>
-
-  </button>
+  </a>
 
 </header>
+
 
 
 <!-- =====================================================
@@ -998,562 +1238,278 @@ main{
 
   <section class="hero">
 
-    <h1>
-
-      How can we help? 👋
-
-    </h1>
+    <div class="hero-content">
 
 
-    <p>
+      <!-- BADGE -->
 
-      Find answers to common questions or contact
-      Danny Smart Power support if you need help
-      with your order, payment, delivery or account.
+      <div class="power-badge">
 
-    </p>
+        <span class="power-dot"></span>
 
-
-    <div class="hero-actions">
-
-      <a
-      href="chat.html"
-      class="hero-button primary">
-
-        💬 Chat with Support
-
-      </a>
-
-
-      <a
-      href="orders.html"
-      class="hero-button secondary">
-
-        📦 My Orders
-
-      </a>
-
-
-      <button
-      class="hero-button secondary"
-      id="heroNotificationButton">
-
-        🔔 Notifications
-
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- SEARCH -->
-
-  <section class="section">
-
-    <div class="section-title">
-
-      Search Help
-
-    </div>
-
-
-    <div class="search-box">
-
-      <input
-      type="search"
-      id="helpSearch"
-      placeholder="Search your question...">
-
-
-      <div class="search-icon">
-
-        🔎
+        Smart Power • Electrical • Solar
 
       </div>
 
-    </div>
 
-  </section>
+      <!-- TITLE -->
 
+      <h1>
 
-  <!-- FAQ -->
+        Powering Your World
 
-  <section class="section">
+        <br>
 
-    <div class="section-title">
-
-      Frequently Asked Questions
-
-    </div>
-
-
-    <div
-    class="faq-grid"
-    id="faqGrid">
-
-
-      <!-- ORDER -->
-
-      <article
-      class="faq-card"
-      data-search="order orders track tracking">
-
-        <div class="faq-icon">
-
-          📦
-
-        </div>
-
-
-        <h3>
-
-          How do I track my order?
-
-        </h3>
-
-
-        <p>
-
-          Check the current status of your order.
-
-        </p>
-
-
-        <div class="answer">
-
-          Open <strong>My Orders</strong> to see your
-          order status and tracking progress.
-
-          Your order can move through Pending,
-          Processing, Shipped, Out for Delivery
-          and Delivered.
-
-        </div>
-
-      </article>
-
-
-      <!-- PAYMENT -->
-
-      <article
-      class="faq-card"
-      data-search="payment opay pay delivery payment method">
-
-        <div class="faq-icon">
-
-          💳
-
-        </div>
-
-
-        <h3>
-
-          What payment methods are available?
-
-        </h3>
-
-
-        <p>
-
-          Learn about available payment options.
-
-        </p>
-
-
-        <div class="answer">
-
-          Danny Smart Power can provide the payment
-          methods currently available during checkout,
-          including supported online payment options
-          and Pay on Delivery where available.
-
-        </div>
-
-      </article>
-
-
-      <!-- DELIVERY -->
-
-      <article
-      class="faq-card"
-      data-search="delivery address shipping fee">
-
-        <div class="faq-icon">
-
-          🚚
-
-        </div>
-
-
-        <h3>
-
-          How does delivery work?
-
-        </h3>
-
-
-        <p>
-
-          Understand delivery and pickup options.
-
-        </p>
-
-
-        <div class="answer">
-
-          Choose the available delivery option during
-          checkout. Delivery charges can depend on
-          your delivery address.
-
-          Store Pickup is available where offered.
-
-        </div>
-
-      </article>
-
-
-      <!-- ACCOUNT -->
-
-      <article
-      class="faq-card"
-      data-search="account profile login password">
-
-        <div class="faq-icon">
-
-          👤
-
-        </div>
-
-
-        <h3>
-
-          How do I manage my account?
-
-        </h3>
-
-
-        <p>
-
-          Update your profile and account information.
-
-        </p>
-
-
-        <div class="answer">
-
-          Open Settings and select
-          <strong>My Profile</strong> to manage your
-          personal information.
-
-          You can also change your password from
-          Settings.
-
-        </div>
-
-      </article>
-
-
-      <!-- NOTIFICATIONS -->
-
-      <article
-      class="faq-card"
-      data-search="notification notifications alert order update">
-
-        <div class="faq-icon">
-
-          🔔
-
-        </div>
-
-
-        <h3>
-
-          What are notifications?
-
-        </h3>
-
-
-        <p>
-
-          Get updates about your account and orders.
-
-        </p>
-
-
-        <div class="answer">
-
-          Notifications can tell you when your order
-          status changes or when Danny Smart Power
-          sends an important account or support update.
-
-          You can control notifications from
-          <strong>Settings → Notifications</strong>.
-
-        </div>
-
-      </article>
-
-
-      <!-- CANCEL -->
-
-      <article
-      class="faq-card"
-      data-search="cancel cancellation order">
-
-        <div class="faq-icon">
-
-          ❌
-
-        </div>
-
-
-        <h3>
-
-          Can I cancel my order?
-
-        </h3>
-
-
-        <p>
-
-          Learn what to do if you need to cancel.
-
-        </p>
-
-
-        <div class="answer">
-
-          If you need to cancel an order, contact
-          Danny Smart Power support as soon as possible.
-
-          Cancellation may depend on the current
-          order status.
-
-        </div>
-
-      </article>
-
-
-      <!-- PRODUCT -->
-
-      <article
-      class="faq-card"
-      data-search="product stock available unavailable">
-
-        <div class="faq-icon">
-
-          🔌
-
-        </div>
-
-
-        <h3>
-
-          What if a product is unavailable?
-
-        </h3>
-
-
-        <p>
-
-          Find out what to do when a product is out
-          of stock.
-
-        </p>
-
-
-        <div class="answer">
-
-          If a product is unavailable, you can check
-          the shop again later or contact support for
-          information about availability.
-
-        </div>
-
-      </article>
-
-
-      <!-- SUPPORT -->
-
-      <article
-      class="faq-card"
-      data-search="support help contact chat">
-
-        <div class="faq-icon">
-
-          💬
-
-        </div>
-
-
-        <h3>
-
-          How do I contact support?
-
-        </h3>
-
-
-        <p>
-
-          Chat directly with Danny Smart Power.
-
-        </p>
-
-
-        <div class="answer">
-
-          Use the <strong>Chat with Support</strong>
-          button above to contact Danny Smart Power.
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section class="section">
-
-    <div class="section-title">
-
-      Need More Help?
-
-    </div>
-
-
-    <div class="contact-grid">
-
-
-      <a
-      href="chat.html"
-      class="contact-card">
-
-        <div class="contact-icon">
-
-          💬
-
-        </div>
-
-
-        <strong>
-
-          Live Support
-
-        </strong>
-
-
-        <span>
-
-          Chat with Danny Smart Power
-
+        <span class="blue">
+          The Smarter Way.
         </span>
 
-      </a>
+      </h1>
 
 
-      <a
-      href="orders.html"
-      class="contact-card">
+      <!-- DESCRIPTION -->
 
-        <div class="contact-icon">
+      <p class="hero-description">
 
-          📦
-
-        </div>
-
-
-        <strong>
-
-          My Orders
-
-        </strong>
-
-
-        <span>
-
-          Check your order status
-
-        </span>
-
-      </a>
-
-
-      <a
-      href="settings.html"
-      class="contact-card">
-
-        <div class="contact-icon">
-
-          ⚙️
-
-        </div>
-
-
-        <strong>
-
-          Settings
-
-        </strong>
-
-
-        <span>
-
-          Manage account and notifications
-
-        </span>
-
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- NOTIFICATION INFO -->
-
-  <section class="section">
-
-    <div class="section-title">
-
-      Notifications
-
-    </div>
-
-
-    <div class="notification-card">
-
-      <div class="notification-top">
-
-        <div class="notification-title">
-
-          🔔 Stay updated
-
-        </div>
-
-
-        <div
-        class="notification-status"
-        id="notificationStatus">
-
-          Checking...
-
-        </div>
-
-      </div>
-
-
-      <p
-      id="notificationInfo">
-
-        Checking your notification settings...
+        Welcome to Danny Smart Power — your trusted
+        destination for electrical products, solar
+        solutions, professional installations, and
+        reliable power systems.
 
       </p>
+
+
+      <!-- HIGHLIGHTS -->
+
+      <div class="highlights">
+
+        <div class="highlight">
+
+          <span>⚡</span>
+
+          <strong>
+            Electrical
+          </strong>
+
+        </div>
+
+
+        <span class="highlight-separator"></span>
+
+
+        <div class="highlight">
+
+          <span>☀️</span>
+
+          <strong>
+            Solar
+          </strong>
+
+        </div>
+
+
+        <span class="highlight-separator"></span>
+
+
+        <div class="highlight">
+
+          <span>🔧</span>
+
+          <strong>
+            Installation
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           MAIN ACTIONS
+      ================================================= -->
+
+      <div class="actions">
+
+
+        <!-- SHOP -->
+
+        <a
+          href="shop.html"
+          class="action">
+
+          <div class="action-icon">
+
+            🛒
+
+          </div>
+
+
+          <div class="action-content">
+
+            <span class="action-title">
+
+              Shop Electrical Products
+
+            </span>
+
+
+            <span class="action-description">
+
+              Browse electrical, lighting and
+              solar products.
+
+            </span>
+
+          </div>
+
+
+          <div class="action-arrow">
+
+            →
+
+          </div>
+
+        </a>
+
+
+
+        <!-- SERVICE -->
+
+        <a
+          href="service.html"
+          class="action">
+
+          <div class="action-icon">
+
+            ⚡
+
+          </div>
+
+
+          <div class="action-content">
+
+            <span class="action-title">
+
+              Request Electrical Service
+
+            </span>
+
+
+            <span class="action-description">
+
+              Need installation, repair or
+              professional electrical help?
+
+            </span>
+
+          </div>
+
+
+          <div class="action-arrow">
+
+            →
+
+          </div>
+
+        </a>
+
+
+
+        <!-- CHAT -->
+
+        <a
+          href="chat.html"
+          class="action">
+
+          <div class="action-icon">
+
+            💬
+
+          </div>
+
+
+          <div class="action-content">
+
+            <span class="action-title">
+
+              Chat with Danny
+
+            </span>
+
+
+            <span class="action-description">
+
+              Have a question? Talk directly
+              with Danny Smart Power.
+
+            </span>
+
+          </div>
+
+
+          <div class="action-arrow">
+
+            →
+
+          </div>
+
+        </a>
+
+
+      </div>
+
+
+      <!-- TRUST -->
+
+      <div class="trust">
+
+
+        <div class="trust-item">
+
+          <span class="trust-icon">
+            ✓
+          </span>
+
+          Reliable Solutions
+
+        </div>
+
+
+        <div class="trust-item">
+
+          <span class="trust-icon">
+            ✓
+          </span>
+
+          Professional Service
+
+        </div>
+
+
+        <div class="trust-item">
+
+          <span class="trust-icon">
+            ✓
+          </span>
+
+          Smart Power Systems
+
+        </div>
+
+
+      </div>
+
+
+      <div class="bottom-message">
+
+        Built for homes, businesses &amp; modern power needs.
+
+        <span>
+          ⚡
+        </span>
+
+      </div>
+
 
     </div>
 
@@ -1563,580 +1519,23 @@ main{
 </main>
 
 
-<!-- TOAST -->
-
-<div
-class="toast"
-id="toast">
-
-Done ✓
-
-</div>
-
 
 <!-- =====================================================
-     FIREBASE
+     FOOTER
 ===================================================== -->
 
-<script
-src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
-</script>
+<footer>
 
+  © 2026
+  <strong>
+    Danny Smart Power
+  </strong>
 
-<script
-src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js">
-</script>
+  · Smart Power. Better Living.
 
-
-<script
-src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
-</script>
-
-
-<script>
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
-
-const firebaseConfig = {
-
-  apiKey:
-  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-
-  authDomain:
-  "danny-smart-power.firebaseapp.com",
-
-  databaseURL:
-  "https://danny-smart-power-default-rtdb.firebaseio.com",
-
-  projectId:
-  "danny-smart-power",
-
-  storageBucket:
-  "danny-smart-power.firebasestorage.app",
-
-  messagingSenderId:
-  "649735645158",
-
-  appId:
-  "1:649735645158:web:cff518b89721a163679827",
-
-  measurementId:
-  "G-258YKLP5ZS"
-
-};
-
-
-firebase.initializeApp(
-  firebaseConfig
-);
-
-
-const auth =
-firebase.auth();
-
-
-const db =
-firebase.firestore();
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const notificationButton =
-document.getElementById(
-  "notificationButton"
-);
-
-
-const heroNotificationButton =
-document.getElementById(
-  "heroNotificationButton"
-);
-
-
-const notificationBadge =
-document.getElementById(
-  "notificationBadge"
-);
-
-
-const notificationStatus =
-document.getElementById(
-  "notificationStatus"
-);
-
-
-const notificationInfo =
-document.getElementById(
-  "notificationInfo"
-);
-
-
-const helpSearch =
-document.getElementById(
-  "helpSearch"
-);
-
-
-const toast =
-document.getElementById(
-  "toast"
-);
-
-
-let notificationUnsubscribe =
-null;
-
-
-/* =====================================================
-   AUTH
-===================================================== */
-
-auth.onAuthStateChanged(
-
-  function(user){
-
-    if(!user){
-
-      notificationStatus.textContent =
-        "Sign in required";
-
-      notificationInfo.textContent =
-        "Sign in to receive personalized order and account notifications.";
-
-      return;
-
-    }
-
-
-    loadNotificationStatus();
-
-
-    listenToNotifications();
-
-  }
-
-);
-
-
-/* =====================================================
-   NOTIFICATION SETTING
-===================================================== */
-
-function notificationsEnabled(){
-
-  return localStorage.getItem(
-    "dspNotifications"
-  ) !== "false";
-
-}
-
-
-/* =====================================================
-   LOAD NOTIFICATION STATUS
-===================================================== */
-
-function loadNotificationStatus(){
-
-  if(notificationsEnabled()){
-
-    notificationStatus.textContent =
-      "Enabled";
-
-    notificationStatus.style.color =
-      "#86efac";
-
-    notificationInfo.textContent =
-      "Notifications are enabled. You can receive order, account and support updates.";
-
-  }
-
-  else{
-
-    notificationStatus.textContent =
-      "Disabled";
-
-    notificationStatus.style.color =
-      "#fca5a5";
-
-    notificationInfo.textContent =
-      "Notifications are currently turned off. You can enable them from Settings.";
-
-  }
-
-}
-
-
-/* =====================================================
-   REAL-TIME NOTIFICATIONS
-===================================================== */
-
-function listenToNotifications(){
-
-  if(notificationUnsubscribe){
-
-    notificationUnsubscribe();
-
-    notificationUnsubscribe =
-      null;
-
-  }
-
-
-  if(!auth.currentUser){
-
-    return;
-
-  }
-
-
-  if(!notificationsEnabled()){
-
-    updateBadge(0);
-
-    return;
-
-  }
-
-
-  notificationUnsubscribe =
-
-    db
-    .collection("notifications")
-    .where(
-      "customerId",
-      "==",
-      auth.currentUser.uid
-    )
-    .onSnapshot(
-
-      function(snapshot){
-
-        let unread = 0;
-
-
-        snapshot.forEach(
-
-          function(doc){
-
-            const data =
-              doc.data();
-
-
-            if(data.read !== true){
-
-              unread++;
-
-            }
-
-          }
-
-        );
-
-
-        updateBadge(
-          unread
-        );
-
-      },
-
-      function(error){
-
-        console.error(
-          "Notification error:",
-          error
-        );
-
-
-        updateBadge(0);
-
-      }
-
-    );
-
-}
-
-
-/* =====================================================
-   UPDATE BADGE
-===================================================== */
-
-function updateBadge(
-  count
-){
-
-  const number =
-    Math.max(
-      0,
-      Number(count) || 0
-    );
-
-
-  if(number > 0){
-
-    notificationBadge.textContent =
-
-      number > 99
-      ? "99+"
-      : number;
-
-
-    notificationBadge.classList.add(
-      "show"
-    );
-
-  }
-
-  else{
-
-    notificationBadge.classList.remove(
-      "show"
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   OPEN NOTIFICATIONS
-===================================================== */
-
-function openNotifications(){
-
-  if(!auth.currentUser){
-
-    alert(
-      "Please sign in to view your notifications."
-    );
-
-    window.location.href =
-      "login.html";
-
-    return;
-
-  }
-
-
-  window.location.href =
-    "notifications.html";
-
-}
-
-
-notificationButton.addEventListener(
-
-  "click",
-
-  openNotifications
-
-);
-
-
-heroNotificationButton.addEventListener(
-
-  "click",
-
-  openNotifications
-
-);
-
-
-/* =====================================================
-   BACK BUTTON
-===================================================== */
-
-document
-.getElementById(
-  "backButton"
-)
-.addEventListener(
-
-  "click",
-
-  function(){
-
-    window.history.back();
-
-  }
-
-);
-
-
-/* =====================================================
-   FAQ
-===================================================== */
-
-document
-.querySelectorAll(
-  ".faq-card"
-)
-.forEach(
-
-  function(card){
-
-    card.addEventListener(
-
-      "click",
-
-      function(){
-
-        card.classList.toggle(
-          "open"
-        );
-
-      }
-
-    );
-
-  }
-
-);
-
-
-/* =====================================================
-   SEARCH FAQ
-===================================================== */
-
-helpSearch.addEventListener(
-
-  "input",
-
-  function(){
-
-    const search =
-      helpSearch.value
-      .trim()
-      .toLowerCase();
-
-
-    document
-    .querySelectorAll(
-      ".faq-card"
-    )
-    .forEach(
-
-      function(card){
-
-        const text =
-
-          (
-            card.textContent +
-            " " +
-            card.dataset.search
-          )
-          .toLowerCase();
-
-
-        if(
-          !search ||
-          text.includes(search)
-        ){
-
-          card.style.display =
-            "";
-
-        }
-
-        else{
-
-          card.style.display =
-            "none";
-
-        }
-
-      }
-
-    );
-
-  }
-
-);
-
-
-/* =====================================================
-   REFRESH NOTIFICATION SETTING
-   WHEN RETURNING TO PAGE
-===================================================== */
-
-window.addEventListener(
-
-  "focus",
-
-  function(){
-
-    loadNotificationStatus();
-
-
-    if(
-      notificationsEnabled()
-    ){
-
-      listenToNotifications();
-
-    }
-
-    else{
-
-      updateBadge(0);
-
-    }
-
-  }
-
-);
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-let toastTimer =
-null;
-
-
-function showToast(
-  message
-){
-
-  toast.textContent =
-    message;
-
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    toastTimer
-  );
-
-
-  toastTimer =
-
-    setTimeout(
-
-      function(){
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-
-      2500
-
-    );
-
-}
-
-</script>
+</footer>
 
 
 </body>
 
-  </html>
+</html>
