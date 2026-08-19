@@ -1,209 +1,1940 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request Service - Danny Smart Power</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Request Electrical Service | Danny Smart Power</title>
 
-<style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-  margin: 0;
-}
+  <meta name="description"
+        content="Request professional electrical, solar, inverter, wiring and lighting services from Danny Smart Power.">
 
-/* HEADER */
-header {
-  background: #020617;
-  padding: 15px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-.logo {
-  font-weight: bold;
-  font-size: 18px;
-  color: #38bdf8;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.back {
-  color: #38bdf8;
-  text-decoration: none;
-}
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+    }
 
-/* CONTAINER */
-.container {
-  padding: 20px 8%;
-}
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
 
-/* SEARCH */
-.search-box {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #020617;
-  color: white;
-  margin-bottom: 20px;
-}
+    /* ================= HEADER ================= */
 
-/* BANNER */
-.banner {
-  height: 200px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  cursor: pointer;
-}
+    header {
+      height: 70px;
+      background: #020617;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,.15);
+    }
 
-.banner h2 {
-  position: absolute;
-  z-index: 2;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: white;
+    }
 
-.banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-}
+    .brand-icon {
+      width: 39px;
+      height: 39px;
+      border-radius: 12px;
+      background: #38bdf8;
+      color: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      font-weight: 700;
+    }
 
-/* BUTTON */
-.card-btn {
-  background: #020617;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  text-align: center;
-  transition: 0.3s;
-}
+    .brand-text {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
 
-.card-btn:hover {
-  background: #38bdf8;
-  color: black;
-}
+    .brand-text small {
+      display: block;
+      color: #94a3b8;
+      font-size: 9px;
+      font-weight: 500;
+      margin-top: 3px;
+    }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
 
-.grid img {
-  width: 100%;
-  border-radius: 10px;
-}
-</style>
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 21px;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border: 2px solid #020617;
+      border-radius: 50%;
+      display: none;
+    }
+
+    /* ================= MENU ================= */
+
+    .menu {
+      position: fixed;
+      top: 76px;
+      right: 12px;
+      width: 245px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 15px 45px rgba(15,23,42,.2);
+      padding: 9px;
+      z-index: 2000;
+      display: none;
+      border: 1px solid #e2e8f0;
+    }
+
+    .menu.active {
+      display: block;
+      animation: menuIn .18s ease;
+    }
+
+    @keyframes menuIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu a,
+    .menu button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: #0f172a;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .menu a:hover,
+    .menu button:hover {
+      background: #f1f5f9;
+    }
+
+    .menu-profile {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 5px;
+    }
+
+    .menu-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+
+    .menu-name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .menu-email {
+      font-size: 10px;
+      color: #64748b;
+      word-break: break-all;
+    }
+
+    /* ================= PAGE ================= */
+
+    .page {
+      max-width: 850px;
+      margin: auto;
+      padding: 28px 16px 60px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .intro-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: #e0f2fe;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 31px;
+      margin: 0 auto 13px;
+    }
+
+    .intro h1 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .intro p {
+      color: #64748b;
+      font-size: 13px;
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    /* ================= CARD ================= */
+
+    .form-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 8px 30px rgba(15,23,42,.06);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 22px 0 14px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .section-title span {
+      width: 29px;
+      height: 29px;
+      background: #e0f2fe;
+      color: #0284c7;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: #334155;
+    }
+
+    .required {
+      color: #ef4444;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      background: white;
+      color: #0f172a;
+      outline: none;
+      padding: 12px 13px;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56,189,248,.12);
+    }
+
+    textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    input[readonly] {
+      background: #f8fafc;
+      color: #64748b;
+    }
+
+    /* ================= UPLOAD ================= */
+
+    .upload-box {
+      border: 1.5px dashed #94a3b8;
+      border-radius: 16px;
+      padding: 22px 15px;
+      text-align: center;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .upload-box:hover {
+      border-color: #38bdf8;
+      background: #f0f9ff;
+    }
+
+    .upload-icon {
+      font-size: 29px;
+      margin-bottom: 7px;
+    }
+
+    .upload-box strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .upload-box small {
+      display: block;
+      color: #64748b;
+      margin-top: 5px;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    #mediaInput {
+      display: none;
+    }
+
+    .selected-files {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 11px;
+    }
+
+    .file-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ================= INFO ================= */
+
+    .notice {
+      display: flex;
+      gap: 10px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      color: #075985;
+      padding: 12px;
+      border-radius: 13px;
+      font-size: 11px;
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    /* ================= BUTTON ================= */
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      border-radius: 13px;
+      background: #0284c7;
+      color: white;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 22px;
+      transition: .2s;
+    }
+
+    .submit-btn:hover {
+      background: #0369a1;
+    }
+
+    .submit-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    /* ================= LOADING ================= */
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 5000;
+      padding: 20px;
+    }
+
+    .loading.active {
+      display: flex;
+    }
+
+    .loading-card {
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      width: min(340px, 100%);
+    }
+
+    .spinner {
+      width: 38px;
+      height: 38px;
+      border: 4px solid #e2e8f0;
+      border-top-color: #0284c7;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 14px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-card p {
+      font-size: 13px;
+      color: #475569;
+    }
+
+    /* ================= SUCCESS ================= */
+
+    .success {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 6000;
+    }
+
+    .success.active {
+      display: flex;
+    }
+
+    .success-card {
+      width: min(420px, 100%);
+      background: white;
+      border-radius: 22px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    .success-icon {
+      width: 66px;
+      height: 66px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 31px;
+      margin: 0 auto 15px;
+    }
+
+    .success-card h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .success-card p {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    .request-id {
+      margin: 15px 0;
+      padding: 10px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      font-size: 11px;
+      word-break: break-all;
+    }
+
+    .success-btn {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      background: #0284c7;
+      color: white;
+      padding: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ================= TOAST ================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 100px);
+      background: #0f172a;
+      color: white;
+      padding: 12px 17px;
+      border-radius: 12px;
+      font-size: 12px;
+      z-index: 7000;
+      opacity: 0;
+      transition: .3s;
+      max-width: calc(100% - 30px);
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .toast.error {
+      background: #b91c1c;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 650px) {
+      header {
+        height: 64px;
+      }
+
+      .brand-text {
+        font-size: 14px;
+      }
+
+      .brand-text small {
+        font-size: 8px;
+      }
+
+      .page {
+        padding: 22px 12px 45px;
+      }
+
+      .intro h1 {
+        font-size: 22px;
+      }
+
+      .form-card {
+        padding: 17px;
+        border-radius: 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .menu {
+        top: 70px;
+        right: 8px;
+        width: calc(100% - 16px);
+        max-width: 300px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">Danny Smart Power ⚡</div>
-  <a href="home.html" class="back">← Back</a>
-</header>
+  <!-- ================= HEADER ================= -->
 
-<div class="container">
+  <header>
 
-  <!-- SEARCH -->
-  <input type="text" id="search" class="search-box" placeholder="Search service..." onkeyup="searchService()">
+    <a href="home.html" class="brand">
+      <div class="brand-icon">⚡</div>
 
-  <!-- BANNER -->
-  <div class="banner" id="banner" onclick="openBanner()">
-    <h2 id="banner-text"></h2>
+      <div class="brand-text">
+        Danny Smart Power
+        <small>POWERING YOUR NEEDS</small>
+      </div>
+    </a>
+
+    <div class="header-actions">
+
+      <!-- Notification -->
+      <button class="icon-btn"
+              id="notificationBtn"
+              title="Notifications"
+              aria-label="Notifications">
+        🔔
+        <span class="notification-dot" id="notificationDot"></span>
+      </button>
+
+      <!-- Three dot menu -->
+      <button class="icon-btn"
+              id="menuBtn"
+              title="Menu"
+              aria-label="Open menu">
+        ⋮
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================= THREE DOT MENU ================= -->
+
+  <div class="menu" id="menu">
+
+    <div class="menu-profile">
+
+      <img
+        id="menuAvatar"
+        class="menu-avatar"
+        src="https://via.placeholder.com/80"
+        alt="Profile">
+
+      <div>
+        <div class="menu-name" id="menuName">Customer</div>
+        <div class="menu-email" id="menuEmail">Loading...</div>
+      </div>
+
+    </div>
+
+    <a href="home.html">
+      🏠
+      <span>Home</span>
+    </a>
+
+    <a href="shop.html">
+      🛒
+      <span>Shop</span>
+    </a>
+
+    <a href="request-service.html">
+      ⚡
+      <span>Request Electrical Service</span>
+    </a>
+
+    <a href="profile.html">
+      👤
+      <span>My Profile</span>
+    </a>
+
+    <a href="orders.html">
+      📦
+      <span>My Orders</span>
+    </a>
+
+    <a href="service-requests.html">
+      🔧
+      <span>My Service Requests</span>
+    </a>
+
+    <a href="chat.html">
+      💬
+      <span>Chat with Danny</span>
+    </a>
+
+    <button id="signOutBtn">
+      🚪
+      <span>Sign Out</span>
+    </button>
+
   </div>
 
-  <!-- CHAT SUPPORT -->
-  <div class="card-btn" onclick="contactSupport()">
-     💬 Chat with Support  
+
+  <!-- ================= PAGE ================= -->
+
+  <main class="page">
+
+    <div class="intro">
+
+      <div class="intro-icon">
+        ⚡
+      </div>
+
+      <h1>Request Electrical Service</h1>
+
+      <p>
+        Tell us what electrical work you need. Our team will review
+        your request and get back to you.
+      </p>
+
+    </div>
+
+
+    <form class="form-card" id="serviceForm">
+
+      <!-- CUSTOMER INFORMATION -->
+
+      <div class="section-title">
+        <span>👤</span>
+        Customer Information
+      </div>
+
+      <div class="grid">
+
+        <div class="field">
+          <label>
+            Name <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="customerName"
+            readonly
+            placeholder="Your name">
+        </div>
+
+        <div class="field">
+          <label>
+            Phone Number <span class="required">*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="08012345678"
+            required>
+        </div>
+
+      </div>
+
+
+      <!-- SERVICE INFORMATION -->
+
+      <div class="section-title">
+        <span>⚡</span>
+        Service Information
+      </div>
+
+      <div class="grid">
+
+        <div class="field full">
+
+          <label>
+            What service do you need?
+            <span class="required">*</span>
+          </label>
+
+          <select id="serviceType" required>
+
+            <option value="">
+              Select electrical service
+            </option>
+
+            <option value="Solar Installation">
+              ☀️ Solar Installation
+            </option>
+
+            <option value="Inverter Installation">
+              🔋 Inverter Installation
+            </option>
+
+            <option value="House Wiring">
+              🏠 House Wiring
+            </option>
+
+            <option value="Lighting">
+              💡 Lighting Installation
+            </option>
+
+            <option value="Electrical Repair">
+              🔧 Electrical Repair
+            </option>
+
+            <option value="Fault Diagnosis">
+              🔍 Fault Diagnosis
+            </option>
+
+            <option value="Maintenance">
+              🛠️ Electrical Maintenance
+            </option>
+
+            <option value="Other">
+              ⚡ Other Electrical Service
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Describe what you need
+            <span class="required">*</span>
+          </label>
+
+          <textarea
+            id="description"
+            placeholder="Example: My house has a power problem in the living room and two sockets are no longer working..."
+            required></textarea>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOCATION -->
+
+      <div class="section-title">
+        <span>📍</span>
+        Work Location
+      </div>
+
+      <div class="grid">
+
+        <div class="field full">
+
+          <label>
+            Address
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="address"
+            placeholder="Enter the address where the work is needed"
+            required>
+
+        </div>
+
+        <div class="field full">
+
+          <label>
+            Specific Location
+          </label>
+
+          <input
+            type="text"
+            id="location"
+            placeholder="Optional: Estate, landmark, area, house number, etc.">
+
+        </div>
+
+      </div>
+
+
+      <!-- MEDIA -->
+
+      <div class="section-title">
+        <span>📷</span>
+        Add Photos or Video
+      </div>
+
+      <div
+        class="upload-box"
+        id="uploadBox">
+
+        <div class="upload-icon">
+          📷
+        </div>
+
+        <strong>
+          Add photos or a short video
+        </strong>
+
+        <small>
+          Showing us the problem can help us understand what you need
+          before we contact you.
+        </small>
+
+        <small>
+          You can select multiple files.
+        </small>
+
+      </div>
+
+      <input
+        type="file"
+        id="mediaInput"
+        accept="image/*,video/*"
+        multiple>
+
+      <div
+        class="selected-files"
+        id="selectedFiles">
+      </div>
+
+
+      <!-- DATE & TIME -->
+
+      <div class="section-title">
+        <span>📅</span>
+        Preferred Schedule
+      </div>
+
+      <div class="grid">
+
+        <div class="field">
+
+          <label>
+            Preferred Date
+          </label>
+
+          <input
+            type="date"
+            id="preferredDate">
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Preferred Time
+          </label>
+
+          <input
+            type="time"
+            id="preferredTime">
+
+        </div>
+
+      </div>
+
+
+      <!-- NOTICE -->
+
+      <div class="notice">
+
+        <div>ℹ️</div>
+
+        <div>
+          Your request does not automatically mean the appointment
+          has been confirmed. Danny Smart Power will review the
+          request and contact you about the next step.
+        </div>
+
+      </div>
+
+
+      <!-- SUBMIT -->
+
+      <button
+        type="submit"
+        class="submit-btn"
+        id="submitBtn">
+
+        Send Service Request ⚡
+
+      </button>
+
+    </form>
+
+  </main>
+
+
+  <!-- ================= LOADING ================= -->
+
+  <div class="loading" id="loading">
+
+    <div class="loading-card">
+
+      <div class="spinner"></div>
+
+      <p id="loadingText">
+        Sending your service request...
+      </p>
+
+    </div>
+
   </div>
 
-  <!-- PROJECTS -->
-  <div class="card-btn" onclick="showProjects()">
-    🛠 Our Completed Projects
+
+  <!-- ================= SUCCESS ================= -->
+
+  <div class="success" id="success">
+
+    <div class="success-card">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>Request Sent Successfully</h2>
+
+      <p>
+        Your electrical service request has been received.
+        Danny Smart Power can now review your request.
+      </p>
+
+      <div class="request-id">
+
+        Request ID:
+        <strong id="requestId">
+          -
+        </strong>
+
+      </div>
+
+      <button
+        class="success-btn"
+        id="successBtn">
+
+        Done
+
+      </button>
+
+    </div>
+
   </div>
 
-  <!-- PROJECT IMAGES -->
-  <div id="projects" class="grid" style="display:none;">
-    <img src="https://i.postimg.cc/pXkzCM9g/1664297728469.jpg">
-    <img src="https://i.postimg.cc/QxhhsH83/1665223017400.jpg">
+
+  <!-- ================= TOAST ================= -->
+
+  <div
+    class="toast"
+    id="toast">
   </div>
 
-</div>
 
-<script>
+  <!-- ================= FIREBASE ================= -->
 
-/* SEARCH */
-function searchService(){
-  let input = document.getElementById("search").value.toLowerCase();
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 
-  let cards = document.querySelectorAll(".card-btn");
 
-  cards.forEach(card=>{
-    card.style.display = card.innerText.toLowerCase().includes(input) ? "block" : "none";
-  });
-}
+  <script>
 
-/* 💬 CONTACT SUPPORT (UPDATED TO CHAT SYSTEM) */
-function contactSupport(){
+    /* ============================================
+       FIREBASE CONFIG
+    ============================================ */
 
-  // Save first message for chat page
-  localStorage.setItem("chatMessage", "Hello, I need electrical service support.");
+    const firebaseConfig = {
+      apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+      authDomain: "danny-smart-power.firebaseapp.com",
+      databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+      projectId: "danny-smart-power",
+      storageBucket: "danny-smart-power.firebasestorage.app",
+      messagingSenderId: "649735645158",
+      appId: "1:649735645158:web:cff518b89721a163679827",
+      measurementId: "G-258YKLP5ZS"
+    };
 
-  // Go to chat page
-  window.location.href = "chat.html";
-}
 
-/* SHOW PROJECTS */
-function showProjects(){
-  let box = document.getElementById("projects");
-  box.style.display = box.style.display === "none" ? "grid" : "none";
-}
+    firebase.initializeApp(firebaseConfig);
 
-/* BANNER */
-let banners = [
-  {
-    img: "https://i.postimg.cc/pXkzCM9g/1664297728469.jpg",
-    text: "Lighting Installation ⚡"
-  },
-  {
-    img: "https://i.postimg.cc/QxhhsH83/1665223017400.jpg",
-    text: "Electrical Repair 🔧"
-  }
-];
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-let index = 0;
 
-function loadBanner(){
-  let banner = document.getElementById("banner");
-  let text = document.getElementById("banner-text");
+    /* ============================================
+       ELEMENTS
+    ============================================ */
 
-  banner.style.background = `url('${banners[index].img}') center/cover`;
-  text.innerText = banners[index].text;
+    const serviceForm = document.getElementById("serviceForm");
 
-  index++;
-  if(index >= banners.length) index = 0;
-}
+    const customerNameInput =
+      document.getElementById("customerName");
 
-setInterval(loadBanner, 4000);
-loadBanner();
+    const phoneInput =
+      document.getElementById("phone");
 
-/* CLICK BANNER */
-function openBanner(){
-  window.open(banners[index - 1].img, "_blank");
-}
+    const serviceTypeInput =
+      document.getElementById("serviceType");
 
-</script>
+    const descriptionInput =
+      document.getElementById("description");
+
+    const addressInput =
+      document.getElementById("address");
+
+    const locationInput =
+      document.getElementById("location");
+
+    const preferredDateInput =
+      document.getElementById("preferredDate");
+
+    const preferredTimeInput =
+      document.getElementById("preferredTime");
+
+    const mediaInput =
+      document.getElementById("mediaInput");
+
+    const uploadBox =
+      document.getElementById("uploadBox");
+
+    const selectedFiles =
+      document.getElementById("selectedFiles");
+
+    const submitBtn =
+      document.getElementById("submitBtn");
+
+    const loading =
+      document.getElementById("loading");
+
+    const loadingText =
+      document.getElementById("loadingText");
+
+    const success =
+      document.getElementById("success");
+
+    const requestId =
+      document.getElementById("requestId");
+
+    const successBtn =
+      document.getElementById("successBtn");
+
+    const toast =
+      document.getElementById("toast");
+
+
+    /* ============================================
+       MENU
+    ============================================ */
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const menu =
+      document.getElementById("menu");
+
+    menuBtn.addEventListener("click", function(e) {
+
+      e.stopPropagation();
+
+      menu.classList.toggle("active");
+
+    });
+
+
+    document.addEventListener("click", function(e) {
+
+      if (
+        !menu.contains(e.target) &&
+        e.target !== menuBtn
+      ) {
+        menu.classList.remove("active");
+      }
+
+    });
+
+
+    /* ============================================
+       TOAST
+    ============================================ */
+
+    function showToast(message, error = false) {
+
+      toast.textContent = message;
+
+      toast.classList.toggle("error", error);
+
+      toast.classList.add("show");
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 3500);
+
+    }
+
+
+    /* ============================================
+       AUTHENTICATION
+    ============================================ */
+
+    let currentUser = null;
+    let currentProfile = null;
+
+    auth.onAuthStateChanged(async user => {
+
+      if (!user) {
+
+        /*
+          Customer must be logged in before
+          requesting an electrical service.
+        */
+
+        window.location.href = "login.html";
+
+        return;
+      }
+
+      currentUser = user;
+
+      customerNameInput.value =
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "Customer";
+
+      document.getElementById("menuName").textContent =
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "Customer";
+
+      document.getElementById("menuEmail").textContent =
+        user.email || "";
+
+      if (user.photoURL) {
+
+        document.getElementById("menuAvatar").src =
+          user.photoURL;
+
+      }
+
+
+      /* Try to read DSP profile */
+
+      try {
+
+        const profileSnap =
+          await db
+            .collection("profiles")
+            .doc(user.uid)
+            .get();
+
+        if (profileSnap.exists) {
+
+          currentProfile =
+            profileSnap.data();
+
+          const profile =
+            currentProfile;
+
+          if (profile.name) {
+
+            customerNameInput.value =
+              profile.name;
+
+            document.getElementById("menuName")
+              .textContent = profile.name;
+
+          }
+
+          if (profile.phone) {
+
+            phoneInput.value =
+              profile.phone;
+
+          }
+
+          if (profile.photoURL) {
+
+            document.getElementById("menuAvatar").src =
+              profile.photoURL;
+
+          }
+
+          /*
+            Some profile systems use "photo"
+            instead of "photoURL".
+          */
+
+          if (profile.photo && !profile.photoURL) {
+
+            document.getElementById("menuAvatar").src =
+              profile.photo;
+
+          }
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Could not load profile:",
+          error
+        );
+
+      }
+
+    });
+
+
+    /* ============================================
+       FILE UPLOAD UI
+    ============================================ */
+
+    uploadBox.addEventListener("click", () => {
+
+      mediaInput.click();
+
+    });
+
+
+    let selectedMedia = [];
+
+
+    mediaInput.addEventListener("change", function() {
+
+      const files = Array.from(this.files);
+
+      selectedMedia = files;
+
+      selectedFiles.innerHTML = "";
+
+      if (!files.length) return;
+
+
+      files.forEach(file => {
+
+        const item =
+          document.createElement("div");
+
+        item.className = "file-item";
+
+        const sizeMB =
+          (file.size / (1024 * 1024)).toFixed(2);
+
+        item.innerHTML = `
+          <span class="file-name">
+            ${escapeHtml(file.name)}
+          </span>
+
+          <small>
+            ${sizeMB} MB
+          </small>
+        `;
+
+        selectedFiles.appendChild(item);
+
+      });
+
+    });
+
+
+    /* ============================================
+       ESCAPE HTML
+    ============================================ */
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* ============================================
+       VALIDATE FILES
+    ============================================ */
+
+    function validateFiles(files) {
+
+      /*
+        Keep the first version safe and manageable.
+      */
+
+      if (files.length > 8) {
+
+        return "You can upload a maximum of 8 files.";
+
+      }
+
+
+      const maxImageSize =
+        10 * 1024 * 1024;
+
+      const maxVideoSize =
+        50 * 1024 * 1024;
+
+
+      for (const file of files) {
+
+        if (
+          !file.type.startsWith("image/") &&
+          !file.type.startsWith("video/")
+        ) {
+
+          return `${file.name} is not a supported image or video.`;
+
+        }
+
+
+        if (
+          file.type.startsWith("image/") &&
+          file.size > maxImageSize
+        ) {
+
+          return `${file.name} is larger than 10MB.`;
+
+        }
+
+
+        if (
+          file.type.startsWith("video/") &&
+          file.size > maxVideoSize
+        ) {
+
+          return `${file.name} is larger than 50MB.`;
+
+        }
+
+      }
+
+
+      return null;
+
+    }
+
+
+    /* ============================================
+       UPLOAD MEDIA
+    ============================================ */
+
+    async function uploadMedia(
+      user,
+      files,
+      serviceRequestId
+    ) {
+
+      const mediaUrls = [];
+
+
+      for (let i = 0; i < files.length; i++) {
+
+        const file = files[i];
+
+        loadingText.textContent =
+          `Uploading file ${i + 1} of ${files.length}...`;
+
+
+        const safeName =
+          file.name
+            .replace(/[^a-zA-Z0-9._-]/g, "_");
+
+
+        const path =
+          `serviceRequests/${user.uid}/${serviceRequestId}/${Date.now()}_${safeName}`;
+
+
+        const storageRef =
+          storage.ref().child(path);
+
+
+        const snapshot =
+          await storageRef.put(file);
+
+
+        const downloadURL =
+          await snapshot.ref.getDownloadURL();
+
+
+        mediaUrls.push(downloadURL);
+
+      }
+
+
+      return mediaUrls;
+
+    }
+
+
+    /* ============================================
+       SUBMIT SERVICE REQUEST
+    ============================================ */
+
+    serviceForm.addEventListener(
+      "submit",
+      async function(e) {
+
+        e.preventDefault();
+
+
+        if (!currentUser) {
+
+          showToast(
+            "Please sign in before requesting a service.",
+            true
+          );
+
+          return;
+
+        }
+
+
+        const files =
+          selectedMedia;
+
+
+        const fileError =
+          validateFiles(files);
+
+
+        if (fileError) {
+
+          showToast(
+            fileError,
+            true
+          );
+
+          return;
+
+        }
+
+
+        const phone =
+          phoneInput.value.trim();
+
+        const serviceType =
+          serviceTypeInput.value.trim();
+
+        const description =
+          descriptionInput.value.trim();
+
+        const address =
+          addressInput.value.trim();
+
+        const location =
+          locationInput.value.trim();
+
+        const preferredDate =
+          preferredDateInput.value;
+
+        const preferredTime =
+          preferredTimeInput.value;
+
+
+        if (!phone) {
+
+          showToast(
+            "Please enter your phone number.",
+            true
+          );
+
+          phoneInput.focus();
+
+          return;
+
+        }
+
+
+        if (!serviceType) {
+
+          showToast(
+            "Please select the service you need.",
+            true
+          );
+
+          return;
+
+        }
+
+
+        if (!description) {
+
+          showToast(
+            "Please describe the work you need.",
+            true
+          );
+
+          return;
+
+        }
+
+
+        if (!address) {
+
+          showToast(
+            "Please enter the work address.",
+            true
+          );
+
+          return;
+
+        }
+
+
+        submitBtn.disabled = true;
+
+        loading.classList.add("active");
+
+        loadingText.textContent =
+          "Creating your service request...";
+
+
+        try {
+
+          /*
+            Create the Firestore document first.
+            This gives us the request ID which
+            becomes the Storage folder.
+          */
+
+          const requestRef =
+            db.collection("serviceRequests").doc();
+
+
+          const requestData = {
+
+            customerId:
+              currentUser.uid,
+
+            customerName:
+              customerNameInput.value.trim(),
+
+            customerPhoto:
+              currentUser.photoURL ||
+              currentProfile?.photoURL ||
+              currentProfile?.photo ||
+              "",
+
+            phone:
+
+              phone,
+
+            serviceType:
+
+              serviceType,
+
+            description:
+
+              description,
+
+            address:
+
+              address,
+
+            location:
+
+              location,
+
+            mediaUrls:
+
+              [],
+
+            preferredDate:
+
+              preferredDate,
+
+            preferredTime:
+
+              preferredTime,
+
+            status:
+
+              "pending",
+
+            createdAt:
+
+              firebase.firestore.FieldValue.serverTimestamp(),
+
+            updatedAt:
+
+              firebase.firestore.FieldValue.serverTimestamp()
+
+          };
+
+
+          await requestRef.set(requestData);
+
+
+          /*
+            Upload photos/videos after the
+            request document exists.
+          */
+
+          let mediaUrls = [];
+
+
+          if (files.length) {
+
+            mediaUrls =
+              await uploadMedia(
+                currentUser,
+                files,
+                requestRef.id
+              );
+
+          }
+
+
+          /*
+            Save uploaded URLs back into
+            the same request.
+          */
+
+          await requestRef.update({
+
+            mediaUrls:
+
+              mediaUrls,
+
+            updatedAt:
+
+              firebase.firestore.FieldValue.serverTimestamp()
+
+          });
+
+
+          /* ============================
+             SUCCESS
+          ============================ */
+
+          loading.classList.remove("active");
+
+          requestId.textContent =
+            requestRef.id;
+
+          success.classList.add("active");
+
+
+          /*
+            Reset form after successful
+            submission.
+          */
+
+          serviceForm.reset();
+
+          selectedMedia = [];
+
+          selectedFiles.innerHTML = "";
+
+          customerNameInput.value =
+            currentUser.displayName ||
+            currentProfile?.name ||
+            currentUser.email?.split("@")[0] ||
+            "Customer";
+
+
+        } catch (error) {
+
+          console.error(
+            "Service request error:",
+            error
+          );
+
+          loading.classList.remove("active");
+
+          showToast(
+            getFirebaseErrorMessage(error),
+            true
+          );
+
+        } finally {
+
+          submitBtn.disabled = false;
+
+        }
+
+      }
+    );
+
+
+    /* ============================================
+       FIREBASE ERROR MESSAGE
+    ============================================ */
+
+    function getFirebaseErrorMessage(error) {
+
+      if (
+        error.code ===
+        "permission-denied"
+      ) {
+
+        return "Permission denied. Please check your Firebase security rules.";
+
+      }
+
+      if (
+        error.code ===
+        "storage/unauthorized"
+      ) {
+
+        return "You are not allowed to upload this file.";
+
+      }
+
+      if (
+        error.code ===
+        "storage/quota-exceeded"
+      ) {
+
+        return "Storage limit reached. Please try again later.";
+
+      }
+
+      if (
+        error.code ===
+        "storage/canceled"
+      ) {
+
+        return "Upload was cancelled.";
+
+      }
+
+      return (
+        error.message ||
+        "Something went wrong. Please try again."
+      );
+
+    }
+
+
+    /* ============================================
+       SUCCESS BUTTON
+    ============================================ */
+
+    successBtn.addEventListener("click", function() {
+
+      success.classList.remove("active");
+
+      /*
+        For now return to home.
+        Later we can make this open the customer's
+        service request tracking page.
+      */
+
+      window.location.href =
+        "home.html";
+
+    });
+
+
+    /* ============================================
+       SIGN OUT
+    ============================================ */
+
+    document
+      .getElementById("signOutBtn")
+      .addEventListener("click", async () => {
+
+        try {
+
+          await auth.signOut();
+
+          window.location.href =
+            "login.html";
+
+        } catch (error) {
+
+          showToast(
+            "Could not sign out.",
+            true
+          );
+
+        }
+
+      });
+
+
+    /* ============================================
+       NOTIFICATION
+    ============================================ */
+
+    document
+      .getElementById("notificationBtn")
+      .addEventListener("click", function() {
+
+        /*
+          Notification page/system can be connected
+          to the existing DSP notification system.
+        */
+
+        window.location.href =
+          "notifications.html";
+
+      });
+
+
+    /* ============================================
+       PREVENT PAST DATES
+    ============================================ */
+
+    const today =
+      new Date().toISOString().split("T")[0];
+
+    preferredDateInput.min =
+      today;
+
+  </script>
 
 </body>
 </html>
