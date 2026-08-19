@@ -148,88 +148,201 @@
       right: 7px;
     }
 
-    /* ================= MENU ================= */
+  /* ================= DARK MENU ================= */
 
-    .menu {
-      position: fixed;
-      top: 76px;
-      right: 12px;
-      width: 255px;
-      background: #fff;
-      color: #0f172a;
-      border-radius: 18px;
-      padding: 9px;
-      z-index: 3000;
-      display: none;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 20px 55px rgba(0,0,0,.35);
-    }
+.menu {
+  position: fixed;
+  top: 76px;
+  right: 12px;
+  width: 275px;
 
-    .menu.active {
-      display: block;
-      animation: menuIn .18s ease;
-    }
+  background:
+    linear-gradient(
+      145deg,
+      #0b1729,
+      #07111f
+    );
 
-    @keyframes menuIn {
-      from {
-        opacity: 0;
-        transform: translateY(-8px);
-      }
+  color: #f8fafc;
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  border-radius: 20px;
 
-    .menu-profile {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 11px;
-      border-bottom: 1px solid #e2e8f0;
-      margin-bottom: 5px;
-    }
+  padding: 10px;
 
-    .menu-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #e2e8f0;
-    }
+  z-index: 3000;
 
-    .menu-name {
-      font-size: 13px;
-      font-weight: 700;
-    }
+  display: none;
 
-    .menu-email {
-      color: #64748b;
-      font-size: 9px;
-      word-break: break-all;
-    }
+  border:
+    1px solid
+    rgba(56,189,248,.18);
 
-    .menu a,
-    .menu button {
-      width: 100%;
-      border: none;
-      background: transparent;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border-radius: 11px;
-      font-size: 12px;
-      text-align: left;
-    }
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.55);
 
-    .menu a:hover,
-    .menu button:hover {
-      background: #f1f5f9;
-    }
+  backdrop-filter:
+    blur(18px);
 
+  -webkit-backdrop-filter:
+    blur(18px);
+}
+
+.menu.active {
+  display: block;
+  animation: menuIn .18s ease;
+}
+
+@keyframes menuIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* PROFILE */
+
+.menu-profile {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 12px;
+
+  border-bottom:
+    1px solid
+    rgba(148,163,184,.12);
+
+  margin-bottom: 6px;
+
+}
+
+.menu-avatar {
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  background: #020617;
+
+  border:
+    2px solid
+    rgba(56,189,248,.35);
+
+}
+
+.menu-name {
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: #f8fafc;
+
+}
+
+.menu-email {
+
+  color: #94a3b8;
+
+  font-size: 9px;
+
+  word-break: break-all;
+
+  margin-top: 2px;
+
+}
+
+
+/* MENU LINKS */
+
+.menu a,
+.menu button {
+
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  color: #dbeafe;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+
+  text-align: left;
+
+  transition:
+    background .2s,
+    color .2s,
+    transform .2s;
+
+}
+
+
+/* HOVER */
+
+.menu a:hover,
+.menu button:hover {
+
+  background:
+    rgba(56,189,248,.09);
+
+  color: #38bdf8;
+
+  transform:
+    translateX(2px);
+
+}
+
+
+/* SIGN OUT */
+
+.menu button:last-child {
+
+  margin-top: 5px;
+
+  border-top:
+    1px solid
+    rgba(148,163,184,.10);
+
+  border-radius: 12px;
+
+  color: #fca5a5;
+
+}
+
+.menu button:last-child:hover {
+
+  background:
+    rgba(239,68,68,.10);
+
+  color: #f87171;
+
+}
     /* ================= PAGE ================= */
 
     .page {
