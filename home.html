@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#020617">
+
+<meta name="description"
+content="Danny Smart Power provides smart electrical solutions, solar installation, electrical products, professional services and modern power systems.">
 
 <title>Home | Danny Smart Power</title>
 
-<meta name="description"
-content="Danny Smart Power — electrical products, solar solutions, professional electrical services and completed electrical projects.">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
   margin:0;
@@ -21,135 +39,280 @@ content="Danny Smart Power — electrical products, solar solutions, professiona
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+:root{
+
+  --bg:#020617;
+  --bg2:#061426;
+
+  --card:rgba(15,23,42,.72);
+  --card2:#0f1f33;
+
+  --blue:#38bdf8;
+  --blue2:#0284c7;
+  --cyan:#06b6d4;
+
+  --green:#22c55e;
+
+  --white:#f8fafc;
+  --muted:#94a3b8;
+
+  --border:rgba(148,163,184,.15);
+
 }
+
+
+/* =====================================================
+   BODY
+===================================================== */
 
 body{
-  font-family:"Poppins",sans-serif;
-  background:#020617;
-  color:#fff;
+
   min-height:100vh;
+
+  font-family:
+    'Poppins',
+    sans-serif;
+
+  color:var(--white);
+
+  background:
+
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(14,165,233,.18),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 90% 35%,
+      rgba(6,182,212,.12),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      145deg,
+      #020617,
+      #061426 45%,
+      #031b2d
+    );
+
   overflow-x:hidden;
+
 }
 
-button,
-a{
-  font-family:inherit;
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:420px;
+  height:420px;
+
+  top:20%;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(14,165,233,.12),
+      transparent 68%
+    );
+
+  pointer-events:none;
+
+  z-index:-1;
+
 }
 
-button{
-  cursor:pointer;
-}
 
-/* =========================
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 header{
+
+  width:100%;
+
   height:78px;
-  background:#020617;
-  border-bottom:1px solid rgba(56,189,248,.12);
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 22px;
 
   position:sticky;
+
   top:0;
+
   z-index:1000;
 
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-
-.brand{
   display:flex;
+
   align-items:center;
-  gap:12px;
-  text-decoration:none;
-  color:white;
+
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  background:
+    rgba(2,6,23,.86);
+
+  border-bottom:
+    1px solid var(--border);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
 }
 
-.brand-icon{
-  width:50px;
-  height:50px;
 
-  border-radius:16px;
+/* =====================================================
+   LOGO
+===================================================== */
 
-  background:linear-gradient(
-    145deg,
-    #38bdf8,
-    #0284c7
-  );
+.logo{
 
   display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+  text-decoration:none;
+
+  color:white;
+
+}
+
+
+.logo-icon{
+
+  width:43px;
+  height:43px;
+
+  display:flex;
+
   align-items:center;
   justify-content:center;
 
-  font-size:27px;
+  border-radius:13px;
 
-  box-shadow:
-    0 8px 25px rgba(14,165,233,.20);
-}
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
 
-.brand-text{
-  font-size:18px;
-  font-weight:800;
-  letter-spacing:-.4px;
-}
-
-.brand-text span{
-  color:#38bdf8;
-}
-
-.brand-text small{
-  display:block;
-  margin-top:2px;
-
-  color:#64748b;
-
-  font-size:9px;
-  font-weight:500;
-  letter-spacing:.6px;
-}
-
-/* HEADER ACTIONS */
-
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.header-btn{
-  width:44px;
-  height:44px;
-
-  border:none;
-  border-radius:50%;
-
-  background:transparent;
-  color:#e2e8f0;
+  color:#00111c;
 
   font-size:22px;
 
+  font-weight:800;
+
+  box-shadow:
+    0 8px 25px
+    rgba(14,165,233,.25);
+
+}
+
+
+.logo-text{
+
+  font-size:18px;
+
+  font-weight:800;
+
+  letter-spacing:-.4px;
+
+}
+
+
+.logo-text span{
+
+  color:var(--blue);
+
+}
+
+
+/* =====================================================
+   HEADER ACTIONS
+===================================================== */
+
+.header-actions{
+
   display:flex;
+
+  align-items:center;
+
+  gap:5px;
+
+}
+
+
+/* =====================================================
+   HEADER ICON BUTTON
+===================================================== */
+
+.header-icon{
+
+  width:43px;
+  height:43px;
+
+  border:none;
+
+  border-radius:50%;
+
+  display:flex;
+
   align-items:center;
   justify-content:center;
 
   position:relative;
 
-  transition:.2s;
+  cursor:pointer;
+
+  color:#dbeafe;
+
+  background:
+    rgba(56,189,248,.06);
+
+  border:
+    1px solid
+    rgba(56,189,248,.12);
+
+  font-size:20px;
+
+  transition:.25s;
+
 }
 
-.header-btn:hover{
-  background:rgba(255,255,255,.08);
+
+.header-icon:hover{
+
+  background:
+    rgba(56,189,248,.14);
+
+  border-color:
+    rgba(56,189,248,.30);
+
+  transform:translateY(-1px);
+
 }
+
+
+/* =====================================================
+   NOTIFICATION DOT
+===================================================== */
 
 .notification-dot{
+
   position:absolute;
 
   top:7px;
@@ -158,49 +321,67 @@ header{
   width:8px;
   height:8px;
 
+  border-radius:50%;
+
   background:#ef4444;
 
   border:2px solid #020617;
 
-  border-radius:50%;
-
   display:none;
+
 }
 
-/* =========================
+
+/* =====================================================
    THREE DOT MENU
-========================= */
+===================================================== */
 
 .menu{
+
   position:fixed;
 
-  top:88px;
-  right:15px;
+  top:72px;
+  right:14px;
 
-  width:270px;
-
-  background:#0f172a;
-
-  border:1px solid rgba(148,163,184,.16);
-
-  border-radius:20px;
+  width:245px;
 
   padding:9px;
 
+  border-radius:18px;
+
+  background:
+    rgba(8,20,35,.98);
+
+  border:
+    1px solid
+    rgba(148,163,184,.16);
+
   box-shadow:
-    0 25px 70px rgba(0,0,0,.5);
+    0 20px 60px
+    rgba(0,0,0,.45);
+
+  backdrop-filter:
+    blur(20px);
+
+  z-index:3000;
 
   display:none;
 
-  z-index:3000;
 }
+
 
 .menu.active{
+
   display:block;
-  animation:menuIn .18s ease;
+
+  animation:
+    menuIn .2s ease;
+
 }
 
+
 @keyframes menuIn{
+
   from{
     opacity:0;
     transform:translateY(-8px);
@@ -210,616 +391,1045 @@ header{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
-.menu-profile{
-  display:flex;
-  align-items:center;
 
-  gap:12px;
-
-  padding:12px;
-
-  border-bottom:1px solid rgba(148,163,184,.12);
-
-  margin-bottom:6px;
-}
-
-.menu-avatar{
-  width:44px;
-  height:44px;
-
-  border-radius:50%;
-
-  object-fit:cover;
-
-  background:#1e293b;
-}
-
-.menu-name{
-  font-size:13px;
-  font-weight:700;
-}
-
-.menu-email{
-  font-size:10px;
-  color:#64748b;
-
-  word-break:break-all;
-}
+/* =====================================================
+   MENU LINKS
+===================================================== */
 
 .menu a,
 .menu button{
+
   width:100%;
 
-  border:none;
-
-  background:transparent;
-
-  color:#e2e8f0;
-
-  text-decoration:none;
-
   display:flex;
+
   align-items:center;
 
-  gap:12px;
+  gap:11px;
 
   padding:12px;
 
-  border-radius:12px;
+  border:none;
+
+  border-radius:11px;
+
+  background:transparent;
+
+  color:#dbeafe;
+
+  text-decoration:none;
+
+  font-family:inherit;
 
   font-size:12px;
 
   text-align:left;
 
+  cursor:pointer;
+
   transition:.2s;
+
 }
+
 
 .menu a:hover,
 .menu button:hover{
-  background:#172033;
+
+  background:
+    rgba(56,189,248,.09);
+
+  color:white;
+
 }
+
 
 .menu-divider{
+
   height:1px;
 
-  background:rgba(148,163,184,.10);
+  background:
+    rgba(148,163,184,.12);
 
-  margin:6px 0;
+  margin:7px 3px;
+
 }
 
-/* =========================
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+
+  width:100%;
+
+}
+
+
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
-  position:relative;
 
-  min-height:590px;
-
-  padding:
-    70px
-    20px
-    65px;
+  min-height:
+    calc(100vh - 78px);
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   text-align:center;
 
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(14,165,233,.14),
-      transparent 38%
-    ),
-    linear-gradient(
-      135deg,
-      #07111f,
-      #031a2a,
-      #061525
-    );
-}
-
-.hero::before{
-  content:"";
-
-  position:absolute;
-
-  width:400px;
-  height:400px;
-
-  border-radius:50%;
-
-  background:rgba(14,165,233,.08);
-
-  filter:blur(80px);
-
-  top:-160px;
-  right:-100px;
-}
-
-.hero::after{
-  content:"";
-
-  position:absolute;
-
-  width:300px;
-  height:300px;
-
-  border-radius:50%;
-
-  background:rgba(56,189,248,.06);
-
-  filter:blur(70px);
-
-  bottom:-120px;
-  left:-80px;
-}
-
-.hero-content{
-  max-width:850px;
+  padding:
+    60px 18px
+    80px;
 
   position:relative;
 
-  z-index:2;
 }
 
-.hero h1{
-  font-size:clamp(43px,9vw,78px);
 
-  line-height:.98;
+/* =====================================================
+   HERO CONTENT
+===================================================== */
 
-  font-weight:800;
+.hero-content{
 
-  letter-spacing:-3px;
+  width:100%;
 
-  margin-bottom:24px;
-}
-
-.hero h1 .white{
-  color:#fff;
-}
-
-.hero h1 .blue{
-  color:#38bdf8;
-}
-
-.hero-text{
-  max-width:700px;
+  max-width:850px;
 
   margin:auto;
 
-  color:#cbd5e1;
+  animation:
+    fadeUp .7s ease both;
 
-  font-size:15px;
-
-  line-height:1.9;
 }
 
-.hero-features{
-  margin-top:32px;
+
+/* =====================================================
+   POWER BADGE
+===================================================== */
+
+.power-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:8px 14px;
+
+  margin-bottom:22px;
+
+  border-radius:999px;
+
+  color:#bae6fd;
+
+  background:
+    rgba(56,189,248,.07);
+
+  border:
+    1px solid
+    rgba(56,189,248,.20);
+
+  font-size:10px;
+
+  font-weight:600;
+
+  letter-spacing:.3px;
+
+}
+
+
+.power-dot{
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 10px
+    rgba(34,197,94,.8);
+
+}
+
+
+/* =====================================================
+   HERO TITLE
+===================================================== */
+
+.hero h1{
+
+  max-width:850px;
+
+  margin:auto;
+
+  font-size:
+    clamp(
+      42px,
+      9vw,
+      76px
+    );
+
+  line-height:1.02;
+
+  letter-spacing:-2.8px;
+
+  font-weight:800;
+
+}
+
+
+.hero h1 .blue{
+
+  color:var(--blue);
+
+  text-shadow:
+    0 0 35px
+    rgba(56,189,248,.18);
+
+}
+
+
+/* =====================================================
+   HERO DESCRIPTION
+===================================================== */
+
+.hero-description{
+
+  max-width:680px;
+
+  margin:
+    22px auto 0;
+
+  color:#cbd5e1;
+
+  font-size:
+    clamp(
+      13px,
+      2.4vw,
+      16px
+    );
+
+  line-height:1.8;
+
+}
+
+
+/* =====================================================
+   HIGHLIGHTS
+===================================================== */
+
+.highlights{
 
   display:flex;
+
+  align-items:center;
 
   justify-content:center;
 
   flex-wrap:wrap;
 
-  gap:14px;
+  gap:10px;
 
-  color:#cbd5e1;
+  margin-top:22px;
 
-  font-size:12px;
-
-  font-weight:600;
 }
 
-.hero-feature{
+
+.highlight{
+
   display:flex;
+
   align-items:center;
+
   gap:6px;
+
+  color:#94a3b8;
+
+  font-size:9px;
+
 }
 
-.hero-dot{
-  width:5px;
-  height:5px;
+
+.highlight strong{
+
+  color:#e2e8f0;
+
+}
+
+
+.highlight-separator{
+
+  width:4px;
+  height:4px;
+
+  border-radius:50%;
 
   background:#334155;
 
-  border-radius:50%;
 }
 
-/* =========================
-   OPTIONS
-========================= */
 
-.options-section{
-  max-width:900px;
+/* =====================================================
+   ACTIONS
+===================================================== */
 
-  margin:-5px auto 0;
+.actions{
 
-  padding:0 18px 65px;
-
-  position:relative;
-
-  z-index:10;
-}
-
-.option-card{
   width:100%;
 
-  min-height:125px;
+  max-width:560px;
 
-  margin-bottom:18px;
+  margin:
+    38px auto 0;
 
-  padding:22px 24px;
+  display:grid;
 
-  border-radius:24px;
+  grid-template-columns:1fr;
 
-  border:1px solid rgba(148,163,184,.16);
+  gap:13px;
+
+}
+
+
+/* =====================================================
+   ACTION CARD
+===================================================== */
+
+.action{
+
+  min-height:76px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:15px 17px;
+
+  border-radius:17px;
+
+  text-decoration:none;
+
+  text-align:left;
+
+  color:white;
+
+  border:
+    1px solid var(--border);
 
   background:
     linear-gradient(
       145deg,
-      rgba(15,23,42,.97),
-      rgba(7,20,34,.97)
+      rgba(15,30,48,.88),
+      rgba(8,20,35,.88)
     );
 
-  display:flex;
-  align-items:center;
-
-  gap:20px;
-
-  text-decoration:none;
-
-  color:white;
-
-  position:relative;
-
-  overflow:hidden;
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.16);
 
   transition:
     transform .25s,
     border-color .25s,
+    background .25s,
     box-shadow .25s;
+
 }
 
-.option-card::before{
-  content:"";
 
-  position:absolute;
+.action:hover{
 
-  inset:0;
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(56,189,248,.38);
 
   background:
     linear-gradient(
-      90deg,
-      rgba(56,189,248,.04),
-      transparent
+      145deg,
+      rgba(18,42,65,.95),
+      rgba(8,25,43,.95)
     );
 
-  pointer-events:none;
-}
-
-.option-card:hover{
-  transform:translateY(-4px);
-
-  border-color:rgba(56,189,248,.35);
-
   box-shadow:
-    0 15px 40px rgba(0,0,0,.25);
+    0 18px 45px
+    rgba(0,0,0,.25);
+
 }
 
-.option-icon{
-  width:70px;
-  height:70px;
 
-  flex-shrink:0;
+/* =====================================================
+   ACTION ICON
+===================================================== */
 
-  border-radius:21px;
+.action-icon{
+
+  width:48px;
+  height:48px;
+
+  min-width:48px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
-  font-size:31px;
+  border-radius:14px;
 
-  background:#0b253b;
+  font-size:22px;
 
-  border:1px solid rgba(56,189,248,.22);
+  background:
+    rgba(56,189,248,.09);
+
+  border:
+    1px solid
+    rgba(56,189,248,.13);
+
 }
 
-.option-card.service .option-icon{
-  background:#202313;
-  border-color:rgba(234,179,8,.22);
+
+/* SHOP */
+
+.action.shop .action-icon{
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56,189,248,.18),
+      rgba(2,132,199,.10)
+    );
+
 }
 
-.option-card.project .option-icon{
-  background:#17243b;
-  border-color:rgba(96,165,250,.20);
+
+/* SERVICE */
+
+.action.service .action-icon{
+
+  background:
+    rgba(250,204,21,.09);
+
+  border-color:
+    rgba(250,204,21,.15);
+
 }
 
-.option-card.chat .option-icon{
-  background:#102d2b;
-  border-color:rgba(45,212,191,.20);
+
+/* PROJECT */
+
+.action.project .action-icon{
+
+  background:
+    rgba(168,85,247,.09);
+
+  border-color:
+    rgba(168,85,247,.18);
+
 }
 
-.option-content{
+
+/* CHAT */
+
+.action.chat .action-icon{
+
+  background:
+    rgba(34,197,94,.09);
+
+  border-color:
+    rgba(34,197,94,.15);
+
+}
+
+
+/* =====================================================
+   ACTION CONTENT
+===================================================== */
+
+.action-content{
+
   flex:1;
 
-  text-align:left;
+  min-width:0;
+
 }
 
-.option-content h2{
-  font-size:17px;
 
-  font-weight:800;
+.action-title{
 
-  margin-bottom:6px;
+  display:block;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  color:white;
+
 }
 
-.option-content p{
-  color:#64748b;
 
-  font-size:11px;
+.action-description{
 
-  line-height:1.6;
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  line-height:1.5;
+
 }
 
-.option-arrow{
-  width:52px;
-  height:52px;
 
-  flex-shrink:0;
+/* =====================================================
+   ACTION ARROW
+===================================================== */
+
+.action-arrow{
+
+  width:31px;
+  height:31px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
 
   border-radius:50%;
 
-  background:#111d2d;
+  color:#64748b;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background:
+    rgba(255,255,255,.035);
 
-  color:#94a3b8;
+  font-size:17px;
 
-  font-size:24px;
+  transition:.25s;
 
-  transition:.2s;
 }
 
-.option-card:hover .option-arrow{
-  background:#0ea5e9;
-  color:white;
+
+.action:hover .action-arrow{
+
+  color:var(--blue);
+
+  background:
+    rgba(56,189,248,.10);
+
+  transform:
+    translateX(2px);
+
 }
 
-/* =========================
-   SMALL TRUST SECTION
-========================= */
+
+/* =====================================================
+   TRUST
+===================================================== */
 
 .trust{
-  text-align:center;
 
-  padding:0 20px 60px;
+  margin:
+    45px auto 0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:22px;
+
+}
+
+
+.trust-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  color:#64748b;
+
+  font-size:9px;
+
+}
+
+
+.trust-icon{
+
+  color:var(--blue);
+
+  font-size:13px;
+
+}
+
+
+/* =====================================================
+   BOTTOM MESSAGE
+===================================================== */
+
+.bottom-message{
+
+  margin-top:48px;
 
   color:#475569;
 
-  font-size:11px;
+  font-size:9px;
+
+  letter-spacing:.2px;
+
 }
 
-.trust strong{
+
+.bottom-message span{
+
   color:#64748b;
+
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:650px){
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+  padding:
+    20px 15px 30px;
+
+  text-align:center;
+
+  color:#475569;
+
+  font-size:9px;
+
+}
+
+
+footer strong{
+
+  color:#64748b;
+
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes fadeUp{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(18px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+.action{
+
+  animation:
+    fadeUp .7s ease both;
+
+}
+
+
+.action:nth-child(1){
+  animation-delay:.12s;
+}
+
+.action:nth-child(2){
+  animation-delay:.20s;
+}
+
+.action:nth-child(3){
+  animation-delay:.28s;
+}
+
+.action:nth-child(4){
+  animation-delay:.36s;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
 
   header{
-    height:72px;
-    padding:0 14px;
-  }
 
-  .brand-icon{
-    width:48px;
-    height:48px;
-  }
-
-  .brand-text{
-    font-size:16px;
-  }
-
-  .brand-text small{
-    font-size:8px;
-  }
-
-  .hero{
-    min-height:545px;
+    height:70px;
 
     padding:
-      65px
-      20px
-      55px;
+      0 14px;
+
   }
 
-  .hero h1{
-    font-size:52px;
 
-    letter-spacing:-2.5px;
+  .logo-icon{
+
+    width:38px;
+    height:38px;
+
+    border-radius:11px;
+
+    font-size:19px;
+
   }
 
-  .hero-text{
-    font-size:13px;
 
-    line-height:1.8;
-  }
+  .logo-text{
 
-  .hero-features{
-    font-size:11px;
-    gap:10px;
-  }
-
-  .options-section{
-    padding:
-      0
-      12px
-      45px;
-  }
-
-  .option-card{
-    min-height:120px;
-
-    padding:19px;
-
-    border-radius:21px;
-
-    gap:14px;
-  }
-
-  .option-icon{
-    width:61px;
-    height:61px;
-
-    border-radius:18px;
-
-    font-size:27px;
-  }
-
-  .option-content h2{
     font-size:15px;
+
   }
 
-  .option-content p{
-    font-size:10px;
+
+  .header-actions{
+
+    gap:3px;
+
   }
 
-  .option-arrow{
-    width:45px;
-    height:45px;
 
-    font-size:20px;
+  .header-icon{
+
+    width:39px;
+    height:39px;
+
+    font-size:18px;
+
   }
+
 
   .menu{
-    top:80px;
-    right:9px;
+
+    top:65px;
+
+    right:8px;
 
     width:
-      calc(100% - 18px);
+      calc(100% - 16px);
 
-    max-width:310px;
+    max-width:300px;
+
+  }
+
+
+  .hero{
+
+    min-height:
+      calc(100vh - 70px);
+
+    padding:
+      45px 15px 55px;
+
+    align-items:flex-start;
+
+  }
+
+
+  .hero-content{
+
+    padding-top:15px;
+
+  }
+
+
+  .power-badge{
+
+    margin-bottom:19px;
+
+    font-size:9px;
+
+  }
+
+
+  .hero h1{
+
+    font-size:
+      clamp(
+        40px,
+        13vw,
+        58px
+      );
+
+    letter-spacing:-2px;
+
+  }
+
+
+  .hero-description{
+
+    font-size:12px;
+
+    line-height:1.75;
+
+    margin-top:19px;
+
+  }
+
+
+  .highlights{
+
+    gap:8px;
+
+  }
+
+
+  .highlight{
+
+    font-size:8px;
+
+  }
+
+
+  .actions{
+
+    margin-top:30px;
+
+    gap:10px;
+
+  }
+
+
+  .action{
+
+    min-height:72px;
+
+    padding:13px;
+
+    border-radius:15px;
+
+  }
+
+
+  .action-icon{
+
+    width:44px;
+    height:44px;
+
+    min-width:44px;
+
+    font-size:20px;
+
+  }
+
+
+  .action-title{
+
+    font-size:12px;
+
+  }
+
+
+  .action-description{
+
+    font-size:8px;
+
+  }
+
+
+  .trust{
+
+    margin-top:35px;
+
+    gap:13px;
+
+  }
+
+
+  .trust-item{
+
+    font-size:8px;
+
+  }
+
+
+  .bottom-message{
+
+    margin-top:35px;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:380px){
+
+  .logo-text{
+
+    font-size:13px;
+
+  }
+
+
+  .header-icon{
+
+    width:36px;
+    height:36px;
+
+    font-size:17px;
+
+  }
+
+
+  .hero h1{
+
+    font-size:38px;
+
+  }
+
+
+  .hero-description{
+
+    font-size:11px;
+
+  }
+
+
+  .action-description{
+
+    display:none;
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+
+    animation:none !important;
+
+    transition:none !important;
+
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <header>
 
-<a href="home.html" class="brand">
+  <a
+    href="home.html"
+    class="logo"
+    aria-label="Danny Smart Power Home">
 
-  <div class="brand-icon">
-    ⚡
+    <div class="logo-icon">
+      ⚡
+    </div>
+
+    <div class="logo-text">
+      Danny Smart <span>Power</span>
+    </div>
+
+  </a>
+
+
+  <!-- HEADER ACTIONS -->
+
+  <div class="header-actions">
+
+
+    <!-- NOTIFICATIONS -->
+
+    <button
+      class="header-icon"
+      id="notificationBtn"
+      aria-label="Notifications"
+      title="Notifications">
+
+      🔔
+
+      <span
+        class="notification-dot"
+        id="notificationDot">
+      </span>
+
+    </button>
+
+
+    <!-- THREE DOT MENU -->
+
+    <button
+      class="header-icon"
+      id="menuBtn"
+      aria-label="Open menu"
+      title="Menu">
+
+      ⋮
+
+    </button>
+
   </div>
-
-  <div class="brand-text">
-    Danny Smart <span>Power</span>
-
-    <small>
-      POWERING YOUR NEEDS
-    </small>
-  </div>
-
-</a>
-
-
-<div class="header-actions">
-
-  <!-- NOTIFICATION -->
-
-  <button
-    class="header-btn"
-    id="notificationBtn"
-    aria-label="Notifications"
-    title="Notifications">
-
-    🔔
-
-    <span
-      class="notification-dot"
-      id="notificationDot">
-    </span>
-
-  </button>
-
-
-  <!-- THREE DOT -->
-
-  <button
-    class="header-btn"
-    id="menuBtn"
-    aria-label="Menu"
-    title="Menu">
-
-    ⋮
-
-  </button>
-
-</div>
 
 </header>
 
 
 
-<!-- =========================
-     MENU
-========================= -->
+<!-- =====================================================
+     THREE DOT MENU
+===================================================== -->
 
-<div class="menu" id="menu">
-
-  <div class="menu-profile">
-
-    <img
-      src="https://via.placeholder.com/100"
-      class="menu-avatar"
-      id="menuAvatar"
-      alt="Profile">
-
-    <div>
-
-      <div
-        class="menu-name"
-        id="menuName">
-
-        Customer
-
-      </div>
-
-      <div
-        class="menu-email"
-        id="menuEmail">
-
-        Loading...
-
-      </div>
-
-    </div>
-
-  </div>
+<div
+  class="menu"
+  id="menu">
 
 
   <a href="home.html">
@@ -841,7 +1451,7 @@ header{
 
 
   <a href="service-project.html">
-    🔧
+    🎬
     <span>Electrical Projects</span>
   </a>
 
@@ -868,309 +1478,369 @@ header{
 
 
   <a href="service-requests.html">
-    ⚡
+    🔧
     <span>My Service Requests</span>
   </a>
 
 
-  <div class="menu-divider"></div>
+  <a href="notifications.html">
+    🔔
+    <span>Notifications</span>
+  </a>
 
-
-  <button id="signOutBtn">
-    🚪
-    <span>Sign Out</span>
-  </button>
 
 </div>
 
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
 
 <section class="hero">
 
-  <div class="hero-content">
 
-    <h1>
-
-      <span class="white">
-        Powering Your
-      </span>
-
-      <br>
-
-      <span class="white">
-        World
-      </span>
-
-      <br>
-
-      <span class="blue">
-        The Smarter
-      </span>
-
-      <br>
-
-      <span class="blue">
-        Way.
-      </span>
-
-    </h1>
+<div class="hero-content">
 
 
-    <p class="hero-text">
+  <!-- POWER BADGE -->
 
-      Welcome to Danny Smart Power — your trusted
-      destination for electrical products, solar solutions,
-      professional installations, reliable power systems,
-      and quality electrical services.
+  <div class="power-badge">
 
-    </p>
+    <span class="power-dot"></span>
+
+    Danny Smart Power • Electrical • Solar
+
+  </div>
 
 
-    <div class="hero-features">
 
-      <div class="hero-feature">
-        ⚡ Electrical
-      </div>
+  <!-- TITLE -->
 
-      <div class="hero-dot"></div>
+  <h1>
 
-      <div class="hero-feature">
-        ☀️ Solar
-      </div>
+    Powering Your World
 
-      <div class="hero-dot"></div>
+    <br>
 
-      <div class="hero-feature">
-        🔧 Installation
-      </div>
+    <span class="blue">
+      The Smarter Way.
+    </span>
 
-      <div class="hero-dot"></div>
+  </h1>
 
-      <div class="hero-feature">
-        🛠️ Services
-      </div>
+
+
+  <!-- DESCRIPTION -->
+
+  <p class="hero-description">
+
+    Welcome to Danny Smart Power — your trusted
+    destination for electrical products, solar
+    solutions, professional installations, and
+    reliable power systems.
+
+  </p>
+
+
+
+  <!-- HIGHLIGHTS -->
+
+  <div class="highlights">
+
+
+    <div class="highlight">
+
+      <span>⚡</span>
+
+      <strong>
+        Electrical
+      </strong>
+
+    </div>
+
+
+    <span class="highlight-separator"></span>
+
+
+    <div class="highlight">
+
+      <span>☀️</span>
+
+      <strong>
+        Solar
+      </strong>
+
+    </div>
+
+
+    <span class="highlight-separator"></span>
+
+
+    <div class="highlight">
+
+      <span>🔧</span>
+
+      <strong>
+        Installation
+      </strong>
 
     </div>
 
   </div>
 
-</section>
+
+
+  <!-- =================================================
+       MAIN FOUR OPTIONS
+  ================================================= -->
+
+  <div class="actions">
+
+
+    <!-- 1. SHOP -->
+
+    <a
+      href="shop.html"
+      class="action shop">
+
+
+      <div class="action-icon">
+        🛒
+      </div>
+
+
+      <div class="action-content">
+
+        <span class="action-title">
+          Shop Electrical Products
+        </span>
+
+        <span class="action-description">
+
+          Browse electrical, lighting and
+          solar products.
+
+        </span>
+
+      </div>
+
+
+      <div class="action-arrow">
+        →
+      </div>
+
+    </a>
 
 
 
-<!-- =========================
-     FOUR MAIN OPTIONS
-========================= -->
+    <!-- 2. REQUEST SERVICE -->
 
-<section class="options-section">
+    <a
+      href="request-service.html"
+      class="action service">
 
 
-  <!-- 1 SHOP -->
+      <div class="action-icon">
+        ⚡
+      </div>
 
-  <a
-    href="shop.html"
-    class="option-card shop">
 
-    <div class="option-icon">
-      🛒
+      <div class="action-content">
+
+        <span class="action-title">
+          Request Electrical Service
+        </span>
+
+        <span class="action-description">
+
+          Need installation, repair or
+          professional electrical help?
+
+        </span>
+
+      </div>
+
+
+      <div class="action-arrow">
+        →
+      </div>
+
+    </a>
+
+
+
+    <!-- 3. ELECTRICAL PROJECTS -->
+
+    <a
+      href="service-project.html"
+      class="action project">
+
+
+      <div class="action-icon">
+        🎬
+      </div>
+
+
+      <div class="action-content">
+
+        <span class="action-title">
+          Electrical Projects
+        </span>
+
+        <span class="action-description">
+
+          See real electrical, solar,
+          wiring and installation work.
+
+        </span>
+
+      </div>
+
+
+      <div class="action-arrow">
+        →
+      </div>
+
+    </a>
+
+
+
+    <!-- 4. CHAT -->
+
+    <a
+      href="chat.html"
+      class="action chat">
+
+
+      <div class="action-icon">
+        💬
+      </div>
+
+
+      <div class="action-content">
+
+        <span class="action-title">
+          Chat with Danny
+        </span>
+
+        <span class="action-description">
+
+          Have a question? Talk directly
+          with Danny Smart Power.
+
+        </span>
+
+      </div>
+
+
+      <div class="action-arrow">
+        →
+      </div>
+
+    </a>
+
+
+  </div>
+
+
+
+  <!-- TRUST -->
+
+  <div class="trust">
+
+
+    <div class="trust-item">
+
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      Reliable Solutions
+
     </div>
 
-    <div class="option-content">
 
-      <h2>
-        Shop Electrical Products
-      </h2>
+    <div class="trust-item">
 
-      <p>
-        Browse electrical, solar, lighting and
-        power products available from Danny Smart Power.
-      </p>
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      Professional Service
 
     </div>
 
-    <div class="option-arrow">
-      →
+
+    <div class="trust-item">
+
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      Danny Smart Power Systems
+
     </div>
 
-  </a>
+
+  </div>
 
 
 
-  <!-- 2 REQUEST SERVICE -->
+  <!-- BOTTOM MESSAGE -->
 
-  <a
-    href="request-service.html"
-    class="option-card service">
+  <div class="bottom-message">
 
-    <div class="option-icon">
+    Built for homes, businesses &amp;
+    modern power needs.
+
+    <span>
       ⚡
-    </div>
+    </span>
 
-    <div class="option-content">
+  </div>
 
-      <h2>
-        Request Electrical Service
-      </h2>
-
-      <p>
-        Tell us about the electrical work you need
-        at your home, office or business.
-      </p>
-
-    </div>
-
-    <div class="option-arrow">
-      →
-    </div>
-
-  </a>
-
-
-
-  <!-- 3 PROJECTS -->
-
-  <a
-    href="service-project.html"
-    class="option-card project">
-
-    <div class="option-icon">
-      🔧
-    </div>
-
-    <div class="option-content">
-
-      <h2>
-        Electrical Projects
-      </h2>
-
-      <p>
-        See real electrical, solar, inverter,
-        wiring and lighting projects completed by us.
-      </p>
-
-    </div>
-
-    <div class="option-arrow">
-      →
-    </div>
-
-  </a>
-
-
-
-  <!-- 4 CHAT -->
-
-  <a
-    href="chat.html"
-    class="option-card chat">
-
-    <div class="option-icon">
-      💬
-    </div>
-
-    <div class="option-content">
-
-      <h2>
-        Chat with Danny
-      </h2>
-
-      <p>
-        Have a question or need help?
-        Start a conversation directly with Danny.
-      </p>
-
-    </div>
-
-    <div class="option-arrow">
-      →
-    </div>
-
-  </a>
-
-
-</section>
-
-
-
-<!-- =========================
-     TRUST
-========================= -->
-
-<div class="trust">
-
-  <strong>Danny Smart Power</strong>
-  <br>
-
-  Electrical • Solar • Power • Services
 
 </div>
 
+</section>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
+</main>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
+<footer>
+
+  © 2026
+
+  <strong>
+    Danny Smart Power
+  </strong>
+
+  · Smart Power. Better Living.
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
 
-const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-
-  authDomain:
-    "danny-smart-power.firebaseapp.com",
-
-  databaseURL:
-    "https://danny-smart-power-default-rtdb.firebaseio.com",
-
-  projectId:
-    "danny-smart-power",
-
-  storageBucket:
-    "danny-smart-power.firebasestorage.app",
-
-  messagingSenderId:
-    "649735645158",
-
-  appId:
-    "1:649735645158:web:cff518b89721a163679827",
-
-  measurementId:
-    "G-258YKLP5ZS"
-
-};
-
-
-firebase.initializeApp(firebaseConfig);
-
-
-const auth =
-  firebase.auth();
-
-const db =
-  firebase.firestore();
-
-
-
-/* =========================
-   MENU
-========================= */
+/* =====================================================
+   THREE DOT MENU
+===================================================== */
 
 const menuBtn =
   document.getElementById("menuBtn");
@@ -1181,9 +1851,9 @@ const menu =
 
 menuBtn.addEventListener(
   "click",
-  function(e){
+  function(event){
 
-    e.stopPropagation();
+    event.stopPropagation();
 
     menu.classList.toggle("active");
 
@@ -1191,13 +1861,17 @@ menuBtn.addEventListener(
 );
 
 
+/* =====================================================
+   CLOSE MENU WHEN CLICKING OUTSIDE
+===================================================== */
+
 document.addEventListener(
   "click",
-  function(e){
+  function(event){
 
     if(
-      !menu.contains(e.target) &&
-      e.target !== menuBtn
+      !menu.contains(event.target) &&
+      event.target !== menuBtn
     ){
 
       menu.classList.remove("active");
@@ -1208,178 +1882,45 @@ document.addEventListener(
 );
 
 
+/* =====================================================
+   NOTIFICATION
+===================================================== */
 
-/* =========================
-   AUTH
-========================= */
-
-auth.onAuthStateChanged(
-  async function(user){
-
-    if(!user){
-
-      /*
-        Home can still be viewed,
-        but menu will show guest information.
-      */
-
-      document.getElementById(
-        "menuName"
-      ).textContent = "Guest";
-
-      document.getElementById(
-        "menuEmail"
-      ).textContent =
-        "Sign in to your account";
-
-      return;
-
-    }
+const notificationBtn =
+  document.getElementById("notificationBtn");
 
 
-    const name =
-      user.displayName ||
-      user.email?.split("@")[0] ||
-      "Customer";
+notificationBtn.addEventListener(
+  "click",
+  function(){
+
+    window.location.href =
+      "notifications.html";
+
+  }
+);
 
 
-    document.getElementById(
-      "menuName"
-    ).textContent = name;
+/* =====================================================
+   ESCAPE KEY CLOSES MENU
+===================================================== */
 
+document.addEventListener(
+  "keydown",
+  function(event){
 
-    document.getElementById(
-      "menuEmail"
-    ).textContent =
-      user.email || "";
+    if(event.key === "Escape"){
 
-
-    if(user.photoURL){
-
-      document.getElementById(
-        "menuAvatar"
-      ).src =
-        user.photoURL;
-
-    }
-
-
-    /*
-      Read DSP profile if available.
-    */
-
-    try{
-
-      const profileSnap =
-        await db
-        .collection("profiles")
-        .doc(user.uid)
-        .get();
-
-
-      if(profileSnap.exists){
-
-        const profile =
-          profileSnap.data();
-
-
-        if(profile.name){
-
-          document.getElementById(
-            "menuName"
-          ).textContent =
-            profile.name;
-
-        }
-
-
-        if(profile.photoURL){
-
-          document.getElementById(
-            "menuAvatar"
-          ).src =
-            profile.photoURL;
-
-        }
-
-
-        if(
-          profile.photo &&
-          !profile.photoURL
-        ){
-
-          document.getElementById(
-            "menuAvatar"
-          ).src =
-            profile.photo;
-
-        }
-
-      }
-
-    }catch(error){
-
-      console.warn(
-        "Profile could not be loaded:",
-        error
-      );
+      menu.classList.remove("active");
 
     }
 
   }
 );
 
-
-
-/* =========================
-   NOTIFICATIONS
-========================= */
-
-document
-  .getElementById("notificationBtn")
-  .addEventListener(
-    "click",
-    function(){
-
-      window.location.href =
-        "notifications.html";
-
-    }
-  );
-
-
-
-/* =========================
-   SIGN OUT
-========================= */
-
-document
-  .getElementById("signOutBtn")
-  .addEventListener(
-    "click",
-    async function(){
-
-      try{
-
-        await auth.signOut();
-
-        window.location.href =
-          "login.html";
-
-      }catch(error){
-
-        console.error(error);
-
-        alert(
-          "Could not sign out. Please try again."
-        );
-
-      }
-
-    }
-  );
-
 </script>
 
+
 </body>
+
 </html>
