@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Our Electrical Work | Danny Smart Power</title>
+
+  <meta name="description"
+    content="Explore electrical, solar, inverter, wiring, lighting and repair projects completed by Danny Smart Power.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0f172a;
+      --header: #020617;
+      --card: #111c30;
+      --card2: #162238;
+      --border: #24344d;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #38bdf8;
+      --blue-dark: #0284c7;
+      --green: #22c55e;
+      --red: #ef4444;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      height: 70px;
+      background: var(--header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(148, 163, 184, .12);
+      box-shadow: 0 5px 25px rgba(0,0,0,.22);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--blue);
+      color: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .brand-text {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: .7px;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .icon-btn {
+      width: 43px;
+      height: 43px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 21px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .notification-dot {
+      display: none;
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border: 2px solid var(--header);
+      border-radius: 50%;
+      top: 7px;
+      right: 7px;
+    }
+
+    /* ================= MENU ================= */
+
+    .menu {
+      position: fixed;
+      top: 76px;
+      right: 12px;
+      width: 255px;
+      background: #fff;
+      color: #0f172a;
+      border-radius: 18px;
+      padding: 9px;
+      z-index: 3000;
+      display: none;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 20px 55px rgba(0,0,0,.35);
+    }
+
+    .menu.active {
+      display: block;
+      animation: menuIn .18s ease;
+    }
+
+    @keyframes menuIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu-profile {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 5px;
+    }
+
+    .menu-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+
+    .menu-name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .menu-email {
+      color: #64748b;
+      font-size: 9px;
+      word-break: break-all;
+    }
+
+    .menu a,
+    .menu button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 11px;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .menu a:hover,
+    .menu button:hover {
+      background: #f1f5f9;
+    }
+
+    /* ================= PAGE ================= */
+
+    .page {
+      width: min(1180px, 100%);
+      margin: auto;
+      padding: 28px 16px 70px;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at top right, rgba(56,189,248,.16), transparent 35%),
+        linear-gradient(135deg, #111c30, #0b1324);
+      border-radius: 25px;
+      padding: 30px 24px;
+      margin-bottom: 22px;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--blue);
+      background: rgba(56,189,248,.09);
+      border: 1px solid rgba(56,189,248,.18);
+      border-radius: 50px;
+      padding: 6px 11px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 13px;
+    }
+
+    .hero h1 {
+      font-size: clamp(25px, 5vw, 40px);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .primary-btn {
+      background: var(--blue);
+      color: #020617;
+    }
+
+    .primary-btn:hover {
+      background: #7dd3fc;
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,.06);
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .secondary-btn:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    /* ================= TOOLBAR ================= */
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 22px 0;
+      flex-wrap: wrap;
+    }
+
+    .section-heading h2 {
+      font-size: 19px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    .search-box {
+      width: min(300px, 100%);
+      position: relative;
+    }
+
+    .search-box span {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: #111c30;
+      color: white;
+      outline: none;
+      border-radius: 12px;
+      padding: 0 13px 0 38px;
+      font-size: 11px;
+    }
+
+    .search-box input:focus {
+      border-color: var(--blue);
+    }
+
+    /* ================= FILTERS ================= */
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+      scrollbar-width: none;
+      margin-bottom: 20px;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: #111c30;
+      color: var(--muted);
+      border-radius: 50px;
+      padding: 8px 14px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: rgba(56,189,248,.1);
+      color: var(--blue);
+      border-color: rgba(56,189,248,.4);
+    }
+
+    /* ================= PROJECT GRID ================= */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: .22s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56,189,248,.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,.22);
+    }
+
+    .media-wrapper {
+      height: 210px;
+      background: #020617;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(2,6,23,.65),
+        transparent 45%
+      );
+      pointer-events: none;
+    }
+
+    .media-type {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(2,6,23,.75);
+      backdrop-filter: blur(7px);
+      color: white;
+      border-radius: 50px;
+      padding: 6px 9px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #f59e0b;
+      color: #111827;
+      border-radius: 50px;
+      padding: 6px 9px;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .play-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(2,6,23,.72);
+      border: 1px solid rgba(255,255,255,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      backdrop-filter: blur(5px);
+    }
+
+    .project-info {
+      padding: 15px;
+    }
+
+    .project-category {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .project-info h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .project-info p {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .project-footer {
+      margin-top: 12px;
+      padding-top: 11px;
+      border-top: 1px solid rgba(148,163,184,.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .view-work {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .arrow {
+      color: var(--muted);
+    }
+
+    /* ================= EMPTY / LOADING ================= */
+
+    .state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 55px 20px;
+      border: 1px dashed var(--border);
+      border-radius: 18px;
+      background: rgba(17,28,48,.5);
+    }
+
+    .state-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .state h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .state p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .loader {
+      width: 35px;
+      height: 35px;
+      border: 3px solid var(--border);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ================= MODAL ================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,.86);
+      backdrop-filter: blur(8px);
+      z-index: 5000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(850px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+      animation: modalIn .2s ease;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-media {
+      width: 100%;
+      max-height: 480px;
+      background: #020617;
+      display: block;
+      object-fit: contain;
+    }
+
+    .modal-content {
+      padding: 20px;
+    }
+
+    .modal-category {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .modal-content h2 {
+      font-size: 21px;
+      margin: 6px 0 9px;
+    }
+
+    .modal-description {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .chat-btn,
+    .request-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 13px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chat-btn {
+      background: #22c55e;
+      color: white;
+    }
+
+    .request-btn {
+      background: var(--blue);
+      color: #020617;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 39px;
+      height: 39px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(2,6,23,.75);
+      color: white;
+      font-size: 20px;
+      z-index: 2;
+    }
+
+    /* ================= TOAST ================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translate(-50%, 100px);
+      opacity: 0;
+      background: #020617;
+      color: white;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-size: 11px;
+      z-index: 7000;
+      transition: .3s;
+      max-width: calc(100% - 30px);
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 900px) {
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        height: 64px;
+      }
+
+      .brand-text {
+        font-size: 14px;
+      }
+
+      .brand-text small {
+        font-size: 7px;
+      }
+
+      .page {
+        padding: 18px 12px 55px;
+      }
+
+      .hero {
+        padding: 23px 18px;
+        border-radius: 19px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .hero p {
+        font-size: 11px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .media-wrapper {
+        height: 230px;
+      }
+
+      .toolbar {
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .modal-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .menu {
+        top: 69px;
+        right: 8px;
+        width: calc(100% - 16px);
+        max-width: 310px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+  <a href="home.html" class="brand">
+    <div class="brand-icon">⚡</div>
+
+    <div class="brand-text">
+      Danny Smart Power
+      <small>POWERING YOUR NEEDS</small>
+    </div>
+  </a>
+
+  <div class="header-actions">
+
+    <button
+      class="icon-btn"
+      id="notificationBtn"
+      title="Notifications"
+      aria-label="Notifications">
+
+      🔔
+      <span
+        class="notification-dot"
+        id="notificationDot">
+      </span>
+
+    </button>
+
+    <button
+      class="icon-btn"
+      id="menuBtn"
+      title="Menu"
+      aria-label="Open menu">
+
+      ⋮
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- ================= MENU ================= -->
+
+<div class="menu" id="menu">
+
+  <div class="menu-profile">
+
+    <img
+      id="menuAvatar"
+      class="menu-avatar"
+      src="https://via.placeholder.com/80"
+      alt="Profile">
+
+    <div>
+      <div
+        class="menu-name"
+        id="menuName">
+
+        Customer
+
+      </div>
+
+      <div
+        class="menu-email"
+        id="menuEmail">
+
+        Loading...
+
+      </div>
+    </div>
+
+  </div>
+
+  <a href="home.html">
+    🏠
+    <span>Home</span>
+  </a>
+
+  <a href="shop.html">
+    🛒
+    <span>Shop</span>
+  </a>
+
+  <a href="service-project.html">
+    ⚡
+    <span>Our Electrical Work</span>
+  </a>
+
+  <a href="request-service.html">
+    🔧
+    <span>Request Electrical Service</span>
+  </a>
+
+  <a href="profile.html">
+    👤
+    <span>My Profile</span>
+  </a>
+
+  <a href="orders.html">
+    📦
+    <span>My Orders</span>
+  </a>
+
+  <a href="service-requests.html">
+    📋
+    <span>My Service Requests</span>
+  </a>
+
+  <a href="chat.html">
+    💬
+    <span>Chat with Danny</span>
+  </a>
+
+  <button id="signOutBtn">
+    🚪
+    <span>Sign Out</span>
+  </button>
+
+</div>
+
+
+<!-- ================= PAGE ================= -->
+
+<main class="page">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-label">
+      ⚡
+      <span>DANNY SMART POWER</span>
+    </div>
+
+    <h1>
+      Our Electrical Work
+    </h1>
+
+    <p>
+      See real electrical, solar, inverter, wiring, lighting and
+      repair projects completed by Danny Smart Power.
+      Every project you see here represents the type of professional
+      work we can help you with.
+    </p>
+
+    <div class="hero-actions">
+
+      <a
+        href="request-service.html"
+        class="primary-btn">
+
+        ⚡ Request Electrical Service
+
+      </a>
+
+      <a
+        href="chat.html"
+        class="secondary-btn">
+
+        💬 Chat With Danny
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- TOOLBAR -->
+
+  <div class="toolbar">
+
+    <div class="section-heading">
+
+      <h2>
+        Completed & Featured Work
+      </h2>
+
+      <p id="projectCount">
+        Loading projects...
+      </p>
+
+    </div>
+
+    <div class="search-box">
+
+      <span>🔍</span>
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search our work...">
+
+    </div>
+
+  </div>
+
+
+  <!-- FILTERS -->
+
+  <div class="filters">
+
+    <button
+      class="filter-btn active"
+      data-category="All">
+
+      All
+
+    </button>
+
+    <button
+      class="filter-btn"
+      data-category="Solar">
+
+      ☀️ Solar
+
+    </button>
+
+    <button
+      class="filter-btn"
+      data-category="Wiring">
+
+      🏠 Wiring
+
+    </button>
+
+    <button
+      class="filter-btn"
+      data-category="Lighting">
+
+      💡 Lighting
+
+    </button>
+
+    <button
+      class="filter-btn"
+      data-category="Inverter">
+
+      🔋 Inverter
+
+    </button>
+
+    <button
+      class="filter-btn"
+      data-category="Repair">
+
+      🔧 Repair
+
+    </button>
+
+    <button
+      class="filter-btn"
+      data-category="Electrical">
+
+      ⚡ Electrical
+
+    </button>
+
+  </div>
+
+
+  <!-- PROJECT GRID -->
+
+  <section
+    class="project-grid"
+    id="projectGrid">
+
+    <div class="state">
+
+      <div class="loader"></div>
+
+      <p>
+        Loading our electrical work...
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- ================= PROJECT MODAL ================= -->
+
+<div
+  class="modal"
+  id="projectModal">
+
+  <button
+    class="close-modal"
+    id="closeModal"
+    aria-label="Close">
+
+    ×
+
+  </button>
+
+  <div class="modal-card">
+
+    <div id="modalMediaContainer"></div>
+
+    <div class="modal-content">
+
+      <div
+        class="modal-category"
+        id="modalCategory">
+
+      </div>
+
+      <h2 id="modalTitle">
+        Project
+      </h2>
+
+      <p
+        class="modal-description"
+        id="modalDescription">
+
+      </p>
+
+      <div class="modal-actions">
+
+        <button
+          class="chat-btn"
+          id="modalChatBtn">
+
+          💬 Chat About This Work
+
+        </button>
+
+        <button
+          class="request-btn"
+          id="modalRequestBtn">
+
+          ⚡ Request This Service
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+
+  /* ==========================================
+     FIREBASE
+  ========================================== */
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+    authDomain:
+      "danny-smart-power.firebaseapp.com",
+
+    databaseURL:
+      "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+    projectId:
+      "danny-smart-power",
+
+    storageBucket:
+      "danny-smart-power.firebasestorage.app",
+
+    messagingSenderId:
+      "649735645158",
+
+    appId:
+      "1:649735645158:web:cff518b89721a163679827",
+
+    measurementId:
+      "G-258YKLP5ZS"
+
+  };
+
+
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+
+  const db = firebase.firestore();
+
+
+  /* ==========================================
+     ELEMENTS
+  ========================================== */
+
+  const menuBtn =
+    document.getElementById("menuBtn");
+
+  const menu =
+    document.getElementById("menu");
+
+  const projectGrid =
+    document.getElementById("projectGrid");
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  const projectCount =
+    document.getElementById("projectCount");
+
+  const projectModal =
+    document.getElementById("projectModal");
+
+  const closeModal =
+    document.getElementById("closeModal");
+
+  const modalMediaContainer =
+    document.getElementById("modalMediaContainer");
+
+  const modalTitle =
+    document.getElementById("modalTitle");
+
+  const modalCategory =
+    document.getElementById("modalCategory");
+
+  const modalDescription =
+    document.getElementById("modalDescription");
+
+  const modalChatBtn =
+    document.getElementById("modalChatBtn");
+
+  const modalRequestBtn =
+    document.getElementById("modalRequestBtn");
+
+  const toast =
+    document.getElementById("toast");
+
+
+  /* ==========================================
+     AUTHENTICATION
+  ========================================== */
+
+  let currentUser = null;
+
+  auth.onAuthStateChanged(async user => {
+
+    if (!user) {
+
+      window.location.href = "login.html";
+
+      return;
+
+    }
+
+    currentUser = user;
+
+    const fallbackName =
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "Customer";
+
+    document.getElementById("menuName").textContent =
+      fallbackName;
+
+    document.getElementById("menuEmail").textContent =
+      user.email || "";
+
+    if (user.photoURL) {
+
+      document.getElementById("menuAvatar").src =
+        user.photoURL;
+
+    }
+
+    /* Try DSP profile */
+
+    try {
+
+      const profileSnap =
+        await db
+          .collection("profiles")
+          .doc(user.uid)
+          .get();
+
+      if (profileSnap.exists) {
+
+        const profile =
+          profileSnap.data();
+
+        if (profile.name) {
+
+          document.getElementById("menuName")
+            .textContent = profile.name;
+
+        }
+
+        if (profile.photoURL) {
+
+          document.getElementById("menuAvatar")
+            .src = profile.photoURL;
+
+        } else if (profile.photo) {
+
+          document.getElementById("menuAvatar")
+            .src = profile.photo;
+
+        }
+
+      }
+
+    } catch (error) {
+
+      console.warn(
+        "Profile could not be loaded:",
+        error
+      );
+
+    }
+
+  });
+
+
+  /* ==========================================
+     MENU
+  ========================================== */
+
+  menuBtn.addEventListener("click", e => {
+
+    e.stopPropagation();
+
+    menu.classList.toggle("active");
+
+  });
+
+
+  document.addEventListener("click", e => {
+
+    if (
+      !menu.contains(e.target) &&
+      e.target !== menuBtn
+    ) {
+
+      menu.classList.remove("active");
+
+    }
+
+  });
+
+
+  /* ==========================================
+     TOAST
+  ========================================== */
+
+  function showToast(message) {
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    }, 3000);
+
+  }
+
+
+  /* ==========================================
+     PROJECT DATA
+  ========================================== */
+
+  let allProjects = [];
+
+  let activeCategory = "All";
+
+
+  /* ==========================================
+     LOAD PROJECTS
+  ========================================== */
+
+  async function loadProjects() {
+
+    projectGrid.innerHTML = `
+
+      <div class="state">
+
+        <div class="loader"></div>
+
+        <p>
+          Loading our electrical work...
+        </p>
+
+      </div>
+
+    `;
+
+    try {
+
+      const snapshot =
+        await db
+          .collection("serviceProjects")
+          .where("published", "==", true)
+          .get();
+
+      allProjects = [];
+
+      snapshot.forEach(doc => {
+
+        allProjects.push({
+
+          id: doc.id,
+
+          ...doc.data()
+
+        });
+
+      });
+
+
+      /* Sort newest first */
+
+      allProjects.sort((a, b) => {
+
+        const dateA =
+          a.createdAt?.toMillis
+            ? a.createdAt.toMillis()
+            : 0;
+
+        const dateB =
+          b.createdAt?.toMillis
+            ? b.createdAt.toMillis()
+            : 0;
+
+        return dateB - dateA;
+
+      });
+
+
+      renderProjects();
+
+    } catch (error) {
+
+      console.error(
+        "Could not load service projects:",
+        error
+      );
+
+      projectGrid.innerHTML = `
+
+        <div class="state">
+
+          <div class="state-icon">
+            ⚠️
+          </div>
+
+          <h3>
+            We couldn't load the projects
+          </h3>
+
+          <p>
+            Please check your internet connection
+            and try again.
+          </p>
+
+        </div>
+
+      `;
+
+      projectCount.textContent =
+        "Unable to load projects";
+
+    }
+
+  }
+
+
+  /* ==========================================
+     RENDER PROJECTS
+  ========================================== */
+
+  function renderProjects() {
+
+    const search =
+      searchInput.value
+        .trim()
+        .toLowerCase();
+
+
+    const filtered =
+      allProjects.filter(project => {
+
+        const category =
+          String(project.category || "")
+            .toLowerCase();
+
+        const title =
+          String(project.title || "")
+            .toLowerCase();
+
+        const description =
+          String(project.description || "")
+            .toLowerCase();
+
+
+        const categoryMatch =
+          activeCategory === "All" ||
+          category.includes(
+            activeCategory.toLowerCase()
+          );
+
+
+        const searchMatch =
+          !search ||
+          title.includes(search) ||
+          description.includes(search) ||
+          category.includes(search);
+
+
+        return categoryMatch && searchMatch;
+
+      });
+
+
+    projectCount.textContent =
+      `${filtered.length} ${
+        filtered.length === 1
+          ? "project"
+          : "projects"
+      } available`;
+
+
+    if (!filtered.length) {
+
+      projectGrid.innerHTML = `
+
+        <div class="state">
+
+          <div class="state-icon">
+            🔍
+          </div>
+
+          <h3>
+            No matching work found
+          </h3>
+
+          <p>
+            Try another search or choose a
+            different category.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    projectGrid.innerHTML = "";
+
+
+    filtered.forEach(project => {
+
+      const card =
+        createProjectCard(project);
+
+      projectGrid.appendChild(card);
+
+    });
+
+  }
+
+
+  /* ==========================================
+     CREATE PROJECT CARD
+  ========================================== */
+
+  function createProjectCard(project) {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "project-card";
+
+
+    const mediaWrapper =
+      document.createElement("div");
+
+    mediaWrapper.className =
+      "media-wrapper";
+
+
+    const mediaType =
+      String(project.mediaType || "image")
+        .toLowerCase();
+
+
+    const mediaUrl =
+      project.mediaUrl || "";
+
+
+    if (!mediaUrl) {
+
+      mediaWrapper.innerHTML = `
+
+        <div
+          style="
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:40px;
+            color:#38bdf8;
+          ">
+
+          ⚡
+
+        </div>
+
+      `;
+
+    }
+
+    else if (mediaType === "video") {
+
+      const video =
+        document.createElement("video");
+
+      video.className =
+        "project-media";
+
+      video.src =
+        mediaUrl;
+
+      video.muted = true;
+
+      video.loop = true;
+
+      video.playsInline = true;
+
+      video.preload = "metadata";
+
+      video.setAttribute(
+        "aria-label",
+        project.title || "Project video"
+      );
+
+
+      /* Try thumbnail first */
+
+      if (project.thumbnailUrl) {
+
+        video.poster =
+          project.thumbnailUrl;
+
+      }
+
+
+      mediaWrapper.appendChild(video);
+
+
+      const play =
+        document.createElement("div");
+
+      play.className =
+        "play-icon";
+
+      play.textContent =
+        "▶";
+
+      mediaWrapper.appendChild(play);
+
+    }
+
+    else {
+
+      const image =
+        document.createElement("img");
+
+      image.className =
+        "project-media";
+
+      image.src =
+        mediaUrl;
+
+      image.alt =
+        project.title || "Danny Smart Power project";
+
+      image.loading =
+        "lazy";
+
+      image.onerror = () => {
+
+        image.style.display = "none";
+
+        mediaWrapper.insertAdjacentHTML(
+          "beforeend",
+          `<div style="
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:40px;
+            color:#38bdf8;
+          ">⚡</div>`
+        );
+
+      };
+
+      mediaWrapper.appendChild(image);
+
+    }
+
+
+    const gradient =
+      document.createElement("div");
+
+    gradient.className =
+      "media-gradient";
+
+    mediaWrapper.appendChild(gradient);
+
+
+    const typeBadge =
+      document.createElement("div");
+
+    typeBadge.className =
+      "media-type";
+
+    typeBadge.textContent =
+      mediaType === "video"
+        ? "🎥 Video"
+        : "📷 Photo";
+
+    mediaWrapper.appendChild(typeBadge);
+
+
+    if (project.featured === true) {
+
+      const featured =
+        document.createElement("div");
+
+      featured.className =
+        "featured-badge";
+
+      featured.textContent =
+        "★ Featured";
+
+      mediaWrapper.appendChild(featured);
+
+    }
+
+
+    /* ================= INFO ================= */
+
+    const info =
+      document.createElement("div");
+
+    info.className =
+      "project-info";
+
+
+    const category =
+      document.createElement("div");
+
+    category.className =
+      "project-category";
+
+    category.textContent =
+      project.category || "Electrical";
+
+    info.appendChild(category);
+
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      project.title || "Electrical Project";
+
+    info.appendChild(title);
+
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      project.description ||
+      "Professional electrical work completed by Danny Smart Power.";
+
+    info.appendChild(description);
+
+
+    const footer =
+      document.createElement("div");
+
+    footer.className =
+      "project-footer";
+
+    footer.innerHTML = `
+
+      <span class="view-work">
+        View work →
+      </span>
+
+      <span class="arrow">
+        ↗
+      </span>
+
+    `;
+
+    info.appendChild(footer);
+
+
+    card.appendChild(mediaWrapper);
+
+    card.appendChild(info);
+
+
+    card.addEventListener(
+      "click",
+      () => openProject(project)
+    );
+
+
+    return card;
+
+  }
+
+
+  /* ==========================================
+     OPEN PROJECT
+  ========================================== */
+
+  function openProject(project) {
+
+    modalTitle.textContent =
+      project.title ||
+      "Electrical Project";
+
+
+    modalCategory.textContent =
+      project.category ||
+      "Electrical";
+
+
+    modalDescription.textContent =
+      project.description ||
+      "Professional work completed by Danny Smart Power.";
+
+
+    modalMediaContainer.innerHTML = "";
+
+
+    const mediaType =
+      String(project.mediaType || "image")
+        .toLowerCase();
+
+
+    if (project.mediaUrl) {
+
+      if (mediaType === "video") {
+
+        const video =
+          document.createElement("video");
+
+        video.className =
+          "modal-media";
+
+        video.controls = true;
+
+        video.playsInline = true;
+
+        video.preload = "metadata";
+
+        video.src =
+          project.mediaUrl;
+
+        if (project.thumbnailUrl) {
+
+          video.poster =
+            project.thumbnailUrl;
+
+        }
+
+        modalMediaContainer.appendChild(video);
+
+      } else {
+
+        const image =
+          document.createElement("img");
+
+        image.className =
+          "modal-media";
+
+        image.src =
+          project.mediaUrl;
+
+        image.alt =
+          project.title || "Project";
+
+        modalMediaContainer.appendChild(image);
+
+      }
+
+    } else {
+
+      modalMediaContainer.innerHTML = `
+
+        <div style="
+          height:300px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:60px;
+          color:#38bdf8;
+          background:#020617;
+        ">
+
+          ⚡
+
+        </div>
+
+      `;
+
+    }
+
+
+    modalChatBtn.onclick = () => {
+
+      window.location.href =
+        "chat.html";
+
+    };
+
+
+    modalRequestBtn.onclick = () => {
+
+      window.location.href =
+        "request-service.html";
+
+    };
+
+
+    projectModal.classList.add("active");
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+  /* ==========================================
+     CLOSE MODAL
+  ========================================== */
+
+  function closeProjectModal() {
+
+    projectModal.classList.remove("active");
+
+    document.body.style.overflow =
+      "";
+
+    modalMediaContainer.innerHTML =
+      "";
+
+  }
+
+
+  closeModal.addEventListener(
+    "click",
+    closeProjectModal
+  );
+
+
+  projectModal.addEventListener(
+    "click",
+    e => {
+
+      if (e.target === projectModal) {
+
+        closeProjectModal();
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    e => {
+
+      if (
+        e.key === "Escape" &&
+        projectModal.classList.contains("active")
+      ) {
+
+        closeProjectModal();
+
+      }
+
+    }
+  );
+
+
+  /* ==========================================
+     SEARCH
+  ========================================== */
+
+  searchInput.addEventListener(
+    "input",
+    renderProjects
+  );
+
+
+  /* ==========================================
+     CATEGORY FILTER
+  ========================================== */
+
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach(btn =>
+              btn.classList.remove("active")
+            );
+
+
+          button.classList.add("active");
+
+
+          activeCategory =
+            button.dataset.category;
+
+
+          renderProjects();
+
+        }
+      );
+
+    });
+
+
+  /* ==========================================
+     SIGN OUT
+  ========================================== */
+
+  document
+    .getElementById("signOutBtn")
+    .addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          await auth.signOut();
+
+          window.location.href =
+            "login.html";
+
+        } catch (error) {
+
+          showToast(
+            "Could not sign out."
+          );
+
+        }
+
+      }
+    );
+
+
+  /* ==========================================
+     NOTIFICATIONS
+  ========================================== */
+
+  document
+    .getElementById("notificationBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "notifications.html";
+
+      }
+    );
+
+
+  /* ==========================================
+     START
+  ========================================== */
+
+  loadProjects();
+
+</script>
+
+</body>
+</html>
