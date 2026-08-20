@@ -26,6 +26,7 @@
   --blue2:#0ea5e9;
   --green:#4ade80;
   --red:#f87171;
+  --yellow:#facc15;
 }
 
 body{
@@ -33,7 +34,7 @@ body{
   background:
     radial-gradient(
       circle at top right,
-      rgba(56,189,248,.08),
+      rgba(56,189,248,.09),
       transparent 35%
     ),
     var(--bg);
@@ -58,7 +59,7 @@ button{
 .header{
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:100;
 
   height:68px;
 
@@ -68,8 +69,8 @@ button{
 
   padding:0 20px;
 
-  background:rgba(2,6,23,.95);
-  backdrop-filter:blur(12px);
+  background:rgba(2,6,23,.96);
+  backdrop-filter:blur(14px);
 
   border-bottom:1px solid var(--border);
 }
@@ -91,6 +92,8 @@ button{
   color:white;
 
   font-size:20px;
+
+  transition:.2s;
 }
 
 .back-btn:hover{
@@ -131,7 +134,11 @@ button{
 .header-right{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
+}
+
+.bell{
+  font-size:20px;
 }
 
 .notification-count{
@@ -168,11 +175,11 @@ button{
 
   margin:auto;
 
-  padding:30px 18px 50px;
+  padding:30px 18px 60px;
 }
 
 .page-heading{
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 
 .page-heading h1{
@@ -184,6 +191,45 @@ button{
   color:var(--muted);
   font-size:14px;
   line-height:1.5;
+}
+
+
+/* =========================
+   TOP ACTIONS
+========================= */
+
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+
+  margin-bottom:18px;
+}
+
+.action-btn{
+  border:1px solid var(--border);
+
+  background:var(--panel);
+
+  color:white;
+
+  padding:9px 13px;
+
+  border-radius:10px;
+
+  font-size:12px;
+
+  transition:.2s;
+}
+
+.action-btn:hover{
+  border-color:var(--blue);
+  color:var(--blue);
+}
+
+.action-btn.danger:hover{
+  border-color:var(--red);
+  color:var(--red);
 }
 
 
@@ -255,7 +301,7 @@ button{
 
   border-radius:17px;
 
-  padding:17px;
+  padding:18px;
 
   transition:.2s;
 }
@@ -266,12 +312,12 @@ button{
 }
 
 .notification.unread{
-  border-color:rgba(56,189,248,.38);
+  border-color:rgba(56,189,248,.42);
 
   background:
     linear-gradient(
       135deg,
-      rgba(56,189,248,.08),
+      rgba(56,189,248,.09),
       transparent
     ),
     var(--panel);
@@ -284,7 +330,7 @@ button{
 
   gap:12px;
 
-  margin-bottom:13px;
+  margin-bottom:14px;
 }
 
 .sender{
@@ -294,8 +340,8 @@ button{
 }
 
 .sender-avatar{
-  width:42px;
-  height:42px;
+  width:43px;
+  height:43px;
 
   flex-shrink:0;
 
@@ -347,6 +393,13 @@ button{
   margin-right:5px;
 }
 
+.notification-title{
+  font-size:17px;
+  font-weight:bold;
+
+  margin-bottom:8px;
+}
+
 .message-text{
   color:#e2e8f0;
 
@@ -363,9 +416,9 @@ button{
 
 .message-image{
   width:100%;
-  max-width:360px;
+  max-width:420px;
 
-  max-height:320px;
+  max-height:350px;
 
   object-fit:cover;
 
@@ -490,7 +543,7 @@ button{
 
 
 /* =========================
-   LOGIN MESSAGE
+   LOGIN
 ========================= */
 
 .login-box{
@@ -548,14 +601,13 @@ button{
   left:50%;
   bottom:25px;
 
-  transform:
-    translate(-50%,20px);
+  transform:translate(-50%,20px);
 
   opacity:0;
 
   pointer-events:none;
 
-  z-index:100;
+  z-index:1000;
 
   background:#0f2436;
 
@@ -574,9 +626,7 @@ button{
 
 .toast.show{
   opacity:1;
-
-  transform:
-    translate(-50%,0);
+  transform:translate(-50%,0);
 }
 
 
@@ -599,7 +649,7 @@ button{
   }
 
   .container{
-    padding:23px 12px 40px;
+    padding:23px 12px 45px;
   }
 
   .page-heading h1{
@@ -627,18 +677,21 @@ button{
     width:100%;
   }
 
+  .actions{
+    justify-content:stretch;
+  }
+
+  .action-btn{
+    flex:1;
+  }
+
 }
 
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -652,8 +705,13 @@ button{
     </button>
 
     <div class="logo">
-      <div class="logo-icon">⚡</div>
+
+      <div class="logo-icon">
+        ⚡
+      </div>
+
       DSP
+
     </div>
 
     <div class="header-title">
@@ -671,17 +729,15 @@ button{
       0
     </span>
 
-    🔔
+    <span class="bell">
+      🔔
+    </span>
 
   </div>
 
 </header>
 
 
-
-<!-- =========================
-     APP
-========================= -->
 
 <main id="app" class="hidden">
 
@@ -692,8 +748,29 @@ button{
       <h1>Notifications</h1>
 
       <p>
-        Messages and updates sent to you by Danny Smart Power.
+        Messages and important updates from Danny Smart Power.
       </p>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        class="action-btn"
+        onclick="markAllAsRead()">
+
+        ✓ Mark all as read
+
+      </button>
+
+      <button
+        class="action-btn danger"
+        onclick="clearReadNotifications()">
+
+        Clear read
+
+      </button>
 
     </div>
 
@@ -707,13 +784,12 @@ button{
       <div class="info-text">
 
         <strong>
-          Messages from Danny
+          Danny Smart Power
         </strong>
 
         <span>
-          You can read messages here. If you want to respond,
-          use the button below to continue the conversation in
-          Chat with Danny.
+          New notifications from the administration will
+          appear here automatically.
         </span>
 
       </div>
@@ -721,8 +797,9 @@ button{
     </div>
 
 
-    <div id="notifications"
-         class="notifications">
+    <div
+      id="notifications"
+      class="notifications">
 
       <div class="loading">
 
@@ -739,10 +816,6 @@ button{
 </main>
 
 
-
-<!-- =========================
-     LOGIN REQUIRED
-========================= -->
 
 <section
   id="loginRequired"
@@ -766,7 +839,9 @@ button{
       <a
         href="login.html"
         class="login-btn">
+
         Login
+
       </a>
 
     </div>
@@ -777,15 +852,12 @@ button{
 
 
 
-<div id="toast"
-     class="toast">
+<div
+  id="toast"
+  class="toast">
 </div>
 
 
-
-<!-- =========================
-     FIREBASE
-========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -832,22 +904,19 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const auth = firebase.auth();
 
-const auth =
-  firebase.auth();
-
-const db =
-  firebase.firestore();
+const db = firebase.firestore();
 
 
 
 /* ==========================================
-   DATA
+   STATE
 ========================================== */
 
 let currentUser = null;
 
-let notificationListeners = [];
+let unsubscribeNotifications = null;
 
 let allNotifications = [];
 
@@ -857,11 +926,13 @@ let allNotifications = [];
    AUTH
 ========================================== */
 
-auth.onAuthStateChanged(async user => {
+auth.onAuthStateChanged(user => {
 
   currentUser = user;
 
   if(!user){
+
+    stopRealtime();
 
     showLoginRequired();
 
@@ -871,7 +942,7 @@ auth.onAuthStateChanged(async user => {
 
   showApp();
 
-  await loadNotifications();
+  startRealtimeNotifications();
 
 });
 
@@ -910,10 +981,12 @@ function showLoginRequired(){
 
 
 /* ==========================================
-   LOAD NOTIFICATIONS
+   REAL-TIME NOTIFICATIONS
 ========================================== */
 
-async function loadNotifications(){
+function startRealtimeNotifications(){
+
+  stopRealtime();
 
   const box =
     document.getElementById(
@@ -933,266 +1006,208 @@ async function loadNotifications(){
   `;
 
 
-  try{
+  /*
+    We listen to the whole notifications
+    collection.
 
-    /*
-      First get all chats belonging
-      to the logged-in customer.
+    Customer filtering happens locally.
 
-      We do NOT allow the customer
-      to read another customer's chat.
-    */
+    This allows both:
 
-    const chatSnapshot =
-      await db
-        .collection("chats")
-        .where(
-          "customerId",
-          "==",
-          currentUser.uid
-        )
-        .get();
+    target = "all"
 
+    and
 
-    if(chatSnapshot.empty){
+    target = "user"
+  */
 
-      showEmpty();
+  unsubscribeNotifications =
+    db
+      .collection("notifications")
+      .orderBy(
+        "createdAt",
+        "desc"
+      )
+      .onSnapshot(
 
-      return;
+        snapshot => {
 
-    }
+          allNotifications =
+            snapshot.docs
 
+              .map(doc => ({
 
-    const chatIds =
-      chatSnapshot.docs.map(
-        doc => doc.id
-      );
+                id:doc.id,
 
+                ...doc.data()
 
-    /*
-      Get messages from each customer's
-      own chat.
+              }))
 
-      We only keep messages where:
-
-      senderRole === "admin"
-
-      Therefore customer messages
-      never appear as notifications.
-    */
-
-    const requests =
-      chatIds.map(async chatId => {
-
-        const snapshot =
-          await db
-            .collection("messages")
-            .where(
-              "chatId",
-              "==",
-              chatId
-            )
-            .get();
+              .filter(
+                notification =>
+                  belongsToCurrentUser(
+                    notification
+                  )
+              );
 
 
-        return snapshot.docs
-          .map(doc => ({
+          renderNotifications();
 
-            id:doc.id,
+        },
 
-            chatId,
+        error => {
 
-            ...doc.data()
-
-          }))
-          .filter(message =>
-
-            String(
-              message.senderRole || ""
-            ).toLowerCase()
-            === "admin"
-
+          console.error(
+            "Notification listener error:",
+            error
           );
 
-      });
 
+          box.innerHTML = `
 
-    const results =
-      await Promise.all(requests);
+            <div class="empty">
 
+              <div class="empty-icon">
+                ⚠️
+              </div>
 
-    allNotifications =
-      results
-        .flat()
-        .sort(
-          (a,b) =>
-            timeOf(b.createdAt) -
-            timeOf(a.createdAt)
-        );
+              <h2>
+                Unable to load notifications
+              </h2>
 
+              <p>
+                ${escapeHTML(
+                  friendlyError(error)
+                )}
+              </p>
 
-    renderNotifications();
+            </div>
 
+          `;
 
-    /*
-      Listen for future changes.
-    */
+        }
 
-    startRealtimeListeners(
-      chatIds
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "Notification error:",
-      error
-    );
-
-
-    box.innerHTML = `
-
-      <div class="empty">
-
-        <div class="empty-icon">
-          ⚠️
-        </div>
-
-        <h2>
-          Unable to load notifications
-        </h2>
-
-        <p>
-          ${escapeHTML(
-            friendlyError(error)
-          )}
-        </p>
-
-      </div>
-
-    `;
-
-  }
+      );
 
 }
 
 
 
 /* ==========================================
-   REALTIME LISTENERS
+   CUSTOMER FILTER
 ========================================== */
 
-function startRealtimeListeners(chatIds){
+function belongsToCurrentUser(notification){
 
-  stopRealtimeListeners();
-
-
-  chatIds.forEach(chatId => {
-
-    const unsubscribe =
-      db
-        .collection("messages")
-        .where(
-          "chatId",
-          "==",
-          chatId
-        )
-        .onSnapshot(
-          snapshot => {
-
-            const adminMessages =
-              snapshot.docs
-                .map(doc => ({
-
-                  id:doc.id,
-
-                  chatId,
-
-                  ...doc.data()
-
-                }))
-                .filter(message =>
-
-                  String(
-                    message.senderRole || ""
-                  ).toLowerCase()
-                  === "admin"
-
-                );
+  if(!currentUser)
+    return false;
 
 
-            /*
-              Remove old messages from
-              this chat.
-            */
-
-            allNotifications =
-              allNotifications.filter(
-                message =>
-                  message.chatId !== chatId
-              );
+  const target =
+    String(
+      notification.target ||
+      notification.audience ||
+      "user"
+    ).toLowerCase();
 
 
-            /*
-              Add current admin messages.
-            */
+  /*
+    Notification sent to everybody.
+  */
 
-            allNotifications.push(
-              ...adminMessages
-            );
+  if(
+    target === "all" ||
+    target === "everyone" ||
+    target === "customers"
+  ){
 
+    return true;
 
-            /*
-              Sort newest first.
-            */
-
-            allNotifications.sort(
-              (a,b) =>
-                timeOf(b.createdAt) -
-                timeOf(a.createdAt)
-            );
+  }
 
 
-            renderNotifications();
+  /*
+    Notification specifically
+    sent to this customer's UID.
+  */
 
-          },
+  if(
+    notification.recipientId &&
+    notification.recipientId ===
+    currentUser.uid
+  ){
 
-          error => {
+    return true;
 
-            console.error(
-              "Realtime notification error:",
-              error
-            );
-
-          }
-        );
-
-
-    notificationListeners.push(
-      unsubscribe
-    );
-
-  });
-
-}
+  }
 
 
+  /*
+    Support alternative field names.
+  */
 
-function stopRealtimeListeners(){
+  if(
+    notification.userId &&
+    notification.userId ===
+    currentUser.uid
+  ){
 
-  notificationListeners.forEach(
-    unsubscribe => {
+    return true;
 
-      try{
-        unsubscribe();
-      }catch{}
-
-    }
-  );
+  }
 
 
-  notificationListeners = [];
+  if(
+    notification.customerId &&
+    notification.customerId ===
+    currentUser.uid
+  ){
+
+    return true;
+
+  }
+
+
+  /*
+    Notification specifically
+    sent to this customer's email.
+  */
+
+  if(
+    notification.recipientEmail &&
+    currentUser.email &&
+    String(
+      notification.recipientEmail
+    ).toLowerCase()
+    ===
+    String(
+      currentUser.email
+    ).toLowerCase()
+  ){
+
+    return true;
+
+  }
+
+
+  if(
+    notification.email &&
+    currentUser.email &&
+    String(
+      notification.email
+    ).toLowerCase()
+    ===
+    String(
+      currentUser.email
+    ).toLowerCase()
+  ){
+
+    return true;
+
+  }
+
+
+  return false;
 
 }
 
@@ -1210,11 +1225,12 @@ function renderNotifications(){
     );
 
 
+  updateNotificationCount();
+
+
   if(!allNotifications.length){
 
     showEmpty();
-
-    updateNotificationCount();
 
     return;
 
@@ -1231,40 +1247,51 @@ function renderNotifications(){
       )
       .join("");
 
-
-  updateNotificationCount();
-
-
-  /*
-    Mark unread admin messages as read.
-  */
-
-  markMessagesAsRead();
-
 }
 
 
 
-function notificationHTML(message){
+/* ==========================================
+   NOTIFICATION HTML
+========================================== */
+
+function notificationHTML(notification){
 
   const unread =
-    message.read !== true;
+    notification.read !== true;
 
 
-  const text =
-    message.text ||
+  const title =
+    notification.title ||
+    "Danny Smart Power";
+
+
+  const message =
+    notification.message ||
+    notification.text ||
+    notification.body ||
     "";
 
 
-  const senderName =
-    message.senderName ||
-    "Danny";
+  const sender =
+    notification.senderName ||
+    notification.from ||
+    "Danny Smart Power";
 
 
-  const date =
-    dateOf(
-      message.createdAt
-    );
+  const image =
+    notification.imageUrl ||
+    notification.image ||
+    "";
+
+
+  const createdAt =
+    notification.createdAt;
+
+
+  const chatId =
+    notification.chatId ||
+    "";
 
 
   return `
@@ -1273,8 +1300,9 @@ function notificationHTML(message){
       class="notification ${
         unread ? "unread" : ""
       }"
-      data-id="${escapeHTML(message.id)}"
-    >
+      data-id="${escapeHTML(
+        notification.id
+      )}">
 
       <div class="notification-top">
 
@@ -1294,9 +1322,7 @@ function notificationHTML(message){
                 : ""
               }
 
-              ${escapeHTML(
-                senderName
-              )}
+              ${escapeHTML(sender)}
 
             </div>
 
@@ -1310,35 +1336,49 @@ function notificationHTML(message){
 
 
         <div class="time">
-          ${escapeHTML(date)}
+
+          ${escapeHTML(
+            dateOf(createdAt)
+          )}
+
         </div>
 
       </div>
 
 
+      <div class="notification-title">
+
+        ${escapeHTML(title)}
+
+      </div>
+
+
       ${
-        text
+        message
         ? `
+
           <div class="message-text">
-            ${escapeHTML(text)}
+
+            ${escapeHTML(message)}
+
           </div>
+
         `
         : ""
       }
 
 
       ${
-        message.imageUrl
+        image
         ? `
+
           <img
             class="message-image"
-            src="${escapeHTML(
-              message.imageUrl
-            )}"
-            alt="Image from Danny"
+            src="${escapeHTML(image)}"
+            alt="Notification image"
             loading="lazy"
-            onerror="this.style.display='none'"
-          >
+            onerror="this.style.display='none'">
+
         `
         : ""
       }
@@ -1350,22 +1390,43 @@ function notificationHTML(message){
 
           ${
             unread
-            ? "● New message"
+            ? "● New notification"
             : "✓ Read"
           }
 
         </span>
 
 
-        <button
-          class="respond-btn"
-          onclick="respondToDanny('${escapeHTML(
-            message.chatId
-          )}')">
+        ${
+          chatId
+          ? `
 
-          💬 Respond to Danny
+            <button
+              class="respond-btn"
+              onclick="respondToDanny(
+                '${escapeHTML(chatId)}',
+                '${escapeHTML(notification.id)}'
+              )">
 
-        </button>
+              💬 Respond to Danny
+
+            </button>
+
+          `
+          : `
+
+            <button
+              class="respond-btn"
+              onclick="openNotification(
+                '${escapeHTML(notification.id)}'
+              )">
+
+              ${unread ? "✓ Mark as read" : "✓ Read"}
+
+            </button>
+
+          `
+        }
 
       </div>
 
@@ -1378,7 +1439,286 @@ function notificationHTML(message){
 
 
 /* ==========================================
-   EMPTY STATE
+   OPEN NOTIFICATION
+========================================== */
+
+async function openNotification(id){
+
+  const notification =
+    allNotifications.find(
+      item =>
+        item.id === id
+    );
+
+
+  if(!notification)
+    return;
+
+
+  if(notification.read === true)
+    return;
+
+
+  try{
+
+    await db
+      .collection("notifications")
+      .doc(id)
+      .update({
+
+        read:true,
+
+        readAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      });
+
+
+    showToast(
+      "Notification marked as read."
+    );
+
+  }catch(error){
+
+    console.error(
+      "Read update error:",
+      error
+    );
+
+    showToast(
+      "Could not mark notification as read."
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================
+   MARK ALL AS READ
+========================================== */
+
+async function markAllAsRead(){
+
+  const unread =
+    allNotifications.filter(
+      notification =>
+        notification.read !== true
+    );
+
+
+  if(!unread.length){
+
+    showToast(
+      "You have no unread notifications."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    /*
+      Firestore supports a maximum
+      of 500 writes per batch.
+    */
+
+    for(
+      let i = 0;
+      i < unread.length;
+      i += 450
+    ){
+
+      const batch =
+        db.batch();
+
+
+      const chunk =
+        unread.slice(
+          i,
+          i + 450
+        );
+
+
+      chunk.forEach(notification => {
+
+        const ref =
+          db
+            .collection("notifications")
+            .doc(notification.id);
+
+
+        batch.update(
+          ref,
+          {
+
+            read:true,
+
+            readAt:
+              firebase.firestore
+                .FieldValue
+                .serverTimestamp()
+
+          }
+        );
+
+      });
+
+
+      await batch.commit();
+
+    }
+
+
+    showToast(
+      "All notifications marked as read."
+    );
+
+  }catch(error){
+
+    console.error(
+      "Mark all read error:",
+      error
+    );
+
+    showToast(
+      "Could not mark notifications as read."
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================
+   CLEAR READ NOTIFICATIONS
+========================================== */
+
+async function clearReadNotifications(){
+
+  const read =
+    allNotifications.filter(
+      notification =>
+        notification.read === true
+    );
+
+
+  if(!read.length){
+
+    showToast(
+      "There are no read notifications to clear."
+    );
+
+    return;
+
+  }
+
+
+  const confirmed =
+    confirm(
+      "Clear your read notifications?"
+    );
+
+
+  if(!confirmed)
+    return;
+
+
+  try{
+
+    for(
+      let i = 0;
+      i < read.length;
+      i += 450
+    ){
+
+      const batch =
+        db.batch();
+
+
+      const chunk =
+        read.slice(
+          i,
+          i + 450
+        );
+
+
+      chunk.forEach(notification => {
+
+        batch.delete(
+          db
+            .collection("notifications")
+            .doc(notification.id)
+        );
+
+      });
+
+
+      await batch.commit();
+
+    }
+
+
+    showToast(
+      "Read notifications cleared."
+    );
+
+  }catch(error){
+
+    console.error(
+      "Clear notification error:",
+      error
+    );
+
+    showToast(
+      "Could not clear notifications."
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================
+   RESPOND
+========================================== */
+
+async function respondToDanny(
+  chatId,
+  notificationId
+){
+
+  await openNotification(
+    notificationId
+  );
+
+
+  if(!chatId){
+
+    showToast(
+      "Chat is not available."
+    );
+
+    return;
+
+  }
+
+
+  window.location.href =
+    "chat.html?chatId=" +
+    encodeURIComponent(chatId);
+
+}
+
+
+
+/* ==========================================
+   EMPTY
 ========================================== */
 
 function showEmpty(){
@@ -1398,8 +1738,8 @@ function showEmpty(){
       </h2>
 
       <p>
-        When Danny Smart Power sends you a message,
-        it will appear here.
+        When Danny Smart Power sends you
+        a notification, it will appear here automatically.
       </p>
 
     </div>
@@ -1411,187 +1751,15 @@ function showEmpty(){
 
 
 /* ==========================================
-   RESPOND
-========================================== */
-
-function respondToDanny(chatId){
-
-  if(!chatId){
-
-    showToast(
-      "Chat is not available yet."
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Pass the chat ID to chat.html.
-
-    Your chat page can read:
-
-    ?chatId=XXXX
-  */
-
-  window.location.href =
-    "chat.html?chatId=" +
-    encodeURIComponent(chatId);
-
-}
-
-
-
-/* ==========================================
-   MARK AS READ
-========================================== */
-
-async function markMessagesAsRead(){
-
-  const unread =
-    allNotifications.filter(
-      message =>
-        message.read !== true
-    );
-
-
-  if(!unread.length)
-    return;
-
-
-  /*
-    Firestore batches can contain
-    up to 500 operations.
-  */
-
-  const chunks = [];
-
-
-  for(
-    let i = 0;
-    i < unread.length;
-    i += 450
-  ){
-
-    chunks.push(
-      unread.slice(
-        i,
-        i + 450
-      )
-    );
-
-  }
-
-
-  for(const chunk of chunks){
-
-    try{
-
-      const batch =
-        db.batch();
-
-
-      chunk.forEach(message => {
-
-        const ref =
-          db
-            .collection("messages")
-            .doc(message.id);
-
-
-        batch.update(
-          ref,
-          {
-            read:true
-          }
-        );
-
-      });
-
-
-      await batch.commit();
-
-
-      /*
-        Update local data.
-      */
-
-      chunk.forEach(message => {
-
-        message.read = true;
-
-      });
-
-
-      /*
-        Also reset the customer's
-        unread chat counter.
-      */
-
-      const chatIds =
-        [
-          ...new Set(
-            chunk.map(
-              message =>
-                message.chatId
-            )
-          )
-        ];
-
-
-      for(const chatId of chatIds){
-
-        try{
-
-          await db
-            .collection("chats")
-            .doc(chatId)
-            .update({
-
-              unreadForCustomer:0
-
-            });
-
-        }catch(error){
-
-          console.warn(
-            "Could not update unread count:",
-            error
-          );
-
-        }
-
-      }
-
-
-      renderNotifications();
-
-    }catch(error){
-
-      console.error(
-        "Could not mark messages read:",
-        error
-      );
-
-    }
-
-  }
-
-}
-
-
-
-/* ==========================================
-   NOTIFICATION COUNT
+   COUNT
 ========================================== */
 
 function updateNotificationCount(){
 
   const count =
     allNotifications.filter(
-      message =>
-        message.read !== true
+      notification =>
+        notification.read !== true
     ).length;
 
 
@@ -1632,8 +1800,9 @@ function goBack(){
 
   if(
     document.referrer &&
-    document.referrer
-      .includes(location.host)
+    document.referrer.includes(
+      location.host
+    )
   ){
 
     history.back();
@@ -1650,7 +1819,7 @@ function goBack(){
 
 
 /* ==========================================
-   HELPERS
+   FIREBASE HELPERS
 ========================================== */
 
 function timeOf(value){
@@ -1663,7 +1832,8 @@ function timeOf(value){
 
     if(
       value &&
-      typeof value.toDate === "function"
+      typeof value.toDate ===
+      "function"
     ){
 
       return value
@@ -1675,7 +1845,8 @@ function timeOf(value){
 
     if(
       value &&
-      typeof value.seconds === "number"
+      typeof value.seconds ===
+      "number"
     ){
 
       return value.seconds * 1000;
@@ -1683,9 +1854,14 @@ function timeOf(value){
     }
 
 
-    return new Date(value)
-      .getTime();
+    const parsed =
+      new Date(value)
+        .getTime();
 
+
+    return Number.isNaN(parsed)
+      ? 0
+      : parsed;
 
   }catch{
 
@@ -1704,7 +1880,7 @@ function dateOf(value){
 
 
   if(!time)
-    return "Date unavailable";
+    return "Just now";
 
 
   try{
@@ -1731,27 +1907,36 @@ function dateOf(value){
 
 
 
+/* ==========================================
+   SECURITY DISPLAY HELPER
+========================================== */
+
 function escapeHTML(value){
 
   return String(
     value ?? ""
   )
+
   .replaceAll(
     "&",
     "&amp;"
   )
+
   .replaceAll(
     "<",
     "&lt;"
   )
+
   .replaceAll(
     ">",
     "&gt;"
   )
+
   .replaceAll(
     '"',
     "&quot;"
   )
+
   .replaceAll(
     "'",
     "&#039;"
@@ -1760,6 +1945,10 @@ function escapeHTML(value){
 }
 
 
+
+/* ==========================================
+   FIREBASE ERROR
+========================================== */
 
 function friendlyError(error){
 
@@ -1774,7 +1963,7 @@ function friendlyError(error){
 
     return (
       "Permission denied. " +
-      "Check your Firestore Rules."
+      "Your Firestore security rules are blocking notifications."
     );
 
   }
@@ -1786,8 +1975,7 @@ function friendlyError(error){
   ){
 
     return (
-      "Firestore needs an index " +
-      "for this request."
+      "Firestore needs an index for this query."
     );
 
   }
@@ -1799,8 +1987,7 @@ function friendlyError(error){
   ){
 
     return (
-      "Network unavailable. " +
-      "Please check your internet connection."
+      "Network unavailable. Please check your connection."
     );
 
   }
@@ -1814,6 +2001,10 @@ function friendlyError(error){
 }
 
 
+
+/* ==========================================
+   TOAST
+========================================== */
 
 function showToast(message){
 
@@ -1832,13 +2023,19 @@ function showToast(message){
   );
 
 
-  setTimeout(() => {
+  clearTimeout(
+    window.toastTimer
+  );
 
-    toast.classList.remove(
-      "show"
-    );
 
-  },2500);
+  window.toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },2500);
 
 }
 
@@ -1848,13 +2045,30 @@ function showToast(message){
    CLEANUP
 ========================================== */
 
-window.addEventListener(
-  "beforeunload",
-  () => {
+function stopRealtime(){
 
-    stopRealtimeListeners();
+  if(
+    typeof unsubscribeNotifications
+    === "function"
+  ){
+
+    try{
+
+      unsubscribeNotifications();
+
+    }catch{}
 
   }
+
+  unsubscribeNotifications =
+    null;
+
+}
+
+
+window.addEventListener(
+  "beforeunload",
+  stopRealtime
 );
 
 </script>
