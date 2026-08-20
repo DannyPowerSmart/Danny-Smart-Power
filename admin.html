@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#020617">
-<title>Danny Smart Power — Admin Center</title>
+<title>Danny Smart Power — Admin</title>
 
 <style>
 :root{
   --bg:#0f172a;
-  --header:#020617;
   --panel:#111c31;
   --panel2:#17243b;
-  --input:#0b1425;
-  --border:#26364f;
+  --header:#020617;
   --text:#e5eefb;
   --muted:#94a3b8;
   --blue:#38bdf8;
@@ -21,7 +19,9 @@
   --green:#22c55e;
   --red:#ef4444;
   --yellow:#f59e0b;
-  --shadow:0 12px 35px rgba(0,0,0,.22);
+  --border:#26364f;
+  --danger:#b91c1c;
+  --shadow:0 12px 35px rgba(0,0,0,.25);
 }
 
 *{box-sizing:border-box}
@@ -50,11 +50,67 @@ button{
   display:none!important;
 }
 
+/* LOGIN */
+
+#loginScreen{
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at top right,rgba(56,189,248,.12),transparent 35%),
+    var(--bg);
+}
+
+.login-box{
+  width:min(430px,100%);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.login-logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 16px;
+  display:grid;
+  place-items:center;
+  border-radius:20px;
+  background:#082f49;
+  border:1px solid #075985;
+  font-size:34px;
+}
+
+.login-title{
+  text-align:center;
+  font-size:23px;
+  font-weight:900;
+}
+
+.login-subtitle{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin:7px 0 24px;
+}
+
+.login-error{
+  background:#450a0a;
+  color:#fecaca;
+  border:1px solid #7f1d1d;
+  border-radius:10px;
+  padding:10px;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+/* APP */
+
 .app{
   min-height:100dvh;
 }
-
-/* TOP BAR */
 
 .topbar{
   height:64px;
@@ -62,25 +118,11 @@ button{
   border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:0 15px;
+  gap:14px;
+  padding:0 16px;
   position:sticky;
   top:0;
-  z-index:100;
-}
-
-.menu-btn,
-.icon-btn{
-  width:42px;
-  height:42px;
-  border-radius:11px;
-  border:1px solid var(--border);
-  background:var(--panel);
-  color:#fff;
-}
-
-.menu-btn{
-  display:none;
+  z-index:50;
 }
 
 .brand{
@@ -96,6 +138,16 @@ button{
   margin-top:4px;
 }
 
+.menu-btn,
+.icon-btn{
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:#fff;
+  border-radius:10px;
+  width:42px;
+  height:42px;
+}
+
 .top-actions{
   margin-left:auto;
   display:flex;
@@ -108,46 +160,43 @@ button{
 
 .badge{
   position:absolute;
-  right:-5px;
+  right:-4px;
   top:-5px;
   background:var(--red);
   color:#fff;
+  border-radius:99px;
   min-width:18px;
   height:18px;
   padding:0 5px;
-  border-radius:99px;
+  font-size:10px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:10px;
-  font-weight:900;
+  font-weight:800;
 }
 
-/* LAYOUT */
-
 .layout{
+  display:flex;
   min-height:calc(100dvh - 64px);
 }
 
 .sidebar{
   width:250px;
-  position:fixed;
-  left:0;
-  top:64px;
-  bottom:0;
   background:var(--header);
   border-right:1px solid var(--border);
-  padding:15px 12px;
+  padding:18px 12px;
+  position:fixed;
+  top:64px;
+  bottom:0;
   overflow:auto;
-  z-index:90;
+  z-index:45;
 }
 
 .sidebar h4{
   color:#64748b;
-  font-size:10px;
-  margin:18px 10px 7px;
+  font-size:11px;
+  margin:18px 10px 8px;
   text-transform:uppercase;
-  letter-spacing:.7px;
 }
 
 .nav{
@@ -156,7 +205,7 @@ button{
   border:0;
   background:transparent;
   color:#cbd5e1;
-  padding:11px 12px;
+  padding:12px;
   border-radius:10px;
   margin:2px 0;
 }
@@ -173,6 +222,7 @@ button{
 
 main{
   margin-left:250px;
+  width:calc(100% - 250px);
   padding:22px;
   max-width:1550px;
 }
@@ -188,8 +238,8 @@ main{
 .page-head{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   gap:12px;
+  align-items:center;
   margin-bottom:18px;
 }
 
@@ -201,8 +251,6 @@ main{
 .muted{
   color:var(--muted);
 }
-
-/* DASHBOARD */
 
 .grid{
   display:grid;
@@ -218,7 +266,7 @@ main{
   min-height:125px;
   box-shadow:var(--shadow);
   cursor:pointer;
-  transition:.18s;
+  transition:.15s;
 }
 
 .stat:hover{
@@ -242,8 +290,6 @@ main{
   margin-top:4px;
 }
 
-/* CARDS */
-
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -253,35 +299,18 @@ main{
   margin-bottom:16px;
 }
 
-.card h3{
-  margin-top:0;
-}
-
-/* FORMS */
-
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.label{
-  display:block;
-  color:#cbd5e1;
-  font-size:12px;
-  font-weight:800;
-  margin-bottom:6px;
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:14px;
 }
 
 .input,
 .select,
 .textarea{
   width:100%;
-  background:var(--input);
+  background:#0b1425;
   color:#fff;
   border:1px solid var(--border);
   border-radius:10px;
@@ -300,18 +329,9 @@ main{
   resize:vertical;
 }
 
-.toolbar{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:14px;
-}
-
 .search{
   max-width:360px;
 }
-
-/* BUTTONS */
 
 .btn{
   border:1px solid var(--border);
@@ -319,7 +339,7 @@ main{
   color:#fff;
   border-radius:9px;
   padding:9px 13px;
-  font-weight:800;
+  font-weight:700;
 }
 
 .btn:hover{
@@ -327,7 +347,7 @@ main{
 }
 
 .btn:disabled{
-  opacity:.5;
+  opacity:.55;
   cursor:not-allowed;
 }
 
@@ -342,13 +362,31 @@ main{
 }
 
 .btn-red{
-  background:#b91c1c;
-  border-color:#b91c1c;
+  background:var(--danger);
+  border-color:var(--danger);
 }
 
 .btn-yellow{
   background:#a16207;
   border-color:#a16207;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.label{
+  display:block;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:700;
+  margin:0 0 6px;
 }
 
 .message{
@@ -396,7 +434,7 @@ main{
 .product-name,
 .project-title,
 .customer-name{
-  font-weight:900;
+  font-weight:800;
   margin-top:10px;
 }
 
@@ -424,7 +462,6 @@ main{
   display:flex;
   gap:7px;
   margin-top:12px;
-  flex-wrap:wrap;
 }
 
 /* CUSTOMERS */
@@ -449,10 +486,9 @@ main{
 
 .customer-main{
   flex:1;
-  min-width:0;
 }
 
-/* TABLES */
+/* TABLE */
 
 .table-wrap{
   overflow:auto;
@@ -461,7 +497,7 @@ main{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:720px;
+  min-width:700px;
 }
 
 th,
@@ -478,12 +514,14 @@ th{
   text-transform:uppercase;
 }
 
+/* STATUS */
+
 .status{
   display:inline-block;
   padding:4px 8px;
   border-radius:999px;
   font-size:10px;
-  font-weight:900;
+  font-weight:800;
   background:#334155;
 }
 
@@ -510,6 +548,14 @@ th{
 .status-Cancelled{
   background:#7f1d1d;
   color:#fecaca;
+}
+
+.empty{
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:12px;
 }
 
 /* CHAT */
@@ -543,7 +589,7 @@ th{
 }
 
 .chat-name{
-  font-weight:900;
+  font-weight:800;
 }
 
 .last-message{
@@ -626,35 +672,17 @@ th{
   flex:1;
 }
 
-/* NOTIFICATIONS */
-
-.notification{
-  display:flex;
-  gap:12px;
-  margin-bottom:9px;
-}
-
-.notification .nicon{
-  font-size:21px;
-}
-
-.notification small{
-  display:block;
-  color:var(--muted);
-  margin-top:4px;
-}
-
 /* MODAL */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.72);
+  background:rgba(0,0,0,.7);
   display:none;
   align-items:center;
   justify-content:center;
   padding:15px;
-  z-index:200;
+  z-index:100;
 }
 
 .modal.show{
@@ -686,7 +714,7 @@ th{
   font-size:10px;
   color:#64748b;
   text-transform:uppercase;
-  font-weight:900;
+  font-weight:800;
 }
 
 .detail-value{
@@ -704,31 +732,21 @@ th{
   margin-top:8px;
 }
 
-/* EMPTY */
-
-.empty{
-  padding:28px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed var(--border);
-  border-radius:12px;
-}
-
-/* MOBILE */
-
 .overlay{
   display:none;
   position:fixed;
   inset:64px 0 0;
-  background:rgba(0,0,0,.55);
-  z-index:80;
+  background:rgba(0,0,0,.5);
+  z-index:40;
 }
 
 .overlay.show{
   display:block;
 }
 
-@media(max-width:1050px){
+/* MOBILE */
+
+@media(max-width:1000px){
   .grid{
     grid-template-columns:repeat(2,1fr);
   }
@@ -740,10 +758,6 @@ th{
 }
 
 @media(max-width:760px){
-  .menu-btn{
-    display:block;
-  }
-
   .sidebar{
     transform:translateX(-100%);
     transition:.2s;
@@ -755,6 +769,7 @@ th{
 
   main{
     margin-left:0;
+    width:100%;
     padding:14px;
   }
 
@@ -798,6 +813,10 @@ th{
     display:block;
   }
 
+  .chat-panel.mobile-hidden{
+    display:none;
+  }
+
   .page-head h1{
     font-size:21px;
   }
@@ -815,11 +834,78 @@ th{
 
 <body>
 
-<div class="app">
+<!-- =========================
+     LOGIN SCREEN
+========================= -->
+
+<div id="loginScreen">
+
+  <div class="login-box">
+
+    <div class="login-logo">⚡</div>
+
+    <div class="login-title">
+      Danny Smart Power
+    </div>
+
+    <div class="login-subtitle">
+      Secure Administrator Login
+    </div>
+
+    <div id="loginError" class="login-error hidden"></div>
+
+    <div>
+      <label class="label">Admin Email</label>
+      <input
+        id="loginEmail"
+        class="input"
+        type="email"
+        autocomplete="email"
+        value="dannysmartpower@gmail.com"
+        placeholder="Admin email">
+    </div>
+
+    <div style="margin-top:12px">
+      <label class="label">Password</label>
+      <input
+        id="loginPassword"
+        class="input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter admin password">
+    </div>
+
+    <button
+      id="loginBtn"
+      class="btn btn-blue"
+      style="width:100%;margin-top:16px"
+      onclick="loginAdmin()">
+      Sign In as Administrator
+    </button>
+
+    <div
+      style="text-align:center;color:#64748b;font-size:11px;margin-top:15px">
+      Authorized administrator only
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN APP
+========================= -->
+
+<div id="adminApp" class="app hidden">
 
 <header class="topbar">
 
-  <button class="menu-btn" id="menuBtn">☰</button>
+  <button
+    class="menu-btn"
+    id="menuBtn">
+    ☰
+  </button>
 
   <div class="brand">
     DANNY SMART POWER
@@ -827,736 +913,1085 @@ th{
   </div>
 
   <div class="top-actions">
-    <button class="icon-btn" onclick="openPage('notifications')">
+
+    <button
+      class="icon-btn"
+      onclick="openPage('notifications')">
       🔔
-      <span id="notificationBadge" class="badge hidden">0</span>
+      <span
+        id="notificationBadge"
+        class="badge hidden">
+        0
+      </span>
     </button>
+
   </div>
 
 </header>
 
-<div class="overlay" id="overlay" onclick="toggleSidebar(false)"></div>
+
+<div
+  class="overlay"
+  id="overlay"
+  onclick="toggleSidebar(false)">
+</div>
+
 
 <div class="layout">
 
-<aside class="sidebar" id="sidebar">
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-<h4>Overview</h4>
+<aside
+  class="sidebar"
+  id="sidebar">
 
-<button class="nav active" data-page="dashboard">
-📊 Dashboard
-</button>
+  <h4>Overview</h4>
 
-<h4>Store</h4>
+  <button
+    class="nav active"
+    data-page="dashboard">
+    📊 Dashboard
+  </button>
 
-<button class="nav" data-page="products">
-📦 Products
-</button>
 
-<button class="nav" data-page="orders">
-🛒 Orders
-</button>
+  <h4>Store</h4>
 
-<button class="nav" data-page="customers">
-👥 Customers
-</button>
+  <button
+    class="nav"
+    data-page="products">
+    📦 Products
+  </button>
 
-<button class="nav" data-page="messages">
-💬 Messages
-</button>
+  <button
+    class="nav"
+    data-page="orders">
+    🛒 Orders
+  </button>
 
-<button class="nav" data-page="notifications">
-🔔 Notifications
-</button>
+  <button
+    class="nav"
+    data-page="customers">
+    👥 Customers
+  </button>
 
-<h4>Electrical Services</h4>
+  <button
+    class="nav"
+    data-page="messages">
+    💬 Messages
+  </button>
 
-<button class="nav" data-page="services">
-🔧 Service Requests
-</button>
+  <button
+    class="nav"
+    data-page="notifications">
+    🔔 Notifications
+  </button>
 
-<button class="nav" data-page="projects">
-⚡ Electrical Projects
-</button>
 
-<h4>Customers</h4>
+  <h4>Electrical Services</h4>
 
-<button class="nav" data-page="wishlists">
-❤️ Wishlists
-</button>
+  <button
+    class="nav"
+    data-page="services">
+    🔧 Service Requests
+  </button>
 
-<button class="nav" data-page="profiles">
-👤 Profiles
-</button>
+  <button
+    class="nav"
+    data-page="projects">
+    ⚡ Electrical Projects
+  </button>
 
-<h4>System</h4>
 
-<button class="nav" data-page="settings">
-⚙️ Settings
-</button>
+  <h4>Customers</h4>
 
-<button class="nav" data-page="admins">
-🔐 Administrators
-</button>
+  <button
+    class="nav"
+    data-page="wishlists">
+    ❤️ Wishlists
+  </button>
 
-<button class="nav" id="logoutBtn">
-🚪 Sign Out
-</button>
+  <button
+    class="nav"
+    data-page="profiles">
+    👤 Profiles
+  </button>
+
+
+  <h4>System</h4>
+
+  <button
+    class="nav"
+    data-page="settings">
+    ⚙️ Settings
+  </button>
+
+  <button
+    class="nav"
+    data-page="admins">
+    🔐 Administrators
+  </button>
+
+  <button
+    class="nav"
+    id="logoutBtn">
+    🚪 Sign Out
+  </button>
 
 </aside>
 
 
 <main>
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+========================= -->
 
-<section id="page-dashboard" class="page active">
+<section
+  id="page-dashboard"
+  class="page active">
 
-<div class="page-head">
+  <div class="page-head">
 
-<div>
-<h1>Dashboard</h1>
-<div class="muted">Danny Smart Power overview</div>
-</div>
+    <div>
+      <h1>Dashboard</h1>
+      <div class="muted">
+        Danny Smart Power overview
+      </div>
+    </div>
 
-</div>
-
-<div class="grid">
-
-<div class="stat" onclick="openPage('products')">
-<div class="ico">📦</div>
-<div class="label">Products</div>
-<strong id="statProducts">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('orders')">
-<div class="ico">🛒</div>
-<div class="label">Total Orders</div>
-<strong id="statOrders">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('customers')">
-<div class="ico">👥</div>
-<div class="label">Customers</div>
-<strong id="statCustomers">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('orders','Pending')">
-<div class="ico">⏳</div>
-<div class="label">Pending Orders</div>
-<strong id="statPending">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('messages')">
-<div class="ico">💬</div>
-<div class="label">Unread Messages</div>
-<strong id="statUnread">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('projects')">
-<div class="ico">⚡</div>
-<div class="label">Electrical Projects</div>
-<strong id="statProjects">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('services')">
-<div class="ico">🔧</div>
-<div class="label">Pending Services</div>
-<strong id="statServices">0</strong>
-</div>
-
-<div class="stat" onclick="openPage('notifications')">
-<div class="ico">🔔</div>
-<div class="label">Unread Notifications</div>
-<strong id="statNotifications">0</strong>
-</div>
-
-</div>
+  </div>
 
 
-<div class="card">
+  <div class="grid">
 
-<h3>Completed Revenue</h3>
+    <div
+      class="stat"
+      onclick="openPage('products')">
+      <div class="ico">📦</div>
+      <div class="label">Products</div>
+      <strong id="statProducts">0</strong>
+    </div>
 
-<strong id="dashboardRevenue"
-style="font-size:28px;color:var(--blue)">
-₦0
-</strong>
+    <div
+      class="stat"
+      onclick="openPage('orders')">
+      <div class="ico">🛒</div>
+      <div class="label">Total Orders</div>
+      <strong id="statOrders">0</strong>
+    </div>
 
-<div id="orderSummary" style="margin-top:12px"></div>
+    <div
+      class="stat"
+      onclick="openPage('customers')">
+      <div class="ico">👥</div>
+      <div class="label">Customers</div>
+      <strong id="statCustomers">0</strong>
+    </div>
 
-</div>
+    <div
+      class="stat"
+      onclick="openPage('orders','Pending')">
+      <div class="ico">⏳</div>
+      <div class="label">Pending Orders</div>
+      <strong id="statPending">0</strong>
+    </div>
+
+    <div
+      class="stat"
+      onclick="openPage('messages')">
+      <div class="ico">💬</div>
+      <div class="label">Unread Messages</div>
+      <strong id="statUnread">0</strong>
+    </div>
+
+    <div
+      class="stat"
+      onclick="openPage('projects')">
+      <div class="ico">⚡</div>
+      <div class="label">Electrical Projects</div>
+      <strong id="statProjects">0</strong>
+    </div>
+
+    <div
+      class="stat"
+      onclick="openPage('services')">
+      <div class="ico">🔧</div>
+      <div class="label">Pending Services</div>
+      <strong id="statServices">0</strong>
+    </div>
+
+    <div
+      class="stat"
+      onclick="openPage('notifications')">
+      <div class="ico">🔔</div>
+      <div class="label">Notifications</div>
+      <strong id="statNotifications">0</strong>
+    </div>
+
+  </div>
 
 
-<div class="card">
+  <div class="card">
 
-<h3>Recent Orders</h3>
+    <h3>Completed Revenue</h3>
 
-<div id="recentOrders"></div>
+    <strong
+      id="dashboardRevenue"
+      style="font-size:28px;color:var(--blue)">
+      ₦0
+    </strong>
 
-</div>
+    <div
+      id="orderSummary"
+      style="margin-top:12px">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>Recent Orders</h3>
+
+    <div id="recentOrders"></div>
+
+  </div>
 
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- =========================
+     PRODUCTS
+========================= -->
 
-<section id="page-products" class="page">
+<section
+  id="page-products"
+  class="page">
 
-<div class="page-head">
+  <div class="page-head">
 
-<h1>Products</h1>
+    <h1>Products</h1>
 
-<button class="btn btn-blue" onclick="resetProductForm()">
-＋ Add Product
-</button>
+    <button
+      class="btn btn-blue"
+      onclick="resetProductForm()">
+      ＋ Add Product
+    </button>
 
-</div>
-
-
-<div class="card">
-
-<h3 id="productFormTitle">Add New Product</h3>
-
-<div class="form-grid">
-
-<div>
-<label class="label">Product Name</label>
-<input id="pName" class="input">
-</div>
-
-<div>
-<label class="label">Price (₦)</label>
-<input id="pPrice" type="number" class="input">
-</div>
-
-<div>
-<label class="label">Category</label>
-
-<select id="pCategory" class="select">
-<option>Solar</option>
-<option>Lighting</option>
-<option>Electrical</option>
-<option>Accessories</option>
-</select>
-
-</div>
-
-<div>
-<label class="label">Stock</label>
-<input id="pStock" type="number" class="input" value="0">
-</div>
-
-<div class="full">
-<label class="label">Image URL</label>
-<input id="pImage" class="input">
-</div>
-
-<div>
-<label class="label">Available</label>
-
-<select id="pAvailable" class="select">
-<option value="true">Yes</option>
-<option value="false">No</option>
-</select>
-
-</div>
-
-<div>
-<label class="label">Featured</label>
-
-<select id="pFeatured" class="select">
-<option value="false">No</option>
-<option value="true">Yes</option>
-</select>
-
-</div>
-
-<div class="full">
-<label class="label">Description</label>
-<textarea id="pDescription" class="textarea"></textarea>
-</div>
-
-</div>
-
-<div style="margin-top:12px">
-
-<button
-id="saveProductBtn"
-class="btn btn-blue"
-onclick="saveProduct()">
-Add Product
-</button>
-
-<button
-id="cancelProductBtn"
-class="btn hidden"
-onclick="resetProductForm()">
-Cancel
-</button>
-
-</div>
-
-<div id="productMessage" class="message"></div>
-
-</div>
+  </div>
 
 
-<div class="card">
+  <div class="card">
 
-<div class="toolbar">
+    <h3 id="productFormTitle">
+      Add New Product
+    </h3>
 
-<input
-id="productSearch"
-class="input search"
-placeholder="Search products..."
-oninput="renderProducts()">
+    <div class="form-grid">
 
-</div>
+      <div>
+        <label class="label">
+          Product Name
+        </label>
+        <input
+          id="pName"
+          class="input">
+      </div>
 
-<div id="productsGrid" class="product-grid"></div>
+      <div>
+        <label class="label">
+          Price (₦)
+        </label>
+        <input
+          id="pPrice"
+          type="number"
+          min="0"
+          class="input">
+      </div>
 
-</div>
+      <div>
+        <label class="label">
+          Category
+        </label>
+
+        <select
+          id="pCategory"
+          class="select">
+
+          <option>Solar</option>
+          <option>Lighting</option>
+          <option>Electrical</option>
+          <option>Accessories</option>
+
+        </select>
+      </div>
+
+      <div>
+        <label class="label">
+          Stock
+        </label>
+
+        <input
+          id="pStock"
+          type="number"
+          min="0"
+          class="input"
+          value="0">
+      </div>
+
+      <div class="full">
+
+        <label class="label">
+          Image URL
+        </label>
+
+        <input
+          id="pImage"
+          class="input"
+          placeholder="https://...">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Available
+        </label>
+
+        <select
+          id="pAvailable"
+          class="select">
+
+          <option value="true">
+            Yes
+          </option>
+
+          <option value="false">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Featured
+        </label>
+
+        <select
+          id="pFeatured"
+          class="select">
+
+          <option value="false">
+            No
+          </option>
+
+          <option value="true">
+            Yes
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="pDescription"
+          class="textarea">
+        </textarea>
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top:12px">
+
+      <button
+        id="saveProductBtn"
+        class="btn btn-blue"
+        onclick="saveProduct()">
+        Add Product
+      </button>
+
+      <button
+        id="cancelProductBtn"
+        class="btn hidden"
+        onclick="resetProductForm()">
+        Cancel
+      </button>
+
+    </div>
+
+    <div
+      id="productMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="productSearch"
+        class="input search"
+        placeholder="Search products..."
+        oninput="renderProducts()">
+
+    </div>
+
+    <div
+      id="productsGrid"
+      class="product-grid">
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ORDERS -->
+<!-- =========================
+     ORDERS
+========================= -->
 
-<section id="page-orders" class="page">
+<section
+  id="page-orders"
+  class="page">
 
-<div class="page-head">
-<h1>Orders</h1>
-</div>
+  <div class="page-head">
+    <h1>Orders</h1>
+  </div>
 
-<div class="card">
+  <div class="card">
 
-<div class="toolbar">
+    <div class="toolbar">
 
-<input
-id="orderSearch"
-class="input search"
-placeholder="Search orders..."
-oninput="renderOrders()">
+      <input
+        id="orderSearch"
+        class="input search"
+        placeholder="Search orders..."
+        oninput="renderOrders()">
 
-<select
-id="orderFilter"
-class="select"
-style="max-width:190px"
-onchange="renderOrders()">
+      <select
+        id="orderFilter"
+        class="select"
+        style="max-width:190px"
+        onchange="renderOrders()">
 
-<option value="all">All statuses</option>
-<option>Pending</option>
-<option>Processing</option>
-<option>Shipped</option>
-<option>Completed</option>
-<option>Cancelled</option>
+        <option value="all">
+          All statuses
+        </option>
 
-</select>
+        <option>Pending</option>
+        <option>Processing</option>
+        <option>Shipped</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
 
-</div>
+      </select>
 
-<div id="ordersTable" class="table-wrap"></div>
+    </div>
 
-</div>
+    <div
+      id="ordersTable"
+      class="table-wrap">
+    </div>
 
-</section>
-
-
-<!-- CUSTOMERS -->
-
-<section id="page-customers" class="page">
-
-<div class="page-head">
-<h1>Customers</h1>
-</div>
-
-<div class="card">
-
-<input
-id="customerSearch"
-class="input search"
-placeholder="Search customers..."
-oninput="renderCustomers()">
-
-<div
-id="customersList"
-style="margin-top:14px">
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- CHAT -->
+<!-- =========================
+     CUSTOMERS
+========================= -->
 
-<section id="page-messages" class="page">
+<section
+  id="page-customers"
+  class="page">
 
-<div class="page-head">
+  <div class="page-head">
+    <h1>Customers</h1>
+  </div>
 
-<h1>Admin Chat</h1>
+  <div class="card">
 
-<button
-class="btn"
-onclick="toggleChatList()">
-☰ Conversations
-</button>
+    <input
+      id="customerSearch"
+      class="input search"
+      placeholder="Search customers..."
+      oninput="renderCustomers()">
 
-</div>
+    <div
+      id="customersList"
+      style="margin-top:14px">
+    </div>
 
-<div class="card" style="padding:0;overflow:hidden">
-
-<div class="chat-layout">
-
-<div id="chatList" class="chat-list"></div>
-
-<div id="chatPanel" class="chat-panel">
-
-<div class="chat-head">
-
-<strong id="chatCustomerName">
-Select a customer
-</strong>
-
-<div
-id="chatCustomerInfo"
-class="muted"
-style="font-size:11px">
-</div>
-
-</div>
-
-<div id="messages" class="messages">
-
-<div class="empty">
-Select a conversation.
-</div>
-
-</div>
-
-<div class="chat-compose">
-
-<textarea
-id="chatInput"
-placeholder="Type your message..."
-disabled
-onkeydown="handleChatEnter(event)">
-</textarea>
-
-<button
-id="sendChatBtn"
-class="btn btn-blue"
-disabled
-onclick="sendMessage()">
-Send
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- NOTIFICATIONS -->
+<!-- =========================
+     MESSAGES
+========================= -->
 
-<section id="page-notifications" class="page">
+<section
+  id="page-messages"
+  class="page">
 
-<div class="page-head">
+  <div class="page-head">
+    <h1>Admin Chat</h1>
+  </div>
 
-<h1>Notifications</h1>
+  <div
+    class="card"
+    style="padding:0;overflow:hidden">
 
-<button
-class="btn"
-onclick="markNotificationsRead()">
-Mark all read
-</button>
+    <div class="chat-layout">
 
-</div>
+      <div
+        id="chatList"
+        class="chat-list">
+      </div>
 
-<div class="card">
+      <div
+        id="chatPanel"
+        class="chat-panel">
 
-<div id="notificationsList"></div>
+        <div class="chat-head">
 
-</div>
+          <strong id="chatCustomerName">
+            Select a customer
+          </strong>
 
-</section>
+          <div
+            id="chatCustomerInfo"
+            class="muted"
+            style="font-size:11px">
+          </div>
 
+        </div>
 
-<!-- PROJECTS -->
+        <div
+          id="messages"
+          class="messages">
 
-<section id="page-projects" class="page">
+          <div class="empty">
+            Select a conversation.
+          </div>
 
-<div class="page-head">
+        </div>
 
-<h1>Electrical Projects</h1>
+        <div class="chat-compose">
 
-<button
-class="btn btn-blue"
-onclick="resetProjectForm()">
-＋ Add Project
-</button>
+          <textarea
+            id="chatInput"
+            placeholder="Type your message..."
+            disabled
+            onkeydown="handleChatEnter(event)">
+          </textarea>
 
-</div>
+          <button
+            id="sendChatBtn"
+            class="btn btn-blue"
+            disabled
+            onclick="sendMessage()">
+            Send
+          </button>
 
+        </div>
 
-<div class="card">
+      </div>
 
-<h3 id="projectFormTitle">
-Add Project
-</h3>
+    </div>
 
-<div class="form-grid">
-
-<div>
-<label class="label">Project Title</label>
-<input id="prTitle" class="input">
-</div>
-
-<div>
-<label class="label">Category</label>
-<input
-id="prCategory"
-class="input"
-placeholder="Solar, Wiring, Inverter...">
-</div>
-
-<div class="full">
-<label class="label">Description</label>
-<textarea id="prDescription" class="textarea"></textarea>
-</div>
-
-<div>
-<label class="label">Photo URL</label>
-<input id="prPhoto" class="input">
-</div>
-
-<div>
-<label class="label">Video URL</label>
-<input id="prVideo" class="input">
-</div>
-
-<div>
-<label class="label">Media Type</label>
-
-<select id="prMediaType" class="select">
-<option value="photo">Photo</option>
-<option value="video">Video</option>
-</select>
-
-</div>
-
-<div>
-<label class="label">Featured</label>
-
-<select id="prFeatured" class="select">
-<option value="false">No</option>
-<option value="true">Yes</option>
-</select>
-
-</div>
-
-<div>
-<label class="label">Published</label>
-
-<select id="prPublished" class="select">
-<option value="true">Yes</option>
-<option value="false">No</option>
-</select>
-
-</div>
-
-</div>
-
-<div style="margin-top:12px">
-
-<button
-id="saveProjectBtn"
-class="btn btn-blue"
-onclick="saveProject()">
-Save Project
-</button>
-
-<button
-id="cancelProjectBtn"
-class="btn hidden"
-onclick="resetProjectForm()">
-Cancel
-</button>
-
-</div>
-
-<div id="projectMessage" class="message"></div>
-
-</div>
-
-
-<div class="card">
-
-<div id="projectsGrid" class="project-grid"></div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- SERVICES -->
+<!-- =========================
+     NOTIFICATIONS
+========================= -->
 
-<section id="page-services" class="page">
+<section
+  id="page-notifications"
+  class="page">
 
-<div class="page-head">
-<h1>Service Requests</h1>
-</div>
+  <div class="page-head">
 
-<div class="card">
+    <h1>Notifications</h1>
 
-<div class="toolbar">
+    <button
+      class="btn"
+      onclick="markNotificationsRead()">
+      Mark all read
+    </button>
 
-<input
-id="serviceSearch"
-class="input search"
-placeholder="Search requests..."
-oninput="renderServices()">
+  </div>
 
-<select
-id="serviceFilter"
-class="select"
-style="max-width:190px"
-onchange="renderServices()">
+  <div class="card">
 
-<option value="all">All</option>
-<option>Pending</option>
-<option>Processing</option>
-<option>Completed</option>
-<option>Cancelled</option>
+    <div id="notificationsList"></div>
 
-</select>
-
-</div>
-
-<div id="servicesTable" class="table-wrap"></div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- WISHLISTS -->
+<!-- =========================
+     PROJECTS
+========================= -->
 
-<section id="page-wishlists" class="page">
+<section
+  id="page-projects"
+  class="page">
 
-<div class="page-head">
-<h1>Wishlists</h1>
-</div>
+  <div class="page-head">
 
-<div class="card">
-<div id="wishlistsList"></div>
-</div>
+    <h1>Electrical Projects</h1>
+
+    <button
+      class="btn btn-blue"
+      onclick="resetProjectForm()">
+      ＋ Add Project
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3 id="projectFormTitle">
+      Add Project
+    </h3>
+
+    <div class="form-grid">
+
+      <div>
+
+        <label class="label">
+          Project Title
+        </label>
+
+        <input
+          id="prTitle"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Category
+        </label>
+
+        <input
+          id="prCategory"
+          class="input"
+          placeholder="Solar, Wiring, Inverter...">
+
+      </div>
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="prDescription"
+          class="textarea">
+        </textarea>
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Photo URL
+        </label>
+
+        <input
+          id="prPhoto"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Video URL
+        </label>
+
+        <input
+          id="prVideo"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Media Type
+        </label>
+
+        <select
+          id="prMediaType"
+          class="select">
+
+          <option value="photo">
+            Photo
+          </option>
+
+          <option value="video">
+            Video
+          </option>
+
+        </select>
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Featured
+        </label>
+
+        <select
+          id="prFeatured"
+          class="select">
+
+          <option value="false">
+            No
+          </option>
+
+          <option value="true">
+            Yes
+          </option>
+
+        </select>
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Published
+        </label>
+
+        <select
+          id="prPublished"
+          class="select">
+
+          <option value="true">
+            Yes
+          </option>
+
+          <option value="false">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top:12px">
+
+      <button
+        id="saveProjectBtn"
+        class="btn btn-blue"
+        onclick="saveProject()">
+        Save Project
+      </button>
+
+      <button
+        id="cancelProjectBtn"
+        class="btn hidden"
+        onclick="resetProjectForm()">
+        Cancel
+      </button>
+
+    </div>
+
+    <div
+      id="projectMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div
+      id="projectsGrid"
+      class="project-grid">
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- PROFILES -->
+<!-- =========================
+     SERVICES
+========================= -->
 
-<section id="page-profiles" class="page">
+<section
+  id="page-services"
+  class="page">
 
-<div class="page-head">
-<h1>Profiles</h1>
-</div>
+  <div class="page-head">
+    <h1>Service Requests</h1>
+  </div>
 
-<div class="card">
-<div id="profilesList"></div>
-</div>
+  <div class="card">
 
-</section>
+    <div class="toolbar">
 
+      <input
+        id="serviceSearch"
+        class="input search"
+        placeholder="Search requests..."
+        oninput="renderServices()">
 
-<!-- SETTINGS -->
+      <select
+        id="serviceFilter"
+        class="select"
+        style="max-width:190px"
+        onchange="renderServices()">
 
-<section id="page-settings" class="page">
+        <option value="all">All</option>
+        <option>Pending</option>
+        <option>Processing</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
 
-<div class="page-head">
-<h1>Store Settings</h1>
-</div>
+      </select>
 
-<div class="card">
+    </div>
 
-<div class="form-grid">
+    <div
+      id="servicesTable"
+      class="table-wrap">
+    </div>
 
-<div>
-<label class="label">Store Name</label>
-<input id="sName" class="input">
-</div>
-
-<div>
-<label class="label">Email</label>
-<input id="sEmail" class="input">
-</div>
-
-<div>
-<label class="label">Phone</label>
-<input id="sPhone" class="input">
-</div>
-
-<div>
-<label class="label">WhatsApp</label>
-<input id="sWhatsapp" class="input">
-</div>
-
-<div>
-<label class="label">Currency</label>
-<input id="sCurrency" class="input" value="NGN">
-</div>
-
-<div>
-<label class="label">Logo URL</label>
-<input id="sLogo" class="input">
-</div>
-
-<div class="full">
-<label class="label">Address</label>
-<input id="sAddress" class="input">
-</div>
-
-<div class="full">
-<label class="label">Description</label>
-<textarea id="sDescription" class="textarea"></textarea>
-</div>
-
-</div>
-
-<button
-class="btn btn-blue"
-style="margin-top:12px"
-onclick="saveSettings()">
-Save Settings
-</button>
-
-<div id="settingsMessage" class="message"></div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- ADMINS -->
+<!-- =========================
+     WISHLISTS
+========================= -->
 
-<section id="page-admins" class="page">
+<section
+  id="page-wishlists"
+  class="page">
 
-<div class="page-head">
-<h1>Administrators</h1>
-</div>
+  <div class="page-head">
+    <h1>Wishlists</h1>
+  </div>
 
-<div class="card">
+  <div class="card">
 
-<div id="adminsList"></div>
+    <div id="wishlistsList"></div>
 
-</div>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PROFILES
+========================= -->
+
+<section
+  id="page-profiles"
+  class="page">
+
+  <div class="page-head">
+    <h1>Profiles</h1>
+  </div>
+
+  <div class="card">
+
+    <div id="profilesList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SETTINGS
+========================= -->
+
+<section
+  id="page-settings"
+  class="page">
+
+  <div class="page-head">
+    <h1>Settings</h1>
+  </div>
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div>
+
+        <label class="label">
+          Store Name
+        </label>
+
+        <input
+          id="sName"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Email
+        </label>
+
+        <input
+          id="sEmail"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Phone
+        </label>
+
+        <input
+          id="sPhone"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          WhatsApp
+        </label>
+
+        <input
+          id="sWhatsapp"
+          class="input">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Currency
+        </label>
+
+        <input
+          id="sCurrency"
+          class="input"
+          value="NGN">
+
+      </div>
+
+      <div>
+
+        <label class="label">
+          Logo URL
+        </label>
+
+        <input
+          id="sLogo"
+          class="input">
+
+      </div>
+
+      <div class="full">
+
+        <label class="label">
+          Address
+        </label>
+
+        <input
+          id="sAddress"
+          class="input">
+
+      </div>
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="sDescription"
+          class="textarea">
+        </textarea>
+
+      </div>
+
+    </div>
+
+    <button
+      class="btn btn-blue"
+      style="margin-top:12px"
+      onclick="saveSettings()">
+      Save Settings
+    </button>
+
+    <div
+      id="settingsMessage"
+      class="message">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ADMINS
+========================= -->
+
+<section
+  id="page-admins"
+  class="page">
+
+  <div class="page-head">
+    <h1>Administrators</h1>
+  </div>
+
+  <div class="card">
+
+    <div
+      id="adminsList">
+    </div>
+
+  </div>
 
 </section>
 
@@ -1565,98 +2000,93 @@ Save Settings
 </div>
 
 
-<!-- MODAL -->
+<!-- =========================
+     MODAL
+========================= -->
 
 <div
-id="modal"
-class="modal"
-onclick="closeModalOutside(event)">
+  id="modal"
+  class="modal"
+  onclick="closeModalOutside(event)">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<div class="modal-head">
+    <div class="modal-head">
 
-<h2 id="modalTitle">
-Details
-</h2>
+      <h2 id="modalTitle">
+        Details
+      </h2>
 
-<button
-class="btn"
-onclick="closeModal()">
-✕
-</button>
+      <button
+        class="btn"
+        onclick="closeModal()">
+        ✕
+      </button>
+
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
 
 </div>
 
-<div id="modalContent"></div>
 
-</div>
-
-</div>
-
-
-<!-- FIREBASE -->
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-
 <script>
 
 /* =========================================================
-   DANNY SMART POWER FIREBASE CONFIG
-   ---------------------------------------------------------
-   REPLACE ONLY THE VALUES BELOW WITH YOUR REAL DSP CONFIG.
+   1. PUT YOUR REAL FIREBASE CONFIG HERE
    ========================================================= */
-
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
 
 const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey: "YOUR_API_KEY",
 
-  authDomain:
-    "danny-smart-power.firebaseapp.com",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
 
-  databaseURL:
-    "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT_ID",
 
-  projectId:
-    "danny-smart-power",
+  storageBucket: "YOUR_PROJECT.appspot.com",
 
-  storageBucket:
-    "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "YOUR_SENDER_ID",
 
-  messagingSenderId:
-    "649735645158",
-
-  appId:
-    "1:649735645158:web:cff518b89721a163679827",
-
-  measurementId:
-    "G-258YKLP5ZS"
+  appId: "YOUR_APP_ID"
 
 };
 
+
 /* =========================================================
-   FIREBASE INITIALIZATION
+   2. ADMIN AUTHORIZATION
+   ========================================================= */
+
+const ADMIN_UID =
+  "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
+
+const ADMIN_EMAIL =
+  "dannysmartpower@gmail.com";
+
+
+/* =========================================================
+   3. FIREBASE INITIALIZATION
    ========================================================= */
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
-const db = firebase.firestore();
 
-const FieldValue = firebase.firestore.FieldValue;
+const db = firebase.firestore();
 
 
 /* =========================================================
-   GLOBAL STATE
+   4. GLOBAL STATE
    ========================================================= */
 
 let products = [];
@@ -1672,31 +2102,24 @@ let notifications = [];
 
 let editingProductId = null;
 let editingProjectId = null;
+
 let selectedChatId = null;
-
 let messageUnsubscribe = null;
-
-let realtimeUnsubscribers = [];
-
 let settingsDocId = null;
 
-let initialDataLoaded = false;
+let realtimeStarted = false;
 
 
 /* =========================================================
-   HELPERS
+   5. HELPERS
    ========================================================= */
 
 const $ = id => document.getElementById(id);
 
-
 function money(value){
 
-  const n = Number(value || 0);
-
-  return Number.isFinite(n)
-    ? n.toLocaleString("en-NG")
-    : "0";
+  return Number(value || 0)
+    .toLocaleString("en-NG");
 
 }
 
@@ -1704,19 +2127,18 @@ function money(value){
 function numericTotal(value){
 
   if(typeof value === "number"){
-    return Number.isFinite(value) ? value : 0;
+    return value;
   }
 
   if(typeof value === "string"){
 
-    const cleaned = value
-      .replace(/[₦,\s]/g,"")
-      .replace(/NGN/gi,"")
-      .trim();
+    const n = Number(
+      value.replace(/[₦,\s]/g,"")
+    );
 
-    const n = Number(cleaned);
-
-    return Number.isFinite(n) ? n : 0;
+    return Number.isFinite(n)
+      ? n
+      : 0;
 
   }
 
@@ -1731,7 +2153,7 @@ function timeOf(value){
 
   try{
 
-    if(typeof value.toDate === "function"){
+    if(value.toDate){
       return value.toDate().getTime();
     }
 
@@ -1741,12 +2163,12 @@ function timeOf(value){
 
     const n = new Date(value).getTime();
 
-    return Number.isNaN(n) ? 0 : n;
+    return Number.isNaN(n)
+      ? 0
+      : n;
 
   }catch{
-
     return 0;
-
   }
 
 }
@@ -1754,17 +2176,20 @@ function timeOf(value){
 
 function dateOf(value){
 
-  const time = timeOf(value);
+  const t = timeOf(value);
 
-  if(!time) return "—";
+  if(!t) return "—";
 
-  return new Date(time).toLocaleString("en-NG",{
-    day:"numeric",
-    month:"short",
-    year:"numeric",
-    hour:"numeric",
-    minute:"2-digit"
-  });
+  return new Date(t).toLocaleString(
+    "en-NG",
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric",
+      hour:"numeric",
+      minute:"2-digit"
+    }
+  );
 
 }
 
@@ -1787,18 +2212,29 @@ function friendlyError(error){
     return "Permission denied. Check your Firestore Security Rules.";
   }
 
-  if(error?.code === "failed-precondition"){
-    return "Firebase needs an index for this query. Check the browser console for the Firebase index link.";
+  if(error?.code === "auth/wrong-password"){
+    return "Incorrect password.";
   }
 
-  return error?.message || "Something went wrong.";
+  if(error?.code === "auth/invalid-credential"){
+    return "Incorrect email or password.";
+  }
+
+  if(error?.code === "auth/user-not-found"){
+    return "Admin account was not found in Firebase Authentication.";
+  }
+
+  return error?.message ||
+    "Something went wrong.";
 
 }
 
 
 function normalizeItems(items){
 
-  if(!Array.isArray(items)) return [];
+  if(!Array.isArray(items)){
+    return [];
+  }
 
   return items.map(item => {
 
@@ -1817,38 +2253,172 @@ function normalizeItems(items){
 }
 
 
-function boolValue(value, fallback=false){
+/* =========================================================
+   6. LOGIN
+   ========================================================= */
 
-  if(value === true || value === false){
-    return value;
+async function loginAdmin(){
+
+  const email =
+    $("loginEmail").value.trim();
+
+  const password =
+    $("loginPassword").value;
+
+  const errorBox =
+    $("loginError");
+
+  errorBox.classList.add("hidden");
+
+  if(!email){
+
+    errorBox.textContent =
+      "Enter your admin email.";
+
+    errorBox.classList.remove("hidden");
+
+    return;
+
   }
 
-  if(typeof value === "string"){
-    return value.toLowerCase() === "true";
+  if(!password){
+
+    errorBox.textContent =
+      "Enter your password.";
+
+    errorBox.classList.remove("hidden");
+
+    return;
+
   }
 
-  return fallback;
+  $("loginBtn").disabled = true;
+
+  $("loginBtn").textContent =
+    "Signing in...";
+
+  try{
+
+    const result =
+      await auth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+
+    const user = result.user;
+
+    /*
+      SECURITY CHECK
+
+      Only this exact UID is allowed.
+    */
+
+    if(user.uid !== ADMIN_UID){
+
+      await auth.signOut();
+
+      throw new Error(
+        "This Firebase account is not authorized as the Danny Smart Power administrator."
+      );
+
+    }
+
+    if(
+      user.email &&
+      user.email.toLowerCase() !==
+      ADMIN_EMAIL.toLowerCase()
+    ){
+
+      await auth.signOut();
+
+      throw new Error(
+        "This account does not match the authorized administrator email."
+      );
+
+    }
+
+    showAdminApp();
+
+    await startAdmin();
+
+  }catch(error){
+
+    errorBox.textContent =
+      friendlyError(error);
+
+    errorBox.classList.remove("hidden");
+
+  }finally{
+
+    $("loginBtn").disabled = false;
+
+    $("loginBtn").textContent =
+      "Sign In as Administrator";
+
+  }
+
+}
+
+
+$("loginPassword").addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Enter"){
+      loginAdmin();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   7. SHOW / HIDE APP
+   ========================================================= */
+
+function showAdminApp(){
+
+  $("loginScreen")
+    .classList.add("hidden");
+
+  $("adminApp")
+    .classList.remove("hidden");
+
+}
+
+
+function showLogin(){
+
+  $("adminApp")
+    .classList.add("hidden");
+
+  $("loginScreen")
+    .classList.remove("hidden");
 
 }
 
 
 /* =========================================================
-   SIDEBAR
+   8. SIDEBAR
    ========================================================= */
 
 function toggleSidebar(show){
 
-  $("sidebar").classList.toggle("open",show);
-  $("overlay").classList.toggle("show",show);
+  $("sidebar")
+    .classList.toggle("open",show);
+
+  $("overlay")
+    .classList.toggle("show",show);
 
 }
 
 
 $("menuBtn").onclick = () => {
 
-  const open = $("sidebar").classList.contains("open");
-
-  toggleSidebar(!open);
+  toggleSidebar(
+    !$("sidebar")
+      .classList.contains("open")
+  );
 
 };
 
@@ -1857,33 +2427,39 @@ function openPage(page,status=null){
 
   document
     .querySelectorAll(".page")
-    .forEach(pageElement => pageElement.classList.remove("active"));
+    .forEach(pageElement =>
+      pageElement.classList.remove("active")
+    );
 
   document
     .querySelectorAll(".nav")
-    .forEach(nav => nav.classList.remove("active"));
+    .forEach(nav =>
+      nav.classList.remove("active")
+    );
 
-  const pageElement = $("page-" + page);
+  const pageElement =
+    $("page-" + page);
 
   if(pageElement){
     pageElement.classList.add("active");
   }
 
-  const nav = document.querySelector(
-    `.nav[data-page="${page}"]`
-  );
+  const nav =
+    document.querySelector(
+      `.nav[data-page="${page}"]`
+    );
 
   if(nav){
     nav.classList.add("active");
   }
 
-  if(page === "orders" && status){
+  if(
+    status &&
+    page === "orders"
+  ){
 
-    const filter = $("orderFilter");
-
-    if(filter){
-      filter.value = status;
-    }
+    $("orderFilter").value =
+      status;
 
     renderOrders();
 
@@ -1903,69 +2479,61 @@ document
   .querySelectorAll(".nav[data-page]")
   .forEach(button => {
 
-    button.onclick = () => {
+    button.onclick = () =>
       openPage(button.dataset.page);
-    };
 
   });
 
 
-/* =========================================================
-   LOGOUT
-   ========================================================= */
+$("logoutBtn").onclick =
+  async () => {
 
-$("logoutBtn").onclick = async () => {
+    if(!confirm("Sign out of admin?")){
+      return;
+    }
 
-  if(!confirm("Sign out of the admin center?")) return;
-
-  try{
+    if(messageUnsubscribe){
+      messageUnsubscribe();
+      messageUnsubscribe = null;
+    }
 
     await auth.signOut();
 
-  }catch(error){
-
-    alert(friendlyError(error));
-
-  }
-
-};
+  };
 
 
 /* =========================================================
-   PRODUCTS
+   9. PRODUCTS
    ========================================================= */
 
 async function loadProducts(){
 
   try{
 
-    const snapshot = await db
-      .collection("products")
-      .get();
+    const snapshot =
+      await db.collection("products").get();
 
-    products = snapshot.docs
-      .map(doc => ({
-        id:doc.id,
-        ...doc.data()
-      }))
-      .sort(
-        (a,b) =>
-          timeOf(b.updatedAt || b.createdAt)
-          -
-          timeOf(a.updatedAt || a.createdAt)
-      );
+    products =
+      snapshot.docs
+        .map(doc => ({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b) =>
+            timeOf(b.updatedAt || b.createdAt) -
+            timeOf(a.updatedAt || a.createdAt)
+        );
 
     renderProducts();
     updateDashboard();
 
   }catch(error){
 
-    console.error("Products:",error);
-
     $("productsGrid").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(friendlyError(error))}
+      </div>`;
 
   }
 
@@ -1974,47 +2542,47 @@ async function loadProducts(){
 
 function renderProducts(){
 
-  const box = $("productsGrid");
-
-  if(!box) return;
+  const box =
+    $("productsGrid");
 
   const query =
     ($("productSearch")?.value || "")
       .toLowerCase()
       .trim();
 
-  const list = products.filter(product => {
+  const list =
+    products.filter(product => {
 
-    const text = [
-      product.name,
-      product.category,
-      product.description
-    ]
+      return [
+        product.name,
+        product.category,
+        product.description
+      ]
       .join(" ")
-      .toLowerCase();
+      .toLowerCase()
+      .includes(query);
 
-    return text.includes(query);
-
-  });
-
+    });
 
   if(!list.length){
 
     box.innerHTML =
-      `<div class="empty">No products found.</div>`;
+      `<div class="empty">
+        No products found.
+      </div>`;
 
     return;
 
   }
 
+  box.innerHTML =
+    list.map(product => {
 
-  box.innerHTML = list.map(product => {
+      const image =
+        product.image ||
+        "https://via.placeholder.com/600x400?text=DSP";
 
-    const image =
-      product.image ||
-      "https://via.placeholder.com/600x400?text=DSP";
-
-    return `
+      return `
 
       <div class="product-card">
 
@@ -2024,7 +2592,7 @@ function renderProducts(){
           onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
 
         <div class="product-name">
-          ${escapeHTML(product.name || "Unnamed Product")}
+          ${escapeHTML(product.name || "Unnamed")}
         </div>
 
         <div class="product-category">
@@ -2038,8 +2606,13 @@ function renderProducts(){
         <div class="product-meta">
           Stock: ${Number(product.stock || 0)}
           ·
-          ${product.available === false ? "Unavailable" : "Available"}
-          ${product.featured ? " · ⭐ Featured" : ""}
+          ${product.available === false
+            ? "Unavailable"
+            : "Available"}
+
+          ${product.featured
+            ? " · ⭐ Featured"
+            : ""}
         </div>
 
         <div class="product-actions">
@@ -2060,9 +2633,10 @@ function renderProducts(){
 
       </div>
 
-    `;
+      `;
 
-  }).join("");
+    })
+    .join("");
 
 }
 
@@ -2097,7 +2671,9 @@ function resetProductForm(){
 function editProduct(id){
 
   const product =
-    products.find(item => item.id === id);
+    products.find(
+      item => item.id === id
+    );
 
   if(!product) return;
 
@@ -2142,11 +2718,6 @@ function editProduct(id){
 
   openPage("products");
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
 }
 
 
@@ -2164,7 +2735,6 @@ async function saveProduct(){
   const message =
     $("productMessage");
 
-
   if(!name){
 
     message.className =
@@ -2176,7 +2746,6 @@ async function saveProduct(){
     return;
 
   }
-
 
   if(!Number.isFinite(price) || price < 0){
 
@@ -2190,7 +2759,6 @@ async function saveProduct(){
 
   }
 
-
   if(!Number.isFinite(stock) || stock < 0){
 
     message.className =
@@ -2202,7 +2770,6 @@ async function saveProduct(){
     return;
 
   }
-
 
   const data = {
 
@@ -2228,13 +2795,12 @@ async function saveProduct(){
       $("pFeatured").value === "true",
 
     updatedAt:
-      FieldValue.serverTimestamp()
+      firebase.firestore.FieldValue
+        .serverTimestamp()
 
   };
 
-
   $("saveProductBtn").disabled = true;
-
 
   try{
 
@@ -2254,12 +2820,12 @@ async function saveProduct(){
           ...data,
 
           createdAt:
-            FieldValue.serverTimestamp()
+            firebase.firestore.FieldValue
+              .serverTimestamp()
 
         });
 
     }
-
 
     message.className =
       "message success";
@@ -2274,7 +2840,6 @@ async function saveProduct(){
       700
     );
 
-
   }catch(error){
 
     message.className =
@@ -2285,7 +2850,8 @@ async function saveProduct(){
 
   }finally{
 
-    $("saveProductBtn").disabled = false;
+    $("saveProductBtn").disabled =
+      false;
 
   }
 
@@ -2295,14 +2861,17 @@ async function saveProduct(){
 async function deleteProduct(id){
 
   const product =
-    products.find(item => item.id === id);
+    products.find(
+      item => item.id === id
+    );
 
   if(!product) return;
 
   if(!confirm(
     `Delete "${product.name || "this product"}"?`
-  )) return;
-
+  )){
+    return;
+  }
 
   try{
 
@@ -2315,7 +2884,9 @@ async function deleteProduct(id){
 
   }catch(error){
 
-    alert(friendlyError(error));
+    alert(
+      friendlyError(error)
+    );
 
   }
 
@@ -2323,7 +2894,7 @@ async function deleteProduct(id){
 
 
 /* =========================================================
-   ORDERS
+   10. ORDERS
    ========================================================= */
 
 async function loadOrders(){
@@ -2333,17 +2904,17 @@ async function loadOrders(){
     const snapshot =
       await db.collection("orders").get();
 
-    orders = snapshot.docs
-      .map(doc => ({
-        id:doc.id,
-        ...doc.data()
-      }))
-      .sort(
-        (a,b) =>
-          timeOf(b.createdAt)
-          -
-          timeOf(a.createdAt)
-      );
+    orders =
+      snapshot.docs
+        .map(doc => ({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b) =>
+            timeOf(b.createdAt) -
+            timeOf(a.createdAt)
+        );
 
     renderOrders();
     renderRecentOrders();
@@ -2351,12 +2922,10 @@ async function loadOrders(){
 
   }catch(error){
 
-    console.error("Orders:",error);
-
     $("ordersTable").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(friendlyError(error))}
+      </div>`;
 
   }
 
@@ -2365,7 +2934,7 @@ async function loadOrders(){
 
 function renderOrders(){
 
-  const search =
+  const query =
     ($("orderSearch")?.value || "")
       .toLowerCase()
       .trim();
@@ -2373,143 +2942,144 @@ function renderOrders(){
   const filter =
     $("orderFilter")?.value || "all";
 
+  const list =
+    orders.filter(order => {
 
-  const list = orders.filter(order => {
-
-    const text = [
-      order.id,
-      order.customerName,
-      order.phone,
-      order.payment,
-      order.paymentMethod,
-      order.address
-    ]
+      const searchable = [
+        order.id,
+        order.customerName,
+        order.phone,
+        order.payment,
+        order.paymentMethod,
+        order.address
+      ]
       .join(" ")
       .toLowerCase();
 
-    const status =
-      order.status || "Pending";
+      const status =
+        order.status || "Pending";
 
-    return (
-      text.includes(search) &&
-      (
-        filter === "all" ||
-        status === filter
-      )
-    );
+      return searchable.includes(query) &&
+        (
+          filter === "all" ||
+          status === filter
+        );
 
-  });
-
+    });
 
   if(!list.length){
 
     $("ordersTable").innerHTML =
-      `<div class="empty">No orders found.</div>`;
+      `<div class="empty">
+        No orders found.
+      </div>`;
 
     return;
 
   }
 
-
   $("ordersTable").innerHTML = `
 
-    <table>
+  <table>
 
-      <thead>
+    <thead>
+
+      <tr>
+        <th>Order</th>
+        <th>Customer</th>
+        <th>Total</th>
+        <th>Payment</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      ${list.map(order => {
+
+        const status =
+          order.status || "Pending";
+
+        return `
 
         <tr>
-          <th>Order</th>
-          <th>Customer</th>
-          <th>Total</th>
-          <th>Payment</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th></th>
+
+          <td>
+            <strong>
+              #${escapeHTML(
+                String(order.id).slice(0,8)
+              )}
+            </strong>
+          </td>
+
+          <td>
+
+            ${escapeHTML(
+              order.customerName ||
+              "Customer"
+            )}
+
+            <div class="customer-info">
+              ${escapeHTML(
+                order.phone || ""
+              )}
+            </div>
+
+          </td>
+
+          <td>
+            <strong>
+              ₦${money(
+                numericTotal(order.total)
+              )}
+            </strong>
+          </td>
+
+          <td>
+            ${escapeHTML(
+              order.payment ||
+              order.paymentMethod ||
+              "—"
+            )}
+          </td>
+
+          <td>
+
+            <span
+              class="status status-${escapeHTML(status)}">
+
+              ${escapeHTML(status)}
+
+            </span>
+
+          </td>
+
+          <td>
+            ${dateOf(order.createdAt)}
+          </td>
+
+          <td>
+
+            <button
+              class="btn"
+              onclick="viewOrder('${order.id}')">
+              View
+            </button>
+
+          </td>
+
         </tr>
 
-      </thead>
+        `;
 
-      <tbody>
+      }).join("")}
 
-        ${list.map(order => {
+    </tbody>
 
-          const status =
-            order.status || "Pending";
-
-          return `
-
-            <tr>
-
-              <td>
-                <strong>
-                  #${escapeHTML(
-                    order.id.slice(0,8)
-                  )}
-                </strong>
-              </td>
-
-              <td>
-
-                ${escapeHTML(
-                  order.customerName ||
-                  "Customer"
-                )}
-
-                <div class="customer-info">
-                  ${escapeHTML(
-                    order.phone || ""
-                  )}
-                </div>
-
-              </td>
-
-              <td>
-                <strong>
-                  ₦${money(
-                    numericTotal(order.total)
-                  )}
-                </strong>
-              </td>
-
-              <td>
-                ${escapeHTML(
-                  order.payment ||
-                  order.paymentMethod ||
-                  "—"
-                )}
-              </td>
-
-              <td>
-
-                <span class="status status-${escapeHTML(status)}">
-                  ${escapeHTML(status)}
-                </span>
-
-              </td>
-
-              <td>
-                ${dateOf(order.createdAt)}
-              </td>
-
-              <td>
-
-                <button
-                  class="btn"
-                  onclick="viewOrder('${order.id}')">
-                  View
-                </button>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        }).join("")}
-
-      </tbody>
-
-    </table>
+  </table>
 
   `;
 
@@ -2527,79 +3097,106 @@ function renderRecentOrders(){
   if(!list.length){
 
     box.innerHTML =
-      `<div class="empty">No orders yet.</div>`;
+      `<div class="empty">
+        No orders yet.
+      </div>`;
 
     return;
 
   }
 
-
   box.innerHTML = `
 
-    <div class="table-wrap">
+  <div class="table-wrap">
 
-      <table>
+    <table>
 
-        <thead>
+      <thead>
+
+        <tr>
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${list.map(order => `
 
           <tr>
-            <th>Customer</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Date</th>
+
+            <td>
+              ${escapeHTML(
+                order.customerName ||
+                "Customer"
+              )}
+            </td>
+
+            <td>
+              ₦${money(
+                numericTotal(order.total)
+              )}
+            </td>
+
+            <td>
+
+              <span
+                class="status status-${escapeHTML(
+                  order.status || "Pending"
+                )}">
+
+                ${escapeHTML(
+                  order.status || "Pending"
+                )}
+
+              </span>
+
+            </td>
+
+            <td>
+              ${dateOf(order.createdAt)}
+            </td>
+
           </tr>
 
-        </thead>
+        `).join("")}
 
-        <tbody>
+      </tbody>
 
-          ${list.map(order => {
+    </table>
 
-            const status =
-              order.status || "Pending";
-
-            return `
-
-              <tr>
-
-                <td>
-                  ${escapeHTML(
-                    order.customerName ||
-                    "Customer"
-                  )}
-                </td>
-
-                <td>
-                  ₦${money(
-                    numericTotal(order.total)
-                  )}
-                </td>
-
-                <td>
-
-                  <span class="status status-${escapeHTML(status)}">
-                    ${escapeHTML(status)}
-                  </span>
-
-                </td>
-
-                <td>
-                  ${dateOf(order.createdAt)}
-                </td>
-
-              </tr>
-
-            `;
-
-          }).join("")}
-
-        </tbody>
-
-      </table>
-
-    </div>
+  </div>
 
   `;
+
+}
+
+
+function orderStatusOptions(current){
+
+  return [
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ]
+  .map(status => `
+
+    <option
+      ${status === current
+        ? "selected"
+        : ""}>
+
+      ${status}
+
+    </option>
+
+  `)
+  .join("");
 
 }
 
@@ -2607,17 +3204,17 @@ function renderRecentOrders(){
 function viewOrder(id){
 
   const order =
-    orders.find(item => item.id === id);
+    orders.find(
+      item => item.id === id
+    );
 
   if(!order) return;
 
   const items =
     normalizeItems(order.items);
 
-
   $("modalTitle").textContent =
     "Order Details";
-
 
   $("modalContent").innerHTML = `
 
@@ -2687,47 +3284,46 @@ function viewOrder(id){
 
       ${
         items.length
-        ?
-        items.map(item => {
+        ? items.map(item => `
 
-          const quantity =
-            Number(
-              item.quantity ||
-              item.qty ||
-              1
-            );
+          <div class="order-item">
 
-          const price =
-            Number(item.price || 0);
+            <span>
+              ${escapeHTML(
+                item.name ||
+                item.productName ||
+                "Product"
+              )}
 
-          return `
+              ×
 
-            <div class="order-item">
+              ${Number(
+                item.quantity ||
+                item.qty ||
+                1
+              )}
 
-              <span>
-                ${escapeHTML(
-                  item.name ||
-                  item.productName ||
-                  "Product"
-                )}
-                × ${quantity}
-              </span>
+            </span>
 
-              <strong>
-                ₦${money(
-                  price * quantity
-                )}
-              </strong>
+            <strong>
+              ₦${money(
+                Number(item.price || 0) *
+                Number(
+                  item.quantity ||
+                  item.qty ||
+                  1
+                )
+              )}
+            </strong>
 
-            </div>
+          </div>
 
-          `;
-
-        }).join("")
-        :
-        `<div class="detail-value">
-          No item details.
-        </div>`
+        `).join("")
+        : `
+          <div class="detail-value">
+            No item details.
+          </div>
+        `
       }
 
     </div>
@@ -2739,14 +3335,13 @@ function viewOrder(id){
         Total
       </div>
 
-      <div class="detail-value">
+      <div
+        class="detail-value"
+        style="font-size:20px;color:var(--blue);font-weight:900">
 
-        <strong
-          style="font-size:20px;color:var(--blue)">
-          ₦${money(
-            numericTotal(order.total)
-          )}
-        </strong>
+        ₦${money(
+          numericTotal(order.total)
+        )}
 
       </div>
 
@@ -2760,11 +3355,13 @@ function viewOrder(id){
       </div>
 
       <div class="detail-value">
+
         ${escapeHTML(
           order.payment ||
           order.paymentMethod ||
           "—"
         )}
+
       </div>
 
     </div>
@@ -2803,29 +3400,8 @@ function viewOrder(id){
 
   `;
 
-
-  $("modal").classList.add("show");
-
-}
-
-
-function orderStatusOptions(current){
-
-  return [
-    "Pending",
-    "Processing",
-    "Shipped",
-    "Completed",
-    "Cancelled"
-  ]
-  .map(status => `
-    <option
-      value="${status}"
-      ${status === current ? "selected" : ""}>
-      ${status}
-    </option>
-  `)
-  .join("");
+  $("modal")
+    .classList.add("show");
 
 }
 
@@ -2842,35 +3418,36 @@ async function changeOrderStatus(id,status){
         status,
 
         updatedAt:
-          FieldValue.serverTimestamp()
+          firebase.firestore.FieldValue
+            .serverTimestamp()
 
       });
 
-
     const order =
-      orders.find(item => item.id === id);
+      orders.find(
+        item => item.id === id
+      );
 
     if(order){
       order.status = status;
     }
 
-
     renderOrders();
     renderRecentOrders();
     updateDashboard();
 
-
     await addNotification(
       "Order Status Changed",
-      `Order #${id.slice(0,8)} is now ${status}.`,
+      "An order status was updated.",
       "📦",
-      "order-status-" + id + "-" + status
+      id
     );
-
 
   }catch(error){
 
-    alert(friendlyError(error));
+    alert(
+      friendlyError(error)
+    );
 
   }
 
@@ -2878,7 +3455,7 @@ async function changeOrderStatus(id,status){
 
 
 /* =========================================================
-   USERS / CUSTOMERS
+   11. USERS / CUSTOMERS
    ========================================================= */
 
 async function loadUsers(){
@@ -2900,7 +3477,10 @@ async function loadUsers(){
 
   }catch(error){
 
-    console.error("Users:",error);
+    console.error(
+      "Users:",
+      error
+    );
 
   }
 
@@ -2925,7 +3505,10 @@ async function loadProfiles(){
 
   }catch(error){
 
-    console.error("Profiles:",error);
+    console.error(
+      "Profiles:",
+      error
+    );
 
   }
 
@@ -2934,23 +3517,11 @@ async function loadProfiles(){
 
 function findProfile(user){
 
-  if(!user) return null;
-
-  return profiles.find(profile =>
-    profile.uid === user.uid ||
-    profile.uid === user.id ||
-    profile.id === user.uid ||
-    profile.id === user.id
-  ) || null;
-
-}
-
-
-function customerUsers(){
-
-  return users.filter(user =>
-    String(user.role || "")
-      .toLowerCase() !== "admin"
+  return profiles.find(
+    profile =>
+      profile.uid === user.uid ||
+      profile.id === user.uid ||
+      profile.id === user.id
   );
 
 }
@@ -2958,85 +3529,82 @@ function customerUsers(){
 
 function renderCustomers(){
 
-  const box =
-    $("customersList");
-
-  if(!box) return;
-
-  const search =
+  const query =
     ($("customerSearch")?.value || "")
       .toLowerCase()
       .trim();
 
-
   const list =
-    customerUsers().filter(user => {
+    users
+      .filter(
+        user =>
+          String(user.role || "")
+            .toLowerCase() !== "admin"
+      )
+      .filter(user => {
 
-      const profile =
-        findProfile(user);
+        const profile =
+          findProfile(user);
 
-      const text = [
+        return [
 
-        user.name,
-        user.displayName,
-        user.email,
+          user.name,
+          user.email,
 
-        profile?.fullName,
-        profile?.phone,
-        profile?.city,
-        profile?.state
+          profile?.fullName,
+          profile?.phone
 
-      ]
-      .join(" ")
-      .toLowerCase();
+        ]
+        .join(" ")
+        .toLowerCase()
+        .includes(query);
 
-      return text.includes(search);
-
-    });
-
+      });
 
   if(!list.length){
 
-    box.innerHTML =
-      `<div class="empty">No customers found.</div>`;
+    $("customersList").innerHTML =
+      `<div class="empty">
+        No customers found.
+      </div>`;
 
     return;
 
   }
 
+  $("customersList").innerHTML =
+    list.map(user => {
 
-  box.innerHTML = list.map(user => {
+      const profile =
+        findProfile(user);
 
-    const profile =
-      findProfile(user);
+      const photo =
+        profile?.photoURL ||
+        profile?.photoUrl ||
+        user.photoURL ||
+        "";
 
-    const photo =
-      profile?.photoURL ||
-      profile?.photoUrl ||
-      user.photoURL ||
-      "";
+      const uid =
+        user.uid ||
+        user.id;
 
-
-    const uid =
-      user.uid ||
-      user.id;
-
-
-    return `
+      return `
 
       <div class="customer-row">
 
         ${
           photo
-          ?
-          `<img
-            class="avatar"
-            src="${escapeHTML(photo)}"
-            onerror="this.style.display='none'">`
-          :
-          `<div class="avatar">👤</div>`
+          ? `
+            <img
+              class="avatar"
+              src="${escapeHTML(photo)}">
+          `
+          : `
+            <div class="avatar">
+              👤
+            </div>
+          `
         }
-
 
         <div class="customer-main">
 
@@ -3045,7 +3613,6 @@ function renderCustomers(){
             ${escapeHTML(
               profile?.fullName ||
               user.name ||
-              user.displayName ||
               "Customer"
             )}
 
@@ -3069,7 +3636,6 @@ function renderCustomers(){
 
         </div>
 
-
         <button
           class="btn"
           onclick="viewCustomer('${escapeHTML(uid)}')">
@@ -3078,9 +3644,9 @@ function renderCustomers(){
 
       </div>
 
-    `;
+      `;
 
-  }).join("");
+    }).join("");
 
 }
 
@@ -3088,92 +3654,76 @@ function renderCustomers(){
 function viewCustomer(uid){
 
   const user =
-    users.find(item =>
-      item.uid === uid ||
-      item.id === uid
+    users.find(
+      item =>
+        item.uid === uid ||
+        item.id === uid
+    );
+
+  const profile =
+    profiles.find(
+      item =>
+        item.uid === uid ||
+        item.id === uid
     );
 
   if(!user) return;
 
-  const profile =
-    findProfile(user);
-
-
   $("modalTitle").textContent =
     "Customer Profile";
-
 
   $("modalContent").innerHTML = `
 
     <div class="detail">
-
       <div class="detail-label">
         Name
       </div>
-
       <div class="detail-value">
         ${escapeHTML(
           profile?.fullName ||
           user.name ||
-          user.displayName ||
           "—"
         )}
       </div>
-
     </div>
 
-
     <div class="detail">
-
       <div class="detail-label">
         Email
       </div>
-
       <div class="detail-value">
         ${escapeHTML(
           user.email || "—"
         )}
       </div>
-
     </div>
 
-
     <div class="detail">
-
       <div class="detail-label">
         Phone
       </div>
-
       <div class="detail-value">
         ${escapeHTML(
           profile?.phone || "—"
         )}
       </div>
-
     </div>
 
-
     <div class="detail">
-
       <div class="detail-label">
         Address
       </div>
-
       <div class="detail-value">
         ${escapeHTML(
           profile?.address || "—"
         )}
       </div>
-
     </div>
 
-
     <div class="detail">
-
       <div class="detail-label">
         Location
       </div>
-
       <div class="detail-value">
         ${escapeHTML(
           [
@@ -3186,19 +3736,18 @@ function viewCustomer(uid){
           .join(", ") || "—"
         )}
       </div>
-
     </div>
 
   `;
 
-
-  $("modal").classList.add("show");
+  $("modal")
+    .classList.add("show");
 
 }
 
 
 /* =========================================================
-   CHAT
+   12. CHAT
    ========================================================= */
 
 async function loadChats(){
@@ -3216,8 +3765,7 @@ async function loadChats(){
         }))
         .sort(
           (a,b) =>
-            timeOf(b.lastMessageAt)
-            -
+            timeOf(b.lastMessageAt) -
             timeOf(a.lastMessageAt)
         );
 
@@ -3226,12 +3774,12 @@ async function loadChats(){
 
   }catch(error){
 
-    console.error("Chats:",error);
-
     $("chatList").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
 
   }
 
@@ -3240,30 +3788,25 @@ async function loadChats(){
 
 function renderChats(){
 
-  const box =
-    $("chatList");
-
-  if(!box) return;
-
-
   if(!chats.length){
 
-    box.innerHTML =
-      `<div class="empty">No customer chats yet.</div>`;
+    $("chatList").innerHTML =
+      `<div class="empty">
+        No customer chats yet.
+      </div>`;
 
     return;
 
   }
 
-
-  box.innerHTML =
+  $("chatList").innerHTML =
     chats.map(chat => `
 
       <div
         class="chat-item ${
           selectedChatId === chat.id
-          ? "active"
-          : ""
+            ? "active"
+            : ""
         }"
         onclick="selectChat('${chat.id}')">
 
@@ -3279,17 +3822,20 @@ function renderChats(){
           </div>
 
           ${
-            Number(chat.unreadForAdmin || 0)
-            ?
-            `<span class="unread">
-              ${Number(chat.unreadForAdmin)}
-            </span>`
-            :
-            ""
+            Number(
+              chat.unreadForAdmin || 0
+            ) > 0
+            ? `
+              <span class="unread">
+                ${Number(
+                  chat.unreadForAdmin
+                )}
+              </span>
+            `
+            : ""
           }
 
         </div>
-
 
         <div class="last-message">
 
@@ -3312,31 +3858,33 @@ async function selectChat(id){
   selectedChatId = id;
 
   const chat =
-    chats.find(item => item.id === id);
+    chats.find(
+      item => item.id === id
+    );
 
   if(!chat) return;
 
-
   renderChats();
 
-
   $("chatCustomerName").textContent =
-    chat.customerName || "Customer";
-
+    chat.customerName ||
+    "Customer";
 
   $("chatCustomerInfo").textContent =
     "Customer ID: " +
-    (chat.customerId || "—");
-
+    (
+      chat.customerId ||
+      "—"
+    );
 
   $("chatInput").disabled = false;
   $("sendChatBtn").disabled = false;
 
-
   listenToMessages(id);
 
-
-  if(Number(chat.unreadForAdmin || 0) > 0){
+  if(
+    Number(chat.unreadForAdmin || 0) > 0
+  ){
 
     try{
 
@@ -3361,82 +3909,65 @@ async function selectChat(id){
 
   }
 
-
-  if(window.innerWidth <= 760){
-
-    document
-      .querySelector(".chat-list")
-      .classList.remove("mobile-open");
-
-  }
-
 }
 
 
 function listenToMessages(chatId){
 
   if(messageUnsubscribe){
-
     messageUnsubscribe();
-
-    messageUnsubscribe = null;
-
   }
-
 
   const box =
     $("messages");
 
   box.innerHTML =
-    `<div class="empty">Loading messages...</div>`;
-
+    `<div class="empty">
+      Loading messages...
+    </div>`;
 
   messageUnsubscribe =
     db
       .collection("messages")
-      .where("chatId","==",chatId)
-      .onSnapshot(snapshot => {
+      .where(
+        "chatId",
+        "==",
+        chatId
+      )
+      .onSnapshot(
+        snapshot => {
 
-        const messages =
-          snapshot.docs
-            .map(doc => ({
-              id:doc.id,
-              ...doc.data()
-            }))
-            .sort(
-              (a,b) =>
-                timeOf(a.createdAt)
-                -
-                timeOf(b.createdAt)
-            );
+          const list =
+            snapshot.docs
+              .map(doc => ({
+                id:doc.id,
+                ...doc.data()
+              }))
+              .sort(
+                (a,b) =>
+                  timeOf(a.createdAt) -
+                  timeOf(b.createdAt)
+              );
 
+          if(!list.length){
 
-        if(!messages.length){
+            box.innerHTML =
+              `<div class="empty">
+                No messages yet.
+              </div>`;
+
+            return;
+
+          }
 
           box.innerHTML =
-            `<div class="empty">
-              No messages yet.
-            </div>`;
-
-          return;
-
-        }
-
-
-        box.innerHTML =
-          messages.map(message => {
-
-            const isAdmin =
-              message.senderRole === "admin";
-
-
-            return `
+            list.map(message => `
 
               <div
                 class="message-bubble ${
-                  isAdmin
-                  ? "admin"
-                  : "customer"
+                  message.senderRole === "admin"
+                    ? "admin"
+                    : "customer"
                 }">
 
                 ${escapeHTML(
@@ -3445,23 +3976,22 @@ function listenToMessages(chatId){
 
                 ${
                   message.imageUrl
-                  ?
-                  `<div style="margin-top:8px">
+                  ? `
+                    <div style="margin-top:8px">
 
-                    <img
-                      src="${escapeHTML(
-                        message.imageUrl
-                      )}"
-                      style="
-                        max-width:180px;
-                        border-radius:10px;
-                      ">
+                      <img
+                        src="${escapeHTML(
+                          message.imageUrl
+                        )}"
+                        style="
+                          max-width:180px;
+                          border-radius:10px;
+                        ">
 
-                  </div>`
-                  :
-                  ""
+                    </div>
+                  `
+                  : ""
                 }
-
 
                 <span class="message-time">
 
@@ -3479,22 +4009,23 @@ function listenToMessages(chatId){
 
               </div>
 
-            `;
+            `).join("");
 
-          }).join("");
+          box.scrollTop =
+            box.scrollHeight;
 
+        },
+        error => {
 
-        box.scrollTop =
-          box.scrollHeight;
+          box.innerHTML =
+            `<div class="empty">
+              ${escapeHTML(
+                friendlyError(error)
+              )}
+            </div>`;
 
-      },error => {
-
-        box.innerHTML =
-          `<div class="empty">${escapeHTML(
-            friendlyError(error)
-          )}</div>`;
-
-      });
+        }
+      );
 
 }
 
@@ -3517,8 +4048,9 @@ function handleChatEnter(event){
 
 async function sendMessage(){
 
-  if(!selectedChatId) return;
-
+  if(!selectedChatId){
+    return;
+  }
 
   const input =
     $("chatInput");
@@ -3529,12 +4061,11 @@ async function sendMessage(){
   const user =
     auth.currentUser;
 
-
-  if(!text || !user) return;
-
+  if(!text || !user){
+    return;
+  }
 
   input.disabled = true;
-
 
   try{
 
@@ -3542,23 +4073,26 @@ async function sendMessage(){
       .collection("messages")
       .add({
 
-        chatId:selectedChatId,
+        chatId:
+          selectedChatId,
 
-        senderId:user.uid,
+        senderId:
+          user.uid,
 
         senderName:
-          user.displayName ||
-          user.email?.split("@")[0] ||
           "Danny",
 
-        senderRole:"admin",
+        senderRole:
+          "admin",
 
         text,
 
-        imageUrl:"",
+        imageUrl:
+          "",
 
         createdAt:
-          FieldValue.serverTimestamp(),
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
 
         read:false
 
@@ -3573,10 +4107,12 @@ async function sendMessage(){
         lastMessage:text,
 
         lastMessageAt:
-          FieldValue.serverTimestamp(),
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
 
         unreadForCustomer:
-          FieldValue.increment(1),
+          firebase.firestore.FieldValue
+            .increment(1),
 
         unreadForAdmin:0
 
@@ -3585,27 +4121,24 @@ async function sendMessage(){
 
     input.value = "";
 
-
     const chat =
-      chats.find(item =>
-        item.id === selectedChatId
+      chats.find(
+        item =>
+          item.id ===
+          selectedChatId
       );
 
     if(chat){
-
       chat.lastMessage = text;
-
-      chat.lastMessageAt =
-        new Date();
-
     }
-
 
     renderChats();
 
   }catch(error){
 
-    alert(friendlyError(error));
+    alert(
+      friendlyError(error)
+    );
 
   }finally{
 
@@ -3618,17 +4151,234 @@ async function sendMessage(){
 }
 
 
-function toggleChatList(){
+/* =========================================================
+   13. NOTIFICATIONS
+   ========================================================= */
 
-  document
-    .querySelector(".chat-list")
-    .classList.toggle("mobile-open");
+async function loadNotifications(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("notifications")
+        .orderBy(
+          "createdAt",
+          "desc"
+        )
+        .limit(50)
+        .get();
+
+    notifications =
+      snapshot.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    renderNotifications();
+
+  }catch(error){
+
+    notifications = [];
+
+    renderNotifications();
+
+  }
+
+}
+
+
+function renderNotifications(){
+
+  const unread =
+    notifications.filter(
+      notification =>
+        !notification.read
+    ).length;
+
+  $("notificationBadge")
+    .textContent = unread;
+
+  $("notificationBadge")
+    .classList.toggle(
+      "hidden",
+      unread === 0
+    );
+
+  $("statNotifications")
+    .textContent = unread;
+
+  if(!notifications.length){
+
+    $("notificationsList").innerHTML =
+      `<div class="empty">
+        No notifications yet.
+      </div>`;
+
+    return;
+
+  }
+
+  $("notificationsList").innerHTML =
+    notifications.map(notification => `
+
+      <div
+        class="notification"
+        style="opacity:${
+          notification.read
+            ? .6
+            : 1
+        }">
+
+        <div class="nicon">
+
+          ${escapeHTML(
+            notification.icon ||
+            "🔔"
+          )}
+
+        </div>
+
+        <div>
+
+          <strong>
+
+            ${escapeHTML(
+              notification.title ||
+              "Notification"
+            )}
+
+          </strong>
+
+          <div>
+
+            ${escapeHTML(
+              notification.message ||
+              ""
+            )}
+
+          </div>
+
+          <small>
+
+            ${dateOf(
+              notification.createdAt
+            )}
+
+          </small>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+async function addNotification(
+  title,
+  message,
+  icon="🔔",
+  sourceId=""
+){
+
+  try{
+
+    const unique =
+      sourceId ||
+      title + "|" + message;
+
+    const query =
+      await db
+        .collection("notifications")
+        .where(
+          "sourceId",
+          "==",
+          unique
+        )
+        .limit(1)
+        .get();
+
+    if(query.empty){
+
+      await db
+        .collection("notifications")
+        .add({
+
+          title,
+          message,
+          icon,
+
+          sourceId:
+            unique,
+
+          read:false,
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+
+    }
+
+    await loadNotifications();
+
+  }catch(error){
+
+    console.warn(
+      "Notification:",
+      error.message
+    );
+
+  }
+
+}
+
+
+async function markNotificationsRead(){
+
+  try{
+
+    const batch =
+      db.batch();
+
+    notifications
+      .filter(
+        notification =>
+          !notification.read
+      )
+      .forEach(notification => {
+
+        batch.update(
+          db
+            .collection("notifications")
+            .doc(notification.id),
+          {
+            read:true
+          }
+        );
+
+      });
+
+    await batch.commit();
+
+    await loadNotifications();
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+
+  }
 
 }
 
 
 /* =========================================================
-   PROJECTS
+   14. PROJECTS
    ========================================================= */
 
 async function loadProjects(){
@@ -3648,24 +4398,30 @@ async function loadProjects(){
         }))
         .sort(
           (a,b) =>
-            timeOf(b.updatedAt || b.createdAt)
-            -
-            timeOf(a.updatedAt || a.createdAt)
+            timeOf(
+              b.updatedAt ||
+              b.createdAt
+            ) -
+            timeOf(
+              a.updatedAt ||
+              a.createdAt
+            )
         );
-
 
     renderProjects();
 
-    updateDashboard();
+    $("statProjects")
+      .textContent =
+      projects.length;
 
   }catch(error){
 
-    console.error("Projects:",error);
-
     $("projectsGrid").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
 
   }
 
@@ -3702,15 +4458,13 @@ function resetProjectForm(){
 function editProject(id){
 
   const project =
-    projects.find(item =>
-      item.id === id
+    projects.find(
+      item => item.id === id
     );
 
   if(!project) return;
 
-
   editingProjectId = id;
-
 
   $("prTitle").value =
     project.title ||
@@ -3739,15 +4493,12 @@ function editProject(id){
     "photo";
 
   $("prFeatured").value =
-    String(
-      boolValue(project.featured,false)
-    );
+    String(!!project.featured);
 
   $("prPublished").value =
     String(
       project.published !== false
     );
-
 
   $("projectFormTitle").textContent =
     "Edit Project";
@@ -3758,13 +4509,7 @@ function editProject(id){
   $("cancelProjectBtn")
     .classList.remove("hidden");
 
-
   openPage("projects");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
 
 }
 
@@ -3774,18 +4519,20 @@ async function saveProject(){
   const title =
     $("prTitle").value.trim();
 
+  const message =
+    $("projectMessage");
+
   if(!title){
 
-    $("projectMessage").className =
+    message.className =
       "message error";
 
-    $("projectMessage").textContent =
+    message.textContent =
       "Enter a project title.";
 
     return;
 
   }
-
 
   const data = {
 
@@ -3795,7 +4542,9 @@ async function saveProject(){
       $("prCategory").value.trim(),
 
     description:
-      $("prDescription").value.trim(),
+      $("prDescription")
+        .value
+        .trim(),
 
     photoUrl:
       $("prPhoto").value.trim(),
@@ -3807,19 +4556,18 @@ async function saveProject(){
       $("prMediaType").value,
 
     featured:
-      $("prFeatured").value === "true",
+      $("prFeatured").value ===
+      "true",
 
     published:
-      $("prPublished").value === "true",
+      $("prPublished").value ===
+      "true",
 
     updatedAt:
-      FieldValue.serverTimestamp()
+      firebase.firestore.FieldValue
+        .serverTimestamp()
 
   };
-
-
-  $("saveProjectBtn").disabled = true;
-
 
   try{
 
@@ -3839,55 +4587,43 @@ async function saveProject(){
           ...data,
 
           createdAt:
-            FieldValue.serverTimestamp()
+            firebase.firestore.FieldValue
+              .serverTimestamp()
 
         });
 
     }
 
-
-    $("projectMessage").className =
+    message.className =
       "message success";
 
-    $("projectMessage").textContent =
+    message.textContent =
       "Project saved successfully.";
 
-
     await loadProjects();
-
 
     if(data.published){
 
       await addNotification(
         "Project Published",
         title,
-        "⚡",
-        "project-" + (
-          editingProjectId ||
-          title
-        )
+        "⚡"
       );
 
     }
-
 
     setTimeout(
       resetProjectForm,
       700
     );
 
-
   }catch(error){
 
-    $("projectMessage").className =
+    message.className =
       "message error";
 
-    $("projectMessage").textContent =
+    message.textContent =
       friendlyError(error);
-
-  }finally{
-
-    $("saveProjectBtn").disabled = false;
 
   }
 
@@ -3898,9 +4634,6 @@ function renderProjects(){
 
   const box =
     $("projectsGrid");
-
-  if(!box) return;
-
 
   if(!projects.length){
 
@@ -3913,98 +4646,92 @@ function renderProjects(){
 
   }
 
-
   box.innerHTML =
     projects.map(project => {
 
       const media =
         project.mediaType === "video"
-        ? project.videoUrl
-        : project.photoUrl ||
-          project.image ||
-          "";
-
-
-      const published =
-        project.published === false
-        ? "Unpublished"
-        : "Published";
-
+          ? project.videoUrl
+          : project.photoUrl ||
+            project.image;
 
       return `
 
-        <div class="project-card">
+      <div class="project-card">
 
-          ${
-            project.mediaType === "video" &&
-            media
-            ?
-
-            `<video
+        ${
+          project.mediaType === "video" &&
+          media
+          ? `
+            <video
               class="project-media"
               src="${escapeHTML(media)}"
               controls>
-            </video>`
-
-            :
-
-            `<img
+            </video>
+          `
+          : `
+            <img
               class="project-media"
               src="${escapeHTML(
                 media ||
                 "https://via.placeholder.com/600x400?text=Project"
               )}"
-              onerror="this.src='https://via.placeholder.com/600x400?text=Project'">`
-          }
+              onerror="
+                this.src='https://via.placeholder.com/600x400?text=Project'
+              ">
+          `
+        }
 
+        <div class="project-title">
 
-          <div class="project-title">
-
-            ${escapeHTML(
-              project.title ||
-              project.name ||
-              "Project"
-            )}
-
-          </div>
-
-
-          <div class="project-meta">
-
-            ${escapeHTML(
-              project.category || ""
-            )}
-
-            ·
-
-            ${published}
-
-            ${
-              project.featured
-              ? " · ⭐ Featured"
-              : ""
-            }
-
-          </div>
-
-
-          <div style="margin-top:10px">
-
-            <button
-              class="btn"
-              onclick="editProject('${project.id}')">
-              Edit
-            </button>
-
-            <button
-              class="btn btn-red"
-              onclick="deleteProject('${project.id}')">
-              Delete
-            </button>
-
-          </div>
+          ${escapeHTML(
+            project.title ||
+            project.name ||
+            "Project"
+          )}
 
         </div>
+
+        <div class="project-meta">
+
+          ${escapeHTML(
+            project.category ||
+            ""
+          )}
+
+          ·
+
+          ${
+            project.published === false
+              ? "Unpublished"
+              : "Published"
+          }
+
+          ${
+            project.featured
+              ? " · ⭐ Featured"
+              : ""
+          }
+
+        </div>
+
+        <div style="margin-top:10px">
+
+          <button
+            class="btn"
+            onclick="editProject('${project.id}')">
+            Edit
+          </button>
+
+          <button
+            class="btn btn-red"
+            onclick="deleteProject('${project.id}')">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
 
       `;
 
@@ -4016,9 +4743,10 @@ function renderProjects(){
 async function deleteProject(id){
 
   if(!confirm(
-    "Delete this electrical project?"
-  )) return;
-
+    "Delete this project?"
+  )){
+    return;
+  }
 
   try{
 
@@ -4031,7 +4759,9 @@ async function deleteProject(id){
 
   }catch(error){
 
-    alert(friendlyError(error));
+    alert(
+      friendlyError(error)
+    );
 
   }
 
@@ -4039,7 +4769,7 @@ async function deleteProject(id){
 
 
 /* =========================================================
-   SERVICE REQUESTS
+   15. SERVICE REQUESTS
    ========================================================= */
 
 async function loadServices(){
@@ -4059,24 +4789,21 @@ async function loadServices(){
         }))
         .sort(
           (a,b) =>
-            timeOf(b.createdAt)
-            -
+            timeOf(b.createdAt) -
             timeOf(a.createdAt)
         );
 
-
     renderServices();
-
     updateDashboard();
 
   }catch(error){
 
-    console.error("Services:",error);
-
     $("servicesTable").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
 
   }
 
@@ -4085,25 +4812,24 @@ async function loadServices(){
 
 function renderServices(){
 
-  const search =
+  const query =
     ($("serviceSearch")?.value || "")
       .toLowerCase()
       .trim();
 
   const filter =
-    $("serviceFilter")?.value || "all";
-
+    $("serviceFilter")?.value ||
+    "all";
 
   const list =
     services.filter(service => {
 
-      const text = [
+      const searchable = [
 
         service.name,
         service.customerName,
         service.phone,
         service.serviceType,
-        service.service,
         service.description,
         service.address
 
@@ -4111,21 +4837,17 @@ function renderServices(){
       .join(" ")
       .toLowerCase();
 
-
       const status =
-        service.status || "Pending";
+        service.status ||
+        "Pending";
 
-
-      return (
-        text.includes(search) &&
+      return searchable.includes(query) &&
         (
           filter === "all" ||
           status === filter
-        )
-      );
+        );
 
     });
-
 
   if(!list.length){
 
@@ -4138,93 +4860,93 @@ function renderServices(){
 
   }
 
-
   $("servicesTable").innerHTML = `
 
-    <table>
+  <table>
 
-      <thead>
+    <thead>
+
+      <tr>
+
+        <th>Customer</th>
+        <th>Service</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th></th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      ${list.map(service => `
 
         <tr>
 
-          <th>Customer</th>
-          <th>Service</th>
-          <th>Phone</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th></th>
+          <td>
+            ${escapeHTML(
+              service.customerName ||
+              "Customer"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              service.serviceType ||
+              service.service ||
+              "Electrical Service"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              service.phone ||
+              "—"
+            )}
+          </td>
+
+          <td>
+
+            <span
+              class="status status-${escapeHTML(
+                service.status ||
+                "Pending"
+              )}">
+
+              ${escapeHTML(
+                service.status ||
+                "Pending"
+              )}
+
+            </span>
+
+          </td>
+
+          <td>
+            ${dateOf(
+              service.createdAt
+            )}
+          </td>
+
+          <td>
+
+            <button
+              class="btn"
+              onclick="viewService('${service.id}')">
+              View
+            </button>
+
+          </td>
 
         </tr>
 
-      </thead>
+      `).join("")}
 
+    </tbody>
 
-      <tbody>
-
-        ${list.map(service => {
-
-          const status =
-            service.status || "Pending";
-
-
-          return `
-
-            <tr>
-
-              <td>
-                ${escapeHTML(
-                  service.customerName ||
-                  "Customer"
-                )}
-              </td>
-
-              <td>
-                ${escapeHTML(
-                  service.serviceType ||
-                  service.service ||
-                  "Electrical Service"
-                )}
-              </td>
-
-              <td>
-                ${escapeHTML(
-                  service.phone || "—"
-                )}
-              </td>
-
-              <td>
-
-                <span class="status status-${escapeHTML(status)}">
-                  ${escapeHTML(status)}
-                </span>
-
-              </td>
-
-              <td>
-                ${dateOf(
-                  service.createdAt
-                )}
-              </td>
-
-              <td>
-
-                <button
-                  class="btn"
-                  onclick="viewService('${service.id}')">
-                  View
-                </button>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        }).join("")}
-
-      </tbody>
-
-    </table>
+  </table>
 
   `;
 
@@ -4234,20 +4956,14 @@ function renderServices(){
 function viewService(id){
 
   const service =
-    services.find(item =>
-      item.id === id
+    services.find(
+      item => item.id === id
     );
 
   if(!service) return;
 
-
-  const current =
-    service.status || "Pending";
-
-
   $("modalTitle").textContent =
     "Service Request";
-
 
   $("modalContent").innerHTML = `
 
@@ -4259,12 +4975,12 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.customerName || "—"
+          service.customerName ||
+          "—"
         )}
       </div>
 
     </div>
-
 
     <div class="detail">
 
@@ -4274,12 +4990,12 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.phone || "—"
+          service.phone ||
+          "—"
         )}
       </div>
 
     </div>
-
 
     <div class="detail">
 
@@ -4297,7 +5013,6 @@ function viewService(id){
 
     </div>
 
-
     <div class="detail">
 
       <div class="detail-label">
@@ -4306,12 +5021,12 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.address || "—"
+          service.address ||
+          "—"
         )}
       </div>
 
     </div>
-
 
     <div class="detail">
 
@@ -4321,12 +5036,12 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.description || "—"
+          service.description ||
+          "—"
         )}
       </div>
 
     </div>
-
 
     <div class="detail">
 
@@ -4346,15 +5061,17 @@ function viewService(id){
             "Cancelled"
           ]
           .map(status => `
+
             <option
-              value="${status}"
-              ${
-                status === current
+              ${status ===
+                (service.status || "Pending")
                 ? "selected"
-                : ""
-              }>
+                : ""}>
+
               ${status}
+
             </option>
+
           `)
           .join("")
         }
@@ -4365,13 +5082,16 @@ function viewService(id){
 
   `;
 
-
-  $("modal").classList.add("show");
+  $("modal")
+    .classList.add("show");
 
 }
 
 
-async function changeServiceStatus(id,status){
+async function changeServiceStatus(
+  id,
+  status
+){
 
   try{
 
@@ -4383,36 +5103,35 @@ async function changeServiceStatus(id,status){
         status,
 
         updatedAt:
-          FieldValue.serverTimestamp()
+          firebase.firestore.FieldValue
+            .serverTimestamp()
 
       });
 
-
     const service =
-      services.find(item =>
-        item.id === id
+      services.find(
+        item => item.id === id
       );
 
     if(service){
       service.status = status;
     }
 
-
     renderServices();
     updateDashboard();
 
-
     await addNotification(
       "Service Request Updated",
-      `A service request is now ${status}.`,
+      "A service request was updated.",
       "🔧",
-      "service-status-" + id + "-" + status
+      id
     );
-
 
   }catch(error){
 
-    alert(friendlyError(error));
+    alert(
+      friendlyError(error)
+    );
 
   }
 
@@ -4420,7 +5139,7 @@ async function changeServiceStatus(id,status){
 
 
 /* =========================================================
-   WISHLISTS
+   16. WISHLISTS
    ========================================================= */
 
 async function loadWishlists(){
@@ -4442,12 +5161,12 @@ async function loadWishlists(){
 
   }catch(error){
 
-    console.error("Wishlists:",error);
-
     $("wishlistsList").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
 
   }
 
@@ -4470,48 +5189,40 @@ function renderWishlists(){
 
   }
 
-
   box.innerHTML =
     wishlists.map(wishlist => {
 
       const items =
         Array.isArray(wishlist.items)
-        ? wishlist.items
-        : [];
-
+          ? wishlist.items
+          : [];
 
       return `
 
-        <div class="wishlist-card">
+      <div class="wishlist-card">
 
-          <strong>
-            Customer Wishlist
-          </strong>
+        <strong>
+          Customer Wishlist
+        </strong>
 
-          <div class="customer-info">
+        <div class="customer-info">
 
-            Customer ID:
-            ${escapeHTML(
-              wishlist.customerId ||
-              wishlist.id
-            )}
+          Customer ID:
+          ${escapeHTML(
+            wishlist.customerId ||
+            wishlist.id
+          )}
 
-            ·
+          · Saved products:
+          ${items.length}
 
-            Saved products:
-            ${items.length}
+        </div>
 
-          </div>
+        <div style="margin-top:9px">
 
-
-          <div style="margin-top:9px">
-
-            ${
-              items.length
-
-              ?
-
-              items.map(item => {
+          ${
+            items.length
+            ? items.map(item => {
 
                 const product =
                   products.find(
@@ -4520,28 +5231,23 @@ function renderWishlists(){
                       item.productId
                   );
 
-
                 return `
-                  •
-                  ${escapeHTML(
+                  • ${escapeHTML(
                     product?.name ||
                     item.name ||
                     item.productId ||
                     "Unknown"
                   )}
+                  <br>
                 `;
 
-              }).join("<br>")
-
-              :
-
-              "No saved products."
-
-            }
-
-          </div>
+              }).join("")
+            : "No saved products."
+          }
 
         </div>
+
+      </div>
 
       `;
 
@@ -4551,91 +5257,7 @@ function renderWishlists(){
 
 
 /* =========================================================
-   PROFILES
-   ========================================================= */
-
-function renderProfiles(){
-
-  const box =
-    $("profilesList");
-
-  if(!box) return;
-
-
-  const list =
-    customerUsers();
-
-
-  if(!list.length){
-
-    box.innerHTML =
-      `<div class="empty">
-        No profiles found.
-      </div>`;
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    list.map(user => {
-
-      const profile =
-        findProfile(user);
-
-
-      return `
-
-        <div class="customer-row">
-
-          <div class="avatar">
-            👤
-          </div>
-
-
-          <div class="customer-main">
-
-            <div class="customer-name">
-
-              ${escapeHTML(
-                profile?.fullName ||
-                user.name ||
-                user.displayName ||
-                "Customer"
-              )}
-
-            </div>
-
-
-            <div class="customer-info">
-
-              ${escapeHTML(
-                user.email || ""
-              )}
-
-              ·
-
-              ${escapeHTML(
-                profile?.phone ||
-                "No phone"
-              )}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =========================================================
-   SETTINGS
+   17. SETTINGS
    ========================================================= */
 
 async function loadSettings(){
@@ -4648,15 +5270,9 @@ async function loadSettings(){
         .limit(1)
         .get();
 
-
     if(snapshot.empty){
-
-      settingsDocId = null;
-
       return;
-
     }
-
 
     const document =
       snapshot.docs[0];
@@ -4664,10 +5280,8 @@ async function loadSettings(){
     settingsDocId =
       document.id;
 
-
     const data =
       document.data();
-
 
     $("sName").value =
       data.storeName || "";
@@ -4693,10 +5307,12 @@ async function loadSettings(){
     $("sDescription").value =
       data.description || "";
 
-
   }catch(error){
 
-    console.error("Settings:",error);
+    console.error(
+      "Settings:",
+      error
+    );
 
   }
 
@@ -4730,13 +5346,15 @@ async function saveSettings(){
       $("sAddress").value.trim(),
 
     description:
-      $("sDescription").value.trim(),
+      $("sDescription")
+        .value
+        .trim(),
 
     updatedAt:
-      FieldValue.serverTimestamp()
+      firebase.firestore.FieldValue
+        .serverTimestamp()
 
   };
-
 
   try{
 
@@ -4752,28 +5370,18 @@ async function saveSettings(){
       const result =
         await db
           .collection("settings")
-          .add({
-
-            ...data,
-
-            createdAt:
-              FieldValue.serverTimestamp()
-
-          });
-
+          .add(data);
 
       settingsDocId =
         result.id;
 
     }
 
-
     $("settingsMessage").className =
       "message success";
 
     $("settingsMessage").textContent =
-      "Store settings saved successfully.";
-
+      "Store settings saved.";
 
   }catch(error){
 
@@ -4789,7 +5397,7 @@ async function saveSettings(){
 
 
 /* =========================================================
-   ADMINISTRATORS
+   18. ADMINS
    ========================================================= */
 
 async function loadAdmins(){
@@ -4807,17 +5415,16 @@ async function loadAdmins(){
         ...doc.data()
       }));
 
-
     renderAdmins();
 
   }catch(error){
 
-    console.error("Admins:",error);
-
     $("adminsList").innerHTML =
-      `<div class="empty">${escapeHTML(
-        friendlyError(error)
-      )}</div>`;
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
 
   }
 
@@ -4828,7 +5435,6 @@ function renderAdmins(){
 
   const box =
     $("adminsList");
-
 
   if(!admins.length){
 
@@ -4841,7 +5447,6 @@ function renderAdmins(){
 
   }
 
-
   box.innerHTML =
     admins.map(admin => `
 
@@ -4850,7 +5455,6 @@ function renderAdmins(){
         <div class="avatar">
           🔐
         </div>
-
 
         <div class="customer-main">
 
@@ -4862,7 +5466,6 @@ function renderAdmins(){
             )}
 
           </div>
-
 
           <div class="customer-info">
 
@@ -4898,282 +5501,43 @@ function renderAdmins(){
 
 
 /* =========================================================
-   NOTIFICATIONS
-   ========================================================= */
-
-async function loadNotifications(){
-
-  try{
-
-    const snapshot =
-      await db
-        .collection("notifications")
-        .orderBy("createdAt","desc")
-        .limit(50)
-        .get();
-
-
-    notifications =
-      snapshot.docs.map(doc => ({
-        id:doc.id,
-        ...doc.data()
-      }));
-
-
-    renderNotifications();
-
-
-  }catch(error){
-
-    console.error("Notifications:",error);
-
-    notifications = [];
-
-    renderNotifications();
-
-  }
-
-}
-
-
-function renderNotifications(){
-
-  const unread =
-    notifications.filter(
-      notification =>
-        notification.read !== true
-    ).length;
-
-
-  $("notificationBadge").textContent =
-    unread;
-
-  $("notificationBadge")
-    .classList.toggle(
-      "hidden",
-      unread === 0
-    );
-
-
-  $("statNotifications").textContent =
-    unread;
-
-
-  if(!notifications.length){
-
-    $("notificationsList").innerHTML =
-      `<div class="empty">
-        No notifications yet.
-      </div>`;
-
-    return;
-
-  }
-
-
-  $("notificationsList").innerHTML =
-    notifications.map(notification => `
-
-      <div
-        class="notification"
-        style="opacity:${
-          notification.read === true
-          ? ".6"
-          : "1"
-        }">
-
-        <div class="nicon">
-
-          ${escapeHTML(
-            notification.icon ||
-            "🔔"
-          )}
-
-        </div>
-
-
-        <div>
-
-          <strong>
-
-            ${escapeHTML(
-              notification.title ||
-              "Notification"
-            )}
-
-          </strong>
-
-
-          <div>
-
-            ${escapeHTML(
-              notification.message ||
-              ""
-            )}
-
-          </div>
-
-
-          <small>
-
-            ${dateOf(
-              notification.createdAt
-            )}
-
-          </small>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-async function addNotification(
-  title,
-  message,
-  icon="🔔",
-  sourceId=""
-){
-
-  try{
-
-    const uniqueSource =
-      sourceId ||
-      title + "|" + message;
-
-
-    const existing =
-      await db
-        .collection("notifications")
-        .where(
-          "sourceId",
-          "==",
-          uniqueSource
-        )
-        .limit(1)
-        .get();
-
-
-    if(existing.empty){
-
-      await db
-        .collection("notifications")
-        .add({
-
-          title,
-
-          message,
-
-          icon,
-
-          sourceId:uniqueSource,
-
-          read:false,
-
-          createdAt:
-            FieldValue.serverTimestamp()
-
-        });
-
-    }
-
-
-    await loadNotifications();
-
-
-  }catch(error){
-
-    console.warn(
-      "Notification skipped:",
-      error.message
-    );
-
-  }
-
-}
-
-
-async function markNotificationsRead(){
-
-  const unread =
-    notifications.filter(
-      notification =>
-        notification.read !== true
-    );
-
-
-  if(!unread.length) return;
-
-
-  try{
-
-    const batch =
-      db.batch();
-
-
-    unread.forEach(notification => {
-
-      batch.update(
-        db
-          .collection("notifications")
-          .doc(notification.id),
-        {
-          read:true
-        }
-      );
-
-    });
-
-
-    await batch.commit();
-
-    await loadNotifications();
-
-
-  }catch(error){
-
-    alert(friendlyError(error));
-
-  }
-
-}
-
-
-/* =========================================================
-   DASHBOARD
+   19. DASHBOARD
    ========================================================= */
 
 function updateDashboard(){
 
-  $("statProducts").textContent =
+  $("statProducts")
+    .textContent =
     products.length;
 
-
-  $("statOrders").textContent =
+  $("statOrders")
+    .textContent =
     orders.length;
 
-
-  $("statCustomers").textContent =
-    customerUsers().length;
-
-
-  const pendingOrders =
-    orders.filter(order =>
-      String(
-        order.status ||
-        "Pending"
-      ).toLowerCase() === "pending"
+  $("statCustomers")
+    .textContent =
+    users.filter(
+      user =>
+        String(user.role || "")
+          .toLowerCase() !==
+        "admin"
     ).length;
 
+  const pending =
+    orders.filter(
+      order =>
+        String(
+          order.status ||
+          "Pending"
+        ).toLowerCase() ===
+        "pending"
+    ).length;
 
-  $("statPending").textContent =
-    pendingOrders;
+  $("statPending")
+    .textContent =
+    pending;
 
-
-  const unreadMessages =
+  const unread =
     chats.reduce(
       (total,chat) =>
         total +
@@ -5184,18 +5548,18 @@ function updateDashboard(){
       0
     );
 
-
-  $("statUnread").textContent =
-    unreadMessages;
-
+  $("statUnread")
+    .textContent =
+    unread;
 
   const revenue =
     orders
-      .filter(order =>
-        String(
-          order.status || ""
-        ).toLowerCase() ===
-        "completed"
+      .filter(
+        order =>
+          String(
+            order.status || ""
+          ).toLowerCase() ===
+          "completed"
       )
       .reduce(
         (total,order) =>
@@ -5206,28 +5570,23 @@ function updateDashboard(){
         0
       );
 
-
-  $("dashboardRevenue").textContent =
+  $("dashboardRevenue")
+    .textContent =
     "₦" + money(revenue);
 
-
-  $("statProjects").textContent =
+  $("statProjects")
+    .textContent =
     projects.length;
 
-
-  const pendingServices =
-    services.filter(service =>
-      String(
-        service.status ||
-        "Pending"
-      ).toLowerCase() ===
-      "pending"
+  $("statServices")
+    .textContent =
+    services.filter(
+      service =>
+        (
+          service.status ||
+          "Pending"
+        ) === "Pending"
     ).length;
-
-
-  $("statServices").textContent =
-    pendingServices;
-
 
   renderOrderSummary();
 
@@ -5239,7 +5598,6 @@ function renderOrderSummary(){
   const box =
     $("orderSummary");
 
-
   const statuses = [
     "Pending",
     "Processing",
@@ -5247,7 +5605,6 @@ function renderOrderSummary(){
     "Completed",
     "Cancelled"
   ];
-
 
   box.innerHTML =
     statuses.map(status => `
@@ -5257,10 +5614,11 @@ function renderOrderSummary(){
           display:flex;
           justify-content:space-between;
           padding:8px 0;
-          border-bottom:1px solid var(--border)
+          border-bottom:1px solid var(--border);
         ">
 
-        <span class="status status-${status}">
+        <span
+          class="status status-${status}">
           ${status}
         </span>
 
@@ -5269,9 +5627,10 @@ function renderOrderSummary(){
           ${
             orders.filter(
               order =>
-                (order.status ||
-                "Pending") ===
-                status
+                (
+                  order.status ||
+                  "Pending"
+                ) === status
             ).length
           }
 
@@ -5285,7 +5644,7 @@ function renderOrderSummary(){
 
 
 /* =========================================================
-   MODAL
+   20. MODAL
    ========================================================= */
 
 function closeModal(){
@@ -5299,9 +5658,7 @@ function closeModal(){
 function closeModalOutside(event){
 
   if(event.target.id === "modal"){
-
     closeModal();
-
   }
 
 }
@@ -5320,38 +5677,25 @@ document.addEventListener(
 
 
 /* =========================================================
-   REAL-TIME LISTENERS
+   21. REALTIME LISTENERS
    ========================================================= */
 
-function stopRealtime(){
+function listenRealtime(){
 
-  realtimeUnsubscribers.forEach(
-    unsubscribe => {
+  if(realtimeStarted){
+    return;
+  }
 
-      try{
-        unsubscribe();
-      }catch{}
-
-    }
-  );
-
-  realtimeUnsubscribers = [];
-
-}
-
-
-function startRealtime(){
-
-  stopRealtime();
+  realtimeStarted = true;
 
 
   /*
-   ORDERS
+    ORDERS
   */
 
-  const ordersUnsubscribe =
-    db.collection("orders")
-      .onSnapshot(snapshot => {
+  db.collection("orders")
+    .onSnapshot(
+      snapshot => {
 
         const added =
           snapshot.docChanges()
@@ -5360,25 +5704,17 @@ function startRealtime(){
                 change.type === "added"
             );
 
-
         if(
-          initialDataLoaded &&
+          orders.length &&
           added.length
         ){
 
           added.forEach(change => {
 
-            const order =
-              change.doc.data();
-
             addNotification(
               "New Order",
-              `New order from ${
-                order.customerName ||
-                "a customer"
-              }.`,
+              "A customer placed a new order.",
               "🛒",
-              "new-order-" +
               change.doc.id
             );
 
@@ -5386,56 +5722,43 @@ function startRealtime(){
 
         }
 
-
         loadOrders();
 
-      },error => {
-
+      },
+      error =>
         console.error(
-          "Orders realtime:",
+          "Order realtime:",
           error
-        );
-
-      });
-
-
-  realtimeUnsubscribers.push(
-    ordersUnsubscribe
-  );
+        )
+    );
 
 
   /*
-   CHATS
+    CHATS
   */
 
-  const chatsUnsubscribe =
-    db.collection("chats")
-      .onSnapshot(snapshot => {
+  db.collection("chats")
+    .onSnapshot(
+      snapshot => {
 
         loadChats();
 
-      },error => {
-
+      },
+      error =>
         console.error(
-          "Chats realtime:",
+          "Chat realtime:",
           error
-        );
-
-      });
-
-
-  realtimeUnsubscribers.push(
-    chatsUnsubscribe
-  );
+        )
+    );
 
 
   /*
-   SERVICES
+    SERVICE REQUESTS
   */
 
-  const servicesUnsubscribe =
-    db.collection("serviceRequests")
-      .onSnapshot(snapshot => {
+  db.collection("serviceRequests")
+    .onSnapshot(
+      snapshot => {
 
         const added =
           snapshot.docChanges()
@@ -5444,9 +5767,8 @@ function startRealtime(){
                 change.type === "added"
             );
 
-
         if(
-          initialDataLoaded &&
+          services.length &&
           added.length
         ){
 
@@ -5454,9 +5776,8 @@ function startRealtime(){
 
             addNotification(
               "New Service Request",
-              "A customer submitted a new electrical service request.",
+              "A customer requested an electrical service.",
               "🔧",
-              "new-service-" +
               change.doc.id
             );
 
@@ -5464,183 +5785,183 @@ function startRealtime(){
 
         }
 
-
         loadServices();
 
-      },error => {
-
+      },
+      error =>
         console.error(
           "Services realtime:",
           error
-        );
-
-      });
-
-
-  realtimeUnsubscribers.push(
-    servicesUnsubscribe
-  );
+        )
+    );
 
 
   /*
-   NOTIFICATIONS
+    NOTIFICATIONS
   */
 
-  const notificationsUnsubscribe =
-    db.collection("notifications")
-      .onSnapshot(() => {
-
-        loadNotifications();
-
-      },error => {
-
+  db.collection("notifications")
+    .onSnapshot(
+      () =>
+        loadNotifications(),
+      error =>
         console.error(
           "Notifications realtime:",
           error
-        );
+        )
+    );
+
+}
+
+
+/* =========================================================
+   22. START ADMIN
+   ========================================================= */
+
+async function startAdmin(){
+
+  try{
+
+    /*
+      Make absolutely sure
+      the authenticated user is
+      the correct administrator.
+    */
+
+    const user =
+      auth.currentUser;
+
+    if(!user){
+
+      showLogin();
+
+      return;
+
+    }
+
+    if(user.uid !== ADMIN_UID){
+
+      await auth.signOut();
+
+      showLogin();
+
+      return;
+
+    }
+
+
+    /*
+      Make sure admin document
+      exists.
+
+      We use the exact UID as
+      the document ID.
+    */
+
+    const adminRef =
+      db
+        .collection("admins")
+        .doc(ADMIN_UID);
+
+    const adminSnapshot =
+      await adminRef.get();
+
+
+    /*
+      If the admin document doesn't
+      exist, create it.
+
+      IMPORTANT:
+      Your Firestore Rules must allow
+      this exact admin UID to write
+      the admins document.
+    */
+
+    if(!adminSnapshot.exists){
+
+      await adminRef.set({
+
+        uid:ADMIN_UID,
+
+        email:ADMIN_EMAIL,
+
+        name:"Danny Smart Power",
+
+        role:"admin",
+
+        active:true,
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
 
       });
 
-
-  realtimeUnsubscribers.push(
-    notificationsUnsubscribe
-  );
-
-}
+    }
 
 
-/* =========================================================
-   MOBILE VIEWPORT
-   ========================================================= */
-
-function mobileKeyboardFix(){
-
-  if(!window.visualViewport) return;
-
-  const adjust = () => {
-
-    document.documentElement
-      .style
-      .setProperty(
-        "--vvh",
-        window.visualViewport.height + "px"
-      );
-
-  };
+    showAdminApp();
 
 
-  window.visualViewport.addEventListener(
-    "resize",
-    adjust
-  );
+    /*
+      Load everything.
+    */
 
-  window.visualViewport.addEventListener(
-    "scroll",
-    adjust
-  );
+    await Promise.all([
 
-  adjust();
+      loadProducts(),
 
-}
+      loadOrders(),
+
+      loadUsers(),
+
+      loadProfiles(),
+
+      loadChats(),
+
+      loadWishlists(),
+
+      loadSettings(),
+
+      loadAdmins(),
+
+      loadProjects(),
+
+      loadServices(),
+
+      loadNotifications()
+
+    ]);
 
 
-/* =========================================================
-   ADMIN AUTHORIZATION
-   ========================================================= */
+    listenRealtime();
 
-async function verifyAdmin(user){
 
-  if(!user){
+  }catch(error){
 
-    throw new Error(
-      "Admin sign-in required."
+    console.error(
+      "ADMIN START ERROR:",
+      error
     );
 
-  }
+    await auth.signOut();
 
+    $("loginError").textContent =
+      "Admin access error: " +
+      friendlyError(error);
 
-  /*
-    PRIMARY METHOD:
-    admins/{AUTH_UID}
-  */
+    $("loginError")
+      .classList.remove("hidden");
 
-  const adminByUid =
-    await db
-      .collection("admins")
-      .doc(user.uid)
-      .get();
-
-
-  if(adminByUid.exists){
-
-    const data =
-      adminByUid.data() || {};
-
-
-    if(data.active === false){
-
-      throw new Error(
-        "This administrator account is inactive."
-      );
-
-    }
-
-
-    return true;
+    showLogin();
 
   }
-
-
-  /*
-    FALLBACK:
-    Search admin by email.
-  */
-
-  if(user.email){
-
-    const adminByEmail =
-      await db
-        .collection("admins")
-        .where(
-          "email",
-          "==",
-          user.email
-        )
-        .limit(1)
-        .get();
-
-
-    if(!adminByEmail.empty){
-
-      const data =
-        adminByEmail.docs[0].data() || {};
-
-
-      if(data.active === false){
-
-        throw new Error(
-          "This administrator account is inactive."
-        );
-
-      }
-
-
-      return true;
-
-    }
-
-  }
-
-
-  throw new Error(
-    "This account is not authorized as a Danny Smart Power administrator."
-  );
 
 }
 
 
 /* =========================================================
-   AUTH STATE
+   23. AUTH STATE
    ========================================================= */
 
 auth.onAuthStateChanged(
@@ -5648,165 +5969,60 @@ auth.onAuthStateChanged(
 
     if(!user){
 
-      stopRealtime();
-
-      document.body.innerHTML = `
-
-        <div
-          style="
-            min-height:100dvh;
-            display:grid;
-            place-items:center;
-            background:#0f172a;
-            color:white;
-            padding:30px;
-            text-align:center;
-          ">
-
-          <div>
-
-            <div style="font-size:50px">
-              🔐
-            </div>
-
-            <h2>
-              Admin Sign-In Required
-            </h2>
-
-            <p style="color:#94a3b8">
-              Please sign in with an authorized
-              Danny Smart Power administrator account.
-            </p>
-
-          </div>
-
-        </div>
-
-      `;
+      showLogin();
 
       return;
 
     }
 
 
-    try{
+    /*
+      Exact UID protection.
+    */
 
-      await verifyAdmin(user);
+    if(user.uid !== ADMIN_UID){
 
+      await auth.signOut();
 
-      /*
-        Load everything once.
-      */
+      $("loginError").textContent =
+        "This Firebase account is not authorized to access the Danny Smart Power Admin Center.";
 
-      await Promise.all([
+      $("loginError")
+        .classList.remove("hidden");
 
-        loadProducts(),
+      showLogin();
 
-        loadOrders(),
-
-        loadUsers(),
-
-        loadProfiles(),
-
-        loadChats(),
-
-        loadWishlists(),
-
-        loadSettings(),
-
-        loadAdmins(),
-
-        loadProjects(),
-
-        loadServices(),
-
-        loadNotifications()
-
-      ]);
-
-
-      initialDataLoaded = true;
-
-      startRealtime();
-
-      mobileKeyboardFix();
-
-
-    }catch(error){
-
-      console.error(
-        "Admin access:",
-        error
-      );
-
-
-      stopRealtime();
-
-
-      document.body.innerHTML = `
-
-        <div
-          style="
-            min-height:100dvh;
-            display:grid;
-            place-items:center;
-            background:#0f172a;
-            color:white;
-            padding:30px;
-            text-align:center;
-          ">
-
-          <div style="max-width:500px">
-
-            <div style="font-size:50px">
-              🚫
-            </div>
-
-            <h2>
-              Admin Access Error
-            </h2>
-
-            <p style="color:#f87171">
-              ${escapeHTML(
-                friendlyError(error)
-              )}
-            </p>
-
-            <p style="color:#94a3b8;font-size:13px">
-              Make sure the signed-in account exists
-              in the <b>admins</b> collection and that
-              the document ID matches the Firebase Auth UID,
-              or that the email matches the admin email.
-            </p>
-
-          </div>
-
-        </div>
-
-      `;
+      return;
 
     }
 
-  });
 
+    /*
+      Exact email protection.
+    */
 
-/* =========================================================
-   CLEANUP
-   ========================================================= */
+    if(
+      user.email &&
+      user.email.toLowerCase() !==
+      ADMIN_EMAIL.toLowerCase()
+    ){
 
-window.addEventListener(
-  "beforeunload",
-  () => {
+      await auth.signOut();
 
-    stopRealtime();
+      $("loginError").textContent =
+        "This account is not the authorized Danny Smart Power administrator.";
 
-    if(messageUnsubscribe){
+      $("loginError")
+        .classList.remove("hidden");
 
-      messageUnsubscribe();
+      showLogin();
 
-      messageUnsubscribe = null;
+      return;
 
     }
+
+
+    await startAdmin();
 
   }
 );
@@ -5814,4 +6030,4 @@ window.addEventListener(
 </script>
 
 </body>
-  </html>
+</html>
