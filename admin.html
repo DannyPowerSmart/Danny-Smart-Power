@@ -2,471 +2,554 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Danny Smart Power — Admin Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<title>Danny Smart Power — Admin Control Center</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html,body{
-    width:100%;
-    min-height:100%;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#020617 !important;
-    color:#f8fafc;
+:root{
+  --bg:#020617;
+  --panel:#0f172a;
+  --panel2:#111c31;
+  --panel3:#162238;
+  --border:#26354d;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --blue2:#0ea5e9;
+  --green:#22c55e;
+  --red:#ef4444;
+  --yellow:#f59e0b;
+  --purple:#a78bfa;
+}
+
+html,
+body{
+  min-height:100%;
+  background:var(--bg)!important;
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    overflow-x:hidden;
+  overflow-x:hidden;
 }
 
 button,
 input,
 textarea,
 select{
-    font:inherit;
+  font:inherit;
 }
 
 button{
-    cursor:pointer;
+  cursor:pointer;
 }
 
 .hidden{
-    display:none !important;
+  display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top,#10243d 0%,#020617 48%,#000 100%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:rgba(15,23,42,.98);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px 24px;
+  box-shadow:0 25px 80px rgba(0,0,0,.55);
+}
+
+.login-logo{
+  width:76px;
+  height:76px;
+  border-radius:20px;
+  background:#020617;
+  border:1px solid var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  margin:0 auto 18px;
+  box-shadow:0 0 30px rgba(56,189,248,.12);
+}
+
+.login-box h1{
+  text-align:center;
+  font-size:24px;
+  margin-bottom:7px;
+}
+
+.login-box .sub{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:25px;
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  color:#cbd5e1;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  background:#071121!important;
+  color:#fff!important;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:12px;
+  outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px rgba(56,189,248,.08);
+}
+
+textarea{
+  resize:vertical;
+  min-height:100px;
+}
+
+.primary{
+  width:100%;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  border:0;
+  color:#00111c;
+  font-weight:800;
+  border-radius:11px;
+  padding:13px;
+}
+
+.login-error{
+  margin-top:14px;
+  background:rgba(239,68,68,.12);
+  border:1px solid rgba(239,68,68,.3);
+  color:#fca5a5;
+  border-radius:10px;
+  padding:11px;
+  font-size:13px;
 }
 
 /* =========================
    APP
 ========================= */
 
-.app{
-    min-height:100vh;
-    background:#020617;
+#app{
+  min-height:100vh;
+  background:var(--bg)!important;
 }
 
 .topbar{
-    height:68px;
-    background:#020617;
-    border-bottom:1px solid #1e293b;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 18px;
-    position:sticky;
-    top:0;
-    z-index:1000;
+  height:68px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:0 15px;
+  background:#020617!important;
+  border-bottom:1px solid var(--border);
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
 }
 
 .brand-logo{
-    width:40px;
-    height:40px;
-    border-radius:12px;
-    background:#38bdf8;
-    color:#020617;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    font-size:19px;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:#071121;
+  border:1px solid var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.brand-text strong{
-    display:block;
-    font-size:15px;
+.brand-name{
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-.brand-text small{
-    color:#94a3b8;
-    font-size:11px;
+.brand-name small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:500;
 }
 
 .menu-btn{
-    width:43px;
-    height:43px;
-    border:none;
-    border-radius:12px;
-    background:#0f172a;
-    color:#f8fafc;
-    border:1px solid #1e293b;
-    font-size:21px;
+  width:43px;
+  height:43px;
+  border:1px solid var(--border);
+  background:#0b1526;
+  color:#fff;
+  border-radius:12px;
+  font-size:20px;
 }
 
-/* =========================
-   SIDE MENU
-========================= */
+.layout{
+  display:flex;
+  min-height:calc(100vh - 68px);
+}
 
 .sidebar{
-    position:fixed;
-    top:0;
-    left:-290px;
-    width:280px;
-    height:100vh;
-    background:#020617;
-    border-right:1px solid #1e293b;
-    z-index:3000;
-    transition:.25s ease;
-    overflow-y:auto;
-    padding:18px;
+  width:260px;
+  flex:none;
+  background:#050d1a!important;
+  border-right:1px solid var(--border);
+  padding:15px;
+  position:fixed;
+  left:0;
+  top:68px;
+  bottom:0;
+  overflow-y:auto;
+  z-index:90;
+  transform:translateX(0);
+  transition:.25s;
 }
 
-.sidebar.open{
-    left:0;
+.sidebar-title{
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin:8px 8px 10px;
 }
 
-.side-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:20px;
+.nav{
+  display:grid;
+  gap:6px;
 }
 
-.side-title{
-    font-weight:900;
+.nav button{
+  width:100%;
+  border:1px solid transparent;
+  background:transparent;
+  color:#cbd5e1;
+  padding:11px 12px;
+  border-radius:10px;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.close-menu{
-    border:1px solid #334155;
-    background:#0f172a;
-    color:#fff;
-    border-radius:10px;
-    width:40px;
-    height:40px;
+.nav button:hover,
+.nav button.active{
+  background:#0d1b2e;
+  border-color:var(--border);
+  color:#fff;
 }
-
-.menu-item{
-    width:100%;
-    border:none;
-    background:#0b1220;
-    color:#cbd5e1;
-    margin-bottom:8px;
-    padding:13px 14px;
-    border-radius:11px;
-    text-align:left;
-    border:1px solid #172033;
-}
-
-.menu-item:hover{
-    background:#0f172a;
-    color:#38bdf8;
-}
-
-.menu-item.active{
-    background:#082f49;
-    color:#38bdf8;
-    border-color:#075985;
-}
-
-.back-menu{
-    color:#fbbf24;
-}
-
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.65);
-    z-index:2500;
-    display:none;
-}
-
-.overlay.show{
-    display:block;
-}
-
-/* =========================
-   MAIN
-========================= */
 
 .main{
-    min-height:calc(100vh - 68px);
-    padding:18px;
-    background:#020617;
+  width:100%;
+  margin-left:260px;
+  padding:20px;
 }
 
-.page{
-    max-width:1400px;
-    margin:auto;
+.mobile-overlay{
+  display:none;
 }
 
-.section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:18px;
-    flex-wrap:wrap;
+.section{
+  display:none;
 }
 
-.section-head h1{
-    font-size:24px;
+.section.active{
+  display:block;
 }
 
-.section-head p{
-    color:#94a3b8;
-    font-size:13px;
-    margin-top:4px;
+.page-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.page-head h2{
+  font-size:24px;
+}
+
+.page-head p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
 }
 
 .back-btn{
-    border:1px solid #334155;
-    background:#0f172a;
-    color:#f8fafc;
-    padding:10px 14px;
-    border-radius:10px;
-}
-
-.back-btn:hover{
-    border-color:#38bdf8;
-    color:#38bdf8;
+  border:1px solid var(--border);
+  background:#0b1526;
+  color:#fff;
+  border-radius:10px;
+  padding:10px 13px;
 }
 
 /* =========================
-   DASHBOARD GRID
+   DASHBOARD
 ========================= */
 
 .dashboard-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-    gap:14px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
 }
 
-.dashboard-card{
-    min-height:145px;
-    background:#0b1220;
-    border:1px solid #1e293b;
-    border-radius:17px;
-    padding:18px;
-    transition:.2s;
-    cursor:pointer;
+.dash-card{
+  min-height:145px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(145deg,#0f1b2d,#091221);
+  padding:18px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.dashboard-card:hover{
-    transform:translateY(-3px);
-    border-color:#38bdf8;
-    background:#0f172a;
+.dash-card:hover{
+  transform:translateY(-2px);
+  border-color:#38516f;
 }
 
-.card-icon{
-    font-size:28px;
-    margin-bottom:18px;
+.dash-icon{
+  font-size:27px;
+  margin-bottom:18px;
 }
 
-.card-title{
-    color:#94a3b8;
-    font-size:13px;
+.dash-title{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.card-value{
-    font-size:28px;
-    font-weight:900;
-    margin-top:5px;
+.dash-number{
+  font-size:29px;
+  font-weight:800;
+  margin-top:5px;
 }
 
 /* =========================
-   PANELS
+   TOOLBAR / CARDS
 ========================= */
 
-.panel{
-    background:#0b1220 !important;
-    border:1px solid #1e293b;
-    border-radius:16px;
-    padding:18px;
-    margin-bottom:18px;
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:15px;
 }
 
-.panel h3{
-    margin-bottom:14px;
+.toolbar input{
+  flex:1;
+  min-width:200px;
+}
+
+.btn{
+  border:1px solid var(--border);
+  background:#0b1526;
+  color:#fff;
+  padding:10px 13px;
+  border-radius:10px;
+}
+
+.btn.blue{
+  background:#0ea5e9;
+  color:#00111c;
+  border-color:#0ea5e9;
+  font-weight:800;
+}
+
+.btn.green{
+  background:#166534;
+  border-color:#15803d;
+}
+
+.btn.red{
+  background:#45151a;
+  border-color:#7f1d1d;
+}
+
+.btn.yellow{
+  background:#422b08;
+  border-color:#854d0e;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;
+}
+
+.card{
+  background:#0b1526!important;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+}
+
+.card h3{
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#cbd5e1;
+  font-size:13px;
+  line-height:1.55;
+}
+
+.card small{
+  color:var(--muted);
+}
+
+.product-image{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:11px;
+  background:#020617;
+  margin-bottom:11px;
+}
+
+.status{
+  display:inline-flex;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:11px;
+  margin-top:8px;
+  background:#172033;
+}
+
+.status.green{
+  color:#86efac;
+  background:rgba(34,197,94,.12);
+}
+
+.status.red{
+  color:#fca5a5;
+  background:rgba(239,68,68,.12);
+}
+
+.status.yellow{
+  color:#fde68a;
+  background:rgba(245,158,11,.12);
+}
+
+.card-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:13px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:700px;
+  max-height:92vh;
+  overflow:auto;
+  background:#0b1526!important;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:#111c31;
+  border:1px solid var(--border);
+  color:#fff;
 }
 
 .form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:13px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
 }
 
 .full{
-    grid-column:1/-1;
+  grid-column:1/-1;
 }
 
-label{
-    display:block;
-    color:#cbd5e1;
-    font-size:12px;
-    margin-bottom:6px;
+.check{
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
-input,
-textarea,
-select{
-    width:100%;
-    background:#020617 !important;
-    color:#f8fafc !important;
-    border:1px solid #334155;
-    border-radius:10px;
-    padding:12px;
-    outline:none;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:#38bdf8;
-}
-
-textarea{
-    min-height:110px;
-    resize:vertical;
-}
-
-.check-row{
-    display:flex;
-    gap:18px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.check-row label{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    margin:0;
-}
-
-.check-row input{
-    width:auto;
-}
-
-.primary{
-    border:none;
-    background:#38bdf8;
-    color:#020617;
-    padding:12px 18px;
-    border-radius:10px;
-    font-weight:800;
-}
-
-.secondary{
-    border:1px solid #334155;
-    background:#0f172a;
-    color:#fff;
-    padding:11px 16px;
-    border-radius:10px;
-}
-
-.danger{
-    border:none;
-    background:#dc2626;
-    color:#fff;
-    padding:10px 14px;
-    border-radius:10px;
-}
-
-.actions{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-/* =========================
-   TABLE
-========================= */
-
-.table-wrap{
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,
-td{
-    padding:12px 10px;
-    border-bottom:1px solid #1e293b;
-    text-align:left;
-    font-size:13px;
-    white-space:nowrap;
-}
-
-th{
-    color:#38bdf8;
-}
-
-td{
-    color:#cbd5e1;
-}
-
-.small-btn{
-    border:1px solid #334155;
-    background:#0f172a;
-    color:#fff;
-    padding:7px 10px;
-    border-radius:8px;
-    margin-right:5px;
-}
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.product-grid,
-.project-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-    gap:14px;
-}
-
-.product-card,
-.project-card{
-    background:#020617;
-    border:1px solid #1e293b;
-    border-radius:14px;
-    overflow:hidden;
-}
-
-.product-card img,
-.project-card img{
-    width:100%;
-    height:155px;
-    object-fit:cover;
-    display:block;
-    background:#0f172a;
-}
-
-.product-info,
-.project-info{
-    padding:13px;
-}
-
-.product-info h4,
-.project-info h4{
-    margin-bottom:6px;
-}
-
-.muted{
-    color:#94a3b8;
-    font-size:12px;
-}
-
-.price{
-    color:#38bdf8;
-    font-weight:900;
-    margin:7px 0;
+.check input{
+  width:auto;
 }
 
 /* =========================
@@ -474,173 +557,209 @@ td{
 ========================= */
 
 .chat-layout{
-    display:grid;
-    grid-template-columns:310px 1fr;
-    min-height:620px;
-    border:1px solid #1e293b;
-    border-radius:16px;
-    overflow:hidden;
-    background:#020617;
+  display:grid;
+  grid-template-columns:320px 1fr;
+  height:calc(100vh - 145px);
+  min-height:520px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+  background:#071121;
 }
 
 .chat-list{
-    border-right:1px solid #1e293b;
-    overflow-y:auto;
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+  background:#050d1a;
 }
 
-.chat-user{
-    padding:13px;
-    border-bottom:1px solid #1e293b;
-    cursor:pointer;
+.chat-item{
+  padding:13px;
+  border-bottom:1px solid rgba(38,53,77,.6);
+  cursor:pointer;
 }
 
-.chat-user:hover,
-.chat-user.selected{
-    background:#0f172a;
+.chat-item:hover,
+.chat-item.active{
+  background:#0d1b2e;
 }
 
-.chat-user strong{
-    display:block;
-    font-size:13px;
+.chat-item strong{
+  display:block;
+  margin-bottom:4px;
 }
 
-.chat-user small{
-    color:#94a3b8;
+.chat-item small{
+  color:var(--muted);
 }
 
 .chat-window{
-    display:flex;
-    flex-direction:column;
-    min-width:0;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
 }
 
 .chat-head{
-    padding:14px;
-    border-bottom:1px solid #1e293b;
-    background:#0b1220;
+  min-height:65px;
+  padding:11px 14px;
+  border-bottom:1px solid var(--border);
+  background:#091525;
+}
+
+.chat-head strong{
+  display:block;
+}
+
+.chat-head small{
+  color:var(--muted);
 }
 
 .messages{
-    flex:1;
-    min-height:450px;
-    max-height:550px;
-    overflow-y:auto;
-    padding:18px;
-    background:#020617;
-    display:flex;
-    flex-direction:column;
-    gap:9px;
+  flex:1;
+  overflow-y:auto;
+  padding:16px;
+  background:
+    radial-gradient(circle at center,#0b1728 0%,#050d1a 70%);
 }
 
 .message-row{
-    display:flex;
-    width:100%;
+  display:flex;
+  margin-bottom:10px;
 }
 
 .message-row.customer{
-    justify-content:flex-start;
+  justify-content:flex-start;
 }
 
 .message-row.admin{
-    justify-content:flex-end;
+  justify-content:flex-end;
 }
 
-.bubble{
-    max-width:min(75%,520px);
-    padding:10px 13px;
-    border-radius:14px;
-    line-height:1.45;
-    font-size:14px;
-    word-wrap:break-word;
+.message-bubble{
+  max-width:min(75%,430px);
+  padding:10px 12px;
+  border-radius:15px;
+  line-height:1.45;
+  font-size:14px;
+  word-break:break-word;
 }
 
-.message-row.customer .bubble{
-    background:#172033;
-    color:#f8fafc;
-    border-bottom-left-radius:4px;
+.customer .message-bubble{
+  background:#172338;
+  border:1px solid #26354d;
+  border-bottom-left-radius:4px;
 }
 
-.message-row.admin .bubble{
-    background:#075985;
-    color:#fff;
-    border-bottom-right-radius:4px;
+.admin .message-bubble{
+  background:#075985;
+  border:1px solid #0e7490;
+  border-bottom-right-radius:4px;
+}
+
+.message-time{
+  display:block;
+  margin-top:4px;
+  font-size:9px;
+  opacity:.65;
 }
 
 .message-image{
-    max-width:240px;
-    max-height:220px;
-    border-radius:10px;
-    margin-bottom:6px;
+  max-width:220px;
+  max-height:220px;
+  border-radius:10px;
+  display:block;
+  margin-bottom:5px;
 }
 
-.chat-input{
-    padding:12px;
-    border-top:1px solid #1e293b;
-    display:flex;
-    gap:8px;
-    background:#0b1220;
+.chat-compose{
+  padding:10px;
+  border-top:1px solid var(--border);
+  display:flex;
+  gap:8px;
+  background:#050d1a;
 }
 
-.chat-input input{
-    flex:1;
+.chat-compose textarea{
+  min-height:45px;
+  max-height:120px;
+  resize:none;
+  flex:1;
 }
 
 .send-btn{
-    width:48px;
-    border:none;
-    border-radius:10px;
-    background:#38bdf8;
-    color:#020617;
-    font-weight:900;
+  width:52px;
+  border:0;
+  border-radius:11px;
+  background:#0ea5e9;
+  color:#00111c;
+  font-weight:900;
 }
 
 /* =========================
-   STATUS
+   TABLE
 ========================= */
 
-.status{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:7px;
-    font-size:11px;
-    background:#172033;
+.table-wrap{
+  width:100%;
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:14px;
 }
 
-.success{
-    color:#4ade80;
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:750px;
 }
 
-.warning{
-    color:#fbbf24;
+th,
+td{
+  padding:12px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  font-size:13px;
 }
 
-.error{
-    color:#f87171;
+th{
+  color:#94a3b8;
+  background:#071121;
+}
+
+td{
+  color:#e2e8f0;
 }
 
 /* =========================
    TOAST
 ========================= */
 
-.toast{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    background:#0f172a;
-    border:1px solid #334155;
-    color:#fff;
-    padding:13px 16px;
-    border-radius:10px;
-    z-index:5000;
-    opacity:0;
-    transform:translateY(20px);
-    pointer-events:none;
-    transition:.25s;
+#toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  max-width:350px;
+  padding:13px 15px;
+  border-radius:12px;
+  background:#0f172a;
+  border:1px solid var(--border);
+  box-shadow:0 15px 40px rgba(0,0,0,.45);
+  transform:translateY(130px);
+  opacity:0;
+  transition:.25s;
 }
 
-.toast.show{
-    opacity:1;
-    transform:translateY(0);
+#toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+#toast.success{
+  border-color:#15803d;
+}
+
+#toast.error{
+  border-color:#991b1b;
 }
 
 /* =========================
@@ -648,2372 +767,3212 @@ td{
 ========================= */
 
 .loading{
-    text-align:center;
-    color:#94a3b8;
-    padding:30px;
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
+@media(max-width:1100px){
+  .dashboard-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
 @media(max-width:800px){
-    .form-grid{
-        grid-template-columns:1fr;
-    }
 
-    .full{
-        grid-column:auto;
-    }
+  .sidebar{
+    transform:translateX(-100%);
+    box-shadow:20px 0 50px rgba(0,0,0,.5);
+  }
 
-    .chat-layout{
-        grid-template-columns:1fr;
-    }
+  .sidebar.open{
+    transform:translateX(0);
+  }
 
-    .chat-list{
-        max-height:220px;
-        border-right:none;
-        border-bottom:1px solid #1e293b;
-    }
+  .mobile-overlay{
+    position:fixed;
+    inset:68px 0 0;
+    background:rgba(0,0,0,.6);
+    z-index:80;
+  }
 
-    .messages{
-        min-height:400px;
-    }
+  .mobile-overlay.show{
+    display:block;
+  }
+
+  .main{
+    margin-left:0;
+    padding:14px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .chat-layout{
+    grid-template-columns:1fr;
+    height:calc(100vh - 145px);
+  }
+
+  .chat-list{
+    display:none;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
 }
 
 @media(max-width:500px){
-    .main{
-        padding:12px;
-    }
 
-    .topbar{
-        padding:0 12px;
-    }
+  .brand-name{
+    font-size:13px;
+  }
 
-    .brand-text strong{
-        font-size:13px;
-    }
+  .dashboard-grid{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+  }
 
-    .dashboard-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .dash-card{
+    min-height:120px;
+    padding:13px;
+  }
 
-    .dashboard-card{
-        min-height:125px;
-        padding:14px;
-    }
+  .dash-number{
+    font-size:24px;
+  }
 
-    .card-value{
-        font-size:22px;
-    }
+  .page-head{
+    align-items:flex-start;
+  }
 
-    .bubble{
-        max-width:85%;
-    }
+  .page-head h2{
+    font-size:20px;
+  }
+
+  .toolbar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .toolbar input{
+    grid-column:1/-1;
+    min-width:0;
+  }
+
+  .message-bubble{
+    max-width:82%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
-<header class="topbar">
+<div id="loginScreen">
+
+  <div class="login-box">
+
+    <div class="login-logo">⚡</div>
+
+    <h1>Danny Smart Power</h1>
+
+    <div class="sub">
+      Secure Administrator Control Center
+    </div>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label>Admin Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          autocomplete="username"
+          placeholder="Admin email"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          id="loginPassword"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Admin password"
+          required
+        >
+      </div>
+
+      <button class="primary" type="submit">
+        🔐 Login to Admin
+      </button>
+
+      <div id="loginError" class="login-error hidden"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN APP
+===================================================== -->
+
+<div id="app" class="hidden">
+
+  <header class="topbar">
+
     <div class="brand">
-        <div class="brand-logo">⚡</div>
-        <div class="brand-text">
-            <strong>Danny Smart Power</strong>
-            <small>Admin Center</small>
-        </div>
+
+      <div class="brand-logo">⚡</div>
+
+      <div class="brand-name">
+        Danny Smart Power
+        <small>ADMIN CONTROL CENTER</small>
+      </div>
+
     </div>
 
-    <button class="menu-btn" onclick="openMenu()">☰</button>
-</header>
+    <button
+      class="menu-btn"
+      onclick="toggleMenu()"
+      aria-label="Menu"
+    >☰</button>
 
-<aside class="sidebar" id="sidebar">
+  </header>
 
-    <div class="side-head">
-        <div class="side-title">Admin Menu</div>
-        <button class="close-menu" onclick="closeMenu()">✕</button>
+
+  <div class="mobile-overlay" id="overlay" onclick="closeMenu()"></div>
+
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-title">Control Center</div>
+
+    <div class="nav">
+
+      <button onclick="showSection('dashboard')" id="nav-dashboard">
+        📊 Dashboard
+      </button>
+
+      <button onclick="showSection('products')" id="nav-products">
+        🛒 Products
+      </button>
+
+      <button onclick="showSection('orders')" id="nav-orders">
+        📦 Orders
+      </button>
+
+      <button onclick="showSection('customers')" id="nav-customers">
+        👥 Customers
+      </button>
+
+      <button onclick="showSection('chats')" id="nav-chats">
+        💬 Messages
+      </button>
+
+      <button onclick="showSection('projects')" id="nav-projects">
+        ⚡ Electrical Projects
+      </button>
+
+      <button onclick="showSection('requests')" id="nav-requests">
+        🛠️ Service Requests
+      </button>
+
+      <button onclick="showSection('wishlists')" id="nav-wishlists">
+        ❤️ Wishlists
+      </button>
+
+      <button onclick="showSection('carts')" id="nav-carts">
+        🛍️ Carts
+      </button>
+
+      <button onclick="showSection('notifications')" id="nav-notifications">
+        🔔 Notifications
+      </button>
+
+      <button onclick="showSection('settings')" id="nav-settings">
+        ⚙️ Settings
+      </button>
+
+      <button onclick="showSection('admin')" id="nav-admin">
+        👤 Admin
+      </button>
+
     </div>
 
-    <button class="menu-item back-menu" onclick="showPage('dashboard')">
-        ← Back to Dashboard
+    <div class="sidebar-title" style="margin-top:25px;">
+      Account
+    </div>
+
+    <button class="btn" style="width:100%;" onclick="adminLogout()">
+      🚪 Logout
     </button>
 
-    <button class="menu-item" onclick="showPage('dashboard')">📊 Dashboard</button>
-    <button class="menu-item" onclick="showPage('products')">🛒 Products</button>
-    <button class="menu-item" onclick="showPage('orders')">📦 Orders</button>
-    <button class="menu-item" onclick="showPage('customers')">👥 Customers</button>
-    <button class="menu-item" onclick="showPage('chat')">💬 Chat with Danny</button>
-    <button class="menu-item" onclick="showPage('projects')">⚡ Electrical Projects</button>
-    <button class="menu-item" onclick="showPage('requests')">🛠 Service Requests</button>
-    <button class="menu-item" onclick="showPage('wishlists')">❤️ Wishlists</button>
-    <button class="menu-item" onclick="showPage('notifications')">🔔 Notifications</button>
-    <button class="menu-item" onclick="showPage('settings')">⚙️ Settings</button>
+  </aside>
 
-    <button class="menu-item" onclick="logout()" style="margin-top:20px;color:#f87171;">
-        🚪 Sign Out
-    </button>
-</aside>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <main class="main">
 
-<main class="main">
 
-<!-- ================= DASHBOARD ================= -->
+    <!-- =================================================
+         DASHBOARD
+    ================================================== -->
 
-<section id="dashboardPage" class="page">
+    <section id="section-dashboard" class="section active">
 
-    <div class="section-head">
-        <div>
-            <h1>Admin Dashboard</h1>
-            <p>Welcome to Danny Smart Power administration.</p>
-        </div>
-    </div>
-
-    <div class="dashboard-grid">
-
-        <div class="dashboard-card" onclick="showPage('products')">
-            <div class="card-icon">🛒</div>
-            <div class="card-title">Products</div>
-            <div class="card-value" id="countProducts">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('orders')">
-            <div class="card-icon">📦</div>
-            <div class="card-title">Total Orders</div>
-            <div class="card-value" id="countOrders">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('customers')">
-            <div class="card-icon">👥</div>
-            <div class="card-title">Customers</div>
-            <div class="card-value" id="countCustomers">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('orders')">
-            <div class="card-icon">⏳</div>
-            <div class="card-title">Pending Orders</div>
-            <div class="card-value" id="countPending">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('chat')">
-            <div class="card-icon">💬</div>
-            <div class="card-title">Unread Messages</div>
-            <div class="card-value" id="countUnread">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('projects')">
-            <div class="card-icon">⚡</div>
-            <div class="card-title">Electrical Projects</div>
-            <div class="card-value" id="countProjects">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('requests')">
-            <div class="card-icon">🛠</div>
-            <div class="card-title">Service Requests</div>
-            <div class="card-value" id="countRequests">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('wishlists')">
-            <div class="card-icon">❤️</div>
-            <div class="card-title">Wishlists</div>
-            <div class="card-value" id="countWishlists">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('notifications')">
-            <div class="card-icon">🔔</div>
-            <div class="card-title">Notifications</div>
-            <div class="card-value" id="countNotifications">0</div>
-        </div>
-
-        <div class="dashboard-card" onclick="showPage('settings')">
-            <div class="card-icon">⚙️</div>
-            <div class="card-title">Settings</div>
-            <div class="card-value">→</div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ================= PRODUCTS ================= -->
-
-<section id="productsPage" class="page hidden">
-
-    <div class="section-head">
-        <div>
-            <h1>Products</h1>
-            <p>Add and manage products.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-    </div>
-
-    <div class="panel">
-
-        <h3 id="productFormTitle">Add Product</h3>
-
-        <input type="hidden" id="productId">
-
-        <div class="form-grid">
-
-            <div>
-                <label>Product Name</label>
-                <input id="productName" placeholder="Product name">
-            </div>
-
-            <div>
-                <label>Category</label>
-                <select id="productCategory">
-                    <option value="Solar">Solar</option>
-                    <option value="Lighting">Lighting</option>
-                    <option value="Electrical">Electrical</option>
-                    <option value="Accessories">Accessories</option>
-                </select>
-            </div>
-
-            <div>
-                <label>Price</label>
-                <input id="productPrice" type="number" placeholder="Price">
-            </div>
-
-            <div>
-                <label>Stock</label>
-                <input id="productStock" type="number" placeholder="Stock">
-            </div>
-
-            <div>
-                <label>Colour</label>
-                <input id="productColour" placeholder="Colour">
-            </div>
-
-            <div>
-                <label>Image URL</label>
-                <input id="productImage" placeholder="https://...">
-            </div>
-
-            <div class="full">
-                <label>Description</label>
-                <textarea id="productDescription" placeholder="Product description"></textarea>
-            </div>
-
-        </div>
-
-        <div class="check-row" style="margin-top:15px;">
-            <label>
-                <input type="checkbox" id="productAvailable" checked>
-                Available
-            </label>
-
-            <label>
-                <input type="checkbox" id="productFeatured">
-                Featured
-            </label>
-        </div>
-
-        <div class="actions">
-            <button class="primary" onclick="saveProduct()">Save Product</button>
-            <button class="secondary" onclick="clearProductForm()">Clear</button>
-        </div>
-
-    </div>
-
-    <div class="panel">
-        <h3>Product List</h3>
-        <div id="productsList" class="product-grid">
-            <div class="loading">Loading products...</div>
-        </div>
-    </div>
-
-</section>
-
-
-<!-- ================= ORDERS ================= -->
-
-<section id="ordersPage" class="page hidden">
-
-    <div class="section-head">
-        <div>
-            <h1>Orders</h1>
-            <p>Manage customer orders.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-    </div>
-
-    <div class="panel">
-        <div class="table-wrap">
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Phone</th>
-                        <th>Total</th>
-                        <th>Payment</th>
-                        <th>Delivery</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <tbody id="ordersTable"></tbody>
-
-            </table>
-
-        </div>
-    </div>
-
-</section>
-
-
-<!-- ================= CUSTOMERS ================= -->
-
-<section id="customersPage" class="page hidden">
-
-    <div class="section-head">
-        <div>
-            <h1>Customers</h1>
-            <p>Registered Danny Smart Power customers.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-    </div>
-
-    <div class="panel">
-
-        <div class="table-wrap">
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Account Type</th>
-                        <th>Created</th>
-                    </tr>
-                </thead>
-
-                <tbody id="customersTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CHAT ================= -->
-
-<section id="chatPage" class="page hidden">
-
-    <div class="section-head">
+      <div class="page-head">
 
         <div>
-            <h1>Chat with Danny</h1>
-            <p>Customer messages appear on the left. Admin replies appear on the right.</p>
+          <h2>Dashboard</h2>
+          <p>Manage Danny Smart Power from one control center.</p>
         </div>
 
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
+      </div>
 
-    </div>
+      <div class="dashboard-grid">
 
-    <div class="chat-layout">
+        <div class="dash-card" onclick="showSection('products')">
+          <div class="dash-icon">🛒</div>
+          <div class="dash-title">Products</div>
+          <div class="dash-number" id="countProducts">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('orders')">
+          <div class="dash-icon">📦</div>
+          <div class="dash-title">Orders</div>
+          <div class="dash-number" id="countOrders">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('customers')">
+          <div class="dash-icon">👥</div>
+          <div class="dash-title">Customers</div>
+          <div class="dash-number" id="countCustomers">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('orders','pending')">
+          <div class="dash-icon">⏳</div>
+          <div class="dash-title">Pending Orders</div>
+          <div class="dash-number" id="countPending">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('chats')">
+          <div class="dash-icon">💬</div>
+          <div class="dash-title">Unread Messages</div>
+          <div class="dash-number" id="countUnread">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('projects')">
+          <div class="dash-icon">⚡</div>
+          <div class="dash-title">Electrical Projects</div>
+          <div class="dash-number" id="countProjects">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('requests')">
+          <div class="dash-icon">🛠️</div>
+          <div class="dash-title">Service Requests</div>
+          <div class="dash-number" id="countRequests">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('wishlists')">
+          <div class="dash-icon">❤️</div>
+          <div class="dash-title">Wishlists</div>
+          <div class="dash-number" id="countWishlists">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('carts')">
+          <div class="dash-icon">🛍️</div>
+          <div class="dash-title">Active Carts</div>
+          <div class="dash-number" id="countCarts">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('notifications')">
+          <div class="dash-icon">🔔</div>
+          <div class="dash-title">Notifications</div>
+          <div class="dash-number" id="countNotifications">0</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('settings')">
+          <div class="dash-icon">⚙️</div>
+          <div class="dash-title">Store Settings</div>
+          <div class="dash-number">→</div>
+        </div>
+
+        <div class="dash-card" onclick="showSection('admin')">
+          <div class="dash-icon">👤</div>
+          <div class="dash-title">Administrator</div>
+          <div class="dash-number">→</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PRODUCTS
+    ================================================== -->
+
+    <section id="section-products" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Products</h2>
+          <p>Add, edit, delete and control products.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="toolbar">
+
+        <input
+          id="productSearch"
+          placeholder="Search products..."
+          oninput="renderProducts()"
+        >
+
+        <button class="btn blue" onclick="openProductModal()">
+          + Add Product
+        </button>
+
+        <button class="btn" onclick="loadProducts()">
+          🔄 Refresh
+        </button>
+
+      </div>
+
+      <div id="productsGrid" class="cards">
+        <div class="loading">Loading products...</div>
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ORDERS
+    ================================================== -->
+
+    <section id="section-orders" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Orders</h2>
+          <p>Manage customer orders and payment status.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="toolbar">
+
+        <input
+          id="orderSearch"
+          placeholder="Search customer, phone or order..."
+          oninput="renderOrders()"
+        >
+
+        <select id="orderStatusFilter" onchange="renderOrders()">
+          <option value="">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="processing">Processing</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+
+        <button class="btn" onclick="loadOrders()">
+          🔄 Refresh
+        </button>
+
+      </div>
+
+      <div id="ordersTable"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         CUSTOMERS
+    ================================================== -->
+
+    <section id="section-customers" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Customers</h2>
+          <p>Profiles and registered users.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="toolbar">
+
+        <input
+          id="customerSearch"
+          placeholder="Search customers..."
+          oninput="renderCustomers()"
+        >
+
+        <button class="btn" onclick="loadCustomers()">
+          🔄 Refresh
+        </button>
+
+      </div>
+
+      <div id="customersGrid" class="cards"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         CHATS
+    ================================================== -->
+
+    <section id="section-chats" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Messages</h2>
+          <p>Reply to customers directly.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="chat-layout">
 
         <div class="chat-list" id="chatList">
-            <div class="loading">Loading chats...</div>
+          <div class="loading">Loading chats...</div>
         </div>
 
         <div class="chat-window">
 
-            <div class="chat-head">
-                <strong id="activeChatName">Select a customer</strong>
-                <div class="muted" id="activeChatEmail"></div>
+          <div class="chat-head" id="chatHead">
+            <strong>Select a conversation</strong>
+            <small>Customer messages will appear here.</small>
+          </div>
+
+          <div class="messages" id="messages">
+            <div class="loading">
+              Select a customer conversation.
             </div>
-
-            <div class="messages" id="messages">
-                <div class="loading">Select a conversation.</div>
-            </div>
-
-            <div class="chat-input">
-
-                <input
-                    id="chatMessageInput"
-                    type="text"
-                    placeholder="Type your reply..."
-                    autocomplete="off"
-                    onkeydown="handleChatKey(event)"
-                >
-
-                <button class="send-btn" onclick="sendChatMessage()">➤</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PROJECTS ================= -->
-
-<section id="projectsPage" class="page hidden">
-
-    <div class="section-head">
-
-        <div>
-            <h1>Electrical Projects</h1>
-            <p>Manage projects displayed on the service projects page.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-
-    </div>
-
-    <div class="panel">
-
-        <h3>Add / Edit Project</h3>
-
-        <input type="hidden" id="projectId">
-
-        <div class="form-grid">
-
-            <div>
-                <label>Title</label>
-                <input id="projectTitle" placeholder="Project title">
-            </div>
-
-            <div>
-                <label>Category</label>
-                <input id="projectCategory" placeholder="Solar Installation">
-            </div>
-
-            <div class="full">
-                <label>Description</label>
-                <textarea id="projectDescription" placeholder="Project description"></textarea>
-            </div>
-
-            <div>
-                <label>Media URL</label>
-                <input id="projectMediaUrl" placeholder="Photo or video URL">
-            </div>
-
-            <div>
-                <label>Thumbnail URL</label>
-                <input id="projectThumbnailUrl" placeholder="Thumbnail URL">
-            </div>
-
-            <div>
-                <label>Media Type</label>
-                <select id="projectMediaType">
-                    <option value="Photo">Photo</option>
-                    <option value="Video">Video</option>
-                </select>
-            </div>
-
-        </div>
-
-        <div class="check-row" style="margin-top:15px;">
-
-            <label>
-                <input type="checkbox" id="projectFeatured">
-                Featured
-            </label>
-
-            <label>
-                <input type="checkbox" id="projectPublished" checked>
-                Published
-            </label>
-
-            <label>
-                <input type="checkbox" id="projectRequestEnabled" checked>
-                Request Enabled
-            </label>
-
-        </div>
-
-        <div class="actions">
-            <button class="primary" onclick="saveProject()">Save Project</button>
-            <button class="secondary" onclick="clearProjectForm()">Clear</button>
-        </div>
-
-    </div>
-
-    <div class="panel">
-
-        <h3>Projects</h3>
-
-        <div id="projectsList" class="project-grid"></div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= SERVICE REQUESTS ================= -->
-
-<section id="requestsPage" class="page hidden">
-
-    <div class="section-head">
-
-        <div>
-            <h1>Service Requests</h1>
-            <p>Customer electrical service requests.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-
-    </div>
-
-    <div class="panel">
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Service</th>
-                        <th>Location</th>
-                        <th>Phone</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-
-                <tbody id="requestsTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WISHLISTS ================= -->
-
-<section id="wishlistsPage" class="page hidden">
-
-    <div class="section-head">
-
-        <div>
-            <h1>Wishlists</h1>
-            <p>Customer saved products.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-
-    </div>
-
-    <div class="panel">
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Customer ID</th>
-                        <th>Product</th>
-                        <th>Product ID</th>
-                        <th>Added</th>
-                    </tr>
-                </thead>
-
-                <tbody id="wishlistsTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= NOTIFICATIONS ================= -->
-
-<section id="notificationsPage" class="page hidden">
-
-    <div class="section-head">
-
-        <div>
-            <h1>Notifications</h1>
-            <p>Admin notifications.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-
-    </div>
-
-    <div class="panel">
-
-        <div id="notificationsList"></div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= SETTINGS ================= -->
-
-<section id="settingsPage" class="page hidden">
-
-    <div class="section-head">
-
-        <div>
-            <h1>Store Settings</h1>
-            <p>Update Danny Smart Power store information.</p>
-        </div>
-
-        <button class="back-btn" onclick="showPage('dashboard')">← Back</button>
-
-    </div>
-
-    <div class="panel">
-
-        <div class="form-grid">
-
-            <div>
-                <label>Store Name</label>
-                <input id="settingStoreName">
-            </div>
-
-            <div>
-                <label>Currency</label>
-                <input id="settingCurrency" placeholder="NGN">
-            </div>
-
-            <div>
-                <label>Email</label>
-                <input id="settingEmail">
-            </div>
-
-            <div>
-                <label>Phone</label>
-                <input id="settingPhone">
-            </div>
-
-            <div>
-                <label>WhatsApp</label>
-                <input id="settingWhatsapp">
-            </div>
-
-            <div>
-                <label>Logo URL</label>
-                <input id="settingLogoUrl">
-            </div>
-
-            <div>
-                <label>Login URL</label>
-                <input id="settingLoginUrl">
-            </div>
-
-            <div>
-                <label>Address</label>
-                <input id="settingAddress">
-            </div>
-
-            <div>
-                <label>City</label>
-                <input id="settingCity">
-            </div>
-
-            <div>
-                <label>State</label>
-                <input id="settingState">
-            </div>
-
-            <div class="full">
-                <label>Description</label>
-                <textarea id="settingDescription"></textarea>
-            </div>
-
-        </div>
-
-        <div class="actions">
-
-            <button class="primary" onclick="saveSettings()">
-                Save Settings
+          </div>
+
+          <form class="chat-compose" id="messageForm">
+
+            <textarea
+              id="messageInput"
+              placeholder="Type your reply..."
+              autocomplete="off"
+              rows="1"
+            ></textarea>
+
+            <button class="send-btn" type="submit">
+              ➤
             </button>
 
-            <button class="secondary" onclick="loadSettings()">
-                Reload
-            </button>
+          </form>
 
         </div>
 
-    </div>
+      </div>
 
-</section>
+    </section>
 
-</main>
+
+    <!-- =================================================
+         PROJECTS
+    ================================================== -->
+
+    <section id="section-projects" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Electrical Projects</h2>
+          <p>Control projects displayed on the service-project page.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="toolbar">
+
+        <button class="btn blue" onclick="openProjectModal()">
+          + Add Project
+        </button>
+
+        <button class="btn" onclick="loadProjects()">
+          🔄 Refresh
+        </button>
+
+      </div>
+
+      <div id="projectsGrid" class="cards"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         SERVICE REQUESTS
+    ================================================== -->
+
+    <section id="section-requests" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Service Requests</h2>
+          <p>Customer requests for electrical services.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <button class="btn" onclick="loadRequests()" style="margin-bottom:15px;">
+        🔄 Refresh
+      </button>
+
+      <div id="requestsGrid" class="cards"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         WISHLISTS
+    ================================================== -->
+
+    <section id="section-wishlists" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Wishlists</h2>
+          <p>Customer saved products.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <button class="btn" onclick="loadWishlists()" style="margin-bottom:15px;">
+        🔄 Refresh
+      </button>
+
+      <div id="wishlistsTable"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         CARTS
+    ================================================== -->
+
+    <section id="section-carts" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Carts</h2>
+          <p>Customer shopping carts.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <button class="btn" onclick="loadCarts()" style="margin-bottom:15px;">
+        🔄 Refresh
+      </button>
+
+      <div id="cartsGrid" class="cards"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         NOTIFICATIONS
+    ================================================== -->
+
+    <section id="section-notifications" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Notifications</h2>
+          <p>Manage admin notifications.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="toolbar">
+
+        <button class="btn blue" onclick="openNotificationModal()">
+          + Notification
+        </button>
+
+        <button class="btn" onclick="loadNotifications()">
+          🔄 Refresh
+        </button>
+
+      </div>
+
+      <div id="notificationsGrid" class="cards"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         SETTINGS
+    ================================================== -->
+
+    <section id="section-settings" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Store Settings</h2>
+          <p>Control the main store information.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="card">
+
+        <form id="settingsForm">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>Store Name</label>
+              <input id="setStoreName">
+            </div>
+
+            <div class="field">
+              <label>Currency</label>
+              <input id="setCurrency" placeholder="NGN">
+            </div>
+
+            <div class="field">
+              <label>Email</label>
+              <input id="setEmail" type="email">
+            </div>
+
+            <div class="field">
+              <label>Phone</label>
+              <input id="setPhone">
+            </div>
+
+            <div class="field">
+              <label>WhatsApp</label>
+              <input id="setWhatsapp">
+            </div>
+
+            <div class="field">
+              <label>Login URL</label>
+              <input id="setLoginUrl">
+            </div>
+
+            <div class="field">
+              <label>Logo URL</label>
+              <input id="setLogoUrl">
+            </div>
+
+            <div class="field">
+              <label>Address</label>
+              <input id="setAddress">
+            </div>
+
+            <div class="field full">
+              <label>Description</label>
+              <textarea id="setDescription"></textarea>
+            </div>
+
+          </div>
+
+          <button class="btn blue" type="submit">
+            💾 Save Settings
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ADMIN
+    ================================================== -->
+
+    <section id="section-admin" class="section">
+
+      <div class="page-head">
+
+        <div>
+          <h2>Administrator</h2>
+          <p>Authenticated administrator information.</p>
+        </div>
+
+        <button class="back-btn" onclick="showSection('dashboard')">
+          ← Back
+        </button>
+
+      </div>
+
+      <div id="adminInfo" class="card"></div>
+
+    </section>
+
+  </main>
 
 </div>
 
-<div class="toast" id="toast"></div>
 
+<!-- =====================================================
+     PRODUCT MODAL
+===================================================== -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2 id="productModalTitle">Add Product</h2>
+      <button class="close" onclick="closeModal('productModal')">×</button>
+    </div>
+
+    <form id="productForm">
+
+      <input type="hidden" id="productId">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Name</label>
+          <input id="productName" required>
+        </div>
+
+        <div class="field">
+          <label>Category</label>
+          <input id="productCategory" required>
+        </div>
+
+        <div class="field">
+          <label>Price</label>
+          <input id="productPrice" type="number" min="0" required>
+        </div>
+
+        <div class="field">
+          <label>Stock</label>
+          <input id="productStock" type="number" min="0" required>
+        </div>
+
+        <div class="field">
+          <label>Colour</label>
+          <input id="productColour">
+        </div>
+
+        <div class="field">
+          <label>Image URL</label>
+          <input id="productImage">
+        </div>
+
+        <div class="field full">
+          <label>Description</label>
+          <textarea id="productDescription"></textarea>
+        </div>
+
+        <label class="check">
+          <input id="productAvailable" type="checkbox" checked>
+          Available
+        </label>
+
+        <label class="check">
+          <input id="productFeatured" type="checkbox">
+          Featured
+        </label>
+
+      </div>
+
+      <button class="btn blue" type="submit">
+        💾 Save Product
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     PROJECT MODAL
+===================================================== -->
+
+<div class="modal" id="projectModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2 id="projectModalTitle">Add Electrical Project</h2>
+      <button class="close" onclick="closeModal('projectModal')">×</button>
+    </div>
+
+    <form id="projectForm">
+
+      <input type="hidden" id="projectId">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Title</label>
+          <input id="projectTitle" required>
+        </div>
+
+        <div class="field">
+          <label>Category</label>
+          <input id="projectCategory">
+        </div>
+
+        <div class="field full">
+          <label>Description</label>
+          <textarea id="projectDescription"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Media URL</label>
+          <input id="projectMediaUrl">
+        </div>
+
+        <div class="field">
+          <label>Thumbnail URL</label>
+          <input id="projectThumbnailUrl">
+        </div>
+
+        <div class="field">
+          <label>Media Type</label>
+          <select id="projectMediaType">
+            <option value="Photo">Photo</option>
+            <option value="Video">Video</option>
+          </select>
+        </div>
+
+        <label class="check">
+          <input id="projectFeatured" type="checkbox">
+          Featured
+        </label>
+
+        <label class="check">
+          <input id="projectPublished" type="checkbox" checked>
+          Published
+        </label>
+
+        <label class="check">
+          <input id="projectRequestEnabled" type="checkbox" checked>
+          Request Enabled
+        </label>
+
+      </div>
+
+      <button class="btn blue" type="submit">
+        💾 Save Project
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     NOTIFICATION MODAL
+===================================================== -->
+
+<div class="modal" id="notificationModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2>New Notification</h2>
+      <button class="close" onclick="closeModal('notificationModal')">×</button>
+    </div>
+
+    <form id="notificationForm">
+
+      <div class="field">
+        <label>Title</label>
+        <input id="notificationTitle" required>
+      </div>
+
+      <div class="field">
+        <label>Message</label>
+        <textarea id="notificationMessage" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Icon</label>
+        <input id="notificationIcon" value="🔔">
+      </div>
+
+      <div class="field">
+        <label>Source ID</label>
+        <input id="notificationSourceId">
+      </div>
+
+      <button class="btn blue" type="submit">
+        💾 Create Notification
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
 
-/* ==========================================================
-   DANNY SMART POWER FIREBASE
-   PUT YOUR EXISTING FIREBASE CONFIG HERE
-========================================================== */
+/* ======================================================
+   FIREBASE CONFIG
+====================================================== */
 
 const firebaseConfig = {
-
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-
+  apiKey: "AIzaSyB48Z_i8k3gV3uNUHmFQjAH9bOvALgb44",
+  authDomain: "danny-smart-power.firebaseapp.com",
+  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "danny-smart-power",
+  storageBucket: "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "649735645158",
+  appId: "1:649735645158:web:cff518b89721a163679827",
+  measurementId: "G-258YKLP5ZS"
 };
-
-
-/* ==========================================================
-   FIREBASE INITIALIZATION
-========================================================== */
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+const ADMIN_EMAIL = "dannysmartpower@gmail.com";
 const ADMIN_UID = "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
 
 
-/* ==========================================================
-   GLOBAL VARIABLES
-========================================================== */
+/* ======================================================
+   GLOBAL STATE
+====================================================== */
 
-let currentAdmin = null;
-let activeChatId = null;
-let activeChatCustomer = null;
-let messageListener = null;
+let products = [];
+let orders = [];
+let customers = [];
+let chats = [];
+let projects = [];
+let requests = [];
+let wishlists = [];
+let carts = [];
+let notifications = [];
+
+let currentChatId = null;
+let currentChat = null;
 
 
-/* ==========================================================
+/* ======================================================
    TOAST
-========================================================== */
+====================================================== */
 
-function toast(message){
+function toast(message,type="success"){
 
-    const box = document.getElementById("toast");
+  const box = document.getElementById("toast");
 
-    box.textContent = message;
-    box.classList.add("show");
+  box.textContent = message;
 
-    setTimeout(()=>{
-        box.classList.remove("show");
-    },3000);
+  box.className = "";
+
+  box.classList.add("show",type);
+
+  setTimeout(()=>{
+    box.classList.remove("show",type);
+  },3500);
 }
 
 
-/* ==========================================================
+/* ======================================================
    MENU
-========================================================== */
+====================================================== */
 
-function openMenu(){
+function toggleMenu(){
 
-    document.getElementById("sidebar").classList.add("open");
-    document.getElementById("overlay").classList.add("show");
+  document.getElementById("sidebar").classList.toggle("open");
 
+  document.getElementById("overlay").classList.toggle("show");
 }
 
 function closeMenu(){
 
-    document.getElementById("sidebar").classList.remove("open");
-    document.getElementById("overlay").classList.remove("show");
+  document.getElementById("sidebar").classList.remove("open");
 
+  document.getElementById("overlay").classList.remove("show");
 }
 
 
-/* ==========================================================
-   PAGE NAVIGATION
-========================================================== */
+/* ======================================================
+   NAVIGATION
+====================================================== */
 
-const pages = [
-    "dashboard",
-    "products",
-    "orders",
-    "customers",
-    "chat",
-    "projects",
-    "requests",
-    "wishlists",
-    "notifications",
-    "settings"
-];
+function showSection(name){
 
-function showPage(page){
+  document.querySelectorAll(".section").forEach(section=>{
+    section.classList.remove("active");
+  });
 
-    pages.forEach(name=>{
+  const section=document.getElementById("section-"+name);
 
-        const element = document.getElementById(name+"Page");
+  if(section){
+    section.classList.add("active");
+  }
 
-        if(element){
-            element.classList.add("hidden");
-        }
+  document.querySelectorAll(".nav button").forEach(btn=>{
+    btn.classList.remove("active");
+  });
 
-    });
+  const nav=document.getElementById("nav-"+name);
 
-    const target = document.getElementById(page+"Page");
+  if(nav){
+    nav.classList.add("active");
+  }
 
-    if(target){
-        target.classList.remove("hidden");
-    }
+  closeMenu();
 
-    closeMenu();
-
-    if(page === "products") loadProducts();
-    if(page === "orders") loadOrders();
-    if(page === "customers") loadCustomers();
-    if(page === "chat") loadChats();
-    if(page === "projects") loadProjects();
-    if(page === "requests") loadRequests();
-    if(page === "wishlists") loadWishlists();
-    if(page === "notifications") loadNotifications();
-    if(page === "settings") loadSettings();
-
+  if(name==="dashboard") loadDashboard();
+  if(name==="products") loadProducts();
+  if(name==="orders") loadOrders();
+  if(name==="customers") loadCustomers();
+  if(name==="chats") loadChats();
+  if(name==="projects") loadProjects();
+  if(name==="requests") loadRequests();
+  if(name==="wishlists") loadWishlists();
+  if(name==="carts") loadCarts();
+  if(name==="notifications") loadNotifications();
+  if(name==="settings") loadSettings();
+  if(name==="admin") loadAdminInfo();
 }
 
 
-/* ==========================================================
-   ADMIN SECURITY
-========================================================== */
+/* ======================================================
+   FORCE LOGIN EVERY TIME ADMIN OPENS
+====================================================== */
 
-auth.onAuthStateChanged(async user=>{
+let loginReady=false;
 
-    if(!user){
+auth.signOut().finally(()=>{
 
-        toast("Please sign in as administrator.");
+  loginReady=true;
 
-        setTimeout(()=>{
-            window.location.href = "login.html";
-        },1200);
-
-        return;
-    }
-
-    try{
-
-        const adminDoc = await db
-            .collection("admins")
-            .doc(user.uid)
-            .get();
-
-        if(!adminDoc.exists){
-
-            toast("You are not an administrator.");
-
-            await auth.signOut();
-
-            setTimeout(()=>{
-                window.location.href = "login.html";
-            },1200);
-
-            return;
-        }
-
-        const admin = adminDoc.data();
-
-        if(admin.active !== true){
-
-            toast("Admin account is inactive.");
-
-            await auth.signOut();
-
-            return;
-        }
-
-        currentAdmin = {
-            uid:user.uid,
-            ...admin
-        };
-
-        loadDashboard();
-
-    }catch(error){
-
-        console.error(error);
-
-        toast("Admin verification failed.");
-
-    }
+  document.getElementById("loginScreen").classList.remove("hidden");
+  document.getElementById("app").classList.add("hidden");
 
 });
 
 
-/* ==========================================================
-   DASHBOARD
-========================================================== */
+/* ======================================================
+   LOGIN
+====================================================== */
 
-async function getCount(collection){
+document.getElementById("loginForm").addEventListener("submit",async e=>{
 
-    try{
+  e.preventDefault();
 
-        const snap = await db.collection(collection).get();
+  const email=document.getElementById("loginEmail").value.trim();
+  const password=document.getElementById("loginPassword").value;
 
-        return snap.size;
+  const error=document.getElementById("loginError");
 
-    }catch(error){
+  error.classList.add("hidden");
 
-        console.error(collection,error);
+  if(email!==ADMIN_EMAIL){
 
-        return 0;
+    error.textContent="This email is not authorized for the Danny Smart Power administrator.";
+
+    error.classList.remove("hidden");
+
+    return;
+  }
+
+  try{
+
+    const credential=await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+    const user=credential.user;
+
+    if(
+      user.uid!==ADMIN_UID ||
+      user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()
+    ){
+
+      await auth.signOut();
+
+      throw new Error(
+        "Authenticated account does not match the authorized administrator."
+      );
     }
 
+    await verifyAdminDocument(user);
+
+    document.getElementById("loginScreen").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+
+    showSection("dashboard");
+
+    toast("Administrator login successful.");
+
+  }catch(err){
+
+    console.error(err);
+
+    error.textContent=
+      err.message ||
+      "Login failed.";
+
+    error.classList.remove("hidden");
+
+  }
+
+});
+
+
+/* ======================================================
+   VERIFY ADMIN DOCUMENT
+====================================================== */
+
+async function verifyAdminDocument(user){
+
+  const snap=await db
+    .collection("admins")
+    .where("uid","==",ADMIN_UID)
+    .limit(1)
+    .get();
+
+  if(snap.empty){
+
+    throw new Error(
+      "Administrator account is authenticated, but no matching admins document was found."
+    );
+  }
+
+  const admin=snap.docs[0].data();
+
+  if(admin.email!==ADMIN_EMAIL){
+    throw new Error("Admin email in Firestore does not match.");
+  }
+
+  if(admin.uid!==ADMIN_UID){
+    throw new Error("Admin UID in Firestore does not match.");
+  }
+
+  if(admin.active===false){
+    throw new Error("This administrator account is currently inactive.");
+  }
 }
+
+
+/* ======================================================
+   LOGOUT
+====================================================== */
+
+async function adminLogout(){
+
+  await auth.signOut();
+
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("loginScreen").classList.remove("hidden");
+
+  document.getElementById("loginPassword").value="";
+
+  toast("Administrator logged out.");
+}
+
+
+/* ======================================================
+   DASHBOARD
+====================================================== */
 
 async function loadDashboard(){
 
-    document.getElementById("countProducts").textContent =
-        await getCount("products");
+  try{
 
-    document.getElementById("countOrders").textContent =
-        await getCount("orders");
+    const collections=[
+      ["products","countProducts"],
+      ["orders","countOrders"],
+      ["profiles","countCustomers"],
+      ["serviceProjects","countProjects"],
+      ["serviceRequests","countRequests"],
+      ["wishlists","countWishlists"],
+      ["carts","countCarts"],
+      ["notifications","countNotifications"]
+    ];
 
-    document.getElementById("countCustomers").textContent =
-        await getCount("users");
+    for(const [collection,id] of collections){
 
-    document.getElementById("countProjects").textContent =
-        await getCount("serviceProjects");
+      try{
 
-    document.getElementById("countRequests").textContent =
-        await getCount("serviceRequests");
+        const snap=await db.collection(collection).get();
 
-    document.getElementById("countWishlists").textContent =
-        await getCount("wishlists");
+        document.getElementById(id).textContent=snap.size;
 
-    document.getElementById("countNotifications").textContent =
-        await getCount("notifications");
+      }catch(err){
 
-    try{
+        document.getElementById(id).textContent="—";
 
-        const pending = await db
-            .collection("orders")
-            .where("status","==","pending")
-            .get();
-
-        document.getElementById("countPending").textContent =
-            pending.size;
-
-    }catch(error){
-
-        document.getElementById("countPending").textContent = "0";
-
+      }
     }
 
     try{
 
-        const chats = await db
-            .collection("chats")
-            .where("unreadForAdmin",">",0)
-            .get();
+      const snap=await db
+        .collection("orders")
+        .where("status","==","pending")
+        .get();
 
-        document.getElementById("countUnread").textContent =
-            chats.size;
+      document.getElementById("countPending").textContent=snap.size;
 
-    }catch(error){
+    }catch(err){
 
-        document.getElementById("countUnread").textContent = "0";
-
+      document.getElementById("countPending").textContent="—";
     }
 
+    try{
+
+      const snap=await db
+        .collection("chats")
+        .where("unreadForAdmin",">",0)
+        .get();
+
+      document.getElementById("countUnread").textContent=snap.size;
+
+    }catch(err){
+
+      document.getElementById("countUnread").textContent="—";
+    }
+
+  }catch(err){
+
+    console.error(err);
+  }
 }
 
 
-/* ==========================================================
+/* ======================================================
    PRODUCTS
-========================================================== */
-
-async function saveProduct(){
-
-    const id = document.getElementById("productId").value;
-
-    const name =
-        document.getElementById("productName").value.trim();
-
-    const category =
-        document.getElementById("productCategory").value;
-
-    const price =
-        Number(document.getElementById("productPrice").value || 0);
-
-    const stock =
-        Number(document.getElementById("productStock").value || 0);
-
-    const colour =
-        document.getElementById("productColour").value.trim();
-
-    const image =
-        document.getElementById("productImage").value.trim();
-
-    const description =
-        document.getElementById("productDescription").value.trim();
-
-    const available =
-        document.getElementById("productAvailable").checked;
-
-    const featured =
-        document.getElementById("productFeatured").checked;
-
-
-    if(!name){
-
-        toast("Enter product name.");
-
-        return;
-    }
-
-
-    const data = {
-
-        name:name,
-        category:category,
-        price:price,
-        stock:stock,
-        colour:colour,
-        image:image,
-        description:description,
-        available:available,
-        featured:featured,
-        updatedAt:firebase.firestore.FieldValue.serverTimestamp()
-
-    };
-
-
-    try{
-
-        if(id){
-
-            await db
-                .collection("products")
-                .doc(id)
-                .update(data);
-
-            toast("Product updated successfully.");
-
-        }else{
-
-            data.createdAt =
-                firebase.firestore.FieldValue.serverTimestamp();
-
-            await db
-                .collection("products")
-                .add(data);
-
-            toast("Product saved successfully.");
-
-        }
-
-        clearProductForm();
-
-        await loadProducts();
-
-        loadDashboard();
-
-    }catch(error){
-
-        console.error(error);
-
-        toast("Product could not be saved: "+error.message);
-
-    }
-
-}
-
+====================================================== */
 
 async function loadProducts(){
 
-    const container =
-        document.getElementById("productsList");
+  const grid=document.getElementById("productsGrid");
 
-    container.innerHTML =
-        '<div class="loading">Loading products...</div>';
+  grid.innerHTML='<div class="loading">Loading products...</div>';
 
-    try{
+  try{
 
-        const snap = await db
-            .collection("products")
-            .orderBy("createdAt","desc")
-            .get();
+    const snap=await db.collection("products").get();
 
-        if(snap.empty){
+    products=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-            container.innerHTML =
-                '<div class="loading">No products yet.</div>';
+    renderProducts();
 
-            return;
-        }
+  }catch(err){
 
-        container.innerHTML = "";
-
-        snap.forEach(doc=>{
-
-            const p = doc.data();
-
-            const card = document.createElement("div");
-
-            card.className = "product-card";
-
-            card.innerHTML = `
-
-                <img src="${escapeHtml(p.image || "")}"
-                     onerror="this.style.display='none'">
-
-                <div class="product-info">
-
-                    <h4>${escapeHtml(p.name || "Unnamed")}</h4>
-
-                    <div class="muted">
-                        ${escapeHtml(p.category || "")}
-                    </div>
-
-                    <div class="price">
-                        ₦${Number(p.price || 0).toLocaleString()}
-                    </div>
-
-                    <div class="muted">
-                        Stock: ${p.stock ?? 0}
-                    </div>
-
-                    <div class="actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="editProduct('${doc.id}')">
-                            Edit
-                        </button>
-
-                        <button
-                            class="small-btn"
-                            onclick="deleteProduct('${doc.id}')">
-                            Delete
-                        </button>
-
-                    </div>
-
-                </div>
-            `;
-
-            container.appendChild(card);
-
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        container.innerHTML =
-            '<div class="loading error">Unable to load products.</div>';
-
-    }
-
+    grid.innerHTML=
+      `<div class="card">
+        <h3>Could not load products</h3>
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-async function editProduct(id){
+function renderProducts(){
 
-    try{
+  const grid=document.getElementById("productsGrid");
 
-        const doc =
-            await db.collection("products").doc(id).get();
+  const search=(document.getElementById("productSearch")?.value||"")
+    .toLowerCase()
+    .trim();
 
-        if(!doc.exists){
+  const list=products.filter(p=>
+    !search ||
+    String(p.name||"").toLowerCase().includes(search) ||
+    String(p.category||"").toLowerCase().includes(search)
+  );
 
-            toast("Product not found.");
+  if(!list.length){
 
-            return;
+    grid.innerHTML=
+      `<div class="card">
+        <h3>No products found</h3>
+        <p>Add your first product.</p>
+      </div>`;
+
+    return;
+  }
+
+  grid.innerHTML=list.map(p=>{
+
+    const price=Number(p.price||0);
+
+    return `
+      <div class="card">
+
+        ${
+          p.image
+          ? `<img class="product-image"
+                  src="${escapeAttr(p.image)}"
+                  onerror="this.style.display='none'">`
+          : ""
         }
 
-        const p = doc.data();
+        <h3>${escapeHtml(p.name||"Unnamed Product")}</h3>
 
-        document.getElementById("productId").value = id;
-        document.getElementById("productName").value = p.name || "";
-        document.getElementById("productCategory").value = p.category || "Electrical";
-        document.getElementById("productPrice").value = p.price || 0;
-        document.getElementById("productStock").value = p.stock || 0;
-        document.getElementById("productColour").value = p.colour || "";
-        document.getElementById("productImage").value = p.image || "";
-        document.getElementById("productDescription").value = p.description || "";
-        document.getElementById("productAvailable").checked = p.available === true;
-        document.getElementById("productFeatured").checked = p.featured === true;
+        <p>
+          ${escapeHtml(p.category||"No category")}
+          ${p.colour ? " • "+escapeHtml(p.colour):""}
+        </p>
 
-        document.getElementById("productFormTitle").textContent =
-            "Edit Product";
+        <p style="margin-top:7px;">
+          <strong>₦${price.toLocaleString()}</strong>
+        </p>
 
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
+        <p>
+          Stock: ${Number(p.stock||0)}
+        </p>
 
-    }catch(error){
+        <span class="status ${p.available?"green":"red"}">
+          ${p.available?"Available":"Unavailable"}
+        </span>
 
-        toast(error.message);
+        ${
+          p.featured
+          ? `<span class="status yellow">Featured</span>`
+          :""
+        }
 
+        <div class="card-actions">
+
+          <button class="btn blue"
+            onclick="editProduct('${p.id}')">
+            Edit
+          </button>
+
+          <button class="btn red"
+            onclick="deleteProduct('${p.id}')">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function openProductModal(product=null){
+
+  document.getElementById("productModal").classList.add("show");
+
+  if(product){
+
+    document.getElementById("productModalTitle").textContent="Edit Product";
+
+    document.getElementById("productId").value=product.id;
+    document.getElementById("productName").value=product.name||"";
+    document.getElementById("productCategory").value=product.category||"";
+    document.getElementById("productPrice").value=product.price??0;
+    document.getElementById("productStock").value=product.stock??0;
+    document.getElementById("productColour").value=product.colour||"";
+    document.getElementById("productImage").value=product.image||"";
+    document.getElementById("productDescription").value=product.description||"";
+    document.getElementById("productAvailable").checked=product.available!==false;
+    document.getElementById("productFeatured").checked=product.featured===true;
+
+  }else{
+
+    document.getElementById("productModalTitle").textContent="Add Product";
+
+    document.getElementById("productForm").reset();
+
+    document.getElementById("productId").value="";
+
+    document.getElementById("productAvailable").checked=true;
+  }
+}
+
+
+function editProduct(id){
+
+  const product=products.find(p=>p.id===id);
+
+  if(product) openProductModal(product);
+}
+
+
+document.getElementById("productForm").addEventListener("submit",async e=>{
+
+  e.preventDefault();
+
+  const id=document.getElementById("productId").value;
+
+  const data={
+
+    available:document.getElementById("productAvailable").checked,
+
+    category:document.getElementById("productCategory").value.trim(),
+
+    colour:document.getElementById("productColour").value.trim(),
+
+    description:document.getElementById("productDescription").value.trim(),
+
+    featured:document.getElementById("productFeatured").checked,
+
+    image:document.getElementById("productImage").value.trim(),
+
+    name:document.getElementById("productName").value.trim(),
+
+    price:Number(document.getElementById("productPrice").value)||0,
+
+    stock:Number(document.getElementById("productStock").value)||0,
+
+    updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+
+  };
+
+  try{
+
+    if(id){
+
+      await db.collection("products").doc(id).update(data);
+
+      toast("Product updated successfully.");
+
+    }else{
+
+      await db.collection("products").add({
+
+        ...data,
+
+        createdAt:firebase.firestore.FieldValue.serverTimestamp()
+
+      });
+
+      toast("Product created successfully.");
     }
 
-}
+    closeModal("productModal");
+
+    await loadProducts();
+
+    await loadDashboard();
+
+  }catch(err){
+
+    console.error(err);
+
+    toast("Product could not be saved: "+err.message,"error");
+  }
+
+});
 
 
 async function deleteProduct(id){
 
-    if(!confirm("Delete this product?")) return;
+  if(!confirm("Delete this product permanently?")) return;
 
-    try{
+  try{
 
-        await db.collection("products").doc(id).delete();
+    await db.collection("products").doc(id).delete();
 
-        toast("Product deleted.");
+    toast("Product deleted.");
 
-        loadProducts();
+    await loadProducts();
+    await loadDashboard();
 
-        loadDashboard();
+  }catch(err){
 
-    }catch(error){
-
-        toast("Could not delete product.");
-
-    }
-
+    toast("Could not delete product: "+err.message,"error");
+  }
 }
 
 
-function clearProductForm(){
-
-    document.getElementById("productId").value = "";
-    document.getElementById("productName").value = "";
-    document.getElementById("productPrice").value = "";
-    document.getElementById("productStock").value = "";
-    document.getElementById("productColour").value = "";
-    document.getElementById("productImage").value = "";
-    document.getElementById("productDescription").value = "";
-
-    document.getElementById("productAvailable").checked = true;
-    document.getElementById("productFeatured").checked = false;
-
-    document.getElementById("productFormTitle").textContent =
-        "Add Product";
-
-}
-
-
-/* ==========================================================
+/* ======================================================
    ORDERS
-========================================================== */
+====================================================== */
 
 async function loadOrders(){
 
-    const tbody =
-        document.getElementById("ordersTable");
+  const box=document.getElementById("ordersTable");
 
-    tbody.innerHTML =
-        '<tr><td colspan="7">Loading...</td></tr>';
+  box.innerHTML='<div class="loading">Loading orders...</div>';
 
-    try{
+  try{
 
-        const snap = await db
-            .collection("orders")
-            .orderBy("createdAt","desc")
-            .get();
+    const snap=await db.collection("orders").get();
 
-        tbody.innerHTML = "";
+    orders=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        snap.forEach(doc=>{
+    orders.sort((a,b)=>
+      getTime(b.createdAt)-getTime(a.createdAt)
+    );
 
-            const o = doc.data();
+    renderOrders();
 
-            const tr = document.createElement("tr");
+  }catch(err){
 
-            tr.innerHTML = `
-
-                <td>${escapeHtml(o.customerName || "Customer")}</td>
-
-                <td>${escapeHtml(o.phone || "")}</td>
-
-                <td>₦${Number(o.total || o.subtotal || 0).toLocaleString()}</td>
-
-                <td>${escapeHtml(o.payment || "")}</td>
-
-                <td>${escapeHtml(o.deliveryMethod || "")}</td>
-
-                <td>
-                    <span class="status">
-                        ${escapeHtml(o.status || "pending")}
-                    </span>
-                </td>
-
-                <td>
-
-                    <button
-                        class="small-btn"
-                        onclick="updateOrderStatus('${doc.id}','confirmed')">
-                        Confirm
-                    </button>
-
-                    <button
-                        class="small-btn"
-                        onclick="updateOrderStatus('${doc.id}','completed')">
-                        Complete
-                    </button>
-
-                </td>
-            `;
-
-            tbody.appendChild(tr);
-
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        tbody.innerHTML =
-            '<tr><td colspan="7">Unable to load orders.</td></tr>';
-
-    }
-
+    box.innerHTML=
+      `<div class="card">
+        <h3>Could not load orders</h3>
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-async function updateOrderStatus(id,status){
+function renderOrders(){
 
-    try{
+  const box=document.getElementById("ordersTable");
 
-        await db
-            .collection("orders")
-            .doc(id)
-            .update({
+  const search=(document.getElementById("orderSearch")?.value||"")
+    .toLowerCase();
 
-                status:status,
+  const filter=document.getElementById("orderStatusFilter")?.value||"";
 
-                updatedAt:
-                    firebase.firestore.FieldValue.serverTimestamp()
+  const list=orders.filter(o=>{
 
-            });
+    const text=[
+      o.customerName,
+      o.email,
+      o.phone,
+      o.city,
+      o.state,
+      o.status
+    ].join(" ").toLowerCase();
 
-        toast("Order updated.");
+    return(
+      (!search||text.includes(search)) &&
+      (!filter||o.status===filter)
+    );
+  });
 
-        loadOrders();
-        loadDashboard();
+  if(!list.length){
 
-    }catch(error){
+    box.innerHTML='<div class="card"><h3>No orders found.</h3></div>';
 
-        toast(error.message);
+    return;
+  }
 
-    }
+  box.innerHTML=`
 
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Payment</th>
+            <th>Payment Status</th>
+            <th>Delivery</th>
+            <th>Order Status</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          ${list.map(o=>`
+
+            <tr>
+
+              <td>
+                <strong>${escapeHtml(o.customerName||"Customer")}</strong>
+                <br>
+                <small>${escapeHtml(o.phone||"")}</small>
+              </td>
+
+              <td>₦${formatMoney(o.total||o.subtotal||0)}</td>
+
+              <td>${escapeHtml(o.payment||"—")}</td>
+
+              <td>
+                <span class="status ${o.paymentStatus==="paid"?"green":"yellow"}">
+                  ${escapeHtml(o.paymentStatus||"pending")}
+                </span>
+              </td>
+
+              <td>
+                ${escapeHtml(o.deliveryMethod||"—")}
+                <br>
+                ₦${formatMoney(o.deliveryFee||0)}
+              </td>
+
+              <td>
+
+                <select
+                  onchange="changeOrderStatus('${o.id}',this.value)"
+                >
+
+                  ${[
+                    "pending",
+                    "confirmed",
+                    "processing",
+                    "shipped",
+                    "delivered",
+                    "cancelled"
+                  ].map(s=>
+                    `<option value="${s}"
+                      ${o.status===s?"selected":""}>
+                      ${s}
+                    </option>`
+                  ).join("")}
+
+                </select>
+
+              </td>
+
+              <td>${formatDate(o.createdAt)}</td>
+
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
 }
 
 
-/* ==========================================================
+async function changeOrderStatus(id,status){
+
+  try{
+
+    await db.collection("orders").doc(id).update({
+
+      status,
+
+      updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+
+    });
+
+    const order=orders.find(o=>o.id===id);
+
+    if(order) order.status=status;
+
+    toast("Order status updated.");
+
+    await loadDashboard();
+
+  }catch(err){
+
+    toast("Could not update order: "+err.message,"error");
+
+    await loadOrders();
+  }
+}
+
+
+/* ======================================================
    CUSTOMERS
-========================================================== */
+====================================================== */
 
 async function loadCustomers(){
 
-    const tbody =
-        document.getElementById("customersTable");
+  const grid=document.getElementById("customersGrid");
 
-    tbody.innerHTML =
-        '<tr><td colspan="4">Loading...</td></tr>';
+  grid.innerHTML='<div class="loading">Loading customers...</div>';
 
-    try{
+  try{
 
-        const snap =
-            await db.collection("users").orderBy("createdAt","desc").get();
+    const snap=await db.collection("profiles").get();
 
-        tbody.innerHTML = "";
+    customers=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        snap.forEach(doc=>{
+    renderCustomers();
 
-            const u = doc.data();
+  }catch(err){
 
-            const tr = document.createElement("tr");
-
-            tr.innerHTML = `
-
-                <td>${escapeHtml(u.name || "")}</td>
-
-                <td>${escapeHtml(u.email || "")}</td>
-
-                <td>${escapeHtml(u.accountType || "customer")}</td>
-
-                <td>${formatDate(u.createdAt)}</td>
-
-            `;
-
-            tbody.appendChild(tr);
-
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        tbody.innerHTML =
-            '<tr><td colspan="4">Unable to load customers.</td></tr>';
-
-    }
-
+    grid.innerHTML=
+      `<div class="card">
+        <h3>Could not load customers</h3>
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-/* ==========================================================
-   CHAT
-========================================================== */
+function renderCustomers(){
+
+  const grid=document.getElementById("customersGrid");
+
+  const search=(document.getElementById("customerSearch")?.value||"")
+    .toLowerCase();
+
+  const list=customers.filter(c=>{
+
+    const text=[
+      c.fullName,
+      c.email,
+      c.phone,
+      c.city,
+      c.state
+    ].join(" ").toLowerCase();
+
+    return !search||text.includes(search);
+  });
+
+  grid.innerHTML=list.length
+
+    ? list.map(c=>`
+
+      <div class="card">
+
+        ${
+          c.photoURL
+          ? `<img class="product-image"
+              style="height:150px;object-fit:cover"
+              src="${escapeAttr(c.photoURL)}"
+              onerror="this.style.display='none'">`
+          :""
+        }
+
+        <h3>${escapeHtml(c.fullName||"Unnamed Customer")}</h3>
+
+        <p>${escapeHtml(c.email||"")}</p>
+
+        <p>${escapeHtml(c.phone||"")}</p>
+
+        <p>
+          ${escapeHtml(c.address||"")}
+          ${c.city ? ", "+escapeHtml(c.city):""}
+          ${c.state ? ", "+escapeHtml(c.state):""}
+        </p>
+
+        <small>UID: ${escapeHtml(c.uid||c.id)}</small>
+
+      </div>
+
+    `).join("")
+
+    : `<div class="card">
+        <h3>No customers found.</h3>
+      </div>`;
+}
+
+
+/* ======================================================
+   CHATS
+====================================================== */
 
 async function loadChats(){
 
-    const list =
-        document.getElementById("chatList");
+  const list=document.getElementById("chatList");
 
-    list.innerHTML =
-        '<div class="loading">Loading chats...</div>';
+  list.innerHTML='<div class="loading">Loading chats...</div>';
 
-    try{
+  try{
 
-        const snap =
-            await db.collection("chats")
-            .orderBy("lastMessageAt","desc")
-            .get();
+    const snap=await db.collection("chats").get();
 
-        list.innerHTML = "";
+    chats=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        if(snap.empty){
+    chats.sort((a,b)=>
+      getTime(b.lastMessageAt||b.updatedAt) -
+      getTime(a.lastMessageAt||a.updatedAt)
+    );
 
-            list.innerHTML =
-                '<div class="loading">No conversations.</div>';
+    renderChatList();
 
-            return;
-        }
+  }catch(err){
 
-        snap.forEach(doc=>{
-
-            const c = doc.data();
-
-            const item =
-                document.createElement("div");
-
-            item.className = "chat-user";
-
-            item.onclick =
-                ()=>openChat(doc.id,c);
-
-            item.innerHTML = `
-
-                <strong>
-                    ${escapeHtml(c.customerName || "Customer")}
-                </strong>
-
-                <small>
-                    ${escapeHtml(c.lastMessage || "No messages")}
-                </small>
-
-                ${
-                    Number(c.unreadForAdmin || 0) > 0
-                    ? `<span class="status warning">
-                        ${c.unreadForAdmin} new
-                       </span>`
-                    : ""
-                }
-
-            `;
-
-            list.appendChild(item);
-
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        list.innerHTML =
-            '<div class="loading">Unable to load chats.</div>';
-
-    }
-
+    list.innerHTML=
+      `<div class="card">
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-function openChat(chatId,chatData){
+function renderChatList(){
 
-    activeChatId = chatId;
-    activeChatCustomer = chatData;
+  const list=document.getElementById("chatList");
 
-    document.getElementById("activeChatName").textContent =
-        chatData.customerName || "Customer";
+  if(!chats.length){
 
-    document.getElementById("activeChatEmail").textContent =
-        chatData.customerEmail || "";
+    list.innerHTML=
+      `<div class="loading">No customer conversations yet.</div>`;
 
-    if(messageListener){
+    return;
+  }
 
-        messageListener();
+  list.innerHTML=chats.map(c=>`
 
-        messageListener = null;
+    <div
+      class="chat-item ${currentChatId===c.id?"active":""}"
+      onclick="openChat('${c.id}')"
+    >
 
-    }
+      <strong>
+        ${escapeHtml(c.customerName||"Customer")}
+      </strong>
 
-    const messages =
-        document.getElementById("messages");
+      <small>
+        ${escapeHtml(c.lastMessage||"No messages yet")}
+      </small>
 
-    messages.innerHTML =
-        '<div class="loading">Loading messages...</div>';
+      ${
+        Number(c.unreadForAdmin||0)>0
+        ? `<span class="status yellow">
+            ${Number(c.unreadForAdmin)} unread
+          </span>`
+        :""
+      }
 
+    </div>
 
-    messageListener = db
-        .collection("messages")
-        .where("chatId","==",chatId)
-        .orderBy("createdAt","asc")
-        .onSnapshot(snapshot=>{
-
-            messages.innerHTML = "";
-
-            snapshot.forEach(doc=>{
-
-                const m = doc.data();
-
-                const isAdmin =
-                    m.senderRole === "admin" ||
-                    m.senderId === ADMIN_UID;
-
-                const row =
-                    document.createElement("div");
-
-                row.className =
-                    "message-row "+
-                    (isAdmin ? "admin" : "customer");
-
-                const bubble =
-                    document.createElement("div");
-
-                bubble.className = "bubble";
-
-                if(m.imageUrl){
-
-                    const image =
-                        document.createElement("img");
-
-                    image.src = m.imageUrl;
-
-                    image.className = "message-image";
-
-                    bubble.appendChild(image);
-
-                }
-
-                if(m.text){
-
-                    const text =
-                        document.createElement("div");
-
-                    text.textContent = m.text;
-
-                    bubble.appendChild(text);
-
-                }
-
-                row.appendChild(bubble);
-
-                messages.appendChild(row);
-
-            });
-
-            messages.scrollTop =
-                messages.scrollHeight;
-
-        });
-
-    markChatRead(chatId);
-
+  `).join("");
 }
 
 
-async function markChatRead(chatId){
+async function openChat(chatId){
 
-    try{
+  currentChatId=chatId;
 
-        await db
-            .collection("chats")
-            .doc(chatId)
-            .update({
+  currentChat=chats.find(c=>c.id===chatId);
 
-                unreadForAdmin:0,
+  if(!currentChat) return;
 
-                updatedAt:
-                    firebase.firestore.FieldValue.serverTimestamp()
+  renderChatList();
 
-            });
+  document.getElementById("chatHead").innerHTML=`
 
-    }catch(error){
+    <strong>${escapeHtml(currentChat.customerName||"Customer")}</strong>
 
-        console.log(error);
+    <small>
+      ${escapeHtml(currentChat.customerEmail||"")}
+    </small>
+  `;
 
-    }
+  await db.collection("chats").doc(chatId).update({
 
+    unreadForAdmin:0,
+
+    updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+
+  }).catch(()=>{});
+
+  listenMessages(chatId);
 }
 
 
-function handleChatKey(event){
+let messagesUnsubscribe=null;
 
-    if(event.key === "Enter"){
+function listenMessages(chatId){
 
-        event.preventDefault();
+  if(messagesUnsubscribe){
+    messagesUnsubscribe();
+    messagesUnsubscribe=null;
+  }
 
-        sendChatMessage();
+  const box=document.getElementById("messages");
 
-    }
+  box.innerHTML='<div class="loading">Loading messages...</div>';
 
+  messagesUnsubscribe=db
+    .collection("messages")
+    .where("chatId","==",chatId)
+    .onSnapshot(
+      snap=>{
+
+        const list=snap.docs.map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }));
+
+        list.sort((a,b)=>
+          getTime(a.createdAt)-getTime(b.createdAt)
+        );
+
+        renderMessages(list);
+
+      },
+      err=>{
+
+        box.innerHTML=
+          `<div class="card">
+            <p>${escapeHtml(err.message)}</p>
+          </div>`;
+      }
+    );
 }
 
 
-async function sendChatMessage(){
+function renderMessages(list){
 
-    if(!activeChatId){
+  const box=document.getElementById("messages");
 
-        toast("Select a customer first.");
+  if(!list.length){
 
-        return;
+    box.innerHTML=
+      `<div class="loading">
+        No messages yet. Start the conversation.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML=list.map(m=>{
+
+    const isAdmin=
+      m.senderRole==="admin" ||
+      m.senderId===ADMIN_UID;
+
+    return `
+
+      <div class="message-row ${isAdmin?"admin":"customer"}">
+
+        <div class="message-bubble">
+
+          ${
+            m.imageUrl
+            ? `<img
+                class="message-image"
+                src="${escapeAttr(m.imageUrl)}"
+                onclick="window.open('${escapeAttr(m.imageUrl)}','_blank')"
+              >`
+            :""
+          }
+
+          ${
+            m.text
+            ? `<div>${escapeHtml(m.text)}</div>`
+            :""
+          }
+
+          <span class="message-time">
+            ${formatDate(m.createdAt)}
+          </span>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+  box.scrollTop=box.scrollHeight;
+}
+
+
+/* ======================================================
+   SEND CHAT MESSAGE
+====================================================== */
+
+document.getElementById("messageForm").addEventListener(
+  "submit",
+  async e=>{
+
+    e.preventDefault();
+
+    if(!currentChatId){
+
+      toast("Select a customer conversation first.","error");
+
+      return;
     }
 
-    const input =
-        document.getElementById("chatMessageInput");
+    const input=document.getElementById("messageInput");
 
-    const text =
-        input.value.trim();
+    const text=input.value.trim();
 
     if(!text) return;
 
-    if(!currentAdmin){
-
-        toast("Admin account not ready.");
-
-        return;
-    }
+    input.value="";
 
     try{
 
-        await db.collection("messages").add({
+      await db.collection("messages").add({
 
-            chatId:activeChatId,
+        chatId:currentChatId,
 
-            createdAt:
-                firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
 
-            imageUrl:"",
+        imageUrl:"",
 
-            read:false,
+        read:false,
 
-            senderId:currentAdmin.uid,
+        senderId:ADMIN_UID,
 
-            senderName:
-                currentAdmin.name || "Danny Smart Power",
+        senderName:"Danny Smart Power",
 
-            senderRole:"admin",
+        senderRole:"admin",
 
-            text:text
+        text
 
-        });
+      });
 
+      await db.collection("chats").doc(currentChatId).set({
 
-        await db
-            .collection("chats")
-            .doc(activeChatId)
-            .update({
+        adminTyping:false,
 
-                lastMessage:text,
+        lastMessage:text,
 
-                lastMessageAt:
-                    firebase.firestore.FieldValue.serverTimestamp(),
+        lastMessageAt:firebase.firestore.FieldValue.serverTimestamp(),
 
-                updatedAt:
-                    firebase.firestore.FieldValue.serverTimestamp(),
+        unreadForCustomer:firebase.firestore.FieldValue.increment(1),
 
-                adminTyping:false
+        unreadForAdmin:0,
 
-            });
+        updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
 
+        status:"active"
 
-        input.value = "";
+      },{merge:true});
 
-        input.focus();
+    }catch(err){
 
-    }catch(error){
+      console.error(err);
 
-        console.error(error);
+      toast("Message could not be sent: "+err.message,"error");
 
-        toast("Message could not be sent.");
-
+      input.value=text;
     }
+  }
+);
 
-}
 
-
-/* ==========================================================
+/* ======================================================
    PROJECTS
-========================================================== */
-
-async function saveProject(){
-
-    const id =
-        document.getElementById("projectId").value;
-
-    const title =
-        document.getElementById("projectTitle").value.trim();
-
-    if(!title){
-
-        toast("Enter project title.");
-
-        return;
-    }
-
-    const data = {
-
-        title:title,
-
-        category:
-            document.getElementById("projectCategory").value.trim(),
-
-        description:
-            document.getElementById("projectDescription").value.trim(),
-
-        mediaUrl:
-            document.getElementById("projectMediaUrl").value.trim(),
-
-        thumbnailUrl:
-            document.getElementById("projectThumbnailUrl").value.trim(),
-
-        medisType:
-            document.getElementById("projectMediaType").value,
-
-        Featured:
-            document.getElementById("projectFeatured").checked,
-
-        featured:
-            document.getElementById("projectFeatured").checked,
-
-        published:
-            document.getElementById("projectPublished").checked,
-
-        requestEnabled:
-            document.getElementById("projectRequestEnabled").checked,
-
-        updatedAt:
-            firebase.firestore.FieldValue.serverTimestamp()
-
-    };
-
-
-    try{
-
-        if(id){
-
-            await db
-                .collection("serviceProjects")
-                .doc(id)
-                .update(data);
-
-            toast("Project updated successfully.");
-
-        }else{
-
-            data.createdAt =
-                firebase.firestore.FieldValue.serverTimestamp();
-
-            await db
-                .collection("serviceProjects")
-                .add(data);
-
-            toast("Project saved successfully.");
-
-        }
-
-        clearProjectForm();
-
-        loadProjects();
-
-        loadDashboard();
-
-    }catch(error){
-
-        console.error(error);
-
-        toast("Project could not be saved: "+error.message);
-
-    }
-
-}
-
+====================================================== */
 
 async function loadProjects(){
 
-    const container =
-        document.getElementById("projectsList");
+  const grid=document.getElementById("projectsGrid");
 
-    container.innerHTML =
-        '<div class="loading">Loading projects...</div>';
+  grid.innerHTML='<div class="loading">Loading projects...</div>';
 
-    try{
+  try{
 
-        const snap =
-            await db.collection("serviceProjects")
-            .orderBy("createdAt","desc")
-            .get();
+    const snap=await db.collection("serviceProjects").get();
 
-        container.innerHTML = "";
+    projects=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        snap.forEach(doc=>{
+    renderProjects();
 
-            const p = doc.data();
+  }catch(err){
 
-            const card =
-                document.createElement("div");
-
-            card.className = "project-card";
-
-            const image =
-                p.thumbnailUrl ||
-                p.mediaUrl ||
-                "";
-
-            card.innerHTML = `
-
-                ${
-                    image
-                    ? `<img src="${escapeHtml(image)}"
-                         onerror="this.style.display='none'">`
-                    : ""
-                }
-
-                <div class="project-info">
-
-                    <h4>${escapeHtml(p.title || "")}</h4>
-
-                    <div class="muted">
-                        ${escapeHtml(p.category || "")}
-                    </div>
-
-                    <p class="muted" style="margin-top:8px;">
-                        ${escapeHtml(p.description || "")}
-                    </p>
-
-                    <div class="actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="editProject('${doc.id}')">
-                            Edit
-                        </button>
-
-                        <button
-                            class="small-btn"
-                            onclick="deleteProject('${doc.id}')">
-                            Delete
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-            container.appendChild(card);
-
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        container.innerHTML =
-            '<div class="loading">Unable to load projects.</div>';
-
-    }
-
+    grid.innerHTML=
+      `<div class="card">
+        <h3>Could not load projects</h3>
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-async function editProject(id){
+function renderProjects(){
+
+  const grid=document.getElementById("projectsGrid");
+
+  if(!projects.length){
+
+    grid.innerHTML=
+      `<div class="card">
+        <h3>No projects yet.</h3>
+      </div>`;
+
+    return;
+  }
+
+  grid.innerHTML=projects.map(p=>`
+
+    <div class="card">
+
+      ${
+        p.thumbnailUrl||p.mediaUrl
+        ? `<img
+            class="product-image"
+            src="${escapeAttr(p.thumbnailUrl||p.mediaUrl)}"
+            onerror="this.style.display='none'"
+          >`
+        :""
+      }
+
+      <h3>${escapeHtml(p.title||"Untitled Project")}</h3>
+
+      <p>${escapeHtml(p.category||"")}</p>
+
+      <p>${escapeHtml(p.description||"")}</p>
+
+      <span class="status ${p.published?"green":"red"}">
+        ${p.published?"Published":"Unpublished"}
+      </span>
+
+      ${
+        p.Featured
+        ? `<span class="status yellow">Featured</span>`
+        :""
+      }
+
+      <div class="card-actions">
+
+        <button
+          class="btn blue"
+          onclick="editProject('${p.id}')"
+        >
+          Edit
+        </button>
+
+        <button
+          class="btn red"
+          onclick="deleteProject('${p.id}')"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+
+function openProjectModal(project=null){
+
+  document.getElementById("projectModal").classList.add("show");
+
+  if(project){
+
+    document.getElementById("projectModalTitle").textContent=
+      "Edit Electrical Project";
+
+    document.getElementById("projectId").value=project.id;
+
+    document.getElementById("projectTitle").value=
+      project.title||"";
+
+    document.getElementById("projectCategory").value=
+      project.category||"";
+
+    document.getElementById("projectDescription").value=
+      project.description||"";
+
+    document.getElementById("projectMediaUrl").value=
+      project.mediaUrl||"";
+
+    document.getElementById("projectThumbnailUrl").value=
+      project.thumbnailUrl||"";
+
+    document.getElementById("projectMediaType").value=
+      project.medisType||"Photo";
+
+    document.getElementById("projectFeatured").checked=
+      project.Featured===true;
+
+    document.getElementById("projectPublished").checked=
+      project.published!==false;
+
+    document.getElementById("projectRequestEnabled").checked=
+      project.requestEnabled!==false;
+
+  }else{
+
+    document.getElementById("projectModalTitle").textContent=
+      "Add Electrical Project";
+
+    document.getElementById("projectForm").reset();
+
+    document.getElementById("projectId").value="";
+
+    document.getElementById("projectPublished").checked=true;
+
+    document.getElementById("projectRequestEnabled").checked=true;
+  }
+}
+
+
+function editProject(id){
+
+  const project=projects.find(p=>p.id===id);
+
+  if(project) openProjectModal(project);
+}
+
+
+document.getElementById("projectForm").addEventListener(
+  "submit",
+  async e=>{
+
+    e.preventDefault();
+
+    const id=document.getElementById("projectId").value;
+
+    const data={
+
+      Featured:
+        document.getElementById("projectFeatured").checked,
+
+      category:
+        document.getElementById("projectCategory").value.trim(),
+
+      description:
+        document.getElementById("projectDescription").value.trim(),
+
+      mediaUrl:
+        document.getElementById("projectMediaUrl").value.trim(),
+
+      medisType:
+        document.getElementById("projectMediaType").value,
+
+      published:
+        document.getElementById("projectPublished").checked,
+
+      requestEnabled:
+        document.getElementById("projectRequestEnabled").checked,
+
+      thumbnailUrl:
+        document.getElementById("projectThumbnailUrl").value.trim(),
+
+      title:
+        document.getElementById("projectTitle").value.trim(),
+
+      updatedAt:
+        firebase.firestore.FieldValue.serverTimestamp()
+
+    };
 
     try{
 
-        const doc =
-            await db.collection("serviceProjects").doc(id).get();
+      if(id){
 
-        if(!doc.exists) return;
+        await db.collection("serviceProjects")
+          .doc(id)
+          .update(data);
 
-        const p = doc.data();
+        toast("Project updated successfully.");
 
-        document.getElementById("projectId").value = id;
-        document.getElementById("projectTitle").value = p.title || "";
-        document.getElementById("projectCategory").value = p.category || "";
-        document.getElementById("projectDescription").value = p.description || "";
-        document.getElementById("projectMediaUrl").value = p.mediaUrl || "";
-        document.getElementById("projectThumbnailUrl").value = p.thumbnailUrl || "";
-        document.getElementById("projectMediaType").value = p.medisType || "Photo";
-        document.getElementById("projectFeatured").checked =
-            p.featured === true || p.Featured === true;
-        document.getElementById("projectPublished").checked =
-            p.published === true;
-        document.getElementById("projectRequestEnabled").checked =
-            p.requestEnabled === true;
+      }else{
 
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
+        await db.collection("serviceProjects")
+          .add({
 
-    }catch(error){
+            ...data,
 
-        toast(error.message);
+            createdAt:
+              firebase.firestore.FieldValue.serverTimestamp()
 
+          });
+
+        toast("Project created successfully.");
+      }
+
+      closeModal("projectModal");
+
+      await loadProjects();
+      await loadDashboard();
+
+    }catch(err){
+
+      console.error(err);
+
+      toast(
+        "Project could not be saved: "+err.message,
+        "error"
+      );
     }
-
-}
+  }
+);
 
 
 async function deleteProject(id){
 
-    if(!confirm("Delete this project?")) return;
+  if(!confirm("Delete this project permanently?")) return;
 
-    try{
+  try{
 
-        await db
-            .collection("serviceProjects")
-            .doc(id)
-            .delete();
+    await db.collection("serviceProjects")
+      .doc(id)
+      .delete();
 
-        toast("Project deleted.");
+    toast("Project deleted.");
 
-        loadProjects();
-        loadDashboard();
+    await loadProjects();
+    await loadDashboard();
 
-    }catch(error){
+  }catch(err){
 
-        toast(error.message);
-
-    }
-
+    toast(
+      "Could not delete project: "+err.message,
+      "error"
+    );
+  }
 }
 
 
-function clearProjectForm(){
-
-    document.getElementById("projectId").value = "";
-    document.getElementById("projectTitle").value = "";
-    document.getElementById("projectCategory").value = "";
-    document.getElementById("projectDescription").value = "";
-    document.getElementById("projectMediaUrl").value = "";
-    document.getElementById("projectThumbnailUrl").value = "";
-    document.getElementById("projectMediaType").value = "Photo";
-
-    document.getElementById("projectFeatured").checked = false;
-    document.getElementById("projectPublished").checked = true;
-    document.getElementById("projectRequestEnabled").checked = true;
-
-}
-
-
-/* ==========================================================
+/* ======================================================
    SERVICE REQUESTS
-========================================================== */
+====================================================== */
 
 async function loadRequests(){
 
-    const tbody =
-        document.getElementById("requestsTable");
+  const grid=document.getElementById("requestsGrid");
 
-    tbody.innerHTML =
-        '<tr><td colspan="5">Loading...</td></tr>';
+  grid.innerHTML='<div class="loading">Loading requests...</div>';
 
-    try{
+  try{
 
-        const snap =
-            await db.collection("serviceRequests")
-            .orderBy("createdAt","desc")
-            .get();
+    const snap=await db.collection("serviceRequests").get();
 
-        tbody.innerHTML = "";
+    requests=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        snap.forEach(doc=>{
+    requests.sort((a,b)=>
+      getTime(b.createdAt)-getTime(a.createdAt)
+    );
 
-            const r = doc.data();
+    renderRequests();
 
-            const tr =
-                document.createElement("tr");
+  }catch(err){
 
-            tr.innerHTML = `
-
-                <td>${escapeHtml(r.customerName || "")}</td>
-
-                <td>${escapeHtml(r.serviceType || "")}</td>
-
-                <td>${escapeHtml(r.location || r.address || "")}</td>
-
-                <td>${escapeHtml(r.phone || "")}</td>
-
-                <td>${escapeHtml(r.description || "")}</td>
-
-            `;
-
-            tbody.appendChild(tr);
-
-        });
-
-    }catch(error){
-
-        tbody.innerHTML =
-            '<tr><td colspan="5">Unable to load requests.</td></tr>';
-
-    }
-
+    grid.innerHTML=
+      `<div class="card">
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-/* ==========================================================
+function renderRequests(){
+
+  const grid=document.getElementById("requestsGrid");
+
+  if(!requests.length){
+
+    grid.innerHTML=
+      `<div class="card">
+        <h3>No service requests.</h3>
+      </div>`;
+
+    return;
+  }
+
+  grid.innerHTML=requests.map(r=>`
+
+    <div class="card">
+
+      ${
+        r.customerPhoto
+        ? `<img
+            class="product-image"
+            src="${escapeAttr(r.customerPhoto)}"
+            onerror="this.style.display='none'"
+          >`
+        :""
+      }
+
+      <h3>${escapeHtml(r.serviceType||"Service Request")}</h3>
+
+      <p>
+        <strong>Customer:</strong>
+        ${escapeHtml(r.customerName||"")}
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        ${escapeHtml(r.phone||"")}
+      </p>
+
+      <p>
+        <strong>Location:</strong>
+        ${escapeHtml(r.location||"")}
+      </p>
+
+      <p>
+        <strong>Address:</strong>
+        ${escapeHtml(r.address||"")}
+      </p>
+
+      <p>
+        ${escapeHtml(r.description||"")}
+      </p>
+
+      <small>${formatDate(r.createdAt)}</small>
+
+    </div>
+
+  `).join("");
+}
+
+
+/* ======================================================
    WISHLISTS
-========================================================== */
+====================================================== */
 
 async function loadWishlists(){
 
-    const tbody =
-        document.getElementById("wishlistsTable");
+  const box=document.getElementById("wishlistsTable");
 
-    tbody.innerHTML =
-        '<tr><td colspan="4">Loading...</td></tr>';
+  box.innerHTML='<div class="loading">Loading wishlists...</div>';
 
-    try{
+  try{
 
-        const snap =
-            await db.collection("wishlists")
-            .orderBy("addedAt","desc")
-            .get();
+    const snap=await db.collection("wishlists").get();
 
-        tbody.innerHTML = "";
+    wishlists=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        snap.forEach(doc=>{
+    box.innerHTML=`
 
-            const w = doc.data();
+      <div class="table-wrap">
 
-            const tr =
-                document.createElement("tr");
+        <table>
 
-            tr.innerHTML = `
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Product ID</th>
+              <th>Added</th>
+            </tr>
+          </thead>
 
-                <td>${escapeHtml(w.customerId || "")}</td>
+          <tbody>
 
-                <td>${escapeHtml(w.name || "")}</td>
+            ${wishlists.map(w=>`
 
-                <td>${escapeHtml(w.productId || "")}</td>
+              <tr>
+                <td>${escapeHtml(w.customerId||"")}</td>
+                <td>${escapeHtml(w.name||"")}</td>
+                <td>${escapeHtml(w.productId||"")}</td>
+                <td>${formatDate(w.addedAt||w.createdAt)}</td>
+              </tr>
 
-                <td>${formatDate(w.addedAt || w.createdAt)}</td>
+            `).join("")}
 
-            `;
+          </tbody>
 
-            tbody.appendChild(tr);
+        </table>
 
-        });
+      </div>
+    `;
 
-    }catch(error){
+  }catch(err){
 
-        tbody.innerHTML =
-            '<tr><td colspan="4">Unable to load wishlists.</td></tr>';
-
-    }
-
+    box.innerHTML=
+      `<div class="card">
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-/* ==========================================================
+/* ======================================================
+   CARTS
+====================================================== */
+
+async function loadCarts(){
+
+  const grid=document.getElementById("cartsGrid");
+
+  grid.innerHTML='<div class="loading">Loading carts...</div>';
+
+  try{
+
+    const snap=await db.collection("carts").get();
+
+    carts=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
+
+    if(!carts.length){
+
+      grid.innerHTML=
+        `<div class="card">
+          <h3>No active carts.</h3>
+        </div>`;
+
+      return;
+    }
+
+    grid.innerHTML=carts.map(c=>{
+
+      const items=Array.isArray(c.items)?c.items:[];
+
+      const total=items.reduce(
+        (sum,item)=>
+          sum+
+          (Number(item.price)||0)*
+          (Number(item.qty)||0),
+        0
+      );
+
+      return `
+
+        <div class="card">
+
+          <h3>Customer Cart</h3>
+
+          <p>
+            <strong>User:</strong>
+            ${escapeHtml(c.userId||c.id)}
+          </p>
+
+          <p>
+            <strong>Items:</strong>
+            ${items.length}
+          </p>
+
+          <p>
+            <strong>Estimated Total:</strong>
+            ₦${total.toLocaleString()}
+          </p>
+
+          <div style="margin-top:10px;">
+
+            ${items.map(i=>`
+
+              <div style="
+                padding:8px 0;
+                border-bottom:1px solid var(--border);
+              ">
+
+                ${escapeHtml(i.name||"Product")}
+                × ${Number(i.qty||0)}
+                —
+                ₦${formatMoney(i.price||0)}
+
+              </div>
+
+            `).join("")}
+
+          </div>
+
+        </div>
+
+      `;
+    }).join("");
+
+  }catch(err){
+
+    grid.innerHTML=
+      `<div class="card">
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
+}
+
+
+/* ======================================================
    NOTIFICATIONS
-========================================================== */
+====================================================== */
 
 async function loadNotifications(){
 
-    const box =
-        document.getElementById("notificationsList");
+  const grid=document.getElementById("notificationsGrid");
 
-    box.innerHTML =
-        '<div class="loading">Loading...</div>';
+  grid.innerHTML='<div class="loading">Loading notifications...</div>';
 
-    try{
+  try{
 
-        const snap =
-            await db.collection("notifications")
-            .orderBy("createdAt","desc")
-            .get();
+    const snap=await db.collection("notifications").get();
 
-        box.innerHTML = "";
+    notifications=snap.docs.map(doc=>({
+      id:doc.id,
+      ...doc.data()
+    }));
 
-        snap.forEach(doc=>{
+    notifications.sort((a,b)=>
+      getTime(b.createdAt)-getTime(a.createdAt)
+    );
 
-            const n = doc.data();
+    if(!notifications.length){
 
-            const div =
-                document.createElement("div");
+      grid.innerHTML=
+        `<div class="card">
+          <h3>No notifications.</h3>
+        </div>`;
 
-            div.className = "panel";
-
-            div.innerHTML = `
-
-                <strong>
-                    ${escapeHtml(n.icon || "🔔")}
-                    ${escapeHtml(n.title || "Notification")}
-                </strong>
-
-                <p class="muted" style="margin-top:7px;">
-                    ${escapeHtml(n.message || "")}
-                </p>
-
-                <small class="muted">
-                    ${formatDate(n.createdAt)}
-                </small>
-
-            `;
-
-            box.appendChild(div);
-
-        });
-
-    }catch(error){
-
-        box.innerHTML =
-            '<div class="loading">Unable to load notifications.</div>';
-
+      return;
     }
 
+    grid.innerHTML=notifications.map(n=>`
+
+      <div class="card">
+
+        <h3>
+          ${escapeHtml(n.icon||"🔔")}
+          ${escapeHtml(n.title||"Notification")}
+        </h3>
+
+        <p>${escapeHtml(n.message||"")}</p>
+
+        <span class="status ${n.read?"green":"yellow"}">
+          ${n.read?"Read":"Unread"}
+        </span>
+
+        <div class="card-actions">
+
+          <button
+            class="btn"
+            onclick="markNotification('${n.id}',${!n.read})"
+          >
+            ${n.read?"Mark Unread":"Mark Read"}
+          </button>
+
+          <button
+            class="btn red"
+            onclick="deleteNotification('${n.id}')"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+  }catch(err){
+
+    grid.innerHTML=
+      `<div class="card">
+        <p>${escapeHtml(err.message)}</p>
+      </div>`;
+  }
 }
 
 
-/* ==========================================================
+function openNotificationModal(){
+
+  document.getElementById("notificationModal")
+    .classList.add("show");
+
+  document.getElementById("notificationForm").reset();
+
+  document.getElementById("notificationIcon").value="🔔";
+}
+
+
+document.getElementById("notificationForm")
+.addEventListener("submit",async e=>{
+
+  e.preventDefault();
+
+  try{
+
+    await db.collection("notifications").add({
+
+      createdAt:
+        firebase.firestore.FieldValue.serverTimestamp(),
+
+      icon:
+        document.getElementById("notificationIcon").value.trim(),
+
+      message:
+        document.getElementById("notificationMessage").value.trim(),
+
+      read:false,
+
+      sourceId:
+        document.getElementById("notificationSourceId").value.trim(),
+
+      title:
+        document.getElementById("notificationTitle").value.trim()
+
+    });
+
+    closeModal("notificationModal");
+
+    toast("Notification created.");
+
+    await loadNotifications();
+    await loadDashboard();
+
+  }catch(err){
+
+    toast(
+      "Notification could not be created: "+err.message,
+      "error"
+    );
+  }
+
+});
+
+
+async function markNotification(id,value){
+
+  try{
+
+    await db.collection("notifications")
+      .doc(id)
+      .update({
+        read:value
+      });
+
+    await loadNotifications();
+
+  }catch(err){
+
+    toast(err.message,"error");
+  }
+}
+
+
+async function deleteNotification(id){
+
+  if(!confirm("Delete this notification?")) return;
+
+  try{
+
+    await db.collection("notifications")
+      .doc(id)
+      .delete();
+
+    toast("Notification deleted.");
+
+    await loadNotifications();
+    await loadDashboard();
+
+  }catch(err){
+
+    toast(err.message,"error");
+  }
+}
+
+
+/* ======================================================
    SETTINGS
-========================================================== */
+====================================================== */
+
+let settingsDocId=null;
+
 
 async function loadSettings(){
 
-    try{
+  try{
 
-        const doc =
-            await db.collection("settings").doc("store").get();
+    const snap=await db
+      .collection("settings")
+      .limit(1)
+      .get();
 
-        if(!doc.exists){
+    if(snap.empty){
 
-            toast("No store settings document found. It will be created when you save.");
+      settingsDocId=null;
 
-            return;
-        }
+      document.getElementById("settingsForm").reset();
 
-        const s = doc.data();
-
-        document.getElementById("settingStoreName").value =
-            s.storeName || "";
-
-        document.getElementById("settingCurrency").value =
-            s.currency || "NGN";
-
-        document.getElementById("settingEmail").value =
-            s.email || "";
-
-        document.getElementById("settingPhone").value =
-            s.phone || "";
-
-        document.getElementById("settingWhatsapp").value =
-            s.whatsapp || s["whatsapp "] || "";
-
-        document.getElementById("settingLogoUrl").value =
-            s.logoUrl || "";
-
-        document.getElementById("settingLoginUrl").value =
-            s.loginUrl || "";
-
-        document.getElementById("settingAddress").value =
-            s.address || "";
-
-        document.getElementById("settingCity").value =
-            s.city || "";
-
-        document.getElementById("settingState").value =
-            s.state || "";
-
-        document.getElementById("settingDescription").value =
-            s.description || "";
-
-    }catch(error){
-
-        console.error(error);
-
-        toast("Unable to load settings.");
-
+      return;
     }
 
+    const doc=snap.docs[0];
+
+    settingsDocId=doc.id;
+
+    const s=doc.data();
+
+    document.getElementById("setStoreName").value=
+      s.storeName||"";
+
+    document.getElementById("setCurrency").value=
+      s.currency||"NGN";
+
+    document.getElementById("setEmail").value=
+      s.email||"";
+
+    document.getElementById("setPhone").value=
+      s.phone||"";
+
+    document.getElementById("setWhatsapp").value=
+      s.whatsapp||s["whatsapp "]||"";
+
+    document.getElementById("setLoginUrl").value=
+      s.loginUrl||"";
+
+    document.getElementById("setLogoUrl").value=
+      s.logoUrl||"";
+
+    document.getElementById("setAddress").value=
+      s.address||"";
+
+    document.getElementById("setDescription").value=
+      s.description||"";
+
+  }catch(err){
+
+    toast(
+      "Settings could not be loaded: "+err.message,
+      "error"
+    );
+  }
 }
 
 
-async function saveSettings(){
+document.getElementById("settingsForm")
+.addEventListener("submit",async e=>{
 
-    const data = {
+  e.preventDefault();
 
-        storeName:
-            document.getElementById("settingStoreName").value.trim(),
+  const data={
 
-        currency:
-            document.getElementById("settingCurrency").value.trim(),
+    address:
+      document.getElementById("setAddress").value.trim(),
 
-        email:
-            document.getElementById("settingEmail").value.trim(),
+    currency:
+      document.getElementById("setCurrency").value.trim(),
 
-        phone:
-            document.getElementById("settingPhone").value.trim(),
+    description:
+      document.getElementById("setDescription").value.trim(),
 
-        whatsapp:
-            document.getElementById("settingWhatsapp").value.trim(),
+    email:
+      document.getElementById("setEmail").value.trim(),
 
-        logoUrl:
-            document.getElementById("settingLogoUrl").value.trim(),
+    loginUrl:
+      document.getElementById("setLoginUrl").value.trim(),
 
-        loginUrl:
-            document.getElementById("settingLoginUrl").value.trim(),
+    logoUrl:
+      document.getElementById("setLogoUrl").value.trim(),
 
-        address:
-            document.getElementById("settingAddress").value.trim(),
+    phone:
+      document.getElementById("setPhone").value.trim(),
 
-        city:
-            document.getElementById("settingCity").value.trim(),
+    storeName:
+      document.getElementById("setStoreName").value.trim(),
 
-        state:
-            document.getElementById("settingState").value.trim(),
+    updatedAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
 
-        description:
-            document.getElementById("settingDescription").value.trim(),
+    whatsapp:
+      document.getElementById("setWhatsapp").value.trim()
 
-        updatedAt:
+  };
+
+  try{
+
+    if(settingsDocId){
+
+      await db.collection("settings")
+        .doc(settingsDocId)
+        .set(data,{merge:true});
+
+    }else{
+
+      const ref=await db
+        .collection("settings")
+        .add({
+
+          ...data,
+
+          createdAt:
             firebase.firestore.FieldValue.serverTimestamp()
 
-    };
+        });
 
-
-    try{
-
-        /*
-         * IMPORTANT:
-         *
-         * The settings document is saved at:
-         *
-         * settings/store
-         *
-         * If your existing website uses another document ID,
-         * change only "store" below.
-         */
-
-        await db
-            .collection("settings")
-            .doc("store")
-            .set(data,{merge:true});
-
-        toast("Settings saved successfully.");
-
-    }catch(error){
-
-        console.error(error);
-
-        toast(
-            "Settings could not be saved: "+
-            error.message
-        );
-
+      settingsDocId=ref.id;
     }
 
+    toast("Settings saved successfully.");
+
+  }catch(err){
+
+    console.error(err);
+
+    toast(
+      "Settings could not be saved: "+err.message,
+      "error"
+    );
+  }
+
+});
+
+
+/* ======================================================
+   ADMIN INFO
+====================================================== */
+
+async function loadAdminInfo(){
+
+  const box=document.getElementById("adminInfo");
+
+  try{
+
+    const snap=await db
+      .collection("admins")
+      .where("uid","==",ADMIN_UID)
+      .limit(1)
+      .get();
+
+    if(snap.empty){
+
+      box.innerHTML=
+        "<h3>Administrator document not found.</h3>";
+
+      return;
+    }
+
+    const admin=snap.docs[0].data();
+
+    box.innerHTML=`
+
+      <h3>${escapeHtml(admin.name||"Danny Smart Power Admin")}</h3>
+
+      <p>Email:
+        ${escapeHtml(admin.email||ADMIN_EMAIL)}
+      </p>
+
+      <p>UID:
+        ${escapeHtml(admin.uid||ADMIN_UID)}
+      </p>
+
+      <p>Role:
+        ${escapeHtml(admin.role||"admin")}
+      </p>
+
+      <p>
+        <span class="status ${admin.active?"green":"red"}">
+          ${admin.active?"Active":"Inactive"}
+        </span>
+      </p>
+
+      <p style="margin-top:10px;">
+        Created:
+        ${formatDate(admin.createdAt)}
+      </p>
+
+    `;
+
+  }catch(err){
+
+    box.innerHTML=
+      `<p>${escapeHtml(err.message)}</p>`;
+  }
 }
 
 
-/* ==========================================================
-   LOGOUT
-========================================================== */
+/* ======================================================
+   MODALS
+====================================================== */
 
-async function logout(){
+function closeModal(id){
 
-    try{
-
-        await auth.signOut();
-
-        window.location.href = "login.html";
-
-    }catch(error){
-
-        toast(error.message);
-
-    }
-
+  document.getElementById(id).classList.remove("show");
 }
 
 
-/* ==========================================================
-   DATE
-========================================================== */
+document.querySelectorAll(".modal").forEach(modal=>{
 
-function formatDate(timestamp){
+  modal.addEventListener("click",e=>{
 
-    if(!timestamp) return "-";
-
-    try{
-
-        if(timestamp.toDate){
-
-            return timestamp.toDate().toLocaleString();
-
-        }
-
-        return new Date(timestamp).toLocaleString();
-
-    }catch(error){
-
-        return "-";
-
+    if(e.target===modal){
+      modal.classList.remove("show");
     }
 
-}
+  });
+
+});
 
 
-/* ==========================================================
-   HTML SAFETY
-========================================================== */
+/* ======================================================
+   UTILITIES
+====================================================== */
 
 function escapeHtml(value){
 
-    if(value === null || value === undefined){
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
-/* ==========================================================
-   START
-========================================================== */
+function escapeAttr(value){
 
-showPage("dashboard");
+  return escapeHtml(value);
+}
+
+
+function getTime(timestamp){
+
+  if(!timestamp) return 0;
+
+  if(typeof timestamp.toMillis==="function"){
+    return timestamp.toMillis();
+  }
+
+  if(timestamp.seconds){
+    return timestamp.seconds*1000;
+  }
+
+  const date=new Date(timestamp);
+
+  return isNaN(date.getTime())
+    ? 0
+    : date.getTime();
+}
+
+
+function formatDate(timestamp){
+
+  const time=getTime(timestamp);
+
+  if(!time) return "—";
+
+  return new Date(time).toLocaleString();
+}
+
+
+function formatMoney(value){
+
+  const number=Number(value)||0;
+
+  return number.toLocaleString("en-NG");
+}
+
+
+/* ======================================================
+   MOBILE KEYBOARD FRIENDLY CHAT
+====================================================== */
+
+document.getElementById("messageInput")
+.addEventListener("keydown",e=>{
+
+  if(e.key==="Enter" && !e.shiftKey){
+
+    e.preventDefault();
+
+    document.getElementById("messageForm")
+      .requestSubmit();
+
+  }
+
+});
+
+
+/* ======================================================
+   START
+====================================================== */
+
+window.addEventListener("load",()=>{
+
+  document.getElementById("loginScreen")
+    .classList.remove("hidden");
+
+  document.getElementById("app")
+    .classList.add("hidden");
+
+});
 
 </script>
 
 </body>
-  </html>
+    </html>
