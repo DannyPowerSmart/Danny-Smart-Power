@@ -2,110 +2,3980 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#020617">
-<title>Danny Smart Power — Admin Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSP Admin Center</title>
+
 <style>
-:root{--bg:#0f172a;--panel:#111c31;--panel2:#17243b;--header:#020617;--text:#e5eefb;--muted:#94a3b8;--blue:#38bdf8;--green:#22c55e;--red:#ef4444;--yellow:#f59e0b;--border:#26364f;--shadow:0 12px 35px rgba(0,0,0,.22)}*{box-sizing:border-box}html,body{margin:0;background:#020617!important;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body,*{scrollbar-color:#263b54 #020617}main{background:#020617!important}.page,.layout{background:#020617}.card,.product-card,.project-card,.customer-row,.wishlist-card,.notification{background:#071423!important}.modal-box{background:#0b1728!important}.input,.select,.textarea{background:#06101e!important;color:#fff}button,input,select,textarea{font:inherit;color-scheme:dark}button{cursor:pointer}.hidden{display:none!important}.app{min-height:100dvh}.topbar{height:64px;background:var(--header);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;padding:0 16px;position:sticky;top:0;z-index:50}.brand{font-weight:900;letter-spacing:.4px;line-height:1.05}.brand small{display:block;color:var(--blue);font-size:10px;margin-top:3px}.menu-btn{border:1px solid var(--border);background:var(--panel);color:#fff;border-radius:10px;width:42px;height:42px}.top-actions{margin-left:auto;display:flex;gap:8px}.icon-btn{position:relative;border:1px solid var(--border);background:var(--panel);color:#fff;border-radius:10px;width:42px;height:42px}.badge{position:absolute;right:-4px;top:-5px;background:var(--red);color:#fff;border-radius:99px;min-width:18px;height:18px;padding:0 5px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:800}.layout{display:flex;min-height:calc(100dvh - 64px)}.sidebar{width:250px;background:var(--header);border-right:1px solid var(--border);padding:18px 12px;position:fixed;top:64px;bottom:0;overflow:auto;z-index:45}.sidebar h4{color:#64748b;font-size:11px;margin:18px 10px 8px;text-transform:uppercase}.nav{width:100%;text-align:left;border:0;background:transparent;color:#cbd5e1;padding:12px;border-radius:10px;margin:2px 0}.nav:hover,.nav.active{background:#13233a;color:#fff}.nav.active{box-shadow:inset 3px 0 var(--blue)}main{margin-left:250px;width:calc(100% - 250px);padding:22px;max-width:1500px}.page{display:none}.page.active{display:block}.page-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.page-head-left{display:flex;align-items:center;gap:10px;min-width:0}.page-head h1{margin:0;font-size:25px}.back-btn{display:inline-flex;align-items:center;gap:6px}.sidebar-back{display:none;width:100%;margin-bottom:8px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}.stat{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;min-height:125px;box-shadow:var(--shadow);cursor:pointer}.stat:hover{transform:translateY(-2px);border-color:#365170}.stat .ico{font-size:25px}.stat .label{color:var(--muted);font-size:12px;margin-top:12px}.stat strong{display:block;font-size:27px;margin-top:4px}.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}.input,.select,.textarea{width:100%;background:#06101e!important;color:#fff!important;border:1px solid var(--border);border-radius:10px;padding:11px 12px;outline:none}.input:focus,.select:focus,.textarea:focus{border-color:var(--blue)}.textarea{min-height:110px;resize:vertical}.search{max-width:360px}.btn{border:1px solid var(--border);background:#1b2a43;color:#fff;border-radius:9px;padding:9px 13px;font-weight:700}.btn:hover{filter:brightness(1.12)}.btn-blue{background:#0284c7;border-color:#0284c7}.btn-green{background:#15803d;border-color:#15803d}.btn-red{background:#b91c1c;border-color:#b91c1c}.btn-yellow{background:#a16207;border-color:#a16207}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}.label{display:block;color:#cbd5e1;font-size:12px;font-weight:700;margin:0 0 6px}.message{margin-top:10px;font-size:13px}.success{color:#4ade80}.error{color:#f87171}.product-grid,.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.product-card,.project-card,.customer-row,.wishlist-card,.notification{background:#0c1729;border:1px solid var(--border);border-radius:13px;padding:13px}.product-image,.project-media{width:100%;height:170px;object-fit:cover;border-radius:10px;background:#09101d}.product-name,.project-title,.customer-name{font-weight:800;margin-top:10px}.product-category,.customer-info,.project-meta{font-size:12px;color:var(--muted);margin-top:4px}.product-price{font-weight:900;color:var(--blue);margin-top:8px}.product-meta{font-size:11px;color:var(--muted);margin-top:6px}.product-actions{display:flex;gap:7px;margin-top:12px}.customer-row{display:flex;align-items:center;gap:12px;margin-bottom:9px}.avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#1e293b;display:grid;place-items:center;flex:none}.customer-main{flex:1}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:700px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--border);font-size:12px}th{color:#94a3b8;font-size:11px;text-transform:uppercase}.status{display:inline-block;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;background:#334155}.status-Pending{background:#78350f;color:#fde68a}.status-Processing{background:#164e63;color:#a5f3fc}.status-Shipped{background:#1e3a8a;color:#bfdbfe}.status-Completed{background:#14532d;color:#bbf7d0}.status-Cancelled{background:#7f1d1d;color:#fecaca}.notification{display:flex;gap:12px;margin-bottom:9px}.notification .nicon{font-size:21px}.notification small{display:block;color:var(--muted);margin-top:4px}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:12px}.chat-layout{display:grid;grid-template-columns:300px minmax(0,1fr);height:calc(100dvh - 135px);min-height:500px}.chat-list{border-right:1px solid var(--border);overflow:auto}.chat-item{padding:13px;border-bottom:1px solid var(--border);cursor:pointer}.chat-item.active{background:#16263f}.chat-item-top{display:flex;justify-content:space-between;gap:8px}.chat-name{font-weight:800}.last-message{font-size:12px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.unread{background:var(--red);border-radius:999px;padding:2px 6px;font-size:10px}.chat-panel{display:flex;flex-direction:column;min-width:0;min-height:0}.chat-head{padding:12px;border-bottom:1px solid var(--border)}.messages{flex:1;overflow:auto;padding:15px;background:#091321;overscroll-behavior:contain}.message-row{display:flex;width:100%;margin:7px 0}.message-row.admin{justify-content:flex-end}.message-row.customer{justify-content:flex-start}.message-bubble{max-width:78%;padding:10px 12px;border-radius:14px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.message-bubble.admin{background:#075985;border-bottom-right-radius:4px}.message-bubble.customer{background:#1e293b;border-bottom-left-radius:4px}.message-time{display:block;font-size:9px;color:#cbd5e1;opacity:.75;margin-top:5px}.chat-compose{display:flex;align-items:flex-end;gap:8px;padding:10px;background:#081526;border-top:1px solid var(--border);padding-bottom:max(10px,env(safe-area-inset-bottom));position:relative;z-index:5}.chat-compose textarea{min-height:45px;max-height:130px;resize:none;flex:1;background:#06101e;color:#fff;border:1px solid var(--border);border-radius:12px;padding:11px 12px;outline:none}.chat-compose textarea:focus{border-color:var(--blue)}.chat-send{height:45px;min-width:78px}.mobile-chat-back{display:none}.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:15px;z-index:100}.modal.show{display:flex}.modal-box{background:var(--panel);border:1px solid var(--border);border-radius:16px;width:min(700px,100%);max-height:90dvh;overflow:auto;padding:18px}.modal-head{display:flex;justify-content:space-between;align-items:center}.detail{padding:10px 0;border-bottom:1px solid var(--border)}.detail-label{font-size:10px;color:#64748b;text-transform:uppercase;font-weight:800}.detail-value{margin-top:4px;white-space:pre-wrap}.order-item{display:flex;justify-content:space-between;gap:10px;padding:10px;border:1px solid var(--border);border-radius:9px;margin-top:8px}.overlay{display:none;position:fixed;inset:64px 0 0;background:rgba(0,0,0,.5);z-index:40}.overlay.show{display:block}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.product-grid,.project-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.sidebar{transform:translateX(-100%);transition:.2s}.sidebar.open{transform:translateX(0)}.sidebar-back{display:block}main{margin-left:0;width:100%;padding:14px}.overlay.show{display:block}.grid{grid-template-columns:repeat(2,1fr);gap:9px}.stat{padding:13px;min-height:105px}.stat strong{font-size:21px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.product-grid,.project-grid{grid-template-columns:1fr}.chat-layout{grid-template-columns:1fr;height:calc(100dvh - 118px)}.chat-list{display:none}.chat-list.mobile-open{display:block}.chat-panel.mobile-hidden{display:none}.mobile-chat-back{display:inline-flex}.message-bubble{max-width:88%}.page-head h1{font-size:21px}.topbar{padding:0 10px}.brand{font-size:13px}}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#020617;
+  --panel:#0f172a;
+  --panel2:#111827;
+  --panel3:#1e293b;
+  --border:#263449;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --blue2:#0ea5e9;
+  --green:#22c55e;
+  --red:#ef4444;
+  --yellow:#f59e0b;
+  --purple:#a78bfa;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:var(--bg);
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+.logo-box{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo-box h1{
+  color:var(--blue);
+  font-size:30px;
+}
+
+.logo-box p{
+  color:var(--muted);
+  margin-top:8px;
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  color:#cbd5e1;
+  margin-bottom:7px;
+  font-size:14px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid var(--border);
+  outline:none;
+  background:#020617;
+  color:white;
+  border-radius:11px;
+  padding:13px;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--blue);
+}
+
+.primary-btn{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:14px;
+  background:var(--blue);
+  color:#001018;
+  font-weight:bold;
+}
+
+.primary-btn:hover{
+  background:#7dd3fc;
+}
+
+.error{
+  color:#fca5a5;
+  background:#3f1111;
+  border:1px solid #7f1d1d;
+  padding:11px;
+  border-radius:10px;
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+#adminApp{
+  min-height:100vh;
+  display:flex;
+  background:var(--bg);
+}
+
+.sidebar{
+  width:270px;
+  background:#020617;
+  border-right:1px solid var(--border);
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  overflow-y:auto;
+  z-index:1000;
+  padding:18px;
+}
+
+.brand{
+  padding:12px 8px 22px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:15px;
+}
+
+.brand h2{
+  color:var(--blue);
+}
+
+.brand small{
+  color:var(--muted);
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.menu button{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  color:#cbd5e1;
+  padding:12px;
+  border-radius:10px;
+}
+
+.menu button:hover,
+.menu button.active{
+  background:var(--panel3);
+  color:var(--blue);
+}
+
+.menu-divider{
+  height:1px;
+  background:var(--border);
+  margin:10px 0;
+}
+
+.menu-back{
+  color:#f8fafc!important;
+  background:#111827!important;
+}
+
+.logout{
+  color:#fca5a5!important;
+}
+
+.main{
+  margin-left:270px;
+  width:calc(100% - 270px);
+  min-height:100vh;
+}
+
+.topbar{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  border-bottom:1px solid var(--border);
+  background:#020617;
+  position:sticky;
+  top:0;
+  z-index:500;
+}
+
+.topbar-title{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.topbar-user{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.mobile-menu{
+  display:none;
+  border:0;
+  background:var(--panel3);
+  color:white;
+  padding:10px;
+  border-radius:9px;
+}
+
+.content{
+  padding:25px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.section-header h2{
+  font-size:25px;
+}
+
+.section-header p{
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.back-btn{
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:white;
+  padding:10px 15px;
+  border-radius:10px;
+}
+
+.back-btn:hover{
+  border-color:var(--blue);
+  color:var(--blue);
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+
+.dashboard-card{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:18px;
+  padding:22px;
+  min-height:145px;
+  transition:.2s;
+  cursor:pointer;
+}
+
+.dashboard-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--blue);
+}
+
+.card-icon{
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.card-title{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.card-value{
+  font-size:28px;
+  margin-top:7px;
+  font-weight:bold;
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.toolbar input{
+  max-width:300px;
+}
+
+.action-btn{
+  border:1px solid var(--border);
+  background:var(--panel3);
+  color:white;
+  border-radius:9px;
+  padding:10px 14px;
+}
+
+.action-btn:hover{
+  border-color:var(--blue);
+}
+
+.success-btn{
+  background:#064e3b;
+  border-color:#047857;
+}
+
+.danger-btn{
+  background:#450a0a;
+  border-color:#991b1b;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-wrap{
+  width:100%;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th,
+td{
+  padding:13px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  vertical-align:middle;
+}
+
+th{
+  color:#cbd5e1;
+  background:#111827;
+}
+
+td{
+  color:#e2e8f0;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:3000;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:650px;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.close{
+  border:0;
+  background:#1e293b;
+  color:white;
+  border-radius:8px;
+  width:36px;
+  height:36px;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:15px;
+  height:calc(100vh - 150px);
+  min-height:500px;
+}
+
+.chat-list{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:auto;
+}
+
+.chat-user{
+  padding:14px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+
+.chat-user:hover,
+.chat-user.selected{
+  background:var(--panel3);
+}
+
+.chat-user-name{
+  font-weight:bold;
+}
+
+.chat-user-message{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.chat-window{
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.chat-header{
+  padding:15px;
+  border-bottom:1px solid var(--border);
+  background:#111827;
+}
+
+.messages{
+  flex:1;
+  overflow-y:auto;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.message-row{
+  display:flex;
+  width:100%;
+}
+
+.message-row.customer{
+  justify-content:flex-start;
+}
+
+.message-row.admin{
+  justify-content:flex-end;
+}
+
+.message-bubble{
+  max-width:75%;
+  padding:11px 14px;
+  border-radius:15px;
+  line-height:1.4;
+  word-break:break-word;
+}
+
+.message-row.customer .message-bubble{
+  background:#1e293b;
+  color:white;
+  border-bottom-left-radius:4px;
+}
+
+.message-row.admin .message-bubble{
+  background:#0369a1;
+  color:white;
+  border-bottom-right-radius:4px;
+}
+
+.message-meta{
+  font-size:10px;
+  opacity:.65;
+  margin-top:5px;
+}
+
+.chat-input{
+  padding:12px;
+  border-top:1px solid var(--border);
+  display:flex;
+  gap:8px;
+  background:#020617;
+}
+
+.chat-input input{
+  flex:1;
+}
+
+.chat-input button{
+  border:0;
+  background:var(--blue);
+  color:#001018;
+  padding:0 18px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.badge.green{
+  background:#064e3b;
+  color:#86efac;
+}
+
+.badge.red{
+  background:#450a0a;
+  color:#fca5a5;
+}
+
+.badge.yellow{
+  background:#451a03;
+  color:#fde68a;
+}
+
+.badge.blue{
+  background:#082f49;
+  color:#7dd3fc;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.2s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .topbar{
+    padding:0 15px;
+  }
+
+  .content{
+    padding:15px;
+  }
+
+  .chat-layout{
+    grid-template-columns:1fr;
+    height:auto;
+  }
+
+  .chat-list{
+    height:250px;
+  }
+
+  .chat-window{
+    min-height:500px;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="app">
-<header class="topbar"><button class="menu-btn" id="menuBtn">☰</button><div class="brand">DANNY SMART POWER<small>ADMIN CENTER</small></div><div class="top-actions"><button class="icon-btn" onclick="openPage('notifications')">🔔<span id="notificationBadge" class="badge hidden">0</span></button></div></header>
-<div class="overlay" id="overlay" onclick="toggleSidebar(false)"></div>
-<div class="layout">
-<aside class="sidebar" id="sidebar"><button class="btn sidebar-back" onclick="goBack()">← Back</button>
-<h4>Overview</h4><button class="nav active" data-page="dashboard">📊 Dashboard</button>
-<h4>Store</h4><button class="nav" data-page="products">📦 Products</button><button class="nav" data-page="orders">🛒 Orders</button><button class="nav" data-page="customers">👥 Customers</button><button class="nav" data-page="messages">💬 Messages</button><button class="nav" data-page="notifications">🔔 Notifications</button>
-<h4>Electrical Services</h4><button class="nav" data-page="services">🔧 Service Requests</button><button class="nav" data-page="projects">⚡ Electrical Projects</button>
-<h4>Customers</h4><button class="nav" data-page="wishlists">❤️ Wishlists</button><button class="nav" data-page="profiles">👤 Profiles</button>
-<h4>System</h4><button class="nav" data-page="settings">⚙️ Settings</button><button class="nav" data-page="admins">🔐 Administrators</button><button class="nav" id="logoutBtn">🚪 Sign Out</button>
-</aside>
-<main>
-<section id="page-dashboard" class="page active"><div class="page-head"><div><h1>Dashboard</h1><div class="muted">Danny Smart Power overview</div></div></div><div class="grid">
-<div class="stat" onclick="openPage('products')"><div class="ico">📦</div><div class="label">Products</div><strong id="statProducts">0</strong></div><div class="stat" onclick="openPage('orders')"><div class="ico">🛒</div><div class="label">Total Orders</div><strong id="statOrders">0</strong></div><div class="stat" onclick="openPage('customers')"><div class="ico">👥</div><div class="label">Customers</div><strong id="statCustomers">0</strong></div><div class="stat" onclick="openPage('orders','Pending')"><div class="ico">⏳</div><div class="label">Pending Orders</div><strong id="statPending">0</strong></div><div class="stat" onclick="openPage('messages')"><div class="ico">💬</div><div class="label">Unread Messages</div><strong id="statUnread">0</strong></div><div class="stat" onclick="openPage('projects')"><div class="ico">⚡</div><div class="label">Electrical Projects</div><strong id="statProjects">0</strong></div><div class="stat" onclick="openPage('services')"><div class="ico">🔧</div><div class="label">Service Requests</div><strong id="statServices">0</strong></div><div class="stat" onclick="openPage('notifications')"><div class="ico">🔔</div><div class="label">Notifications</div><strong id="statNotifications">0</strong></div></div>
-<div class="card"><h3>Revenue</h3><strong id="dashboardRevenue" style="font-size:28px;color:var(--blue)">₦0</strong><div id="orderSummary" style="margin-top:12px"></div></div><div class="card"><h3>Recent Orders</h3><div id="recentOrders"></div></div></section>
-<section id="page-products" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Products</h1></div><button class="btn btn-blue" onclick="resetProductForm()">＋ Add Product</button></div><div class="card"><h3 id="productFormTitle">Add New Product</h3><div class="form-grid"><div><label class="label">Product Name</label><input id="pName" class="input"></div><div><label class="label">Price (₦)</label><input id="pPrice" type="number" class="input"></div><div><label class="label">Category</label><select id="pCategory" class="select"><option>Solar</option><option>Lighting</option><option>Electrical</option><option>Accessories</option></select></div><div><label class="label">Colour</label><input id="pColour" class="input" placeholder="Black, White, Blue..."></div><div><label class="label">Stock</label><input id="pStock" type="number" class="input" value="0"></div><div class="full"><label class="label">Image URL</label><input id="pImage" class="input"></div><div><label class="label">Available</label><select id="pAvailable" class="select"><option value="true">Yes</option><option value="false">No</option></select></div><div><label class="label">Featured</label><select id="pFeatured" class="select"><option value="false">No</option><option value="true">Yes</option></select></div><div class="full"><label class="label">Description</label><textarea id="pDescription" class="textarea"></textarea></div></div><div style="margin-top:12px"><button id="saveProductBtn" class="btn btn-blue" onclick="saveProduct()">Add Product</button> <button id="cancelProductBtn" class="btn hidden" onclick="resetProductForm()">Cancel</button></div><div id="productMessage" class="message"></div></div><div class="card"><div class="toolbar"><input id="productSearch" class="input search" placeholder="Search products..." oninput="renderProducts()"></div><div id="productsGrid" class="product-grid"></div></div></section>
-<section id="page-orders" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Orders</h1></div></div><div class="card"><div class="toolbar"><input id="orderSearch" class="input search" placeholder="Search orders..." oninput="renderOrders()"><select id="orderFilter" class="select" style="max-width:190px" onchange="renderOrders()"><option value="all">All statuses</option><option>Pending</option><option>Processing</option><option>Shipped</option><option>Completed</option><option>Cancelled</option></select></div><div id="ordersTable" class="table-wrap"></div></div></section>
-<section id="page-customers" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Customers</h1></div></div><div class="card"><input id="customerSearch" class="input search" placeholder="Search customers..." oninput="renderCustomers()"><div id="customersList" style="margin-top:14px"></div></div></section>
-<section id="page-messages" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Admin Chat</h1></div></div><div class="card" style="padding:0;overflow:hidden"><div class="chat-layout"><div id="chatList" class="chat-list"></div><div id="chatPanel" class="chat-panel"><div class="chat-head"><strong id="chatCustomerName">Select a customer</strong><div id="chatCustomerInfo" class="muted" style="font-size:11px"></div></div><div id="messages" class="messages"><div class="empty">Select a conversation.</div></div><div class="chat-compose"><textarea id="chatInput" rows="1" placeholder="Type your reply..." disabled onkeydown="handleChatEnter(event)" oninput="autoGrow(this)"></textarea><button id="sendChatBtn" class="btn btn-blue" disabled onclick="sendMessage()">Send</button></div></div></div></div></section>
-<section id="page-notifications" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Notifications</h1></div><button class="btn" onclick="markNotificationsRead()">Mark all read</button></div><div class="card"><div id="notificationsList"></div></div></section>
-<section id="page-projects" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Electrical Projects</h1></div><button class="btn btn-blue" onclick="resetProjectForm()">＋ Add Project</button></div><div class="card"><h3 id="projectFormTitle">Add Project</h3><div class="form-grid"><div><label class="label">Project Title</label><input id="prTitle" class="input"></div><div><label class="label">Category</label><input id="prCategory" class="input" placeholder="Solar, Wiring, Inverter..."></div><div class="full"><label class="label">Description</label><textarea id="prDescription" class="textarea"></textarea></div><div><label class="label">Media URL</label><input id="prMediaUrl" class="input" placeholder="Photo or video URL"></div><div><label class="label">Thumbnail URL</label><input id="prThumbnailUrl" class="input"></div><div><label class="label">Media Type</label><select id="prMediaType" class="select"><option value="Photo">Photo</option><option value="Video">Video</option></select></div><div><label class="label">Featured</label><select id="prFeatured" class="select"><option value="false">No</option><option value="true">Yes</option></select></div><div><label class="label">Published</label><select id="prPublished" class="select"><option value="true">Yes</option><option value="false">No</option></select></div><div><label class="label">Request Enabled</label><select id="prRequestEnabled" class="select"><option value="true">Yes</option><option value="false">No</option></select></div></div><div style="margin-top:12px"><button id="saveProjectBtn" class="btn btn-blue" onclick="saveProject()">Save Project</button><button id="cancelProjectBtn" class="btn hidden" onclick="resetProjectForm()">Cancel</button></div><div id="projectMessage" class="message"></div></div><div class="card"><div id="projectsGrid" class="project-grid"></div></div></section>
-<section id="page-services" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Service Requests</h1></div></div><div class="card"><div class="toolbar"><input id="serviceSearch" class="input search" placeholder="Search requests..." oninput="renderServices()"><select id="serviceFilter" class="select" style="max-width:190px" onchange="renderServices()"><option value="all">All</option><option>Pending</option><option>Processing</option><option>Completed</option><option>Cancelled</option></select></div><div id="servicesTable" class="table-wrap"></div></div></section>
-<section id="page-wishlists" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Wishlists</h1></div></div><div class="card"><div id="wishlistsList"></div></div></section>
-<section id="page-profiles" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Profiles</h1></div></div><div class="card"><div id="profilesList"></div></div></section>
-<section id="page-settings" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Settings</h1></div></div><div class="card"><div class="form-grid"><div><label class="label">Store Name</label><input id="sName" class="input"></div><div><label class="label">Email</label><input id="sEmail" class="input"></div><div><label class="label">Phone</label><input id="sPhone" class="input"></div><div><label class="label">WhatsApp</label><input id="sWhatsapp" class="input"></div><div><label class="label">Currency</label><input id="sCurrency" class="input" value="NGN"></div><div><label class="label">Logo URL</label><input id="sLogo" class="input"></div><div><label class="label">Login URL</label><input id="sLoginUrl" class="input"></div><div class="full"><label class="label">Address</label><input id="sAddress" class="input"></div><div class="full"><label class="label">Description</label><textarea id="sDescription" class="textarea"></textarea></div></div><button id="saveSettingsBtn" class="btn btn-blue" style="margin-top:12px" onclick="saveSettings()">Save Settings</button><div id="settingsMessage" class="message"></div></div></section>
-<section id="page-admins" class="page"><div class="page-head"><div class="page-head-left"><button class="btn back-btn" onclick="goBack()">← Back</button><h1>Administrators</h1></div></div><div class="card"><div id="adminsList"></div></div></section>
-</main></div></div>
-<div id="modal" class="modal" onclick="closeModalOutside(event)"><div class="modal-box"><div class="modal-head"><h2 id="modalTitle">Details</h2><button class="btn" onclick="closeModal()">✕</button></div><div id="modalContent"></div></div></div>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div id="loginScreen">
+
+  <div class="login-box">
+
+    <div class="logo-box">
+      <h1>⚡ DSP ADMIN</h1>
+      <p>Danny Smart Power</p>
+    </div>
+
+    <div id="loginError" class="error hidden"></div>
+
+    <div class="field">
+      <label>Email</label>
+      <input id="loginEmail" type="email" placeholder="Admin email">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input id="loginPassword" type="password" placeholder="Password">
+    </div>
+
+    <button class="primary-btn" onclick="loginAdmin()">
+      Sign In
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN APP
+========================= -->
+
+<div id="adminApp" class="hidden">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <h2>⚡ DSP ADMIN</h2>
+      <small>Danny Smart Power</small>
+    </div>
+
+    <div class="menu">
+
+      <button class="menu-back" onclick="goBack()">
+        ← Back
+      </button>
+
+      <button onclick="openSection('dashboard')">
+        🏠 Dashboard
+      </button>
+
+      <button onclick="openSection('products')">
+        🛒 Products
+      </button>
+
+      <button onclick="openSection('orders')">
+        📦 Orders
+      </button>
+
+      <button onclick="openSection('customers')">
+        👥 Customers
+      </button>
+
+      <button onclick="openSection('chats')">
+        💬 Messages
+      </button>
+
+      <button onclick="openSection('notifications')">
+        🔔 Notifications
+      </button>
+
+      <button onclick="openSection('projects')">
+        ⚡ Electrical Projects
+      </button>
+
+      <button onclick="openSection('requests')">
+        🛠️ Service Requests
+      </button>
+
+      <button onclick="openSection('carts')">
+        🛒 Carts
+      </button>
+
+      <button onclick="openSection('wishlists')">
+        ❤️ Wishlists
+      </button>
+
+      <button onclick="openSection('admins')">
+        👨‍💼 Admins
+      </button>
+
+      <button onclick="openSection('settings')">
+        ⚙️ Settings
+      </button>
+
+      <div class="menu-divider"></div>
+
+      <button class="logout" onclick="logoutAdmin()">
+        🚪 Sign Out
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div style="display:flex;align-items:center;gap:12px;">
+
+        <button class="mobile-menu" onclick="toggleSidebar()">
+          ☰
+        </button>
+
+        <div class="topbar-title" id="pageTitle">
+          Dashboard
+        </div>
+
+      </div>
+
+      <div class="topbar-user" id="adminEmailDisplay">
+        Admin
+      </div>
+
+    </header>
+
+
+    <div class="content">
+
+
+      <!-- =====================
+           DASHBOARD
+      ====================== -->
+
+      <section id="dashboard" class="section active">
+
+        <div class="section-header">
+          <div>
+            <h2>Dashboard</h2>
+            <p>Danny Smart Power administration center</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+        </div>
+
+        <div class="dashboard-grid">
+
+          <div class="dashboard-card" onclick="openSection('products')">
+            <div class="card-icon">🛒</div>
+            <div class="card-title">Products</div>
+            <div class="card-value" id="countProducts">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('orders')">
+            <div class="card-icon">📦</div>
+            <div class="card-title">Total Orders</div>
+            <div class="card-value" id="countOrders">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('customers')">
+            <div class="card-icon">👥</div>
+            <div class="card-title">Customers</div>
+            <div class="card-value" id="countCustomers">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('orders')">
+            <div class="card-icon">⏳</div>
+            <div class="card-title">Pending Orders</div>
+            <div class="card-value" id="countPending">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('chats')">
+            <div class="card-icon">💬</div>
+            <div class="card-title">Unread Messages</div>
+            <div class="card-value" id="countUnread">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('projects')">
+            <div class="card-icon">⚡</div>
+            <div class="card-title">Electrical Projects</div>
+            <div class="card-value" id="countProjects">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('requests')">
+            <div class="card-icon">🛠️</div>
+            <div class="card-title">Service Requests</div>
+            <div class="card-value" id="countRequests">0</div>
+          </div>
+
+          <div class="dashboard-card" onclick="openSection('wishlists')">
+            <div class="card-icon">❤️</div>
+            <div class="card-title">Wishlists</div>
+            <div class="card-value" id="countWishlists">0</div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           PRODUCTS
+      ====================== -->
+
+      <section id="products" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Products</h2>
+            <p>Manage products in your store.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+
+          <button class="action-btn success-btn" onclick="openProductModal()">
+            + Add Product
+          </button>
+
+          <input
+            id="productSearch"
+            placeholder="Search products..."
+            oninput="filterProducts()"
+          >
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Available</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="productsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           ORDERS
+      ====================== -->
+
+      <section id="orders" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Orders</h2>
+            <p>View and manage customer orders.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Total</th>
+                <th>Payment</th>
+                <th>Payment Status</th>
+                <th>Order Status</th>
+                <th>Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="ordersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           CUSTOMERS
+      ====================== -->
+
+      <section id="customers" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Customers</h2>
+            <p>Customer profiles and account information.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+
+            <tbody id="customersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           CHATS
+      ====================== -->
+
+      <section id="chats" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Messages</h2>
+            <p>Chat with your customers.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="chat-layout">
+
+          <div class="chat-list" id="chatList">
+            <div class="empty">
+              Loading chats...
+            </div>
+          </div>
+
+          <div class="chat-window">
+
+            <div class="chat-header" id="chatHeader">
+              Select a customer
+            </div>
+
+            <div class="messages" id="messagesBox">
+              <div class="empty">
+                Select a conversation to view messages.
+              </div>
+            </div>
+
+            <div class="chat-input">
+
+              <input
+                id="chatMessageInput"
+                type="text"
+                placeholder="Type your reply..."
+                autocomplete="off"
+                disabled
+              >
+
+              <button id="sendChatButton" onclick="sendAdminMessage()" disabled>
+                Send
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           NOTIFICATIONS
+      ====================== -->
+
+      <section id="notifications" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Notifications</h2>
+            <p>Manage admin notifications.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+          <button class="action-btn success-btn" onclick="openNotificationModal()">
+            + Add Notification
+          </button>
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Message</th>
+                <th>Icon</th>
+                <th>Read</th>
+                <th>Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="notificationsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           PROJECTS
+      ====================== -->
+
+      <section id="projects" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Electrical Projects</h2>
+            <p>Manage projects displayed on the service/project page.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+
+          <button class="action-btn success-btn" onclick="openProjectModal()">
+            + Add Project
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Media</th>
+                <th>Featured</th>
+                <th>Published</th>
+                <th>Request Enabled</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="projectsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           SERVICE REQUESTS
+      ====================== -->
+
+      <section id="requests" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Service Requests</h2>
+            <p>Customer electrical service requests.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Service</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+
+            <tbody id="requestsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           CARTS
+      ====================== -->
+
+      <section id="carts" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Carts</h2>
+            <p>Customer shopping carts.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Items</th>
+                <th>Updated</th>
+              </tr>
+            </thead>
+
+            <tbody id="cartsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           WISHLISTS
+      ====================== -->
+
+      <section id="wishlists" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Wishlists</h2>
+            <p>Customer saved products.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Customer ID</th>
+                <th>Product</th>
+                <th>Product ID</th>
+                <th>Added</th>
+              </tr>
+            </thead>
+
+            <tbody id="wishlistsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           ADMINS
+      ====================== -->
+
+      <section id="admins" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Admins</h2>
+            <p>Administrator accounts.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Active</th>
+                <th>UID</th>
+              </tr>
+            </thead>
+
+            <tbody id="adminsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================
+           SETTINGS
+      ====================== -->
+
+      <section id="settings" class="section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Settings</h2>
+            <p>Manage your store information.</p>
+          </div>
+
+          <button class="back-btn" onclick="goBack()">
+            ← Back
+          </button>
+
+        </div>
+
+        <div class="modal-box" style="max-width:800px;margin:auto;">
+
+          <div id="settingsMessage" class="error hidden"></div>
+
+          <div class="field">
+            <label>Store Name</label>
+            <input id="setStoreName">
+          </div>
+
+          <div class="field">
+            <label>Description</label>
+            <textarea id="setDescription"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Email</label>
+            <input id="setEmail" type="email">
+          </div>
+
+          <div class="field">
+            <label>Phone</label>
+            <input id="setPhone">
+          </div>
+
+          <div class="field">
+            <label>WhatsApp</label>
+            <input id="setWhatsapp">
+          </div>
+
+          <div class="field">
+            <label>Address</label>
+            <textarea id="setAddress"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Currency</label>
+            <input id="setCurrency" placeholder="NGN">
+          </div>
+
+          <div class="field">
+            <label>Logo URL</label>
+            <input id="setLogoUrl">
+          </div>
+
+          <div class="field">
+            <label>Login URL</label>
+            <input id="setLoginUrl">
+          </div>
+
+          <button class="primary-btn" onclick="saveSettings()">
+            Save Settings
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2 id="productModalTitle">Add Product</h2>
+      <button class="close" onclick="closeModal('productModal')">×</button>
+    </div>
+
+    <input type="hidden" id="productId">
+
+    <div class="field">
+      <label>Name</label>
+      <input id="productName">
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <textarea id="productDescription"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Category</label>
+      <input id="productCategory">
+    </div>
+
+    <div class="field">
+      <label>Colour</label>
+      <input id="productColour">
+    </div>
+
+    <div class="field">
+      <label>Image URL</label>
+      <input id="productImage">
+    </div>
+
+    <div class="field">
+      <label>Price</label>
+      <input id="productPrice" type="number">
+    </div>
+
+    <div class="field">
+      <label>Stock</label>
+      <input id="productStock" type="number">
+    </div>
+
+    <div class="field">
+      <label>Available</label>
+      <select id="productAvailable">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Featured</label>
+      <select id="productFeatured">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+
+    <button class="primary-btn" onclick="saveProduct()">
+      Save Product
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PROJECT MODAL
+========================= -->
+
+<div class="modal" id="projectModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2 id="projectModalTitle">Add Project</h2>
+      <button class="close" onclick="closeModal('projectModal')">×</button>
+    </div>
+
+    <input type="hidden" id="projectId">
+
+    <div class="field">
+      <label>Title</label>
+      <input id="projectTitle">
+    </div>
+
+    <div class="field">
+      <label>Category</label>
+      <input id="projectCategory">
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <textarea id="projectDescription"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Media URL</label>
+      <input id="projectMediaUrl">
+    </div>
+
+    <div class="field">
+      <label>Media Type</label>
+      <select id="projectMediaType">
+        <option value="Photo">Photo</option>
+        <option value="Video">Video</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Thumbnail URL</label>
+      <input id="projectThumbnail">
+    </div>
+
+    <div class="field">
+      <label>Featured</label>
+      <select id="projectFeatured">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Published</label>
+      <select id="projectPublished">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Request Enabled</label>
+      <select id="projectRequestEnabled">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+
+    <button class="primary-btn" onclick="saveProject()">
+      Save Project
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     NOTIFICATION MODAL
+========================= -->
+
+<div class="modal" id="notificationModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2>Add Notification</h2>
+      <button class="close" onclick="closeModal('notificationModal')">×</button>
+    </div>
+
+    <div class="field">
+      <label>Title</label>
+      <input id="notificationTitle">
+    </div>
+
+    <div class="field">
+      <label>Message</label>
+      <textarea id="notificationMessage"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Icon</label>
+      <input id="notificationIcon" placeholder="🔔">
+    </div>
+
+    <div class="field">
+      <label>Source ID</label>
+      <input id="notificationSourceId">
+    </div>
+
+    <button class="primary-btn" onclick="saveNotification()">
+      Save Notification
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
 <script>
-/* Replace ONLY this firebaseConfig with your existing Danny Smart Power config. */
-const firebaseConfig={apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",authDomain:"danny-smart-power.firebaseapp.com",databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",projectId:"danny-smart-power",storageBucket:"danny-smart-power.firebasestorage.app",messagingSenderId:"649735645158",appId:"1:649735645158:web:cff518b89721a163679827",measurementId:"G-258YKLP5ZS"};
-firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();const ADMIN_UID='mJn7uuuqW8RYwILcLtjPrYFvf4P2',ADMIN_EMAIL='dannysmartpower@gmail.com';
-let products=[],orders=[],users=[],profiles=[],chats=[],wishlists=[],admins=[],projects=[],services=[],notifications=[],editingProductId=null,editingProjectId=null,selectedChatId=null,messageUnsubscribe=null,settingsDocId=null,currentPage="dashboard",previousPage="dashboard";
-const $=id=>document.getElementById(id);
-function money(v){return Number(v||0).toLocaleString('en-NG')};function numericTotal(v){if(typeof v==='number')return v;if(typeof v==='string'){const n=Number(v.replace(/[₦,\s]/g,''));return Number.isFinite(n)?n:0}return 0}
-function timeOf(v){if(!v)return 0;try{if(v.toDate)return v.toDate().getTime();if(v.seconds!==undefined)return Number(v.seconds)*1000;const n=new Date(v).getTime();return Number.isNaN(n)?0:n}catch{return 0}}
-function dateOf(v){const t=timeOf(v);return t?new Date(t).toLocaleString('en-NG',{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}):'—'}
-function escapeHTML(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
-function friendlyError(e){if(e?.code==='permission-denied')return 'Permission denied. Check your Firestore Rules.';return e?.message||'Something went wrong.'}
-function normalizeItems(a){return Array.isArray(a)?a.map(x=>typeof x==='string'?{name:x,quantity:1,price:0}:x||{}):[]}
-function toggleSidebar(show){$('sidebar').classList.toggle('open',show);$('overlay').classList.toggle('show',show)}
-$('menuBtn').onclick=()=>toggleSidebar(!$('sidebar').classList.contains('open'));
-function openPage(page,status=null){previousPage=currentPage;currentPage=page;document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));const p=$('page-'+page);if(p)p.classList.add('active');const n=document.querySelector(`.nav[data-page="${page}"]`);if(n)n.classList.add('active');if(status&&page==='orders'){$('orderFilter').value=status;renderOrders()}if(page==='messages'){$('chatPanel').classList.remove('mobile-hidden');$('chatList').classList.remove('mobile-open')}toggleSidebar(false);window.scrollTo({top:0,behavior:'smooth'})}function goBack(){openPage('dashboard')}function showChatList(){$('chatList').classList.add('mobile-open');$('chatPanel').classList.add('mobile-hidden')}
-document.querySelectorAll('.nav[data-page]').forEach(b=>b.onclick=()=>openPage(b.dataset.page));
-$('logoutBtn').onclick=()=>auth.signOut().then(()=>location.reload());
-async function loadProducts(){try{const s=await db.collection('products').get();products=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>timeOf(b.updatedAt||b.createdAt)-timeOf(a.updatedAt||a.createdAt));renderProducts();updateDashboard()}catch(e){$('productsGrid').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function renderProducts(){const box=$('productsGrid');const q=($('productSearch')?.value||'').toLowerCase().trim();const list=products.filter(p=>[p.name,p.category,p.description,p.colour].join(' ').toLowerCase().includes(q));if(!list.length){box.innerHTML='<div class="empty">No products found.</div>';return}box.innerHTML=list.map(p=>`<div class="product-card"><img class="product-image" src="${escapeHTML(p.image||'https://via.placeholder.com/600x400?text=DSP')}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"><div class="product-name">${escapeHTML(p.name||'Unnamed')}</div><div class="product-category">${escapeHTML(p.category||'Uncategorized')}</div><div class="product-price">₦${money(p.price)}</div><div class="product-meta">Stock: ${Number(p.stock||0)} · ${p.available===false?'Unavailable':'Available'}${p.featured?' · ⭐ Featured':''}</div><div class="product-actions"><button class="btn" onclick="editProduct('${p.id}')">Edit</button><button class="btn btn-red" onclick="deleteProduct('${p.id}')">Delete</button></div></div>`).join('')}
-function resetProductForm(){$('pName').value='';$('pPrice').value='';$('pCategory').value='Solar';$('pColour').value='';$('pStock').value='0';$('pImage').value='';$('pAvailable').value='true';$('pFeatured').value='false';$('pDescription').value='';editingProductId=null;$('productFormTitle').textContent='Add New Product';$('saveProductBtn').textContent='Add Product';$('cancelProductBtn').classList.add('hidden');$('productMessage').textContent=''}
-function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;editingProductId=id;$('pName').value=p.name||'';$('pPrice').value=p.price??'';$('pCategory').value=p.category||'Solar';$('pColour').value=p.colour||'';$('pStock').value=p.stock??0;$('pImage').value=p.image||'';$('pAvailable').value=p.available===false?'false':'true';$('pFeatured').value=p.featured?'true':'false';$('pDescription').value=p.description||'';$('productFormTitle').textContent='Edit Product';$('saveProductBtn').textContent='Save Changes';$('cancelProductBtn').classList.remove('hidden');openPage('products');window.scrollTo({top:0,behavior:'smooth'})}
-async function saveProduct(){const name=$('pName').value.trim(),price=Number($('pPrice').value),stock=Number($('pStock').value),data={name,description:$('pDescription').value.trim(),price,category:$('pCategory').value,colour:$('pColour').value.trim(),image:$('pImage').value.trim(),stock,available:$('pAvailable').value==='true',featured:$('pFeatured').value==='true',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};const m=$('productMessage');if(!name)return m.className='message error',m.textContent='Enter a product name.';if(!Number.isFinite(price)||price<0)return m.className='message error',m.textContent='Enter a valid price.';if(!Number.isFinite(stock)||stock<0)return m.className='message error',m.textContent='Enter a valid stock quantity.';$('saveProductBtn').disabled=true;try{if(editingProductId)await db.collection('products').doc(editingProductId).set(data,{merge:true});else await db.collection('products').add({...data,createdAt:firebase.firestore.FieldValue.serverTimestamp()});m.className='message success';m.textContent='Product saved successfully.';await loadProducts();setTimeout(resetProductForm,700)}catch(e){m.className='message error';m.textContent=friendlyError(e)}finally{$('saveProductBtn').disabled=false}}
-async function deleteProduct(id){const p=products.find(x=>x.id===id);if(!p||!confirm(`Delete "${p.name||'this product'}"?`))return;try{await db.collection('products').doc(id).delete();await loadProducts()}catch(e){alert(friendlyError(e))}}
-async function loadOrders(){try{const s=await db.collection('orders').get();orders=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>timeOf(b.createdAt)-timeOf(a.createdAt));renderOrders();renderRecentOrders();updateDashboard()}catch(e){$('ordersTable').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function renderOrders(){const q=($('orderSearch')?.value||'').toLowerCase().trim(),f=$('orderFilter')?.value||'all',list=orders.filter(o=>[o.id,o.customerName,o.phone,o.payment,o.address].join(' ').toLowerCase().includes(q)&& (f==='all'||(o.status||'Pending')===f));if(!list.length)return $('ordersTable').innerHTML='<div class="empty">No orders found.</div>';$('ordersTable').innerHTML=`<table><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>${list.map(o=>{const st=o.status||'Pending';return `<tr><td><strong>#${escapeHTML(o.id.slice(0,8))}</strong></td><td>${escapeHTML(o.customerName||'Customer')}<div class="customer-info">${escapeHTML(o.phone||'')}</div></td><td><strong>₦${money(numericTotal(o.total))}</strong></td><td>${escapeHTML(o.payment||o.paymentMethod||'—')}</td><td><span class="status status-${escapeHTML(st)}">${escapeHTML(st)}</span></td><td>${dateOf(o.createdAt)}</td><td><button class="btn" onclick="viewOrder('${o.id}')">View</button></td></tr>`}).join('')}</tbody></table>`}
-function renderRecentOrders(){const box=$('recentOrders'),list=orders.slice(0,5);if(!list.length)return box.innerHTML='<div class="empty">No orders yet.</div>';box.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Customer</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody>${list.map(o=>`<tr><td>${escapeHTML(o.customerName||'Customer')}</td><td>₦${money(numericTotal(o.total))}</td><td><span class="status status-${escapeHTML(o.status||'Pending')}">${escapeHTML(o.status||'Pending')}</span></td><td>${dateOf(o.createdAt)}</td></tr>`).join('')}</tbody></table></div>`}
-function viewOrder(id){const o=orders.find(x=>x.id===id);if(!o)return;const items=normalizeItems(o.items);$('modalTitle').textContent='Order Details';$('modalContent').innerHTML=`<div class="detail"><div class="detail-label">Order ID</div><div class="detail-value">${escapeHTML(o.id)}</div></div><div class="detail"><div class="detail-label">Customer</div><div class="detail-value">${escapeHTML(o.customerName||'—')}</div></div><div class="detail"><div class="detail-label">Phone</div><div class="detail-value">${escapeHTML(o.phone||'—')}</div></div><div class="detail"><div class="detail-label">Address</div><div class="detail-value">${escapeHTML(o.address||'—')}</div></div><div class="detail"><div class="detail-label">Items</div>${items.length?items.map(i=>`<div class="order-item"><span>${escapeHTML(i.name||i.productName||'Product')} × ${Number(i.quantity||i.qty||1)}</span><strong>₦${money(Number(i.price||0)*Number(i.quantity||i.qty||1))}</strong></div>`).join(''):'<div class="detail-value">No item details.</div>'}</div><div class="detail"><div class="detail-label">Total</div><div class="detail-value"><strong style="font-size:20px;color:var(--blue)">₦${money(numericTotal(o.total))}</strong></div></div><div class="detail"><div class="detail-label">Payment</div><div class="detail-value">${escapeHTML(o.payment||o.paymentMethod||'—')}</div></div><div class="detail"><div class="detail-label">Order Status</div><select class="select" onchange="changeOrderStatus('${o.id}',this.value)">${orderStatusOptions(o.status||'Pending')}</select></div><div class="detail"><div class="detail-label">Created</div><div class="detail-value">${dateOf(o.createdAt)}</div></div>`;$('modal').classList.add('show')}
-function orderStatusOptions(cur){return ['Pending','Processing','Shipped','Completed','Cancelled'].map(s=>`<option ${s===cur?'selected':''}>${s}</option>`).join('')}
-async function changeOrderStatus(id,status){try{await db.collection('orders').doc(id).update({status,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});const o=orders.find(x=>x.id===id);if(o)o.status=status;renderOrders();renderRecentOrders();updateDashboard();addNotification('Order Status Changed','An order was updated.','📦',id)}catch(e){alert(friendlyError(e))}}
-async function loadUsers(){try{const s=await db.collection('users').get();users=s.docs.map(d=>({id:d.id,...d.data()}));renderCustomers();renderProfiles();updateDashboard()}catch(e){console.error(e)}}
-async function loadProfiles(){try{const s=await db.collection('profiles').get();profiles=s.docs.map(d=>({id:d.id,...d.data()}));renderCustomers();renderProfiles()}catch(e){console.error(e)}}
-function findProfile(u){return profiles.find(p=>p.uid===u.uid||p.id===u.uid||p.id===u.id)}
-function renderCustomers(){const q=($('customerSearch')?.value||'').toLowerCase().trim(),list=users.filter(u=>String(u.role||'').toLowerCase()!=='admin').filter(u=>{const p=findProfile(u);return [u.name,u.email,p?.fullName,p?.phone].join(' ').toLowerCase().includes(q)});if(!list.length)return $('customersList').innerHTML='<div class="empty">No customers found.</div>';$('customersList').innerHTML=list.map(u=>{const p=findProfile(u),photo=p?.photoURL||p?.photoUrl||u.photoURL||'';return `<div class="customer-row">${photo?`<img class="avatar" src="${escapeHTML(photo)}">`:'<div class="avatar">👤</div>'}<div class="customer-main"><div class="customer-name">${escapeHTML(p?.fullName||u.name||'Customer')}</div><div class="customer-info">${escapeHTML(u.email||'No email')} · ${escapeHTML(p?.phone||'No phone')}</div></div><button class="btn" onclick="viewCustomer('${escapeHTML(u.uid||u.id)}')">View</button></div>`}).join('')}
-function viewCustomer(uid){const u=users.find(x=>x.uid===uid||x.id===uid),p=profiles.find(x=>x.uid===uid||x.id===uid);if(!u)return;$('modalTitle').textContent='Customer Profile';$('modalContent').innerHTML=`<div class="detail"><div class="detail-label">Name</div><div class="detail-value">${escapeHTML(p?.fullName||u.name||'—')}</div></div><div class="detail"><div class="detail-label">Email</div><div class="detail-value">${escapeHTML(u.email||'—')}</div></div><div class="detail"><div class="detail-label">Phone</div><div class="detail-value">${escapeHTML(p?.phone||'—')}</div></div><div class="detail"><div class="detail-label">Address</div><div class="detail-value">${escapeHTML(p?.address||'—')}</div></div><div class="detail"><div class="detail-label">Location</div><div class="detail-value">${escapeHTML([p?.city,p?.area,p?.state,p?.country].filter(Boolean).join(', ')||'—')}</div></div>`;$('modal').classList.add('show')}
-async function loadChats(){try{const s=await db.collection('chats').get();chats=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>timeOf(b.lastMessageAt)-timeOf(a.lastMessageAt));renderChats();updateDashboard()}catch(e){$('chatList').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function renderChats(){if(!chats.length)return $('chatList').innerHTML='<div class="empty">No customer chats yet.</div>';$('chatList').innerHTML=chats.map(c=>`<div class="chat-item ${selectedChatId===c.id?'active':''}" onclick="selectChat('${c.id}')"><div class="chat-item-top"><div class="chat-name">${escapeHTML(c.customerName||'Customer')}</div>${Number(c.unreadForAdmin||0)?`<span class="unread">${Number(c.unreadForAdmin)}</span>`:''}</div><div class="last-message">${escapeHTML(c.lastMessage||'No messages yet')}</div></div>`).join('')}
-async function selectChat(id){selectedChatId=id;const c=chats.find(x=>x.id===id);if(!c)return;renderChats();$('chatCustomerName').textContent=c.customerName||'Customer';$('chatCustomerInfo').textContent='Customer ID: '+(c.customerId||'—');$('chatInput').disabled=false;$('sendChatBtn').disabled=false;listenToMessages(id);$('chatList').classList.remove('mobile-open');$('chatPanel').classList.remove('mobile-hidden');setTimeout(()=>$('chatInput').focus(),100);if(Number(c.unreadForAdmin||0)>0){try{await db.collection('chats').doc(id).update({unreadForAdmin:0});c.unreadForAdmin=0;renderChats();updateDashboard()}catch(e){console.error(e)}}}
-function listenToMessages(chatId){if(messageUnsubscribe)messageUnsubscribe();const box=$('messages');box.innerHTML='<div class="empty">Loading messages...</div>';messageUnsubscribe=db.collection('messages').where('chatId','==',chatId).onSnapshot(s=>{const list=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>timeOf(a.createdAt)-timeOf(b.createdAt));box.innerHTML=list.length?list.map(m=>{const admin=m.senderRole==='admin';return `<div class="message-row ${admin?'admin':'customer'}"><div class="message-bubble ${admin?'admin':'customer'}">${escapeHTML(m.text||'')}${m.imageUrl?`<div style="margin-top:8px"><img src="${escapeHTML(m.imageUrl)}" style="max-width:180px;border-radius:10px"></div>`:''}<span class="message-time">${escapeHTML(m.senderName||'')} · ${dateOf(m.createdAt)}</span></div></div>`}).join(''):'<div class="empty">No messages yet.</div>';box.scrollTop=box.scrollHeight},e=>box.innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`)}
-function autoGrow(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,130)+'px'}function handleChatEnter(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}}
-async function sendMessage(){if(!selectedChatId)return;const input=$('chatInput'),text=input.value.trim(),u=auth.currentUser;if(!text||!u)return;input.disabled=true;try{await db.collection('messages').add({chatId:selectedChatId,senderId:u.uid,senderName:'Danny',senderRole:'admin',text,imageUrl:'',createdAt:firebase.firestore.FieldValue.serverTimestamp(),read:false});await db.collection('chats').doc(selectedChatId).update({lastMessage:text,lastMessageAt:firebase.firestore.FieldValue.serverTimestamp(),unreadForCustomer:firebase.firestore.FieldValue.increment(1),unreadForAdmin:0});input.value='';const c=chats.find(x=>x.id===selectedChatId);if(c)c.lastMessage=text;renderChats()}catch(e){alert(friendlyError(e))}finally{input.disabled=false;input.focus()}}
-async function loadWishlists(){try{const s=await db.collection('wishlists').get();wishlists=s.docs.map(d=>({id:d.id,...d.data()}));renderWishlists()}catch(e){$('wishlistsList').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function renderWishlists(){const b=$('wishlistsList');if(!wishlists.length)return b.innerHTML='<div class="empty">No wishlists found.</div>';b.innerHTML=wishlists.map(w=>{const items=Array.isArray(w.items)?w.items:[];return `<div class="wishlist-card"><strong>Customer Wishlist</strong><div class="customer-info">Customer ID: ${escapeHTML(w.customerId||w.id)} · Saved products: ${items.length}</div><div style="margin-top:9px">${items.length?items.map(i=>'• '+escapeHTML(products.find(p=>p.id===i.productId)?.name||i.name||i.productId||'Unknown')).join('<br>'):'No saved products.'}</div></div>`}).join('')}
-async function loadSettings(){try{const s=await db.collection('settings').limit(1).get();if(s.empty)return;const d=s.docs[0];settingsDocId=d.id;const x=d.data();$('sName').value=x.storeName||'';$('sEmail').value=x.email||'';$('sPhone').value=x.phone||'';$('sWhatsapp').value=x.whatsapp||'';$('sCurrency').value=x.currency||'NGN';$('sLogo').value=x.logoUrl||'';$('sLoginUrl').value=x.loginUrl||'';$('sAddress').value=x.address||'';$('sDescription').value=x.description||''}catch(e){console.error(e)}}
-async function saveSettings(){const data={storeName:$('sName').value.trim(),email:$('sEmail').value.trim(),phone:$('sPhone').value.trim(),whatsapp:$('sWhatsapp').value.trim(),currency:$('sCurrency').value.trim()||'NGN',logoUrl:$('sLogo').value.trim(),loginUrl:$('sLoginUrl').value.trim(),address:$('sAddress').value.trim(),description:$('sDescription').value.trim(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()};const btn=$('saveSettingsBtn');btn.disabled=true;try{if(settingsDocId)await db.collection('settings').doc(settingsDocId).set(data,{merge:true});else{const r=await db.collection('settings').add({...data,createdAt:firebase.firestore.FieldValue.serverTimestamp()});settingsDocId=r.id}$('settingsMessage').className='message success';$('settingsMessage').textContent='Store settings saved successfully.'}catch(e){$('settingsMessage').className='message error';$('settingsMessage').textContent=friendlyError(e)}finally{btn.disabled=false}}
-async function loadAdmins(){try{const s=await db.collection('admins').get();admins=s.docs.map(d=>({id:d.id,...d.data()}));renderAdmins()}catch(e){$('adminsList').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function renderAdmins(){const b=$('adminsList');if(!admins.length)return b.innerHTML='<div class="empty">No administrators found.</div>';b.innerHTML=admins.map(a=>`<div class="customer-row"><div class="avatar">🔐</div><div class="customer-main"><div class="customer-name">${escapeHTML(a.name||'Administrator')}</div><div class="customer-info">${escapeHTML(a.email||'No email')} · Role: ${escapeHTML(a.role||'admin')} · ${a.active===false?'Inactive':'Active'}</div></div></div>`).join('')}
-async function loadProjects(){try{const s=await db.collection('serviceProjects').get();projects=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>timeOf(b.updatedAt||b.createdAt)-timeOf(a.updatedAt||a.createdAt));renderProjects();$('statProjects').textContent=projects.length}catch(e){$('projectsGrid').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function resetProjectForm(){editingProjectId=null;$('prTitle').value='';$('prCategory').value='';$('prDescription').value='';$('prMediaUrl').value='';$('prThumbnailUrl').value='';$('prMediaType').value='Photo';$('prFeatured').value='false';$('prPublished').value='true';$('prRequestEnabled').value='true';$('projectFormTitle').textContent='Add Project';$('saveProjectBtn').textContent='Save Project';$('cancelProjectBtn').classList.add('hidden');$('projectMessage').textContent=''}
-function editProject(id){const p=projects.find(x=>x.id===id);if(!p)return;editingProjectId=id;$('prTitle').value=p.title||p.name||'';$('prCategory').value=p.category||'';$('prDescription').value=p.description||'';$('prMediaUrl').value=p.mediaUrl||p.photoUrl||p.videoUrl||p.image||'';$('prThumbnailUrl').value=p.thumbnailUrl||'';$('prMediaType').value=String(p.mediaType||'Photo').toLowerCase()==='video'?'Video':'Photo';$('prFeatured').value=String(!!(p.Featured??p.featured));$('prPublished').value=String(p.published!==false);$('prRequestEnabled').value=String(p.requestEnabled!==false);$('projectFormTitle').textContent='Edit Project';$('saveProjectBtn').textContent='Save Changes';$('cancelProjectBtn').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
-async function saveProject(){const title=$('prTitle').value.trim(),m=$('projectMessage');if(!title){m.className='message error';m.textContent='Enter a project title.';return}const mediaType=$('prMediaType').value,mediaUrl=$('prMediaUrl').value.trim(),data={title,category:$('prCategory').value.trim(),description:$('prDescription').value.trim(),mediaUrl,thumbnailUrl:$('prThumbnailUrl').value.trim(),mediaType,photoUrl:mediaType==='Photo'?mediaUrl:'',videoUrl:mediaType==='Video'?mediaUrl:'',featured:$('prFeatured').value==='true',published:$('prPublished').value==='true',requestEnabled:$('prRequestEnabled').value==='true',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};const btn=$('saveProjectBtn');btn.disabled=true;try{if(editingProjectId)await db.collection('serviceProjects').doc(editingProjectId).set(data,{merge:true});else await db.collection('serviceProjects').add({...data,createdAt:firebase.firestore.FieldValue.serverTimestamp()});m.className='message success';m.textContent='Project saved successfully.';await loadProjects();if(data.published)addNotification('New Project Published',title,'⚡');setTimeout(resetProjectForm,700)}catch(e){m.className='message error';m.textContent=friendlyError(e)}finally{btn.disabled=false}}
-function renderProjects(){const b=$('projectsGrid');if(!projects.length)return b.innerHTML='<div class="empty">No electrical projects yet.</div>';b.innerHTML=projects.map(p=>{const media=p.mediaType==='video'?p.videoUrl:p.photoUrl||p.image;return `<div class="project-card">${p.mediaType==='video'&&media?`<video class="project-media" src="${escapeHTML(media)}" controls></video>`:`<img class="project-media" src="${escapeHTML(media||'https://via.placeholder.com/600x400?text=Project')}" onerror="this.src='https://via.placeholder.com/600x400?text=Project'">`}<div class="project-title">${escapeHTML(p.title||p.name||'Project')}</div><div class="project-meta">${escapeHTML(p.category||'')} · ${p.published===false?'Unpublished':'Published'}${p.featured?' · ⭐ Featured':''}</div><div class="project-actions" style="margin-top:10px"><button class="btn" onclick="editProject('${p.id}')">Edit</button><button class="btn btn-red" onclick="deleteProject('${p.id}')">Delete</button></div></div>`}).join('')}
-async function deleteProject(id){if(!confirm('Delete this project?'))return;try{await db.collection('serviceProjects').doc(id).delete();await loadProjects()}catch(e){alert(friendlyError(e))}}
-async function loadServices(){try{const s=await db.collection('serviceRequests').get();services=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>timeOf(b.createdAt)-timeOf(a.createdAt));renderServices();updateDashboard()}catch(e){$('servicesTable').innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}}
-function renderServices(){const q=($('serviceSearch')?.value||'').toLowerCase().trim(),f=$('serviceFilter')?.value||'all',list=services.filter(s=>[s.name,s.customerName,s.phone,s.serviceType,s.description,s.address].join(' ').toLowerCase().includes(q)&&(f==='all'||(s.status||'Pending')===f));if(!list.length)return $('servicesTable').innerHTML='<div class="empty">No service requests found.</div>';$('servicesTable').innerHTML=`<table><thead><tr><th>Customer</th><th>Service</th><th>Phone</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>${list.map(s=>`<tr><td>${escapeHTML(s.customerName||'Customer')}</td><td>${escapeHTML(s.serviceType||s.service||'Electrical Service')}</td><td>${escapeHTML(s.phone||'—')}</td><td><span class="status status-${escapeHTML(s.status||'Pending')}">${escapeHTML(s.status||'Pending')}</span></td><td>${dateOf(s.createdAt)}</td><td><button class="btn" onclick="viewService('${s.id}')">View</button></td></tr>`).join('')}</tbody></table>`}
-function viewService(id){const s=services.find(x=>x.id===id);if(!s)return;$('modalTitle').textContent='Service Request';$('modalContent').innerHTML=`<div class="detail"><div class="detail-label">Customer</div><div class="detail-value">${escapeHTML(s.customerName||'—')}</div></div><div class="detail"><div class="detail-label">Phone</div><div class="detail-value">${escapeHTML(s.phone||'—')}</div></div><div class="detail"><div class="detail-label">Service</div><div class="detail-value">${escapeHTML(s.serviceType||s.service||'Electrical Service')}</div></div><div class="detail"><div class="detail-label">Address</div><div class="detail-value">${escapeHTML(s.address||'—')}</div></div><div class="detail"><div class="detail-label">Description</div><div class="detail-value">${escapeHTML(s.description||'—')}</div></div><div class="detail"><div class="detail-label">Status</div><select class="select" onchange="changeServiceStatus('${s.id}',this.value)">${['Pending','Processing','Completed','Cancelled'].map(x=>`<option ${x===(s.status||'Pending')?'selected':''}>${x}</option>`).join('')}</select></div>`;$('modal').classList.add('show')}
-async function changeServiceStatus(id,status){try{await db.collection('serviceRequests').doc(id).update({status,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});const s=services.find(x=>x.id===id);if(s)s.status=status;renderServices();addNotification('Service Request Updated','A service request was updated.','🔧',id)}catch(e){alert(friendlyError(e))}}
-function renderProfiles(){const b=$('profilesList');if(!b)return;const list=users.filter(u=>String(u.role||'').toLowerCase()!=='admin');if(!list.length)return b.innerHTML='<div class="empty">No profiles found.</div>';b.innerHTML=list.map(u=>{const p=findProfile(u);return `<div class="customer-row"><div class="avatar">👤</div><div class="customer-main"><div class="customer-name">${escapeHTML(p?.fullName||u.name||'Customer')}</div><div class="customer-info">${escapeHTML(u.email||'')} · ${escapeHTML(p?.phone||'No phone')}</div></div></div>`}).join('')}
-async function loadNotifications(){try{const s=await db.collection('notifications').orderBy('createdAt','desc').limit(50).get();notifications=s.docs.map(d=>({id:d.id,...d.data()}));renderNotifications()}catch(e){notifications=[];renderNotifications()}}
-function renderNotifications(){const unread=notifications.filter(n=>!n.read).length;$('notificationBadge').textContent=unread;$('notificationBadge').classList.toggle('hidden',unread===0);$('statNotifications').textContent=unread;if(!notifications.length)return $('notificationsList').innerHTML='<div class="empty">No notifications yet.</div>';$('notificationsList').innerHTML=notifications.map(n=>`<div class="notification" style="opacity:${n.read?.6:1}"><div class="nicon">${escapeHTML(n.icon||'🔔')}</div><div><strong>${escapeHTML(n.title||'Notification')}</strong><div>${escapeHTML(n.message||'')}</div><small>${dateOf(n.createdAt)}</small></div></div>`).join('')}
-async function addNotification(title,message,icon='🔔',sourceId=''){try{const q=await db.collection('notifications').where('sourceId','==',sourceId||title+'|'+message).limit(1).get();if(q.empty)await db.collection('notifications').add({title,message,icon,sourceId:sourceId||title+'|'+message,read:false,createdAt:firebase.firestore.FieldValue.serverTimestamp()});loadNotifications()}catch(e){console.warn('Notification write skipped:',e.message)}}
-async function markNotificationsRead(){try{const batch=db.batch();notifications.filter(n=>!n.read).forEach(n=>batch.update(db.collection('notifications').doc(n.id),{read:true}));await batch.commit();await loadNotifications()}catch(e){console.warn(e)}}
-function updateDashboard(){if($('statProducts'))$('statProducts').textContent=products.length;if($('statOrders'))$('statOrders').textContent=orders.length;if($('statCustomers'))$('statCustomers').textContent=users.filter(u=>String(u.role||'').toLowerCase()!=='admin').length;const pending=orders.filter(o=>String(o.status||'Pending').toLowerCase()==='pending').length;$('statPending').textContent=pending;const unread=chats.reduce((a,c)=>a+Number(c.unreadForAdmin||0),0);$('statUnread').textContent=unread;const rev=orders.filter(o=>String(o.status||'').toLowerCase()==='completed').reduce((a,o)=>a+numericTotal(o.total),0);$('dashboardRevenue').textContent='₦'+money(rev);$('statProjects').textContent=projects.length;$('statServices').textContent=services.filter(s=>(s.status||'Pending')==='Pending').length;renderOrderSummary()}
-function renderOrderSummary(){const b=$('orderSummary');const st=['Pending','Processing','Shipped','Completed','Cancelled'];b.innerHTML=st.map(s=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span class="status status-${s}">${s}</span><strong>${orders.filter(o=>(o.status||'Pending')===s).length}</strong></div>`).join('')}
-function closeModal(){$('modal').classList.remove('show')}function closeModalOutside(e){if(e.target.id==='modal')closeModal()}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-function listenRealtime(){db.collection('orders').onSnapshot(s=>{const newIds=s.docChanges().filter(c=>c.type==='added').map(c=>c.doc.id);if(orders.length&&newIds.length)newIds.forEach(id=>addNotification('New Order','A customer placed a new order.','🛒',id));loadOrders()});db.collection('chats').onSnapshot(s=>{const newUnread=s.docs.map(d=>({id:d.id,...d.data()})).filter(c=>Number(c.unreadForAdmin||0)>0);if(newUnread.length)renderChats();loadChats()});db.collection('serviceRequests').onSnapshot(s=>{const ids=s.docChanges().filter(c=>c.type==='added').map(c=>c.doc.id);if(services.length&&ids.length)ids.forEach(id=>addNotification('New Service Request','A customer requested an electrical service.','🔧',id));loadServices()});db.collection('notifications').onSnapshot(()=>loadNotifications())}
-function mobileKeyboardFix(){if(!window.visualViewport)return;const adjust=()=>{const h=window.visualViewport.height;document.documentElement.style.setProperty('--vvh',h+'px');$('messages').style.paddingBottom='15px'};visualViewport.addEventListener('resize',adjust);visualViewport.addEventListener('scroll',adjust);adjust()}
-auth.onAuthStateChanged(async user=>{if(!user){document.body.innerHTML='<div style="display:grid;place-items:center;min-height:100dvh;color:white;padding:30px;text-align:center"><div><h2>Admin sign-in required</h2><p style="color:#94a3b8">Please sign in with an authorized Danny Smart Power administrator account.</p></div></div>';return}try{const a=await db.collection('admins').doc(user.uid).get();const authorized=(user.uid===ADMIN_UID||user.email===ADMIN_EMAIL)||(a.exists&&a.data().active!==false);if(!authorized)throw new Error('This account is not authorized as an administrator.');await Promise.all([loadProducts(),loadOrders(),loadUsers(),loadProfiles(),loadChats(),loadWishlists(),loadSettings(),loadAdmins(),loadProjects(),loadServices(),loadNotifications()]);listenRealtime();mobileKeyboardFix()}catch(e){document.body.innerHTML='<div style="display:grid;place-items:center;min-height:100dvh;color:white;padding:30px;text-align:center"><div><h2>Admin access error</h2><p style="color:#f87171">'+escapeHTML(e.message)+'</p></div></div>'}});
-</script></body></html>
+
+/* =====================================================
+   IMPORTANT:
+   PUT YOUR EXISTING DANNY SMART POWER FIREBASE CONFIG HERE
+===================================================== */
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
+let currentSection = "dashboard";
+let previousSection = "dashboard";
+
+let allProducts = [];
+let allOrders = [];
+
+let currentChatId = null;
+let currentChatCustomer = null;
+
+let chatMessagesUnsubscribe = null;
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHTML(value){
+
+  if(value === null || value === undefined){
+    return "";
+  }
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function formatDate(timestamp){
+
+  if(!timestamp){
+    return "—";
+  }
+
+  try{
+
+    const date = timestamp.toDate
+      ? timestamp.toDate()
+      : new Date(timestamp);
+
+    return date.toLocaleString();
+
+  }catch(error){
+
+    return "—";
+
+  }
+
+}
+
+
+function closeModal(id){
+  document.getElementById(id).classList.remove("show");
+}
+
+
+function openModal(id){
+  document.getElementById(id).classList.add("show");
+}
+
+
+function showError(message){
+
+  alert(message);
+
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+auth.onAuthStateChanged(async user => {
+
+  if(!user){
+
+    document.getElementById("loginScreen").classList.remove("hidden");
+    document.getElementById("adminApp").classList.add("hidden");
+
+    return;
+  }
+
+  try{
+
+    const adminDoc = await db.collection("admins")
+      .doc(user.uid)
+      .get();
+
+    if(!adminDoc.exists){
+
+      await auth.signOut();
+
+      showLoginError(
+        "This account is not registered as an admin."
+      );
+
+      return;
+    }
+
+    const adminData = adminDoc.data();
+
+    if(adminData.active !== true){
+
+      await auth.signOut();
+
+      showLoginError(
+        "This admin account is not active."
+      );
+
+      return;
+    }
+
+    document.getElementById("loginScreen").classList.add("hidden");
+    document.getElementById("adminApp").classList.remove("hidden");
+
+    document.getElementById("adminEmailDisplay").textContent =
+      adminData.email || user.email || "Admin";
+
+    await loadDashboard();
+
+  }catch(error){
+
+    console.error(error);
+
+    showLoginError(
+      "Admin verification failed: " + error.message
+    );
+
+  }
+
+});
+
+
+async function loginAdmin(){
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  if(!email || !password){
+
+    showLoginError("Enter your email and password.");
+
+    return;
+  }
+
+  try{
+
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+  }catch(error){
+
+    showLoginError(error.message);
+
+  }
+
+}
+
+
+function showLoginError(message){
+
+  const box = document.getElementById("loginError");
+
+  box.textContent = message;
+
+  box.classList.remove("hidden");
+
+}
+
+
+async function logoutAdmin(){
+
+  await auth.signOut();
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function openSection(section){
+
+  previousSection = currentSection;
+
+  currentSection = section;
+
+  document.querySelectorAll(".section")
+    .forEach(el => el.classList.remove("active"));
+
+  const target =
+    document.getElementById(section);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  const titles = {
+
+    dashboard:"Dashboard",
+    products:"Products",
+    orders:"Orders",
+    customers:"Customers",
+    chats:"Messages",
+    notifications:"Notifications",
+    projects:"Electrical Projects",
+    requests:"Service Requests",
+    carts:"Carts",
+    wishlists:"Wishlists",
+    admins:"Admins",
+    settings:"Settings"
+
+  };
+
+  document.getElementById("pageTitle").textContent =
+    titles[section] || "Admin";
+
+  document.querySelectorAll(".menu button")
+    .forEach(btn => btn.classList.remove("active"));
+
+  closeSidebar();
+
+  if(section === "dashboard"){
+    loadDashboard();
+  }
+
+  if(section === "products"){
+    loadProducts();
+  }
+
+  if(section === "orders"){
+    loadOrders();
+  }
+
+  if(section === "customers"){
+    loadCustomers();
+  }
+
+  if(section === "chats"){
+    loadChats();
+  }
+
+  if(section === "notifications"){
+    loadNotifications();
+  }
+
+  if(section === "projects"){
+    loadProjects();
+  }
+
+  if(section === "requests"){
+    loadRequests();
+  }
+
+  if(section === "carts"){
+    loadCarts();
+  }
+
+  if(section === "wishlists"){
+    loadWishlists();
+  }
+
+  if(section === "admins"){
+    loadAdmins();
+  }
+
+  if(section === "settings"){
+    loadSettings();
+  }
+
+}
+
+
+function goBack(){
+
+  if(currentSection === "dashboard"){
+
+    return;
+
+  }
+
+  openSection("dashboard");
+
+}
+
+
+function toggleSidebar(){
+
+  document.getElementById("sidebar")
+    .classList.toggle("open");
+
+}
+
+
+function closeSidebar(){
+
+  document.getElementById("sidebar")
+    .classList.remove("open");
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+async function loadDashboard(){
+
+  try{
+
+    const [
+      products,
+      orders,
+      profiles,
+      chats,
+      projects,
+      requests,
+      wishlists
+    ] = await Promise.all([
+
+      db.collection("products").get(),
+      db.collection("orders").get(),
+      db.collection("profiles").get(),
+      db.collection("chats").get(),
+      db.collection("serviceProjects").get(),
+      db.collection("serviceRequests").get(),
+      db.collection("wishlists").get()
+
+    ]);
+
+    document.getElementById("countProducts").textContent =
+      products.size;
+
+    document.getElementById("countOrders").textContent =
+      orders.size;
+
+    document.getElementById("countCustomers").textContent =
+      profiles.size;
+
+    let pending = 0;
+    let unread = 0;
+
+    orders.forEach(doc => {
+
+      const data = doc.data();
+
+      if(
+        String(data.status || "")
+          .toLowerCase() === "pending"
+      ){
+        pending++;
+      }
+
+    });
+
+    chats.forEach(doc => {
+
+      const data = doc.data();
+
+      unread += Number(data.unreadForAdmin || 0);
+
+    });
+
+    document.getElementById("countPending").textContent =
+      pending;
+
+    document.getElementById("countUnread").textContent =
+      unread;
+
+    document.getElementById("countProjects").textContent =
+      projects.size;
+
+    document.getElementById("countRequests").textContent =
+      requests.size;
+
+    document.getElementById("countWishlists").textContent =
+      wishlists.size;
+
+  }catch(error){
+
+    console.error("Dashboard error:",error);
+
+  }
+
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+async function loadProducts(){
+
+  const tbody =
+    document.getElementById("productsTable");
+
+  tbody.innerHTML =
+    `<tr><td colspan="7" class="empty">Loading...</td></tr>`;
+
+  try{
+
+    const snap =
+      await db.collection("products")
+        .orderBy("createdAt","desc")
+        .get();
+
+    allProducts = [];
+
+    snap.forEach(doc => {
+
+      allProducts.push({
+        id:doc.id,
+        ...doc.data()
+      });
+
+    });
+
+    renderProducts(allProducts);
+
+  }catch(error){
+
+    console.error(error);
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="7" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+function renderProducts(products){
+
+  const tbody =
+    document.getElementById("productsTable");
+
+  if(!products.length){
+
+    tbody.innerHTML =
+      `<tr><td colspan="7" class="empty">
+        No products found.
+      </td></tr>`;
+
+    return;
+  }
+
+  tbody.innerHTML = products.map(product => `
+
+    <tr>
+
+      <td>${escapeHTML(product.name)}</td>
+
+      <td>${escapeHTML(product.category)}</td>
+
+      <td>₦${Number(product.price || 0).toLocaleString()}</td>
+
+      <td>${Number(product.stock || 0)}</td>
+
+      <td>
+        <span class="badge ${product.available ? "green":"red"}">
+          ${product.available ? "Yes":"No"}
+        </span>
+      </td>
+
+      <td>
+        <span class="badge ${product.featured ? "blue":"yellow"}">
+          ${product.featured ? "Yes":"No"}
+        </span>
+      </td>
+
+      <td>
+
+        <button
+          class="action-btn"
+          onclick="editProduct('${product.id}')">
+          Edit
+        </button>
+
+        <button
+          class="action-btn danger-btn"
+          onclick="deleteProduct('${product.id}')">
+          Delete
+        </button>
+
+      </td>
+
+    </tr>
+
+  `).join("");
+
+}
+
+
+function filterProducts(){
+
+  const query =
+    document.getElementById("productSearch")
+      .value
+      .toLowerCase();
+
+  const filtered =
+    allProducts.filter(product =>
+
+      String(product.name || "")
+        .toLowerCase()
+        .includes(query)
+
+      ||
+
+      String(product.category || "")
+        .toLowerCase()
+        .includes(query)
+
+  );
+
+  renderProducts(filtered);
+
+}
+
+
+function openProductModal(){
+
+  document.getElementById("productModalTitle")
+    .textContent = "Add Product";
+
+  document.getElementById("productId").value = "";
+
+  document.getElementById("productName").value = "";
+  document.getElementById("productDescription").value = "";
+  document.getElementById("productCategory").value = "";
+  document.getElementById("productColour").value = "";
+  document.getElementById("productImage").value = "";
+  document.getElementById("productPrice").value = "";
+  document.getElementById("productStock").value = 0;
+  document.getElementById("productAvailable").value = "true";
+  document.getElementById("productFeatured").value = "false";
+
+  openModal("productModal");
+
+}
+
+
+function editProduct(id){
+
+  const product =
+    allProducts.find(item => item.id === id);
+
+  if(!product) return;
+
+  document.getElementById("productModalTitle")
+    .textContent = "Edit Product";
+
+  document.getElementById("productId").value = id;
+
+  document.getElementById("productName").value =
+    product.name || "";
+
+  document.getElementById("productDescription").value =
+    product.description || "";
+
+  document.getElementById("productCategory").value =
+    product.category || "";
+
+  document.getElementById("productColour").value =
+    product.colour || "";
+
+  document.getElementById("productImage").value =
+    product.image || "";
+
+  document.getElementById("productPrice").value =
+    product.price || 0;
+
+  document.getElementById("productStock").value =
+    product.stock || 0;
+
+  document.getElementById("productAvailable").value =
+    String(product.available === true);
+
+  document.getElementById("productFeatured").value =
+    String(product.featured === true);
+
+  openModal("productModal");
+
+}
+
+
+async function saveProduct(){
+
+  const id =
+    document.getElementById("productId").value.trim();
+
+  const data = {
+
+    available:
+      document.getElementById("productAvailable").value === "true",
+
+    category:
+      document.getElementById("productCategory").value.trim(),
+
+    colour:
+      document.getElementById("productColour").value.trim(),
+
+    description:
+      document.getElementById("productDescription").value.trim(),
+
+    featured:
+      document.getElementById("productFeatured").value === "true",
+
+    image:
+      document.getElementById("productImage").value.trim(),
+
+    name:
+      document.getElementById("productName").value.trim(),
+
+    price:
+      Number(document.getElementById("productPrice").value || 0),
+
+    stock:
+      Number(document.getElementById("productStock").value || 0),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+  if(!data.name){
+
+    showError("Product name is required.");
+
+    return;
+  }
+
+  try{
+
+    if(id){
+
+      await db.collection("products")
+        .doc(id)
+        .set(data,{merge:true});
+
+    }else{
+
+      data.createdAt =
+        serverTimestamp();
+
+      await db.collection("products")
+        .add(data);
+
+    }
+
+    closeModal("productModal");
+
+    await loadProducts();
+
+    await loadDashboard();
+
+    alert("Product saved successfully.");
+
+  }catch(error){
+
+    console.error(error);
+
+    showError(
+      "Product could not be saved:\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+async function deleteProduct(id){
+
+  if(!confirm("Delete this product?")) return;
+
+  try{
+
+    await db.collection("products")
+      .doc(id)
+      .delete();
+
+    await loadProducts();
+    await loadDashboard();
+
+  }catch(error){
+
+    showError(error.message);
+
+  }
+
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+async function loadOrders(){
+
+  const tbody =
+    document.getElementById("ordersTable");
+
+  tbody.innerHTML =
+    `<tr><td colspan="8" class="empty">Loading...</td></tr>`;
+
+  try{
+
+    const snap =
+      await db.collection("orders")
+        .orderBy("createdAt","desc")
+        .get();
+
+    allOrders = [];
+
+    snap.forEach(doc => {
+
+      allOrders.push({
+        id:doc.id,
+        ...doc.data()
+      });
+
+    });
+
+    tbody.innerHTML = allOrders.map(order => `
+
+      <tr>
+
+        <td>${escapeHTML(order.customerName)}</td>
+
+        <td>${escapeHTML(order.phone)}</td>
+
+        <td>₦${escapeHTML(order.total)}</td>
+
+        <td>${escapeHTML(order.payment)}</td>
+
+        <td>
+          <span class="badge blue">
+            ${escapeHTML(order.paymentStatus)}
+          </span>
+        </td>
+
+        <td>
+          <select
+            onchange="updateOrderStatus('${order.id}',this.value)">
+
+            <option
+              ${order.status === "Pending" ? "selected":""}>
+              Pending
+            </option>
+
+            <option
+              ${order.status === "Processing" ? "selected":""}>
+              Processing
+            </option>
+
+            <option
+              ${order.status === "Shipped" ? "selected":""}>
+              Shipped
+            </option>
+
+            <option
+              ${order.status === "Delivered" ? "selected":""}>
+              Delivered
+            </option>
+
+            <option
+              ${order.status === "Cancelled" ? "selected":""}>
+              Cancelled
+            </option>
+
+          </select>
+        </td>
+
+        <td>${formatDate(order.createdAt)}</td>
+
+        <td>
+          <button
+            class="action-btn"
+            onclick="viewOrder('${order.id}')">
+            View
+          </button>
+        </td>
+
+      </tr>
+
+    `).join("");
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="8" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+async function updateOrderStatus(id,status){
+
+  try{
+
+    await db.collection("orders")
+      .doc(id)
+      .set({
+        status:status,
+        updatedAt:serverTimestamp()
+      },{merge:true});
+
+    await loadDashboard();
+
+  }catch(error){
+
+    showError(error.message);
+
+  }
+
+}
+
+
+function viewOrder(id){
+
+  const order =
+    allOrders.find(item => item.id === id);
+
+  if(!order) return;
+
+  const items =
+    Array.isArray(order.items)
+      ? order.items
+      : [];
+
+  let text =
+    "Customer: " + (order.customerName || "") +
+    "\nPhone: " + (order.phone || "") +
+    "\nAddress: " + (order.address || "") +
+    "\n" + (order.area || "") +
+    ", " + (order.city || "") +
+    "\nPayment: " + (order.payment || "") +
+    "\nPayment Status: " + (order.paymentStatus || "") +
+    "\nDelivery: " + (order.deliveryMethod || "") +
+    "\n\nItems:\n";
+
+  items.forEach(item => {
+
+    text +=
+      "- " +
+      (item.name || "") +
+      " x" +
+      (item.qty || 0) +
+      " = ₦" +
+      Number(item.price || 0).toLocaleString() +
+      "\n";
+
+  });
+
+  alert(text);
+
+}
+
+
+/* =========================
+   CUSTOMERS
+========================= */
+
+async function loadCustomers(){
+
+  const tbody =
+    document.getElementById("customersTable");
+
+  tbody.innerHTML =
+    `<tr><td colspan="6" class="empty">Loading...</td></tr>`;
+
+  try{
+
+    const snap =
+      await db.collection("profiles")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="6" class="empty">
+          No customer profiles found.
+        </td></tr>`;
+
+      return;
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.fullName)}</td>
+
+          <td>${escapeHTML(data.email)}</td>
+
+          <td>${escapeHTML(data.phone)}</td>
+
+          <td>${escapeHTML(data.city)}</td>
+
+          <td>${escapeHTML(data.state)}</td>
+
+          <td>${escapeHTML(data.country)}</td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="6" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+/* =========================
+   CHATS
+========================= */
+
+async function loadChats(){
+
+  const list =
+    document.getElementById("chatList");
+
+  list.innerHTML =
+    `<div class="empty">Loading chats...</div>`;
+
+  try{
+
+    const snap =
+      await db.collection("chats")
+        .orderBy("updatedAt","desc")
+        .get();
+
+    if(snap.empty){
+
+      list.innerHTML =
+        `<div class="empty">No chats yet.</div>`;
+
+      return;
+    }
+
+    list.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      const unread =
+        Number(data.unreadForAdmin || 0);
+
+      const div =
+        document.createElement("div");
+
+      div.className = "chat-user";
+
+      div.dataset.chatId = doc.id;
+
+      div.innerHTML = `
+
+        <div class="chat-user-name">
+
+          ${escapeHTML(
+            data.customerName || "Customer"
+          )}
+
+          ${
+            unread
+              ? `<span class="badge blue">${unread}</span>`
+              : ""
+          }
+
+        </div>
+
+        <div class="chat-user-message">
+          ${escapeHTML(data.lastMessage || "No message")}
+        </div>
+
+      `;
+
+      div.onclick = () => {
+
+        document.querySelectorAll(".chat-user")
+          .forEach(el => el.classList.remove("selected"));
+
+        div.classList.add("selected");
+
+        selectChat(
+          doc.id,
+          data
+        );
+
+      };
+
+      list.appendChild(div);
+
+    });
+
+  }catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+      `<div class="empty">
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+function selectChat(chatId,data){
+
+  currentChatId = chatId;
+
+  currentChatCustomer = data;
+
+  document.getElementById("chatHeader").innerHTML =
+    `
+      <strong>
+        ${escapeHTML(data.customerName || "Customer")}
+      </strong>
+      <br>
+      <small style="color:#94a3b8;">
+        ${escapeHTML(data.customerEmail || "")}
+      </small>
+    `;
+
+  document.getElementById("chatMessageInput").disabled = false;
+  document.getElementById("sendChatButton").disabled = false;
+
+  document.getElementById("chatMessageInput").focus();
+
+  loadMessages(chatId);
+
+  db.collection("chats")
+    .doc(chatId)
+    .set({
+      unreadForAdmin:0
+    },{merge:true})
+    .catch(console.error);
+
+}
+
+
+function loadMessages(chatId){
+
+  const box =
+    document.getElementById("messagesBox");
+
+  box.innerHTML =
+    `<div class="empty">Loading messages...</div>`;
+
+  if(chatMessagesUnsubscribe){
+
+    chatMessagesUnsubscribe();
+
+  }
+
+  chatMessagesUnsubscribe =
+    db.collection("messages")
+      .where("chatId","==",chatId)
+      .orderBy("createdAt","asc")
+      .onSnapshot(snapshot => {
+
+        if(snapshot.empty){
+
+          box.innerHTML =
+            `<div class="empty">
+              No messages yet.
+            </div>`;
+
+          return;
+        }
+
+        box.innerHTML = "";
+
+        snapshot.forEach(doc => {
+
+          const data = doc.data();
+
+          const isAdmin =
+            data.senderRole === "admin" ||
+            data.senderRole === "Admin" ||
+            data.senderId === auth.currentUser?.uid;
+
+          const row =
+            document.createElement("div");
+
+          row.className =
+            "message-row " +
+            (isAdmin ? "admin" : "customer");
+
+          row.innerHTML = `
+
+            <div class="message-bubble">
+
+              <div>
+                ${escapeHTML(data.text || "")}
+              </div>
+
+              ${
+                data.imageUrl
+                ?
+                `<div style="margin-top:8px;">
+                  <img
+                    src="${escapeHTML(data.imageUrl)}"
+                    style="max-width:220px;border-radius:10px;">
+                </div>`
+                :
+                ""
+              }
+
+              <div class="message-meta">
+
+                ${escapeHTML(
+                  data.senderName || ""
+                )}
+
+                ·
+
+                ${formatDate(data.createdAt)}
+
+              </div>
+
+            </div>
+
+          `;
+
+          box.appendChild(row);
+
+        });
+
+        box.scrollTop =
+          box.scrollHeight;
+
+      },error => {
+
+        console.error(error);
+
+        box.innerHTML =
+          `<div class="empty">
+            ${escapeHTML(error.message)}
+          </div>`;
+
+      });
+
+}
+
+
+document.getElementById("chatMessageInput")
+  .addEventListener("keydown",event => {
+
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      sendAdminMessage();
+
+    }
+
+  });
+
+
+async function sendAdminMessage(){
+
+  if(!currentChatId){
+
+    showError("Select a customer first.");
+
+    return;
+  }
+
+  const input =
+    document.getElementById("chatMessageInput");
+
+  const text =
+    input.value.trim();
+
+  if(!text){
+
+    return;
+
+  }
+
+  const user =
+    auth.currentUser;
+
+  if(!user){
+
+    showError("You are not logged in.");
+
+    return;
+
+  }
+
+  try{
+
+    input.disabled = true;
+
+    await db.collection("messages").add({
+
+      chatId:currentChatId,
+
+      createdAt:serverTimestamp(),
+
+      imageUrl:"",
+
+      read:false,
+
+      senderId:user.uid,
+
+      senderName:
+        user.email || "Danny Smart Power",
+
+      senderRole:"admin",
+
+      text:text
+
+    });
+
+    await db.collection("chats")
+      .doc(currentChatId)
+      .set({
+
+        adminTyping:false,
+
+        lastMessage:text,
+
+        lastMessageAt:serverTimestamp(),
+
+        unreadForCustomer:
+          firebase.firestore.FieldValue.increment(1),
+
+        updatedAt:serverTimestamp()
+
+      },{merge:true});
+
+    input.value = "";
+
+    input.focus();
+
+  }catch(error){
+
+    console.error(error);
+
+    showError(
+      "Message could not be sent:\n\n" +
+      error.message
+    );
+
+  }finally{
+
+    input.disabled = false;
+
+  }
+
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+async function loadNotifications(){
+
+  const tbody =
+    document.getElementById("notificationsTable");
+
+  try{
+
+    const snap =
+      await db.collection("notifications")
+        .orderBy("createdAt","desc")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="6" class="empty">
+          No notifications.
+        </td></tr>`;
+
+      return;
+
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.title)}</td>
+
+          <td>${escapeHTML(data.message)}</td>
+
+          <td>${escapeHTML(data.icon)}</td>
+
+          <td>
+            <span class="badge ${data.read ? "green":"yellow"}">
+              ${data.read ? "Read":"Unread"}
+            </span>
+          </td>
+
+          <td>${formatDate(data.createdAt)}</td>
+
+          <td>
+
+            <button
+              class="action-btn danger-btn"
+              onclick="deleteNotification('${doc.id}')">
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="6" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+function openNotificationModal(){
+
+  document.getElementById("notificationTitle").value = "";
+  document.getElementById("notificationMessage").value = "";
+  document.getElementById("notificationIcon").value = "🔔";
+  document.getElementById("notificationSourceId").value = "";
+
+  openModal("notificationModal");
+
+}
+
+
+async function saveNotification(){
+
+  const title =
+    document.getElementById("notificationTitle")
+      .value.trim();
+
+  const message =
+    document.getElementById("notificationMessage")
+      .value.trim();
+
+  const icon =
+    document.getElementById("notificationIcon")
+      .value.trim();
+
+  const sourceId =
+    document.getElementById("notificationSourceId")
+      .value.trim();
+
+  if(!title || !message){
+
+    showError("Title and message are required.");
+
+    return;
+
+  }
+
+  try{
+
+    await db.collection("notifications").add({
+
+      createdAt:serverTimestamp(),
+
+      icon:icon || "🔔",
+
+      message:message,
+
+      read:false,
+
+      sourceId:sourceId,
+
+      title:title
+
+    });
+
+    closeModal("notificationModal");
+
+    await loadNotifications();
+
+    alert("Notification saved.");
+
+  }catch(error){
+
+    showError(error.message);
+
+  }
+
+}
+
+
+async function deleteNotification(id){
+
+  if(!confirm("Delete notification?")) return;
+
+  try{
+
+    await db.collection("notifications")
+      .doc(id)
+      .delete();
+
+    loadNotifications();
+
+  }catch(error){
+
+    showError(error.message);
+
+  }
+
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+async function loadProjects(){
+
+  const tbody =
+    document.getElementById("projectsTable");
+
+  tbody.innerHTML =
+    `<tr><td colspan="7" class="empty">Loading...</td></tr>`;
+
+  try{
+
+    const snap =
+      await db.collection("serviceProjects")
+        .orderBy("createdAt","desc")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="7" class="empty">
+          No projects found.
+        </td></tr>`;
+
+      return;
+
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.title)}</td>
+
+          <td>${escapeHTML(data.category)}</td>
+
+          <td>${escapeHTML(data.medisType)}</td>
+
+          <td>
+            <span class="badge ${data.Featured ? "blue":"yellow"}">
+              ${data.Featured ? "Yes":"No"}
+            </span>
+          </td>
+
+          <td>
+            <span class="badge ${data.published ? "green":"red"}">
+              ${data.published ? "Yes":"No"}
+            </span>
+          </td>
+
+          <td>
+            <span class="badge ${data.requestEnabled ? "green":"red"}">
+              ${data.requestEnabled ? "Yes":"No"}
+            </span>
+          </td>
+
+          <td>
+
+            <button
+              class="action-btn"
+              onclick="editProject('${doc.id}')">
+              Edit
+            </button>
+
+            <button
+              class="action-btn danger-btn"
+              onclick="deleteProject('${doc.id}')">
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    console.error(error);
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="7" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+let projectCache = {};
+
+
+function openProjectModal(){
+
+  document.getElementById("projectModalTitle")
+    .textContent = "Add Project";
+
+  document.getElementById("projectId").value = "";
+
+  document.getElementById("projectTitle").value = "";
+  document.getElementById("projectCategory").value = "";
+  document.getElementById("projectDescription").value = "";
+  document.getElementById("projectMediaUrl").value = "";
+  document.getElementById("projectMediaType").value = "Photo";
+  document.getElementById("projectThumbnail").value = "";
+  document.getElementById("projectFeatured").value = "false";
+  document.getElementById("projectPublished").value = "true";
+  document.getElementById("projectRequestEnabled").value = "true";
+
+  openModal("projectModal");
+
+}
+
+
+async function editProject(id){
+
+  try{
+
+    const snap =
+      await db.collection("serviceProjects")
+        .doc(id)
+        .get();
+
+    if(!snap.exists){
+
+      showError("Project not found.");
+
+      return;
+
+    }
+
+    const data = snap.data();
+
+    document.getElementById("projectModalTitle")
+      .textContent = "Edit Project";
+
+    document.getElementById("projectId").value = id;
+
+    document.getElementById("projectTitle").value =
+      data.title || "";
+
+    document.getElementById("projectCategory").value =
+      data.category || "";
+
+    document.getElementById("projectDescription").value =
+      data.description || "";
+
+    document.getElementById("projectMediaUrl").value =
+      data.mediaUrl || "";
+
+    document.getElementById("projectMediaType").value =
+      data.medisType || "Photo";
+
+    document.getElementById("projectThumbnail").value =
+      data.thumbnailUrl || "";
+
+    document.getElementById("projectFeatured").value =
+      String(data.Featured === true);
+
+    document.getElementById("projectPublished").value =
+      String(data.published === true);
+
+    document.getElementById("projectRequestEnabled").value =
+      String(data.requestEnabled === true);
+
+    openModal("projectModal");
+
+  }catch(error){
+
+    showError(error.message);
+
+  }
+
+}
+
+
+async function saveProject(){
+
+  const id =
+    document.getElementById("projectId")
+      .value.trim();
+
+  /*
+    IMPORTANT:
+    Your Firestore field is exactly:
+    Featured
+    with capital F.
+  */
+
+  const data = {
+
+    Featured:
+      document.getElementById("projectFeatured")
+        .value === "true",
+
+    category:
+      document.getElementById("projectCategory")
+        .value.trim(),
+
+    description:
+      document.getElementById("projectDescription")
+        .value.trim(),
+
+    mediaUrl:
+      document.getElementById("projectMediaUrl")
+        .value.trim(),
+
+    medisType:
+      document.getElementById("projectMediaType")
+        .value,
+
+    published:
+      document.getElementById("projectPublished")
+        .value === "true",
+
+    requestEnabled:
+      document.getElementById("projectRequestEnabled")
+        .value === "true",
+
+    thumbnailUrl:
+      document.getElementById("projectThumbnail")
+        .value.trim(),
+
+    title:
+      document.getElementById("projectTitle")
+        .value.trim(),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+  if(!data.title){
+
+    showError("Project title is required.");
+
+    return;
+
+  }
+
+  try{
+
+    if(id){
+
+      await db.collection("serviceProjects")
+        .doc(id)
+        .set(data,{merge:true});
+
+    }else{
+
+      data.createdAt =
+        serverTimestamp();
+
+      await db.collection("serviceProjects")
+        .add(data);
+
+    }
+
+    closeModal("projectModal");
+
+    await loadProjects();
+    await loadDashboard();
+
+    alert("Electrical project saved successfully.");
+
+  }catch(error){
+
+    console.error(error);
+
+    showError(
+      "Electrical project could not be saved:\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+async function deleteProject(id){
+
+  if(!confirm("Delete this project?")) return;
+
+  try{
+
+    await db.collection("serviceProjects")
+      .doc(id)
+      .delete();
+
+    await loadProjects();
+    await loadDashboard();
+
+  }catch(error){
+
+    showError(error.message);
+
+  }
+
+}
+
+
+/* =========================
+   SERVICE REQUESTS
+========================= */
+
+async function loadRequests(){
+
+  const tbody =
+    document.getElementById("requestsTable");
+
+  try{
+
+    const snap =
+      await db.collection("serviceRequests")
+        .orderBy("createdAt","desc")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="6" class="empty">
+          No service requests.
+        </td></tr>`;
+
+      return;
+
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.customerName)}</td>
+
+          <td>${escapeHTML(data.phone)}</td>
+
+          <td>${escapeHTML(data.serviceType)}</td>
+
+          <td>${escapeHTML(data.location)}</td>
+
+          <td>${escapeHTML(data.description)}</td>
+
+          <td>${formatDate(data.createdAt)}</td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="6" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+/* =========================
+   CARTS
+========================= */
+
+async function loadCarts(){
+
+  const tbody =
+    document.getElementById("cartsTable");
+
+  try{
+
+    const snap =
+      await db.collection("carts")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="3" class="empty">
+          No carts found.
+        </td></tr>`;
+
+      return;
+
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      const items =
+        Array.isArray(data.items)
+          ? data.items
+          : [];
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.userId || doc.id)}</td>
+
+          <td>${items.length}</td>
+
+          <td>${formatDate(data.updatedAt)}</td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="3" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+/* =========================
+   WISHLISTS
+========================= */
+
+async function loadWishlists(){
+
+  const tbody =
+    document.getElementById("wishlistsTable");
+
+  try{
+
+    const snap =
+      await db.collection("wishlists")
+        .orderBy("addedAt","desc")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="4" class="empty">
+          No wishlist items.
+        </td></tr>`;
+
+      return;
+
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.customerId)}</td>
+
+          <td>${escapeHTML(data.name)}</td>
+
+          <td>${escapeHTML(data.productId)}</td>
+
+          <td>${formatDate(data.addedAt)}</td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="4" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+/* =========================
+   ADMINS
+========================= */
+
+async function loadAdmins(){
+
+  const tbody =
+    document.getElementById("adminsTable");
+
+  try{
+
+    const snap =
+      await db.collection("admins")
+        .get();
+
+    if(snap.empty){
+
+      tbody.innerHTML =
+        `<tr><td colspan="5" class="empty">
+          No admins.
+        </td></tr>`;
+
+      return;
+
+    }
+
+    tbody.innerHTML = "";
+
+    snap.forEach(doc => {
+
+      const data = doc.data();
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(data.name)}</td>
+
+          <td>${escapeHTML(data.email)}</td>
+
+          <td>${escapeHTML(data.role)}</td>
+
+          <td>
+            <span class="badge ${data.active ? "green":"red"}">
+              ${data.active ? "Active":"Inactive"}
+            </span>
+          </td>
+
+          <td>${escapeHTML(data.uid || doc.id)}</td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }catch(error){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="5" class="empty">
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>`;
+
+  }
+
+}
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+async function loadSettings(){
+
+  try{
+
+    const snap =
+      await db.collection("settings")
+        .doc("store")
+        .get();
+
+    if(!snap.exists){
+
+      /*
+        If your settings document has another ID,
+        the code below will also search the collection.
+      */
+
+      const query =
+        await db.collection("settings")
+          .limit(1)
+          .get();
+
+      if(query.empty){
+
+        return;
+
+      }
+
+      fillSettings(query.docs[0].data());
+
+      return;
+
+    }
+
+    fillSettings(snap.data());
+
+  }catch(error){
+
+    showSettingsMessage(
+      "Could not load settings: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+function fillSettings(data){
+
+  document.getElementById("setStoreName").value =
+    data.storeName || "";
+
+  document.getElementById("setDescription").value =
+    data.description || "";
+
+  document.getElementById("setEmail").value =
+    data.email || "";
+
+  document.getElementById("setPhone").value =
+    data.phone || "";
+
+  /*
+    Your collection contains:
+    whatsapp
+    and also a second "whatsapp " with a space.
+
+    We use the normal "whatsapp" field.
+  */
+
+  document.getElementById("setWhatsapp").value =
+    data.whatsapp || data["whatsapp "] || "";
+
+  document.getElementById("setAddress").value =
+    data.address || "";
+
+  document.getElementById("setCurrency").value =
+    data.currency || "NGN";
+
+  document.getElementById("setLogoUrl").value =
+    data.logoUrl || "";
+
+  document.getElementById("setLoginUrl").value =
+    data.loginUrl || "";
+
+}
+
+
+async function saveSettings(){
+
+  const messageBox =
+    document.getElementById("settingsMessage");
+
+  messageBox.classList.add("hidden");
+
+  const data = {
+
+    address:
+      document.getElementById("setAddress")
+        .value.trim(),
+
+    currency:
+      document.getElementById("setCurrency")
+        .value.trim(),
+
+    description:
+      document.getElementById("setDescription")
+        .value.trim(),
+
+    email:
+      document.getElementById("setEmail")
+        .value.trim(),
+
+    loginUrl:
+      document.getElementById("setLoginUrl")
+        .value.trim(),
+
+    logoUrl:
+      document.getElementById("setLogoUrl")
+        .value.trim(),
+
+    phone:
+      document.getElementById("setPhone")
+        .value.trim(),
+
+    storeName:
+      document.getElementById("setStoreName")
+        .value.trim(),
+
+    updatedAt:
+      serverTimestamp(),
+
+    whatsapp:
+      document.getElementById("setWhatsapp")
+        .value.trim()
+
+  };
+
+  try{
+
+    /*
+      IMPORTANT:
+      We intentionally use setDoc with merge.
+
+      This means the settings document is created
+      if it does not exist, instead of failing.
+    */
+
+    await db.collection("settings")
+      .doc("store")
+      .set(data,{merge:true});
+
+    messageBox.textContent =
+      "Settings saved successfully.";
+
+    messageBox.style.background =
+      "#064e3b";
+
+    messageBox.style.borderColor =
+      "#047857";
+
+    messageBox.style.color =
+      "#86efac";
+
+    messageBox.classList.remove("hidden");
+
+  }catch(error){
+
+    console.error(error);
+
+    messageBox.textContent =
+      "Settings could not be saved: " +
+      error.message;
+
+    messageBox.style.background =
+      "#3f1111";
+
+    messageBox.style.borderColor =
+      "#7f1d1d";
+
+    messageBox.style.color =
+      "#fca5a5";
+
+    messageBox.classList.remove("hidden");
+
+  }
+
+}
+
+
+function showSettingsMessage(message){
+
+  const box =
+    document.getElementById("settingsMessage");
+
+  box.textContent = message;
+
+  box.classList.remove("hidden");
+
+}
+
+
+/* =========================
+   CLOSE MODALS WHEN CLICKING
+   OUTSIDE
+========================= */
+
+document.querySelectorAll(".modal")
+  .forEach(modal => {
+
+    modal.addEventListener("click",event => {
+
+      if(event.target === modal){
+
+        modal.classList.remove("show");
+
+      }
+
+    });
+
+  });
+
+
+/* =========================
+   INITIAL
+========================= */
+
+console.log(
+  "Danny Smart Power Admin loaded."
+);
+
+</script>
+
+</body>
+</html>
