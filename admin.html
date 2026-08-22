@@ -2719,70 +2719,86 @@ $("adminLoginForm").addEventListener(
     button.disabled=true;
     button.textContent="Signing in...";
 
-    try{
+    try(
 
-      const credential =
-        await auth.signInWithEmailAndPassword(
-          email,
-          password
-        );
+  const credential =
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
 
-      const user =
-        credential.user;
+  const user = credential.user;
 
-      if(user.uid!==ADMIN_UID){
+  console.log("AUTH USER:", user);
+  console.log("AUTH UID:", user.uid);
+  console.log("EXPECTED UID:", ADMIN_UID);
+  console.log("PROJECT ID:", firebase.app().options.projectId);
 
-        await auth.signOut();
+  if (user.uid !== ADMIN_UID) {
 
-        throw new Error(
-          "This Firebase account does not have the authorized admin UID."
-        );
-      }
+    await auth.signOut();
 
-      const adminDoc =
-        await db
-          .collection("admins")
-          .doc(ADMIN_UID)
-          .get();
-
-      if(
-        adminDoc.exists &&
-        adminDoc.data().active===false
-      ){
-
-        await auth.signOut();
-
-        throw new Error(
-          "This administrator account is inactive."
-        );
-      }
-
-      message.className=
-        "login-message login-success";
-
-      message.textContent=
-        "Admin verified. Opening Admin Center...";
-
-      showAdminApp();
-
-    }catch(error){
-
-      message.className=
-        "login-message login-error";
-
-      message.textContent=
-        friendlyError(error);
-
-    }finally{
-
-      button.disabled=false;
-      button.textContent=
-        "Sign In to Admin Center";
-    }
-
+    throw new Error(
+      "Wrong admin UID. Firebase returned: " + user.uid
+    );
   }
-);
 
+  // Refresh the Firebase authentication token
+  // before Firestore checks the security rules.
+  await user.getIdToken(true);
+
+  console.log("Firebase authentication confirmed.");
+
+  const adminDoc =
+    await db
+      .collection("admins")
+      .doc(ADMIN_UID)
+      .get();
+
+  console.log(
+    "ADMIN DOCUMENT EXISTS:",
+    adminDoc.exists
+  );
+
+  if (
+    adminDoc.exists &&
+    adminDoc.data().active === false
+  ) {
+
+    await auth.signOut();
+
+    throw new Error(
+      "This administrator account is inactive."
+    );
+  }
+
+  message.className =
+    "login-message login-success";
+
+  message.textContent =
+    "Admin verified. Opening Admin Center...";
+
+  showAdminApp();
+
+} catch (error) {
+
+  console.error("ADMIN LOGIN ERROR:", error);
+  console.error("ERROR CODE:", error.code);
+  console.error("ERROR MESSAGE:", error.message);
+
+  message.className =
+    "login-message login-error";
+
+  message.textContent =
+    friendlyError(error);
+
+} finally {
+
+  button.disabled = false;
+
+  button.textContent =
+    "Sign In to Admin Center";
+}
 
 /* =========================================================
    SHOW ADMIN
