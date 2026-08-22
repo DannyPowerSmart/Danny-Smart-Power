@@ -2,54 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
-<title>Danny Smart Power — Admin Control Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+<title>Danny Smart Power — Admin Center</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
 :root{
   --bg:#020617;
-  --panel:#0f172a;
-  --panel2:#111c31;
-  --panel3:#162238;
-  --border:#26354d;
-  --text:#f8fafc;
-  --muted:#94a3b8;
+  --bg2:#030b16;
+  --panel:#071423;
+  --panel2:#0b1b2e;
+  --panel3:#0f2238;
+  --header:#020617;
+  --text:#e8f1fb;
+  --muted:#8fa4bb;
   --blue:#38bdf8;
-  --blue2:#0ea5e9;
+  --blue2:#0284c7;
   --green:#22c55e;
   --red:#ef4444;
   --yellow:#f59e0b;
-  --purple:#a78bfa;
+  --border:#1d344d;
+  --shadow:0 14px 35px rgba(0,0,0,.30);
 }
 
-html,
-body{
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
   min-height:100%;
-  background:var(--bg)!important;
+  background:#020617!important;
   color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-body{
-  overflow-x:hidden;
+body,*{
+  scrollbar-color:#29425c #020617;
 }
 
-button,
-input,
-textarea,
-select{
+button,input,select,textarea{
   font:inherit;
 }
 
 button{
   cursor:pointer;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 .hidden{
@@ -60,269 +61,296 @@ button{
    LOGIN
 ========================= */
 
-#loginScreen{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at top,#10243d 0%,#020617 48%,#000 100%);
+#adminGate{
+  min-height:100dvh;
+  background:#020617;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   padding:20px;
 }
 
-.login-box{
-  width:100%;
-  max-width:430px;
-  background:rgba(15,23,42,.98);
+.login-card{
+  width:min(430px,100%);
+  background:#071423;
   border:1px solid var(--border);
-  border-radius:24px;
-  padding:30px 24px;
-  box-shadow:0 25px 80px rgba(0,0,0,.55);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:var(--shadow);
 }
 
 .login-logo{
-  width:76px;
-  height:76px;
+  width:72px;
+  height:72px;
   border-radius:20px;
-  background:#020617;
-  border:1px solid var(--blue);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  margin:0 auto 18px;
-  box-shadow:0 0 30px rgba(56,189,248,.12);
+  display:grid;
+  place-items:center;
+  margin:0 auto 16px;
+  background:#08243b;
+  border:1px solid #16476b;
+  color:var(--blue);
+  font-size:34px;
 }
 
-.login-box h1{
+.login-card h1{
   text-align:center;
-  font-size:24px;
-  margin-bottom:7px;
+  margin:0;
+  font-size:23px;
 }
 
-.login-box .sub{
+.login-subtitle{
   text-align:center;
   color:var(--muted);
+  margin:7px 0 22px;
   font-size:13px;
-  margin-bottom:25px;
 }
 
-.field{
-  margin-bottom:15px;
-}
-
-.field label{
+.login-label{
   display:block;
   color:#cbd5e1;
-  font-size:13px;
-  margin-bottom:7px;
+  font-size:12px;
+  font-weight:800;
+  margin:0 0 6px;
 }
 
-input,
-textarea,
-select{
+.login-input{
   width:100%;
-  background:#071121!important;
+  padding:13px;
+  background:#030d19!important;
   color:#fff!important;
   border:1px solid var(--border);
   border-radius:11px;
-  padding:12px;
   outline:none;
+  margin-bottom:14px;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
+.login-input:focus{
   border-color:var(--blue);
-  box-shadow:0 0 0 2px rgba(56,189,248,.08);
 }
 
-textarea{
-  resize:vertical;
-  min-height:100px;
-}
-
-.primary{
+.login-btn{
   width:100%;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
   border:0;
-  color:#00111c;
-  font-weight:800;
   border-radius:11px;
   padding:13px;
+  background:var(--blue2);
+  color:#fff;
+  font-weight:900;
 }
 
-.login-error{
-  margin-top:14px;
-  background:rgba(239,68,68,.12);
-  border:1px solid rgba(239,68,68,.3);
-  color:#fca5a5;
-  border-radius:10px;
-  padding:11px;
+.login-message{
+  min-height:20px;
+  margin-top:12px;
+  text-align:center;
   font-size:13px;
 }
+
+.login-error{color:#f87171}
+.login-success{color:#4ade80}
 
 /* =========================
    APP
 ========================= */
 
-#app{
-  min-height:100vh;
-  background:var(--bg)!important;
+.app{
+  min-height:100dvh;
+  background:#020617;
 }
 
 .topbar{
-  height:68px;
+  height:64px;
+  background:#020617!important;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 16px;
   position:sticky;
   top:0;
   z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:0 15px;
-  background:#020617!important;
-  border-bottom:1px solid var(--border);
 }
 
 .brand{
+  font-weight:950;
+  letter-spacing:.4px;
+  line-height:1.05;
+}
+
+.brand small{
+  display:block;
+  color:var(--blue);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.menu-btn,
+.icon-btn{
+  border:1px solid var(--border);
+  background:#071423!important;
+  color:#fff;
+  border-radius:10px;
+  width:42px;
+  height:42px;
+}
+
+.top-actions{
+  margin-left:auto;
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  position:relative;
+}
+
+.badge{
+  position:absolute;
+  right:-4px;
+  top:-5px;
+  background:var(--red);
+  color:#fff;
+  border-radius:99px;
+  min-width:18px;
+  height:18px;
+  padding:0 5px;
+  font-size:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.layout{
+  display:flex;
+  min-height:calc(100dvh - 64px);
+  background:#020617!important;
+}
+
+.sidebar{
+  width:250px;
+  background:#020617!important;
+  border-right:1px solid var(--border);
+  padding:16px 12px;
+  position:fixed;
+  top:64px;
+  bottom:0;
+  overflow:auto;
+  z-index:90;
+}
+
+.sidebar h4{
+  color:#64748b;
+  font-size:10px;
+  margin:18px 10px 8px;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+}
+
+.nav{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent!important;
+  color:#cbd5e1;
+  padding:12px;
+  border-radius:10px;
+  margin:2px 0;
+}
+
+.nav:hover,
+.nav.active{
+  background:#10243b!important;
+  color:#fff;
+}
+
+.nav.active{
+  box-shadow:inset 3px 0 var(--blue);
+}
+
+.sidebar-back{
+  display:none;
+  width:100%;
+  margin-bottom:10px;
+}
+
+main{
+  margin-left:250px;
+  width:calc(100% - 250px);
+  padding:22px;
+  max-width:1600px;
+  background:#020617!important;
+}
+
+.page{
+  display:none;
+  background:#020617!important;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.page-head-left{
   display:flex;
   align-items:center;
   gap:10px;
   min-width:0;
 }
 
-.brand-logo{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  background:#071121;
-  border:1px solid var(--blue);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.brand-name{
-  font-weight:800;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.brand-name small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:500;
-}
-
-.menu-btn{
-  width:43px;
-  height:43px;
-  border:1px solid var(--border);
-  background:#0b1526;
-  color:#fff;
-  border-radius:12px;
-  font-size:20px;
-}
-
-.layout{
-  display:flex;
-  min-height:calc(100vh - 68px);
-}
-
-.sidebar{
-  width:260px;
-  flex:none;
-  background:#050d1a!important;
-  border-right:1px solid var(--border);
-  padding:15px;
-  position:fixed;
-  left:0;
-  top:68px;
-  bottom:0;
-  overflow-y:auto;
-  z-index:90;
-  transform:translateX(0);
-  transition:.25s;
-}
-
-.sidebar-title{
-  color:var(--muted);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin:8px 8px 10px;
-}
-
-.nav{
-  display:grid;
-  gap:6px;
-}
-
-.nav button{
-  width:100%;
-  border:1px solid transparent;
-  background:transparent;
-  color:#cbd5e1;
-  padding:11px 12px;
-  border-radius:10px;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.nav button:hover,
-.nav button.active{
-  background:#0d1b2e;
-  border-color:var(--border);
-  color:#fff;
-}
-
-.main{
-  width:100%;
-  margin-left:260px;
-  padding:20px;
-}
-
-.mobile-overlay{
-  display:none;
-}
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
-
-.page-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.page-head h2{
-  font-size:24px;
-}
-
-.page-head p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
+.page-head h1{
+  margin:0;
+  font-size:25px;
 }
 
 .back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
   border:1px solid var(--border);
-  background:#0b1526;
+  background:#10243a!important;
   color:#fff;
-  border-radius:10px;
-  padding:10px 13px;
+  border-radius:9px;
+  padding:9px 13px;
+  font-weight:800;
+}
+
+.btn:hover{
+  filter:brightness(1.12);
+}
+
+.btn-blue{
+  background:#0284c7!important;
+  border-color:#0284c7;
+}
+
+.btn-green{
+  background:#15803d!important;
+  border-color:#15803d;
+}
+
+.btn-red{
+  background:#b91c1c!important;
+  border-color:#b91c1c;
+}
+
+.btn-yellow{
+  background:#a16207!important;
+  border-color:#a16207;
 }
 
 /* =========================
@@ -335,154 +363,462 @@ textarea{
   gap:14px;
 }
 
-.dash-card{
-  min-height:145px;
+.stat{
+  background:#071423!important;
   border:1px solid var(--border);
-  border-radius:18px;
-  background:linear-gradient(145deg,#0f1b2d,#091221);
+  border-radius:16px;
   padding:18px;
+  min-height:130px;
+  box-shadow:var(--shadow);
   cursor:pointer;
-  transition:.2s;
+  transition:.18s;
 }
 
-.dash-card:hover{
+.stat:hover{
   transform:translateY(-2px);
-  border-color:#38516f;
+  border-color:#356082;
 }
 
-.dash-icon{
-  font-size:27px;
-  margin-bottom:18px;
+.stat .ico{
+  font-size:25px;
 }
 
-.dash-title{
+.stat .label{
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
+  margin-top:12px;
 }
 
-.dash-number{
-  font-size:29px;
-  font-weight:800;
-  margin-top:5px;
+.stat strong{
+  display:block;
+  font-size:27px;
+  margin-top:4px;
 }
 
 /* =========================
-   TOOLBAR / CARDS
+   CARDS / FORMS
 ========================= */
+
+.card{
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
 
 .toolbar{
   display:flex;
   flex-wrap:wrap;
-  gap:9px;
-  margin-bottom:15px;
+  gap:10px;
+  margin-bottom:14px;
 }
 
-.toolbar input{
-  flex:1;
-  min-width:200px;
-}
-
-.btn{
+.input,
+.select,
+.textarea{
+  width:100%;
+  background:#030d19!important;
+  color:#fff!important;
   border:1px solid var(--border);
-  background:#0b1526;
-  color:#fff;
-  padding:10px 13px;
   border-radius:10px;
+  padding:11px 12px;
+  outline:none;
 }
 
-.btn.blue{
-  background:#0ea5e9;
-  color:#00111c;
-  border-color:#0ea5e9;
+.input:focus,
+.select:focus,
+.textarea:focus{
+  border-color:var(--blue);
+}
+
+.textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.search{
+  max-width:380px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.label{
+  display:block;
+  color:#cbd5e1;
+  font-size:12px;
   font-weight:800;
+  margin:0 0 6px;
 }
 
-.btn.green{
-  background:#166534;
-  border-color:#15803d;
+.message{
+  margin-top:10px;
+  font-size:13px;
+  min-height:18px;
 }
 
-.btn.red{
-  background:#45151a;
-  border-color:#7f1d1d;
-}
+.success{color:#4ade80}
+.error{color:#f87171}
+.muted{color:var(--muted)}
 
-.btn.yellow{
-  background:#422b08;
-  border-color:#854d0e;
-}
+/* =========================
+   PRODUCTS / PROJECTS
+========================= */
 
-.btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-.cards{
+.product-grid,
+.project-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:13px;
+  gap:14px;
 }
 
-.card{
-  background:#0b1526!important;
+.product-card,
+.project-card{
+  background:#071423!important;
   border:1px solid var(--border);
-  border-radius:15px;
-  padding:15px;
+  border-radius:14px;
+  padding:13px;
 }
 
-.card h3{
-  font-size:16px;
-  margin-bottom:8px;
-}
-
-.card p{
-  color:#cbd5e1;
-  font-size:13px;
-  line-height:1.55;
-}
-
-.card small{
-  color:var(--muted);
-}
-
-.product-image{
+.product-image,
+.project-media{
   width:100%;
   height:180px;
   object-fit:cover;
-  border-radius:11px;
-  background:#020617;
-  margin-bottom:11px;
+  border-radius:10px;
+  background:#030b15!important;
+}
+
+.product-name,
+.project-title{
+  font-weight:900;
+  margin-top:10px;
+}
+
+.product-category,
+.project-meta{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.product-price{
+  font-weight:950;
+  color:var(--blue);
+  margin-top:8px;
+}
+
+.product-meta{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.product-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px;
+}
+
+th,
+td{
+  text-align:left;
+  padding:11px 9px;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+
+th{
+  color:#94a3b8;
+  font-size:11px;
+  text-transform:uppercase;
 }
 
 .status{
-  display:inline-flex;
+  display:inline-block;
   padding:4px 8px;
   border-radius:999px;
-  font-size:11px;
-  margin-top:8px;
-  background:#172033;
+  font-size:10px;
+  font-weight:900;
+  background:#334155;
 }
 
-.status.green{
-  color:#86efac;
-  background:rgba(34,197,94,.12);
-}
-
-.status.red{
-  color:#fca5a5;
-  background:rgba(239,68,68,.12);
-}
-
-.status.yellow{
+.status-Pending{
+  background:#78350f;
   color:#fde68a;
-  background:rgba(245,158,11,.12);
 }
 
-.card-actions{
+.status-Processing{
+  background:#164e63;
+  color:#a5f3fc;
+}
+
+.status-Shipped{
+  background:#1e3a8a;
+  color:#bfdbfe;
+}
+
+.status-Completed{
+  background:#14532d;
+  color:#bbf7d0;
+}
+
+.status-Cancelled{
+  background:#7f1d1d;
+  color:#fecaca;
+}
+
+.empty{
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:12px;
+}
+
+/* =========================
+   CUSTOMERS
+========================= */
+
+.customer-row{
   display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:13px;
+  align-items:center;
+  gap:12px;
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:13px;
+  margin-bottom:9px;
+}
+
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#12263c!important;
+  display:grid;
+  place-items:center;
+  flex:none;
+}
+
+.customer-main{
+  flex:1;
+}
+
+.customer-name{
+  font-weight:900;
+}
+
+.customer-info{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:300px minmax(0,1fr);
+  height:calc(100dvh - 135px);
+  min-height:500px;
+  background:#020617!important;
+}
+
+.chat-list{
+  border-right:1px solid var(--border);
+  overflow:auto;
+  background:#050f1b!important;
+}
+
+.chat-item{
+  padding:13px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  background:#050f1b!important;
+}
+
+.chat-item:hover,
+.chat-item.active{
+  background:#10243b!important;
+}
+
+.chat-item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.chat-name{
+  font-weight:900;
+}
+
+.last-message{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.unread{
+  background:var(--red);
+  border-radius:999px;
+  padding:2px 6px;
+  font-size:10px;
+}
+
+.chat-panel{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:0;
+  background:#020617!important;
+}
+
+.chat-head{
+  padding:12px;
+  border-bottom:1px solid var(--border);
+  background:#071423!important;
+}
+
+.messages{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  padding:15px;
+  background:#030b15!important;
+  overscroll-behavior:contain;
+}
+
+.message-row{
+  display:flex;
+  width:100%;
+  margin:8px 0;
+}
+
+.message-row.admin{
+  justify-content:flex-end;
+}
+
+.message-row.customer{
+  justify-content:flex-start;
+}
+
+.message-bubble{
+  max-width:78%;
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:13px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.message-bubble.admin{
+  background:#075985!important;
+  border-bottom-right-radius:4px;
+}
+
+.message-bubble.customer{
+  background:#1e293b!important;
+  border-bottom-left-radius:4px;
+}
+
+.message-time{
+  display:block;
+  font-size:9px;
+  color:#cbd5e1;
+  opacity:.75;
+  margin-top:5px;
+}
+
+.chat-compose{
+  display:flex;
+  align-items:flex-end;
+  gap:8px;
+  padding:10px;
+  background:#071423!important;
+  border-top:1px solid var(--border);
+  padding-bottom:max(10px,env(safe-area-inset-bottom));
+  position:relative;
+  z-index:5;
+}
+
+.chat-compose textarea{
+  min-height:45px;
+  max-height:130px;
+  resize:none;
+  flex:1;
+  background:#030d19!important;
+  color:#fff!important;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:11px 12px;
+  outline:none;
+}
+
+.chat-compose textarea:focus{
+  border-color:var(--blue);
+}
+
+.chat-send{
+  height:45px;
+  min-width:78px;
+}
+
+.mobile-chat-back{
+  display:none;
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification{
+  display:flex;
+  gap:12px;
+  margin-bottom:9px;
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:13px;
+}
+
+.notification .nicon{
+  font-size:21px;
+}
+
+.notification small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
 }
 
 /* =========================
@@ -492,12 +828,12 @@ textarea{
 .modal{
   position:fixed;
   inset:0;
-  z-index:500;
-  background:rgba(0,0,0,.72);
+  background:rgba(0,0,0,.76);
   display:none;
   align-items:center;
   justify-content:center;
   padding:15px;
+  z-index:200;
 }
 
 .modal.show{
@@ -505,271 +841,63 @@ textarea{
 }
 
 .modal-box{
-  width:100%;
-  max-width:700px;
-  max-height:92vh;
-  overflow:auto;
-  background:#0b1526!important;
+  background:#071423!important;
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
+  border-radius:16px;
+  width:min(700px,100%);
+  max-height:90dvh;
+  overflow:auto;
+  padding:18px;
 }
 
 .modal-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:10px;
-  margin-bottom:18px;
-}
-
-.close{
-  width:38px;
-  height:38px;
-  border-radius:10px;
-  background:#111c31;
-  border:1px solid var(--border);
-  color:#fff;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:13px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.check{
-  display:flex;
   align-items:center;
-  gap:9px;
 }
 
-.check input{
-  width:auto;
-}
-
-/* =========================
-   CHAT
-========================= */
-
-.chat-layout{
-  display:grid;
-  grid-template-columns:320px 1fr;
-  height:calc(100vh - 145px);
-  min-height:520px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  overflow:hidden;
-  background:#071121;
-}
-
-.chat-list{
-  border-right:1px solid var(--border);
-  overflow-y:auto;
-  background:#050d1a;
-}
-
-.chat-item{
-  padding:13px;
-  border-bottom:1px solid rgba(38,53,77,.6);
-  cursor:pointer;
-}
-
-.chat-item:hover,
-.chat-item.active{
-  background:#0d1b2e;
-}
-
-.chat-item strong{
-  display:block;
-  margin-bottom:4px;
-}
-
-.chat-item small{
-  color:var(--muted);
-}
-
-.chat-window{
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-}
-
-.chat-head{
-  min-height:65px;
-  padding:11px 14px;
+.detail{
+  padding:10px 0;
   border-bottom:1px solid var(--border);
-  background:#091525;
 }
 
-.chat-head strong{
-  display:block;
-}
-
-.chat-head small{
-  color:var(--muted);
-}
-
-.messages{
-  flex:1;
-  overflow-y:auto;
-  padding:16px;
-  background:
-    radial-gradient(circle at center,#0b1728 0%,#050d1a 70%);
-}
-
-.message-row{
-  display:flex;
-  margin-bottom:10px;
-}
-
-.message-row.customer{
-  justify-content:flex-start;
-}
-
-.message-row.admin{
-  justify-content:flex-end;
-}
-
-.message-bubble{
-  max-width:min(75%,430px);
-  padding:10px 12px;
-  border-radius:15px;
-  line-height:1.45;
-  font-size:14px;
-  word-break:break-word;
-}
-
-.customer .message-bubble{
-  background:#172338;
-  border:1px solid #26354d;
-  border-bottom-left-radius:4px;
-}
-
-.admin .message-bubble{
-  background:#075985;
-  border:1px solid #0e7490;
-  border-bottom-right-radius:4px;
-}
-
-.message-time{
-  display:block;
-  margin-top:4px;
-  font-size:9px;
-  opacity:.65;
-}
-
-.message-image{
-  max-width:220px;
-  max-height:220px;
-  border-radius:10px;
-  display:block;
-  margin-bottom:5px;
-}
-
-.chat-compose{
-  padding:10px;
-  border-top:1px solid var(--border);
-  display:flex;
-  gap:8px;
-  background:#050d1a;
-}
-
-.chat-compose textarea{
-  min-height:45px;
-  max-height:120px;
-  resize:none;
-  flex:1;
-}
-
-.send-btn{
-  width:52px;
-  border:0;
-  border-radius:11px;
-  background:#0ea5e9;
-  color:#00111c;
+.detail-label{
+  font-size:10px;
+  color:#64748b;
+  text-transform:uppercase;
   font-weight:900;
 }
 
-/* =========================
-   TABLE
-========================= */
+.detail-value{
+  margin-top:4px;
+  white-space:pre-wrap;
+}
 
-.table-wrap{
-  width:100%;
-  overflow:auto;
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px;
   border:1px solid var(--border);
-  border-radius:14px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:750px;
-}
-
-th,
-td{
-  padding:12px;
-  border-bottom:1px solid var(--border);
-  text-align:left;
-  font-size:13px;
-}
-
-th{
-  color:#94a3b8;
-  background:#071121;
-}
-
-td{
-  color:#e2e8f0;
+  border-radius:9px;
+  margin-top:8px;
+  background:#030d19!important;
 }
 
 /* =========================
-   TOAST
+   OVERLAY
 ========================= */
 
-#toast{
+.overlay{
+  display:none;
   position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:9999;
-  max-width:350px;
-  padding:13px 15px;
-  border-radius:12px;
-  background:#0f172a;
-  border:1px solid var(--border);
-  box-shadow:0 15px 40px rgba(0,0,0,.45);
-  transform:translateY(130px);
-  opacity:0;
-  transition:.25s;
+  inset:64px 0 0;
+  background:rgba(0,0,0,.58);
+  z-index:80;
 }
 
-#toast.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-#toast.success{
-  border-color:#15803d;
-}
-
-#toast.error{
-  border-color:#991b1b;
-}
-
-/* =========================
-   LOADING
-========================= */
-
-.loading{
-  text-align:center;
-  padding:35px;
-  color:var(--muted);
+.overlay.show{
+  display:block;
 }
 
 /* =========================
@@ -778,56 +906,48 @@ td{
 
 @media(max-width:1100px){
   .dashboard-grid{
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
 
-  .cards{
-    grid-template-columns:repeat(2,1fr);
+  .product-grid,
+  .project-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
 }
 
-@media(max-width:800px){
+@media(max-width:760px){
 
   .sidebar{
     transform:translateX(-100%);
-    box-shadow:20px 0 50px rgba(0,0,0,.5);
+    transition:.2s;
   }
 
   .sidebar.open{
     transform:translateX(0);
   }
 
-  .mobile-overlay{
-    position:fixed;
-    inset:68px 0 0;
-    background:rgba(0,0,0,.6);
-    z-index:80;
-  }
-
-  .mobile-overlay.show{
+  .sidebar-back{
     display:block;
   }
 
-  .main{
+  main{
     margin-left:0;
+    width:100%;
     padding:14px;
   }
 
   .dashboard-grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
   }
 
-  .cards{
-    grid-template-columns:1fr;
+  .stat{
+    padding:13px;
+    min-height:105px;
   }
 
-  .chat-layout{
-    grid-template-columns:1fr;
-    height:calc(100vh - 145px);
-  }
-
-  .chat-list{
-    display:none;
+  .stat strong{
+    font-size:21px;
   }
 
   .form-grid{
@@ -837,48 +957,73 @@ td{
   .full{
     grid-column:auto;
   }
-}
 
-@media(max-width:500px){
-
-  .brand-name{
-    font-size:13px;
+  .product-grid,
+  .project-grid{
+    grid-template-columns:1fr;
   }
 
-  .dashboard-grid{
-    grid-template-columns:1fr 1fr;
-    gap:9px;
+  .chat-layout{
+    grid-template-columns:1fr;
+    height:calc(100dvh - 118px);
   }
 
-  .dash-card{
-    min-height:120px;
-    padding:13px;
+  .chat-list{
+    display:none;
   }
 
-  .dash-number{
-    font-size:24px;
+  .chat-list.mobile-open{
+    display:block;
   }
 
-  .page-head{
-    align-items:flex-start;
+  .chat-panel.mobile-hidden{
+    display:none;
   }
 
-  .page-head h2{
-    font-size:20px;
-  }
-
-  .toolbar{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-  }
-
-  .toolbar input{
-    grid-column:1/-1;
-    min-width:0;
+  .mobile-chat-back{
+    display:inline-flex;
   }
 
   .message-bubble{
-    max-width:82%;
+    max-width:88%;
+  }
+
+  .page-head h1{
+    font-size:21px;
+  }
+
+  .topbar{
+    padding:0 10px;
+  }
+
+  .brand{
+    font-size:13px;
+  }
+}
+
+@media(max-width:420px){
+  .dashboard-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat .ico{
+    font-size:21px;
+  }
+
+  .stat .label{
+    font-size:11px;
+  }
+
+  .stat strong{
+    font-size:19px;
+  }
+
+  .chat-compose{
+    padding:7px;
+  }
+
+  .chat-send{
+    min-width:65px;
   }
 }
 </style>
@@ -886,51 +1031,59 @@ td{
 
 <body>
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- =========================================================
+     ADMIN LOGIN GATE
+========================================================= -->
 
-<div id="loginScreen">
+<div id="adminGate">
 
-  <div class="login-box">
+  <div class="login-card">
 
     <div class="login-logo">⚡</div>
 
     <h1>Danny Smart Power</h1>
 
-    <div class="sub">
-      Secure Administrator Control Center
+    <div class="login-subtitle">
+      Secure Administrator Center
     </div>
 
-    <form id="loginForm">
+    <form id="adminLoginForm">
 
-      <div class="field">
-        <label>Admin Email</label>
-        <input
-          id="loginEmail"
-          type="email"
-          autocomplete="username"
-          placeholder="Admin email"
-          required
-        >
-      </div>
+      <label class="login-label">
+        Admin Email
+      </label>
 
-      <div class="field">
-        <label>Password</label>
-        <input
-          id="loginPassword"
-          type="password"
-          autocomplete="current-password"
-          placeholder="Admin password"
-          required
-        >
-      </div>
+      <input
+        id="adminEmailInput"
+        class="login-input"
+        type="email"
+        autocomplete="username"
+        value="dannysmartpower@gmail.com"
+        required
+      >
 
-      <button class="primary" type="submit">
-        🔐 Login to Admin
+      <label class="login-label">
+        Admin Password
+      </label>
+
+      <input
+        id="adminPasswordInput"
+        class="login-input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter admin password"
+        required
+      >
+
+      <button
+        id="adminLoginBtn"
+        class="login-btn"
+        type="submit"
+      >
+        Sign In to Admin Center
       </button>
 
-      <div id="loginError" class="login-error hidden"></div>
+      <div id="loginMessage" class="login-message"></div>
 
     </form>
 
@@ -939,889 +1092,1414 @@ td{
 </div>
 
 
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
+<!-- =========================================================
+     ADMIN APPLICATION
+========================================================= -->
 
-<div id="app" class="hidden">
+<div id="adminApp" class="app hidden">
 
-  <header class="topbar">
+<header class="topbar">
 
-    <div class="brand">
+  <button
+    class="menu-btn"
+    id="menuBtn"
+    type="button"
+  >
+    ☰
+  </button>
 
-      <div class="brand-logo">⚡</div>
+  <div class="brand">
+    DANNY SMART POWER
+    <small>ADMIN CENTER</small>
+  </div>
 
-      <div class="brand-name">
-        Danny Smart Power
-        <small>ADMIN CONTROL CENTER</small>
+  <div class="top-actions">
+
+    <button
+      class="icon-btn"
+      onclick="openPage('notifications')"
+      type="button"
+    >
+      🔔
+      <span
+        id="notificationBadge"
+        class="badge hidden"
+      >0</span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<div
+  class="overlay"
+  id="overlay"
+  onclick="toggleSidebar(false)"
+></div>
+
+
+<div class="layout">
+
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <button
+    class="btn sidebar-back"
+    onclick="toggleSidebar(false)"
+    type="button"
+  >
+    ← Close Menu
+  </button>
+
+
+  <h4>Overview</h4>
+
+  <button
+    class="nav active"
+    data-page="dashboard"
+    type="button"
+  >
+    📊 Dashboard
+  </button>
+
+
+  <h4>Store</h4>
+
+  <button
+    class="nav"
+    data-page="products"
+    type="button"
+  >
+    📦 Products
+  </button>
+
+  <button
+    class="nav"
+    data-page="orders"
+    type="button"
+  >
+    🛒 Orders
+  </button>
+
+  <button
+    class="nav"
+    data-page="customers"
+    type="button"
+  >
+    👥 Customers
+  </button>
+
+  <button
+    class="nav"
+    data-page="messages"
+    type="button"
+  >
+    💬 Messages
+  </button>
+
+  <button
+    class="nav"
+    data-page="notifications"
+    type="button"
+  >
+    🔔 Notifications
+  </button>
+
+
+  <h4>Electrical Services</h4>
+
+  <button
+    class="nav"
+    data-page="services"
+    type="button"
+  >
+    🔧 Service Requests
+  </button>
+
+  <button
+    class="nav"
+    data-page="projects"
+    type="button"
+  >
+    ⚡ Electrical Projects
+  </button>
+
+
+  <h4>Customers</h4>
+
+  <button
+    class="nav"
+    data-page="wishlists"
+    type="button"
+  >
+    ❤️ Wishlists
+  </button>
+
+  <button
+    class="nav"
+    data-page="profiles"
+    type="button"
+  >
+    👤 Profiles
+  </button>
+
+
+  <h4>System</h4>
+
+  <button
+    class="nav"
+    data-page="settings"
+    type="button"
+  >
+    ⚙️ Settings
+  </button>
+
+  <button
+    class="nav"
+    data-page="admins"
+    type="button"
+  >
+    🔐 Administrators
+  </button>
+
+  <button
+    class="nav"
+    id="logoutBtn"
+    type="button"
+  >
+    🚪 Sign Out
+  </button>
+
+</aside>
+
+
+<main>
+
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<section
+  id="page-dashboard"
+  class="page active"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <h1>Dashboard</h1>
+
+      <div class="muted">
+        Danny Smart Power control center
       </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-grid">
+
+    <div
+      class="stat"
+      onclick="openPage('products')"
+    >
+      <div class="ico">📦</div>
+      <div class="label">Products</div>
+      <strong id="statProducts">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('orders')"
+    >
+      <div class="ico">🛒</div>
+      <div class="label">Total Orders</div>
+      <strong id="statOrders">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('customers')"
+    >
+      <div class="ico">👥</div>
+      <div class="label">Customers</div>
+      <strong id="statCustomers">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('orders','Pending')"
+    >
+      <div class="ico">⏳</div>
+      <div class="label">Pending Orders</div>
+      <strong id="statPending">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('messages')"
+    >
+      <div class="ico">💬</div>
+      <div class="label">Unread Messages</div>
+      <strong id="statUnread">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('projects')"
+    >
+      <div class="ico">⚡</div>
+      <div class="label">Electrical Projects</div>
+      <strong id="statProjects">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('services')"
+    >
+      <div class="ico">🔧</div>
+      <div class="label">Service Requests</div>
+      <strong id="statServices">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('notifications')"
+    >
+      <div class="ico">🔔</div>
+      <div class="label">Unread Notifications</div>
+      <strong id="statNotifications">0</strong>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>Revenue</h3>
+
+    <strong
+      id="dashboardRevenue"
+      style="font-size:28px;color:var(--blue)"
+    >
+      ₦0
+    </strong>
+
+    <div
+      id="orderSummary"
+      style="margin-top:12px"
+    ></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>Recent Orders</h3>
+
+    <div id="recentOrders"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<section
+  id="page-products"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Products</h1>
 
     </div>
 
     <button
-      class="menu-btn"
-      onclick="toggleMenu()"
-      aria-label="Menu"
-    >☰</button>
-
-  </header>
-
-
-  <div class="mobile-overlay" id="overlay" onclick="closeMenu()"></div>
-
-
-  <aside class="sidebar" id="sidebar">
-
-    <div class="sidebar-title">Control Center</div>
-
-    <div class="nav">
-
-      <button onclick="showSection('dashboard')" id="nav-dashboard">
-        📊 Dashboard
-      </button>
-
-      <button onclick="showSection('products')" id="nav-products">
-        🛒 Products
-      </button>
-
-      <button onclick="showSection('orders')" id="nav-orders">
-        📦 Orders
-      </button>
-
-      <button onclick="showSection('customers')" id="nav-customers">
-        👥 Customers
-      </button>
-
-      <button onclick="showSection('chats')" id="nav-chats">
-        💬 Messages
-      </button>
-
-      <button onclick="showSection('projects')" id="nav-projects">
-        ⚡ Electrical Projects
-      </button>
-
-      <button onclick="showSection('requests')" id="nav-requests">
-        🛠️ Service Requests
-      </button>
-
-      <button onclick="showSection('wishlists')" id="nav-wishlists">
-        ❤️ Wishlists
-      </button>
-
-      <button onclick="showSection('carts')" id="nav-carts">
-        🛍️ Carts
-      </button>
-
-      <button onclick="showSection('notifications')" id="nav-notifications">
-        🔔 Notifications
-      </button>
-
-      <button onclick="showSection('settings')" id="nav-settings">
-        ⚙️ Settings
-      </button>
-
-      <button onclick="showSection('admin')" id="nav-admin">
-        👤 Admin
-      </button>
-
-    </div>
-
-    <div class="sidebar-title" style="margin-top:25px;">
-      Account
-    </div>
-
-    <button class="btn" style="width:100%;" onclick="adminLogout()">
-      🚪 Logout
+      class="btn btn-blue"
+      onclick="resetProductForm()"
+      type="button"
+    >
+      ＋ Add Product
     </button>
-
-  </aside>
-
-
-  <main class="main">
-
-
-    <!-- =================================================
-         DASHBOARD
-    ================================================== -->
-
-    <section id="section-dashboard" class="section active">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Dashboard</h2>
-          <p>Manage Danny Smart Power from one control center.</p>
-        </div>
-
-      </div>
-
-      <div class="dashboard-grid">
-
-        <div class="dash-card" onclick="showSection('products')">
-          <div class="dash-icon">🛒</div>
-          <div class="dash-title">Products</div>
-          <div class="dash-number" id="countProducts">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('orders')">
-          <div class="dash-icon">📦</div>
-          <div class="dash-title">Orders</div>
-          <div class="dash-number" id="countOrders">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('customers')">
-          <div class="dash-icon">👥</div>
-          <div class="dash-title">Customers</div>
-          <div class="dash-number" id="countCustomers">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('orders','pending')">
-          <div class="dash-icon">⏳</div>
-          <div class="dash-title">Pending Orders</div>
-          <div class="dash-number" id="countPending">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('chats')">
-          <div class="dash-icon">💬</div>
-          <div class="dash-title">Unread Messages</div>
-          <div class="dash-number" id="countUnread">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('projects')">
-          <div class="dash-icon">⚡</div>
-          <div class="dash-title">Electrical Projects</div>
-          <div class="dash-number" id="countProjects">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('requests')">
-          <div class="dash-icon">🛠️</div>
-          <div class="dash-title">Service Requests</div>
-          <div class="dash-number" id="countRequests">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('wishlists')">
-          <div class="dash-icon">❤️</div>
-          <div class="dash-title">Wishlists</div>
-          <div class="dash-number" id="countWishlists">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('carts')">
-          <div class="dash-icon">🛍️</div>
-          <div class="dash-title">Active Carts</div>
-          <div class="dash-number" id="countCarts">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('notifications')">
-          <div class="dash-icon">🔔</div>
-          <div class="dash-title">Notifications</div>
-          <div class="dash-number" id="countNotifications">0</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('settings')">
-          <div class="dash-icon">⚙️</div>
-          <div class="dash-title">Store Settings</div>
-          <div class="dash-number">→</div>
-        </div>
-
-        <div class="dash-card" onclick="showSection('admin')">
-          <div class="dash-icon">👤</div>
-          <div class="dash-title">Administrator</div>
-          <div class="dash-number">→</div>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         PRODUCTS
-    ================================================== -->
-
-    <section id="section-products" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Products</h2>
-          <p>Add, edit, delete and control products.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="toolbar">
-
-        <input
-          id="productSearch"
-          placeholder="Search products..."
-          oninput="renderProducts()"
-        >
-
-        <button class="btn blue" onclick="openProductModal()">
-          + Add Product
-        </button>
-
-        <button class="btn" onclick="loadProducts()">
-          🔄 Refresh
-        </button>
-
-      </div>
-
-      <div id="productsGrid" class="cards">
-        <div class="loading">Loading products...</div>
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         ORDERS
-    ================================================== -->
-
-    <section id="section-orders" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Orders</h2>
-          <p>Manage customer orders and payment status.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="toolbar">
-
-        <input
-          id="orderSearch"
-          placeholder="Search customer, phone or order..."
-          oninput="renderOrders()"
-        >
-
-        <select id="orderStatusFilter" onchange="renderOrders()">
-          <option value="">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="confirmed">Confirmed</option>
-          <option value="processing">Processing</option>
-          <option value="shipped">Shipped</option>
-          <option value="delivered">Delivered</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
-
-        <button class="btn" onclick="loadOrders()">
-          🔄 Refresh
-        </button>
-
-      </div>
-
-      <div id="ordersTable"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         CUSTOMERS
-    ================================================== -->
-
-    <section id="section-customers" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Customers</h2>
-          <p>Profiles and registered users.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="toolbar">
-
-        <input
-          id="customerSearch"
-          placeholder="Search customers..."
-          oninput="renderCustomers()"
-        >
-
-        <button class="btn" onclick="loadCustomers()">
-          🔄 Refresh
-        </button>
-
-      </div>
-
-      <div id="customersGrid" class="cards"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         CHATS
-    ================================================== -->
-
-    <section id="section-chats" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Messages</h2>
-          <p>Reply to customers directly.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="chat-layout">
-
-        <div class="chat-list" id="chatList">
-          <div class="loading">Loading chats...</div>
-        </div>
-
-        <div class="chat-window">
-
-          <div class="chat-head" id="chatHead">
-            <strong>Select a conversation</strong>
-            <small>Customer messages will appear here.</small>
-          </div>
-
-          <div class="messages" id="messages">
-            <div class="loading">
-              Select a customer conversation.
-            </div>
-          </div>
-
-          <form class="chat-compose" id="messageForm">
-
-            <textarea
-              id="messageInput"
-              placeholder="Type your reply..."
-              autocomplete="off"
-              rows="1"
-            ></textarea>
-
-            <button class="send-btn" type="submit">
-              ➤
-            </button>
-
-          </form>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         PROJECTS
-    ================================================== -->
-
-    <section id="section-projects" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Electrical Projects</h2>
-          <p>Control projects displayed on the service-project page.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="toolbar">
-
-        <button class="btn blue" onclick="openProjectModal()">
-          + Add Project
-        </button>
-
-        <button class="btn" onclick="loadProjects()">
-          🔄 Refresh
-        </button>
-
-      </div>
-
-      <div id="projectsGrid" class="cards"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         SERVICE REQUESTS
-    ================================================== -->
-
-    <section id="section-requests" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Service Requests</h2>
-          <p>Customer requests for electrical services.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <button class="btn" onclick="loadRequests()" style="margin-bottom:15px;">
-        🔄 Refresh
-      </button>
-
-      <div id="requestsGrid" class="cards"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         WISHLISTS
-    ================================================== -->
-
-    <section id="section-wishlists" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Wishlists</h2>
-          <p>Customer saved products.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <button class="btn" onclick="loadWishlists()" style="margin-bottom:15px;">
-        🔄 Refresh
-      </button>
-
-      <div id="wishlistsTable"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         CARTS
-    ================================================== -->
-
-    <section id="section-carts" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Carts</h2>
-          <p>Customer shopping carts.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <button class="btn" onclick="loadCarts()" style="margin-bottom:15px;">
-        🔄 Refresh
-      </button>
-
-      <div id="cartsGrid" class="cards"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         NOTIFICATIONS
-    ================================================== -->
-
-    <section id="section-notifications" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Notifications</h2>
-          <p>Manage admin notifications.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="toolbar">
-
-        <button class="btn blue" onclick="openNotificationModal()">
-          + Notification
-        </button>
-
-        <button class="btn" onclick="loadNotifications()">
-          🔄 Refresh
-        </button>
-
-      </div>
-
-      <div id="notificationsGrid" class="cards"></div>
-
-    </section>
-
-
-    <!-- =================================================
-         SETTINGS
-    ================================================== -->
-
-    <section id="section-settings" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Store Settings</h2>
-          <p>Control the main store information.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div class="card">
-
-        <form id="settingsForm">
-
-          <div class="form-grid">
-
-            <div class="field">
-              <label>Store Name</label>
-              <input id="setStoreName">
-            </div>
-
-            <div class="field">
-              <label>Currency</label>
-              <input id="setCurrency" placeholder="NGN">
-            </div>
-
-            <div class="field">
-              <label>Email</label>
-              <input id="setEmail" type="email">
-            </div>
-
-            <div class="field">
-              <label>Phone</label>
-              <input id="setPhone">
-            </div>
-
-            <div class="field">
-              <label>WhatsApp</label>
-              <input id="setWhatsapp">
-            </div>
-
-            <div class="field">
-              <label>Login URL</label>
-              <input id="setLoginUrl">
-            </div>
-
-            <div class="field">
-              <label>Logo URL</label>
-              <input id="setLogoUrl">
-            </div>
-
-            <div class="field">
-              <label>Address</label>
-              <input id="setAddress">
-            </div>
-
-            <div class="field full">
-              <label>Description</label>
-              <textarea id="setDescription"></textarea>
-            </div>
-
-          </div>
-
-          <button class="btn blue" type="submit">
-            💾 Save Settings
-          </button>
-
-        </form>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         ADMIN
-    ================================================== -->
-
-    <section id="section-admin" class="section">
-
-      <div class="page-head">
-
-        <div>
-          <h2>Administrator</h2>
-          <p>Authenticated administrator information.</p>
-        </div>
-
-        <button class="back-btn" onclick="showSection('dashboard')">
-          ← Back
-        </button>
-
-      </div>
-
-      <div id="adminInfo" class="card"></div>
-
-    </section>
-
-  </main>
-
-</div>
-
-
-<!-- =====================================================
-     PRODUCT MODAL
-===================================================== -->
-
-<div class="modal" id="productModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <h2 id="productModalTitle">Add Product</h2>
-      <button class="close" onclick="closeModal('productModal')">×</button>
-    </div>
-
-    <form id="productForm">
-
-      <input type="hidden" id="productId">
-
-      <div class="form-grid">
-
-        <div class="field">
-          <label>Name</label>
-          <input id="productName" required>
-        </div>
-
-        <div class="field">
-          <label>Category</label>
-          <input id="productCategory" required>
-        </div>
-
-        <div class="field">
-          <label>Price</label>
-          <input id="productPrice" type="number" min="0" required>
-        </div>
-
-        <div class="field">
-          <label>Stock</label>
-          <input id="productStock" type="number" min="0" required>
-        </div>
-
-        <div class="field">
-          <label>Colour</label>
-          <input id="productColour">
-        </div>
-
-        <div class="field">
-          <label>Image URL</label>
-          <input id="productImage">
-        </div>
-
-        <div class="field full">
-          <label>Description</label>
-          <textarea id="productDescription"></textarea>
-        </div>
-
-        <label class="check">
-          <input id="productAvailable" type="checkbox" checked>
-          Available
-        </label>
-
-        <label class="check">
-          <input id="productFeatured" type="checkbox">
-          Featured
-        </label>
-
-      </div>
-
-      <button class="btn blue" type="submit">
-        💾 Save Product
-      </button>
-
-    </form>
 
   </div>
 
-</div>
+
+  <div class="card">
+
+    <h3 id="productFormTitle">
+      Add New Product
+    </h3>
+
+    <div class="form-grid">
+
+      <div>
+        <label class="label">Product Name</label>
+        <input id="pName" class="input">
+      </div>
 
 
-<!-- =====================================================
-     PROJECT MODAL
-===================================================== -->
+      <div>
+        <label class="label">Price (₦)</label>
+        <input
+          id="pPrice"
+          type="number"
+          min="0"
+          class="input"
+        >
+      </div>
 
-<div class="modal" id="projectModal">
 
-  <div class="modal-box">
+      <div>
+        <label class="label">Category</label>
 
-    <div class="modal-head">
-      <h2 id="projectModalTitle">Add Electrical Project</h2>
-      <button class="close" onclick="closeModal('projectModal')">×</button>
+        <select
+          id="pCategory"
+          class="select"
+        >
+          <option>Solar</option>
+          <option>Lighting</option>
+          <option>Electrical</option>
+          <option>Accessories</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label class="label">Colour</label>
+        <input
+          id="pColour"
+          class="input"
+          placeholder="Black, White, Blue..."
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Stock</label>
+        <input
+          id="pStock"
+          type="number"
+          min="0"
+          class="input"
+          value="0"
+        >
+      </div>
+
+
+      <div class="full">
+        <label class="label">Image URL</label>
+        <input
+          id="pImage"
+          class="input"
+          placeholder="https://..."
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Available</label>
+
+        <select
+          id="pAvailable"
+          class="select"
+        >
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label class="label">Featured</label>
+
+        <select
+          id="pFeatured"
+          class="select"
+        >
+          <option value="false">No</option>
+          <option value="true">Yes</option>
+        </select>
+      </div>
+
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="pDescription"
+          class="textarea"
+        ></textarea>
+
+      </div>
+
     </div>
 
-    <form id="projectForm">
 
-      <input type="hidden" id="projectId">
+    <div style="margin-top:12px">
 
-      <div class="form-grid">
+      <button
+        id="saveProductBtn"
+        class="btn btn-blue"
+        onclick="saveProduct()"
+        type="button"
+      >
+        Add Product
+      </button>
 
-        <div class="field">
-          <label>Title</label>
-          <input id="projectTitle" required>
+      <button
+        id="cancelProductBtn"
+        class="btn hidden"
+        onclick="resetProductForm()"
+        type="button"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+
+    <div
+      id="productMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="productSearch"
+        class="input search"
+        placeholder="Search products..."
+        oninput="renderProducts()"
+      >
+
+    </div>
+
+    <div
+      id="productsGrid"
+      class="product-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ORDERS
+========================================================= -->
+
+<section
+  id="page-orders"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Orders</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="orderSearch"
+        class="input search"
+        placeholder="Search orders..."
+        oninput="renderOrders()"
+      >
+
+      <select
+        id="orderFilter"
+        class="select"
+        style="max-width:190px"
+        onchange="renderOrders()"
+      >
+        <option value="all">All statuses</option>
+        <option>Pending</option>
+        <option>Processing</option>
+        <option>Shipped</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
+      </select>
+
+    </div>
+
+    <div
+      id="ordersTable"
+      class="table-wrap"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CUSTOMERS
+========================================================= -->
+
+<section
+  id="page-customers"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Customers</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <input
+      id="customerSearch"
+      class="input search"
+      placeholder="Search customers..."
+      oninput="renderCustomers()"
+    >
+
+    <div
+      id="customersList"
+      style="margin-top:14px"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     MESSAGES
+========================================================= -->
+
+<section
+  id="page-messages"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <button
+        class="btn mobile-chat-back"
+        onclick="showChatList()"
+        type="button"
+      >
+        ← Chats
+      </button>
+
+      <h1>Admin Chat</h1>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="card"
+    style="padding:0;overflow:hidden"
+  >
+
+    <div class="chat-layout">
+
+      <div
+        id="chatList"
+        class="chat-list"
+      ></div>
+
+
+      <div
+        id="chatPanel"
+        class="chat-panel"
+      >
+
+        <div class="chat-head">
+
+          <strong id="chatCustomerName">
+            Select a customer
+          </strong>
+
+          <div
+            id="chatCustomerInfo"
+            class="muted"
+            style="font-size:11px"
+          ></div>
+
         </div>
 
-        <div class="field">
-          <label>Category</label>
-          <input id="projectCategory">
+
+        <div
+          id="messages"
+          class="messages"
+        >
+
+          <div class="empty">
+            Select a conversation.
+          </div>
+
         </div>
 
-        <div class="field full">
-          <label>Description</label>
-          <textarea id="projectDescription"></textarea>
+
+        <div class="chat-compose">
+
+          <textarea
+            id="chatInput"
+            rows="1"
+            placeholder="Type your reply..."
+            disabled
+            onkeydown="handleChatEnter(event)"
+            oninput="autoGrow(this)"
+          ></textarea>
+
+          <button
+            id="sendChatBtn"
+            class="btn btn-blue chat-send"
+            disabled
+            onclick="sendMessage()"
+            type="button"
+          >
+            Send
+          </button>
+
         </div>
 
-        <div class="field">
-          <label>Media URL</label>
-          <input id="projectMediaUrl">
-        </div>
+      </div>
 
-        <div class="field">
-          <label>Thumbnail URL</label>
-          <input id="projectThumbnailUrl">
-        </div>
+    </div>
 
-        <div class="field">
-          <label>Media Type</label>
-          <select id="projectMediaType">
-            <option value="Photo">Photo</option>
-            <option value="Video">Video</option>
-          </select>
-        </div>
+  </div>
 
-        <label class="check">
-          <input id="projectFeatured" type="checkbox">
+</section>
+
+
+<!-- =========================================================
+     NOTIFICATIONS
+========================================================= -->
+
+<section
+  id="page-notifications"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Notifications</h1>
+
+    </div>
+
+    <button
+      class="btn"
+      onclick="markNotificationsRead()"
+      type="button"
+    >
+      Mark all read
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="notificationsList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ELECTRICAL PROJECTS
+========================================================= -->
+
+<section
+  id="page-projects"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Electrical Projects</h1>
+
+    </div>
+
+    <button
+      class="btn btn-blue"
+      onclick="resetProjectForm()"
+      type="button"
+    >
+      ＋ Add Project
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3 id="projectFormTitle">
+      Add Electrical Project
+    </h3>
+
+
+    <div class="form-grid">
+
+      <div>
+        <label class="label">
+          Project Title
+        </label>
+
+        <input
+          id="prTitle"
+          class="input"
+        >
+      </div>
+
+
+      <div>
+        <label class="label">
+          Category
+        </label>
+
+        <input
+          id="prCategory"
+          class="input"
+          placeholder="Solar, Wiring, Inverter..."
+        >
+      </div>
+
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="prDescription"
+          class="textarea"
+        ></textarea>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Media URL
+        </label>
+
+        <input
+          id="prMediaUrl"
+          class="input"
+          placeholder="Photo or video URL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Thumbnail URL
+        </label>
+
+        <input
+          id="prThumbnailUrl"
+          class="input"
+          placeholder="Thumbnail URL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Media Type
+        </label>
+
+        <select
+          id="prMediaType"
+          class="select"
+        >
+          <option value="Photo">
+            Photo
+          </option>
+
+          <option value="Video">
+            Video
+          </option>
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
           Featured
         </label>
 
-        <label class="check">
-          <input id="projectPublished" type="checkbox" checked>
+        <select
+          id="prFeatured"
+          class="select"
+        >
+          <option value="false">
+            No
+          </option>
+
+          <option value="true">
+            Yes
+          </option>
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
           Published
         </label>
 
-        <label class="check">
-          <input id="projectRequestEnabled" type="checkbox" checked>
-          Request Enabled
-        </label>
+        <select
+          id="prPublished"
+          class="select"
+        >
+          <option value="true">
+            Yes
+          </option>
+
+          <option value="false">
+            No
+          </option>
+        </select>
 
       </div>
 
-      <button class="btn blue" type="submit">
-        💾 Save Project
+
+      <div>
+
+        <label class="label">
+          Request Enabled
+        </label>
+
+        <select
+          id="prRequestEnabled"
+          class="select"
+        >
+          <option value="true">
+            Yes
+          </option>
+
+          <option value="false">
+            No
+          </option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top:12px">
+
+      <button
+        id="saveProjectBtn"
+        class="btn btn-blue"
+        onclick="saveProject()"
+        type="button"
+      >
+        Save Project
       </button>
 
-    </form>
+      <button
+        id="cancelProjectBtn"
+        class="btn hidden"
+        onclick="resetProjectForm()"
+        type="button"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+
+    <div
+      id="projectMessage"
+      class="message"
+    ></div>
 
   </div>
 
+
+  <div class="card">
+
+    <div
+      id="projectsGrid"
+      class="project-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICE REQUESTS
+========================================================= -->
+
+<section
+  id="page-services"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Service Requests</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="serviceSearch"
+        class="input search"
+        placeholder="Search requests..."
+        oninput="renderServices()"
+      >
+
+      <select
+        id="serviceFilter"
+        class="select"
+        style="max-width:190px"
+        onchange="renderServices()"
+      >
+        <option value="all">All</option>
+        <option>Pending</option>
+        <option>Processing</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
+      </select>
+
+    </div>
+
+
+    <div
+      id="servicesTable"
+      class="table-wrap"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     WISHLISTS
+========================================================= -->
+
+<section
+  id="page-wishlists"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Wishlists</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="wishlistsList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROFILES
+========================================================= -->
+
+<section
+  id="page-profiles"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Profiles</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="profilesList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SETTINGS
+========================================================= -->
+
+<section
+  id="page-settings"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Settings</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div>
+        <label class="label">Store Name</label>
+        <input id="sName" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Email</label>
+        <input id="sEmail" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Phone</label>
+        <input id="sPhone" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">WhatsApp</label>
+        <input id="sWhatsapp" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">WhatsApp (alternate field)</label>
+        <input id="sWhatsapp2" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Currency</label>
+        <input
+          id="sCurrency"
+          class="input"
+          value="NGN"
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Logo URL</label>
+        <input id="sLogo" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Login URL</label>
+        <input id="sLoginUrl" class="input">
+      </div>
+
+
+      <div class="full">
+        <label class="label">Address</label>
+        <input id="sAddress" class="input">
+      </div>
+
+
+      <div class="full">
+        <label class="label">Description</label>
+        <textarea
+          id="sDescription"
+          class="textarea"
+        ></textarea>
+      </div>
+
+    </div>
+
+
+    <button
+      id="saveSettingsBtn"
+      class="btn btn-blue"
+      style="margin-top:12px"
+      onclick="saveSettings()"
+      type="button"
+    >
+      Save Settings
+    </button>
+
+
+    <div
+      id="settingsMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADMINISTRATORS
+========================================================= -->
+
+<section
+  id="page-admins"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Administrators</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="adminsList"></div>
+
+  </div>
+
+</section>
+
+
+</main>
+</div>
 </div>
 
 
-<!-- =====================================================
-     NOTIFICATION MODAL
-===================================================== -->
+<!-- =========================================================
+     MODAL
+========================================================= -->
 
-<div class="modal" id="notificationModal">
+<div
+  id="modal"
+  class="modal"
+  onclick="closeModalOutside(event)"
+>
 
   <div class="modal-box">
 
     <div class="modal-head">
-      <h2>New Notification</h2>
-      <button class="close" onclick="closeModal('notificationModal')">×</button>
-    </div>
 
-    <form id="notificationForm">
+      <h2 id="modalTitle">
+        Details
+      </h2>
 
-      <div class="field">
-        <label>Title</label>
-        <input id="notificationTitle" required>
-      </div>
-
-      <div class="field">
-        <label>Message</label>
-        <textarea id="notificationMessage" required></textarea>
-      </div>
-
-      <div class="field">
-        <label>Icon</label>
-        <input id="notificationIcon" value="🔔">
-      </div>
-
-      <div class="field">
-        <label>Source ID</label>
-        <input id="notificationSourceId">
-      </div>
-
-      <button class="btn blue" type="submit">
-        💾 Create Notification
+      <button
+        class="btn"
+        onclick="closeModal()"
+        type="button"
+      >
+        ✕
       </button>
 
-    </form>
+    </div>
+
+    <div id="modalContent"></div>
 
   </div>
 
 </div>
 
 
-<div id="toast"></div>
-
-
-<!-- =====================================================
+<!-- =========================================================
      FIREBASE
-===================================================== -->
+========================================================= -->
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
 
 <script>
 
-/* ======================================================
+/* =========================================================
    FIREBASE CONFIG
-====================================================== */
+========================================================= */
 
-
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-  authDomain: "danny-smart-power.firebaseapp.com",
-  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
-  projectId: "danny-smart-power",
-  storageBucket: "danny-smart-power.firebasestorage.app",
-  messagingSenderId: "649735645158",
-  appId: "1:649735645158:web:cff518b89721a163679827",
-  measurementId: "G-258YKLP5ZS"
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain:"danny-smart-power.firebaseapp.com",
+  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId:"danny-smart-power",
+  storageBucket:"danny-smart-power.firebasestorage.app",
+  messagingSenderId:"649735645158",
+  appId:"1:649735645158:web:cff518b89721a163679827",
+  measurementId:"G-258YKLP5ZS"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -1829,343 +2507,477 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-const ADMIN_EMAIL = "dannysmartpower@gmail.com";
-const ADMIN_UID = "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
+
+/* =========================================================
+   ADMIN AUTHORIZATION
+========================================================= */
+
+const ADMIN_UID =
+  "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
+
+const ADMIN_EMAIL =
+  "dannysmartpower@gmail.com";
 
 
-/* ======================================================
-   GLOBAL STATE
-====================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
-let products = [];
-let orders = [];
-let customers = [];
-let chats = [];
-let projects = [];
-let requests = [];
-let wishlists = [];
-let carts = [];
-let notifications = [];
+let products=[];
+let orders=[];
+let users=[];
+let profiles=[];
+let chats=[];
+let wishlists=[];
+let admins=[];
+let projects=[];
+let services=[];
+let notifications=[];
 
-let currentChatId = null;
-let currentChat = null;
+let editingProductId=null;
+let editingProjectId=null;
+
+let selectedChatId=null;
+let messageUnsubscribe=null;
+
+let settingsDocId=null;
+
+let currentPage="dashboard";
+let previousPage="dashboard";
 
 
-/* ======================================================
-   TOAST
-====================================================== */
+/* =========================================================
+   HELPERS
+========================================================= */
 
-function toast(message,type="success"){
+const $ = id => document.getElementById(id);
 
-  const box = document.getElementById("toast");
-
-  box.textContent = message;
-
-  box.className = "";
-
-  box.classList.add("show",type);
-
-  setTimeout(()=>{
-    box.classList.remove("show",type);
-  },3500);
+function money(value){
+  return Number(value||0).toLocaleString("en-NG");
 }
 
+function numericTotal(value){
 
-/* ======================================================
-   MENU
-====================================================== */
-
-function toggleMenu(){
-
-  document.getElementById("sidebar").classList.toggle("open");
-
-  document.getElementById("overlay").classList.toggle("show");
-}
-
-function closeMenu(){
-
-  document.getElementById("sidebar").classList.remove("open");
-
-  document.getElementById("overlay").classList.remove("show");
-}
-
-
-/* ======================================================
-   NAVIGATION
-====================================================== */
-
-function showSection(name){
-
-  document.querySelectorAll(".section").forEach(section=>{
-    section.classList.remove("active");
-  });
-
-  const section=document.getElementById("section-"+name);
-
-  if(section){
-    section.classList.add("active");
+  if(typeof value==="number"){
+    return value;
   }
 
-  document.querySelectorAll(".nav button").forEach(btn=>{
-    btn.classList.remove("active");
-  });
+  if(typeof value==="string"){
 
-  const nav=document.getElementById("nav-"+name);
+    const n=Number(
+      value
+        .replace(/[₦,\s]/g,"")
+    );
+
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  return 0;
+}
+
+function timeOf(value){
+
+  if(!value) return 0;
+
+  try{
+
+    if(value.toDate){
+      return value.toDate().getTime();
+    }
+
+    if(value.seconds!==undefined){
+      return Number(value.seconds)*1000;
+    }
+
+    const n=new Date(value).getTime();
+
+    return Number.isNaN(n) ? 0 : n;
+
+  }catch{
+    return 0;
+  }
+}
+
+function dateOf(value){
+
+  const t=timeOf(value);
+
+  if(!t) return "—";
+
+  return new Date(t).toLocaleString(
+    "en-NG",
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric",
+      hour:"numeric",
+      minute:"2-digit"
+    }
+  );
+}
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function friendlyError(error){
+
+  if(error?.code==="permission-denied"){
+    return "Permission denied. Check your Firestore Rules.";
+  }
+
+  if(error?.code==="failed-precondition"){
+    return "Firestore needs an index for this query. Check Firebase Console.";
+  }
+
+  if(error?.code==="auth/wrong-password" ||
+     error?.code==="auth/invalid-credential"){
+    return "Incorrect admin email or password.";
+  }
+
+  if(error?.code==="auth/user-not-found"){
+    return "No Firebase account exists for this admin email.";
+  }
+
+  return error?.message || "Something went wrong.";
+}
+
+function normalizeItems(items){
+
+  if(!Array.isArray(items)){
+    return [];
+  }
+
+  return items.map(item => {
+
+    if(typeof item==="string"){
+      return {
+        name:item,
+        qty:1,
+        price:0
+      };
+    }
+
+    return item || {};
+  });
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+$("adminLoginForm").addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    const email =
+      $("adminEmailInput").value.trim();
+
+    const password =
+      $("adminPasswordInput").value;
+
+    const message =
+      $("loginMessage");
+
+    const button =
+      $("adminLoginBtn");
+
+    message.className="login-message";
+    message.textContent="";
+
+    if(email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
+
+      message.className=
+        "login-message login-error";
+
+      message.textContent=
+        "This email is not the authorized Danny Smart Power admin email.";
+
+      return;
+    }
+
+    if(!password){
+
+      message.className=
+        "login-message login-error";
+
+      message.textContent=
+        "Enter the admin password.";
+
+      return;
+    }
+
+    button.disabled=true;
+    button.textContent="Signing in...";
+
+    try{
+
+      const credential =
+        await auth.signInWithEmailAndPassword(
+          email,
+          password
+        );
+
+      const user =
+        credential.user;
+
+      if(user.uid!==ADMIN_UID){
+
+        await auth.signOut();
+
+        throw new Error(
+          "This Firebase account does not have the authorized admin UID."
+        );
+      }
+
+      const adminDoc =
+        await db
+          .collection("admins")
+          .doc(ADMIN_UID)
+          .get();
+
+      if(
+        adminDoc.exists &&
+        adminDoc.data().active===false
+      ){
+
+        await auth.signOut();
+
+        throw new Error(
+          "This administrator account is inactive."
+        );
+      }
+
+      message.className=
+        "login-message login-success";
+
+      message.textContent=
+        "Admin verified. Opening Admin Center...";
+
+      showAdminApp();
+
+    }catch(error){
+
+      message.className=
+        "login-message login-error";
+
+      message.textContent=
+        friendlyError(error);
+
+    }finally{
+
+      button.disabled=false;
+      button.textContent=
+        "Sign In to Admin Center";
+    }
+
+  }
+);
+
+
+/* =========================================================
+   SHOW ADMIN
+========================================================= */
+
+function showAdminApp(){
+
+  $("adminGate").classList.add("hidden");
+  $("adminApp").classList.remove("hidden");
+
+  initializeAdmin();
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+function toggleSidebar(show){
+
+  $("sidebar")
+    .classList
+    .toggle("open",show);
+
+  $("overlay")
+    .classList
+    .toggle("show",show);
+}
+
+$("menuBtn").onclick=()=>{
+
+  toggleSidebar(
+    !$("sidebar")
+      .classList
+      .contains("open")
+  );
+
+};
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function openPage(page,status=null){
+
+  previousPage=currentPage;
+  currentPage=page;
+
+  document
+    .querySelectorAll(".page")
+    .forEach(pageEl =>
+      pageEl.classList.remove("active")
+    );
+
+  document
+    .querySelectorAll(".nav")
+    .forEach(nav =>
+      nav.classList.remove("active")
+    );
+
+  const pageEl =
+    $("page-"+page);
+
+  if(pageEl){
+    pageEl.classList.add("active");
+  }
+
+  const nav =
+    document.querySelector(
+      `.nav[data-page="${page}"]`
+    );
 
   if(nav){
     nav.classList.add("active");
   }
 
-  closeMenu();
+  if(
+    status &&
+    page==="orders"
+  ){
 
-  if(name==="dashboard") loadDashboard();
-  if(name==="products") loadProducts();
-  if(name==="orders") loadOrders();
-  if(name==="customers") loadCustomers();
-  if(name==="chats") loadChats();
-  if(name==="projects") loadProjects();
-  if(name==="requests") loadRequests();
-  if(name==="wishlists") loadWishlists();
-  if(name==="carts") loadCarts();
-  if(name==="notifications") loadNotifications();
-  if(name==="settings") loadSettings();
-  if(name==="admin") loadAdminInfo();
+    $("orderFilter").value=status;
+
+    renderOrders();
+  }
+
+  if(page==="messages"){
+
+    $("chatPanel")
+      .classList
+      .remove("mobile-hidden");
+
+    $("chatList")
+      .classList
+      .remove("mobile-open");
+  }
+
+  toggleSidebar(false);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
+function goBack(){
 
-/* ======================================================
-   FORCE LOGIN EVERY TIME ADMIN OPENS
-====================================================== */
+  if(
+    currentPage==="messages" &&
+    previousPage==="dashboard"
+  ){
 
-let loginReady=false;
-
-auth.signOut().finally(()=>{
-
-  loginReady=true;
-
-  document.getElementById("loginScreen").classList.remove("hidden");
-  document.getElementById("app").classList.add("hidden");
-
-});
-
-
-/* ======================================================
-   LOGIN
-====================================================== */
-
-document.getElementById("loginForm").addEventListener("submit",async e=>{
-
-  e.preventDefault();
-
-  const email=document.getElementById("loginEmail").value.trim();
-  const password=document.getElementById("loginPassword").value;
-
-  const error=document.getElementById("loginError");
-
-  error.classList.add("hidden");
-
-  if(email!==ADMIN_EMAIL){
-
-    error.textContent="This email is not authorized for the Danny Smart Power administrator.";
-
-    error.classList.remove("hidden");
+    openPage("dashboard");
 
     return;
   }
 
-  try{
+  openPage("dashboard");
+}
 
-    const credential=await auth.signInWithEmailAndPassword(
-      email,
-      password
-    );
+function showChatList(){
 
-    const user=credential.user;
+  $("chatList")
+    .classList
+    .add("mobile-open");
 
-    if(
-      user.uid!==ADMIN_UID ||
-      user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()
-    ){
-
-      await auth.signOut();
-
-      throw new Error(
-        "Authenticated account does not match the authorized administrator."
-      );
-    }
-
-    await verifyAdminDocument(user);
-
-    document.getElementById("loginScreen").classList.add("hidden");
-    document.getElementById("app").classList.remove("hidden");
-
-    showSection("dashboard");
-
-    toast("Administrator login successful.");
-
-  }catch(err){
-
-    console.error(err);
-
-    error.textContent=
-      err.message ||
-      "Login failed.";
-
-    error.classList.remove("hidden");
-
-  }
-
-});
-
-
-/* ======================================================
-   VERIFY ADMIN DOCUMENT
-====================================================== */
-
-async function verifyAdminDocument(user){
-
-  const snap=await db
-    .collection("admins")
-    .where("uid","==",ADMIN_UID)
-    .limit(1)
-    .get();
-
-  if(snap.empty){
-
-    throw new Error(
-      "Administrator account is authenticated, but no matching admins document was found."
-    );
-  }
-
-  const admin=snap.docs[0].data();
-
-  if(admin.email!==ADMIN_EMAIL){
-    throw new Error("Admin email in Firestore does not match.");
-  }
-
-  if(admin.uid!==ADMIN_UID){
-    throw new Error("Admin UID in Firestore does not match.");
-  }
-
-  if(admin.active===false){
-    throw new Error("This administrator account is currently inactive.");
-  }
+  $("chatPanel")
+    .classList
+    .add("mobile-hidden");
 }
 
 
-/* ======================================================
-   LOGOUT
-====================================================== */
+document
+  .querySelectorAll(".nav[data-page]")
+  .forEach(button=>{
 
-async function adminLogout(){
+    button.onclick=()=>{
+      openPage(button.dataset.page);
+    };
+
+  });
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutBtn").onclick=async()=>{
+
+  if(messageUnsubscribe){
+    messageUnsubscribe();
+    messageUnsubscribe=null;
+  }
 
   await auth.signOut();
 
-  document.getElementById("app").classList.add("hidden");
-  document.getElementById("loginScreen").classList.remove("hidden");
-
-  document.getElementById("loginPassword").value="";
-
-  toast("Administrator logged out.");
-}
+  location.reload();
+};
 
 
-/* ======================================================
-   DASHBOARD
-====================================================== */
-
-async function loadDashboard(){
-
-  try{
-
-    const collections=[
-      ["products","countProducts"],
-      ["orders","countOrders"],
-      ["profiles","countCustomers"],
-      ["serviceProjects","countProjects"],
-      ["serviceRequests","countRequests"],
-      ["wishlists","countWishlists"],
-      ["carts","countCarts"],
-      ["notifications","countNotifications"]
-    ];
-
-    for(const [collection,id] of collections){
-
-      try{
-
-        const snap=await db.collection(collection).get();
-
-        document.getElementById(id).textContent=snap.size;
-
-      }catch(err){
-
-        document.getElementById(id).textContent="—";
-
-      }
-    }
-
-    try{
-
-      const snap=await db
-        .collection("orders")
-        .where("status","==","pending")
-        .get();
-
-      document.getElementById("countPending").textContent=snap.size;
-
-    }catch(err){
-
-      document.getElementById("countPending").textContent="—";
-    }
-
-    try{
-
-      const snap=await db
-        .collection("chats")
-        .where("unreadForAdmin",">",0)
-        .get();
-
-      document.getElementById("countUnread").textContent=snap.size;
-
-    }catch(err){
-
-      document.getElementById("countUnread").textContent="—";
-    }
-
-  }catch(err){
-
-    console.error(err);
-  }
-}
-
-
-/* ======================================================
+/* =========================================================
    PRODUCTS
-====================================================== */
+========================================================= */
 
 async function loadProducts(){
 
-  const grid=document.getElementById("productsGrid");
-
-  grid.innerHTML='<div class="loading">Loading products...</div>';
-
   try{
 
-    const snap=await db.collection("products").get();
+    const snapshot =
+      await db
+        .collection("products")
+        .get();
 
-    products=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
+    products =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(b.updatedAt||b.createdAt) -
+            timeOf(a.updatedAt||a.createdAt)
+        );
 
     renderProducts();
+    updateDashboard();
 
-  }catch(err){
+  }catch(error){
 
-    grid.innerHTML=
-      `<div class="card">
-        <h3>Could not load products</h3>
-        <p>${escapeHtml(err.message)}</p>
+    $("productsGrid").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(friendlyError(error))}
       </div>`;
   }
 }
@@ -2173,248 +2985,442 @@ async function loadProducts(){
 
 function renderProducts(){
 
-  const grid=document.getElementById("productsGrid");
+  const box =
+    $("productsGrid");
 
-  const search=(document.getElementById("productSearch")?.value||"")
-    .toLowerCase()
-    .trim();
+  const search =
+    (
+      $("productSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
 
-  const list=products.filter(p=>
-    !search ||
-    String(p.name||"").toLowerCase().includes(search) ||
-    String(p.category||"").toLowerCase().includes(search)
-  );
+  const list =
+    products.filter(product=>{
+
+      const text=[
+        product.name,
+        product.category,
+        product.description,
+        product.colour
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return text.includes(search);
+    });
+
 
   if(!list.length){
 
-    grid.innerHTML=
-      `<div class="card">
-        <h3>No products found</h3>
-        <p>Add your first product.</p>
+    box.innerHTML=
+      `<div class="empty">
+        No products found.
       </div>`;
 
     return;
   }
 
-  grid.innerHTML=list.map(p=>{
 
-    const price=Number(p.price||0);
+  box.innerHTML =
+    list.map(product=>{
 
-    return `
-      <div class="card">
+      const image =
+        product.image ||
+        "https://via.placeholder.com/600x400?text=DSP";
 
-        ${
-          p.image
-          ? `<img class="product-image"
-                  src="${escapeAttr(p.image)}"
-                  onerror="this.style.display='none'">`
-          : ""
-        }
+      return `
 
-        <h3>${escapeHtml(p.name||"Unnamed Product")}</h3>
+        <div class="product-card">
 
-        <p>
-          ${escapeHtml(p.category||"No category")}
-          ${p.colour ? " • "+escapeHtml(p.colour):""}
-        </p>
+          <img
+            class="product-image"
+            src="${escapeHTML(image)}"
+            onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
+          >
 
-        <p style="margin-top:7px;">
-          <strong>₦${price.toLocaleString()}</strong>
-        </p>
+          <div class="product-name">
+            ${escapeHTML(product.name||"Unnamed")}
+          </div>
 
-        <p>
-          Stock: ${Number(p.stock||0)}
-        </p>
+          <div class="product-category">
+            ${escapeHTML(product.category||"Uncategorized")}
+          </div>
 
-        <span class="status ${p.available?"green":"red"}">
-          ${p.available?"Available":"Unavailable"}
-        </span>
+          <div class="product-price">
+            ₦${money(product.price)}
+          </div>
 
-        ${
-          p.featured
-          ? `<span class="status yellow">Featured</span>`
-          :""
-        }
+          <div class="product-meta">
+            Stock: ${Number(product.stock||0)}
+            ·
+            ${product.available===false
+              ?"Unavailable"
+              :"Available"
+            }
+            ${product.featured
+              ?" · ⭐ Featured"
+              :""
+            }
+          </div>
 
-        <div class="card-actions">
+          <div class="product-actions">
 
-          <button class="btn blue"
-            onclick="editProduct('${p.id}')">
-            Edit
-          </button>
+            <button
+              class="btn"
+              onclick="editProduct('${product.id}')"
+              type="button"
+            >
+              Edit
+            </button>
 
-          <button class="btn red"
-            onclick="deleteProduct('${p.id}')">
-            Delete
-          </button>
+            <button
+              class="btn btn-red"
+              onclick="deleteProduct('${product.id}')"
+              type="button"
+            >
+              Delete
+            </button>
+
+          </div>
 
         </div>
+      `;
 
-      </div>
-    `;
-
-  }).join("");
+    }).join("");
 }
 
 
-function openProductModal(product=null){
+function resetProductForm(){
 
-  document.getElementById("productModal").classList.add("show");
+  $("pName").value="";
+  $("pPrice").value="";
+  $("pCategory").value="Solar";
+  $("pColour").value="";
+  $("pStock").value="0";
+  $("pImage").value="";
+  $("pAvailable").value="true";
+  $("pFeatured").value="false";
+  $("pDescription").value="";
 
-  if(product){
+  editingProductId=null;
 
-    document.getElementById("productModalTitle").textContent="Edit Product";
+  $("productFormTitle").textContent=
+    "Add New Product";
 
-    document.getElementById("productId").value=product.id;
-    document.getElementById("productName").value=product.name||"";
-    document.getElementById("productCategory").value=product.category||"";
-    document.getElementById("productPrice").value=product.price??0;
-    document.getElementById("productStock").value=product.stock??0;
-    document.getElementById("productColour").value=product.colour||"";
-    document.getElementById("productImage").value=product.image||"";
-    document.getElementById("productDescription").value=product.description||"";
-    document.getElementById("productAvailable").checked=product.available!==false;
-    document.getElementById("productFeatured").checked=product.featured===true;
+  $("saveProductBtn").textContent=
+    "Add Product";
 
-  }else{
+  $("cancelProductBtn")
+    .classList
+    .add("hidden");
 
-    document.getElementById("productModalTitle").textContent="Add Product";
-
-    document.getElementById("productForm").reset();
-
-    document.getElementById("productId").value="";
-
-    document.getElementById("productAvailable").checked=true;
-  }
+  $("productMessage").textContent="";
 }
 
 
 function editProduct(id){
 
-  const product=products.find(p=>p.id===id);
+  const product =
+    products.find(
+      item=>item.id===id
+    );
 
-  if(product) openProductModal(product);
+  if(!product) return;
+
+  editingProductId=id;
+
+  $("pName").value=
+    product.name||"";
+
+  $("pPrice").value=
+    product.price??"";
+
+  $("pCategory").value=
+    product.category||"Solar";
+
+  $("pColour").value=
+    product.colour||"";
+
+  $("pStock").value=
+    product.stock??0;
+
+  $("pImage").value=
+    product.image||"";
+
+  $("pAvailable").value=
+    product.available===false
+      ?"false"
+      :"true";
+
+  $("pFeatured").value=
+    product.featured
+      ?"true"
+      :"false";
+
+  $("pDescription").value=
+    product.description||"";
+
+  $("productFormTitle").textContent=
+    "Edit Product";
+
+  $("saveProductBtn").textContent=
+    "Save Changes";
+
+  $("cancelProductBtn")
+    .classList
+    .remove("hidden");
+
+  openPage("products");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
-document.getElementById("productForm").addEventListener("submit",async e=>{
+async function saveProduct(){
 
-  e.preventDefault();
+  const name =
+    $("pName")
+      .value
+      .trim();
 
-  const id=document.getElementById("productId").value;
+  const price =
+    Number(
+      $("pPrice").value
+    );
+
+  const stock =
+    Number(
+      $("pStock").value
+    );
+
+  const message =
+    $("productMessage");
+
+
+  message.className="message";
+  message.textContent="";
+
+
+  if(!name){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a product name.";
+
+    return;
+  }
+
+
+  if(
+    !Number.isFinite(price) ||
+    price<0
+  ){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a valid price.";
+
+    return;
+  }
+
+
+  if(
+    !Number.isFinite(stock) ||
+    stock<0
+  ){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a valid stock quantity.";
+
+    return;
+  }
+
 
   const data={
 
-    available:document.getElementById("productAvailable").checked,
+    name:name,
 
-    category:document.getElementById("productCategory").value.trim(),
+    description:
+      $("pDescription")
+        .value
+        .trim(),
 
-    colour:document.getElementById("productColour").value.trim(),
+    price:price,
 
-    description:document.getElementById("productDescription").value.trim(),
+    category:
+      $("pCategory").value,
 
-    featured:document.getElementById("productFeatured").checked,
+    colour:
+      $("pColour")
+        .value
+        .trim(),
 
-    image:document.getElementById("productImage").value.trim(),
+    image:
+      $("pImage")
+        .value
+        .trim(),
 
-    name:document.getElementById("productName").value.trim(),
+    stock:stock,
 
-    price:Number(document.getElementById("productPrice").value)||0,
+    available:
+      $("pAvailable")
+        .value==="true",
 
-    stock:Number(document.getElementById("productStock").value)||0,
+    featured:
+      $("pFeatured")
+        .value==="true",
 
-    updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
 
   };
 
+
+  const button =
+    $("saveProductBtn");
+
+  button.disabled=true;
+
+
   try{
 
-    if(id){
+    if(editingProductId){
 
-      await db.collection("products").doc(id).update(data);
-
-      toast("Product updated successfully.");
+      await db
+        .collection("products")
+        .doc(editingProductId)
+        .set(
+          data,
+          {merge:true}
+        );
 
     }else{
 
-      await db.collection("products").add({
+      await db
+        .collection("products")
+        .add({
 
-        ...data,
+          ...data,
 
-        createdAt:firebase.firestore.FieldValue.serverTimestamp()
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
 
-      });
-
-      toast("Product created successfully.");
+        });
     }
 
-    closeModal("productModal");
+
+    message.className=
+      "message success";
+
+    message.textContent=
+      "Product saved successfully.";
 
     await loadProducts();
 
-    await loadDashboard();
+    setTimeout(
+      resetProductForm,
+      700
+    );
 
-  }catch(err){
+  }catch(error){
 
-    console.error(err);
+    message.className=
+      "message error";
 
-    toast("Product could not be saved: "+err.message,"error");
+    message.textContent=
+      friendlyError(error);
+
+  }finally{
+
+    button.disabled=false;
+
   }
-
-});
+}
 
 
 async function deleteProduct(id){
 
-  if(!confirm("Delete this product permanently?")) return;
+  const product =
+    products.find(
+      item=>item.id===id
+    );
+
+  if(
+    !product ||
+    !confirm(
+      `Delete "${product.name||"this product"}"?`
+    )
+  ){
+    return;
+  }
 
   try{
 
-    await db.collection("products").doc(id).delete();
-
-    toast("Product deleted.");
+    await db
+      .collection("products")
+      .doc(id)
+      .delete();
 
     await loadProducts();
-    await loadDashboard();
 
-  }catch(err){
+  }catch(error){
 
-    toast("Could not delete product: "+err.message,"error");
+    alert(
+      friendlyError(error)
+    );
   }
 }
 
 
-/* ======================================================
+/* =========================================================
    ORDERS
-====================================================== */
+========================================================= */
 
 async function loadOrders(){
 
-  const box=document.getElementById("ordersTable");
-
-  box.innerHTML='<div class="loading">Loading orders...</div>';
-
   try{
 
-    const snap=await db.collection("orders").get();
+    const snapshot =
+      await db
+        .collection("orders")
+        .get();
 
-    orders=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    orders.sort((a,b)=>
-      getTime(b.createdAt)-getTime(a.createdAt)
-    );
+    orders =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(b.createdAt) -
+            timeOf(a.createdAt)
+        );
 
     renderOrders();
+    renderRecentOrders();
+    updateDashboard();
 
-  }catch(err){
+  }catch(error){
 
-    box.innerHTML=
-      `<div class="card">
-        <h3>Could not load orders</h3>
-        <p>${escapeHtml(err.message)}</p>
+    $("ordersTable").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(friendlyError(error))}
       </div>`;
   }
 }
@@ -2422,36 +3428,180 @@ async function loadOrders(){
 
 function renderOrders(){
 
-  const box=document.getElementById("ordersTable");
+  const search =
+    (
+      $("orderSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
 
-  const search=(document.getElementById("orderSearch")?.value||"")
-    .toLowerCase();
+  const filter =
+    $("orderFilter")?.value ||
+    "all";
 
-  const filter=document.getElementById("orderStatusFilter")?.value||"";
 
-  const list=orders.filter(o=>{
+  const list =
+    orders.filter(order=>{
 
-    const text=[
-      o.customerName,
-      o.email,
-      o.phone,
-      o.city,
-      o.state,
-      o.status
-    ].join(" ").toLowerCase();
+      const text=[
+        order.id,
+        order.customerName,
+        order.phone,
+        order.payment,
+        order.address,
+        order.city,
+        order.state
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
-    return(
-      (!search||text.includes(search)) &&
-      (!filter||o.status===filter)
-    );
-  });
+      const status =
+        order.status||"Pending";
+
+      return(
+        text.includes(search) &&
+        (
+          filter==="all" ||
+          status===filter
+        )
+      );
+
+    });
+
 
   if(!list.length){
 
-    box.innerHTML='<div class="card"><h3>No orders found.</h3></div>';
+    $("ordersTable").innerHTML=
+      `<div class="empty">
+        No orders found.
+      </div>`;
 
     return;
   }
+
+
+  $("ordersTable").innerHTML=`
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Payment</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${list.map(order=>{
+
+          const status =
+            order.status||"Pending";
+
+          return `
+
+            <tr>
+
+              <td>
+                <strong>
+                  #${escapeHTML(
+                    order.id.slice(0,8)
+                  )}
+                </strong>
+              </td>
+
+              <td>
+
+                ${escapeHTML(
+                  order.customerName||"Customer"
+                )}
+
+                <div class="customer-info">
+                  ${escapeHTML(
+                    order.phone||""
+                  )}
+                </div>
+
+              </td>
+
+              <td>
+                <strong>
+                  ₦${money(
+                    numericTotal(order.total)
+                  )}
+                </strong>
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  order.payment||"—"
+                )}
+              </td>
+
+              <td>
+                <span
+                  class="status status-${escapeHTML(status)}"
+                >
+                  ${escapeHTML(status)}
+                </span>
+              </td>
+
+              <td>
+                ${dateOf(order.createdAt)}
+              </td>
+
+              <td>
+
+                <button
+                  class="btn"
+                  onclick="viewOrder('${order.id}')"
+                  type="button"
+                >
+                  View
+                </button>
+
+              </td>
+
+            </tr>
+          `;
+
+        }).join("")}
+
+      </tbody>
+
+    </table>
+  `;
+}
+
+
+function renderRecentOrders(){
+
+  const box =
+    $("recentOrders");
+
+  const list =
+    orders.slice(0,5);
+
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No orders yet.
+      </div>`;
+
+    return;
+  }
+
 
   box.innerHTML=`
 
@@ -2460,70 +3610,51 @@ function renderOrders(){
       <table>
 
         <thead>
+
           <tr>
             <th>Customer</th>
             <th>Total</th>
-            <th>Payment</th>
-            <th>Payment Status</th>
-            <th>Delivery</th>
-            <th>Order Status</th>
-            <th>Created</th>
+            <th>Status</th>
+            <th>Date</th>
           </tr>
+
         </thead>
 
         <tbody>
 
-          ${list.map(o=>`
+          ${list.map(order=>`
 
             <tr>
 
               <td>
-                <strong>${escapeHtml(o.customerName||"Customer")}</strong>
-                <br>
-                <small>${escapeHtml(o.phone||"")}</small>
-              </td>
-
-              <td>₦${formatMoney(o.total||o.subtotal||0)}</td>
-
-              <td>${escapeHtml(o.payment||"—")}</td>
-
-              <td>
-                <span class="status ${o.paymentStatus==="paid"?"green":"yellow"}">
-                  ${escapeHtml(o.paymentStatus||"pending")}
-                </span>
+                ${escapeHTML(
+                  order.customerName||"Customer"
+                )}
               </td>
 
               <td>
-                ${escapeHtml(o.deliveryMethod||"—")}
-                <br>
-                ₦${formatMoney(o.deliveryFee||0)}
+                ₦${money(
+                  numericTotal(order.total)
+                )}
               </td>
 
               <td>
 
-                <select
-                  onchange="changeOrderStatus('${o.id}',this.value)"
+                <span
+                  class="status status-${escapeHTML(
+                    order.status||"Pending"
+                  )}"
                 >
-
-                  ${[
-                    "pending",
-                    "confirmed",
-                    "processing",
-                    "shipped",
-                    "delivered",
-                    "cancelled"
-                  ].map(s=>
-                    `<option value="${s}"
-                      ${o.status===s?"selected":""}>
-                      ${s}
-                    </option>`
-                  ).join("")}
-
-                </select>
+                  ${escapeHTML(
+                    order.status||"Pending"
+                  )}
+                </span>
 
               </td>
 
-              <td>${formatDate(o.createdAt)}</td>
+              <td>
+                ${dateOf(order.createdAt)}
+              </td>
 
             </tr>
 
@@ -2538,1443 +3669,3232 @@ function renderOrders(){
 }
 
 
-async function changeOrderStatus(id,status){
+function viewOrder(id){
+
+  const order =
+    orders.find(
+      item=>item.id===id
+    );
+
+  if(!order) return;
+
+  const items =
+    normalizeItems(
+      order.items
+    );
+
+
+  $("modalTitle").textContent=
+    "Order Details";
+
+
+  $("modalContent").innerHTML=`
+
+    <div class="detail">
+      <div class="detail-label">
+        Order ID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(order.id)}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Customer
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.customerName||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Email
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.email||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.phone||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Address
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          [
+            order.address,
+            order.area,
+            order.city,
+            order.state
+          ]
+            .filter(Boolean)
+            .join(", ")||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Items
+      </div>
+
+      ${
+        items.length
+
+        ?
+
+        items.map(item=>`
+
+          <div class="order-item">
+
+            <span>
+              ${escapeHTML(
+                item.name||
+                item.productName||
+                "Product"
+              )}
+              ×
+              ${Number(
+                item.qty||
+                item.quantity||
+                1
+              )}
+            </span>
+
+            <strong>
+              ₦${money(
+                Number(item.price||0) *
+                Number(
+                  item.qty||
+                  item.quantity||
+                  1
+                )
+              )}
+            </strong>
+
+          </div>
+
+        `).join("")
+
+        :
+
+        `<div class="detail-value">
+          No item details.
+        </div>`
+      }
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Subtotal
+      </div>
+
+      <div class="detail-value">
+        ₦${money(
+          numericTotal(order.subtotal)
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Delivery Fee
+      </div>
+
+      <div class="detail-value">
+        ₦${money(
+          order.deliveryFee
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Total
+      </div>
+
+      <div class="detail-value">
+
+        <strong
+          style="font-size:20px;color:var(--blue)"
+        >
+          ₦${money(
+            numericTotal(order.total)
+          )}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.payment||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment Status
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.paymentStatus||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment Reference
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.paymentReference||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Delivery Method
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.deliveryMethod||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Order Status
+      </div>
+
+      <select
+        class="select"
+        onchange="changeOrderStatus('${order.id}',this.value)"
+      >
+        ${orderStatusOptions(
+          order.status||"Pending"
+        )}
+      </select>
+
+    </div>
+
+  `;
+
+
+  $("modal")
+    .classList
+    .add("show");
+}
+
+
+function orderStatusOptions(current){
+
+  return[
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ]
+    .map(status=>`
+
+      <option
+        ${status===current?"selected":""}
+      >
+        ${status}
+      </option>
+
+    `)
+    .join("");
+}
+
+
+async function changeOrderStatus(
+  id,
+  status
+){
 
   try{
 
-    await db.collection("orders").doc(id).update({
+    await db
+      .collection("orders")
+      .doc(id)
+      .update({
 
-      status,
+        status:status,
 
-      updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
 
-    });
+      });
 
-    const order=orders.find(o=>o.id===id);
 
-    if(order) order.status=status;
+    const order =
+      orders.find(
+        item=>item.id===id
+      );
 
-    toast("Order status updated.");
+    if(order){
+      order.status=status;
+    }
 
-    await loadDashboard();
 
-  }catch(err){
+    renderOrders();
+    renderRecentOrders();
+    updateDashboard();
 
-    toast("Could not update order: "+err.message,"error");
 
-    await loadOrders();
+    addNotification(
+      "Order Status Changed",
+      "An order was updated.",
+      "📦",
+      id
+    );
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
   }
 }
 
 
-/* ======================================================
-   CUSTOMERS
-====================================================== */
+/* =========================================================
+   USERS / PROFILES
+========================================================= */
 
-async function loadCustomers(){
-
-  const grid=document.getElementById("customersGrid");
-
-  grid.innerHTML='<div class="loading">Loading customers...</div>';
+async function loadUsers(){
 
   try{
 
-    const snap=await db.collection("profiles").get();
+    const snapshot =
+      await db
+        .collection("users")
+        .get();
 
-    customers=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
+    users =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
 
     renderCustomers();
+    renderProfiles();
+    updateDashboard();
 
-  }catch(err){
+  }catch(error){
 
-    grid.innerHTML=
-      `<div class="card">
-        <h3>Could not load customers</h3>
-        <p>${escapeHtml(err.message)}</p>
-      </div>`;
+    console.error(error);
   }
+}
+
+
+async function loadProfiles(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("profiles")
+        .get();
+
+    profiles =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+    renderCustomers();
+    renderProfiles();
+
+  }catch(error){
+
+    console.error(error);
+  }
+}
+
+
+function findProfile(user){
+
+  return profiles.find(
+    profile =>
+      profile.uid===user.uid ||
+      profile.uid===user.id ||
+      profile.id===user.uid ||
+      profile.id===user.id
+  );
 }
 
 
 function renderCustomers(){
 
-  const grid=document.getElementById("customersGrid");
+  const search =
+    (
+      $("customerSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
 
-  const search=(document.getElementById("customerSearch")?.value||"")
-    .toLowerCase();
 
-  const list=customers.filter(c=>{
+  const list =
+    users
+      .filter(
+        user =>
+          String(
+            user.accountType||""
+          ).toLowerCase()!=="admin"
+      )
+      .filter(user=>{
 
-    const text=[
-      c.fullName,
-      c.email,
-      c.phone,
-      c.city,
-      c.state
-    ].join(" ").toLowerCase();
+        const profile =
+          findProfile(user);
 
-    return !search||text.includes(search);
-  });
+        const text=[
+          user.name,
+          user.email,
+          profile?.fullName,
+          profile?.phone,
+          profile?.city,
+          profile?.state
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
 
-  grid.innerHTML=list.length
+        return text.includes(search);
+      });
 
-    ? list.map(c=>`
 
-      <div class="card">
+  if(!list.length){
 
-        ${
-          c.photoURL
-          ? `<img class="product-image"
-              style="height:150px;object-fit:cover"
-              src="${escapeAttr(c.photoURL)}"
-              onerror="this.style.display='none'">`
-          :""
-        }
-
-        <h3>${escapeHtml(c.fullName||"Unnamed Customer")}</h3>
-
-        <p>${escapeHtml(c.email||"")}</p>
-
-        <p>${escapeHtml(c.phone||"")}</p>
-
-        <p>
-          ${escapeHtml(c.address||"")}
-          ${c.city ? ", "+escapeHtml(c.city):""}
-          ${c.state ? ", "+escapeHtml(c.state):""}
-        </p>
-
-        <small>UID: ${escapeHtml(c.uid||c.id)}</small>
-
-      </div>
-
-    `).join("")
-
-    : `<div class="card">
-        <h3>No customers found.</h3>
+    $("customersList").innerHTML=
+      `<div class="empty">
+        No customers found.
       </div>`;
-}
-
-
-/* ======================================================
-   CHATS
-====================================================== */
-
-async function loadChats(){
-
-  const list=document.getElementById("chatList");
-
-  list.innerHTML='<div class="loading">Loading chats...</div>';
-
-  try{
-
-    const snap=await db.collection("chats").get();
-
-    chats=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    chats.sort((a,b)=>
-      getTime(b.lastMessageAt||b.updatedAt) -
-      getTime(a.lastMessageAt||a.updatedAt)
-    );
-
-    renderChatList();
-
-  }catch(err){
-
-    list.innerHTML=
-      `<div class="card">
-        <p>${escapeHtml(err.message)}</p>
-      </div>`;
-  }
-}
-
-
-function renderChatList(){
-
-  const list=document.getElementById("chatList");
-
-  if(!chats.length){
-
-    list.innerHTML=
-      `<div class="loading">No customer conversations yet.</div>`;
 
     return;
   }
 
-  list.innerHTML=chats.map(c=>`
 
-    <div
-      class="chat-item ${currentChatId===c.id?"active":""}"
-      onclick="openChat('${c.id}')"
-    >
+  $("customersList").innerHTML =
+    list.map(user=>{
 
-      <strong>
-        ${escapeHtml(c.customerName||"Customer")}
-      </strong>
+      const profile =
+        findProfile(user);
 
-      <small>
-        ${escapeHtml(c.lastMessage||"No messages yet")}
-      </small>
+      const photo =
+        profile?.photoURL||"";
 
-      ${
-        Number(c.unreadForAdmin||0)>0
-        ? `<span class="status yellow">
-            ${Number(c.unreadForAdmin)} unread
-          </span>`
-        :""
-      }
+
+      return `
+
+        <div class="customer-row">
+
+          ${
+            photo
+
+            ?
+
+            `<img
+              class="avatar"
+              src="${escapeHTML(photo)}"
+            >`
+
+            :
+
+            `<div class="avatar">
+              👤
+            </div>`
+          }
+
+
+          <div class="customer-main">
+
+            <div class="customer-name">
+              ${escapeHTML(
+                profile?.fullName||
+                user.name||
+                "Customer"
+              )}
+            </div>
+
+            <div class="customer-info">
+              ${escapeHTML(
+                user.email||
+                profile?.email||
+                "No email"
+              )}
+              ·
+              ${escapeHTML(
+                profile?.phone||
+                "No phone"
+              )}
+            </div>
+
+          </div>
+
+
+          <button
+            class="btn"
+            onclick="viewCustomer('${escapeHTML(
+              user.uid||user.id
+            )}')"
+            type="button"
+          >
+            View
+          </button>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+function viewCustomer(uid){
+
+  const user =
+    users.find(
+      item =>
+        item.uid===uid ||
+        item.id===uid
+    );
+
+  const profile =
+    profiles.find(
+      item =>
+        item.uid===uid ||
+        item.id===uid
+    );
+
+  if(!user && !profile){
+    return;
+  }
+
+
+  $("modalTitle").textContent=
+    "Customer Profile";
+
+
+  $("modalContent").innerHTML=`
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Name
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.fullName||
+          user?.name||
+          "—"
+        )}
+      </div>
 
     </div>
 
-  `).join("");
-}
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Email
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.email||
+          user?.email||
+          "—"
+        )}
+      </div>
+
+    </div>
 
 
-async function openChat(chatId){
+    <div class="detail">
 
-  currentChatId=chatId;
+      <div class="detail-label">
+        Phone
+      </div>
 
-  currentChat=chats.find(c=>c.id===chatId);
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.phone||
+          "—"
+        )}
+      </div>
 
-  if(!currentChat) return;
+    </div>
 
-  renderChatList();
 
-  document.getElementById("chatHead").innerHTML=`
+    <div class="detail">
 
-    <strong>${escapeHtml(currentChat.customerName||"Customer")}</strong>
+      <div class="detail-label">
+        Address
+      </div>
 
-    <small>
-      ${escapeHtml(currentChat.customerEmail||"")}
-    </small>
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.address||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Location
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          [
+            profile?.city,
+            profile?.state,
+            profile?.country
+          ]
+            .filter(Boolean)
+            .join(", ")||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        UID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.uid||
+          user?.uid||
+          user?.id||
+          "—"
+        )}
+      </div>
+
+    </div>
+
   `;
 
-  await db.collection("chats").doc(chatId).update({
 
-    unreadForAdmin:0,
-
-    updatedAt:firebase.firestore.FieldValue.serverTimestamp()
-
-  }).catch(()=>{});
-
-  listenMessages(chatId);
+  $("modal")
+    .classList
+    .add("show");
 }
 
 
-let messagesUnsubscribe=null;
+function renderProfiles(){
 
-function listenMessages(chatId){
+  const box =
+    $("profilesList");
 
-  if(messagesUnsubscribe){
-    messagesUnsubscribe();
-    messagesUnsubscribe=null;
-  }
+  if(!box) return;
 
-  const box=document.getElementById("messages");
 
-  box.innerHTML='<div class="loading">Loading messages...</div>';
-
-  messagesUnsubscribe=db
-    .collection("messages")
-    .where("chatId","==",chatId)
-    .onSnapshot(
-      snap=>{
-
-        const list=snap.docs.map(doc=>({
-          id:doc.id,
-          ...doc.data()
-        }));
-
-        list.sort((a,b)=>
-          getTime(a.createdAt)-getTime(b.createdAt)
-        );
-
-        renderMessages(list);
-
-      },
-      err=>{
-
-        box.innerHTML=
-          `<div class="card">
-            <p>${escapeHtml(err.message)}</p>
-          </div>`;
-      }
+  const list =
+    users.filter(
+      user =>
+        String(
+          user.accountType||""
+        ).toLowerCase()!=="admin"
     );
-}
 
-
-function renderMessages(list){
-
-  const box=document.getElementById("messages");
 
   if(!list.length){
 
     box.innerHTML=
-      `<div class="loading">
-        No messages yet. Start the conversation.
+      `<div class="empty">
+        No profiles found.
       </div>`;
 
     return;
   }
 
-  box.innerHTML=list.map(m=>{
 
-    const isAdmin=
-      m.senderRole==="admin" ||
-      m.senderId===ADMIN_UID;
+  box.innerHTML =
+    list.map(user=>{
 
-    return `
-
-      <div class="message-row ${isAdmin?"admin":"customer"}">
-
-        <div class="message-bubble">
-
-          ${
-            m.imageUrl
-            ? `<img
-                class="message-image"
-                src="${escapeAttr(m.imageUrl)}"
-                onclick="window.open('${escapeAttr(m.imageUrl)}','_blank')"
-              >`
-            :""
-          }
-
-          ${
-            m.text
-            ? `<div>${escapeHtml(m.text)}</div>`
-            :""
-          }
-
-          <span class="message-time">
-            ${formatDate(m.createdAt)}
-          </span>
-
-        </div>
-
-      </div>
-    `;
-
-  }).join("");
-
-  box.scrollTop=box.scrollHeight;
-}
-
-
-/* ======================================================
-   SEND CHAT MESSAGE
-====================================================== */
-
-document.getElementById("messageForm").addEventListener(
-  "submit",
-  async e=>{
-
-    e.preventDefault();
-
-    if(!currentChatId){
-
-      toast("Select a customer conversation first.","error");
-
-      return;
-    }
-
-    const input=document.getElementById("messageInput");
-
-    const text=input.value.trim();
-
-    if(!text) return;
-
-    input.value="";
-
-    try{
-
-      await db.collection("messages").add({
-
-        chatId:currentChatId,
-
-        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-
-        imageUrl:"",
-
-        read:false,
-
-        senderId:ADMIN_UID,
-
-        senderName:"Danny Smart Power",
-
-        senderRole:"admin",
-
-        text
-
-      });
-
-      await db.collection("chats").doc(currentChatId).set({
-
-        adminTyping:false,
-
-        lastMessage:text,
-
-        lastMessageAt:firebase.firestore.FieldValue.serverTimestamp(),
-
-        unreadForCustomer:firebase.firestore.FieldValue.increment(1),
-
-        unreadForAdmin:0,
-
-        updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
-
-        status:"active"
-
-      },{merge:true});
-
-    }catch(err){
-
-      console.error(err);
-
-      toast("Message could not be sent: "+err.message,"error");
-
-      input.value=text;
-    }
-  }
-);
-
-
-/* ======================================================
-   PROJECTS
-====================================================== */
-
-async function loadProjects(){
-
-  const grid=document.getElementById("projectsGrid");
-
-  grid.innerHTML='<div class="loading">Loading projects...</div>';
-
-  try{
-
-    const snap=await db.collection("serviceProjects").get();
-
-    projects=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    renderProjects();
-
-  }catch(err){
-
-    grid.innerHTML=
-      `<div class="card">
-        <h3>Could not load projects</h3>
-        <p>${escapeHtml(err.message)}</p>
-      </div>`;
-  }
-}
-
-
-function renderProjects(){
-
-  const grid=document.getElementById("projectsGrid");
-
-  if(!projects.length){
-
-    grid.innerHTML=
-      `<div class="card">
-        <h3>No projects yet.</h3>
-      </div>`;
-
-    return;
-  }
-
-  grid.innerHTML=projects.map(p=>`
-
-    <div class="card">
-
-      ${
-        p.thumbnailUrl||p.mediaUrl
-        ? `<img
-            class="product-image"
-            src="${escapeAttr(p.thumbnailUrl||p.mediaUrl)}"
-            onerror="this.style.display='none'"
-          >`
-        :""
-      }
-
-      <h3>${escapeHtml(p.title||"Untitled Project")}</h3>
-
-      <p>${escapeHtml(p.category||"")}</p>
-
-      <p>${escapeHtml(p.description||"")}</p>
-
-      <span class="status ${p.published?"green":"red"}">
-        ${p.published?"Published":"Unpublished"}
-      </span>
-
-      ${
-        p.Featured
-        ? `<span class="status yellow">Featured</span>`
-        :""
-      }
-
-      <div class="card-actions">
-
-        <button
-          class="btn blue"
-          onclick="editProject('${p.id}')"
-        >
-          Edit
-        </button>
-
-        <button
-          class="btn red"
-          onclick="deleteProject('${p.id}')"
-        >
-          Delete
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
-}
-
-
-function openProjectModal(project=null){
-
-  document.getElementById("projectModal").classList.add("show");
-
-  if(project){
-
-    document.getElementById("projectModalTitle").textContent=
-      "Edit Electrical Project";
-
-    document.getElementById("projectId").value=project.id;
-
-    document.getElementById("projectTitle").value=
-      project.title||"";
-
-    document.getElementById("projectCategory").value=
-      project.category||"";
-
-    document.getElementById("projectDescription").value=
-      project.description||"";
-
-    document.getElementById("projectMediaUrl").value=
-      project.mediaUrl||"";
-
-    document.getElementById("projectThumbnailUrl").value=
-      project.thumbnailUrl||"";
-
-    document.getElementById("projectMediaType").value=
-      project.medisType||"Photo";
-
-    document.getElementById("projectFeatured").checked=
-      project.Featured===true;
-
-    document.getElementById("projectPublished").checked=
-      project.published!==false;
-
-    document.getElementById("projectRequestEnabled").checked=
-      project.requestEnabled!==false;
-
-  }else{
-
-    document.getElementById("projectModalTitle").textContent=
-      "Add Electrical Project";
-
-    document.getElementById("projectForm").reset();
-
-    document.getElementById("projectId").value="";
-
-    document.getElementById("projectPublished").checked=true;
-
-    document.getElementById("projectRequestEnabled").checked=true;
-  }
-}
-
-
-function editProject(id){
-
-  const project=projects.find(p=>p.id===id);
-
-  if(project) openProjectModal(project);
-}
-
-
-document.getElementById("projectForm").addEventListener(
-  "submit",
-  async e=>{
-
-    e.preventDefault();
-
-    const id=document.getElementById("projectId").value;
-
-    const data={
-
-      Featured:
-        document.getElementById("projectFeatured").checked,
-
-      category:
-        document.getElementById("projectCategory").value.trim(),
-
-      description:
-        document.getElementById("projectDescription").value.trim(),
-
-      mediaUrl:
-        document.getElementById("projectMediaUrl").value.trim(),
-
-      medisType:
-        document.getElementById("projectMediaType").value,
-
-      published:
-        document.getElementById("projectPublished").checked,
-
-      requestEnabled:
-        document.getElementById("projectRequestEnabled").checked,
-
-      thumbnailUrl:
-        document.getElementById("projectThumbnailUrl").value.trim(),
-
-      title:
-        document.getElementById("projectTitle").value.trim(),
-
-      updatedAt:
-        firebase.firestore.FieldValue.serverTimestamp()
-
-    };
-
-    try{
-
-      if(id){
-
-        await db.collection("serviceProjects")
-          .doc(id)
-          .update(data);
-
-        toast("Project updated successfully.");
-
-      }else{
-
-        await db.collection("serviceProjects")
-          .add({
-
-            ...data,
-
-            createdAt:
-              firebase.firestore.FieldValue.serverTimestamp()
-
-          });
-
-        toast("Project created successfully.");
-      }
-
-      closeModal("projectModal");
-
-      await loadProjects();
-      await loadDashboard();
-
-    }catch(err){
-
-      console.error(err);
-
-      toast(
-        "Project could not be saved: "+err.message,
-        "error"
-      );
-    }
-  }
-);
-
-
-async function deleteProject(id){
-
-  if(!confirm("Delete this project permanently?")) return;
-
-  try{
-
-    await db.collection("serviceProjects")
-      .doc(id)
-      .delete();
-
-    toast("Project deleted.");
-
-    await loadProjects();
-    await loadDashboard();
-
-  }catch(err){
-
-    toast(
-      "Could not delete project: "+err.message,
-      "error"
-    );
-  }
-}
-
-
-/* ======================================================
-   SERVICE REQUESTS
-====================================================== */
-
-async function loadRequests(){
-
-  const grid=document.getElementById("requestsGrid");
-
-  grid.innerHTML='<div class="loading">Loading requests...</div>';
-
-  try{
-
-    const snap=await db.collection("serviceRequests").get();
-
-    requests=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    requests.sort((a,b)=>
-      getTime(b.createdAt)-getTime(a.createdAt)
-    );
-
-    renderRequests();
-
-  }catch(err){
-
-    grid.innerHTML=
-      `<div class="card">
-        <p>${escapeHtml(err.message)}</p>
-      </div>`;
-  }
-}
-
-
-function renderRequests(){
-
-  const grid=document.getElementById("requestsGrid");
-
-  if(!requests.length){
-
-    grid.innerHTML=
-      `<div class="card">
-        <h3>No service requests.</h3>
-      </div>`;
-
-    return;
-  }
-
-  grid.innerHTML=requests.map(r=>`
-
-    <div class="card">
-
-      ${
-        r.customerPhoto
-        ? `<img
-            class="product-image"
-            src="${escapeAttr(r.customerPhoto)}"
-            onerror="this.style.display='none'"
-          >`
-        :""
-      }
-
-      <h3>${escapeHtml(r.serviceType||"Service Request")}</h3>
-
-      <p>
-        <strong>Customer:</strong>
-        ${escapeHtml(r.customerName||"")}
-      </p>
-
-      <p>
-        <strong>Phone:</strong>
-        ${escapeHtml(r.phone||"")}
-      </p>
-
-      <p>
-        <strong>Location:</strong>
-        ${escapeHtml(r.location||"")}
-      </p>
-
-      <p>
-        <strong>Address:</strong>
-        ${escapeHtml(r.address||"")}
-      </p>
-
-      <p>
-        ${escapeHtml(r.description||"")}
-      </p>
-
-      <small>${formatDate(r.createdAt)}</small>
-
-    </div>
-
-  `).join("");
-}
-
-
-/* ======================================================
-   WISHLISTS
-====================================================== */
-
-async function loadWishlists(){
-
-  const box=document.getElementById("wishlistsTable");
-
-  box.innerHTML='<div class="loading">Loading wishlists...</div>';
-
-  try{
-
-    const snap=await db.collection("wishlists").get();
-
-    wishlists=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    box.innerHTML=`
-
-      <div class="table-wrap">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Customer</th>
-              <th>Product</th>
-              <th>Product ID</th>
-              <th>Added</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            ${wishlists.map(w=>`
-
-              <tr>
-                <td>${escapeHtml(w.customerId||"")}</td>
-                <td>${escapeHtml(w.name||"")}</td>
-                <td>${escapeHtml(w.productId||"")}</td>
-                <td>${formatDate(w.addedAt||w.createdAt)}</td>
-              </tr>
-
-            `).join("")}
-
-          </tbody>
-
-        </table>
-
-      </div>
-    `;
-
-  }catch(err){
-
-    box.innerHTML=
-      `<div class="card">
-        <p>${escapeHtml(err.message)}</p>
-      </div>`;
-  }
-}
-
-
-/* ======================================================
-   CARTS
-====================================================== */
-
-async function loadCarts(){
-
-  const grid=document.getElementById("cartsGrid");
-
-  grid.innerHTML='<div class="loading">Loading carts...</div>';
-
-  try{
-
-    const snap=await db.collection("carts").get();
-
-    carts=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    if(!carts.length){
-
-      grid.innerHTML=
-        `<div class="card">
-          <h3>No active carts.</h3>
-        </div>`;
-
-      return;
-    }
-
-    grid.innerHTML=carts.map(c=>{
-
-      const items=Array.isArray(c.items)?c.items:[];
-
-      const total=items.reduce(
-        (sum,item)=>
-          sum+
-          (Number(item.price)||0)*
-          (Number(item.qty)||0),
-        0
-      );
+      const profile =
+        findProfile(user);
 
       return `
 
-        <div class="card">
+        <div class="customer-row">
 
-          <h3>Customer Cart</h3>
+          <div class="avatar">
+            👤
+          </div>
 
-          <p>
-            <strong>User:</strong>
-            ${escapeHtml(c.userId||c.id)}
-          </p>
+          <div class="customer-main">
 
-          <p>
-            <strong>Items:</strong>
-            ${items.length}
-          </p>
+            <div class="customer-name">
+              ${escapeHTML(
+                profile?.fullName||
+                user.name||
+                "Customer"
+              )}
+            </div>
 
-          <p>
-            <strong>Estimated Total:</strong>
-            ₦${total.toLocaleString()}
-          </p>
+            <div class="customer-info">
 
-          <div style="margin-top:10px;">
+              ${escapeHTML(
+                profile?.email||
+                user.email||
+                ""
+              )}
 
-            ${items.map(i=>`
+              ·
 
-              <div style="
-                padding:8px 0;
-                border-bottom:1px solid var(--border);
-              ">
+              ${escapeHTML(
+                profile?.phone||
+                "No phone"
+              )}
 
-                ${escapeHtml(i.name||"Product")}
-                × ${Number(i.qty||0)}
-                —
-                ₦${formatMoney(i.price||0)}
-
-              </div>
-
-            `).join("")}
+            </div>
 
           </div>
 
         </div>
 
       `;
+
     }).join("");
+}
 
-  }catch(err){
 
-    grid.innerHTML=
-      `<div class="card">
-        <p>${escapeHtml(err.message)}</p>
+/* =========================================================
+   CHAT
+========================================================= */
+
+async function loadChats(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("chats")
+        .get();
+
+    chats =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(
+              b.updatedAt||
+              b.lastMessageAt
+            ) -
+            timeOf(
+              a.updatedAt||
+              a.lastMessageAt
+            )
+        );
+
+    renderChats();
+    updateDashboard();
+
+  }catch(error){
+
+    $("chatList").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
       </div>`;
   }
 }
 
 
-/* ======================================================
-   NOTIFICATIONS
-====================================================== */
+function renderChats(){
 
-async function loadNotifications(){
+  const box =
+    $("chatList");
 
-  const grid=document.getElementById("notificationsGrid");
 
-  grid.innerHTML='<div class="loading">Loading notifications...</div>';
+  if(!chats.length){
 
-  try{
+    box.innerHTML=
+      `<div class="empty">
+        No customer chats yet.
+      </div>`;
 
-    const snap=await db.collection("notifications").get();
+    return;
+  }
 
-    notifications=snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
 
-    notifications.sort((a,b)=>
-      getTime(b.createdAt)-getTime(a.createdAt)
-    );
+  box.innerHTML =
+    chats.map(chat=>`
 
-    if(!notifications.length){
+      <div
+        class="chat-item ${
+          selectedChatId===chat.id
+            ?"active"
+            :""
+        }"
+        onclick="selectChat('${chat.id}')"
+      >
 
-      grid.innerHTML=
-        `<div class="card">
-          <h3>No notifications.</h3>
-        </div>`;
+        <div class="chat-item-top">
 
-      return;
-    }
+          <div class="chat-name">
 
-    grid.innerHTML=notifications.map(n=>`
+            ${escapeHTML(
+              chat.customerName||
+              "Customer"
+            )}
 
-      <div class="card">
+          </div>
 
-        <h3>
-          ${escapeHtml(n.icon||"🔔")}
-          ${escapeHtml(n.title||"Notification")}
-        </h3>
+          ${
+            Number(
+              chat.unreadForAdmin||0
+            )>0
 
-        <p>${escapeHtml(n.message||"")}</p>
+            ?
 
-        <span class="status ${n.read?"green":"yellow"}">
-          ${n.read?"Read":"Unread"}
-        </span>
+            `<span class="unread">
+              ${Number(
+                chat.unreadForAdmin
+              )}
+            </span>`
 
-        <div class="card-actions">
+            :
 
-          <button
-            class="btn"
-            onclick="markNotification('${n.id}',${!n.read})"
-          >
-            ${n.read?"Mark Unread":"Mark Read"}
-          </button>
+            ""
+          }
 
-          <button
-            class="btn red"
-            onclick="deleteNotification('${n.id}')"
-          >
-            Delete
-          </button>
+        </div>
+
+
+        <div class="last-message">
+
+          ${escapeHTML(
+            chat.lastMessage||
+            "No messages yet"
+          )}
 
         </div>
 
       </div>
 
     `).join("");
+}
 
-  }catch(err){
 
-    grid.innerHTML=
-      `<div class="card">
-        <p>${escapeHtml(err.message)}</p>
+async function selectChat(id){
+
+  selectedChatId=id;
+
+  const chat =
+    chats.find(
+      item=>item.id===id
+    );
+
+  if(!chat) return;
+
+
+  renderChats();
+
+
+  $("chatCustomerName").textContent =
+    chat.customerName||
+    "Customer";
+
+
+  $("chatCustomerInfo").textContent =
+    [
+      chat.customerEmail,
+      "Customer ID: "+
+      (chat.customerId||"—")
+    ]
+      .filter(Boolean)
+      .join(" · ");
+
+
+  $("chatInput").disabled=false;
+  $("sendChatBtn").disabled=false;
+
+
+  listenToMessages(id);
+
+
+  $("chatList")
+    .classList
+    .remove("mobile-open");
+
+  $("chatPanel")
+    .classList
+    .remove("mobile-hidden");
+
+
+  setTimeout(
+    ()=>$("chatInput").focus(),
+    150
+  );
+
+
+  if(
+    Number(chat.unreadForAdmin||0)>0
+  ){
+
+    try{
+
+      await db
+        .collection("chats")
+        .doc(id)
+        .update({
+          unreadForAdmin:0
+        });
+
+      chat.unreadForAdmin=0;
+
+      renderChats();
+      updateDashboard();
+
+    }catch(error){
+
+      console.error(error);
+    }
+  }
+}
+
+
+function listenToMessages(chatId){
+
+  if(messageUnsubscribe){
+
+    messageUnsubscribe();
+    messageUnsubscribe=null;
+  }
+
+
+  const box =
+    $("messages");
+
+  box.innerHTML=
+    `<div class="empty">
+      Loading messages...
+    </div>`;
+
+
+  messageUnsubscribe =
+    db
+      .collection("messages")
+      .where(
+        "chatId",
+        "==",
+        chatId
+      )
+      .onSnapshot(
+        snapshot=>{
+
+          const list =
+            snapshot.docs
+              .map(doc=>({
+                id:doc.id,
+                ...doc.data()
+              }))
+              .sort(
+                (a,b)=>
+                  timeOf(a.createdAt) -
+                  timeOf(b.createdAt)
+              );
+
+
+          if(!list.length){
+
+            box.innerHTML=
+              `<div class="empty">
+                No messages yet.
+              </div>`;
+
+            return;
+          }
+
+
+          box.innerHTML =
+            list.map(message=>{
+
+              const isAdmin =
+                String(
+                  message.senderRole||""
+                ).toLowerCase()==="admin";
+
+
+              return `
+
+                <div
+                  class="message-row ${
+                    isAdmin
+                      ?"admin"
+                      :"customer"
+                  }"
+                >
+
+                  <div
+                    class="message-bubble ${
+                      isAdmin
+                        ?"admin"
+                        :"customer"
+                    }"
+                  >
+
+                    ${escapeHTML(
+                      message.text||""
+                    )}
+
+                    ${
+                      message.imageUrl
+
+                      ?
+
+                      `<div style="margin-top:8px">
+                        <img
+                          src="${escapeHTML(
+                            message.imageUrl
+                          )}"
+                          style="max-width:180px;border-radius:10px"
+                        >
+                      </div>`
+
+                      :
+
+                      ""
+                    }
+
+
+                    <span class="message-time">
+
+                      ${escapeHTML(
+                        message.senderName||
+                        (
+                          isAdmin
+                            ?"Danny"
+                            :"Customer"
+                        )
+                      )}
+
+                      ·
+
+                      ${dateOf(
+                        message.createdAt
+                      )}
+
+                    </span>
+
+                  </div>
+
+                </div>
+              `;
+
+            }).join("");
+
+
+          box.scrollTop =
+            box.scrollHeight;
+
+        },
+
+        error=>{
+
+          box.innerHTML=
+            `<div class="empty">
+              ${escapeHTML(
+                friendlyError(error)
+              )}
+            </div>`;
+
+        }
+      );
+}
+
+
+function autoGrow(element){
+
+  element.style.height="auto";
+
+  element.style.height =
+    Math.min(
+      element.scrollHeight,
+      130
+    )+"px";
+}
+
+
+function handleChatEnter(event){
+
+  if(
+    event.key==="Enter" &&
+    !event.shiftKey
+  ){
+
+    event.preventDefault();
+
+    sendMessage();
+  }
+}
+
+
+async function sendMessage(){
+
+  if(!selectedChatId){
+    return;
+  }
+
+
+  const input =
+    $("chatInput");
+
+  const text =
+    input.value.trim();
+
+  const user =
+    auth.currentUser;
+
+
+  if(!text || !user){
+    return;
+  }
+
+
+  input.disabled=true;
+  $("sendChatBtn").disabled=true;
+
+
+  try{
+
+    await db
+      .collection("messages")
+      .add({
+
+        chatId:
+          selectedChatId,
+
+        senderId:
+          user.uid,
+
+        senderName:
+          "Danny",
+
+        senderRole:
+          "admin",
+
+        text:
+          text,
+
+        imageUrl:
+          "",
+
+        read:
+          false,
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    await db
+      .collection("chats")
+      .doc(selectedChatId)
+      .update({
+
+        adminTyping:false,
+
+        lastMessage:
+          text,
+
+        lastMessageAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
+
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
+
+        unreadForCustomer:
+          firebase.firestore.FieldValue
+            .increment(1),
+
+        unreadForAdmin:0
+
+      });
+
+
+    input.value="";
+
+    input.style.height="45px";
+
+
+    const chat =
+      chats.find(
+        item=>item.id===selectedChatId
+      );
+
+    if(chat){
+      chat.lastMessage=text;
+      chat.unreadForAdmin=0;
+    }
+
+
+    renderChats();
+
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+
+  }finally{
+
+    input.disabled=false;
+    $("sendChatBtn").disabled=false;
+
+    input.focus();
+  }
+}
+
+
+/* =========================================================
+   WISHLISTS
+========================================================= */
+
+async function loadWishlists(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("wishlists")
+        .get();
+
+    wishlists =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }));
+
+    renderWishlists();
+
+  }catch(error){
+
+    $("wishlistsList").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
       </div>`;
   }
 }
 
 
-function openNotificationModal(){
+function renderWishlists(){
 
-  document.getElementById("notificationModal")
-    .classList.add("show");
+  const box =
+    $("wishlistsList");
 
-  document.getElementById("notificationForm").reset();
 
-  document.getElementById("notificationIcon").value="🔔";
+  if(!wishlists.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No wishlists found.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    wishlists.map(wishlist=>{
+
+      const product =
+        products.find(
+          item =>
+            item.id===
+            wishlist.productId
+        );
+
+
+      return `
+
+        <div class="customer-row">
+
+          <div class="avatar">
+            ❤️
+          </div>
+
+          <div class="customer-main">
+
+            <div class="customer-name">
+
+              ${escapeHTML(
+                wishlist.name||
+                product?.name||
+                "Saved Product"
+              )}
+
+            </div>
+
+            <div class="customer-info">
+
+              Customer:
+              ${escapeHTML(
+                wishlist.customerId||
+                "—"
+              )}
+
+              · Product:
+              ${escapeHTML(
+                wishlist.productId||
+                "—"
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
 }
 
 
-document.getElementById("notificationForm")
-.addEventListener("submit",async e=>{
-
-  e.preventDefault();
-
-  try{
-
-    await db.collection("notifications").add({
-
-      createdAt:
-        firebase.firestore.FieldValue.serverTimestamp(),
-
-      icon:
-        document.getElementById("notificationIcon").value.trim(),
-
-      message:
-        document.getElementById("notificationMessage").value.trim(),
-
-      read:false,
-
-      sourceId:
-        document.getElementById("notificationSourceId").value.trim(),
-
-      title:
-        document.getElementById("notificationTitle").value.trim()
-
-    });
-
-    closeModal("notificationModal");
-
-    toast("Notification created.");
-
-    await loadNotifications();
-    await loadDashboard();
-
-  }catch(err){
-
-    toast(
-      "Notification could not be created: "+err.message,
-      "error"
-    );
-  }
-
-});
-
-
-async function markNotification(id,value){
-
-  try{
-
-    await db.collection("notifications")
-      .doc(id)
-      .update({
-        read:value
-      });
-
-    await loadNotifications();
-
-  }catch(err){
-
-    toast(err.message,"error");
-  }
-}
-
-
-async function deleteNotification(id){
-
-  if(!confirm("Delete this notification?")) return;
-
-  try{
-
-    await db.collection("notifications")
-      .doc(id)
-      .delete();
-
-    toast("Notification deleted.");
-
-    await loadNotifications();
-    await loadDashboard();
-
-  }catch(err){
-
-    toast(err.message,"error");
-  }
-}
-
-
-/* ======================================================
+/* =========================================================
    SETTINGS
-====================================================== */
-
-let settingsDocId=null;
-
+========================================================= */
 
 async function loadSettings(){
 
   try{
 
-    const snap=await db
-      .collection("settings")
-      .limit(1)
-      .get();
+    const snapshot =
+      await db
+        .collection("settings")
+        .limit(1)
+        .get();
 
-    if(snap.empty){
+
+    if(snapshot.empty){
 
       settingsDocId=null;
-
-      document.getElementById("settingsForm").reset();
 
       return;
     }
 
-    const doc=snap.docs[0];
 
-    settingsDocId=doc.id;
+    const doc =
+      snapshot.docs[0];
 
-    const s=doc.data();
+    settingsDocId=
+      doc.id;
 
-    document.getElementById("setStoreName").value=
-      s.storeName||"";
+    const data =
+      doc.data();
 
-    document.getElementById("setCurrency").value=
-      s.currency||"NGN";
 
-    document.getElementById("setEmail").value=
-      s.email||"";
+    $("sName").value =
+      data.storeName||"";
 
-    document.getElementById("setPhone").value=
-      s.phone||"";
+    $("sEmail").value =
+      data.email||"";
 
-    document.getElementById("setWhatsapp").value=
-      s.whatsapp||s["whatsapp "]||"";
+    $("sPhone").value =
+      data.phone||"";
 
-    document.getElementById("setLoginUrl").value=
-      s.loginUrl||"";
+    $("sWhatsapp").value =
+      data.whatsapp||"";
 
-    document.getElementById("setLogoUrl").value=
-      s.logoUrl||"";
+    $("sWhatsapp2").value =
+      data["whatsapp "]||"";
 
-    document.getElementById("setAddress").value=
-      s.address||"";
+    $("sCurrency").value =
+      data.currency||"NGN";
 
-    document.getElementById("setDescription").value=
-      s.description||"";
+    $("sLogo").value =
+      data.logoUrl||"";
 
-  }catch(err){
+    $("sLoginUrl").value =
+      data.loginUrl||"";
 
-    toast(
-      "Settings could not be loaded: "+err.message,
-      "error"
-    );
+    $("sAddress").value =
+      data.address||"";
+
+    $("sDescription").value =
+      data.description||"";
+
+
+  }catch(error){
+
+    $("settingsMessage").className=
+      "message error";
+
+    $("settingsMessage").textContent=
+      friendlyError(error);
   }
 }
 
 
-document.getElementById("settingsForm")
-.addEventListener("submit",async e=>{
+async function saveSettings(){
 
-  e.preventDefault();
+  const button =
+    $("saveSettingsBtn");
+
+  const message =
+    $("settingsMessage");
+
 
   const data={
 
-    address:
-      document.getElementById("setAddress").value.trim(),
-
-    currency:
-      document.getElementById("setCurrency").value.trim(),
-
-    description:
-      document.getElementById("setDescription").value.trim(),
+    storeName:
+      $("sName").value.trim(),
 
     email:
-      document.getElementById("setEmail").value.trim(),
-
-    loginUrl:
-      document.getElementById("setLoginUrl").value.trim(),
-
-    logoUrl:
-      document.getElementById("setLogoUrl").value.trim(),
+      $("sEmail").value.trim(),
 
     phone:
-      document.getElementById("setPhone").value.trim(),
-
-    storeName:
-      document.getElementById("setStoreName").value.trim(),
-
-    updatedAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
+      $("sPhone").value.trim(),
 
     whatsapp:
-      document.getElementById("setWhatsapp").value.trim()
+      $("sWhatsapp").value.trim(),
+
+    "whatsapp ":
+      $("sWhatsapp2").value.trim(),
+
+    currency:
+      $("sCurrency").value.trim()||
+      "NGN",
+
+    logoUrl:
+      $("sLogo").value.trim(),
+
+    loginUrl:
+      $("sLoginUrl").value.trim(),
+
+    address:
+      $("sAddress").value.trim(),
+
+    description:
+      $("sDescription").value.trim(),
+
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
 
   };
+
+
+  button.disabled=true;
+
+  message.className="message";
+  message.textContent="Saving...";
+
 
   try{
 
     if(settingsDocId){
 
-      await db.collection("settings")
+      await db
+        .collection("settings")
         .doc(settingsDocId)
-        .set(data,{merge:true});
+        .set(
+          data,
+          {merge:true}
+        );
 
     }else{
 
-      const ref=await db
-        .collection("settings")
+      const ref =
+        await db
+          .collection("settings")
+          .add(data);
+
+      settingsDocId=
+        ref.id;
+    }
+
+
+    message.className=
+      "message success";
+
+    message.textContent=
+      "Store settings saved successfully.";
+
+  }catch(error){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      friendlyError(error);
+
+  }finally{
+
+    button.disabled=false;
+  }
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+async function loadProjects(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("serviceProjects")
+        .get();
+
+    projects =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(
+              b.updatedAt||
+              b.createdAt
+            ) -
+            timeOf(
+              a.updatedAt||
+              a.createdAt
+            )
+        );
+
+    renderProjects();
+
+    updateDashboard();
+
+  }catch(error){
+
+    $("projectsGrid").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function resetProjectForm(){
+
+  editingProjectId=null;
+
+  $("prTitle").value="";
+  $("prCategory").value="";
+  $("prDescription").value="";
+  $("prMediaUrl").value="";
+  $("prThumbnailUrl").value="";
+  $("prMediaType").value="Photo";
+  $("prFeatured").value="false";
+  $("prPublished").value="true";
+  $("prRequestEnabled").value="true";
+
+  $("projectFormTitle").textContent=
+    "Add Electrical Project";
+
+  $("saveProjectBtn").textContent=
+    "Save Project";
+
+  $("cancelProjectBtn")
+    .classList
+    .add("hidden");
+
+  $("projectMessage").textContent="";
+
+  openPage("projects");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+function editProject(id){
+
+  const project =
+    projects.find(
+      item=>item.id===id
+    );
+
+  if(!project) return;
+
+  editingProjectId=id;
+
+
+  $("prTitle").value =
+    project.title||"";
+
+  $("prCategory").value =
+    project.category||"";
+
+  $("prDescription").value =
+    project.description||"";
+
+  $("prMediaUrl").value =
+    project.mediaUrl||"";
+
+  $("prThumbnailUrl").value =
+    project.thumbnailUrl||"";
+
+
+  $("prMediaType").value =
+    project.medisType||
+    project.mediaType||
+    "Photo";
+
+
+  $("prFeatured").value =
+    String(
+      Boolean(
+        project.Featured ??
+        project.featured
+      )
+    );
+
+
+  $("prPublished").value =
+    String(
+      project.published!==false
+    );
+
+
+  $("prRequestEnabled").value =
+    String(
+      project.requestEnabled!==false
+    );
+
+
+  $("projectFormTitle").textContent=
+    "Edit Electrical Project";
+
+  $("saveProjectBtn").textContent=
+    "Save Changes";
+
+  $("cancelProjectBtn")
+    .classList
+    .remove("hidden");
+
+  openPage("projects");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+async function saveProject(){
+
+  const title =
+    $("prTitle")
+      .value
+      .trim();
+
+  const message =
+    $("projectMessage");
+
+
+  message.className="message";
+  message.textContent="";
+
+
+  if(!title){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a project title.";
+
+    return;
+  }
+
+
+  /*
+    IMPORTANT:
+    These field names match the fields
+    you gave for serviceProjects.
+  */
+
+  const data={
+
+    title:title,
+
+    category:
+      $("prCategory")
+        .value
+        .trim(),
+
+    description:
+      $("prDescription")
+        .value
+        .trim(),
+
+    mediaUrl:
+      $("prMediaUrl")
+        .value
+        .trim(),
+
+    thumbnailUrl:
+      $("prThumbnailUrl")
+        .value
+        .trim(),
+
+    medisType:
+      $("prMediaType")
+        .value,
+
+    Featured:
+      $("prFeatured")
+        .value==="true",
+
+    published:
+      $("prPublished")
+        .value==="true",
+
+    requestEnabled:
+      $("prRequestEnabled")
+        .value==="true",
+
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
+
+  };
+
+
+  const button =
+    $("saveProjectBtn");
+
+  button.disabled=true;
+
+
+  try{
+
+    if(editingProjectId){
+
+      await db
+        .collection("serviceProjects")
+        .doc(editingProjectId)
+        .set(
+          data,
+          {merge:true}
+        );
+
+    }else{
+
+      await db
+        .collection("serviceProjects")
         .add({
 
           ...data,
 
           createdAt:
-            firebase.firestore.FieldValue.serverTimestamp()
+            firebase.firestore.FieldValue
+              .serverTimestamp()
 
         });
-
-      settingsDocId=ref.id;
     }
 
-    toast("Settings saved successfully.");
 
-  }catch(err){
+    message.className=
+      "message success";
 
-    console.error(err);
+    message.textContent=
+      "Electrical project saved successfully.";
 
-    toast(
-      "Settings could not be saved: "+err.message,
-      "error"
+
+    await loadProjects();
+
+
+    if(data.published){
+
+      await addNotification(
+        "Electrical Project Published",
+        title,
+        "⚡"
+      );
+    }
+
+
+    setTimeout(
+      resetProjectForm,
+      700
     );
+
+
+  }catch(error){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      friendlyError(error);
+
+  }finally{
+
+    button.disabled=false;
+  }
+}
+
+
+function renderProjects(){
+
+  const box =
+    $("projectsGrid");
+
+
+  if(!projects.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No electrical projects yet.
+      </div>`;
+
+    return;
   }
 
-});
+
+  box.innerHTML =
+    projects.map(project=>{
+
+      const mediaType =
+        String(
+          project.medisType||
+          project.mediaType||
+          "Photo"
+        ).toLowerCase();
+
+      const media =
+        project.mediaUrl||"";
+
+      const thumbnail =
+        project.thumbnailUrl||
+        media||
+        "https://via.placeholder.com/600x400?text=Project";
 
 
-/* ======================================================
-   ADMIN INFO
-====================================================== */
+      return `
 
-async function loadAdminInfo(){
+        <div class="project-card">
 
-  const box=document.getElementById("adminInfo");
+          ${
+            mediaType==="video"
+
+            &&
+
+            media
+
+            ?
+
+            `<video
+              class="project-media"
+              src="${escapeHTML(media)}"
+              poster="${escapeHTML(thumbnail)}"
+              controls
+            ></video>`
+
+            :
+
+            `<img
+              class="project-media"
+              src="${escapeHTML(thumbnail)}"
+              onerror="this.src='https://via.placeholder.com/600x400?text=Project'"
+            >`
+          }
+
+
+          <div class="project-title">
+
+            ${escapeHTML(
+              project.title||
+              "Electrical Project"
+            )}
+
+          </div>
+
+
+          <div class="project-meta">
+
+            ${escapeHTML(
+              project.category||""
+            )}
+
+            ·
+
+            ${
+              project.published===false
+                ?"Unpublished"
+                :"Published"
+            }
+
+            ${
+              project.Featured
+                ?" · ⭐ Featured"
+                :""
+            }
+
+          </div>
+
+
+          <div class="project-meta">
+
+            Media:
+            ${escapeHTML(
+              project.medisType||
+              "Photo"
+            )}
+
+            ·
+
+            Request:
+            ${
+              project.requestEnabled===false
+                ?"Disabled"
+                :"Enabled"
+            }
+
+          </div>
+
+
+          <div
+            style="margin-top:10px;display:flex;gap:7px"
+          >
+
+            <button
+              class="btn"
+              onclick="editProject('${project.id}')"
+              type="button"
+            >
+              Edit
+            </button>
+
+            <button
+              class="btn btn-red"
+              onclick="deleteProject('${project.id}')"
+              type="button"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+async function deleteProject(id){
+
+  if(
+    !confirm(
+      "Delete this electrical project?"
+    )
+  ){
+    return;
+  }
+
 
   try{
 
-    const snap=await db
-      .collection("admins")
-      .where("uid","==",ADMIN_UID)
-      .limit(1)
-      .get();
+    await db
+      .collection("serviceProjects")
+      .doc(id)
+      .delete();
 
-    if(snap.empty){
+    await loadProjects();
 
-      box.innerHTML=
-        "<h3>Administrator document not found.</h3>";
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   SERVICE REQUESTS
+========================================================= */
+
+async function loadServices(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("serviceRequests")
+        .get();
+
+    services =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(b.createdAt) -
+            timeOf(a.createdAt)
+        );
+
+    renderServices();
+    updateDashboard();
+
+  }catch(error){
+
+    $("servicesTable").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function renderServices(){
+
+  const search =
+    (
+      $("serviceSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
+
+  const filter =
+    $("serviceFilter")?.value||
+    "all";
+
+
+  const list =
+    services.filter(service=>{
+
+      const text=[
+        service.customerName,
+        service.phone,
+        service.serviceType,
+        service.description,
+        service.address,
+        service.location
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      const status =
+        service.status||
+        "Pending";
+
+      return(
+        text.includes(search) &&
+        (
+          filter==="all"||
+          status===filter
+        )
+      );
+    });
+
+
+  if(!list.length){
+
+    $("servicesTable").innerHTML=
+      `<div class="empty">
+        No service requests found.
+      </div>`;
+
+    return;
+  }
+
+
+  $("servicesTable").innerHTML=`
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Customer</th>
+          <th>Service</th>
+          <th>Phone</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${list.map(service=>{
+
+          const status =
+            service.status||
+            "Pending";
+
+          return `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(
+                  service.customerName||
+                  "Customer"
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  service.serviceType||
+                  "Electrical Service"
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  service.phone||
+                  "—"
+                )}
+              </td>
+
+              <td>
+
+                <span
+                  class="status status-${escapeHTML(status)}"
+                >
+                  ${escapeHTML(status)}
+                </span>
+
+              </td>
+
+              <td>
+                ${dateOf(
+                  service.createdAt
+                )}
+              </td>
+
+              <td>
+
+                <button
+                  class="btn"
+                  onclick="viewService('${service.id}')"
+                  type="button"
+                >
+                  View
+                </button>
+
+              </td>
+
+            </tr>
+          `;
+
+        }).join("")}
+
+      </tbody>
+
+    </table>
+  `;
+}
+
+
+function viewService(id){
+
+  const service =
+    services.find(
+      item=>item.id===id
+    );
+
+  if(!service) return;
+
+
+  $("modalTitle").textContent=
+    "Service Request";
+
+
+  $("modalContent").innerHTML=`
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Customer
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.customerName||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.phone||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Service
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.serviceType||
+          "Electrical Service"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Address
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.address||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Location
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.location||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Description
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.description||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Status
+      </div>
+
+      <select
+        class="select"
+        onchange="changeServiceStatus('${service.id}',this.value)"
+      >
+
+        ${[
+          "Pending",
+          "Processing",
+          "Completed",
+          "Cancelled"
+        ]
+          .map(status=>`
+
+            <option
+              ${
+                status===
+                (service.status||"Pending")
+                  ?"selected"
+                  :""
+              }
+            >
+              ${status}
+            </option>
+
+          `)
+          .join("")}
+
+      </select>
+
+    </div>
+
+  `;
+
+
+  $("modal")
+    .classList
+    .add("show");
+}
+
+
+async function changeServiceStatus(
+  id,
+  status
+){
+
+  try{
+
+    await db
+      .collection("serviceRequests")
+      .doc(id)
+      .update({
+
+        status:status,
+
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    const service =
+      services.find(
+        item=>item.id===id
+      );
+
+    if(service){
+      service.status=status;
+    }
+
+
+    renderServices();
+
+    addNotification(
+      "Service Request Updated",
+      "A service request was updated.",
+      "🔧",
+      id
+    );
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   ADMINS
+========================================================= */
+
+async function loadAdmins(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("admins")
+        .get();
+
+    admins =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+    renderAdmins();
+
+  }catch(error){
+
+    $("adminsList").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function renderAdmins(){
+
+  const box =
+    $("adminsList");
+
+
+  if(!admins.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No administrators found.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    admins.map(admin=>`
+
+      <div class="customer-row">
+
+        <div class="avatar">
+          🔐
+        </div>
+
+        <div class="customer-main">
+
+          <div class="customer-name">
+            ${escapeHTML(
+              admin.name||
+              "Administrator"
+            )}
+          </div>
+
+          <div class="customer-info">
+
+            ${escapeHTML(
+              admin.email||
+              "No email"
+            )}
+
+            · Role:
+            ${escapeHTML(
+              admin.role||
+              "admin"
+            )}
+
+            ·
+
+            ${
+              admin.active===false
+                ?"Inactive"
+                :"Active"
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+async function loadNotifications(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("notifications")
+        .orderBy(
+          "createdAt",
+          "desc"
+        )
+        .limit(50)
+        .get();
+
+    notifications =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+    renderNotifications();
+
+  }catch(error){
+
+    notifications=[];
+
+    renderNotifications();
+  }
+}
+
+
+function renderNotifications(){
+
+  const unread =
+    notifications.filter(
+      notification =>
+        !notification.read
+    ).length;
+
+
+  $("notificationBadge")
+    .textContent=unread;
+
+  $("notificationBadge")
+    .classList
+    .toggle(
+      "hidden",
+      unread===0
+    );
+
+
+  $("statNotifications")
+    .textContent=unread;
+
+
+  if(!notifications.length){
+
+    $("notificationsList").innerHTML=
+      `<div class="empty">
+        No notifications yet.
+      </div>`;
+
+    return;
+  }
+
+
+  $("notificationsList").innerHTML =
+    notifications.map(notification=>`
+
+      <div
+        class="notification"
+        style="opacity:${
+          notification.read
+            ?.6
+            :1
+        }"
+      >
+
+        <div class="nicon">
+          ${escapeHTML(
+            notification.icon||
+            "🔔"
+          )}
+        </div>
+
+        <div>
+
+          <strong>
+            ${escapeHTML(
+              notification.title||
+              "Notification"
+            )}
+          </strong>
+
+          <div>
+            ${escapeHTML(
+              notification.message||
+              ""
+            )}
+          </div>
+
+          <small>
+            ${dateOf(
+              notification.createdAt
+            )}
+          </small>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+
+async function addNotification(
+  title,
+  message,
+  icon="🔔",
+  sourceId=""
+){
+
+  try{
+
+    const source =
+      sourceId||
+      `${title}|${message}`;
+
+
+    const existing =
+      await db
+        .collection("notifications")
+        .where(
+          "sourceId",
+          "==",
+          source
+        )
+        .limit(1)
+        .get();
+
+
+    if(existing.empty){
+
+      await db
+        .collection("notifications")
+        .add({
+
+          title:title,
+
+          message:message,
+
+          icon:icon,
+
+          sourceId:source,
+
+          read:false,
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+
+    }
+
+
+    await loadNotifications();
+
+  }catch(error){
+
+    console.warn(
+      "Notification write skipped:",
+      error.message
+    );
+  }
+}
+
+
+async function markNotificationsRead(){
+
+  try{
+
+    const unread =
+      notifications.filter(
+        notification =>
+          !notification.read
+      );
+
+
+    if(!unread.length){
+      return;
+    }
+
+
+    const batch =
+      db.batch();
+
+
+    unread.forEach(
+      notification=>{
+
+        batch.update(
+
+          db
+            .collection("notifications")
+            .doc(notification.id),
+
+          {
+            read:true
+          }
+
+        );
+
+      }
+    );
+
+
+    await batch.commit();
+
+    await loadNotifications();
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+  if($("statProducts")){
+    $("statProducts")
+      .textContent=
+      products.length;
+  }
+
+
+  if($("statOrders")){
+    $("statOrders")
+      .textContent=
+      orders.length;
+  }
+
+
+  if($("statCustomers")){
+
+    $("statCustomers")
+      .textContent=
+      users.filter(
+        user =>
+          String(
+            user.accountType||""
+          ).toLowerCase()!=="admin"
+      ).length;
+
+  }
+
+
+  const pending =
+    orders.filter(
+      order =>
+        String(
+          order.status||
+          "Pending"
+        ).toLowerCase()==="pending"
+    ).length;
+
+
+  $("statPending")
+    .textContent=
+    pending;
+
+
+  const unread =
+    chats.reduce(
+      (total,chat)=>
+        total+
+        Number(
+          chat.unreadForAdmin||0
+        ),
+      0
+    );
+
+
+  $("statUnread")
+    .textContent=
+    unread;
+
+
+  const revenue =
+    orders
+      .filter(
+        order =>
+          String(
+            order.status||""
+          ).toLowerCase()==="completed"
+      )
+      .reduce(
+        (total,order)=>
+          total+
+          numericTotal(
+            order.total
+          ),
+        0
+      );
+
+
+  $("dashboardRevenue")
+    .textContent=
+    "₦"+money(revenue);
+
+
+  $("statProjects")
+    .textContent=
+    projects.length;
+
+
+  $("statServices")
+    .textContent=
+    services.filter(
+      service =>
+        (service.status||
+        "Pending")==="Pending"
+    ).length;
+
+
+  renderOrderSummary();
+}
+
+
+function renderOrderSummary(){
+
+  const box =
+    $("orderSummary");
+
+  const statuses=[
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ];
+
+
+  box.innerHTML =
+    statuses.map(status=>`
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          padding:8px 0;
+          border-bottom:1px solid var(--border)
+        "
+      >
+
+        <span
+          class="status status-${status}"
+        >
+          ${status}
+        </span>
+
+        <strong>
+          ${
+            orders.filter(
+              order =>
+                (order.status||
+                "Pending")===status
+            ).length
+          }
+        </strong>
+
+      </div>
+
+    `).join("");
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function closeModal(){
+
+  $("modal")
+    .classList
+    .remove("show");
+}
+
+
+function closeModalOutside(event){
+
+  if(
+    event.target.id==="modal"
+  ){
+    closeModal();
+  }
+}
+
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeModal();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   REALTIME
+========================================================= */
+
+function listenRealtime(){
+
+  db
+    .collection("orders")
+    .onSnapshot(
+      snapshot=>{
+
+        const newIds =
+          snapshot.docChanges()
+            .filter(
+              change =>
+                change.type==="added"
+            )
+            .map(
+              change =>
+                change.doc.id
+            );
+
+
+        if(
+          orders.length &&
+          newIds.length
+        ){
+
+          newIds.forEach(
+            id=>
+              addNotification(
+                "New Order",
+                "A customer placed a new order.",
+                "🛒",
+                id
+              )
+          );
+
+        }
+
+
+        loadOrders();
+
+      }
+    );
+
+
+  db
+    .collection("chats")
+    .onSnapshot(
+      ()=>{
+        loadChats();
+      }
+    );
+
+
+  db
+    .collection("serviceRequests")
+    .onSnapshot(
+      snapshot=>{
+
+        const ids =
+          snapshot.docChanges()
+            .filter(
+              change =>
+                change.type==="added"
+            )
+            .map(
+              change =>
+                change.doc.id
+            );
+
+
+        if(
+          services.length &&
+          ids.length
+        ){
+
+          ids.forEach(
+            id=>
+              addNotification(
+                "New Service Request",
+                "A customer requested an electrical service.",
+                "🔧",
+                id
+              )
+          );
+
+        }
+
+
+        loadServices();
+
+      }
+    );
+
+
+  db
+    .collection("notifications")
+    .onSnapshot(
+      ()=>{
+        loadNotifications();
+      }
+    );
+
+}
+
+
+/* =========================================================
+   MOBILE KEYBOARD / VIEWPORT
+========================================================= */
+
+function mobileKeyboardFix(){
+
+  if(!window.visualViewport){
+    return;
+  }
+
+
+  const adjust=()=>{
+
+    const height =
+      window.visualViewport.height;
+
+    document.documentElement
+      .style
+      .setProperty(
+        "--vvh",
+        height+"px"
+      );
+
+  };
+
+
+  window.visualViewport
+    .addEventListener(
+      "resize",
+      adjust
+    );
+
+  window.visualViewport
+    .addEventListener(
+      "scroll",
+      adjust
+    );
+
+  adjust();
+}
+
+
+/* =========================================================
+   INITIALIZE ADMIN
+========================================================= */
+
+async function initializeAdmin(){
+
+  try{
+
+    await Promise.all([
+
+      loadProducts(),
+      loadOrders(),
+      loadUsers(),
+      loadProfiles(),
+      loadChats(),
+      loadWishlists(),
+      loadSettings(),
+      loadAdmins(),
+      loadProjects(),
+      loadServices(),
+      loadNotifications()
+
+    ]);
+
+
+    listenRealtime();
+
+    mobileKeyboardFix();
+
+    openPage("dashboard");
+
+  }catch(error){
+
+    console.error(
+      "Admin initialization error:",
+      error
+    );
+  }
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+auth.onAuthStateChanged(
+  async user=>{
+
+    /*
+      The login form controls access.
+      We do NOT automatically open the
+      admin center merely because Firebase
+      has a remembered session.
+    */
+
+    if(!user){
+
+      $("adminGate")
+        .classList
+        .remove("hidden");
+
+      $("adminApp")
+        .classList
+        .add("hidden");
 
       return;
     }
 
-    const admin=snap.docs[0].data();
 
-    box.innerHTML=`
+    /*
+      If a user is already signed in when
+      this page opens, require the admin
+      login form again instead of silently
+      opening the control center.
+    */
 
-      <h3>${escapeHtml(admin.name||"Danny Smart Power Admin")}</h3>
-
-      <p>Email:
-        ${escapeHtml(admin.email||ADMIN_EMAIL)}
-      </p>
-
-      <p>UID:
-        ${escapeHtml(admin.uid||ADMIN_UID)}
-      </p>
-
-      <p>Role:
-        ${escapeHtml(admin.role||"admin")}
-      </p>
-
-      <p>
-        <span class="status ${admin.active?"green":"red"}">
-          ${admin.active?"Active":"Inactive"}
-        </span>
-      </p>
-
-      <p style="margin-top:10px;">
-        Created:
-        ${formatDate(admin.createdAt)}
-      </p>
-
-    `;
-
-  }catch(err){
-
-    box.innerHTML=
-      `<p>${escapeHtml(err.message)}</p>`;
-  }
-}
-
-
-/* ======================================================
-   MODALS
-====================================================== */
-
-function closeModal(id){
-
-  document.getElementById(id).classList.remove("show");
-}
-
-
-document.querySelectorAll(".modal").forEach(modal=>{
-
-  modal.addEventListener("click",e=>{
-
-    if(e.target===modal){
-      modal.classList.remove("show");
+    if(
+      !$("adminApp")
+        .classList
+        .contains("hidden")
+    ){
+      return;
     }
 
-  });
 
-});
+    try{
 
+      if(
+        user.uid!==ADMIN_UID ||
+        String(
+          user.email||""
+        ).toLowerCase() !==
+        ADMIN_EMAIL.toLowerCase()
+      ){
 
-/* ======================================================
-   UTILITIES
-====================================================== */
+        await auth.signOut();
 
-function escapeHtml(value){
-
-  return String(value??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
+        return;
+      }
 
 
-function escapeAttr(value){
+      /*
+        Do not silently enter admin.
+        Firebase session is cleared so the
+        admin must explicitly sign in.
+      */
 
-  return escapeHtml(value);
-}
+      await auth.signOut();
 
+    }catch(error){
 
-function getTime(timestamp){
+      console.error(error);
 
-  if(!timestamp) return 0;
-
-  if(typeof timestamp.toMillis==="function"){
-    return timestamp.toMillis();
-  }
-
-  if(timestamp.seconds){
-    return timestamp.seconds*1000;
-  }
-
-  const date=new Date(timestamp);
-
-  return isNaN(date.getTime())
-    ? 0
-    : date.getTime();
-}
-
-
-function formatDate(timestamp){
-
-  const time=getTime(timestamp);
-
-  if(!time) return "—";
-
-  return new Date(time).toLocaleString();
-}
-
-
-function formatMoney(value){
-
-  const number=Number(value)||0;
-
-  return number.toLocaleString("en-NG");
-}
-
-
-/* ======================================================
-   MOBILE KEYBOARD FRIENDLY CHAT
-====================================================== */
-
-document.getElementById("messageInput")
-.addEventListener("keydown",e=>{
-
-  if(e.key==="Enter" && !e.shiftKey){
-
-    e.preventDefault();
-
-    document.getElementById("messageForm")
-      .requestSubmit();
+      try{
+        await auth.signOut();
+      }catch{}
+    }
 
   }
-
-});
-
-
-/* ======================================================
-   START
-====================================================== */
-
-window.addEventListener("load",()=>{
-
-  document.getElementById("loginScreen")
-    .classList.remove("hidden");
-
-  document.getElementById("app")
-    .classList.add("hidden");
-
-});
+);
 
 </script>
 
 </body>
-    </html>
+</html>
