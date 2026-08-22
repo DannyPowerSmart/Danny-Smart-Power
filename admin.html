@@ -2719,7 +2719,7 @@ $("adminLoginForm").addEventListener(
     button.disabled=true;
     button.textContent="Signing in...";
 
-    try(
+    try {
 
   const credential =
     await auth.signInWithEmailAndPassword(
