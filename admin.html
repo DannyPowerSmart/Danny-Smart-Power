@@ -1454,28 +1454,25 @@
 
           <div>
             <h2>Notifications</h2>
-            <p>Manage store notifications.</p>
+            <p>Send important updates directly to your customers.</p>
           </div>
 
           <button class="btn btn-primary" id="addNotificationButton">
-            + Add Notification
+            + Send Notification
           </button>
 
         </div>
 
-
         <div class="panel">
-
           <div class="table-wrap">
-
             <table>
-
               <thead>
                 <tr>
-                  <th>Notification</th>
+                  <th>Title</th>
                   <th>Message</th>
                   <th>Recipient</th>
-                  <th>Status</th>
+                  <th>Type</th>
+                  <th>Read</th>
                   <th>Created</th>
                   <th>Actions</th>
                 </tr>
@@ -1484,15 +1481,13 @@
               <tbody id="notificationsTable"></tbody>
 
             </table>
-
           </div>
-
         </div>
 
       </section>
 
 
-      <!-- =====================================================
+<!-- =====================================================
            PROJECTS
       ====================================================== -->
 
@@ -1999,12 +1994,7 @@
   <div class="modal-card">
 
     <div class="modal-header">
-      <div>
-        <h3>Send Customer Notification</h3>
-        <small style="display:block;color:#718096;margin-top:4px">
-          Send a message to all customers or one specific customer.
-        </small>
-      </div>
+      <h3>Send Customer Notification</h3>
       <button class="close-modal" data-close="notificationModal">×</button>
     </div>
 
@@ -2012,67 +2002,56 @@
 
       <div class="modal-body">
 
-        <div class="form-grid">
-
-          <div class="form-group">
-            <label>Notification Type</label>
-            <select id="notificationType" class="form-control" required>
-              <option value="announcement">📢 Announcement</option>
-              <option value="chat">💬 Chat</option>
-              <option value="order">📦 Order</option>
-              <option value="serviceRequest">🛠️ Service Request</option>
-              <option value="account">👤 Account</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Send To</label>
-            <select id="notificationTarget" class="form-control" required>
-              <option value="all">👥 All Customers</option>
-              <option value="user">👤 One Customer</option>
-            </select>
-          </div>
-
-          <div id="notificationCustomerGroup" class="form-group full-width hidden">
-            <label>Select Customer</label>
-            <select id="notificationRecipientId" class="form-control">
-              <option value="">Loading customers...</option>
-            </select>
-            <small style="display:block;color:#718096;margin-top:6px">
-              The notification will only appear for this customer's account.
-            </small>
-          </div>
-
-          <div class="form-group">
-            <label>Title</label>
-            <input id="notificationTitle" class="form-control" placeholder="Order Confirmed" required>
-          </div>
-
-          <div class="form-group">
-            <label>Icon</label>
-            <input id="notificationIcon" class="form-control" value="🔔" placeholder="🔔">
-          </div>
-
-          <div class="form-group full-width">
-            <label>Message</label>
-            <textarea id="notificationMessage" class="form-control" placeholder="Write the notification message..." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Related Chat ID <span style="font-weight:400;color:#94a3b8">(optional)</span></label>
-            <input id="notificationChatId" class="form-control" placeholder="For chat notifications">
-          </div>
-
-          <div class="form-group">
-            <label>Source ID <span style="font-weight:400;color:#94a3b8">(optional)</span></label>
-            <input id="notificationSourceId" class="form-control" placeholder="Order ID / Service Request ID">
-          </div>
-
+        <div class="form-group">
+          <label>Send To</label>
+          <select id="notificationTarget" class="form-control" required>
+            <option value="all">All Customers</option>
+            <option value="user">One Customer</option>
+          </select>
         </div>
 
-        <div style="margin-top:16px;padding:13px 15px;border-radius:12px;background:#f0f9ff;border:1px solid #bae6fd;color:#075985;font-size:12px;line-height:1.55">
-          <strong>🔔 How it works:</strong>
-          New notifications are created as <code>read: false</code>. The customer's notification page can then show the unread count and reduce it when the customer reads the notification.
+        <div class="form-group hidden" id="notificationCustomerGroup">
+          <label>Select Customer</label>
+          <select id="notificationRecipientId" class="form-control">
+            <option value="">Select a customer...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Notification Type</label>
+          <select id="notificationType" class="form-control" required>
+            <option value="general">General</option>
+            <option value="order">Order</option>
+            <option value="chat">Chat</option>
+            <option value="service">Service</option>
+            <option value="payment">Payment</option>
+            <option value="delivery">Delivery</option>
+            <option value="account">Account</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Title</label>
+          <input id="notificationTitle" class="form-control" placeholder="e.g. Order Confirmed" required>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="notificationMessage" class="form-control" placeholder="Write the message the customer should receive..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Icon</label>
+          <input id="notificationIcon" class="form-control" placeholder="🔔" value="🔔">
+        </div>
+
+        <div class="form-group">
+          <label>Related ID (optional)</label>
+          <input id="notificationSourceId" class="form-control" placeholder="Order ID, chat ID, service request ID, etc.">
+        </div>
+
+        <div style="padding:12px;border:1px solid rgba(56,189,248,.18);background:rgba(56,189,248,.06);border-radius:10px;color:#94a3b8;font-size:12px;line-height:1.5">
+          New customer notifications are automatically created as <strong style="color:#f8fafc">unread</strong>. The customer's notification page will reduce the unread count when the notification is read.
         </div>
 
       </div>
@@ -2081,8 +2060,9 @@
         <button type="button" class="btn btn-light" data-close="notificationModal">
           Cancel
         </button>
-        <button id="sendNotificationButton" type="submit" class="btn btn-primary">
-          🔔 Send Notification
+
+        <button type="submit" class="btn btn-primary" id="createNotificationButton">
+          Send Notification
         </button>
       </div>
 
@@ -3247,7 +3227,7 @@ function renderOrders() {
 
     tbody.innerHTML = `
       <tr>
-        <td colspan="6">
+        <td colspan="8">
           <div class="empty">
             <div class="empty-icon">📦</div>
             No orders found.
@@ -4098,111 +4078,48 @@ window.viewChat = async function(chatId) {
 async function loadNotifications() {
 
   state.notifications =
-    await getCollection(COLLECTIONS.notifications);
+    await getCollection(
+      COLLECTIONS.notifications
+    );
 
   state.notifications.sort(
-    (a, b) =>
-      dateValue(b.createdAt) - dateValue(a.createdAt)
+    (a,b) =>
+      dateValue(b.createdAt) -
+      dateValue(a.createdAt)
   );
 
   renderNotifications();
+
 }
 
 
-function renderNotifications() {
+function notificationCustomerName(notification){
 
-  const tbody = $("notificationsTable");
-
-  if (!state.notifications.length) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="8">
-          <div class="empty">
-            <div class="empty-icon">🔔</div>
-            No notifications.
-          </div>
-        </td>
-      </tr>
-    `;
-    return;
+  if(
+    notification.target === "all" ||
+    notification.target === "everyone" ||
+    notification.target === "customers"
+  ){
+    return "All Customers";
   }
 
-  tbody.innerHTML =
-    state.notifications.map(notification => {
-
-      const target =
-        String(notification.target || "user").toLowerCase();
-
-      const type =
-        String(notification.type || "announcement");
-
-      const recipient =
-        notification.recipientName ||
-        notification.recipientEmail ||
-        (target === "all" ? "All Customers" : notification.recipientId || "Customer");
-
-      return `
-        <tr>
-          <td>
-            <strong>${escapeHTML(notification.title || "—")}</strong>
-            <small style="display:block;color:#718096;margin-top:3px">
-              ${escapeHTML(notification.icon || "🔔")} ${escapeHTML(type)}
-            </small>
-          </td>
-
-          <td style="max-width:300px">
-            ${escapeHTML(notification.message || "—")}
-          </td>
-
-          <td>
-            ${
-              target === "all"
-                ? badge("all customers")
-                : badge("one customer")
-            }
-            <small style="display:block;color:#718096;margin-top:5px;max-width:170px;word-break:break-word">
-              ${escapeHTML(recipient)}
-            </small>
-          </td>
-
-          <td>
-            ${badge(notification.read ? "read" : "unread")}
-          </td>
-
-          <td>
-            ${formatDate(notification.createdAt)}
-          </td>
-
-          <td>
-            <div class="actions">
-              <button
-                class="action-btn action-view"
-                onclick="viewNotification('${notification.id}')"
-              >
-                View
-              </button>
-              <button
-                class="action-btn action-delete"
-                onclick="deleteNotification('${notification.id}')"
-              >
-                Delete
-              </button>
-            </div>
-          </td>
-        </tr>
-      `;
-
-    }).join("");
+  return (
+    notification.recipientName ||
+    notification.customerName ||
+    notification.recipientEmail ||
+    notification.recipientId ||
+    "One Customer"
+  );
 }
 
 
-function populateNotificationCustomers() {
+function renderNotificationCustomerOptions(){
 
   const select = $("notificationRecipientId");
 
-  if (!select) return;
+  if(!select) return;
 
-  const customers = state.users.map(user => {
+  const merged = state.users.map(user => {
 
     const profile =
       state.profiles.find(
@@ -4210,17 +4127,9 @@ function populateNotificationCustomers() {
       ) || {};
 
     return {
-      uid: user.uid,
-      name:
-        profile.name ||
-        profile.fullName ||
-        user.name ||
-        user.displayName ||
-        "Customer",
-      email:
-        profile.email ||
-        user.email ||
-        ""
+      ...user,
+      ...profile,
+      uid: user.uid || profile.uid
     };
 
   }).filter(customer => customer.uid);
@@ -4228,67 +4137,120 @@ function populateNotificationCustomers() {
   const unique = [];
   const seen = new Set();
 
-  customers.forEach(customer => {
-    if (!seen.has(customer.uid)) {
+  merged.forEach(customer => {
+    if(!seen.has(customer.uid)){
       seen.add(customer.uid);
       unique.push(customer);
     }
   });
 
-  unique.sort((a,b) =>
-    String(a.name).localeCompare(String(b.name))
-  );
-
-  if (!unique.length) {
-    select.innerHTML = `
-      <option value="">No customers found</option>
-    `;
-    return;
-  }
+  unique.sort((a,b) => {
+    const an = String(a.name || a.fullName || a.email || "").toLowerCase();
+    const bn = String(b.name || b.fullName || b.email || "").toLowerCase();
+    return an.localeCompare(bn);
+  });
 
   select.innerHTML = `
     <option value="">Select a customer...</option>
-    ${unique.map(customer => `
-      <option value="${escapeHTML(customer.uid)}">
-        ${escapeHTML(customer.name)}${customer.email ? ` — ${escapeHTML(customer.email)}` : ""}
-      </option>
-    `).join("")}
+    ${unique.map(customer => {
+
+      const name =
+        customer.name ||
+        customer.fullName ||
+        customer.email ||
+        "Customer";
+
+      const email = customer.email || "";
+
+      return `
+        <option value="${escapeHTML(customer.uid)}">
+          ${escapeHTML(name)}${email ? ` — ${escapeHTML(email)}` : ""}
+        </option>
+      `;
+
+    }).join("")}
   `;
+
 }
 
 
-function getCustomerByUid(uid) {
+function renderNotifications() {
 
-  if (!uid) return null;
+  const tbody =
+    $("notificationsTable");
 
-  const user =
-    state.users.find(item => item.uid === uid) || null;
+  if (!state.notifications.length) {
 
-  const profile =
-    state.profiles.find(item => item.uid === uid) || null;
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            <div class="empty-icon">🔔</div>
+            No notifications yet.
+          </div>
+        </td>
+      </tr>
+    `;
 
-  if (!user && !profile) return null;
+    return;
+  }
 
-  return {
-    uid,
-    name:
-      profile?.name ||
-      profile?.fullName ||
-      user?.name ||
-      user?.displayName ||
-      "Customer",
-    email:
-      profile?.email ||
-      user?.email ||
-      ""
-  };
+  tbody.innerHTML =
+    state.notifications.map(notification => `
+
+      <tr>
+
+        <td>
+          <strong>
+            ${escapeHTML(notification.title || "—")}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHTML(notification.message || "—")}
+        </td>
+
+        <td>
+          ${escapeHTML(notificationCustomerName(notification))}
+        </td>
+
+        <td>
+          ${escapeHTML(notification.type || "general")}
+        </td>
+
+        <td>
+          ${badge(
+            notification.read
+              ? "read"
+              : "unread"
+          )}
+        </td>
+
+        <td>
+          ${formatDate(notification.createdAt)}
+        </td>
+
+        <td>
+          <button
+            class="action-btn action-delete"
+            onclick="deleteNotification('${notification.id}')"
+            type="button"
+          >
+            Delete
+          </button>
+        </td>
+
+      </tr>
+
+    `).join("");
+
 }
 
 
-function updateNotificationRecipientUI() {
+function toggleNotificationRecipient(){
 
   const target =
-    $("notificationTarget")?.value || "all";
+    $("notificationTarget").value;
 
   const group =
     $("notificationCustomerGroup");
@@ -4296,18 +4258,21 @@ function updateNotificationRecipientUI() {
   const select =
     $("notificationRecipientId");
 
-  if (!group || !select) return;
+  if(target === "user"){
 
-  const isUser = target === "user";
+    group.classList.remove("hidden");
+    select.required = true;
 
-  group.classList.toggle("hidden", !isUser);
-  select.required = isUser;
+    renderNotificationCustomerOptions();
 
-  if (isUser) {
-    populateNotificationCustomers();
-  } else {
+  }else{
+
+    group.classList.add("hidden");
+    select.required = false;
     select.value = "";
+
   }
+
 }
 
 
@@ -4317,41 +4282,22 @@ $("addNotificationButton").addEventListener(
 
     $("notificationForm").reset();
 
-    $("notificationType").value = "announcement";
-    $("notificationTarget").value = "all";
     $("notificationIcon").value = "🔔";
+    $("notificationTarget").value = "all";
+    $("notificationType").value = "general";
 
-    updateNotificationRecipientUI();
+    toggleNotificationRecipient();
 
     $("notificationModal")
       .classList.add("open");
+
   }
 );
 
 
 $("notificationTarget").addEventListener(
   "change",
-  updateNotificationRecipientUI
-);
-
-
-$("notificationType").addEventListener(
-  "change",
-  () => {
-
-    const type = $("notificationType").value;
-
-    const iconMap = {
-      announcement: "📢",
-      chat: "💬",
-      order: "📦",
-      serviceRequest: "🛠️",
-      account: "👤"
-    };
-
-    $("notificationIcon").value =
-      iconMap[type] || "🔔";
-  }
+  toggleNotificationRecipient
 );
 
 
@@ -4362,196 +4308,145 @@ $("notificationForm").addEventListener(
     event.preventDefault();
 
     const button =
-      $("sendNotificationButton");
-
-    const target =
-      $("notificationTarget").value;
-
-    const type =
-      $("notificationType").value;
-
-    const recipientId =
-      $("notificationRecipientId").value.trim();
-
-    const title =
-      $("notificationTitle").value.trim();
-
-    const message =
-      $("notificationMessage").value.trim();
-
-    const icon =
-      $("notificationIcon").value.trim() || "🔔";
-
-    const sourceId =
-      $("notificationSourceId").value.trim();
-
-    const chatId =
-      $("notificationChatId").value.trim();
-
-    if (!title || !message) {
-      toast("Enter a notification title and message.", "error");
-      return;
-    }
-
-    if (target === "user" && !recipientId) {
-      toast("Select the customer who should receive this notification.", "error");
-      return;
-    }
-
-    const customer =
-      target === "user"
-        ? getCustomerByUid(recipientId)
-        : null;
-
-    if (target === "user" && !customer) {
-      toast("The selected customer could not be found.", "error");
-      return;
-    }
-
-    button.disabled = true;
-    const originalText = button.innerHTML;
-    button.innerHTML = `<span class="loader"></span> Sending...`;
+      $("createNotificationButton");
 
     try {
 
-      const data = {
-        title,
-        message,
-        icon,
-        type,
-        target,
-        read: false,
-        createdAt: serverTimestamp(),
-        senderId: auth.currentUser?.uid || ADMIN_UID,
-        senderName: "Danny Smart Power",
-        sourceId: sourceId || "",
-        chatId: chatId || ""
-      };
+      const target =
+        $("notificationTarget").value;
 
-      if (target === "user") {
-        data.recipientId = customer.uid;
-        data.recipientName = customer.name;
-        data.recipientEmail = customer.email || "";
-      } else {
-        data.recipientId = "";
-        data.recipientName = "All Customers";
-        data.recipientEmail = "";
+      const recipientId =
+        $("notificationRecipientId").value.trim();
+
+      if(target === "user" && !recipientId){
+        toast("Select a customer first.", "error");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Sending...";
+
+      let recipientName = "";
+      let recipientEmail = "";
+
+      if(target === "user"){
+
+        const customer =
+          state.users.find(
+            user => user.uid === recipientId
+          );
+
+        const profile =
+          state.profiles.find(
+            p => p.uid === recipientId
+          ) || {};
+
+        const merged = {
+          ...(customer || {}),
+          ...profile
+        };
+
+        recipientName =
+          merged.name ||
+          merged.fullName ||
+          merged.email ||
+          "Customer";
+
+        recipientEmail =
+          merged.email ||
+          "";
+
       }
 
       await db
         .collection(COLLECTIONS.notifications)
-        .add(data);
+        .add({
+
+          title:
+            $("notificationTitle")
+              .value.trim(),
+
+          message:
+            $("notificationMessage")
+              .value.trim(),
+
+          target: target,
+
+          recipientId:
+            target === "user"
+              ? recipientId
+              : "",
+
+          recipientName:
+            target === "user"
+              ? recipientName
+              : "All Customers",
+
+          recipientEmail:
+            target === "user"
+              ? recipientEmail
+              : "",
+
+          type:
+            $("notificationType")
+              .value,
+
+          icon:
+            $("notificationIcon")
+              .value.trim() ||
+            "🔔",
+
+          sourceId:
+            $("notificationSourceId")
+              .value.trim(),
+
+          senderName:
+            "Danny Smart Power",
+
+          senderRole:
+            "Admin",
+
+          read: false,
+
+          createdAt:
+            serverTimestamp()
+
+        });
 
       toast(
         target === "all"
           ? "Notification sent to all customers."
-          : `Notification sent to ${customer.name}.`,
-        "success"
+          : "Notification sent to the customer."
       );
 
       $("notificationModal")
         .classList.remove("open");
-
-      $("notificationForm").reset();
-      updateNotificationRecipientUI();
 
       await loadNotifications();
       updateDashboard();
 
     } catch (error) {
 
-      console.error("Notification send error:", error);
+      console.error(
+        "Notification creation error:",
+        error
+      );
 
       toast(
-        error?.code === "permission-denied"
-          ? "Permission denied. Check your Firestore admin rules."
-          : "Unable to send notification.",
+        "Unable to send notification.",
         "error"
       );
 
     } finally {
 
       button.disabled = false;
-      button.innerHTML = originalText;
+      button.textContent =
+        "Send Notification";
+
     }
 
   }
 );
-
-
-window.viewNotification = function(id) {
-
-  const notification =
-    state.notifications.find(
-      item => item.id === id
-    );
-
-  if (!notification) return;
-
-  const target =
-    String(notification.target || "user").toLowerCase();
-
-  const recipient =
-    target === "all"
-      ? "All Customers"
-      : notification.recipientName ||
-        notification.recipientEmail ||
-        notification.recipientId ||
-        "Customer";
-
-  showDetails(
-    "Notification Details",
-    `
-      <div style="display:grid;gap:15px">
-
-        <div>
-          <strong>Title</strong>
-          <p>${escapeHTML(notification.title || "—")}</p>
-        </div>
-
-        <div>
-          <strong>Message</strong>
-          <p style="white-space:pre-wrap;line-height:1.6">
-            ${escapeHTML(notification.message || "—")}
-          </p>
-        </div>
-
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px">
-          <div>
-            <strong>Type</strong>
-            <p>${escapeHTML(notification.type || "announcement")}</p>
-          </div>
-
-          <div>
-            <strong>Target</strong>
-            <p>${escapeHTML(recipient)}</p>
-          </div>
-
-          <div>
-            <strong>Status</strong>
-            <p>${notification.read ? "Read" : "Unread"}</p>
-          </div>
-
-          <div>
-            <strong>Created</strong>
-            <p>${escapeHTML(formatDate(notification.createdAt))}</p>
-          </div>
-
-          <div>
-            <strong>Source ID</strong>
-            <p>${escapeHTML(notification.sourceId || "—")}</p>
-          </div>
-
-          <div>
-            <strong>Chat ID</strong>
-            <p>${escapeHTML(notification.chatId || "—")}</p>
-          </div>
-        </div>
-
-      </div>
-    `
-  );
-};
 
 
 window.deleteNotification =
@@ -4569,6 +4464,7 @@ window.deleteNotification =
         .delete();
 
       toast("Notification deleted.");
+
       await loadNotifications();
       updateDashboard();
 
@@ -4577,13 +4473,12 @@ window.deleteNotification =
       console.error(error);
 
       toast(
-        error?.code === "permission-denied"
-          ? "Permission denied. Check your Firestore admin rules."
-          : "Unable to delete notification.",
+        "Unable to delete notification.",
         "error"
       );
 
     }
+
   };
 
 
