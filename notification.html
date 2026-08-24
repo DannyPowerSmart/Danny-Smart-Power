@@ -32,7 +32,6 @@
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-
   background:
     radial-gradient(
       circle at top right,
@@ -40,7 +39,6 @@ body{
       transparent 35%
     ),
     var(--bg);
-
   color:var(--text);
   min-height:100vh;
 }
@@ -55,12 +53,11 @@ button{
 }
 
 
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
 .header{
-
   position:sticky;
   top:0;
   z-index:100;
@@ -74,31 +71,25 @@ button{
   padding:0 20px;
 
   background:rgba(2,6,23,.96);
-
   backdrop-filter:blur(14px);
 
   border-bottom:1px solid var(--border);
 }
 
 .header-left{
-
   display:flex;
   align-items:center;
-
   gap:12px;
 }
 
 .back-btn{
-
   width:40px;
   height:40px;
 
   border:1px solid var(--border);
-
   border-radius:11px;
 
   background:var(--panel);
-
   color:white;
 
   font-size:20px;
@@ -107,16 +98,13 @@ button{
 }
 
 .back-btn:hover{
-
   border-color:var(--blue);
   color:var(--blue);
 }
 
 .logo{
-
   display:flex;
   align-items:center;
-
   gap:8px;
 
   font-size:18px;
@@ -124,7 +112,6 @@ button{
 }
 
 .logo-icon{
-
   width:36px;
   height:36px;
 
@@ -135,66 +122,55 @@ button{
   border-radius:10px;
 
   background:var(--blue);
-
   color:#00111c;
 
   font-size:19px;
 }
 
 .header-title{
-
   font-size:18px;
   font-weight:bold;
 }
 
 .header-right{
-
   display:flex;
   align-items:center;
-
   gap:8px;
 }
 
 .bell{
-
-  font-size:21px;
+  font-size:20px;
 }
 
 .notification-count{
-
   min-width:24px;
   height:24px;
 
   padding:0 7px;
 
   display:none;
-
   align-items:center;
   justify-content:center;
 
   border-radius:20px;
 
   background:#ef4444;
-
   color:white;
 
   font-size:11px;
-
   font-weight:bold;
 }
 
 .notification-count.show{
-
   display:flex;
 }
 
 
-/* =========================================================
+/* =========================
    MAIN
-========================================================= */
+========================= */
 
 .container{
-
   width:100%;
   max-width:900px;
 
@@ -204,44 +180,34 @@ button{
 }
 
 .page-heading{
-
   margin-bottom:22px;
 }
 
 .page-heading h1{
-
   font-size:30px;
-
   margin-bottom:7px;
 }
 
 .page-heading p{
-
   color:var(--muted);
-
   font-size:14px;
-
   line-height:1.5;
 }
 
 
-/* =========================================================
+/* =========================
    ACTIONS
-========================================================= */
+========================= */
 
 .actions{
-
   display:flex;
-
   justify-content:flex-end;
-
   gap:10px;
 
   margin-bottom:18px;
 }
 
 .action-btn{
-
   border:1px solid var(--border);
 
   background:var(--panel);
@@ -258,22 +224,18 @@ button{
 }
 
 .action-btn:hover{
-
   border-color:var(--blue);
-
   color:var(--blue);
 }
 
 
-/* =========================================================
-   INFO CARD
-========================================================= */
+/* =========================
+   INFO
+========================= */
 
 .info-card{
-
   display:flex;
   align-items:center;
-
   gap:14px;
 
   padding:16px;
@@ -288,7 +250,6 @@ button{
 }
 
 .info-icon{
-
   width:44px;
   height:44px;
 
@@ -306,37 +267,28 @@ button{
 }
 
 .info-text strong{
-
   display:block;
-
   margin-bottom:3px;
 }
 
 .info-text span{
-
   color:var(--muted);
-
   font-size:12px;
-
   line-height:1.4;
 }
 
 
-/* =========================================================
+/* =========================
    NOTIFICATIONS
-========================================================= */
+========================= */
 
 .notifications{
-
   display:flex;
-
   flex-direction:column;
-
   gap:12px;
 }
 
 .notification{
-
   position:relative;
 
   background:var(--panel);
@@ -351,14 +303,11 @@ button{
 }
 
 .notification:hover{
-
   border-color:#2d4861;
-
   transform:translateY(-1px);
 }
 
 .notification.unread{
-
   border-color:rgba(56,189,248,.42);
 
   background:
@@ -371,11 +320,8 @@ button{
 }
 
 .notification-top{
-
   display:flex;
-
   align-items:flex-start;
-
   justify-content:space-between;
 
   gap:12px;
@@ -384,25 +330,19 @@ button{
 }
 
 .sender{
-
   display:flex;
-
   align-items:center;
-
   gap:10px;
 }
 
 .sender-avatar{
-
   width:43px;
   height:43px;
 
   flex-shrink:0;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   border-radius:50%;
@@ -416,37 +356,27 @@ button{
   color:#00111c;
 
   font-size:18px;
-
   font-weight:bold;
 }
 
 .sender-name{
-
   font-weight:bold;
-
   font-size:14px;
 }
 
 .sender-role{
-
   color:var(--blue);
-
   font-size:11px;
-
   margin-top:3px;
 }
 
 .time{
-
   color:var(--muted);
-
   font-size:10px;
-
   white-space:nowrap;
 }
 
 .unread-dot{
-
   width:8px;
   height:8px;
 
@@ -460,16 +390,13 @@ button{
 }
 
 .notification-title{
-
   font-size:17px;
-
   font-weight:bold;
 
   margin-bottom:8px;
 }
 
 .message-text{
-
   color:#e2e8f0;
 
   font-size:14px;
@@ -484,9 +411,7 @@ button{
 }
 
 .message-image{
-
   width:100%;
-
   max-width:420px;
 
   max-height:350px;
@@ -502,35 +427,9 @@ button{
   margin-bottom:14px;
 }
 
-.notification-type{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:5px;
-
-  padding:5px 8px;
-
-  border-radius:7px;
-
-  background:rgba(56,189,248,.10);
-
-  border:1px solid rgba(56,189,248,.15);
-
-  color:var(--blue);
-
-  font-size:10px;
-
-  margin-bottom:13px;
-}
-
 .notification-footer{
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   gap:10px;
@@ -541,14 +440,11 @@ button{
 }
 
 .read-label{
-
   color:var(--muted);
-
   font-size:11px;
 }
 
 .respond-btn{
-
   border:0;
 
   background:var(--blue);
@@ -565,19 +461,16 @@ button{
 }
 
 .respond-btn:hover{
-
   background:#7dd3fc;
-
   transform:translateY(-1px);
 }
 
 
-/* =========================================================
+/* =========================
    EMPTY
-========================================================= */
+========================= */
 
 .empty{
-
   text-align:center;
 
   padding:60px 20px;
@@ -592,41 +485,30 @@ button{
 }
 
 .empty-icon{
-
   font-size:42px;
-
   margin-bottom:12px;
 }
 
 .empty h2{
-
   color:white;
-
   font-size:18px;
-
   margin-bottom:7px;
 }
 
 .empty p{
-
   font-size:13px;
-
   line-height:1.5;
 }
 
 
-/* =========================================================
+/* =========================
    LOADING
-========================================================= */
+========================= */
 
 .loading{
-
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
-
   justify-content:center;
 
   padding:60px 20px;
@@ -635,7 +517,6 @@ button{
 }
 
 .spinner{
-
   width:35px;
   height:35px;
 
@@ -651,20 +532,17 @@ button{
 }
 
 @keyframes spin{
-
   to{
     transform:rotate(360deg);
   }
-
 }
 
 
-/* =========================================================
+/* =========================
    LOGIN
-========================================================= */
+========================= */
 
 .login-box{
-
   max-width:420px;
 
   margin:80px auto;
@@ -681,21 +559,16 @@ button{
 }
 
 .login-box h2{
-
   margin-bottom:8px;
 }
 
 .login-box p{
-
   color:var(--muted);
-
   font-size:13px;
-
   line-height:1.5;
 }
 
 .login-btn{
-
   margin-top:18px;
 
   display:inline-block;
@@ -714,16 +587,14 @@ button{
 }
 
 
-/* =========================================================
+/* =========================
    TOAST
-========================================================= */
+========================= */
 
 .toast{
-
   position:fixed;
 
   left:50%;
-
   bottom:25px;
 
   transform:translate(-50%,20px);
@@ -750,94 +621,78 @@ button{
 }
 
 .toast.show{
-
   opacity:1;
-
   transform:translate(-50%,0);
 }
 
 
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
 @media(max-width:600px){
 
   .header{
-
     padding:0 12px;
   }
 
   .header-title{
-
     font-size:16px;
   }
 
   .logo{
-
     display:none;
   }
 
   .container{
-
     padding:23px 12px 45px;
   }
 
   .page-heading h1{
-
     font-size:26px;
   }
 
   .notification{
-
     padding:14px;
   }
 
   .notification-top{
-
     gap:8px;
   }
 
   .time{
-
     font-size:9px;
   }
 
   .notification-footer{
-
     align-items:stretch;
-
     flex-direction:column;
   }
 
   .respond-btn{
-
     width:100%;
   }
 
   .actions{
-
     justify-content:stretch;
   }
 
   .action-btn{
-
     flex:1;
   }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =========================================================
+<!-- =====================================================
      HEADER
-========================================================= -->
+===================================================== -->
 
 <header class="header">
 
@@ -847,7 +702,9 @@ button{
       class="back-btn"
       onclick="goBack()"
       aria-label="Go back">
+
       ←
+
     </button>
 
 
@@ -874,8 +731,11 @@ button{
     <span
       id="notificationCount"
       class="notification-count">
+
       0
+
     </span>
+
 
     <span class="bell">
       🔔
@@ -887,13 +747,11 @@ button{
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      CUSTOMER APP
-========================================================= -->
+===================================================== -->
 
-<main
-  id="app"
-  class="hidden">
+<main id="app" class="hidden">
 
   <div class="container">
 
@@ -905,8 +763,7 @@ button{
       </h1>
 
       <p>
-        Stay updated with your orders, chats,
-        services and important Danny Smart Power updates.
+        Messages and important updates from Danny Smart Power.
       </p>
 
     </div>
@@ -923,6 +780,15 @@ button{
 
       </button>
 
+
+      <button
+        class="action-btn"
+        onclick="hideReadNotifications()">
+
+        Hide read
+
+      </button>
+
     </div>
 
 
@@ -930,8 +796,9 @@ button{
     <div class="info-card">
 
       <div class="info-icon">
-        🔔
+        💬
       </div>
+
 
       <div class="info-text">
 
@@ -939,9 +806,10 @@ button{
           Danny Smart Power
         </strong>
 
+
         <span>
-          New messages, order updates, service updates
-          and important announcements will appear here.
+          New notifications from the administration
+          will appear here automatically.
         </span>
 
       </div>
@@ -970,9 +838,9 @@ button{
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      LOGIN REQUIRED
-========================================================= -->
+===================================================== -->
 
 <section
   id="loginRequired"
@@ -985,7 +853,7 @@ button{
       <div
         style="
           font-size:42px;
-          margin-bottom:12px
+          margin-bottom:12px;
         ">
 
         🔐
@@ -1020,9 +888,9 @@ button{
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      TOAST
-========================================================= -->
+===================================================== -->
 
 <div
   id="toast"
@@ -1031,9 +899,9 @@ button{
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      FIREBASE
-========================================================= -->
+===================================================== -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -1045,9 +913,9 @@ button{
 
 <script>
 
-/* =========================================================
+/* =====================================================
    FIREBASE CONFIG
-========================================================= */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1090,21 +958,43 @@ const db =
 
 
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 let currentUser = null;
 
-let unsubscribeListeners = [];
 
-let notificationMap = new Map();
+/*
+   We use multiple listeners instead of reading
+   the whole notifications collection.
+
+   Listener 1:
+   target == "all"
+
+   Listener 2:
+   recipientId == currentUser.uid
+
+   Listener 3:
+   recipientEmail == currentUser.email
+*/
+
+let unsubscribeAll = null;
+
+let unsubscribeUID = null;
+
+let unsubscribeEmail = null;
+
+
+let allNotifications = [];
+
+let hideRead = false;
 
 
 
-/* =========================================================
-   AUTH
-========================================================= */
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
 
 auth.onAuthStateChanged(user => {
 
@@ -1130,6 +1020,10 @@ auth.onAuthStateChanged(user => {
 
 
 
+/* =====================================================
+   SHOW APP
+===================================================== */
+
 function showApp(){
 
   document
@@ -1146,6 +1040,10 @@ function showApp(){
 }
 
 
+
+/* =====================================================
+   SHOW LOGIN
+===================================================== */
 
 function showLoginRequired(){
 
@@ -1164,17 +1062,13 @@ function showLoginRequired(){
 
 
 
-/* =========================================================
-   REAL-TIME NOTIFICATIONS
-========================================================= */
+/* =====================================================
+   START REALTIME NOTIFICATIONS
+===================================================== */
 
 function startRealtimeNotifications(){
 
   stopRealtime();
-
-
-  notificationMap =
-    new Map();
 
 
   const box =
@@ -1196,24 +1090,21 @@ function startRealtimeNotifications(){
   `;
 
 
+  if(!currentUser){
+
+    return;
+
+  }
+
+
   /*
-    IMPORTANT:
-
-    We DO NOT download the entire
-    notifications collection.
-
-    We listen separately for:
-
-    1. Notifications sent to everyone.
-    2. Notifications sent to this UID.
-    3. Notifications sent to this email.
-
-    This protects customers from
-    seeing other customers' notifications.
+   -------------------------------------------------------
+   LISTENER 1
+   NOTIFICATIONS SENT TO EVERYONE
+   -------------------------------------------------------
   */
 
-
-  listenToQuery(
+  unsubscribeAll =
     db
       .collection("notifications")
       .where(
@@ -1221,32 +1112,42 @@ function startRealtimeNotifications(){
         "==",
         "all"
       )
-  );
+      .onSnapshot(
+
+        snapshot => {
+
+          updateNotificationSource(
+            "all",
+            snapshot
+          );
+
+        },
+
+        error => {
+
+          console.error(
+            "All notifications error:",
+            error
+          );
+
+          handleNotificationError(
+            error
+          );
+
+        }
+
+      );
 
 
-  listenToQuery(
-    db
-      .collection("notifications")
-      .where(
-        "target",
-        "==",
-        "everyone"
-      )
-  );
 
+  /*
+   -------------------------------------------------------
+   LISTENER 2
+   NOTIFICATIONS SENT TO THIS CUSTOMER UID
+   -------------------------------------------------------
+  */
 
-  listenToQuery(
-    db
-      .collection("notifications")
-      .where(
-        "target",
-        "==",
-        "customers"
-      )
-  );
-
-
-  listenToQuery(
+  unsubscribeUID =
     db
       .collection("notifications")
       .where(
@@ -1254,12 +1155,44 @@ function startRealtimeNotifications(){
         "==",
         currentUser.uid
       )
-  );
+      .onSnapshot(
 
+        snapshot => {
+
+          updateNotificationSource(
+            "uid",
+            snapshot
+          );
+
+        },
+
+        error => {
+
+          console.error(
+            "Customer notifications error:",
+            error
+          );
+
+          handleNotificationError(
+            error
+          );
+
+        }
+
+      );
+
+
+
+  /*
+   -------------------------------------------------------
+   LISTENER 3
+   NOTIFICATIONS SENT TO THIS CUSTOMER EMAIL
+   -------------------------------------------------------
+  */
 
   if(currentUser.email){
 
-    listenToQuery(
+    unsubscribeEmail =
       db
         .collection("notifications")
         .where(
@@ -1267,7 +1200,31 @@ function startRealtimeNotifications(){
           "==",
           currentUser.email
         )
-    );
+        .onSnapshot(
+
+          snapshot => {
+
+            updateNotificationSource(
+              "email",
+              snapshot
+            );
+
+          },
+
+          error => {
+
+            console.error(
+              "Email notifications error:",
+              error
+            );
+
+            handleNotificationError(
+              error
+            );
+
+          }
+
+        );
 
   }
 
@@ -1275,91 +1232,95 @@ function startRealtimeNotifications(){
 
 
 
-/* =========================================================
-   QUERY LISTENER
-========================================================= */
+/* =====================================================
+   SOURCE STORAGE
+===================================================== */
 
-function listenToQuery(query){
+const notificationSources = {
 
-  const unsubscribe =
-    query.onSnapshot(
+  all:[],
 
-      snapshot => {
+  uid:[],
 
-        snapshot.docChanges()
-          .forEach(change => {
+  email:[]
 
-            const data = {
-
-              id:
-                change.doc.id,
-
-              ...change.doc.data()
-
-            };
+};
 
 
-            if(
-              change.type === "removed"
-            ){
 
-              notificationMap.delete(
-                data.id
-              );
+/* =====================================================
+   UPDATE ONE SOURCE
+===================================================== */
 
-            }else{
+function updateNotificationSource(
+  source,
+  snapshot
+){
 
-              notificationMap.set(
-                data.id,
-                data
-              );
+  notificationSources[source] =
+    snapshot.docs.map(doc => ({
 
-            }
+      id:doc.id,
 
-          });
+      ...doc.data()
 
-
-        renderNotifications();
-
-      },
+    }));
 
 
-      error => {
-
-        console.error(
-          "Notification listener error:",
-          error
-        );
-
-
-        /*
-          Don't replace the entire
-          notification screen when one
-          query has a problem.
-        */
-
-        showToast(
-          friendlyError(error)
-        );
-
-      }
-
-    );
-
-
-  unsubscribeListeners.push(
-    unsubscribe
-  );
+  combineNotifications();
 
 }
 
 
 
-/* =========================================================
+/* =====================================================
+   COMBINE NOTIFICATIONS
+===================================================== */
+
+function combineNotifications(){
+
+  const map =
+    new Map();
+
+
+  Object
+    .values(notificationSources)
+    .flat()
+    .forEach(notification => {
+
+      map.set(
+        notification.id,
+        notification
+      );
+
+    });
+
+
+  allNotifications =
+    Array
+      .from(map.values())
+      .sort(
+        (a,b) =>
+          timeOf(b.createdAt)
+          -
+          timeOf(a.createdAt)
+      );
+
+
+  renderNotifications();
+
+}
+
+
+
+/* =====================================================
    RENDER
-========================================================= */
+===================================================== */
 
 function renderNotifications(){
+
+  updateNotificationCount();
+
 
   const box =
     document.getElementById(
@@ -1367,22 +1328,19 @@ function renderNotifications(){
     );
 
 
-  const notifications =
-    Array.from(
-      notificationMap.values()
-    );
+  let notifications =
+    [...allNotifications];
 
 
-  notifications.sort(
-    (a,b) =>
-      timeOf(b.createdAt) -
-      timeOf(a.createdAt)
-  );
+  if(hideRead){
 
+    notifications =
+      notifications.filter(
+        notification =>
+          notification.read !== true
+      );
 
-  updateNotificationCount(
-    notifications
-  );
+  }
 
 
   if(!notifications.length){
@@ -1408,70 +1366,16 @@ function renderNotifications(){
 
 
 
-/* =========================================================
-   CHECK IF READ
-========================================================= */
-
-function isNotificationRead(
-  notification
-){
-
-  /*
-    New system:
-
-    readBy = {
-      customerUID: true
-    }
-  */
-
-  if(
-    notification.readBy &&
-    currentUser &&
-    notification.readBy[
-      currentUser.uid
-    ] === true
-  ){
-
-    return true;
-
-  }
-
-
-  /*
-    Compatibility with old
-    notification documents.
-
-    This prevents old notifications
-    from breaking the page.
-  */
-
-  if(
-    notification.read === true
-  ){
-
-    return true;
-
-  }
-
-
-  return false;
-
-}
-
-
-
-/* =========================================================
+/* =====================================================
    NOTIFICATION HTML
-========================================================= */
+===================================================== */
 
 function notificationHTML(
   notification
 ){
 
   const unread =
-    !isNotificationRead(
-      notification
-    );
+    notification.read !== true;
 
 
   const title =
@@ -1498,240 +1402,42 @@ function notificationHTML(
     "";
 
 
-  const type =
-    String(
-      notification.type ||
-      "general"
-    ).toLowerCase();
-
-
-  const createdAt =
-    notification.createdAt;
-
-
-  const id =
-    notification.id;
-
-
   const chatId =
     notification.chatId ||
     "";
-
-
-  const orderId =
-    notification.orderId ||
-    "";
-
-
-  const serviceRequestId =
-    notification.serviceRequestId ||
-    notification.requestId ||
-    "";
-
-
-  let typeIcon =
-    "🔔";
-
-
-  let typeName =
-    "Notification";
-
-
-  if(
-    type === "chat" ||
-    chatId
-  ){
-
-    typeIcon =
-      "💬";
-
-    typeName =
-      "Chat";
-
-  }
-
-
-  else if(
-    type === "order" ||
-    orderId
-  ){
-
-    typeIcon =
-      "🛒";
-
-    typeName =
-      "Order";
-
-  }
-
-
-  else if(
-    type === "service" ||
-    type === "servicerequest" ||
-    serviceRequestId
-  ){
-
-    typeIcon =
-      "🔧";
-
-    typeName =
-      "Service";
-
-  }
-
-
-  else if(
-    type === "payment"
-  ){
-
-    typeIcon =
-      "💳";
-
-    typeName =
-      "Payment";
-
-  }
-
-
-  else if(
-    type === "announcement"
-  ){
-
-    typeIcon =
-      "📢";
-
-    typeName =
-      "Announcement";
-
-  }
-
-
-  let actionHTML = `
-
-    <button
-      class="respond-btn"
-      onclick="openNotification('${safeJS(id)}')">
-
-      ${
-        unread
-        ? "✓ Mark as read"
-        : "✓ Read"
-      }
-
-    </button>
-
-  `;
-
-
-  /*
-    CHAT
-  */
-
-  if(chatId){
-
-    actionHTML = `
-
-      <button
-        class="respond-btn"
-        onclick="
-          openChat(
-            '${safeJS(chatId)}',
-            '${safeJS(id)}'
-          )
-        ">
-
-        💬 Open Chat
-
-      </button>
-
-    `;
-
-  }
-
-
-  /*
-    ORDER
-  */
-
-  else if(orderId){
-
-    actionHTML = `
-
-      <button
-        class="respond-btn"
-        onclick="
-          openOrder(
-            '${safeJS(orderId)}',
-            '${safeJS(id)}'
-          )
-        ">
-
-        🛒 View Order
-
-      </button>
-
-    `;
-
-  }
-
-
-  /*
-    SERVICE REQUEST
-  */
-
-  else if(serviceRequestId){
-
-    actionHTML = `
-
-      <button
-        class="respond-btn"
-        onclick="
-          openServiceRequest(
-            '${safeJS(serviceRequestId)}',
-            '${safeJS(id)}'
-          )
-        ">
-
-        🔧 View Request
-
-      </button>
-
-    `;
-
-  }
 
 
   return `
 
     <article
       class="notification ${
-        unread ? "unread" : ""
+        unread
+          ? "unread"
+          : ""
       }"
-      data-id="${escapeHTML(id)}">
+      data-id="${escapeHTML(
+        notification.id
+      )}">
 
 
       <div class="notification-top">
-
 
         <div class="sender">
 
 
           <div class="sender-avatar">
-
             ⚡
-
           </div>
 
 
           <div>
 
-
             <div class="sender-name">
 
               ${
                 unread
-                ? `<span class="unread-dot"></span>`
-                : ""
+                  ? `<span class="unread-dot"></span>`
+                  : ""
               }
 
               ${escapeHTML(sender)}
@@ -1741,12 +1447,11 @@ function notificationHTML(
 
             <div class="sender-role">
 
-              Danny Smart Power
+              Danny Smart Power · Admin
 
             </div>
 
           </div>
-
 
         </div>
 
@@ -1754,21 +1459,12 @@ function notificationHTML(
         <div class="time">
 
           ${escapeHTML(
-            dateOf(createdAt)
+            dateOf(
+              notification.createdAt
+            )
           )}
 
         </div>
-
-
-      </div>
-
-
-
-      <div class="notification-type">
-
-        ${typeIcon}
-
-        ${escapeHTML(typeName)}
 
       </div>
 
@@ -1784,33 +1480,36 @@ function notificationHTML(
 
       ${
         message
-        ? `
+          ? `
 
-          <div class="message-text">
+            <div class="message-text">
 
-            ${escapeHTML(message)}
+              ${escapeHTML(message)}
 
-          </div>
+            </div>
 
-        `
-        : ""
+          `
+          : ""
       }
 
 
 
       ${
         image
-        ? `
+          ? `
 
-          <img
-            class="message-image"
-            src="${escapeHTML(image)}"
-            alt="Notification image"
-            loading="lazy"
-            onerror="this.style.display='none'">
+            <img
+              class="message-image"
+              src="${escapeHTML(image)}"
+              alt="Notification image"
+              loading="lazy"
+              onerror="
+                this.style.display='none'
+              "
+            >
 
-        `
-        : ""
+          `
+          : ""
       }
 
 
@@ -1822,18 +1521,57 @@ function notificationHTML(
 
           ${
             unread
-            ? "● New notification"
-            : "✓ Read"
+              ? "● New notification"
+              : "✓ Read"
           }
 
         </span>
 
 
-        ${actionHTML}
+
+        ${
+          chatId
+
+            ? `
+
+              <button
+                class="respond-btn"
+                onclick="
+                  respondToDanny(
+                    '${safeJS(notification.id)}',
+                    '${safeJS(chatId)}'
+                  )
+                ">
+
+                💬 Respond to Danny
+
+              </button>
+
+            `
+
+            : `
+
+              <button
+                class="respond-btn"
+                onclick="
+                  openNotification(
+                    '${safeJS(notification.id)}'
+                  )
+                ">
+
+                ${
+                  unread
+                    ? "✓ Mark as read"
+                    : "✓ Read"
+                }
+
+              </button>
+
+            `
+        }
 
 
       </div>
-
 
     </article>
 
@@ -1843,67 +1581,48 @@ function notificationHTML(
 
 
 
-/* =========================================================
-   MARK SINGLE NOTIFICATION READ
-========================================================= */
+/* =====================================================
+   OPEN / MARK ONE AS READ
+===================================================== */
 
 async function openNotification(id){
 
   const notification =
-    notificationMap.get(id);
+    allNotifications.find(
+      item =>
+        item.id === id
+    );
 
 
-  if(!notification)
-    return;
-
-
-  if(
-    isNotificationRead(
-      notification
-    )
-  ){
+  if(!notification){
 
     return;
 
   }
 
 
-  if(!currentUser)
+  if(notification.read === true){
+
     return;
+
+  }
 
 
   try{
 
-    /*
-      IMPORTANT:
-
-      Each customer gets
-      their own read status.
-
-      Example:
-
-      readBy: {
-        "UID-A": true,
-        "UID-B": false
-      }
-
-    */
-
-    const update = {};
-
-
-    update[
-      "readBy." +
-      currentUser.uid
-    ] = true;
-
-
     await db
       .collection("notifications")
       .doc(id)
-      .update(
-        update
-      );
+      .update({
+
+        read:true,
+
+        readAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      });
 
 
     showToast(
@@ -1914,7 +1633,7 @@ async function openNotification(id){
   }catch(error){
 
     console.error(
-      "Read notification error:",
+      "Read update error:",
       error
     );
 
@@ -1929,28 +1648,16 @@ async function openNotification(id){
 
 
 
-/* =========================================================
+/* =====================================================
    MARK ALL AS READ
-========================================================= */
+===================================================== */
 
 async function markAllAsRead(){
 
-  if(!currentUser)
-    return;
-
-
-  const notifications =
-    Array.from(
-      notificationMap.values()
-    );
-
-
   const unread =
-    notifications.filter(
+    allNotifications.filter(
       notification =>
-        !isNotificationRead(
-          notification
-        )
+        notification.read !== true
     );
 
 
@@ -1968,7 +1675,7 @@ async function markAllAsRead(){
   try{
 
     /*
-      Firestore batch maximum is 500.
+      Firestore batch limit is 500.
       We use 450 for safety.
     */
 
@@ -1992,28 +1699,27 @@ async function markAllAsRead(){
       chunk.forEach(
         notification => {
 
-          const ref =
+          batch.update(
+
             db
               .collection(
                 "notifications"
               )
               .doc(
                 notification.id
-              );
+              ),
 
+            {
 
-          const update = {};
+              read:true,
 
+              readAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp()
 
-          update[
-            "readBy." +
-            currentUser.uid
-          ] = true;
+            }
 
-
-          batch.update(
-            ref,
-            update
           );
 
         }
@@ -2048,13 +1754,48 @@ async function markAllAsRead(){
 
 
 
-/* =========================================================
-   OPEN CHAT
-========================================================= */
+/* =====================================================
+   HIDE READ
+===================================================== */
 
-async function openChat(
-  chatId,
-  notificationId
+function hideReadNotifications(){
+
+  hideRead =
+    !hideRead;
+
+
+  const button =
+    document.querySelector(
+      ".actions .action-btn:nth-child(2)"
+    );
+
+
+  if(hideRead){
+
+    button.textContent =
+      "Show read";
+
+  }else{
+
+    button.textContent =
+      "Hide read";
+
+  }
+
+
+  renderNotifications();
+
+}
+
+
+
+/* =====================================================
+   RESPOND TO DANNY
+===================================================== */
+
+async function respondToDanny(
+  notificationId,
+  chatId
 ){
 
   await openNotification(
@@ -2075,156 +1816,52 @@ async function openChat(
 
   window.location.href =
     "chat.html?chatId=" +
-    encodeURIComponent(
-      chatId
-    );
+    encodeURIComponent(chatId);
 
 }
 
 
 
-/* =========================================================
-   OPEN ORDER
-========================================================= */
-
-async function openOrder(
-  orderId,
-  notificationId
-){
-
-  await openNotification(
-    notificationId
-  );
-
-
-  if(!orderId){
-
-    showToast(
-      "Order is not available."
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Change this filename only if
-    your actual customer order page
-    has another name.
-  */
-
-  window.location.href =
-    "order.html?id=" +
-    encodeURIComponent(
-      orderId
-    );
-
-}
-
-
-
-/* =========================================================
-   OPEN SERVICE REQUEST
-========================================================= */
-
-async function openServiceRequest(
-  requestId,
-  notificationId
-){
-
-  await openNotification(
-    notificationId
-  );
-
-
-  if(!requestId){
-
-    showToast(
-      "Service request is not available."
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Change this filename only if
-    your actual service request
-    page has another name.
-  */
-
-  window.location.href =
-    "service-request.html?id=" +
-    encodeURIComponent(
-      requestId
-    );
-
-}
-
-
-
-/* =========================================================
-   UNREAD COUNT
-========================================================= */
-
-function updateNotificationCount(
-  notifications
-){
-
-  if(!currentUser)
-    return;
-
-
-  const count =
-    notifications.filter(
-      notification =>
-        !isNotificationRead(
-          notification
-        )
-    ).length;
-
-
-  const badge =
-    document.getElementById(
-      "notificationCount"
-    );
-
-
-  if(count > 0){
-
-    badge.textContent =
-      count > 99
-      ? "99+"
-      : String(count);
-
-
-    badge.classList.add(
-      "show"
-    );
-
-  }else{
-
-    badge.classList.remove(
-      "show"
-    );
-
-  }
-
-}
-
-
-
-/* =========================================================
-   EMPTY
-========================================================= */
+/* =====================================================
+   EMPTY STATE
+===================================================== */
 
 function showEmpty(){
 
-  document.getElementById(
-    "notifications"
-  ).innerHTML = `
+  const box =
+    document.getElementById(
+      "notifications"
+    );
+
+
+  if(hideRead){
+
+    box.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          👀
+        </div>
+
+        <h2>
+          No unread notifications
+        </h2>
+
+        <p>
+          You have no unread notifications right now.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML = `
 
     <div class="empty">
 
@@ -2249,9 +1886,52 @@ function showEmpty(){
 
 
 
-/* =========================================================
+/* =====================================================
+   UNREAD COUNT
+===================================================== */
+
+function updateNotificationCount(){
+
+  const count =
+    allNotifications.filter(
+      notification =>
+        notification.read !== true
+    ).length;
+
+
+  const badge =
+    document.getElementById(
+      "notificationCount"
+    );
+
+
+  if(count > 0){
+
+    badge.textContent =
+      count > 99
+        ? "99+"
+        : count;
+
+
+    badge.classList.add(
+      "show"
+    );
+
+  }else{
+
+    badge.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
    BACK
-========================================================= */
+===================================================== */
 
 function goBack(){
 
@@ -2275,14 +1955,76 @@ function goBack(){
 
 
 
-/* =========================================================
-   TIME
-========================================================= */
+/* =====================================================
+   FIRESTORE ERROR
+===================================================== */
+
+function handleNotificationError(
+  error
+){
+
+  console.error(
+    "Notification error:",
+    error
+  );
+
+
+  const box =
+    document.getElementById(
+      "notifications"
+    );
+
+
+  /*
+    Don't immediately replace the
+    existing notifications with an
+    error if another listener is
+    working successfully.
+  */
+
+  if(
+    !allNotifications.length
+  ){
+
+    box.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          ⚠️
+        </div>
+
+        <h2>
+          Unable to load notifications
+        </h2>
+
+        <p>
+          ${escapeHTML(
+            friendlyError(error)
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   FIREBASE TIMESTAMP
+===================================================== */
 
 function timeOf(value){
 
-  if(!value)
+  if(!value){
+
     return 0;
+
+  }
 
 
   try{
@@ -2312,8 +2054,7 @@ function timeOf(value){
 
 
     const parsed =
-      new Date(value)
-        .getTime();
+      new Date(value).getTime();
 
 
     return Number.isNaN(parsed)
@@ -2330,14 +2071,21 @@ function timeOf(value){
 
 
 
+/* =====================================================
+   DATE FORMAT
+===================================================== */
+
 function dateOf(value){
 
   const time =
     timeOf(value);
 
 
-  if(!time)
+  if(!time){
+
     return "Just now";
+
+  }
 
 
   try{
@@ -2364,9 +2112,9 @@ function dateOf(value){
 
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
+/* =====================================================
+   HTML SECURITY
+===================================================== */
 
 function escapeHTML(value){
 
@@ -2403,31 +2151,27 @@ function escapeHTML(value){
 
 
 
-/* =========================================================
-   SAFE JAVASCRIPT STRING
-========================================================= */
+/* =====================================================
+   JAVASCRIPT STRING SECURITY
+===================================================== */
 
 function safeJS(value){
 
   return String(
     value ?? ""
   )
-
   .replaceAll(
     "\\",
     "\\\\"
   )
-
   .replaceAll(
     "'",
     "\\'"
   )
-
   .replaceAll(
     "\n",
     "\\n"
   )
-
   .replaceAll(
     "\r",
     "\\r"
@@ -2437,14 +2181,17 @@ function safeJS(value){
 
 
 
-/* =========================================================
-   FIREBASE ERROR
-========================================================= */
+/* =====================================================
+   FRIENDLY ERROR
+===================================================== */
 
 function friendlyError(error){
 
-  if(!error)
+  if(!error){
+
     return "Something went wrong.";
+
+  }
 
 
   if(
@@ -2454,7 +2201,7 @@ function friendlyError(error){
 
     return (
       "Permission denied. " +
-      "Please check your Firestore notification rules."
+      "Please make sure the new Firestore notification rules are published."
     );
 
   }
@@ -2466,7 +2213,7 @@ function friendlyError(error){
   ){
 
     return (
-      "Firestore needs an index for this notification query."
+      "Firestore needs an index for this query."
     );
 
   }
@@ -2484,18 +2231,6 @@ function friendlyError(error){
   }
 
 
-  if(
-    error.code ===
-    "unauthenticated"
-  ){
-
-    return (
-      "Please login again to view notifications."
-    );
-
-  }
-
-
   return (
     error.message ||
     "Something went wrong."
@@ -2505,9 +2240,9 @@ function friendlyError(error){
 
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 function showToast(message){
 
@@ -2547,34 +2282,85 @@ function showToast(message){
 
 
 
-/* =========================================================
+/* =====================================================
    CLEANUP
-========================================================= */
+===================================================== */
 
 function stopRealtime(){
 
-  unsubscribeListeners
-    .forEach(
-      unsubscribe => {
+  if(
+    typeof unsubscribeAll ===
+    "function"
+  ){
 
-        try{
+    try{
 
-          unsubscribe();
+      unsubscribeAll();
 
-        }catch{}
+    }catch{}
 
-      }
-    );
+  }
 
 
-  unsubscribeListeners = [];
+  if(
+    typeof unsubscribeUID ===
+    "function"
+  ){
 
-  notificationMap =
-    new Map();
+    try{
+
+      unsubscribeUID();
+
+    }catch{}
+
+  }
+
+
+  if(
+    typeof unsubscribeEmail ===
+    "function"
+  ){
+
+    try{
+
+      unsubscribeEmail();
+
+    }catch{}
+
+  }
+
+
+  unsubscribeAll =
+    null;
+
+
+  unsubscribeUID =
+    null;
+
+
+  unsubscribeEmail =
+    null;
+
+
+  notificationSources.all =
+    [];
+
+  notificationSources.uid =
+    [];
+
+  notificationSources.email =
+    [];
+
+  allNotifications =
+    [];
 
 }
 
 
+
+/* =====================================================
+   CLEANUP ON EXIT
+===================================================== */
 
 window.addEventListener(
   "beforeunload",
