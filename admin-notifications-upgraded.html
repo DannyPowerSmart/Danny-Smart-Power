@@ -1,0 +1,6031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danny Smart Power — Admin Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #718096;
+      --border: #e7ebf2;
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --dark: #07111f;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --purple: #7c3aed;
+      --sidebar: 270px;
+      --shadow: 0 10px 30px rgba(15, 23, 42, .07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LOGIN */
+
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top right, rgba(14,165,233,.18), transparent 30%),
+        linear-gradient(135deg, #07111f, #0f172a);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.25);
+    }
+
+    .login-logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      background: var(--dark);
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .login-card h1 {
+      font-size: 26px;
+      margin-bottom: 7px;
+    }
+
+    .login-card p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .form-control {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 14px;
+      outline: none;
+      background: #fff;
+      transition: .2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14,165,233,.12);
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 11px;
+      padding: 11px 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-dark {
+      background: var(--dark);
+      color: white;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-warning {
+      background: var(--warning);
+      color: white;
+    }
+
+    .btn-light {
+      background: #eef2f7;
+      color: var(--text);
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: #b91c1c;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    /* APP */
+
+    #app {
+      display: none;
+    }
+
+    .sidebar {
+      width: var(--sidebar);
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--dark);
+      color: white;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .brand {
+      height: 75px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f2438;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .brand-text small {
+      color: #8da1b8;
+      font-size: 10px;
+    }
+
+    .nav {
+      padding: 20px 12px;
+    }
+
+    .nav-title {
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 12px 12px 7px;
+    }
+
+    .nav-item {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #b7c3d3;
+      text-align: left;
+      padding: 12px 13px;
+      border-radius: 10px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: white;
+      background: #102338;
+    }
+
+    .nav-item.active {
+      box-shadow: inset 3px 0 #38bdf8;
+    }
+
+    .main {
+      margin-left: var(--sidebar);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      height: 75px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .top-title h2 {
+      font-size: 19px;
+    }
+
+    .top-title small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .admin-user {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .admin-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      color: #0369a1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .admin-user strong {
+      font-size: 12px;
+      display: block;
+    }
+
+    .admin-user small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .content {
+      padding: 28px;
+    }
+
+    /* DASHBOARD */
+
+    .welcome {
+      background:
+        linear-gradient(120deg, #07111f, #12365a);
+      color: white;
+      border-radius: 20px;
+      padding: 27px;
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome::after {
+      content: "⚡";
+      position: absolute;
+      right: 35px;
+      top: -20px;
+      font-size: 150px;
+      opacity: .06;
+    }
+
+    .welcome h1 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .welcome p {
+      color: #a8bed3;
+      font-size: 13px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 19px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(15,23,42,.11);
+    }
+
+    .stat-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    .stat-card small {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .stat-card h3 {
+      margin-top: 13px;
+      font-size: 26px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 20px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-header h3 {
+      font-size: 15px;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    /* SECTION */
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 15px;
+    }
+
+    .section-heading h2 {
+      font-size: 22px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .heading-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 13px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 17px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar .form-control {
+      max-width: 300px;
+    }
+
+    /* TABLE */
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    th {
+      color: #64748b;
+      background: #f8fafc;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    td strong {
+      font-size: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .badge-success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .badge-info {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .badge-gray {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .actions {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 7px 9px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .action-view {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .action-edit {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .action-delete {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    /* PRODUCT */
+
+    .product-image {
+      width: 45px;
+      height: 45px;
+      border-radius: 9px;
+      object-fit: cover;
+      background: #f1f5f9;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,.65);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 20px;
+    }
+
+    .modal-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 17px;
+    }
+
+    .close-modal {
+      border: 0;
+      background: #f1f5f9;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      font-size: 18px;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-footer {
+      padding: 15px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* EMPTY */
+
+    .empty {
+      text-align: center;
+      padding: 50px 20px;
+      color: var(--muted);
+    }
+
+    .empty-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    /* LOADER */
+
+    .loader {
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* TOAST */
+
+    #toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 5000;
+      background: #07111f;
+      color: white;
+      padding: 13px 17px;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 15px 40px rgba(0,0,0,.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .25s;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    #toast.success {
+      border-left: 4px solid #22c55e;
+    }
+
+    #toast.error {
+      border-left: 4px solid #ef4444;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 1100px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 800px) {
+      :root {
+        --sidebar: 250px;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        transition: .25s;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .mobile-menu {
+        display: flex;
+        border: 0;
+        background: #f1f5f9;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+        margin-right: 10px;
+      }
+
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .content {
+        padding: 17px;
+      }
+
+      .admin-user > div:last-child {
+        display: none;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width {
+        grid-column: auto;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome {
+        padding: 21px;
+      }
+
+      .welcome h1 {
+        font-size: 21px;
+      }
+
+      .toolbar .form-control {
+        max-width: none;
+        width: 100%;
+      }
+
+      .login-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<div id="loginScreen">
+
+  <div class="login-card">
+
+    <div class="login-logo">⚡</div>
+
+    <h1>Admin Center</h1>
+    <p>Sign in to manage Danny Smart Power.</p>
+
+    <div id="loginError" class="error-message hidden"></div>
+
+    <form id="loginForm">
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          class="form-control"
+          placeholder="admin@example.com"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          id="loginPassword"
+          type="password"
+          class="form-control"
+          placeholder="Enter password"
+          required
+        >
+      </div>
+
+      <button id="loginButton" class="btn btn-primary full" type="submit">
+        Sign In
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
+
+<div id="app">
+
+  <!-- SIDEBAR -->
+
+  <aside id="sidebar" class="sidebar">
+
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+
+      <div class="brand-text">
+        <strong>Danny Smart Power</strong>
+        <small>ADMIN CENTER</small>
+      </div>
+    </div>
+
+    <nav class="nav">
+
+      <div class="nav-title">MAIN</div>
+
+      <button class="nav-item active" data-section="dashboard">
+        📊
+        <span>Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-section="products">
+        🛒
+        <span>Products</span>
+      </button>
+
+      <button class="nav-item" data-section="orders">
+        📦
+        <span>Orders</span>
+      </button>
+
+      <button class="nav-item" data-section="customers">
+        👥
+        <span>Customers</span>
+      </button>
+
+      <div class="nav-title">COMMUNICATION</div>
+
+      <button class="nav-item" data-section="chats">
+        💬
+        <span>Chat with Customers</span>
+      </button>
+
+      <button class="nav-item" data-section="notifications">
+        🔔
+        <span>Notifications</span>
+      </button>
+
+      <div class="nav-title">SERVICES</div>
+
+      <button class="nav-item" data-section="projects">
+        ⚡
+        <span>Electrical Projects</span>
+      </button>
+
+      <button class="nav-item" data-section="requests">
+        🛠️
+        <span>Service Requests</span>
+      </button>
+
+      <div class="nav-title">STORE</div>
+
+      <button class="nav-item" data-section="wishlists">
+        ❤️
+        <span>Wishlists</span>
+      </button>
+
+      <button class="nav-item" data-section="carts">
+        🛍️
+        <span>Carts</span>
+      </button>
+
+      <button class="nav-item" data-section="settings">
+        ⚙️
+        <span>Settings</span>
+      </button>
+
+      <div style="height:20px"></div>
+
+      <button id="logoutButton" class="nav-item">
+        🚪
+        <span>Sign Out</span>
+      </button>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div style="display:flex;align-items:center">
+
+        <button id="mobileMenu" class="mobile-menu">
+          ☰
+        </button>
+
+        <div class="top-title">
+          <h2 id="pageTitle">Dashboard</h2>
+          <small>Danny Smart Power Management</small>
+        </div>
+
+      </div>
+
+      <div class="admin-user">
+
+        <div class="admin-avatar" id="adminAvatar">
+          A
+        </div>
+
+        <div>
+          <strong id="adminName">Administrator</strong>
+          <small id="adminEmail">admin</small>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <div class="content">
+
+
+      <!-- =====================================================
+           DASHBOARD
+      ====================================================== -->
+
+      <section id="dashboard" class="section active">
+
+        <div class="welcome">
+
+          <h1>Welcome back, <span id="welcomeName">Admin</span> 👋</h1>
+
+          <p>
+            Manage your products, orders, customers, services and store
+            from one place.
+          </p>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card" data-open="products">
+            <div class="stat-top">
+              <small>PRODUCTS</small>
+              <div class="stat-icon">🛒</div>
+            </div>
+            <h3 id="statProducts">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="orders">
+            <div class="stat-top">
+              <small>TOTAL ORDERS</small>
+              <div class="stat-icon">📦</div>
+            </div>
+            <h3 id="statOrders">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="customers">
+            <div class="stat-top">
+              <small>CUSTOMERS</small>
+              <div class="stat-icon">👥</div>
+            </div>
+            <h3 id="statCustomers">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="orders">
+            <div class="stat-top">
+              <small>PENDING ORDERS</small>
+              <div class="stat-icon">⏳</div>
+            </div>
+            <h3 id="statPending">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="chats">
+            <div class="stat-top">
+              <small>UNREAD MESSAGES</small>
+              <div class="stat-icon">💬</div>
+            </div>
+            <h3 id="statUnread">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="projects">
+            <div class="stat-top">
+              <small>PROJECTS</small>
+              <div class="stat-icon">⚡</div>
+            </div>
+            <h3 id="statProjects">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="requests">
+            <div class="stat-top">
+              <small>SERVICE REQUESTS</small>
+              <div class="stat-icon">🛠️</div>
+            </div>
+            <h3 id="statRequests">0</h3>
+          </div>
+
+          <div class="stat-card" data-open="notifications">
+            <div class="stat-top">
+              <small>NOTIFICATIONS</small>
+              <div class="stat-icon">🔔</div>
+            </div>
+            <h3 id="statNotifications">0</h3>
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+          <div class="panel">
+
+            <div class="panel-header">
+              <h3>Recent Orders</h3>
+
+              <button
+                class="btn btn-light"
+                data-open="orders"
+              >
+                View All
+              </button>
+            </div>
+
+            <div id="recentOrders" class="panel-body">
+              <div class="empty">
+                <div class="empty-icon">📦</div>
+                Loading orders...
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-header">
+              <h3>Store Overview</h3>
+            </div>
+
+            <div class="panel-body">
+
+              <div style="display:grid;gap:14px">
+
+                <div>
+                  <small style="color:#718096">Available Products</small>
+                  <strong
+                    id="overviewAvailable"
+                    style="display:block;margin-top:4px"
+                  >0</strong>
+                </div>
+
+                <div>
+                  <small style="color:#718096">Featured Products</small>
+                  <strong
+                    id="overviewFeatured"
+                    style="display:block;margin-top:4px"
+                  >0</strong>
+                </div>
+
+                <div>
+                  <small style="color:#718096">Published Projects</small>
+                  <strong
+                    id="overviewPublished"
+                    style="display:block;margin-top:4px"
+                  >0</strong>
+                </div>
+
+                <div>
+                  <small style="color:#718096">Active Service Requests</small>
+                  <strong
+                    id="overviewRequests"
+                    style="display:block;margin-top:4px"
+                  >0</strong>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           PRODUCTS
+      ====================================================== -->
+
+      <section id="products" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Products</h2>
+            <p>Manage products in the Danny Smart Power store.</p>
+          </div>
+
+          <div class="heading-actions">
+            <button class="btn btn-primary" id="addProductButton">
+              + Add Product
+            </button>
+          </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            id="productSearch"
+            class="form-control"
+            placeholder="Search products..."
+          >
+
+          <select id="productCategoryFilter" class="form-control">
+            <option value="">All Categories</option>
+            <option value="Solar">Solar</option>
+            <option value="Lighting">Lighting</option>
+            <option value="Electrical">Electrical</option>
+          </select>
+
+          <select id="productAvailabilityFilter" class="form-control">
+            <option value="">All Availability</option>
+            <option value="true">Available</option>
+            <option value="false">Unavailable</option>
+          </select>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Available</th>
+                  <th>Featured</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="productsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           ORDERS
+      ====================================================== -->
+
+      <section id="orders" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Orders</h2>
+            <p>Manage customer orders and payments.</p>
+          </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            id="orderSearch"
+            class="form-control"
+            placeholder="Search customer, phone or order..."
+          >
+
+          <select id="orderStatusFilter" class="form-control">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="processing">Processing</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+
+          <select id="paymentStatusFilter" class="form-control">
+            <option value="">All Payment Status</option>
+            <option value="pending">Pending</option>
+            <option value="paid">Paid</option>
+            <option value="failed">Failed</option>
+          </select>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Delivery</th>
+                  <th>Payment</th>
+                  <th>Subtotal</th>
+                  <th>Delivery Fee</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="ordersTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           CUSTOMERS
+      ====================================================== -->
+
+      <section id="customers" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Customers</h2>
+            <p>View customer accounts and profiles.</p>
+          </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            id="customerSearch"
+            class="form-control"
+            placeholder="Search customers..."
+          >
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Location</th>
+                  <th>Account Type</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="customersTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           CHATS
+      ====================================================== -->
+
+      <section id="chats" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Customer Chats</h2>
+            <p>View customer conversations and unread messages.</p>
+          </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            id="chatSearch"
+            class="form-control"
+            placeholder="Search chats..."
+          >
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Last Message</th>
+                  <th>Status</th>
+                  <th>Unread</th>
+                  <th>Updated</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="chatsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           NOTIFICATIONS
+      ====================================================== -->
+
+      <section id="notifications" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Notifications</h2>
+            <p>Manage store notifications.</p>
+          </div>
+
+          <button class="btn btn-primary" id="addNotificationButton">
+            + Add Notification
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Notification</th>
+                  <th>Message</th>
+                  <th>Recipient</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="notificationsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           PROJECTS
+      ====================================================== -->
+
+      <section id="projects" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Electrical Projects</h2>
+            <p>Manage projects displayed on the service project page.</p>
+          </div>
+
+          <button class="btn btn-primary" id="addProjectButton">
+            + Add Project
+          </button>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            id="projectSearch"
+            class="form-control"
+            placeholder="Search projects..."
+          >
+
+          <select id="projectPublishedFilter" class="form-control">
+            <option value="">All Projects</option>
+            <option value="true">Published</option>
+            <option value="false">Unpublished</option>
+          </select>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Category</th>
+                  <th>Media</th>
+                  <th>Featured</th>
+                  <th>Published</th>
+                  <th>Request Enabled</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="projectsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           SERVICE REQUESTS
+      ====================================================== -->
+
+      <section id="requests" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Service Requests</h2>
+            <p>Manage customer electrical service requests.</p>
+          </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            id="requestSearch"
+            class="form-control"
+            placeholder="Search requests..."
+          >
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Service</th>
+                  <th>Location</th>
+                  <th>Phone</th>
+                  <th>Description</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="requestsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           WISHLISTS
+      ====================================================== -->
+
+      <section id="wishlists" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Wishlists</h2>
+            <p>View products customers have added to their wishlists.</p>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Customer ID</th>
+                  <th>Product</th>
+                  <th>Product ID</th>
+                  <th>Added</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="wishlistsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           CARTS
+      ====================================================== -->
+
+      <section id="carts" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Customer Carts</h2>
+            <p>View active shopping carts.</p>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Items</th>
+                  <th>Products</th>
+                  <th>Updated</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="cartsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           SETTINGS
+      ====================================================== -->
+
+      <section id="settings" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <h2>Store Settings</h2>
+            <p>Manage Danny Smart Power store information.</p>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-body">
+
+            <form id="settingsForm">
+
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label>Store Name</label>
+                  <input id="settingStoreName" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Currency</label>
+                  <input id="settingCurrency" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Email</label>
+                  <input id="settingEmail" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input id="settingPhone" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>WhatsApp</label>
+                  <input id="settingWhatsapp" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Logo URL</label>
+                  <input id="settingLogoUrl" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Login URL</label>
+                  <input id="settingLoginUrl" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Address</label>
+                  <input id="settingAddress" class="form-control">
+                </div>
+
+                <div class="form-group full-width">
+                  <label>Description</label>
+                  <textarea id="settingDescription" class="form-control"></textarea>
+                </div>
+
+              </div>
+
+              <button class="btn btn-primary" type="submit">
+                Save Settings
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- =========================================================
+     PRODUCT MODAL
+========================================================= -->
+
+<div id="productModal" class="modal">
+
+  <div class="modal-card">
+
+    <div class="modal-header">
+      <h3 id="productModalTitle">Add Product</h3>
+      <button class="close-modal" data-close="productModal">×</button>
+    </div>
+
+    <form id="productForm">
+
+      <div class="modal-body">
+
+        <input type="hidden" id="productId">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Name</label>
+            <input id="productName" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select id="productCategory" class="form-control" required>
+              <option value="Solar">Solar</option>
+              <option value="Lighting">Lighting</option>
+              <option value="Electrical">Electrical</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Price</label>
+            <input id="productPrice" type="number" min="0" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Stock</label>
+            <input id="productStock" type="number" min="0" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Colour</label>
+            <input id="productColour" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Image URL</label>
+            <input id="productImage" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Available</label>
+            <select id="productAvailable" class="form-control">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Featured</label>
+            <select id="productFeatured" class="form-control">
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Description</label>
+            <textarea id="productDescription" class="form-control"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-light" data-close="productModal">
+          Cancel
+        </button>
+
+        <button type="submit" class="btn btn-primary">
+          Save Product
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PROJECT MODAL
+========================================================= -->
+
+<div id="projectModal" class="modal">
+
+  <div class="modal-card">
+
+    <div class="modal-header">
+      <h3 id="projectModalTitle">Add Project</h3>
+      <button class="close-modal" data-close="projectModal">×</button>
+    </div>
+
+    <form id="projectForm">
+
+      <div class="modal-body">
+
+        <input type="hidden" id="projectId">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Title</label>
+            <input id="projectTitle" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <input id="projectCategory" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Media URL</label>
+            <input id="projectMediaUrl" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Thumbnail URL</label>
+            <input id="projectThumbnailUrl" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Media Type</label>
+            <select id="projectMediaType" class="form-control">
+              <option value="Photo">Photo</option>
+              <option value="Video">Video</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Featured</label>
+            <select id="projectFeatured" class="form-control">
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Published</label>
+            <select id="projectPublished" class="form-control">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Request Enabled</label>
+            <select id="projectRequestEnabled" class="form-control">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Description</label>
+            <textarea id="projectDescription" class="form-control"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-light" data-close="projectModal">
+          Cancel
+        </button>
+
+        <button type="submit" class="btn btn-primary">
+          Save Project
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     NOTIFICATION MODAL
+========================================================= -->
+
+<div id="notificationModal" class="modal">
+
+  <div class="modal-card">
+
+    <div class="modal-header">
+      <div>
+        <h3>Send Customer Notification</h3>
+        <small style="display:block;color:#718096;margin-top:4px">
+          Send a message to all customers or one specific customer.
+        </small>
+      </div>
+      <button class="close-modal" data-close="notificationModal">×</button>
+    </div>
+
+    <form id="notificationForm">
+
+      <div class="modal-body">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Notification Type</label>
+            <select id="notificationType" class="form-control" required>
+              <option value="announcement">📢 Announcement</option>
+              <option value="chat">💬 Chat</option>
+              <option value="order">📦 Order</option>
+              <option value="serviceRequest">🛠️ Service Request</option>
+              <option value="account">👤 Account</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Send To</label>
+            <select id="notificationTarget" class="form-control" required>
+              <option value="all">👥 All Customers</option>
+              <option value="user">👤 One Customer</option>
+            </select>
+          </div>
+
+          <div id="notificationCustomerGroup" class="form-group full-width hidden">
+            <label>Select Customer</label>
+            <select id="notificationRecipientId" class="form-control">
+              <option value="">Loading customers...</option>
+            </select>
+            <small style="display:block;color:#718096;margin-top:6px">
+              The notification will only appear for this customer's account.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label>Title</label>
+            <input id="notificationTitle" class="form-control" placeholder="Order Confirmed" required>
+          </div>
+
+          <div class="form-group">
+            <label>Icon</label>
+            <input id="notificationIcon" class="form-control" value="🔔" placeholder="🔔">
+          </div>
+
+          <div class="form-group full-width">
+            <label>Message</label>
+            <textarea id="notificationMessage" class="form-control" placeholder="Write the notification message..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Related Chat ID <span style="font-weight:400;color:#94a3b8">(optional)</span></label>
+            <input id="notificationChatId" class="form-control" placeholder="For chat notifications">
+          </div>
+
+          <div class="form-group">
+            <label>Source ID <span style="font-weight:400;color:#94a3b8">(optional)</span></label>
+            <input id="notificationSourceId" class="form-control" placeholder="Order ID / Service Request ID">
+          </div>
+
+        </div>
+
+        <div style="margin-top:16px;padding:13px 15px;border-radius:12px;background:#f0f9ff;border:1px solid #bae6fd;color:#075985;font-size:12px;line-height:1.55">
+          <strong>🔔 How it works:</strong>
+          New notifications are created as <code>read: false</code>. The customer's notification page can then show the unread count and reduce it when the customer reads the notification.
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-close="notificationModal">
+          Cancel
+        </button>
+        <button id="sendNotificationButton" type="submit" class="btn btn-primary">
+          🔔 Send Notification
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     DETAILS MODAL
+========================================================= -->
+
+<div id="detailsModal" class="modal">
+
+  <div class="modal-card">
+
+    <div class="modal-header">
+
+      <h3 id="detailsTitle">Details</h3>
+
+      <button class="close-modal" data-close="detailsModal">
+        ×
+      </button>
+
+    </div>
+
+    <div id="detailsBody" class="modal-body"></div>
+
+    <div class="modal-footer">
+
+      <button class="btn btn-light" data-close="detailsModal">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+/* =========================================================
+   FIREBASE CONFIG
+   ---------------------------------------------------------
+   REPLACE ONLY THIS OBJECT WITH YOUR DANNY SMART POWER
+   FIREBASE CONFIG.
+========================================================= */
+
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain: "danny-smart-power.firebaseapp.com",
+  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "danny-smart-power",
+  storageBucket: "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "649735645158",
+  appId: "1:649735645158:web:cff518b89721a163679827",
+  measurementId: "G-258YKLP5ZS"
+}; 
+
+/* =========================================================
+   FIREBASE INITIALIZATION
+========================================================= */
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const {
+  serverTimestamp,
+  FieldValue
+} = firebase.firestore;
+
+
+/* =========================================================
+   COLLECTIONS
+========================================================= */
+
+const COLLECTIONS = {
+
+  admins: "admins",
+
+  carts: "carts",
+
+  chats: "chats",
+
+  messages: "messages",
+
+  notifications: "notifications",
+
+  orders: "orders",
+
+  products: "products",
+
+  profiles: "profiles",
+
+  serviceProjects: "serviceProjects",
+
+  serviceRequests: "serviceRequests",
+
+  settings: "settings",
+
+  users: "users",
+
+  wishlists: "wishlists"
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const state = {
+
+  currentAdmin: null,
+
+  products: [],
+
+  orders: [],
+
+  users: [],
+
+  profiles: [],
+
+  chats: [],
+
+  messages: [],
+
+  notifications: [],
+
+  projects: [],
+
+  requests: [],
+
+  settings: null,
+
+  carts: [],
+
+  wishlists: []
+
+};
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(message, type = "success") {
+
+  const el = $("toast");
+
+  el.textContent = message;
+
+  el.className = "";
+
+  el.classList.add("show", type);
+
+  setTimeout(() => {
+
+    el.classList.remove("show");
+
+  }, 3000);
+
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(value) {
+
+  if (!value) return "—";
+
+  try {
+
+    let date;
+
+    if (value.toDate) {
+
+      date = value.toDate();
+
+    } else {
+
+      date = new Date(value);
+
+    }
+
+    if (isNaN(date.getTime())) return "—";
+
+    return date.toLocaleString();
+
+  } catch {
+
+    return "—";
+
+  }
+
+}
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(value) {
+
+  const number = Number(value || 0);
+
+  return "₦" + number.toLocaleString("en-NG");
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+function badge(value) {
+
+  const text = value || "unknown";
+
+  let cls = "badge-gray";
+
+  const lower = String(text).toLowerCase();
+
+  if (
+    ["paid", "delivered", "confirmed", "available", "published", "active", "read"]
+      .includes(lower)
+  ) {
+
+    cls = "badge-success";
+
+  } else if (
+    ["pending", "processing", "unread", "requested"]
+      .includes(lower)
+  ) {
+
+    cls = "badge-warning";
+
+  } else if (
+    ["failed", "cancelled", "unavailable", "rejected"]
+      .includes(lower)
+  ) {
+
+    cls = "badge-danger";
+
+  } else if (
+    ["shipped", "video", "photo"]
+      .includes(lower)
+  ) {
+
+    cls = "badge-info";
+
+  }
+
+  return `<span class="badge ${cls}">${escapeHTML(text)}</span>`;
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+auth.onAuthStateChanged(async user => {
+
+  if (!user) {
+
+    showLogin();
+
+    return;
+
+  }
+
+  try {
+
+    const adminDoc = await db
+      .collection(COLLECTIONS.admins)
+      .doc(user.uid)
+      .get();
+
+    if (!adminDoc.exists) {
+
+      await auth.signOut();
+
+      showLogin();
+
+      showLoginError(
+        "This account is not registered as an administrator."
+      );
+
+      return;
+
+    }
+
+    const admin = adminDoc.data();
+
+    if (admin.active !== true) {
+
+      await auth.signOut();
+
+      showLogin();
+
+      showLoginError(
+        "This administrator account is currently inactive."
+      );
+
+      return;
+
+    }
+
+    state.currentAdmin = {
+      id: adminDoc.id,
+      ...admin
+    };
+
+    showApp();
+
+    await loadEverything();
+
+  } catch (error) {
+
+    console.error(error);
+
+    await auth.signOut();
+
+    showLogin();
+
+    showLoginError(
+      "Unable to verify administrator account."
+    );
+
+  }
+
+});
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+$("loginForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  const email = $("loginEmail").value.trim();
+
+  const password = $("loginPassword").value;
+
+  const button = $("loginButton");
+
+  $("loginError").classList.add("hidden");
+
+  button.disabled = true;
+
+  button.innerHTML = `<span class="loader"></span> Signing in...`;
+
+  try {
+
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    showLoginError(
+      friendlyAuthError(error)
+    );
+
+    button.disabled = false;
+
+    button.textContent = "Sign In";
+
+  }
+
+});
+
+
+function friendlyAuthError(error) {
+
+  const code = error?.code || "";
+
+  if (code.includes("invalid-credential")) {
+    return "Incorrect email or password.";
+  }
+
+  if (code.includes("user-not-found")) {
+    return "No account exists with this email.";
+  }
+
+  if (code.includes("wrong-password")) {
+    return "Incorrect password.";
+  }
+
+  if (code.includes("too-many-requests")) {
+    return "Too many attempts. Please try again later.";
+  }
+
+  return error?.message || "Unable to sign in.";
+
+}
+
+
+function showLoginError(message) {
+
+  const el = $("loginError");
+
+  el.textContent = message;
+
+  el.classList.remove("hidden");
+
+}
+
+
+function showLogin() {
+
+  $("loginScreen").style.display = "flex";
+
+  $("app").style.display = "none";
+
+}
+
+
+function showApp() {
+
+  $("loginScreen").style.display = "none";
+
+  $("app").style.display = "block";
+
+  const admin = state.currentAdmin;
+
+  const name = admin?.name || "Administrator";
+
+  $("adminName").textContent = name;
+
+  $("adminEmail").textContent =
+    admin?.email || auth.currentUser?.email || "";
+
+  $("welcomeName").textContent = name;
+
+  $("adminAvatar").textContent =
+    name.charAt(0).toUpperCase();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutButton").addEventListener("click", async () => {
+
+  if (!confirm("Sign out of the admin center?")) return;
+
+  await auth.signOut();
+
+});
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document.querySelectorAll(".nav-item[data-section]")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      openSection(button.dataset.section);
+
+      $("sidebar").classList.remove("open");
+
+    });
+
+  });
+
+
+document.querySelectorAll("[data-open]")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      openSection(button.dataset.open);
+
+    });
+
+  });
+
+
+function openSection(sectionId) {
+
+  document.querySelectorAll(".section")
+    .forEach(section => {
+
+      section.classList.remove("active");
+
+    });
+
+  const section = $(sectionId);
+
+  if (!section) return;
+
+  section.classList.add("active");
+
+  document.querySelectorAll(".nav-item[data-section]")
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item.dataset.section === sectionId
+      );
+
+    });
+
+  const title = section.querySelector("h2")?.textContent
+    || "Dashboard";
+
+  $("pageTitle").textContent = title;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+$("mobileMenu").addEventListener("click", () => {
+
+  $("sidebar").classList.toggle("open");
+
+});
+
+
+/* =========================================================
+   LOAD EVERYTHING
+========================================================= */
+
+async function loadEverything() {
+
+  try {
+
+    await Promise.all([
+
+      loadProducts(),
+
+      loadOrders(),
+
+      loadUsers(),
+
+      loadProfiles(),
+
+      loadChats(),
+
+      loadNotifications(),
+
+      loadProjects(),
+
+      loadRequests(),
+
+      loadSettings(),
+
+      loadCarts(),
+
+      loadWishlists()
+
+    ]);
+
+    updateDashboard();
+
+  } catch (error) {
+
+    console.error(error);
+
+    toast(
+      "Some admin data could not be loaded.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   GENERIC COLLECTION LOADER
+========================================================= */
+
+async function getCollection(collectionName) {
+
+  const snapshot = await db
+    .collection(collectionName)
+    .get();
+
+  return snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+}
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+async function loadProducts() {
+
+  state.products =
+    await getCollection(COLLECTIONS.products);
+
+  renderProducts();
+
+}
+
+
+function renderProducts() {
+
+  const tbody = $("productsTable");
+
+  const search =
+    ($("productSearch")?.value || "")
+      .toLowerCase();
+
+  const category =
+    $("productCategoryFilter")?.value || "";
+
+  const availability =
+    $("productAvailabilityFilter")?.value || "";
+
+  const filtered = state.products.filter(product => {
+
+    const matchesSearch =
+      !search ||
+      String(product.name || "")
+        .toLowerCase()
+        .includes(search) ||
+      String(product.description || "")
+        .toLowerCase()
+        .includes(search);
+
+    const matchesCategory =
+      !category ||
+      product.category === category;
+
+    const matchesAvailability =
+      !availability ||
+      String(product.available) === availability;
+
+    return (
+      matchesSearch &&
+      matchesCategory &&
+      matchesAvailability
+    );
+
+  });
+
+  if (!filtered.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            <div class="empty-icon">🛒</div>
+            No products found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+  tbody.innerHTML = filtered.map(product => `
+
+    <tr>
+
+      <td>
+
+        <div style="display:flex;align-items:center;gap:10px">
+
+          ${
+            product.image
+              ? `<img class="product-image"
+                      src="${escapeHTML(product.image)}"
+                      onerror="this.style.display='none'">`
+              : `<div class="product-image"></div>`
+          }
+
+          <div>
+
+            <strong>
+              ${escapeHTML(product.name || "Unnamed")}
+            </strong>
+
+            <small style="display:block;color:#718096">
+              ${escapeHTML(product.colour || "")}
+            </small>
+
+          </div>
+
+        </div>
+
+      </td>
+
+      <td>${badge(product.category)}</td>
+
+      <td>${money(product.price)}</td>
+
+      <td>${Number(product.stock || 0)}</td>
+
+      <td>${badge(product.available ? "available" : "unavailable")}</td>
+
+      <td>${badge(product.featured ? "featured" : "normal")}</td>
+
+      <td>
+
+        <div class="actions">
+
+          <button
+            class="action-btn action-view"
+            onclick="viewProduct('${product.id}')"
+          >
+            View
+          </button>
+
+          <button
+            class="action-btn action-edit"
+            onclick="editProduct('${product.id}')"
+          >
+            Edit
+          </button>
+
+          <button
+            class="action-btn action-delete"
+            onclick="deleteProduct('${product.id}')"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+  `).join("");
+
+}
+
+
+$("productSearch").addEventListener("input", renderProducts);
+
+$("productCategoryFilter").addEventListener("change", renderProducts);
+
+$("productAvailabilityFilter").addEventListener("change", renderProducts);
+
+
+/* =========================================================
+   ADD PRODUCT
+========================================================= */
+
+$("addProductButton").addEventListener("click", () => {
+
+  $("productForm").reset();
+
+  $("productId").value = "";
+
+  $("productModalTitle").textContent = "Add Product";
+
+  $("productModal").classList.add("open");
+
+});
+
+
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+window.editProduct = function(id) {
+
+  const product =
+    state.products.find(item => item.id === id);
+
+  if (!product) return;
+
+  $("productId").value = id;
+
+  $("productName").value = product.name || "";
+
+  $("productCategory").value =
+    product.category || "Electrical";
+
+  $("productPrice").value =
+    product.price ?? 0;
+
+  $("productStock").value =
+    product.stock ?? 0;
+
+  $("productColour").value =
+    product.colour || "";
+
+  $("productImage").value =
+    product.image || "";
+
+  $("productAvailable").value =
+    String(product.available === true);
+
+  $("productFeatured").value =
+    String(product.featured === true);
+
+  $("productDescription").value =
+    product.description || "";
+
+  $("productModalTitle").textContent =
+    "Edit Product";
+
+  $("productModal").classList.add("open");
+
+};
+
+
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
+
+$("productForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  const id = $("productId").value;
+
+  const data = {
+
+    available:
+      $("productAvailable").value === "true",
+
+    category:
+      $("productCategory").value,
+
+    colour:
+      $("productColour").value.trim(),
+
+    description:
+      $("productDescription").value.trim(),
+
+    featured:
+      $("productFeatured").value === "true",
+
+    image:
+      $("productImage").value.trim(),
+
+    name:
+      $("productName").value.trim(),
+
+    price:
+      Number($("productPrice").value || 0),
+
+    stock:
+      Number($("productStock").value || 0),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+
+  try {
+
+    if (id) {
+
+      await db
+        .collection(COLLECTIONS.products)
+        .doc(id)
+        .update(data);
+
+      toast("Product updated.");
+
+    } else {
+
+      data.createdAt =
+        serverTimestamp();
+
+      await db
+        .collection(COLLECTIONS.products)
+        .add(data);
+
+      toast("Product created.");
+
+    }
+
+    $("productModal").classList.remove("open");
+
+    await loadProducts();
+
+    updateDashboard();
+
+  } catch (error) {
+
+    console.error(error);
+
+    toast(
+      "Unable to save product.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+window.deleteProduct = async function(id) {
+
+  const product =
+    state.products.find(item => item.id === id);
+
+  if (!product) return;
+
+  if (
+    !confirm(
+      `Delete "${product.name || "this product"}"?`
+    )
+  ) return;
+
+  try {
+
+    await db
+      .collection(COLLECTIONS.products)
+      .doc(id)
+      .delete();
+
+    toast("Product deleted.");
+
+    await loadProducts();
+
+    updateDashboard();
+
+  } catch (error) {
+
+    console.error(error);
+
+    toast(
+      "Unable to delete product.",
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   VIEW PRODUCT
+========================================================= */
+
+window.viewProduct = function(id) {
+
+  const product =
+    state.products.find(item => item.id === id);
+
+  if (!product) return;
+
+  showDetails(
+    "Product Details",
+    `
+
+      <div style="display:grid;gap:14px">
+
+        ${
+          product.image
+            ? `<img
+                 src="${escapeHTML(product.image)}"
+                 style="width:100%;max-height:260px;object-fit:contain;border-radius:12px;background:#f8fafc"
+               >`
+            : ""
+        }
+
+        <div>
+          <strong>Name</strong>
+          <p>${escapeHTML(product.name || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Description</strong>
+          <p>${escapeHTML(product.description || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Category</strong>
+          <p>${escapeHTML(product.category || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Colour</strong>
+          <p>${escapeHTML(product.colour || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Price</strong>
+          <p>${money(product.price)}</p>
+        </div>
+
+        <div>
+          <strong>Stock</strong>
+          <p>${Number(product.stock || 0)}</p>
+        </div>
+
+      </div>
+
+    `
+  );
+
+};
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders() {
+
+  state.orders =
+    await getCollection(COLLECTIONS.orders);
+
+  state.orders.sort(
+    (a,b) =>
+      dateValue(b.createdAt) -
+      dateValue(a.createdAt)
+  );
+
+  renderOrders();
+
+}
+
+
+function dateValue(value) {
+
+  if (!value) return 0;
+
+  if (value.toMillis) {
+
+    return value.toMillis();
+
+  }
+
+  const date = new Date(value);
+
+  return isNaN(date.getTime())
+    ? 0
+    : date.getTime();
+
+}
+
+
+function renderOrders() {
+
+  const tbody = $("ordersTable");
+
+  const search =
+    ($("orderSearch")?.value || "")
+      .toLowerCase();
+
+  const status =
+    $("orderStatusFilter")?.value || "";
+
+  const paymentStatus =
+    $("paymentStatusFilter")?.value || "";
+
+  const filtered =
+    state.orders.filter(order => {
+
+      const searchable = [
+
+        order.customerName,
+
+        order.phone,
+
+        order.email,
+
+        order.customerId
+
+      ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+      return (
+
+        (!search ||
+          searchable.includes(search))
+
+        &&
+
+        (!status ||
+          order.status === status)
+
+        &&
+
+        (!paymentStatus ||
+          order.paymentStatus === paymentStatus)
+
+      );
+
+    });
+
+
+  if (!filtered.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6">
+          <div class="empty">
+            <div class="empty-icon">📦</div>
+            No orders found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    filtered.map(order => `
+
+      <tr>
+
+        <td>
+
+          <strong>
+            ${escapeHTML(order.customerName || "Customer")}
+          </strong>
+
+          <small style="display:block;color:#718096">
+            ${escapeHTML(order.phone || order.email || "")}
+          </small>
+
+        </td>
+
+        <td>
+          ${escapeHTML(order.deliveryMethod || "—")}
+          <small style="display:block;color:#718096">
+            ${escapeHTML(order.city || "")}
+          </small>
+        </td>
+
+        <td>
+          ${escapeHTML(order.payment || "—")}
+          <small style="display:block">
+            ${badge(order.paymentStatus || "pending")}
+          </small>
+        </td>
+
+        <td>${money(order.subtotal)}</td>
+
+        <td>${money(order.deliveryFee)}</td>
+
+        <td>${escapeHTML(order.total || money(
+          Number(order.subtotal || 0) +
+          Number(order.deliveryFee || 0)
+        ))}</td>
+
+        <td>${badge(order.status || "pending")}</td>
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="action-btn action-view"
+              onclick="viewOrder('${order.id}')"
+            >
+              View
+            </button>
+
+            <button
+              class="action-btn action-edit"
+              onclick="changeOrderStatus('${order.id}')"
+            >
+              Status
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+$("orderSearch").addEventListener("input", renderOrders);
+
+$("orderStatusFilter").addEventListener("change", renderOrders);
+
+$("paymentStatusFilter").addEventListener("change", renderOrders);
+
+
+/* =========================================================
+   VIEW ORDER
+========================================================= */
+
+window.viewOrder = function(id) {
+
+  const order =
+    state.orders.find(item => item.id === id);
+
+  if (!order) return;
+
+
+  const items = Array.isArray(order.items)
+    ? order.items
+    : [];
+
+
+  showDetails(
+
+    "Order Details",
+
+    `
+
+      <div style="display:grid;gap:16px">
+
+        <div>
+          <strong>Customer</strong>
+          <p>${escapeHTML(order.customerName || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Email</strong>
+          <p>${escapeHTML(order.email || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Phone</strong>
+          <p>${escapeHTML(order.phone || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Address</strong>
+          <p>
+            ${escapeHTML(order.address || "—")}<br>
+            ${escapeHTML(order.area || "")}
+            ${escapeHTML(order.city || "")}<br>
+            ${escapeHTML(order.state || "")}
+          </p>
+        </div>
+
+        <div>
+          <strong>Delivery Method</strong>
+          <p>${escapeHTML(order.deliveryMethod || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Payment</strong>
+          <p>${escapeHTML(order.payment || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Payment Reference</strong>
+          <p>${escapeHTML(order.paymentReference || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Payment Status</strong>
+          <p>${badge(order.paymentStatus || "pending")}</p>
+        </div>
+
+        <div>
+          <strong>Order Status</strong>
+          <p>${badge(order.status || "pending")}</p>
+        </div>
+
+        <div>
+          <strong>Items</strong>
+
+          <div style="display:grid;gap:8px;margin-top:8px">
+
+            ${
+              items.length
+
+              ?
+
+              items.map(item => `
+
+                <div style="
+                  padding:10px;
+                  border:1px solid #e7ebf2;
+                  border-radius:10px;
+                  display:flex;
+                  justify-content:space-between;
+                  gap:10px;
+                ">
+
+                  <div>
+
+                    <strong>
+                      ${escapeHTML(item.name || "Product")}
+                    </strong>
+
+                    <small style="display:block;color:#718096">
+                      Qty: ${Number(item.qty || 0)}
+                    </small>
+
+                  </div>
+
+                  <strong>
+                    ${money(
+                      Number(item.price || 0) *
+                      Number(item.qty || 0)
+                    )}
+                  </strong>
+
+                </div>
+
+              `).join("")
+
+              :
+
+              `<p>No items recorded.</p>`
+
+            }
+
+          </div>
+
+        </div>
+
+        <div>
+          <strong>Note</strong>
+          <p>${escapeHTML(
+            items.map(x => x.note).filter(Boolean).join(", ") || "—"
+          )}</p>
+        </div>
+
+      </div>
+
+    `
+
+  );
+
+};
+
+
+/* =========================================================
+   CHANGE ORDER STATUS
+========================================================= */
+
+window.changeOrderStatus = async function(id) {
+
+  const order =
+    state.orders.find(item => item.id === id);
+
+  if (!order) return;
+
+
+  const status = prompt(
+
+    "Enter new order status:\n\n" +
+    "pending\n" +
+    "confirmed\n" +
+    "processing\n" +
+    "shipped\n" +
+    "delivered\n" +
+    "cancelled",
+
+    order.status || "pending"
+
+  );
+
+
+  if (!status) return;
+
+
+  try {
+
+    await db
+      .collection(COLLECTIONS.orders)
+      .doc(id)
+      .update({
+
+        status: status.trim().toLowerCase(),
+
+        updatedAt:
+          serverTimestamp()
+
+      });
+
+
+    toast("Order status updated.");
+
+    await loadOrders();
+
+    updateDashboard();
+
+  } catch (error) {
+
+    console.error(error);
+
+    toast(
+      "Unable to update order.",
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   CUSTOMERS
+========================================================= */
+
+async function loadUsers() {
+
+  state.users =
+    await getCollection(COLLECTIONS.users);
+
+}
+
+
+async function loadProfiles() {
+
+  state.profiles =
+    await getCollection(COLLECTIONS.profiles);
+
+  renderCustomers();
+
+}
+
+
+function renderCustomers() {
+
+  const tbody = $("customersTable");
+
+  const search =
+    ($("customerSearch")?.value || "")
+      .toLowerCase();
+
+
+  const merged = state.users.map(user => {
+
+    const profile =
+      state.profiles.find(
+        p => p.uid === user.uid
+      );
+
+    return {
+
+      ...user,
+
+      ...profile
+
+    };
+
+  });
+
+
+  const filtered =
+    merged.filter(customer => {
+
+      const text = [
+
+        customer.name,
+
+        customer.fullName,
+
+        customer.email,
+
+        customer.phone,
+
+        customer.city,
+
+        customer.state
+
+      ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+      return !search || text.includes(search);
+
+    });
+
+
+  if (!filtered.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6">
+          <div class="empty">
+            <div class="empty-icon">👥</div>
+            No customers found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    filtered.map(customer => `
+
+      <tr>
+
+        <td>
+
+          <div style="display:flex;align-items:center;gap:10px">
+
+            ${
+              customer.photoURL
+              ?
+
+              `<img
+                src="${escapeHTML(customer.photoURL)}"
+                style="width:38px;height:38px;border-radius:50%;object-fit:cover"
+              >`
+
+              :
+
+              `<div class="admin-avatar">
+                ${(customer.fullName || customer.name || "C")
+                  .charAt(0)
+                  .toUpperCase()}
+              </div>`
+
+            }
+
+            <div>
+
+              <strong>
+                ${escapeHTML(
+                  customer.fullName ||
+                  customer.name ||
+                  "Customer"
+                )}
+              </strong>
+
+              <small style="display:block;color:#718096">
+                ${escapeHTML(customer.uid || "")}
+              </small>
+
+            </div>
+
+          </div>
+
+        </td>
+
+        <td>${escapeHTML(customer.email || "—")}</td>
+
+        <td>${escapeHTML(customer.phone || "—")}</td>
+
+        <td>
+          ${escapeHTML(customer.city || "")}
+          ${customer.state ? ", " + escapeHTML(customer.state) : ""}
+        </td>
+
+        <td>
+          ${badge(customer.accountType || "customer")}
+        </td>
+
+        <td>
+
+          <button
+            class="action-btn action-view"
+            onclick="viewCustomer('${escapeHTML(customer.uid || customer.id)}')"
+          >
+            View
+          </button>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+$("customerSearch").addEventListener(
+  "input",
+  renderCustomers
+);
+
+
+/* =========================================================
+   VIEW CUSTOMER
+========================================================= */
+
+window.viewCustomer = function(uid) {
+
+  const user =
+    state.users.find(item => item.uid === uid);
+
+  const profile =
+    state.profiles.find(item => item.uid === uid);
+
+  if (!user && !profile) return;
+
+  const customer = {
+    ...(user || {}),
+    ...(profile || {})
+  };
+
+  showDetails(
+
+    "Customer Profile",
+
+    `
+
+      <div style="display:grid;gap:15px">
+
+        ${
+          customer.photoURL
+          ?
+          `<img
+            src="${escapeHTML(customer.photoURL)}"
+            style="width:90px;height:90px;border-radius:50%;object-fit:cover"
+          >`
+          :
+          ""
+        }
+
+        <div>
+          <strong>Full Name</strong>
+          <p>${escapeHTML(
+            customer.fullName ||
+            customer.name ||
+            "—"
+          )}</p>
+        </div>
+
+        <div>
+          <strong>Email</strong>
+          <p>${escapeHTML(customer.email || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Phone</strong>
+          <p>${escapeHTML(customer.phone || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Address</strong>
+          <p>${escapeHTML(customer.address || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Location</strong>
+          <p>
+            ${escapeHTML(customer.city || "")},
+            ${escapeHTML(customer.state || "")},
+            ${escapeHTML(customer.country || "")}
+          </p>
+        </div>
+
+        <div>
+          <strong>UID</strong>
+          <p>${escapeHTML(customer.uid || "—")}</p>
+        </div>
+
+      </div>
+
+    `
+
+  );
+
+};
+
+
+/* =========================================================
+   CHATS
+========================================================= */
+
+async function loadChats() {
+
+  state.chats =
+    await getCollection(COLLECTIONS.chats);
+
+  state.chats.sort(
+    (a,b) =>
+      dateValue(b.updatedAt || b.lastMessageAt) -
+      dateValue(a.updatedAt || a.lastMessageAt)
+  );
+
+  renderChats();
+
+}
+
+
+function renderChats() {
+
+  const tbody = $("chatsTable");
+
+  const search =
+    ($("chatSearch")?.value || "")
+      .toLowerCase();
+
+
+  const filtered =
+    state.chats.filter(chat => {
+
+      const text = [
+
+        chat.customerName,
+
+        chat.customerEmail,
+
+        chat.lastMessage,
+
+        chat.status
+
+      ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+      return !search || text.includes(search);
+
+    });
+
+
+  if (!filtered.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6">
+          <div class="empty">
+            <div class="empty-icon">💬</div>
+            No chats found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    filtered.map(chat => `
+
+      <tr>
+
+        <td>
+
+          <strong>
+            ${escapeHTML(chat.customerName || "Customer")}
+          </strong>
+
+          <small style="display:block;color:#718096">
+            ${escapeHTML(chat.customerEmail || "")}
+          </small>
+
+        </td>
+
+        <td>
+          ${escapeHTML(chat.lastMessage || "No messages")}
+        </td>
+
+        <td>${badge(chat.status || "active")}</td>
+
+        <td>
+          ${
+            Number(chat.unreadForAdmin || 0) > 0
+            ? badge(chat.unreadForAdmin + " unread")
+            : "—"
+          }
+        </td>
+
+        <td>
+          ${formatDate(
+            chat.updatedAt ||
+            chat.lastMessageAt
+          )}
+        </td>
+
+        <td>
+
+          <button
+            class="action-btn action-view"
+            onclick="viewChat('${chat.id}')"
+          >
+            View
+          </button>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+$("chatSearch").addEventListener(
+  "input",
+  renderChats
+);
+
+
+/* =========================================================
+   CHAT VIEW
+========================================================= */
+
+window.viewChat = async function(chatId) {
+
+  const chat =
+    state.chats.find(item => item.id === chatId);
+
+  if (!chat) return;
+
+
+  let messages = [];
+
+  try {
+
+    const snapshot = await db
+      .collection(COLLECTIONS.messages)
+      .where("chatId", "==", chatId)
+      .get();
+
+    messages =
+      snapshot.docs
+        .map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b) =>
+            dateValue(a.createdAt) -
+            dateValue(b.createdAt)
+        );
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+
+  showDetails(
+
+    "Customer Chat",
+
+    `
+
+      <div>
+
+        <div style="
+          padding:14px;
+          background:#f8fafc;
+          border-radius:12px;
+          margin-bottom:15px;
+        ">
+
+          <strong>
+            ${escapeHTML(chat.customerName || "Customer")}
+          </strong>
+
+          <small style="display:block;color:#718096">
+            ${escapeHTML(chat.customerEmail || "")}
+          </small>
+
+        </div>
+
+        <div style="
+          display:flex;
+          flex-direction:column;
+          gap:9px;
+          max-height:400px;
+          overflow-y:auto;
+        ">
+
+          ${
+            messages.length
+
+            ?
+
+            messages.map(message => `
+
+              <div style="
+                padding:10px 12px;
+                border-radius:12px;
+                background:${
+                  message.senderRole === "admin"
+                  ? "#e0f2fe"
+                  : "#f1f5f9"
+                };
+              ">
+
+                <strong style="font-size:11px">
+                  ${escapeHTML(message.senderName || "User")}
+                </strong>
+
+                ${
+                  message.text
+                  ?
+                  `<p style="margin-top:4px">
+                    ${escapeHTML(message.text)}
+                  </p>`
+                  :
+                  ""
+                }
+
+                ${
+                  message.imageUrl
+                  ?
+                  `<img
+                    src="${escapeHTML(message.imageUrl)}"
+                    style="max-width:180px;border-radius:8px;margin-top:7px"
+                  >`
+                  :
+                  ""
+                }
+
+                <small style="
+                  display:block;
+                  color:#718096;
+                  margin-top:5px
+                ">
+                  ${formatDate(message.createdAt)}
+                </small>
+
+              </div>
+
+            `).join("")
+
+            :
+
+            `<div class="empty">
+              No messages found.
+            </div>`
+
+          }
+
+        </div>
+
+      </div>
+
+    `
+
+  );
+
+};
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+async function loadNotifications() {
+
+  state.notifications =
+    await getCollection(COLLECTIONS.notifications);
+
+  state.notifications.sort(
+    (a, b) =>
+      dateValue(b.createdAt) - dateValue(a.createdAt)
+  );
+
+  renderNotifications();
+}
+
+
+function renderNotifications() {
+
+  const tbody = $("notificationsTable");
+
+  if (!state.notifications.length) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8">
+          <div class="empty">
+            <div class="empty-icon">🔔</div>
+            No notifications.
+          </div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML =
+    state.notifications.map(notification => {
+
+      const target =
+        String(notification.target || "user").toLowerCase();
+
+      const type =
+        String(notification.type || "announcement");
+
+      const recipient =
+        notification.recipientName ||
+        notification.recipientEmail ||
+        (target === "all" ? "All Customers" : notification.recipientId || "Customer");
+
+      return `
+        <tr>
+          <td>
+            <strong>${escapeHTML(notification.title || "—")}</strong>
+            <small style="display:block;color:#718096;margin-top:3px">
+              ${escapeHTML(notification.icon || "🔔")} ${escapeHTML(type)}
+            </small>
+          </td>
+
+          <td style="max-width:300px">
+            ${escapeHTML(notification.message || "—")}
+          </td>
+
+          <td>
+            ${
+              target === "all"
+                ? badge("all customers")
+                : badge("one customer")
+            }
+            <small style="display:block;color:#718096;margin-top:5px;max-width:170px;word-break:break-word">
+              ${escapeHTML(recipient)}
+            </small>
+          </td>
+
+          <td>
+            ${badge(notification.read ? "read" : "unread")}
+          </td>
+
+          <td>
+            ${formatDate(notification.createdAt)}
+          </td>
+
+          <td>
+            <div class="actions">
+              <button
+                class="action-btn action-view"
+                onclick="viewNotification('${notification.id}')"
+              >
+                View
+              </button>
+              <button
+                class="action-btn action-delete"
+                onclick="deleteNotification('${notification.id}')"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+
+    }).join("");
+}
+
+
+function populateNotificationCustomers() {
+
+  const select = $("notificationRecipientId");
+
+  if (!select) return;
+
+  const customers = state.users.map(user => {
+
+    const profile =
+      state.profiles.find(
+        p => p.uid === user.uid
+      ) || {};
+
+    return {
+      uid: user.uid,
+      name:
+        profile.name ||
+        profile.fullName ||
+        user.name ||
+        user.displayName ||
+        "Customer",
+      email:
+        profile.email ||
+        user.email ||
+        ""
+    };
+
+  }).filter(customer => customer.uid);
+
+  const unique = [];
+  const seen = new Set();
+
+  customers.forEach(customer => {
+    if (!seen.has(customer.uid)) {
+      seen.add(customer.uid);
+      unique.push(customer);
+    }
+  });
+
+  unique.sort((a,b) =>
+    String(a.name).localeCompare(String(b.name))
+  );
+
+  if (!unique.length) {
+    select.innerHTML = `
+      <option value="">No customers found</option>
+    `;
+    return;
+  }
+
+  select.innerHTML = `
+    <option value="">Select a customer...</option>
+    ${unique.map(customer => `
+      <option value="${escapeHTML(customer.uid)}">
+        ${escapeHTML(customer.name)}${customer.email ? ` — ${escapeHTML(customer.email)}` : ""}
+      </option>
+    `).join("")}
+  `;
+}
+
+
+function getCustomerByUid(uid) {
+
+  if (!uid) return null;
+
+  const user =
+    state.users.find(item => item.uid === uid) || null;
+
+  const profile =
+    state.profiles.find(item => item.uid === uid) || null;
+
+  if (!user && !profile) return null;
+
+  return {
+    uid,
+    name:
+      profile?.name ||
+      profile?.fullName ||
+      user?.name ||
+      user?.displayName ||
+      "Customer",
+    email:
+      profile?.email ||
+      user?.email ||
+      ""
+  };
+}
+
+
+function updateNotificationRecipientUI() {
+
+  const target =
+    $("notificationTarget")?.value || "all";
+
+  const group =
+    $("notificationCustomerGroup");
+
+  const select =
+    $("notificationRecipientId");
+
+  if (!group || !select) return;
+
+  const isUser = target === "user";
+
+  group.classList.toggle("hidden", !isUser);
+  select.required = isUser;
+
+  if (isUser) {
+    populateNotificationCustomers();
+  } else {
+    select.value = "";
+  }
+}
+
+
+$("addNotificationButton").addEventListener(
+  "click",
+  () => {
+
+    $("notificationForm").reset();
+
+    $("notificationType").value = "announcement";
+    $("notificationTarget").value = "all";
+    $("notificationIcon").value = "🔔";
+
+    updateNotificationRecipientUI();
+
+    $("notificationModal")
+      .classList.add("open");
+  }
+);
+
+
+$("notificationTarget").addEventListener(
+  "change",
+  updateNotificationRecipientUI
+);
+
+
+$("notificationType").addEventListener(
+  "change",
+  () => {
+
+    const type = $("notificationType").value;
+
+    const iconMap = {
+      announcement: "📢",
+      chat: "💬",
+      order: "📦",
+      serviceRequest: "🛠️",
+      account: "👤"
+    };
+
+    $("notificationIcon").value =
+      iconMap[type] || "🔔";
+  }
+);
+
+
+$("notificationForm").addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    const button =
+      $("sendNotificationButton");
+
+    const target =
+      $("notificationTarget").value;
+
+    const type =
+      $("notificationType").value;
+
+    const recipientId =
+      $("notificationRecipientId").value.trim();
+
+    const title =
+      $("notificationTitle").value.trim();
+
+    const message =
+      $("notificationMessage").value.trim();
+
+    const icon =
+      $("notificationIcon").value.trim() || "🔔";
+
+    const sourceId =
+      $("notificationSourceId").value.trim();
+
+    const chatId =
+      $("notificationChatId").value.trim();
+
+    if (!title || !message) {
+      toast("Enter a notification title and message.", "error");
+      return;
+    }
+
+    if (target === "user" && !recipientId) {
+      toast("Select the customer who should receive this notification.", "error");
+      return;
+    }
+
+    const customer =
+      target === "user"
+        ? getCustomerByUid(recipientId)
+        : null;
+
+    if (target === "user" && !customer) {
+      toast("The selected customer could not be found.", "error");
+      return;
+    }
+
+    button.disabled = true;
+    const originalText = button.innerHTML;
+    button.innerHTML = `<span class="loader"></span> Sending...`;
+
+    try {
+
+      const data = {
+        title,
+        message,
+        icon,
+        type,
+        target,
+        read: false,
+        createdAt: serverTimestamp(),
+        senderId: auth.currentUser?.uid || ADMIN_UID,
+        senderName: "Danny Smart Power",
+        sourceId: sourceId || "",
+        chatId: chatId || ""
+      };
+
+      if (target === "user") {
+        data.recipientId = customer.uid;
+        data.recipientName = customer.name;
+        data.recipientEmail = customer.email || "";
+      } else {
+        data.recipientId = "";
+        data.recipientName = "All Customers";
+        data.recipientEmail = "";
+      }
+
+      await db
+        .collection(COLLECTIONS.notifications)
+        .add(data);
+
+      toast(
+        target === "all"
+          ? "Notification sent to all customers."
+          : `Notification sent to ${customer.name}.`,
+        "success"
+      );
+
+      $("notificationModal")
+        .classList.remove("open");
+
+      $("notificationForm").reset();
+      updateNotificationRecipientUI();
+
+      await loadNotifications();
+      updateDashboard();
+
+    } catch (error) {
+
+      console.error("Notification send error:", error);
+
+      toast(
+        error?.code === "permission-denied"
+          ? "Permission denied. Check your Firestore admin rules."
+          : "Unable to send notification.",
+        "error"
+      );
+
+    } finally {
+
+      button.disabled = false;
+      button.innerHTML = originalText;
+    }
+
+  }
+);
+
+
+window.viewNotification = function(id) {
+
+  const notification =
+    state.notifications.find(
+      item => item.id === id
+    );
+
+  if (!notification) return;
+
+  const target =
+    String(notification.target || "user").toLowerCase();
+
+  const recipient =
+    target === "all"
+      ? "All Customers"
+      : notification.recipientName ||
+        notification.recipientEmail ||
+        notification.recipientId ||
+        "Customer";
+
+  showDetails(
+    "Notification Details",
+    `
+      <div style="display:grid;gap:15px">
+
+        <div>
+          <strong>Title</strong>
+          <p>${escapeHTML(notification.title || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Message</strong>
+          <p style="white-space:pre-wrap;line-height:1.6">
+            ${escapeHTML(notification.message || "—")}
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px">
+          <div>
+            <strong>Type</strong>
+            <p>${escapeHTML(notification.type || "announcement")}</p>
+          </div>
+
+          <div>
+            <strong>Target</strong>
+            <p>${escapeHTML(recipient)}</p>
+          </div>
+
+          <div>
+            <strong>Status</strong>
+            <p>${notification.read ? "Read" : "Unread"}</p>
+          </div>
+
+          <div>
+            <strong>Created</strong>
+            <p>${escapeHTML(formatDate(notification.createdAt))}</p>
+          </div>
+
+          <div>
+            <strong>Source ID</strong>
+            <p>${escapeHTML(notification.sourceId || "—")}</p>
+          </div>
+
+          <div>
+            <strong>Chat ID</strong>
+            <p>${escapeHTML(notification.chatId || "—")}</p>
+          </div>
+        </div>
+
+      </div>
+    `
+  );
+};
+
+
+window.deleteNotification =
+  async function(id) {
+
+    if (!confirm("Delete this notification?")) {
+      return;
+    }
+
+    try {
+
+      await db
+        .collection(COLLECTIONS.notifications)
+        .doc(id)
+        .delete();
+
+      toast("Notification deleted.");
+      await loadNotifications();
+      updateDashboard();
+
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        error?.code === "permission-denied"
+          ? "Permission denied. Check your Firestore admin rules."
+          : "Unable to delete notification.",
+        "error"
+      );
+
+    }
+  };
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+async function loadProjects() {
+
+  state.projects =
+    await getCollection(
+      COLLECTIONS.serviceProjects
+    );
+
+  renderProjects();
+
+}
+
+
+function renderProjects() {
+
+  const tbody =
+    $("projectsTable");
+
+  const search =
+    ($("projectSearch")?.value || "")
+      .toLowerCase();
+
+  const published =
+    $("projectPublishedFilter")?.value || "";
+
+
+  const filtered =
+    state.projects.filter(project => {
+
+      const text = [
+
+        project.title,
+
+        project.category,
+
+        project.description
+
+      ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+
+      return (
+
+        (!search ||
+          text.includes(search))
+
+        &&
+
+        (!published ||
+          String(project.published) === published)
+
+      );
+
+    });
+
+
+  if (!filtered.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            <div class="empty-icon">⚡</div>
+            No projects found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    filtered.map(project => `
+
+      <tr>
+
+        <td>
+          <strong>
+            ${escapeHTML(project.title || "Untitled")}
+          </strong>
+
+          <small style="display:block;color:#718096">
+            ${escapeHTML(project.description || "").slice(0,80)}
+          </small>
+        </td>
+
+        <td>${escapeHTML(project.category || "—")}</td>
+
+        <td>${badge(project.medisType || "Photo")}</td>
+
+        <td>
+          ${badge(
+            project.Featured === true
+            ? "featured"
+            : "normal"
+          )}
+        </td>
+
+        <td>
+          ${badge(
+            project.published === true
+            ? "published"
+            : "unpublished"
+          )}
+        </td>
+
+        <td>
+          ${badge(
+            project.requestEnabled === true
+            ? "active"
+            : "disabled"
+          )}
+        </td>
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="action-btn action-view"
+              onclick="viewProject('${project.id}')"
+            >
+              View
+            </button>
+
+            <button
+              class="action-btn action-edit"
+              onclick="editProject('${project.id}')"
+            >
+              Edit
+            </button>
+
+            <button
+              class="action-btn action-delete"
+              onclick="deleteProject('${project.id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+$("projectSearch").addEventListener(
+  "input",
+  renderProjects
+);
+
+$("projectPublishedFilter").addEventListener(
+  "change",
+  renderProjects
+);
+
+
+/* =========================================================
+   ADD PROJECT
+========================================================= */
+
+$("addProjectButton").addEventListener(
+  "click",
+  () => {
+
+    $("projectForm").reset();
+
+    $("projectId").value = "";
+
+    $("projectModalTitle").textContent =
+      "Add Project";
+
+    $("projectModal")
+      .classList.add("open");
+
+  }
+);
+
+
+/* =========================================================
+   EDIT PROJECT
+========================================================= */
+
+window.editProject = function(id) {
+
+  const project =
+    state.projects.find(item => item.id === id);
+
+  if (!project) return;
+
+  $("projectId").value = id;
+
+  $("projectTitle").value =
+    project.title || "";
+
+  $("projectCategory").value =
+    project.category || "";
+
+  $("projectDescription").value =
+    project.description || "";
+
+  $("projectMediaUrl").value =
+    project.mediaUrl || "";
+
+  $("projectMediaType").value =
+    project.medisType || "Photo";
+
+  $("projectPublished").value =
+    String(project.published === true);
+
+  $("projectRequestEnabled").value =
+    String(project.requestEnabled === true);
+
+  $("projectThumbnailUrl").value =
+    project.thumbnailUrl || "";
+
+  $("projectFeatured").value =
+    String(project.Featured === true);
+
+  $("projectModalTitle").textContent =
+    "Edit Project";
+
+  $("projectModal")
+    .classList.add("open");
+
+};
+
+
+/* =========================================================
+   SAVE PROJECT
+========================================================= */
+
+$("projectForm").addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    const id =
+      $("projectId").value;
+
+
+    const data = {
+
+      category:
+        $("projectCategory").value.trim(),
+
+      description:
+        $("projectDescription").value.trim(),
+
+      Featured:
+        $("projectFeatured").value === "true",
+
+      mediaUrl:
+        $("projectMediaUrl").value.trim(),
+
+      medisType:
+        $("projectMediaType").value,
+
+      published:
+        $("projectPublished").value === "true",
+
+      requestEnabled:
+        $("projectRequestEnabled").value === "true",
+
+      thumbnailUrl:
+        $("projectThumbnailUrl").value.trim(),
+
+      title:
+        $("projectTitle").value.trim(),
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+
+    try {
+
+      if (id) {
+
+        await db
+          .collection(COLLECTIONS.serviceProjects)
+          .doc(id)
+          .update(data);
+
+        toast("Project updated.");
+
+      } else {
+
+        data.createdAt =
+          serverTimestamp();
+
+        await db
+          .collection(COLLECTIONS.serviceProjects)
+          .add(data);
+
+        toast("Project created.");
+
+      }
+
+
+      $("projectModal")
+        .classList.remove("open");
+
+      await loadProjects();
+
+      updateDashboard();
+
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        "Unable to save project.",
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   VIEW PROJECT
+========================================================= */
+
+window.viewProject = function(id) {
+
+  const project =
+    state.projects.find(item => item.id === id);
+
+  if (!project) return;
+
+
+  showDetails(
+
+    "Project Details",
+
+    `
+
+      <div style="display:grid;gap:15px">
+
+        ${
+          project.thumbnailUrl ||
+          project.mediaUrl
+
+          ?
+
+          `<img
+            src="${escapeHTML(
+              project.thumbnailUrl ||
+              project.mediaUrl
+            )}"
+            style="width:100%;max-height:280px;object-fit:cover;border-radius:12px"
+          >`
+
+          :
+
+          ""
+        }
+
+        <div>
+          <strong>Title</strong>
+          <p>${escapeHTML(project.title || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Category</strong>
+          <p>${escapeHTML(project.category || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Description</strong>
+          <p>${escapeHTML(project.description || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Media Type</strong>
+          <p>${escapeHTML(project.medisType || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Media URL</strong>
+          <p>${escapeHTML(project.mediaUrl || "—")}</p>
+        </div>
+
+      </div>
+
+    `
+
+  );
+
+};
+
+
+/* =========================================================
+   DELETE PROJECT
+========================================================= */
+
+window.deleteProject =
+  async function(id) {
+
+    if (!confirm("Delete this project?")) {
+      return;
+    }
+
+    try {
+
+      await db
+        .collection(COLLECTIONS.serviceProjects)
+        .doc(id)
+        .delete();
+
+      toast("Project deleted.");
+
+      await loadProjects();
+
+      updateDashboard();
+
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        "Unable to delete project.",
+        "error"
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   SERVICE REQUESTS
+========================================================= */
+
+async function loadRequests() {
+
+  state.requests =
+    await getCollection(
+      COLLECTIONS.serviceRequests
+    );
+
+  state.requests.sort(
+    (a,b) =>
+      dateValue(b.createdAt) -
+      dateValue(a.createdAt)
+  );
+
+  renderRequests();
+
+}
+
+
+function renderRequests() {
+
+  const tbody =
+    $("requestsTable");
+
+  const search =
+    ($("requestSearch")?.value || "")
+      .toLowerCase();
+
+
+  const filtered =
+    state.requests.filter(request => {
+
+      const text = [
+
+        request.customerName,
+
+        request.phone,
+
+        request.location,
+
+        request.serviceType,
+
+        request.description
+
+      ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+      return !search ||
+        text.includes(search);
+
+    });
+
+
+  if (!filtered.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            <div class="empty-icon">🛠️</div>
+            No service requests found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    filtered.map(request => `
+
+      <tr>
+
+        <td>
+
+          <strong>
+            ${escapeHTML(request.customerName || "Customer")}
+          </strong>
+
+          <small style="display:block;color:#718096">
+            ${escapeHTML(request.customerUid || "")}
+          </small>
+
+        </td>
+
+        <td>
+          ${escapeHTML(request.serviceType || "—")}
+        </td>
+
+        <td>
+          ${escapeHTML(request.location || "—")}
+        </td>
+
+        <td>
+          ${escapeHTML(request.phone || "—")}
+        </td>
+
+        <td>
+          ${escapeHTML(request.description || "").slice(0,80)}
+        </td>
+
+        <td>
+          ${formatDate(request.createdAt)}
+        </td>
+
+        <td>
+
+          <button
+            class="action-btn action-view"
+            onclick="viewRequest('${request.id}')"
+          >
+            View
+          </button>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+$("requestSearch").addEventListener(
+  "input",
+  renderRequests
+);
+
+
+/* =========================================================
+   VIEW SERVICE REQUEST
+========================================================= */
+
+window.viewRequest = function(id) {
+
+  const request =
+    state.requests.find(item => item.id === id);
+
+  if (!request) return;
+
+
+  const media =
+    Array.isArray(request.mediaUrls)
+      ? request.mediaUrls
+      : [];
+
+
+  showDetails(
+
+    "Service Request",
+
+    `
+
+      <div style="display:grid;gap:15px">
+
+        <div>
+          <strong>Customer</strong>
+          <p>${escapeHTML(request.customerName || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Phone</strong>
+          <p>${escapeHTML(request.phone || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Service Type</strong>
+          <p>${escapeHTML(request.serviceType || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Address</strong>
+          <p>${escapeHTML(request.address || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Location</strong>
+          <p>${escapeHTML(request.location || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Description</strong>
+          <p>${escapeHTML(request.description || "—")}</p>
+        </div>
+
+        <div>
+          <strong>Customer UID</strong>
+          <p>${escapeHTML(request.customerUid || "—")}</p>
+        </div>
+
+        ${
+          media.length
+
+          ?
+
+          `
+            <div>
+              <strong>Media</strong>
+
+              <div style="
+                display:grid;
+                grid-template-columns:repeat(2,1fr);
+                gap:8px;
+                margin-top:8px;
+              ">
+
+                ${
+                  media.map(url => `
+
+                    <img
+                      src="${escapeHTML(url)}"
+                      style="
+                        width:100%;
+                        height:150px;
+                        object-fit:cover;
+                        border-radius:10px;
+                      "
+                    >
+
+                  `).join("")
+                }
+
+              </div>
+
+            </div>
+          `
+
+          :
+
+          ""
+
+        }
+
+      </div>
+
+    `
+
+  );
+
+};
+
+
+/* =========================================================
+   WISHLISTS
+========================================================= */
+
+async function loadWishlists() {
+
+  state.wishlists =
+    await getCollection(
+      COLLECTIONS.wishlists
+    );
+
+  renderWishlists();
+
+}
+
+
+function renderWishlists() {
+
+  const tbody =
+    $("wishlistsTable");
+
+
+  if (!state.wishlists.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5">
+          <div class="empty">
+            <div class="empty-icon">❤️</div>
+            No wishlist records found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    state.wishlists.map(item => `
+
+      <tr>
+
+        <td>
+          ${escapeHTML(item.customerId || "—")}
+        </td>
+
+        <td>
+          <strong>
+            ${escapeHTML(item.name || "Product")}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHTML(item.productId || "—")}
+        </td>
+
+        <td>
+          ${formatDate(
+            item.addedAt ||
+            item.createdAt
+          )}
+        </td>
+
+        <td>
+
+          <button
+            class="action-btn action-delete"
+            onclick="deleteWishlist('${item.id}')"
+          >
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+window.deleteWishlist =
+  async function(id) {
+
+    if (!confirm("Delete this wishlist record?")) {
+      return;
+    }
+
+    try {
+
+      await db
+        .collection(COLLECTIONS.wishlists)
+        .doc(id)
+        .delete();
+
+      toast("Wishlist item deleted.");
+
+      await loadWishlists();
+
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        "Unable to delete wishlist item.",
+        "error"
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   CARTS
+========================================================= */
+
+async function loadCarts() {
+
+  state.carts =
+    await getCollection(
+      COLLECTIONS.carts
+    );
+
+  renderCarts();
+
+}
+
+
+function renderCarts() {
+
+  const tbody =
+    $("cartsTable");
+
+
+  if (!state.carts.length) {
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5">
+          <div class="empty">
+            <div class="empty-icon">🛍️</div>
+            No carts found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  tbody.innerHTML =
+    state.carts.map(cart => {
+
+      const items =
+        Array.isArray(cart.items)
+          ? cart.items
+          : [];
+
+      const productCount =
+        items.reduce(
+          (total,item) =>
+            total + Number(item.qty || 0),
+          0
+        );
+
+
+      return `
+
+        <tr>
+
+          <td>
+            ${escapeHTML(cart.userId || "—")}
+          </td>
+
+          <td>
+            ${items.length}
+          </td>
+
+          <td>
+            ${productCount}
+          </td>
+
+          <td>
+            ${formatDate(cart.updatedAt)}
+          </td>
+
+          <td>
+
+            <button
+              class="action-btn action-view"
+              onclick="viewCart('${cart.id}')"
+            >
+              View
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }).join("");
+
+}
+
+
+window.viewCart = function(id) {
+
+  const cart =
+    state.carts.find(item => item.id === id);
+
+  if (!cart) return;
+
+
+  const items =
+    Array.isArray(cart.items)
+      ? cart.items
+      : [];
+
+
+  showDetails(
+
+    "Customer Cart",
+
+    `
+
+      <div>
+
+        <strong>User ID</strong>
+
+        <p>
+          ${escapeHTML(cart.userId || "—")}
+        </p>
+
+        <div style="
+          display:grid;
+          gap:8px;
+          margin-top:15px;
+        ">
+
+          ${
+            items.length
+
+            ?
+
+            items.map(item => `
+
+              <div style="
+                border:1px solid #e7ebf2;
+                border-radius:10px;
+                padding:12px;
+                display:flex;
+                justify-content:space-between;
+              ">
+
+                <div>
+
+                  <strong>
+                    ${escapeHTML(item.name || "Product")}
+                  </strong>
+
+                  <small style="display:block;color:#718096">
+                    ${escapeHTML(item.category || "")}
+                  </small>
+
+                </div>
+
+                <div style="text-align:right">
+
+                  <strong>
+                    ${money(item.price)}
+                  </strong>
+
+                  <small style="display:block;color:#718096">
+                    Qty: ${Number(item.qty || 0)}
+                  </small>
+
+                </div>
+
+              </div>
+
+            `).join("")
+
+            :
+
+            `<div class="empty">
+              Cart is empty.
+            </div>`
+
+          }
+
+        </div>
+
+      </div>
+
+    `
+
+  );
+
+};
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+async function loadSettings() {
+
+  const snapshot =
+    await db
+      .collection(COLLECTIONS.settings)
+      .limit(1)
+      .get();
+
+
+  if (snapshot.empty) {
+
+    state.settings = null;
+
+    return;
+
+  }
+
+
+  const doc =
+    snapshot.docs[0];
+
+  state.settings = {
+
+    id: doc.id,
+
+    ...doc.data()
+
+  };
+
+
+  populateSettings();
+
+}
+
+
+function populateSettings() {
+
+  const settings =
+    state.settings;
+
+  if (!settings) return;
+
+  $("settingStoreName").value =
+    settings.storeName || "";
+
+  $("settingCurrency").value =
+    settings.currency || "NGN";
+
+  $("settingEmail").value =
+    settings.email || "";
+
+  $("settingPhone").value =
+    settings.phone || "";
+
+  $("settingWhatsapp").value =
+    settings.whatsapp || settings["whatsapp "] || "";
+
+  $("settingLogoUrl").value =
+    settings.logoUrl || "";
+
+  $("settingLoginUrl").value =
+    settings.loginUrl || "";
+
+  $("settingAddress").value =
+    settings.address || "";
+
+  $("settingDescription").value =
+    settings.description || "";
+
+}
+
+
+$("settingsForm").addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    const data = {
+
+      address:
+        $("settingAddress").value.trim(),
+
+      currency:
+        $("settingCurrency").value.trim(),
+
+      description:
+        $("settingDescription").value.trim(),
+
+      email:
+        $("settingEmail").value.trim(),
+
+      loginUrl:
+        $("settingLoginUrl").value.trim(),
+
+      logoUrl:
+        $("settingLogoUrl").value.trim(),
+
+      phone:
+        $("settingPhone").value.trim(),
+
+      storeName:
+        $("settingStoreName").value.trim(),
+
+      updatedAt:
+        serverTimestamp(),
+
+      whatsapp:
+        $("settingWhatsapp").value.trim()
+
+    };
+
+
+    try {
+
+      if (state.settings?.id) {
+
+        await db
+          .collection(COLLECTIONS.settings)
+          .doc(state.settings.id)
+          .update(data);
+
+      } else {
+
+        data.createdAt =
+          serverTimestamp();
+
+        const ref =
+          await db
+            .collection(COLLECTIONS.settings)
+            .add(data);
+
+        state.settings = {
+          id: ref.id,
+          ...data
+        };
+
+      }
+
+
+      toast("Store settings saved.");
+
+      await loadSettings();
+
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        "Unable to save settings.",
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard() {
+
+  $("statProducts").textContent =
+    state.products.length;
+
+  $("statOrders").textContent =
+    state.orders.length;
+
+  $("statCustomers").textContent =
+    Math.max(
+      state.users.length,
+      state.profiles.length
+    );
+
+  $("statPending").textContent =
+    state.orders.filter(
+      order =>
+        String(order.status || "").toLowerCase()
+        === "pending"
+    ).length;
+
+  $("statUnread").textContent =
+    state.chats.reduce(
+      (total,chat) =>
+        total +
+        Number(chat.unreadForAdmin || 0),
+      0
+    );
+
+  $("statProjects").textContent =
+    state.projects.length;
+
+  $("statRequests").textContent =
+    state.requests.length;
+
+  $("statNotifications").textContent =
+    state.notifications.length;
+
+
+  $("overviewAvailable").textContent =
+    state.products.filter(
+      product => product.available === true
+    ).length;
+
+  $("overviewFeatured").textContent =
+    state.products.filter(
+      product => product.featured === true
+    ).length;
+
+  $("overviewPublished").textContent =
+    state.projects.filter(
+      project => project.published === true
+    ).length;
+
+  $("overviewRequests").textContent =
+    state.requests.length;
+
+
+  renderRecentOrders();
+
+}
+
+
+function renderRecentOrders() {
+
+  const container =
+    $("recentOrders");
+
+  const recent =
+    state.orders.slice(0,5);
+
+
+  if (!recent.length) {
+
+    container.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📦</div>
+        No orders yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    recent.map(order => `
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:12px;
+        padding:12px 0;
+        border-bottom:1px solid #eef2f7;
+      ">
+
+        <div>
+
+          <strong>
+            ${escapeHTML(
+              order.customerName ||
+              "Customer"
+            )}
+          </strong>
+
+          <small style="
+            display:block;
+            color:#718096;
+            margin-top:3px;
+          ">
+            ${formatDate(order.createdAt)}
+          </small>
+
+        </div>
+
+        <div style="text-align:right">
+
+          <strong>
+            ${escapeHTML(
+              order.total ||
+              money(order.subtotal)
+            )}
+          </strong>
+
+          <small style="display:block">
+            ${badge(order.status || "pending")}
+          </small>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+document.querySelectorAll("[data-close]")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const id =
+        button.dataset.close;
+
+      $(id)?.classList.remove("open");
+
+    });
+
+  });
+
+
+document.querySelectorAll(".modal")
+  .forEach(modal => {
+
+    modal.addEventListener("click", event => {
+
+      if (event.target === modal) {
+
+        modal.classList.remove("open");
+
+      }
+
+    });
+
+  });
+
+
+function showDetails(title, html) {
+
+  $("detailsTitle").textContent =
+    title;
+
+  $("detailsBody").innerHTML =
+    html;
+
+  $("detailsModal")
+    .classList.add("open");
+
+}
+
+
+/* =========================================================
+   REAL-TIME ADMIN REFRESH
+   ---------------------------------------------------------
+   This keeps important collections synchronized while the
+   admin page is open.
+========================================================= */
+
+function startRealtimeListeners() {
+
+  db.collection(COLLECTIONS.orders)
+    .onSnapshot(snapshot => {
+
+      state.orders =
+        snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+      state.orders.sort(
+        (a,b) =>
+          dateValue(b.createdAt) -
+          dateValue(a.createdAt)
+      );
+
+      renderOrders();
+
+      updateDashboard();
+
+    });
+
+
+  db.collection(COLLECTIONS.chats)
+    .onSnapshot(snapshot => {
+
+      state.chats =
+        snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+      state.chats.sort(
+        (a,b) =>
+          dateValue(b.updatedAt || b.lastMessageAt) -
+          dateValue(a.updatedAt || a.lastMessageAt)
+      );
+
+      renderChats();
+
+      updateDashboard();
+
+    });
+
+}
+
+
+/* =========================================================
+   START REALTIME AFTER LOGIN
+========================================================= */
+
+let realtimeStarted = false;
+
+auth.onAuthStateChanged(user => {
+
+  if (
+    user &&
+    state.currentAdmin &&
+    !realtimeStarted
+  ) {
+
+    realtimeStarted = true;
+
+    startRealtimeListeners();
+
+  }
+
+});
+
+
+</script>
+
+</body>
+  </html>
