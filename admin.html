@@ -5679,477 +5679,388 @@ async function deleteProject(id){
   }
 
 
-  try{
-
-    await db
-      .collection("serviceProjects")
-      .doc(id)
-      .delete();
-
-    await loadProjects();
-
-  }catch(error){
-
-    alert(
-      friendlyError(error)
-    );
-  }
-}
-
 
 /* =========================================================
-   SERVICE REQUESTS
+SERVICE REQUESTS
 ========================================================= */
-       function viewService(id){
-
-  const service =
-    services.find(
-      item=>item.id===id
-    );
-
-  if(!service) return;
-
-
-  /* =========================================================
-     CUSTOMER MEDIA
-     Supports:
-     - image URLs
-     - video URLs
-     - { url, type } objects
-  ========================================================= */
-
-  const mediaUrls =
-    Array.isArray(service.mediaUrls)
-      ? service.mediaUrls
-      : [];
 
+async function loadServices(){
+
+try{
+
+const snapshot =  
+  await db  
+    .collection("serviceRequests")  
+    .get();  
+
+services =  
+  snapshot.docs  
+    .map(doc=>({  
+      id:doc.id,  
+      ...doc.data()  
+    }))  
+    .sort(  
+      (a,b)=>  
+        timeOf(b.createdAt) -  
+        timeOf(a.createdAt)  
+    );  
+
+renderServices();  
+updateDashboard();
+
+}catch(error){
+
+$("servicesTable").innerHTML=  
+  `<div class="empty">  
+    ${escapeHTML(  
+      friendlyError(error)  
+    )}  
+  </div>`;
+
+}
+}
+
+function renderServices(){
+
+const search =
+(
+$("serviceSearch")?.value ||
+""
+)
+.toLowerCase()
+.trim();
+
+const filter =
+$("serviceFilter")?.value||
+"all";
+
+const list =
+services.filter(service=>{
+
+const text=[  
+    service.customerName,  
+    service.phone,  
+    service.serviceType,  
+    service.description,  
+    service.address,  
+    service.location  
+  ]  
+    .filter(Boolean)  
+    .join(" ")  
+    .toLowerCase();  
+
+  const status =  
+    service.status||  
+    "Pending";  
+
+  return(  
+    text.includes(search) &&  
+    (  
+      filter==="all"||  
+      status===filter  
+    )  
+  );  
+});
+
+if(!list.length){
 
-  const mediaHTML =
-    mediaUrls
-      .map((media,index)=>{
-
-        const url =
-          typeof media === "string"
-            ? media
-            : (
-                media?.url ||
-                media?.downloadURL ||
-                media?.src ||
-                ""
-              );
+$("servicesTable").innerHTML=  
+  `<div class="empty">  
+    No service requests found.  
+  </div>`;  
+
+return;
 
-        if(!url) return "";
+}
 
+$("servicesTable").innerHTML=`
 
-        const mediaType =
-          typeof media === "object"
-            ? String(
-                media?.type || ""
-              ).toLowerCase()
-            : "";
-
-
-        const cleanUrl =
-          String(url)
-            .split("?")[0]
-            .split("#")[0]
-            .toLowerCase();
-
-
-        const isVideo =
-          mediaType.startsWith("video") ||
-          /\.(mp4|webm|ogg|mov|m4v)$/i.test(
-            cleanUrl
-          );
-
-
-        /* =========================
-           VIDEO
-        ========================= */
-
-        if(isVideo){
-
-          return `
-
-            <div
-              style="
-                margin-top:12px;
-                border:1px solid var(--border);
-                border-radius:14px;
-                overflow:hidden;
-                background:#020617;
-              "
-            >
-
-              <video
-                controls
-                preload="metadata"
-                style="
-                  width:100%;
-                  max-height:420px;
-                  display:block;
-                  background:#000;
-                "
-              >
-
-                <source
-                  src="${escapeHTML(url)}"
-                >
-
-                Your browser does not support
-                video playback.
-
-              </video>
-
-              <div
-                style="
-                  padding:9px 11px;
-                  color:var(--muted);
-                  font-size:11px;
-                "
-              >
-                🎥 Customer Video ${index+1}
-              </div>
-
-            </div>
-
-          `;
-
-        }
-
-
-        /* =========================
-           IMAGE
-        ========================= */
-
-        const isImage =
-          mediaType.startsWith("image") ||
-          /\.(jpg|jpeg|png|gif|webp|bmp|avif|heic|heif)$/i.test(
-            cleanUrl
-          );
-
-
-        if(isImage){
-
-          return `
-
-            <div
-              style="
-                margin-top:12px;
-                border:1px solid var(--border);
-                border-radius:14px;
-                overflow:hidden;
-                background:#020617;
-              "
-            >
-
-              <img
-                src="${escapeHTML(url)}"
-                alt="Customer attachment ${index+1}"
-                loading="lazy"
-                style="
-                  width:100%;
-                  max-height:420px;
-                  object-fit:contain;
-                  display:block;
-                  background:#000;
-                "
-                onerror="
-                  this.style.display='none';
-                  this.nextElementSibling.style.display='block';
-                "
-              >
-
-              <div
-                style="
-                  display:none;
-                  padding:15px;
-                  color:var(--muted);
-                  font-size:12px;
-                "
-              >
-                ⚠️ Unable to display this photo.
-              </div>
-
-              <div
-                style="
-                  padding:9px 11px;
-                  color:var(--muted);
-                  font-size:11px;
-                "
-              >
-                📷 Customer Photo ${index+1}
-              </div>
+<table>  
 
-            </div>
-
-          `;
+  <thead>  
 
-        }
+    <tr>  
+      <th>Customer</th>  
+      <th>Service</th>  
+      <th>Phone</th>  
+      <th>Status</th>  
+      <th>Date</th>  
+      <th></th>  
+    </tr>  
 
+  </thead>  
 
-        /* =========================
-           OTHER FILE
-        ========================= */
+  <tbody>  
 
-        return `
+    ${list.map(service=>{  
 
-          <div
-            style="
-              margin-top:12px;
-              padding:13px;
-              border:1px solid var(--border);
-              border-radius:12px;
-              background:#020617;
-            "
-          >
+      const status =  
+        service.status||  
+        "Pending";  
 
-            📎 Customer Attachment ${index+1}
+      return `  
 
-            <br>
+        <tr>  
 
-            <a
-              href="${escapeHTML(url)}"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="
-                display:inline-block;
-                margin-top:8px;
-                color:var(--blue);
-                font-size:12px;
-              "
-            >
-              Open Attachment
-            </a>
+          <td>  
+            ${escapeHTML(  
+              service.customerName||  
+              "Customer"  
+            )}  
+          </td>  
 
-          </div>
+          <td>  
+            ${escapeHTML(  
+              service.serviceType||  
+              "Electrical Service"  
+            )}  
+          </td>  
 
-        `;
+          <td>  
+            ${escapeHTML(  
+              service.phone||  
+              "—"  
+            )}  
+          </td>  
 
-      })
-      .filter(Boolean)
-      .join("");
+          <td>  
 
+            <span  
+              class="status status-${escapeHTML(status)}"  
+            >  
+              ${escapeHTML(status)}  
+            </span>  
 
-  /* =========================================================
-     MODAL
-  ========================================================= */
+          </td>  
 
-  $("modalTitle").textContent=
-    "Service Request";
+          <td>  
+            ${dateOf(  
+              service.createdAt  
+            )}  
+          </td>  
 
+          <td>  
 
-  $("modalContent").innerHTML=`
+            <button  
+              class="btn"  
+              onclick="viewService('${service.id}')"  
+              type="button"  
+            >  
+              View  
+            </button>  
 
-    <div class="detail">
+          </td>  
 
-      <div class="detail-label">
-        Customer
-      </div>
+        </tr>  
+      `;  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.customerName||"—"
-        )}
-      </div>
+    }).join("")}  
 
-    </div>
+  </tbody>  
 
+</table>
 
-    <div class="detail">
+`;
+}
 
-      <div class="detail-label">
-        Phone
-      </div>
+function viewService(id){
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.phone||"—"
-        )}
-      </div>
+const service =
+services.find(
+item=>item.id===id
+);
 
-    </div>
+if(!service) return;
 
+$("modalTitle").textContent=
+"Service Request";
 
-    <div class="detail">
+$("modalContent").innerHTML=`
 
-      <div class="detail-label">
-        Service
-      </div>
+<div class="detail">  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.serviceType||
-          "Electrical Service"
-        )}
-      </div>
+  <div class="detail-label">  
+    Customer  
+  </div>  
 
-    </div>
+  <div class="detail-value">  
+    ${escapeHTML(  
+      service.customerName||"—"  
+    )}  
+  </div>  
 
+</div>  
 
-    <div class="detail">
 
-      <div class="detail-label">
-        Address
-      </div>
+<div class="detail">  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.address||"—"
-        )}
-      </div>
+  <div class="detail-label">  
+    Phone  
+  </div>  
 
-    </div>
+  <div class="detail-value">  
+    ${escapeHTML(  
+      service.phone||"—"  
+    )}  
+  </div>  
 
+</div>  
 
-    <div class="detail">
 
-      <div class="detail-label">
-        Specific Location
-      </div>
+<div class="detail">  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.location||"—"
-        )}
-      </div>
+  <div class="detail-label">  
+    Service  
+  </div>  
 
-    </div>
+  <div class="detail-value">  
+    ${escapeHTML(  
+      service.serviceType||  
+      "Electrical Service"  
+    )}  
+  </div>  
 
+</div>  
 
-    <div class="detail">
 
-      <div class="detail-label">
-        Description
-      </div>
+<div class="detail">  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.description||"—"
-        )}
-      </div>
+  <div class="detail-label">  
+    Address  
+  </div>  
 
-    </div>
+  <div class="detail-value">  
+    ${escapeHTML(  
+      service.address||"—"  
+    )}  
+  </div>  
 
+</div>  
 
-    <div class="detail">
 
-      <div class="detail-label">
-        Preferred Date
-      </div>
+<div class="detail">  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.preferredDate||"—"
-        )}
-      </div>
+  <div class="detail-label">  
+    Location  
+  </div>  
 
-    </div>
+  <div class="detail-value">  
+    ${escapeHTML(  
+      service.location||"—"  
+    )}  
+  </div>  
 
+</div>  
 
-    <div class="detail">
 
-      <div class="detail-label">
-        Preferred Time
-      </div>
+<div class="detail">  
 
-      <div class="detail-value">
-        ${escapeHTML(
-          service.preferredTime||"—"
-        )}
-      </div>
+  <div class="detail-label">  
+    Description  
+  </div>  
 
-    </div>
+  <div class="detail-value">  
+    ${escapeHTML(  
+      service.description||"—"  
+    )}  
+  </div>  
 
+</div>  
 
-    <!-- =====================================================
-         PHOTOS / VIDEOS
-    ====================================================== -->
 
-    <div class="detail">
+<div class="detail">  
 
-      <div class="detail-label">
-        Photos or Short Video
-      </div>
+  <div class="detail-label">  
+    Status  
+  </div>  
 
-      ${
-        mediaHTML
+  <select  
+    class="select"  
+    onchange="changeServiceStatus('${service.id}',this.value)"  
+  >  
 
-        ||
+    ${[  
+      "Pending",  
+      "Processing",  
+      "Completed",  
+      "Cancelled"  
+    ]  
+      .map(status=>`  
 
-        `
-          <div
-            class="detail-value"
-            style="
-              color:var(--muted);
-              padding-top:5px;
-            "
-          >
-            No photos or videos attached.
-          </div>
-        `
-      }
+        <option  
+          ${  
+            status===  
+            (service.status||"Pending")  
+              ?"selected"  
+              :""  
+          }  
+        >  
+          ${status}  
+        </option>  
 
-    </div>
+      `)  
+      .join("")}  
 
+  </select>  
 
-    <!-- =====================================================
-         STATUS
-    ====================================================== -->
+</div>
 
-    <div class="detail">
+`;
 
-      <div class="detail-label">
-        Status
-      </div>
+$("modal")
+.classList
+.add("show");
+}
 
-      <select
-        class="select"
-        onchange="
-          changeServiceStatus(
-            '${service.id}',
-            this.value
-          )
-        "
-      >
+async function changeServiceStatus(
+id,
+status
+){
 
-        ${[
-          "Pending",
-          "Processing",
-          "Completed",
-          "Cancelled"
-        ]
-          .map(status=>`
+try{
 
-            <option
-              ${
-                status===
-                (service.status||"Pending")
-                  ?"selected"
-                  :""
-              }
-            >
-              ${status}
-            </option>
+await db  
+  .collection("serviceRequests")  
+  .doc(id)  
+  .update({  
 
-          `)
-          .join("")}
+    status:status,  
 
-      </select>
+    updatedAt:  
+      firebase.firestore.FieldValue  
+        .serverTimestamp()  
 
-    </div>
+  });  
 
-  `;
 
+const service =  
+  services.find(  
+    item=>item.id===id  
+  );  
 
-  $("modal")
-    .classList
-    .add("show");
+if(service){  
+  service.status=status;  
+}  
 
-} 
 
+renderServices();  
 
+addNotification(  
+  "Service Request Updated",  
+  "A service request was updated.",  
+  "🔧",  
+  id  
+);
 
+}catch(error){
+
+alert(  
+  friendlyError(error)  
+);
+
+}
+}
+    
 
 /* =========================================================
    ADMINS
