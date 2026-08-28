@@ -5882,21 +5882,145 @@ function renderServices(){
 }
 
 
-function viewService(id){
+window.viewService = function(id){
 
   const service =
     services.find(
-      item=>item.id===id
+      item => item.id === id
     );
 
   if(!service) return;
 
 
-  $("modalTitle").textContent=
+  $("modalTitle").textContent =
     "Service Request";
 
 
-  $("modalContent").innerHTML=`
+  /* =========================
+     MEDIA
+  ========================= */
+
+  let mediaHTML = "";
+
+  const mediaUrls =
+    Array.isArray(service.mediaUrls)
+      ? service.mediaUrls
+      : [];
+
+
+  if(mediaUrls.length){
+
+    mediaHTML = `
+
+      <div class="detail">
+
+        <div class="detail-label">
+          Photos / Videos
+        </div>
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:
+              repeat(auto-fit,minmax(130px,1fr));
+            gap:10px;
+            margin-top:10px;
+          "
+        >
+
+          ${mediaUrls.map(url => {
+
+            const safeURL =
+              escapeHTML(url);
+
+            const isVideo =
+              /\.(mp4|webm|ogg|mov|m4v)(\?|$)/i
+                .test(url);
+
+
+            if(isVideo){
+
+              return `
+
+                <video
+                  src="${safeURL}"
+                  controls
+                  style="
+                    width:100%;
+                    max-height:220px;
+                    border-radius:12px;
+                    background:#020617;
+                    border:1px solid #334155;
+                  "
+                ></video>
+
+              `;
+
+            }
+
+
+            return `
+
+              <a
+                href="${safeURL}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <img
+                  src="${safeURL}"
+                  alt="Service request photo"
+                  style="
+                    width:100%;
+                    height:150px;
+                    object-fit:cover;
+                    border-radius:12px;
+                    border:1px solid #334155;
+                    display:block;
+                  "
+                  onerror="
+                    this.style.display='none'
+                  "
+                >
+
+              </a>
+
+            `;
+
+          }).join("")}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }else{
+
+    mediaHTML = `
+
+      <div class="detail">
+
+        <div class="detail-label">
+          Photos / Videos
+        </div>
+
+        <div class="detail-value">
+          No photos or videos uploaded.
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================
+     DISPLAY REQUEST
+  ========================= */
+
+  $("modalContent").innerHTML = `
 
     <div class="detail">
 
@@ -5906,7 +6030,7 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.customerName||"—"
+          service.customerName || "—"
         )}
       </div>
 
@@ -5921,7 +6045,7 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.phone||"—"
+          service.phone || "—"
         )}
       </div>
 
@@ -5936,8 +6060,26 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.serviceType||
+          service.serviceType ||
           "Electrical Service"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Description
+      </div>
+
+      <div
+        class="detail-value"
+        style="white-space:pre-wrap;"
+      >
+        ${escapeHTML(
+          service.description || "—"
         )}
       </div>
 
@@ -5952,7 +6094,7 @@ function viewService(id){
 
       <div class="detail-value">
         ${escapeHTML(
-          service.address||"—"
+          service.address || "—"
         )}
       </div>
 
@@ -5962,12 +6104,31 @@ function viewService(id){
     <div class="detail">
 
       <div class="detail-label">
-        Location
+        Specific Location
       </div>
 
       <div class="detail-value">
         ${escapeHTML(
-          service.location||"—"
+          service.location || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    ${mediaHTML}
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Preferred Date
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.preferredDate ||
+          "Not specified"
         )}
       </div>
 
@@ -5977,12 +6138,49 @@ function viewService(id){
     <div class="detail">
 
       <div class="detail-label">
-        Description
+        Preferred Time
       </div>
 
       <div class="detail-value">
         ${escapeHTML(
-          service.description||"—"
+          service.preferredTime ||
+          "Not specified"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Request ID
+      </div>
+
+      <div
+        class="detail-value"
+        style="
+          font-size:11px;
+          word-break:break-all;
+        "
+      >
+        ${escapeHTML(
+          service.id || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Request Created
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          dateOf(service.createdAt)
         )}
       </div>
 
@@ -5997,7 +6195,12 @@ function viewService(id){
 
       <select
         class="select"
-        onchange="changeServiceStatus('${service.id}',this.value)"
+        onchange="
+          changeServiceStatus(
+            '${escapeHTML(service.id)}',
+            this.value
+          )
+        "
       >
 
         ${[
@@ -6006,21 +6209,22 @@ function viewService(id){
           "Completed",
           "Cancelled"
         ]
-          .map(status=>`
+        .map(status => `
 
-            <option
-              ${
-                status===
-                (service.status||"Pending")
-                  ?"selected"
-                  :""
-              }
-            >
-              ${status}
-            </option>
+          <option
+            value="${escapeHTML(status)}"
+            ${
+              status ===
+              (service.status || "Pending")
+                ? "selected"
+                : ""
+            }
+          >
+            ${escapeHTML(status)}
+          </option>
 
-          `)
-          .join("")}
+        `)
+        .join("")}
 
       </select>
 
@@ -6032,8 +6236,10 @@ function viewService(id){
   $("modal")
     .classList
     .add("show");
-}
 
+};
+
+    
 
 async function changeServiceStatus(
   id,
