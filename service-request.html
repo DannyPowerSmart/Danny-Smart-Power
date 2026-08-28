@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,8 +13,7 @@ content="Request professional electrical, solar, inverter, wiring and lighting s
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
 rel="stylesheet">
 
 <style>
@@ -38,18 +38,24 @@ select{
   font-family:inherit;
 }
 
-button{
-  cursor:pointer;
+.hidden{
+  display:none!important;
 }
+
+
+/* ================= HEADER ================= */
 
 header{
   height:70px;
   background:#020617;
   border-bottom:1px solid #172033;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:0 18px;
+
   position:sticky;
   top:0;
   z-index:1000;
@@ -59,6 +65,7 @@ header{
   display:flex;
   align-items:center;
   gap:10px;
+
   text-decoration:none;
   color:white;
 }
@@ -66,12 +73,16 @@ header{
 .brand-icon{
   width:40px;
   height:40px;
+
   border-radius:13px;
+
   background:#0ea5e9;
   color:#020617;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:22px;
   font-weight:700;
 }
@@ -98,14 +109,22 @@ header{
 .icon-btn{
   width:42px;
   height:42px;
+
   border:none;
   background:transparent;
+
   color:#e2e8f0;
+
   border-radius:50%;
+
   font-size:21px;
+
+  cursor:pointer;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   position:relative;
 }
 
@@ -115,27 +134,45 @@ header{
 
 .notification-dot{
   position:absolute;
+
   top:7px;
   right:7px;
+
   width:8px;
   height:8px;
+
   background:#ef4444;
+
   border:2px solid #020617;
+
   border-radius:50%;
+
   display:none;
 }
 
+
+/* ================= MENU ================= */
+
 .menu{
   position:fixed;
+
   top:76px;
   right:12px;
+
   width:250px;
+
   background:#0f172a;
+
   border:1px solid #1e293b;
+
   border-radius:18px;
+
   padding:9px;
+
   box-shadow:0 20px 50px rgba(0,0,0,.45);
+
   z-index:3000;
+
   display:none;
 }
 
@@ -147,16 +184,22 @@ header{
   display:flex;
   align-items:center;
   gap:11px;
+
   padding:12px;
+
   border-bottom:1px solid #1e293b;
+
   margin-bottom:5px;
 }
 
 .menu-avatar{
   width:42px;
   height:42px;
+
   border-radius:50%;
+
   object-fit:cover;
+
   background:#1e293b;
 }
 
@@ -175,17 +218,28 @@ header{
 .menu a,
 .menu button{
   width:100%;
+
   border:none;
+
   background:transparent;
+
   color:#cbd5e1;
+
   text-decoration:none;
+
   display:flex;
   align-items:center;
+
   gap:12px;
+
   padding:12px;
+
   border-radius:12px;
+
   cursor:pointer;
+
   text-align:left;
+
   font-size:13px;
 }
 
@@ -195,9 +249,14 @@ header{
   color:white;
 }
 
+
+/* ================= PAGE ================= */
+
 .page{
   max-width:850px;
+
   margin:auto;
+
   padding:28px 16px 60px;
 }
 
@@ -209,14 +268,21 @@ header{
 .intro-icon{
   width:65px;
   height:65px;
+
   border-radius:20px;
+
   background:#082f49;
+
   border:1px solid #075985;
+
   color:#38bdf8;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:31px;
+
   margin:0 auto 13px;
 }
 
@@ -228,27 +294,42 @@ header{
 
 .intro p{
   color:#64748b;
+
   font-size:13px;
+
   max-width:600px;
+
   margin:auto;
+
   line-height:1.7;
 }
 
+
+/* ================= CARD ================= */
+
 .form-card{
   background:#0f172a;
+
   border:1px solid #1e293b;
+
   border-radius:22px;
+
   padding:22px;
+
   box-shadow:0 15px 45px rgba(0,0,0,.25);
 }
 
 .section-title{
   display:flex;
   align-items:center;
+
   gap:9px;
+
   font-size:16px;
   font-weight:700;
+
   color:#f8fafc;
+
   margin:22px 0 14px;
 }
 
@@ -259,19 +340,27 @@ header{
 .section-title span{
   width:30px;
   height:30px;
+
   background:#082f49;
+
   border:1px solid #075985;
+
   color:#38bdf8;
+
   border-radius:9px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:14px;
 }
 
 .grid{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:14px;
 }
 
@@ -285,9 +374,13 @@ header{
 
 label{
   display:block;
+
   font-size:12px;
+
   font-weight:600;
+
   color:#cbd5e1;
+
   margin-bottom:7px;
 }
 
@@ -299,13 +392,21 @@ input,
 select,
 textarea{
   width:100%;
+
   border:1px solid #334155;
+
   border-radius:12px;
+
   background:#020617;
+
   color:#f8fafc;
+
   outline:none;
+
   padding:12px 13px;
+
   font-size:13px;
+
   transition:.2s;
 }
 
@@ -318,7 +419,10 @@ input:focus,
 select:focus,
 textarea:focus{
   border-color:#38bdf8;
-  box-shadow:0 0 0 3px rgba(56,189,248,.10);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(56,189,248,.10);
 }
 
 input[readonly]{
@@ -336,26 +440,28 @@ select option{
   color:white;
 }
 
+
 /* ================= UPLOAD ================= */
 
 .upload-box{
   border:1.5px dashed #334155;
+
   border-radius:16px;
+
   padding:22px 15px;
+
   text-align:center;
+
   background:#020617;
+
   cursor:pointer;
+
   transition:.2s;
 }
 
 .upload-box:hover{
   border-color:#38bdf8;
   background:#071426;
-}
-
-.upload-box.disabled{
-  opacity:.6;
-  pointer-events:none;
 }
 
 .upload-icon{
@@ -365,15 +471,21 @@ select option{
 
 .upload-box strong{
   display:block;
+
   color:#e2e8f0;
+
   font-size:13px;
 }
 
 .upload-box small{
   display:block;
+
   color:#64748b;
+
   margin-top:5px;
+
   font-size:10px;
+
   line-height:1.5;
 }
 
@@ -381,19 +493,31 @@ select option{
   display:none;
 }
 
+
+/* ================= PREVIEWS ================= */
+
 .media-preview{
   margin-top:13px;
+
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(130px,1fr));
+
   gap:10px;
 }
 
 .preview-item{
   position:relative;
+
   height:130px;
+
   border-radius:13px;
+
   overflow:hidden;
+
   background:#020617;
+
   border:1px solid #1e293b;
 }
 
@@ -401,42 +525,50 @@ select option{
 .preview-item video{
   width:100%;
   height:100%;
-  object-fit:cover;
-}
 
-.preview-item video{
-  background:#000;
+  object-fit:cover;
 }
 
 .remove-media{
   position:absolute;
+
   top:7px;
   right:7px;
+
   width:28px;
   height:28px;
+
   border:none;
+
   border-radius:50%;
-  background:rgba(2,6,23,.85);
+
+  background:rgba(2,6,23,.8);
+
   color:white;
+
   cursor:pointer;
-  font-size:17px;
-  z-index:5;
+
+  font-size:15px;
 }
 
-.media-info{
-  margin-top:10px;
-  color:#64748b;
-  font-size:10px;
-}
+
+/* ================= MEDIA NOTICE ================= */
 
 .media-warning{
   margin-top:10px;
+
   padding:11px;
+
   border-radius:12px;
+
   background:#172033;
+
   border:1px solid #334155;
+
   color:#94a3b8;
+
   font-size:10px;
+
   line-height:1.6;
 }
 
@@ -444,81 +576,55 @@ select option{
   color:#f8fafc;
 }
 
-/* ================= UPLOAD PROGRESS ================= */
-
-.upload-progress{
-  display:none;
-  margin-top:14px;
-  background:#020617;
-  border:1px solid #1e293b;
-  border-radius:12px;
-  padding:12px;
-}
-
-.upload-progress.active{
-  display:block;
-}
-
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:8px;
-}
-
-.progress-text{
-  color:#cbd5e1;
-  font-size:11px;
-}
-
-.progress-percent{
-  color:#38bdf8;
-  font-size:11px;
-  font-weight:700;
-}
-
-.progress-track{
-  width:100%;
-  height:7px;
-  background:#1e293b;
-  border-radius:10px;
-  overflow:hidden;
-}
-
-.progress-bar{
-  width:0%;
-  height:100%;
-  background:#0ea5e9;
-  border-radius:10px;
-  transition:.2s;
-}
 
 /* ================= NOTICE ================= */
 
 .notice{
   display:flex;
+
   gap:10px;
+
   background:#082f49;
+
   border:1px solid #075985;
+
   color:#bae6fd;
+
   padding:13px;
+
   border-radius:13px;
+
   font-size:11px;
+
   line-height:1.7;
+
   margin-top:8px;
 }
 
+
+/* ================= BUTTON ================= */
+
 .submit-btn{
   width:100%;
+
   border:none;
+
   border-radius:13px;
+
   background:#0284c7;
+
   color:white;
+
   padding:14px;
+
   font-size:14px;
+
   font-weight:700;
+
   cursor:pointer;
+
   margin-top:22px;
+
   transition:.2s;
 }
 
@@ -531,14 +637,23 @@ select option{
   cursor:not-allowed;
 }
 
+
+/* ================= LOADING ================= */
+
 .loading{
   position:fixed;
+
   inset:0;
+
   background:rgba(2,6,23,.82);
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   z-index:5000;
+
   padding:20px;
 }
 
@@ -548,26 +663,36 @@ select option{
 
 .loading-card{
   background:#0f172a;
+
   border:1px solid #334155;
+
   border-radius:20px;
+
   padding:28px;
+
   text-align:center;
+
   width:min(340px,100%);
 }
 
 .spinner{
   width:42px;
   height:42px;
+
   border:4px solid #334155;
+
   border-top-color:#38bdf8;
+
   border-radius:50%;
+
   animation:spin .8s linear infinite;
+
   margin:0 auto 15px;
 }
 
 @keyframes spin{
   to{
-    transform:rotate(360deg)
+    transform:rotate(360deg);
   }
 }
 
@@ -576,14 +701,23 @@ select option{
   font-size:13px;
 }
 
+
+/* ================= SUCCESS ================= */
+
 .success{
   position:fixed;
+
   inset:0;
+
   background:rgba(2,6,23,.82);
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   padding:20px;
+
   z-index:6000;
 }
 
@@ -593,48 +727,73 @@ select option{
 
 .success-card{
   width:min(420px,100%);
+
   background:#0f172a;
+
   border:1px solid #334155;
+
   border-radius:22px;
+
   padding:30px 22px;
+
   text-align:center;
+
   box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 .success-icon{
   width:66px;
   height:66px;
+
   background:#052e16;
+
   color:#4ade80;
+
   border:1px solid #166534;
+
   border-radius:50%;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   font-size:31px;
+
   margin:0 auto 15px;
 }
 
 .success-card h2{
   color:white;
+
   font-size:20px;
+
   margin-bottom:8px;
 }
 
 .success-card p{
   color:#94a3b8;
+
   font-size:12px;
+
   line-height:1.7;
 }
 
 .request-id{
   margin:15px 0;
+
   padding:10px;
+
   background:#020617;
+
   border:1px solid #1e293b;
+
   border-radius:10px;
+
   color:#94a3b8;
+
   font-size:11px;
+
   word-break:break-all;
 }
 
@@ -644,42 +803,71 @@ select option{
 
 .success-btn{
   width:100%;
+
   border:none;
+
   border-radius:12px;
+
   background:#0284c7;
+
   color:white;
+
   padding:13px;
+
   font-weight:700;
+
   cursor:pointer;
 }
 
+
+/* ================= TOAST ================= */
+
 .toast{
   position:fixed;
+
   left:50%;
+
   bottom:22px;
+
   transform:translate(-50%,100px);
+
   background:#0f172a;
+
   border:1px solid #334155;
+
   color:white;
+
   padding:12px 17px;
+
   border-radius:12px;
+
   font-size:12px;
+
   z-index:7000;
+
   opacity:0;
+
   transition:.3s;
+
   max-width:calc(100% - 30px);
+
   text-align:center;
 }
 
 .toast.show{
   transform:translate(-50%,0);
+
   opacity:1;
 }
 
 .toast.error{
   background:#450a0a;
+
   border-color:#991b1b;
 }
+
+
+/* ================= MOBILE ================= */
 
 @media(max-width:650px){
 
@@ -705,11 +893,13 @@ select option{
 
   .form-card{
     padding:17px;
+
     border-radius:18px;
   }
 
   .grid{
     grid-template-columns:1fr;
+
     gap:0;
   }
 
@@ -719,8 +909,11 @@ select option{
 
   .menu{
     top:70px;
+
     right:8px;
+
     width:calc(100% - 16px);
+
     max-width:300px;
   }
 
@@ -729,7 +922,11 @@ select option{
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -740,34 +937,41 @@ select option{
   </div>
 
   <div class="brand-text">
+
     Danny Smart Power
-    <small>POWERING YOUR NEEDS</small>
+
+    <small>
+      POWERING YOUR NEEDS
+    </small>
+
   </div>
 
 </a>
 
+
 <div class="header-actions">
 
 <button
-class="icon-btn"
-id="notificationBtn"
-title="Notifications">
+  class="icon-btn"
+  id="notificationBtn"
+  title="Notifications">
 
-🔔
+  🔔
 
-<span
-class="notification-dot"
-id="notificationDot">
-</span>
+  <span
+    class="notification-dot"
+    id="notificationDot">
+  </span>
 
 </button>
 
-<button
-class="icon-btn"
-id="menuBtn"
-title="Menu">
 
-⋮
+<button
+  class="icon-btn"
+  id="menuBtn"
+  title="Menu">
+
+  ⋮
 
 </button>
 
@@ -776,204 +980,242 @@ title="Menu">
 </header>
 
 
+
 <!-- ================= MENU ================= -->
 
 <div
-class="menu"
-id="menu">
+  class="menu"
+  id="menu">
+
 
 <div class="menu-profile">
 
 <img
-id="menuAvatar"
-class="menu-avatar"
-src="https://via.placeholder.com/80"
-alt="Profile">
+  id="menuAvatar"
+  class="menu-avatar"
+  src="https://via.placeholder.com/80"
+  alt="Profile">
+
 
 <div>
 
 <div
-class="menu-name"
-id="menuName">
+  class="menu-name"
+  id="menuName">
 
-Customer
+  Customer
 
 </div>
+
 
 <div
-class="menu-email"
-id="menuEmail">
+  class="menu-email"
+  id="menuEmail">
 
-Loading...
-
-</div>
+  Loading...
 
 </div>
 
 </div>
+
+</div>
+
 
 <a href="home.html">
-🏠 <span>Home</span>
+  🏠
+  <span>Home</span>
 </a>
+
 
 <a href="shop.html">
-🛒 <span>Shop</span>
+  🛒
+  <span>Shop</span>
 </a>
+
 
 <a href="profile.html">
-👤 <span>My Profile</span>
+  👤
+  <span>My Profile</span>
 </a>
+
 
 <a href="orders.html">
-📦 <span>My Orders</span>
+  📦
+  <span>My Orders</span>
 </a>
+
 
 <a href="service-project.html">
-🔧 <span>Electrical Project</span>
+  🔧
+  <span>Electrical Project</span>
 </a>
+
 
 <a href="chat.html">
-💬 <span>Chat with Danny</span>
+  💬
+  <span>Chat with Danny</span>
 </a>
 
+
 <button id="signOutBtn">
-🚪 <span>Sign Out</span>
+  🚪
+  <span>Sign Out</span>
 </button>
 
 </div>
+
 
 
 <!-- ================= PAGE ================= -->
 
 <main class="page">
 
+
 <div class="intro">
 
 <div class="intro-icon">
-⚡
+  ⚡
 </div>
 
+
 <h1>
-Request Electrical Service
+  Request Electrical Service
 </h1>
 
+
 <p>
-Tell Danny Smart Power what electrical work you need.
-We'll review your request and contact you about the next step.
+  Tell Danny Smart Power what electrical work you need.
+  We'll review your request and contact you about the next step.
 </p>
 
 </div>
 
 
+
 <form
-class="form-card"
-id="serviceForm">
+  class="form-card"
+  id="serviceForm">
 
 
-<!-- CUSTOMER -->
+<!-- ================= CUSTOMER ================= -->
 
 <div class="section-title">
 
-<span>👤</span>
+<span>
+  👤
+</span>
 
 Customer Information
 
 </div>
 
+
 <div class="grid">
 
-<div class="field">
-
-<label>
-Name <span class="required">*</span>
-</label>
-
-<input
-type="text"
-id="customerName"
-readonly
-placeholder="Your name">
-
-</div>
-
 
 <div class="field">
 
 <label>
-Phone Number <span class="required">*</span>
+  Name
+  <span class="required">*</span>
 </label>
 
+
 <input
-type="tel"
-id="phone"
-placeholder="08012345678"
-required>
+  type="text"
+  id="customerName"
+  readonly
+  placeholder="Your name">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+  Phone Number
+  <span class="required">*</span>
+</label>
+
+
+<input
+  type="tel"
+  id="phone"
+  placeholder="08012345678"
+  required>
 
 </div>
 
 </div>
 
 
-<!-- SERVICE -->
+
+<!-- ================= SERVICE ================= -->
 
 <div class="section-title">
 
-<span>⚡</span>
+<span>
+  ⚡
+</span>
 
 Service Information
 
 </div>
 
+
 <div class="grid">
+
 
 <div class="field full">
 
 <label>
 
-What service do you need?
+  What service do you need?
 
-<span class="required">*</span>
+  <span class="required">*</span>
 
 </label>
 
+
 <select
-id="serviceType"
-required>
+  id="serviceType"
+  required>
 
 <option value="">
-Select electrical service
+  Select electrical service
 </option>
 
 <option>
-☀️ Solar Installation
+  ☀️ Solar Installation
 </option>
 
 <option>
-🔋 Inverter Installation
+  🔋 Inverter Installation
 </option>
 
 <option>
-🏠 House Wiring
+  🏠 House Wiring
 </option>
 
 <option>
-💡 Lighting Installation
+  💡 Lighting Installation
 </option>
 
 <option>
-🔧 Electrical Repair
+  🔧 Electrical Repair
 </option>
 
 <option>
-🔍 Fault Diagnosis
+  🔍 Fault Diagnosis
 </option>
 
 <option>
-🛠️ Electrical Maintenance
+  🛠️ Electrical Maintenance
 </option>
 
 <option>
-⚡ Other Electrical Service
+  ⚡ Other Electrical Service
 </option>
 
 </select>
@@ -981,221 +1223,209 @@ Select electrical service
 </div>
 
 
+
 <div class="field full">
 
 <label>
 
-Describe what you need
+  Describe what you need
 
-<span class="required">*</span>
+  <span class="required">*</span>
 
 </label>
 
+
 <textarea
-id="description"
-placeholder="Tell us clearly what is wrong or what you want installed..."
-required></textarea>
+  id="description"
+  placeholder="Tell us clearly what is wrong or what you want installed..."
+  required>
+</textarea>
 
 </div>
 
 </div>
 
 
-<!-- LOCATION -->
+
+<!-- ================= LOCATION ================= -->
 
 <div class="section-title">
 
-<span>📍</span>
+<span>
+  📍
+</span>
 
 Work Location
 
 </div>
 
+
 <div class="grid">
 
-<div class="field full">
-
-<label>
-
-Address <span class="required">*</span>
-
-</label>
-
-<input
-type="text"
-id="address"
-placeholder="Enter where the work is needed"
-required>
-
-</div>
-
 
 <div class="field full">
 
 <label>
-Specific Location
+
+  Address
+  <span class="required">*</span>
+
 </label>
 
+
 <input
-type="text"
-id="location"
-placeholder="Optional: Estate, landmark, area, house number, etc.">
+  type="text"
+  id="address"
+  placeholder="Enter where the work is needed"
+  required>
+
+</div>
+
+
+
+<div class="field full">
+
+<label>
+  Specific Location
+</label>
+
+
+<input
+  type="text"
+  id="location"
+  placeholder="Optional: Estate, landmark, area, house number, etc.">
 
 </div>
 
 </div>
 
 
-<!-- MEDIA -->
+
+<!-- ================= MEDIA ================= -->
 
 <div class="section-title">
 
-<span>📷</span>
+<span>
+  📷
+</span>
 
 Photos or Short Video
 
 </div>
 
+
 <div
-class="upload-box"
-id="uploadBox">
+  class="upload-box"
+  id="uploadBox">
+
 
 <div class="upload-icon">
-📷
+  📷
 </div>
+
 
 <strong>
-Add photos or a short video
+  Add photos or a short video
 </strong>
 
-<small>
-Showing us the problem can help us understand the work.
-</small>
 
 <small>
-You can select multiple files.
+  Showing us the problem can help us understand the work.
+</small>
+
+
+<small>
+  You can select multiple files.
 </small>
 
 </div>
+
 
 <input
-type="file"
-id="mediaInput"
-accept="image/*,video/*"
-multiple>
+  type="file"
+  id="mediaInput"
+  accept="image/*,video/*"
+  multiple>
 
 
 <div
-class="media-preview"
-id="mediaPreview">
-</div>
-
-
-<div
-class="media-info"
-id="mediaInfo">
-No photos or videos selected.
-</div>
-
-
-<div
-class="upload-progress"
-id="uploadProgress">
-
-<div class="progress-top">
-
-<span
-class="progress-text"
-id="progressText">
-
-Preparing upload...
-
-</span>
-
-<span
-class="progress-percent"
-id="progressPercent">
-
-0%
-
-</span>
-
-</div>
-
-<div class="progress-track">
-
-<div
-class="progress-bar"
-id="progressBar">
-</div>
-
-</div>
-
+  class="media-preview"
+  id="mediaPreview">
 </div>
 
 
 <div class="media-warning">
 
 <strong>
-ℹ️ Media upload
+  ℹ️ Media upload notice
 </strong>
+
 <br>
 
-Photos and short videos will be securely uploaded
-to Danny Smart Power Storage when you send the request.
-The uploaded media will be attached to your service request
-so the administrator can view them.
+Photos and videos can be previewed here before sending.
+They are not uploaded to Firebase Storage yet.
+Your service request will still be sent successfully.
 
 </div>
 
 
-<!-- SCHEDULE -->
+
+<!-- ================= SCHEDULE ================= -->
 
 <div class="section-title">
 
-<span>📅</span>
+<span>
+  📅
+</span>
 
 Preferred Schedule
 
 </div>
 
+
 <div class="grid">
 
-<div class="field">
-
-<label>
-Preferred Date
-</label>
-
-<input
-type="date"
-id="preferredDate">
-
-</div>
-
 
 <div class="field">
 
 <label>
-Preferred Time
+  Preferred Date
 </label>
 
+
 <input
-type="time"
-id="preferredTime">
+  type="date"
+  id="preferredDate">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+  Preferred Time
+</label>
+
+
+<input
+  type="time"
+  id="preferredTime">
 
 </div>
 
 </div>
 
 
-<!-- NOTICE -->
+
+<!-- ================= NOTICE ================= -->
 
 <div class="notice">
 
 <div>
-ℹ️
+  ℹ️
 </div>
+
 
 <div>
 
@@ -1208,12 +1438,15 @@ request and contact you about the next step.
 </div>
 
 
-<button
-type="submit"
-class="submit-btn"
-id="submitBtn">
 
-Send Service Request ⚡
+<!-- ================= SUBMIT ================= -->
+
+<button
+  type="submit"
+  class="submit-btn"
+  id="submitBtn">
+
+  Send Service Request ⚡
 
 </button>
 
@@ -1222,63 +1455,75 @@ Send Service Request ⚡
 </main>
 
 
+
 <!-- ================= LOADING ================= -->
 
 <div
-class="loading"
-id="loading">
+  class="loading"
+  id="loading">
+
 
 <div class="loading-card">
 
-<div class="spinner"></div>
+
+<div class="spinner">
+</div>
+
 
 <p id="loadingText">
-Sending your service request...
+  Sending your service request...
 </p>
 
 </div>
 
 </div>
+
 
 
 <!-- ================= SUCCESS ================= -->
 
 <div
-class="success"
-id="success">
+  class="success"
+  id="success">
+
 
 <div class="success-card">
 
+
 <div class="success-icon">
-✓
+  ✓
 </div>
 
+
 <h2>
-Request Sent Successfully
+  Request Sent Successfully
 </h2>
+
 
 <p>
 
 Your electrical service request has been received.
-Danny Smart Power will review your request and contact you.
+Danny Smart Power will review it and contact you.
 
 </p>
+
 
 <div class="request-id">
 
 Request ID:
 
 <strong id="requestId">
--
+  -
 </strong>
 
 </div>
 
-<button
-class="success-btn"
-id="successBtn">
 
-Done
+<button
+  class="success-btn"
+  id="successBtn">
+
+  Done
 
 </button>
 
@@ -1287,12 +1532,14 @@ Done
 </div>
 
 
+
 <!-- ================= TOAST ================= -->
 
 <div
-class="toast"
-id="toast">
+  class="toast"
+  id="toast">
 </div>
+
 
 
 <!-- ================= FIREBASE ================= -->
@@ -1303,13 +1550,13 @@ id="toast">
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 
 
 <script>
 
+
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
 ========================================================= */
 
 const firebaseConfig = {
@@ -1325,9 +1572,6 @@ const firebaseConfig = {
 
   projectId:
     "danny-smart-power",
-
-  storageBucket:
-    "danny-smart-power.firebasestorage.app",
 
   messagingSenderId:
     "649735645158",
@@ -1345,13 +1589,12 @@ firebase.initializeApp(firebaseConfig);
 
 
 const auth =
-firebase.auth();
+  firebase.auth();
+
 
 const db =
-firebase.firestore();
+  firebase.firestore();
 
-const storage =
-firebase.storage();
 
 
 /* =========================================================
@@ -1359,119 +1602,138 @@ firebase.storage();
 ========================================================= */
 
 const serviceForm =
-document.getElementById("serviceForm");
+  document.getElementById("serviceForm");
+
 
 const customerNameInput =
-document.getElementById("customerName");
+  document.getElementById("customerName");
+
 
 const phoneInput =
-document.getElementById("phone");
+  document.getElementById("phone");
+
 
 const serviceTypeInput =
-document.getElementById("serviceType");
+  document.getElementById("serviceType");
+
 
 const descriptionInput =
-document.getElementById("description");
+  document.getElementById("description");
+
 
 const addressInput =
-document.getElementById("address");
+  document.getElementById("address");
+
 
 const locationInput =
-document.getElementById("location");
+  document.getElementById("location");
+
 
 const preferredDateInput =
-document.getElementById("preferredDate");
+  document.getElementById("preferredDate");
+
 
 const preferredTimeInput =
-document.getElementById("preferredTime");
+  document.getElementById("preferredTime");
+
 
 const mediaInput =
-document.getElementById("mediaInput");
+  document.getElementById("mediaInput");
+
 
 const uploadBox =
-document.getElementById("uploadBox");
+  document.getElementById("uploadBox");
+
 
 const mediaPreview =
-document.getElementById("mediaPreview");
+  document.getElementById("mediaPreview");
 
-const mediaInfo =
-document.getElementById("mediaInfo");
-
-const uploadProgress =
-document.getElementById("uploadProgress");
-
-const progressBar =
-document.getElementById("progressBar");
-
-const progressText =
-document.getElementById("progressText");
-
-const progressPercent =
-document.getElementById("progressPercent");
 
 const submitBtn =
-document.getElementById("submitBtn");
+  document.getElementById("submitBtn");
+
 
 const loading =
-document.getElementById("loading");
+  document.getElementById("loading");
+
 
 const loadingText =
-document.getElementById("loadingText");
+  document.getElementById("loadingText");
+
 
 const success =
-document.getElementById("success");
+  document.getElementById("success");
+
 
 const requestId =
-document.getElementById("requestId");
+  document.getElementById("requestId");
+
 
 const successBtn =
-document.getElementById("successBtn");
+  document.getElementById("successBtn");
+
 
 const toast =
-document.getElementById("toast");
+  document.getElementById("toast");
+
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+
+const menu =
+  document.getElementById("menu");
+
+
+const signOutBtn =
+  document.getElementById("signOutBtn");
+
+
+const notificationBtn =
+  document.getElementById("notificationBtn");
+
 
 
 /* =========================================================
    MENU
 ========================================================= */
 
-const menuBtn =
-document.getElementById("menuBtn");
-
-const menu =
-document.getElementById("menu");
-
-
 menuBtn.addEventListener(
-"click",
-event=>{
+  "click",
+  function(event){
 
-  event.stopPropagation();
+    event.stopPropagation();
 
-  menu.classList.toggle("active");
+    menu.classList.toggle("active");
 
-});
+  }
+);
 
 
 document.addEventListener(
-"click",
-event=>{
+  "click",
+  function(event){
 
-  if(
-    !menu.contains(event.target) &&
-    event.target !== menuBtn
-  ){
+    if(
+      !menu.contains(event.target) &&
+      event.target !== menuBtn
+    ){
 
-    menu.classList.remove("active");
+      menu.classList.remove("active");
+
+    }
 
   }
+);
 
-});
 
 
 /* =========================================================
    TOAST
 ========================================================= */
+
+let toastTimer;
+
 
 function showToast(
   message,
@@ -1481,22 +1743,26 @@ function showToast(
   toast.textContent =
     message;
 
+
   toast.classList.toggle(
     "error",
     error
   );
 
+
   toast.classList.add(
     "show"
   );
 
+
   clearTimeout(
-    window.toastTimer
+    toastTimer
   );
 
-  window.toastTimer =
+
+  toastTimer =
     setTimeout(
-      ()=>{
+      function(){
 
         toast.classList.remove(
           "show"
@@ -1509,311 +1775,274 @@ function showToast(
 }
 
 
+
 /* =========================================================
    AUTH
 ========================================================= */
 
 let currentUser =
-null;
+  null;
+
 
 let currentProfile =
-null;
+  null;
 
 
 auth.onAuthStateChanged(
-async user=>{
+  async function(user){
 
-  if(!user){
+    if(!user){
 
-    window.location.href =
-      "login.html";
+      window.location.href =
+        "login.html";
 
-    return;
-
-  }
-
-
-  currentUser =
-    user;
-
-
-  customerNameInput.value =
-    user.displayName ||
-    user.email?.split("@")[0] ||
-    "Customer";
-
-
-  document.getElementById(
-    "menuName"
-  ).textContent =
-    user.displayName ||
-    user.email?.split("@")[0] ||
-    "Customer";
-
-
-  document.getElementById(
-    "menuEmail"
-  ).textContent =
-    user.email || "";
-
-
-  if(user.photoURL){
-
-    document.getElementById(
-      "menuAvatar"
-    ).src =
-      user.photoURL;
-
-  }
-
-
-  /* =========================================
-     LOAD PROFILE
-  ========================================= */
-
-  try{
-
-    const snap =
-      await db
-        .collection("profiles")
-        .doc(user.uid)
-        .get();
-
-
-    if(snap.exists){
-
-      currentProfile =
-        snap.data();
-
-
-      if(
-        currentProfile.name
-      ){
-
-        customerNameInput.value =
-          currentProfile.name;
-
-
-        document.getElementById(
-          "menuName"
-        ).textContent =
-          currentProfile.name;
-
-      }
-
-
-      if(
-        currentProfile.phone
-      ){
-
-        phoneInput.value =
-          currentProfile.phone;
-
-      }
-
-
-      if(
-        currentProfile.photoURL
-      ){
-
-        document.getElementById(
-          "menuAvatar"
-        ).src =
-          currentProfile.photoURL;
-
-      }
-
-
-      if(
-        currentProfile.photo &&
-        !currentProfile.photoURL
-      ){
-
-        document.getElementById(
-          "menuAvatar"
-        ).src =
-          currentProfile.photo;
-
-      }
+      return;
 
     }
 
-  }catch(error){
 
-    console.warn(
-      "Profile could not be loaded:",
-      error
-    );
+    currentUser =
+      user;
+
+
+    customerNameInput.value =
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "Customer";
+
+
+    document.getElementById(
+      "menuName"
+    ).textContent =
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "Customer";
+
+
+    document.getElementById(
+      "menuEmail"
+    ).textContent =
+      user.email ||
+      "";
+
+
+    if(user.photoURL){
+
+      document.getElementById(
+        "menuAvatar"
+      ).src =
+        user.photoURL;
+
+    }
+
+
+    /* ================= PROFILE ================= */
+
+    try{
+
+      const snap =
+        await db
+          .collection("profiles")
+          .doc(user.uid)
+          .get();
+
+
+      if(snap.exists){
+
+        currentProfile =
+          snap.data();
+
+
+        if(currentProfile.name){
+
+          customerNameInput.value =
+            currentProfile.name;
+
+
+          document.getElementById(
+            "menuName"
+          ).textContent =
+            currentProfile.name;
+
+        }
+
+
+        if(currentProfile.phone){
+
+          phoneInput.value =
+            currentProfile.phone;
+
+        }
+
+
+        if(currentProfile.photoURL){
+
+          document.getElementById(
+            "menuAvatar"
+          ).src =
+            currentProfile.photoURL;
+
+        }
+
+
+        if(
+          currentProfile.photo &&
+          !currentProfile.photoURL
+        ){
+
+          document.getElementById(
+            "menuAvatar"
+          ).src =
+            currentProfile.photo;
+
+        }
+
+      }
+
+    }catch(error){
+
+      console.warn(
+        "Profile could not be loaded:",
+        error
+      );
+
+    }
 
   }
+);
 
-});
 
 
 /* =========================================================
-   MEDIA
+   MEDIA PREVIEW ONLY
+   NO FIREBASE STORAGE
 ========================================================= */
 
 let selectedMedia =
-[];
+  [];
 
-
-/* =========================================================
-   OPEN FILE PICKER
-========================================================= */
 
 uploadBox.addEventListener(
-"click",
-()=>{
+  "click",
+  function(){
 
-  if(
-    submitBtn.disabled
-  ){
-
-    return;
+    mediaInput.click();
 
   }
+);
 
-  mediaInput.click();
-
-});
-
-
-/* =========================================================
-   FILE SELECTION
-========================================================= */
 
 mediaInput.addEventListener(
-"change",
-function(){
+  "change",
+  function(){
 
-  const newFiles =
-    Array.from(
-      this.files
+    const newFiles =
+      Array.from(
+        this.files
+      );
+
+
+    if(!newFiles.length)
+      return;
+
+
+    /* Maximum 8 files */
+
+    if(
+      selectedMedia.length +
+      newFiles.length >
+      8
+    ){
+
+      showToast(
+        "Maximum 8 photos/videos allowed.",
+        true
+      );
+
+      mediaInput.value =
+        "";
+
+      return;
+
+    }
+
+
+    /* ================= FILE SIZE CHECK ================= */
+
+    const allowedFiles =
+      [];
+
+
+    newFiles.forEach(
+      function(file){
+
+        /*
+          Since Storage is not active,
+          these files are only previews.
+
+          We still keep a reasonable
+          browser limit so the page
+          does not become too heavy.
+        */
+
+        const maxPreviewSize =
+          50 * 1024 * 1024;
+
+
+        if(
+          file.size >
+          maxPreviewSize
+        ){
+
+          showToast(
+            file.name +
+            " is too large for preview.",
+            true
+          );
+
+          return;
+
+        }
+
+
+        if(
+          file.type.startsWith("image/") ||
+          file.type.startsWith("video/")
+        ){
+
+          allowedFiles.push(
+            file
+          );
+
+        }
+
+      }
     );
 
 
-  if(
-    !newFiles.length
-  ){
-
-    return;
-
-  }
+    selectedMedia =
+      [
+        ...selectedMedia,
+        ...allowedFiles
+      ];
 
 
-  /* =========================================
-     MAXIMUM 8 FILES
-  ========================================= */
+    renderMediaPreview();
 
-  if(
-    selectedMedia.length +
-    newFiles.length >
-    8
-  ){
 
-    showToast(
-      "Maximum 8 photos/videos allowed.",
-      true
-    );
+    /*
+      Clear input so the
+      same file can be selected
+      again later.
+    */
 
-    this.value =
+    mediaInput.value =
       "";
 
-    return;
-
   }
+);
 
 
-  /* =========================================
-     FILE SIZE CHECK
-  ========================================= */
-
-  const MAX_IMAGE_SIZE =
-    10 * 1024 * 1024;
-
-  const MAX_VIDEO_SIZE =
-    50 * 1024 * 1024;
-
-
-  for(
-    const file of newFiles
-  ){
-
-    const isVideo =
-      file.type.startsWith(
-        "video/"
-      );
-
-
-    const maxSize =
-      isVideo
-      ? MAX_VIDEO_SIZE
-      : MAX_IMAGE_SIZE;
-
-
-    if(
-      file.size >
-      maxSize
-    ){
-
-      showToast(
-        `${file.name} is too large. Images: max 10MB. Videos: max 50MB.`,
-        true
-      );
-
-      this.value =
-        "";
-
-      return;
-
-    }
-
-
-    if(
-      !file.type.startsWith("image/") &&
-      !file.type.startsWith("video/")
-    ){
-
-      showToast(
-        "Only photos and videos are allowed.",
-        true
-      );
-
-      this.value =
-        "";
-
-      return;
-
-    }
-
-  }
-
-
-  selectedMedia =
-    [
-      ...selectedMedia,
-      ...newFiles
-    ];
-
-
-  renderMediaPreview();
-
-
-  /*
-    Allow selecting
-    the same file again.
-  */
-
-  this.value =
-    "";
-
-});
-
-
-/* =========================================================
-   MEDIA PREVIEW
-========================================================= */
 
 function renderMediaPreview(){
 
@@ -1821,28 +2050,8 @@ function renderMediaPreview(){
     "";
 
 
-  if(
-    !selectedMedia.length
-  ){
-
-    mediaInfo.textContent =
-      "No photos or videos selected.";
-
-    return;
-
-  }
-
-
-  mediaInfo.textContent =
-    `${selectedMedia.length} file${
-      selectedMedia.length === 1
-      ? ""
-      : "s"
-    } selected.`;
-
-
   selectedMedia.forEach(
-    (file,index)=>{
+    function(file,index){
 
       const item =
         document.createElement(
@@ -1873,6 +2082,10 @@ function renderMediaPreview(){
             file
           );
 
+        element.alt =
+          "Selected photo";
+
+
       }else{
 
         element =
@@ -1900,12 +2113,12 @@ function renderMediaPreview(){
         );
 
 
-      remove.type =
-        "button";
-
-
       remove.className =
         "remove-media";
+
+
+      remove.type =
+        "button";
 
 
       remove.innerHTML =
@@ -1913,16 +2126,17 @@ function renderMediaPreview(){
 
 
       remove.title =
-        "Remove file";
+        "Remove";
 
 
       remove.onclick =
-        ()=>{
+        function(){
 
           selectedMedia.splice(
             index,
             1
           );
+
 
           renderMediaPreview();
 
@@ -1949,662 +2163,400 @@ function renderMediaPreview(){
 }
 
 
-/* =========================================================
-   UPLOAD ONE FILE
-========================================================= */
-
-function uploadFile(
-  file,
-  requestIdValue,
-  fileIndex,
-  totalFiles
-){
-
-  return new Promise(
-    (
-      resolve,
-      reject
-    )=>{
-
-      const safeName =
-        file.name
-          .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-          );
-
-
-      const path =
-        `serviceRequests/${currentUser.uid}/${requestIdValue}/${Date.now()}_${fileIndex}_${safeName}`;
-
-
-      const fileRef =
-        storage.ref().child(
-          path
-        );
-
-
-      const uploadTask =
-        fileRef.put(
-          file,
-          {
-            contentType:
-              file.type
-          }
-        );
-
-
-      uploadTask.on(
-
-        firebase.storage
-          .TaskEvent
-          .STATE_CHANGED,
-
-        snapshot=>{
-
-          const percent =
-            (
-              snapshot.bytesTransferred /
-              snapshot.totalBytes
-            ) * 100;
-
-
-          const completedBefore =
-            fileIndex;
-
-
-          const overall =
-            (
-              (
-                completedBefore * 100
-              ) +
-              percent
-            ) /
-            totalFiles;
-
-
-          const rounded =
-            Math.round(
-              overall
-            );
-
-
-          progressBar.style.width =
-            `${rounded}%`;
-
-
-          progressPercent.textContent =
-            `${rounded}%`;
-
-
-          progressText.textContent =
-            `Uploading file ${fileIndex + 1} of ${totalFiles}...`;
-
-        },
-
-        error=>{
-
-          reject(error);
-
-        },
-
-        async()=>{
-
-          try{
-
-            const url =
-              await uploadTask
-                .snapshot
-                .ref
-                .getDownloadURL();
-
-
-            resolve({
-              url:url,
-              name:file.name,
-              type:file.type,
-              size:file.size,
-              path:path
-            });
-
-          }catch(error){
-
-            reject(error);
-
-          }
-
-        }
-
-      );
-
-    }
-  );
-
-}
-
 
 /* =========================================================
-   UPLOAD ALL MEDIA
-========================================================= */
-
-async function uploadAllMedia(
-  requestIdValue
-){
-
-  if(
-    !selectedMedia.length
-  ){
-
-    return [];
-
-  }
-
-
-  uploadProgress.classList.add(
-    "active"
-  );
-
-
-  progressBar.style.width =
-    "0%";
-
-
-  progressPercent.textContent =
-    "0%";
-
-
-  progressText.textContent =
-    "Starting media upload...";
-
-
-  const results =
-    [];
-
-
-  for(
-    let i=0;
-    i<selectedMedia.length;
-    i++
-  ){
-
-    const result =
-      await uploadFile(
-        selectedMedia[i],
-        requestIdValue,
-        i,
-        selectedMedia.length
-      );
-
-
-    results.push(
-      result
-    );
-
-  }
-
-
-  progressBar.style.width =
-    "100%";
-
-
-  progressPercent.textContent =
-    "100%";
-
-
-  progressText.textContent =
-    "Media uploaded successfully.";
-
-
-  return results;
-
-}
-
-
-/* =========================================================
-   SUBMIT
+   SUBMIT SERVICE REQUEST
 ========================================================= */
 
 serviceForm.addEventListener(
-"submit",
-async function(e){
+  "submit",
+  async function(event){
 
-  e.preventDefault();
+    event.preventDefault();
 
 
-  if(!currentUser){
+    if(!currentUser){
 
-    showToast(
-      "Please sign in first.",
-      true
-    );
-
-    return;
-
-  }
-
-
-  const phone =
-    phoneInput.value.trim();
-
-
-  const serviceType =
-    serviceTypeInput.value.trim();
-
-
-  const description =
-    descriptionInput.value.trim();
-
-
-  const address =
-    addressInput.value.trim();
-
-
-  const location =
-    locationInput.value.trim();
-
-
-  const preferredDate =
-    preferredDateInput.value;
-
-
-  const preferredTime =
-    preferredTimeInput.value;
-
-
-  /* =========================================
-     VALIDATION
-  ========================================= */
-
-  if(!phone){
-
-    showToast(
-      "Please enter your phone number.",
-      true
-    );
-
-    phoneInput.focus();
-
-    return;
-
-  }
-
-
-  if(!serviceType){
-
-    showToast(
-      "Please select the service you need.",
-      true
-    );
-
-    serviceTypeInput.focus();
-
-    return;
-
-  }
-
-
-  if(!description){
-
-    showToast(
-      "Please describe the work you need.",
-      true
-    );
-
-    descriptionInput.focus();
-
-    return;
-
-  }
-
-
-  if(!address){
-
-    showToast(
-      "Please enter the work address.",
-      true
-    );
-
-    addressInput.focus();
-
-    return;
-
-  }
-
-
-  /* =========================================
-     DISABLE
-  ========================================= */
-
-  submitBtn.disabled =
-    true;
-
-
-  uploadBox.classList.add(
-    "disabled"
-  );
-
-
-  loading.classList.add(
-    "active"
-  );
-
-
-  loadingText.textContent =
-    "Preparing your service request...";
-
-
-  try{
-
-    /* =======================================
-       CREATE REQUEST ID FIRST
-    ======================================= */
-
-    const requestRef =
-      db
-        .collection("serviceRequests")
-        .doc();
-
-
-    const requestIdValue =
-      requestRef.id;
-
-
-    /* =======================================
-       UPLOAD MEDIA
-    ======================================= */
-
-    loadingText.textContent =
-      selectedMedia.length
-      ? "Uploading your photos/videos..."
-      : "Sending your service request...";
-
-
-    const uploadedMedia =
-      await uploadAllMedia(
-        requestIdValue
+      showToast(
+        "Please sign in first.",
+        true
       );
 
-
-    /* =======================================
-       MEDIA URL ARRAY
-    ======================================= */
-
-    const mediaUrls =
-      uploadedMedia.map(
-        item=>item.url
-      );
-
-
-    /* =======================================
-       REQUEST DATA
-    ======================================= */
-
-    const requestData = {
-
-      customerId:
-        currentUser.uid,
-
-      customerName:
-        customerNameInput.value.trim(),
-
-      customerPhoto:
-        currentUser.photoURL ||
-        currentProfile?.photoURL ||
-        currentProfile?.photo ||
-        "",
-
-      phone:
-        phone,
-
-      serviceType:
-        serviceType,
-
-      description:
-        description,
-
-      address:
-        address,
-
-      location:
-        location,
-
-      mediaUrls:
-        mediaUrls,
-
-      preferredDate:
-        preferredDate,
-
-      preferredTime:
-        preferredTime,
-
-      status:
-        "pending",
-
-      createdAt:
-        firebase.firestore
-          .FieldValue
-          .serverTimestamp(),
-
-      updatedAt:
-        firebase.firestore
-          .FieldValue
-          .serverTimestamp()
-
-    };
-
-
-    /* =======================================
-       SAVE REQUEST
-    ======================================= */
-
-    loadingText.textContent =
-      "Saving your service request...";
-
-
-    await requestRef.set(
-      requestData
-    );
-
-
-    /* =======================================
-       DONE
-    ======================================= */
-
-    loading.classList.remove(
-      "active"
-    );
-
-
-    requestId.textContent =
-      requestIdValue;
-
-
-    success.classList.add(
-      "active"
-    );
-
-
-    /* =======================================
-       RESET
-    ======================================= */
-
-    serviceForm.reset();
-
-
-    selectedMedia =
-      [];
-
-
-    mediaPreview.innerHTML =
-      "";
-
-
-    mediaInfo.textContent =
-      "No photos or videos selected.";
-
-
-    uploadProgress.classList.remove(
-      "active"
-    );
-
-
-    progressBar.style.width =
-      "0%";
-
-
-    customerNameInput.value =
-      currentProfile?.name ||
-      currentUser.displayName ||
-      currentUser.email?.split("@")[0] ||
-      "Customer";
-
-
-    if(
-      currentProfile?.phone
-    ){
-
-      phoneInput.value =
-        currentProfile.phone;
+      return;
 
     }
 
-  }catch(error){
 
-    console.error(
-      "Service request error:",
-      error
-    );
+    /* ================= VALUES ================= */
 
-
-    loading.classList.remove(
-      "active"
-    );
+    const phone =
+      phoneInput.value.trim();
 
 
-    uploadProgress.classList.remove(
-      "active"
-    );
+    const serviceType =
+      serviceTypeInput.value.trim();
 
 
-    if(
-      error.code ===
-      "storage/unauthorized"
-    ){
+    const description =
+      descriptionInput.value.trim();
+
+
+    const address =
+      addressInput.value.trim();
+
+
+    const location =
+      locationInput.value.trim();
+
+
+    const preferredDate =
+      preferredDateInput.value;
+
+
+    const preferredTime =
+      preferredTimeInput.value;
+
+
+
+    /* ================= VALIDATION ================= */
+
+    if(!phone){
 
       showToast(
-        "Media upload permission was denied. Please check Firebase Storage rules.",
+        "Please enter your phone number.",
         true
       );
 
-    }else if(
-      error.code ===
-      "storage/unknown"
-    ){
+      phoneInput.focus();
 
-      showToast(
-        "Firebase Storage could not upload the file.",
-        true
-      );
-
-    }else if(
-      error.code ===
-      "permission-denied"
-    ){
-
-      showToast(
-        "Permission denied. Check your Firestore rules.",
-        true
-      );
-
-    }else{
-
-      showToast(
-        error.message ||
-        "Could not send your service request.",
-        true
-      );
+      return;
 
     }
 
-  }finally{
+
+    if(!serviceType){
+
+      showToast(
+        "Please select the service you need.",
+        true
+      );
+
+      serviceTypeInput.focus();
+
+      return;
+
+    }
+
+
+    if(!description){
+
+      showToast(
+        "Please describe the work you need.",
+        true
+      );
+
+      descriptionInput.focus();
+
+      return;
+
+    }
+
+
+    if(!address){
+
+      showToast(
+        "Please enter the work address.",
+        true
+      );
+
+      addressInput.focus();
+
+      return;
+
+    }
+
+
+
+    /* ================= DISABLE ================= */
 
     submitBtn.disabled =
-      false;
+      true;
 
 
-    uploadBox.classList.remove(
-      "disabled"
+    loading.classList.add(
+      "active"
     );
 
-  }
 
-});
+    loadingText.textContent =
+      "Sending your service request...";
+
+
+
+    try{
+
+      /* =================================================
+         CREATE REQUEST
+         FIRESTORE ONLY
+         
+         NO STORAGE
+         NO FILE UPLOAD
+      ================================================= */
+
+      const requestRef =
+        db
+          .collection(
+            "serviceRequests"
+          )
+          .doc();
+
+
+      const requestData = {
+
+        customerId:
+          currentUser.uid,
+
+
+        customerName:
+          customerNameInput.value.trim(),
+
+
+        customerPhoto:
+          currentUser.photoURL ||
+          currentProfile?.photoURL ||
+          currentProfile?.photo ||
+          "",
+
+
+        phone:
+          phone,
+
+
+        serviceType:
+          serviceType,
+
+
+        description:
+          description,
+
+
+        address:
+          address,
+
+
+        location:
+          location,
+
+
+        /*
+          Storage is not active.
+
+          Therefore this remains
+          an empty array.
+
+          Later, when Storage is
+          activated, media URLs can
+          be stored here.
+        */
+
+        mediaUrls:
+          [],
+
+
+        preferredDate:
+          preferredDate,
+
+
+        preferredTime:
+          preferredTime,
+
+
+        status:
+          "pending",
+
+
+        createdAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp(),
+
+
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      };
+
+
+
+      /* ================= SAVE ================= */
+
+      await requestRef.set(
+        requestData
+      );
+
+
+
+      /* ================= SUCCESS ================= */
+
+      loading.classList.remove(
+        "active"
+      );
+
+
+      requestId.textContent =
+        requestRef.id;
+
+
+      success.classList.add(
+        "active"
+      );
+
+
+
+      /* ================= RESET ================= */
+
+      serviceForm.reset();
+
+
+      selectedMedia =
+        [];
+
+
+      mediaPreview.innerHTML =
+        "";
+
+
+      /*
+        Restore customer information
+        after form reset.
+      */
+
+      customerNameInput.value =
+        currentProfile?.name ||
+        currentUser.displayName ||
+        currentUser.email?.split("@")[0] ||
+        "Customer";
+
+
+      if(currentProfile?.phone){
+
+        phoneInput.value =
+          currentProfile.phone;
+
+      }
+
+    }catch(error){
+
+      console.error(
+        "Service request error:",
+        error
+      );
+
+
+      loading.classList.remove(
+        "active"
+      );
+
+
+      if(
+        error.code ===
+        "permission-denied"
+      ){
+
+        showToast(
+          "Permission denied. Check your Firestore rules.",
+          true
+        );
+
+      }else{
+
+        showToast(
+          error.message ||
+          "Could not send your service request.",
+          true
+        );
+
+      }
+
+    }finally{
+
+      submitBtn.disabled =
+        false;
+
+    }
+
+  }
+);
+
 
 
 /* =========================================================
-   SUCCESS
+   SUCCESS BUTTON
 ========================================================= */
 
 successBtn.addEventListener(
-"click",
-()=>{
+  "click",
+  function(){
 
-  success.classList.remove(
-    "active"
-  );
+    success.classList.remove(
+      "active"
+    );
 
 
-  window.location.href =
-    "home.html";
+    window.location.href =
+      "home.html";
 
-});
+  }
+);
+
 
 
 /* =========================================================
    SIGN OUT
 ========================================================= */
 
-document.getElementById(
-  "signOutBtn"
-)
-.addEventListener(
-"click",
-async()=>{
+signOutBtn.addEventListener(
+  "click",
+  async function(){
 
-  try{
+    try{
 
-    await auth.signOut();
+      await auth.signOut();
 
-    window.location.href =
-      "login.html";
 
-  }catch(error){
+      window.location.href =
+        "login.html";
 
-    showToast(
-      "Could not sign out.",
-      true
-    );
+    }catch(error){
+
+      showToast(
+        "Could not sign out.",
+        true
+      );
+
+    }
 
   }
+);
 
-});
 
 
 /* =========================================================
    NOTIFICATIONS
 ========================================================= */
 
-document.getElementById(
-  "notificationBtn"
-)
-.addEventListener(
-"click",
-()=>{
+notificationBtn.addEventListener(
+  "click",
+  function(){
 
-  window.location.href =
-    "notifications.html";
+    window.location.href =
+      "notifications.html";
 
-});
+  }
+);
+
 
 
 /* =========================================================
@@ -2621,11 +2573,6 @@ preferredDateInput.min =
   today;
 
 
-/* =========================================================
-   INITIAL MEDIA STATE
-========================================================= */
-
-renderMediaPreview();
 
 </script>
 
