@@ -38,24 +38,16 @@ select{
   font-family:inherit;
 }
 
-.hidden{
-  display:none!important;
-}
-
-
 /* ================= HEADER ================= */
 
 header{
   height:70px;
   background:#020617;
   border-bottom:1px solid #172033;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:0 18px;
-
   position:sticky;
   top:0;
   z-index:1000;
@@ -65,7 +57,6 @@ header{
   display:flex;
   align-items:center;
   gap:10px;
-
   text-decoration:none;
   color:white;
 }
@@ -73,16 +64,12 @@ header{
 .brand-icon{
   width:40px;
   height:40px;
-
   border-radius:13px;
-
   background:#0ea5e9;
   color:#020617;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:22px;
   font-weight:700;
 }
@@ -109,22 +96,15 @@ header{
 .icon-btn{
   width:42px;
   height:42px;
-
   border:none;
   background:transparent;
-
   color:#e2e8f0;
-
   border-radius:50%;
-
   font-size:21px;
-
   cursor:pointer;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   position:relative;
 }
 
@@ -132,47 +112,19 @@ header{
   background:#0f172a;
 }
 
-.notification-dot{
-  position:absolute;
-
-  top:7px;
-  right:7px;
-
-  width:8px;
-  height:8px;
-
-  background:#ef4444;
-
-  border:2px solid #020617;
-
-  border-radius:50%;
-
-  display:none;
-}
-
-
 /* ================= MENU ================= */
 
 .menu{
   position:fixed;
-
   top:76px;
   right:12px;
-
   width:250px;
-
   background:#0f172a;
-
   border:1px solid #1e293b;
-
   border-radius:18px;
-
   padding:9px;
-
   box-shadow:0 20px 50px rgba(0,0,0,.45);
-
   z-index:3000;
-
   display:none;
 }
 
@@ -184,22 +136,16 @@ header{
   display:flex;
   align-items:center;
   gap:11px;
-
   padding:12px;
-
   border-bottom:1px solid #1e293b;
-
   margin-bottom:5px;
 }
 
 .menu-avatar{
   width:42px;
   height:42px;
-
   border-radius:50%;
-
   object-fit:cover;
-
   background:#1e293b;
 }
 
@@ -218,28 +164,17 @@ header{
 .menu a,
 .menu button{
   width:100%;
-
   border:none;
-
   background:transparent;
-
   color:#cbd5e1;
-
   text-decoration:none;
-
   display:flex;
   align-items:center;
-
   gap:12px;
-
   padding:12px;
-
   border-radius:12px;
-
   cursor:pointer;
-
   text-align:left;
-
   font-size:13px;
 }
 
@@ -249,14 +184,11 @@ header{
   color:white;
 }
 
-
 /* ================= PAGE ================= */
 
 .page{
   max-width:850px;
-
   margin:auto;
-
   padding:28px 16px 60px;
 }
 
@@ -268,21 +200,14 @@ header{
 .intro-icon{
   width:65px;
   height:65px;
-
   border-radius:20px;
-
   background:#082f49;
-
   border:1px solid #075985;
-
   color:#38bdf8;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:31px;
-
   margin:0 auto 13px;
 }
 
@@ -294,42 +219,29 @@ header{
 
 .intro p{
   color:#64748b;
-
   font-size:13px;
-
   max-width:600px;
-
   margin:auto;
-
   line-height:1.7;
 }
-
 
 /* ================= CARD ================= */
 
 .form-card{
   background:#0f172a;
-
   border:1px solid #1e293b;
-
   border-radius:22px;
-
   padding:22px;
-
   box-shadow:0 15px 45px rgba(0,0,0,.25);
 }
 
 .section-title{
   display:flex;
   align-items:center;
-
   gap:9px;
-
   font-size:16px;
   font-weight:700;
-
   color:#f8fafc;
-
   margin:22px 0 14px;
 }
 
@@ -340,27 +252,19 @@ header{
 .section-title span{
   width:30px;
   height:30px;
-
   background:#082f49;
-
   border:1px solid #075985;
-
   color:#38bdf8;
-
   border-radius:9px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:14px;
 }
 
 .grid{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:14px;
 }
 
@@ -374,13 +278,9 @@ header{
 
 label{
   display:block;
-
   font-size:12px;
-
   font-weight:600;
-
   color:#cbd5e1;
-
   margin-bottom:7px;
 }
 
@@ -392,21 +292,13 @@ input,
 select,
 textarea{
   width:100%;
-
   border:1px solid #334155;
-
   border-radius:12px;
-
   background:#020617;
-
   color:#f8fafc;
-
   outline:none;
-
   padding:12px 13px;
-
   font-size:13px;
-
   transition:.2s;
 }
 
@@ -419,10 +311,7 @@ input:focus,
 select:focus,
 textarea:focus{
   border-color:#38bdf8;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(56,189,248,.10);
+  box-shadow:0 0 0 3px rgba(56,189,248,.10);
 }
 
 input[readonly]{
@@ -440,22 +329,15 @@ select option{
   color:white;
 }
 
-
 /* ================= UPLOAD ================= */
 
 .upload-box{
   border:1.5px dashed #334155;
-
   border-radius:16px;
-
   padding:22px 15px;
-
   text-align:center;
-
   background:#020617;
-
   cursor:pointer;
-
   transition:.2s;
 }
 
@@ -471,21 +353,15 @@ select option{
 
 .upload-box strong{
   display:block;
-
   color:#e2e8f0;
-
   font-size:13px;
 }
 
 .upload-box small{
   display:block;
-
   color:#64748b;
-
   margin-top:5px;
-
   font-size:10px;
-
   line-height:1.5;
 }
 
@@ -493,31 +369,21 @@ select option{
   display:none;
 }
 
-
 /* ================= PREVIEWS ================= */
 
 .media-preview{
   margin-top:13px;
-
   display:grid;
-
-  grid-template-columns:
-    repeat(auto-fill,minmax(130px,1fr));
-
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
   gap:10px;
 }
 
 .preview-item{
   position:relative;
-
   height:130px;
-
   border-radius:13px;
-
   overflow:hidden;
-
   background:#020617;
-
   border:1px solid #1e293b;
 }
 
@@ -525,50 +391,70 @@ select option{
 .preview-item video{
   width:100%;
   height:100%;
-
   object-fit:cover;
 }
 
 .remove-media{
   position:absolute;
-
   top:7px;
   right:7px;
-
   width:28px;
   height:28px;
-
   border:none;
-
   border-radius:50%;
-
   background:rgba(2,6,23,.8);
-
   color:white;
-
   cursor:pointer;
-
   font-size:15px;
+  z-index:5;
 }
 
+/* ================= UPLOAD STATUS ================= */
+
+.upload-status{
+  display:none;
+  margin-top:13px;
+  padding:13px;
+  border-radius:13px;
+  background:#082f49;
+  border:1px solid #075985;
+}
+
+.upload-status.show{
+  display:block;
+}
+
+.upload-status-text{
+  font-size:11px;
+  color:#bae6fd;
+  margin-bottom:8px;
+}
+
+.progress-track{
+  width:100%;
+  height:7px;
+  background:#020617;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:#38bdf8;
+  transition:width:.2s;
+}
 
 /* ================= MEDIA NOTICE ================= */
 
 .media-warning{
   margin-top:10px;
-
   padding:11px;
-
   border-radius:12px;
-
   background:#172033;
-
   border:1px solid #334155;
-
   color:#94a3b8;
-
   font-size:10px;
-
   line-height:1.6;
 }
 
@@ -576,55 +462,34 @@ select option{
   color:#f8fafc;
 }
 
-
 /* ================= NOTICE ================= */
 
 .notice{
   display:flex;
-
   gap:10px;
-
   background:#082f49;
-
   border:1px solid #075985;
-
   color:#bae6fd;
-
   padding:13px;
-
   border-radius:13px;
-
   font-size:11px;
-
   line-height:1.7;
-
   margin-top:8px;
 }
-
 
 /* ================= BUTTON ================= */
 
 .submit-btn{
   width:100%;
-
   border:none;
-
   border-radius:13px;
-
   background:#0284c7;
-
   color:white;
-
   padding:14px;
-
   font-size:14px;
-
   font-weight:700;
-
   cursor:pointer;
-
   margin-top:22px;
-
   transition:.2s;
 }
 
@@ -637,23 +502,16 @@ select option{
   cursor:not-allowed;
 }
 
-
 /* ================= LOADING ================= */
 
 .loading{
   position:fixed;
-
   inset:0;
-
   background:rgba(2,6,23,.82);
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   z-index:5000;
-
   padding:20px;
 }
 
@@ -663,30 +521,20 @@ select option{
 
 .loading-card{
   background:#0f172a;
-
   border:1px solid #334155;
-
   border-radius:20px;
-
   padding:28px;
-
   text-align:center;
-
   width:min(340px,100%);
 }
 
 .spinner{
   width:42px;
   height:42px;
-
   border:4px solid #334155;
-
   border-top-color:#38bdf8;
-
   border-radius:50%;
-
   animation:spin .8s linear infinite;
-
   margin:0 auto 15px;
 }
 
@@ -701,23 +549,16 @@ select option{
   font-size:13px;
 }
 
-
 /* ================= SUCCESS ================= */
 
 .success{
   position:fixed;
-
   inset:0;
-
   background:rgba(2,6,23,.82);
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
   z-index:6000;
 }
 
@@ -727,73 +568,48 @@ select option{
 
 .success-card{
   width:min(420px,100%);
-
   background:#0f172a;
-
   border:1px solid #334155;
-
   border-radius:22px;
-
   padding:30px 22px;
-
   text-align:center;
-
   box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 .success-icon{
   width:66px;
   height:66px;
-
   background:#052e16;
-
   color:#4ade80;
-
   border:1px solid #166534;
-
   border-radius:50%;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   font-size:31px;
-
   margin:0 auto 15px;
 }
 
 .success-card h2{
   color:white;
-
   font-size:20px;
-
   margin-bottom:8px;
 }
 
 .success-card p{
   color:#94a3b8;
-
   font-size:12px;
-
   line-height:1.7;
 }
 
 .request-id{
   margin:15px 0;
-
   padding:10px;
-
   background:#020617;
-
   border:1px solid #1e293b;
-
   border-radius:10px;
-
   color:#94a3b8;
-
   font-size:11px;
-
   word-break:break-all;
 }
 
@@ -803,69 +619,44 @@ select option{
 
 .success-btn{
   width:100%;
-
   border:none;
-
   border-radius:12px;
-
   background:#0284c7;
-
   color:white;
-
   padding:13px;
-
   font-weight:700;
-
   cursor:pointer;
 }
-
 
 /* ================= TOAST ================= */
 
 .toast{
   position:fixed;
-
   left:50%;
-
   bottom:22px;
-
   transform:translate(-50%,100px);
-
   background:#0f172a;
-
   border:1px solid #334155;
-
   color:white;
-
   padding:12px 17px;
-
   border-radius:12px;
-
   font-size:12px;
-
   z-index:7000;
-
   opacity:0;
-
   transition:.3s;
-
   max-width:calc(100% - 30px);
-
   text-align:center;
 }
 
 .toast.show{
   transform:translate(-50%,0);
-
   opacity:1;
 }
 
 .toast.error{
   background:#450a0a;
-
   border-color:#991b1b;
 }
-
 
 /* ================= MOBILE ================= */
 
@@ -893,13 +684,11 @@ select option{
 
   .form-card{
     padding:17px;
-
     border-radius:18px;
   }
 
   .grid{
     grid-template-columns:1fr;
-
     gap:0;
   }
 
@@ -909,11 +698,8 @@ select option{
 
   .menu{
     top:70px;
-
     right:8px;
-
     width:calc(100% - 16px);
-
     max-width:300px;
   }
 
@@ -922,56 +708,41 @@ select option{
 </style>
 </head>
 
-
 <body>
-
-
-<!-- ================= HEADER ================= -->
 
 <header>
 
 <a href="home.html" class="brand">
 
-  <div class="brand-icon">
-    ⚡
-  </div>
+<div class="brand-icon">⚡</div>
 
-  <div class="brand-text">
+<div class="brand-text">
 
-    Danny Smart Power
+Danny Smart Power
 
-    <small>
-      POWERING YOUR NEEDS
-    </small>
+<small>POWERING YOUR NEEDS</small>
 
-  </div>
+</div>
 
 </a>
-
 
 <div class="header-actions">
 
 <button
-  class="icon-btn"
-  id="notificationBtn"
-  title="Notifications">
+class="icon-btn"
+id="notificationBtn"
+title="Notifications">
 
-  🔔
-
-  <span
-    class="notification-dot"
-    id="notificationDot">
-  </span>
+🔔
 
 </button>
 
-
 <button
-  class="icon-btn"
-  id="menuBtn"
-  title="Menu">
+class="icon-btn"
+id="menuBtn"
+title="Menu">
 
-  ⋮
+⋮
 
 </button>
 
@@ -980,39 +751,33 @@ select option{
 </header>
 
 
-
 <!-- ================= MENU ================= -->
 
-<div
-  class="menu"
-  id="menu">
-
+<div class="menu" id="menu">
 
 <div class="menu-profile">
 
 <img
-  id="menuAvatar"
-  class="menu-avatar"
-  src="https://via.placeholder.com/80"
-  alt="Profile">
-
+id="menuAvatar"
+class="menu-avatar"
+src="https://via.placeholder.com/80"
+alt="Profile">
 
 <div>
 
 <div
-  class="menu-name"
-  id="menuName">
+class="menu-name"
+id="menuName">
 
-  Customer
+Customer
 
 </div>
 
-
 <div
-  class="menu-email"
-  id="menuEmail">
+class="menu-email"
+id="menuEmail">
 
-  Loading...
+Loading...
 
 </div>
 
@@ -1022,292 +787,213 @@ select option{
 
 
 <a href="home.html">
-  🏠
-  <span>Home</span>
+🏠 <span>Home</span>
 </a>
-
 
 <a href="shop.html">
-  🛒
-  <span>Shop</span>
+🛒 <span>Shop</span>
 </a>
-
 
 <a href="profile.html">
-  👤
-  <span>My Profile</span>
+👤 <span>My Profile</span>
 </a>
-
 
 <a href="orders.html">
-  📦
-  <span>My Orders</span>
+📦 <span>My Orders</span>
 </a>
-
 
 <a href="service-project.html">
-  🔧
-  <span>Electrical Project</span>
+🔧 <span>Electrical Project</span>
 </a>
-
 
 <a href="chat.html">
-  💬
-  <span>Chat with Danny</span>
+💬 <span>Chat with Danny</span>
 </a>
 
-
 <button id="signOutBtn">
-  🚪
-  <span>Sign Out</span>
+🚪 <span>Sign Out</span>
 </button>
 
 </div>
-
 
 
 <!-- ================= PAGE ================= -->
 
 <main class="page">
 
-
 <div class="intro">
 
 <div class="intro-icon">
-  ⚡
+⚡
 </div>
 
-
 <h1>
-  Request Electrical Service
+Request Electrical Service
 </h1>
 
-
 <p>
-  Tell Danny Smart Power what electrical work you need.
-  We'll review your request and contact you about the next step.
+Tell Danny Smart Power what electrical work you need.
+We'll review your request and contact you about the next step.
 </p>
 
 </div>
 
 
-
 <form
-  class="form-card"
-  id="serviceForm">
+class="form-card"
+id="serviceForm">
 
 
 <!-- ================= CUSTOMER ================= -->
 
 <div class="section-title">
 
-<span>
-  👤
-</span>
+<span>👤</span>
 
 Customer Information
 
 </div>
 
-
 <div class="grid">
 
-
 <div class="field">
 
 <label>
-  Name
-  <span class="required">*</span>
+Name <span class="required">*</span>
 </label>
 
-
 <input
-  type="text"
-  id="customerName"
-  readonly
-  placeholder="Your name">
+type="text"
+id="customerName"
+readonly
+placeholder="Your name">
 
 </div>
-
 
 
 <div class="field">
 
 <label>
-  Phone Number
-  <span class="required">*</span>
+Phone Number <span class="required">*</span>
 </label>
 
-
 <input
-  type="tel"
-  id="phone"
-  placeholder="08012345678"
-  required>
+type="tel"
+id="phone"
+placeholder="08012345678"
+required>
 
 </div>
 
 </div>
-
 
 
 <!-- ================= SERVICE ================= -->
 
 <div class="section-title">
 
-<span>
-  ⚡
-</span>
+<span>⚡</span>
 
 Service Information
 
 </div>
 
-
 <div class="grid">
-
 
 <div class="field full">
 
 <label>
-
-  What service do you need?
-
-  <span class="required">*</span>
-
+What service do you need?
+<span class="required">*</span>
 </label>
 
-
 <select
-  id="serviceType"
-  required>
+id="serviceType"
+required>
 
 <option value="">
-  Select electrical service
+Select electrical service
 </option>
 
-<option>
-  ☀️ Solar Installation
-</option>
-
-<option>
-  🔋 Inverter Installation
-</option>
-
-<option>
-  🏠 House Wiring
-</option>
-
-<option>
-  💡 Lighting Installation
-</option>
-
-<option>
-  🔧 Electrical Repair
-</option>
-
-<option>
-  🔍 Fault Diagnosis
-</option>
-
-<option>
-  🛠️ Electrical Maintenance
-</option>
-
-<option>
-  ⚡ Other Electrical Service
-</option>
+<option>☀️ Solar Installation</option>
+<option>🔋 Inverter Installation</option>
+<option>🏠 House Wiring</option>
+<option>💡 Lighting Installation</option>
+<option>🔧 Electrical Repair</option>
+<option>🔍 Fault Diagnosis</option>
+<option>🛠️ Electrical Maintenance</option>
+<option>⚡ Other Electrical Service</option>
 
 </select>
 
 </div>
 
 
-
 <div class="field full">
 
 <label>
-
-  Describe what you need
-
-  <span class="required">*</span>
-
+Describe what you need
+<span class="required">*</span>
 </label>
 
-
 <textarea
-  id="description"
-  placeholder="Tell us clearly what is wrong or what you want installed..."
-  required>
-</textarea>
+id="description"
+placeholder="Tell us clearly what is wrong or what you want installed..."
+required></textarea>
 
 </div>
 
 </div>
-
 
 
 <!-- ================= LOCATION ================= -->
 
 <div class="section-title">
 
-<span>
-  📍
-</span>
+<span>📍</span>
 
 Work Location
 
 </div>
 
-
 <div class="grid">
 
-
 <div class="field full">
 
 <label>
-
-  Address
-  <span class="required">*</span>
-
+Address <span class="required">*</span>
 </label>
 
-
 <input
-  type="text"
-  id="address"
-  placeholder="Enter where the work is needed"
-  required>
+type="text"
+id="address"
+placeholder="Enter where the work is needed"
+required>
 
 </div>
-
 
 
 <div class="field full">
 
 <label>
-  Specific Location
+Specific Location
 </label>
 
-
 <input
-  type="text"
-  id="location"
-  placeholder="Optional: Estate, landmark, area, house number, etc.">
+type="text"
+id="location"
+placeholder="Optional: Estate, landmark, area, house number, etc.">
 
 </div>
 
 </div>
-
 
 
 <!-- ================= MEDIA ================= -->
 
 <div class="section-title">
 
-<span>
-  📷
-</span>
+<span>📷</span>
 
 Photos or Short Video
 
@@ -1315,117 +1001,124 @@ Photos or Short Video
 
 
 <div
-  class="upload-box"
-  id="uploadBox">
-
+class="upload-box"
+id="uploadBox">
 
 <div class="upload-icon">
-  📷
+📷
 </div>
 
-
 <strong>
-  Add photos or a short video
+Add photos or a short video
 </strong>
 
-
 <small>
-  Showing us the problem can help us understand the work.
+Showing us the problem can help us understand the work.
 </small>
 
-
 <small>
-  You can select multiple files.
+You can select multiple files.
 </small>
 
 </div>
 
 
 <input
-  type="file"
-  id="mediaInput"
-  accept="image/*,video/*"
-  multiple>
+type="file"
+id="mediaInput"
+accept="image/*,video/*"
+multiple>
 
 
 <div
-  class="media-preview"
-  id="mediaPreview">
+class="media-preview"
+id="mediaPreview">
+</div>
+
+
+<div
+class="upload-status"
+id="uploadStatus">
+
+<div
+class="upload-status-text"
+id="uploadStatusText">
+
+Preparing upload...
+
+</div>
+
+<div class="progress-track">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
 </div>
 
 
 <div class="media-warning">
 
 <strong>
-  ℹ️ Media upload notice
+ℹ️ Media upload
 </strong>
 
 <br>
 
-Photos and videos can be previewed here before sending.
-They are not uploaded to Firebase Storage yet.
-Your service request will still be sent successfully.
+Photos and videos will be securely uploaded to
+Cloudinary when you submit your request.
 
 </div>
-
 
 
 <!-- ================= SCHEDULE ================= -->
 
 <div class="section-title">
 
-<span>
-  📅
-</span>
+<span>📅</span>
 
 Preferred Schedule
 
 </div>
 
-
 <div class="grid">
 
+<div class="field">
+
+<label>
+Preferred Date
+</label>
+
+<input
+type="date"
+id="preferredDate">
+
+</div>
+
 
 <div class="field">
 
 <label>
-  Preferred Date
+Preferred Time
 </label>
 
-
 <input
-  type="date"
-  id="preferredDate">
-
-</div>
-
-
-
-<div class="field">
-
-<label>
-  Preferred Time
-</label>
-
-
-<input
-  type="time"
-  id="preferredTime">
+type="time"
+id="preferredTime">
 
 </div>
 
 </div>
-
 
 
 <!-- ================= NOTICE ================= -->
 
 <div class="notice">
 
-<div>
-  ℹ️
-</div>
-
+<div>ℹ️</div>
 
 <div>
 
@@ -1438,15 +1131,12 @@ request and contact you about the next step.
 </div>
 
 
-
-<!-- ================= SUBMIT ================= -->
-
 <button
-  type="submit"
-  class="submit-btn"
-  id="submitBtn">
+type="submit"
+class="submit-btn"
+id="submitBtn">
 
-  Send Service Request ⚡
+Send Service Request ⚡
 
 </button>
 
@@ -1455,23 +1145,18 @@ request and contact you about the next step.
 </main>
 
 
-
 <!-- ================= LOADING ================= -->
 
 <div
-  class="loading"
-  id="loading">
-
+class="loading"
+id="loading">
 
 <div class="loading-card">
 
-
-<div class="spinner">
-</div>
-
+<div class="spinner"></div>
 
 <p id="loadingText">
-  Sending your service request...
+Sending your service request...
 </p>
 
 </div>
@@ -1479,26 +1164,21 @@ request and contact you about the next step.
 </div>
 
 
-
 <!-- ================= SUCCESS ================= -->
 
 <div
-  class="success"
-  id="success">
-
+class="success"
+id="success">
 
 <div class="success-card">
 
-
 <div class="success-icon">
-  ✓
+✓
 </div>
 
-
 <h2>
-  Request Sent Successfully
+Request Sent Successfully
 </h2>
-
 
 <p>
 
@@ -1507,23 +1187,21 @@ Danny Smart Power will review it and contact you.
 
 </p>
 
-
 <div class="request-id">
 
 Request ID:
 
 <strong id="requestId">
-  -
+-
 </strong>
 
 </div>
 
-
 <button
-  class="success-btn"
-  id="successBtn">
+class="success-btn"
+id="successBtn">
 
-  Done
+Done
 
 </button>
 
@@ -1532,14 +1210,12 @@ Request ID:
 </div>
 
 
-
 <!-- ================= TOAST ================= -->
 
 <div
-  class="toast"
-  id="toast">
+class="toast"
+id="toast">
 </div>
-
 
 
 <!-- ================= FIREBASE ================= -->
@@ -1551,50 +1227,59 @@ Request ID:
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 
-
 <script>
 
-
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE
 ========================================================= */
 
 const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+apiKey:
+"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
-  authDomain:
-    "danny-smart-power.firebaseapp.com",
+authDomain:
+"danny-smart-power.firebaseapp.com",
 
-  databaseURL:
-    "https://danny-smart-power-default-rtdb.firebaseio.com",
+databaseURL:
+"https://danny-smart-power-default-rtdb.firebaseio.com",
 
-  projectId:
-    "danny-smart-power",
+projectId:
+"danny-smart-power",
 
-  messagingSenderId:
-    "649735645158",
+messagingSenderId:
+"649735645158",
 
-  appId:
-    "1:649735645158:web:cff518b89721a163679827",
+appId:
+"1:649735645158:web:cff518b89721a163679827",
 
-  measurementId:
-    "G-258YKLP5ZS"
+measurementId:
+"G-258YKLP5ZS"
 
 };
 
 
 firebase.initializeApp(firebaseConfig);
 
-
 const auth =
-  firebase.auth();
-
+firebase.auth();
 
 const db =
-  firebase.firestore();
+firebase.firestore();
 
+
+/* =========================================================
+   CLOUDINARY
+========================================================= */
+
+const CLOUDINARY_CLOUD_NAME =
+"mkrahhmm";
+
+const CLOUDINARY_UPLOAD_PRESET =
+"dsp_service_media";
+
+const CLOUDINARY_UPLOAD_URL =
+`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`;
 
 
 /* =========================================================
@@ -1602,96 +1287,82 @@ const db =
 ========================================================= */
 
 const serviceForm =
-  document.getElementById("serviceForm");
-
+document.getElementById("serviceForm");
 
 const customerNameInput =
-  document.getElementById("customerName");
-
+document.getElementById("customerName");
 
 const phoneInput =
-  document.getElementById("phone");
-
+document.getElementById("phone");
 
 const serviceTypeInput =
-  document.getElementById("serviceType");
-
+document.getElementById("serviceType");
 
 const descriptionInput =
-  document.getElementById("description");
-
+document.getElementById("description");
 
 const addressInput =
-  document.getElementById("address");
-
+document.getElementById("address");
 
 const locationInput =
-  document.getElementById("location");
-
+document.getElementById("location");
 
 const preferredDateInput =
-  document.getElementById("preferredDate");
-
+document.getElementById("preferredDate");
 
 const preferredTimeInput =
-  document.getElementById("preferredTime");
-
+document.getElementById("preferredTime");
 
 const mediaInput =
-  document.getElementById("mediaInput");
-
+document.getElementById("mediaInput");
 
 const uploadBox =
-  document.getElementById("uploadBox");
-
+document.getElementById("uploadBox");
 
 const mediaPreview =
-  document.getElementById("mediaPreview");
+document.getElementById("mediaPreview");
 
+const uploadStatus =
+document.getElementById("uploadStatus");
+
+const uploadStatusText =
+document.getElementById("uploadStatusText");
+
+const progressBar =
+document.getElementById("progressBar");
 
 const submitBtn =
-  document.getElementById("submitBtn");
-
+document.getElementById("submitBtn");
 
 const loading =
-  document.getElementById("loading");
-
+document.getElementById("loading");
 
 const loadingText =
-  document.getElementById("loadingText");
-
+document.getElementById("loadingText");
 
 const success =
-  document.getElementById("success");
-
+document.getElementById("success");
 
 const requestId =
-  document.getElementById("requestId");
-
+document.getElementById("requestId");
 
 const successBtn =
-  document.getElementById("successBtn");
-
+document.getElementById("successBtn");
 
 const toast =
-  document.getElementById("toast");
-
+document.getElementById("toast");
 
 const menuBtn =
-  document.getElementById("menuBtn");
-
+document.getElementById("menuBtn");
 
 const menu =
-  document.getElementById("menu");
-
+document.getElementById("menu");
 
 const signOutBtn =
-  document.getElementById("signOutBtn");
-
+document.getElementById("signOutBtn");
 
 const notificationBtn =
-  document.getElementById("notificationBtn");
-
+document.getElementById("notificationBtn");
 
 
 /* =========================================================
@@ -1699,33 +1370,30 @@ const notificationBtn =
 ========================================================= */
 
 menuBtn.addEventListener(
-  "click",
-  function(event){
+"click",
+function(event){
 
-    event.stopPropagation();
+event.stopPropagation();
 
-    menu.classList.toggle("active");
+menu.classList.toggle("active");
 
-  }
-);
+});
 
 
 document.addEventListener(
-  "click",
-  function(event){
+"click",
+function(event){
 
-    if(
-      !menu.contains(event.target) &&
-      event.target !== menuBtn
-    ){
+if(
+!menu.contains(event.target) &&
+event.target !== menuBtn
+){
 
-      menu.classList.remove("active");
+menu.classList.remove("active");
 
-    }
+}
 
-  }
-);
-
+});
 
 
 /* =========================================================
@@ -1734,46 +1402,40 @@ document.addEventListener(
 
 let toastTimer;
 
-
 function showToast(
-  message,
-  error=false
+message,
+error=false
 ){
 
-  toast.textContent =
-    message;
+toast.textContent =
+message;
 
+toast.classList.toggle(
+"error",
+error
+);
 
-  toast.classList.toggle(
-    "error",
-    error
-  );
+toast.classList.add(
+"show"
+);
 
+clearTimeout(
+toastTimer
+);
 
-  toast.classList.add(
-    "show"
-  );
+toastTimer =
+setTimeout(
+function(){
 
+toast.classList.remove(
+"show"
+);
 
-  clearTimeout(
-    toastTimer
-  );
-
-
-  toastTimer =
-    setTimeout(
-      function(){
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-      3500
-    );
+},
+3500
+);
 
 }
-
 
 
 /* =========================================================
@@ -1781,387 +1443,656 @@ function showToast(
 ========================================================= */
 
 let currentUser =
-  null;
-
+null;
 
 let currentProfile =
-  null;
+null;
 
 
 auth.onAuthStateChanged(
-  async function(user){
+async function(user){
 
-    if(!user){
+if(!user){
 
-      window.location.href =
-        "login.html";
+window.location.href =
+"login.html";
 
-      return;
-
-    }
-
-
-    currentUser =
-      user;
-
-
-    customerNameInput.value =
-      user.displayName ||
-      user.email?.split("@")[0] ||
-      "Customer";
-
-
-    document.getElementById(
-      "menuName"
-    ).textContent =
-      user.displayName ||
-      user.email?.split("@")[0] ||
-      "Customer";
-
-
-    document.getElementById(
-      "menuEmail"
-    ).textContent =
-      user.email ||
-      "";
-
-
-    if(user.photoURL){
-
-      document.getElementById(
-        "menuAvatar"
-      ).src =
-        user.photoURL;
-
-    }
-
-
-    /* ================= PROFILE ================= */
-
-    try{
-
-      const snap =
-        await db
-          .collection("profiles")
-          .doc(user.uid)
-          .get();
-
-
-      if(snap.exists){
-
-        currentProfile =
-          snap.data();
-
-
-        if(currentProfile.name){
-
-          customerNameInput.value =
-            currentProfile.name;
-
-
-          document.getElementById(
-            "menuName"
-          ).textContent =
-            currentProfile.name;
-
-        }
-
-
-        if(currentProfile.phone){
-
-          phoneInput.value =
-            currentProfile.phone;
-
-        }
-
-
-        if(currentProfile.photoURL){
-
-          document.getElementById(
-            "menuAvatar"
-          ).src =
-            currentProfile.photoURL;
-
-        }
-
-
-        if(
-          currentProfile.photo &&
-          !currentProfile.photoURL
-        ){
-
-          document.getElementById(
-            "menuAvatar"
-          ).src =
-            currentProfile.photo;
-
-        }
-
-      }
-
-    }catch(error){
-
-      console.warn(
-        "Profile could not be loaded:",
-        error
-      );
-
-    }
-
-  }
-);
-
-
-
-/* =========================================================
-   MEDIA PREVIEW ONLY
-   NO FIREBASE STORAGE
-========================================================= */
-
-let selectedMedia =
-  [];
-
-
-uploadBox.addEventListener(
-  "click",
-  function(){
-
-    mediaInput.click();
-
-  }
-);
-
-
-mediaInput.addEventListener(
-  "change",
-  function(){
-
-    const newFiles =
-      Array.from(
-        this.files
-      );
-
-
-    if(!newFiles.length)
-      return;
-
-
-    /* Maximum 8 files */
-
-    if(
-      selectedMedia.length +
-      newFiles.length >
-      8
-    ){
-
-      showToast(
-        "Maximum 8 photos/videos allowed.",
-        true
-      );
-
-      mediaInput.value =
-        "";
-
-      return;
-
-    }
-
-
-    /* ================= FILE SIZE CHECK ================= */
-
-    const allowedFiles =
-      [];
-
-
-    newFiles.forEach(
-      function(file){
-
-        /*
-          Since Storage is not active,
-          these files are only previews.
-
-          We still keep a reasonable
-          browser limit so the page
-          does not become too heavy.
-        */
-
-        const maxPreviewSize =
-          50 * 1024 * 1024;
-
-
-        if(
-          file.size >
-          maxPreviewSize
-        ){
-
-          showToast(
-            file.name +
-            " is too large for preview.",
-            true
-          );
-
-          return;
-
-        }
-
-
-        if(
-          file.type.startsWith("image/") ||
-          file.type.startsWith("video/")
-        ){
-
-          allowedFiles.push(
-            file
-          );
-
-        }
-
-      }
-    );
-
-
-    selectedMedia =
-      [
-        ...selectedMedia,
-        ...allowedFiles
-      ];
-
-
-    renderMediaPreview();
-
-
-    /*
-      Clear input so the
-      same file can be selected
-      again later.
-    */
-
-    mediaInput.value =
-      "";
-
-  }
-);
-
-
-
-function renderMediaPreview(){
-
-  mediaPreview.innerHTML =
-    "";
-
-
-  selectedMedia.forEach(
-    function(file,index){
-
-      const item =
-        document.createElement(
-          "div"
-        );
-
-
-      item.className =
-        "preview-item";
-
-
-      let element;
-
-
-      if(
-        file.type.startsWith(
-          "image/"
-        )
-      ){
-
-        element =
-          document.createElement(
-            "img"
-          );
-
-        element.src =
-          URL.createObjectURL(
-            file
-          );
-
-        element.alt =
-          "Selected photo";
-
-
-      }else{
-
-        element =
-          document.createElement(
-            "video"
-          );
-
-        element.src =
-          URL.createObjectURL(
-            file
-          );
-
-        element.controls =
-          true;
-
-        element.playsInline =
-          true;
-
-      }
-
-
-      const remove =
-        document.createElement(
-          "button"
-        );
-
-
-      remove.className =
-        "remove-media";
-
-
-      remove.type =
-        "button";
-
-
-      remove.innerHTML =
-        "×";
-
-
-      remove.title =
-        "Remove";
-
-
-      remove.onclick =
-        function(){
-
-          selectedMedia.splice(
-            index,
-            1
-          );
-
-
-          renderMediaPreview();
-
-        };
-
-
-      item.appendChild(
-        element
-      );
-
-
-      item.appendChild(
-        remove
-      );
-
-
-      mediaPreview.appendChild(
-        item
-      );
-
-    }
-  );
+return;
 
 }
 
+currentUser =
+user;
+
+
+const defaultName =
+user.displayName ||
+user.email?.split("@")[0] ||
+"Customer";
+
+
+customerNameInput.value =
+defaultName;
+
+
+document.getElementById(
+"menuName"
+).textContent =
+defaultName;
+
+
+document.getElementById(
+"menuEmail"
+).textContent =
+user.email ||
+"";
+
+
+if(user.photoURL){
+
+document.getElementById(
+"menuAvatar"
+).src =
+user.photoURL;
+
+}
+
+
+/* ================= PROFILE ================= */
+
+try{
+
+const snap =
+await db
+.collection("profiles")
+.doc(user.uid)
+.get();
+
+
+if(snap.exists){
+
+currentProfile =
+snap.data();
+
+
+if(currentProfile.name){
+
+customerNameInput.value =
+currentProfile.name;
+
+document.getElementById(
+"menuName"
+).textContent =
+currentProfile.name;
+
+}
+
+
+if(currentProfile.phone){
+
+phoneInput.value =
+currentProfile.phone;
+
+}
+
+
+if(currentProfile.photoURL){
+
+document.getElementById(
+"menuAvatar"
+).src =
+currentProfile.photoURL;
+
+}
+
+
+if(
+currentProfile.photo &&
+!currentProfile.photoURL
+){
+
+document.getElementById(
+"menuAvatar"
+).src =
+currentProfile.photo;
+
+}
+
+}
+
+}catch(error){
+
+console.warn(
+"Profile could not be loaded:",
+error
+);
+
+}
+
+});
+
+
+/* =========================================================
+   MEDIA SELECTION
+========================================================= */
+
+let selectedMedia = [];
+
+
+/* Maximum number of files */
+
+const MAX_FILES = 8;
+
+
+/* Maximum size per file */
+
+const MAX_FILE_SIZE =
+50 * 1024 * 1024;
+
+
+uploadBox.addEventListener(
+"click",
+function(){
+
+mediaInput.click();
+
+});
+
+
+mediaInput.addEventListener(
+"change",
+function(){
+
+const newFiles =
+Array.from(
+this.files
+);
+
+if(!newFiles.length)
+return;
+
+
+/* Check number */
+
+if(
+selectedMedia.length +
+newFiles.length >
+MAX_FILES
+){
+
+showToast(
+`Maximum ${MAX_FILES} photos/videos allowed.`,
+true
+);
+
+mediaInput.value =
+"";
+
+return;
+
+}
+
+
+/* Validate files */
+
+const validFiles = [];
+
+
+for(
+const file of newFiles
+){
+
+if(
+!file.type.startsWith("image/") &&
+!file.type.startsWith("video/")
+){
+
+showToast(
+`${file.name} is not an image or video.`,
+true
+);
+
+continue;
+
+}
+
+
+if(
+file.size >
+MAX_FILE_SIZE
+){
+
+showToast(
+`${file.name} is larger than 50MB.`,
+true
+);
+
+continue;
+
+}
+
+
+validFiles.push(
+file
+);
+
+}
+
+
+selectedMedia = [
+...selectedMedia,
+...validFiles
+];
+
+
+renderMediaPreview();
+
+
+mediaInput.value =
+"";
+
+});
+
+
+/* =========================================================
+   MEDIA PREVIEW
+========================================================= */
+
+function renderMediaPreview(){
+
+mediaPreview.innerHTML =
+"";
+
+
+selectedMedia.forEach(
+function(file,index){
+
+const item =
+document.createElement(
+"div"
+);
+
+item.className =
+"preview-item";
+
+
+let element;
+
+
+if(
+file.type.startsWith("image/")
+){
+
+element =
+document.createElement(
+"img"
+);
+
+element.src =
+URL.createObjectURL(
+file
+);
+
+element.alt =
+"Selected photo";
+
+}else{
+
+element =
+document.createElement(
+"video"
+);
+
+element.src =
+URL.createObjectURL(
+file
+);
+
+element.controls =
+true;
+
+element.playsInline =
+true;
+
+}
+
+
+const remove =
+document.createElement(
+"button"
+);
+
+remove.type =
+"button";
+
+remove.className =
+"remove-media";
+
+remove.innerHTML =
+"×";
+
+remove.title =
+"Remove";
+
+
+remove.addEventListener(
+"click",
+function(){
+
+selectedMedia.splice(
+index,
+1
+);
+
+renderMediaPreview();
+
+}
+);
+
+
+item.appendChild(
+element
+);
+
+item.appendChild(
+remove
+);
+
+mediaPreview.appendChild(
+item
+);
+
+}
+
+);
+
+}
+
+
+/* =========================================================
+   CLOUDINARY UPLOAD
+========================================================= */
+
+function uploadFileToCloudinary(
+file,
+fileNumber,
+totalFiles
+){
+
+return new Promise(
+function(resolve,reject){
+
+const xhr =
+new XMLHttpRequest();
+
+
+xhr.open(
+"POST",
+CLOUDINARY_UPLOAD_URL,
+true
+);
+
+
+/* ================= PROGRESS ================= */
+
+xhr.upload.addEventListener(
+"progress",
+function(event){
+
+if(!event.lengthComputable)
+return;
+
+
+const individualProgress =
+event.loaded /
+event.total;
+
+
+const overallProgress =
+(
+(fileNumber - 1) +
+individualProgress
+) /
+totalFiles;
+
+
+const percentage =
+Math.round(
+overallProgress * 100
+);
+
+
+progressBar.style.width =
+percentage + "%";
+
+
+uploadStatusText.textContent =
+`Uploading file ${fileNumber} of ${totalFiles}... ${percentage}%`;
+
+}
+);
+
+
+/* ================= SUCCESS ================= */
+
+xhr.addEventListener(
+"load",
+function(){
+
+if(
+xhr.status >= 200 &&
+xhr.status < 300
+){
+
+try{
+
+const result =
+JSON.parse(
+xhr.responseText
+);
+
+
+if(!result.secure_url){
+
+reject(
+new Error(
+"Cloudinary did not return a media URL."
+)
+);
+
+return;
+
+}
+
+
+resolve({
+url:
+result.secure_url,
+
+publicId:
+result.public_id || "",
+
+resourceType:
+result.resource_type || "",
+
+format:
+result.format || "",
+
+originalName:
+file.name,
+
+bytes:
+file.size
+
+});
+
+
+}catch(error){
+
+reject(error);
+
+}
+
+}else{
+
+let message =
+"Cloudinary upload failed.";
+
+
+try{
+
+const result =
+JSON.parse(
+xhr.responseText
+);
+
+if(
+result.error &&
+result.error.message
+){
+
+message =
+result.error.message;
+
+}
+
+}catch(e){}
+
+
+reject(
+new Error(message)
+);
+
+}
+
+}
+);
+
+
+/* ================= ERROR ================= */
+
+xhr.addEventListener(
+"error",
+function(){
+
+reject(
+new Error(
+"Network error while uploading media."
+)
+);
+
+}
+);
+
+
+/* ================= ABORT ================= */
+
+xhr.addEventListener(
+"abort",
+function(){
+
+reject(
+new Error(
+"Media upload was cancelled."
+)
+);
+
+}
+);
+
+
+/* ================= FORM DATA ================= */
+
+const formData =
+new FormData();
+
+
+formData.append(
+"file",
+file
+);
+
+formData.append(
+"upload_preset",
+CLOUDINARY_UPLOAD_PRESET
+);
+
+
+/* ================= UPLOAD ================= */
+
+xhr.send(
+formData
+);
+
+});
+
+}
+
+
+/* =========================================================
+   UPLOAD ALL MEDIA
+========================================================= */
+
+async function uploadSelectedMedia(){
+
+if(!selectedMedia.length){
+
+return [];
+
+}
+
+
+uploadStatus.classList.add(
+"show"
+);
+
+progressBar.style.width =
+"0%";
+
+uploadStatusText.textContent =
+"Starting media upload...";
+
+
+const uploadedMedia = [];
+
+
+for(
+let i = 0;
+i < selectedMedia.length;
+i++
+){
+
+const file =
+selectedMedia[i];
+
+
+const uploaded =
+await uploadFileToCloudinary(
+file,
+i + 1,
+selectedMedia.length
+);
+
+
+uploadedMedia.push(
+uploaded
+);
+
+}
+
+
+/* Complete */
+
+progressBar.style.width =
+"100%";
+
+uploadStatusText.textContent =
+"Media upload completed ✓";
+
+
+return uploadedMedia;
+
+}
 
 
 /* =========================================================
@@ -2169,327 +2100,384 @@ function renderMediaPreview(){
 ========================================================= */
 
 serviceForm.addEventListener(
-  "submit",
-  async function(event){
+"submit",
+async function(event){
 
-    event.preventDefault();
+event.preventDefault();
 
 
-    if(!currentUser){
+if(!currentUser){
 
-      showToast(
-        "Please sign in first.",
-        true
-      );
-
-      return;
-
-    }
-
-
-    /* ================= VALUES ================= */
-
-    const phone =
-      phoneInput.value.trim();
-
-
-    const serviceType =
-      serviceTypeInput.value.trim();
-
-
-    const description =
-      descriptionInput.value.trim();
-
-
-    const address =
-      addressInput.value.trim();
-
-
-    const location =
-      locationInput.value.trim();
-
-
-    const preferredDate =
-      preferredDateInput.value;
-
-
-    const preferredTime =
-      preferredTimeInput.value;
-
-
-
-    /* ================= VALIDATION ================= */
-
-    if(!phone){
-
-      showToast(
-        "Please enter your phone number.",
-        true
-      );
-
-      phoneInput.focus();
-
-      return;
-
-    }
-
-
-    if(!serviceType){
-
-      showToast(
-        "Please select the service you need.",
-        true
-      );
-
-      serviceTypeInput.focus();
-
-      return;
-
-    }
-
-
-    if(!description){
-
-      showToast(
-        "Please describe the work you need.",
-        true
-      );
-
-      descriptionInput.focus();
-
-      return;
-
-    }
-
-
-    if(!address){
-
-      showToast(
-        "Please enter the work address.",
-        true
-      );
-
-      addressInput.focus();
-
-      return;
-
-    }
-
-
-
-    /* ================= DISABLE ================= */
-
-    submitBtn.disabled =
-      true;
-
-
-    loading.classList.add(
-      "active"
-    );
-
-
-    loadingText.textContent =
-      "Sending your service request...";
-
-
-
-    try{
-
-      /* =================================================
-         CREATE REQUEST
-         FIRESTORE ONLY
-         
-         NO STORAGE
-         NO FILE UPLOAD
-      ================================================= */
-
-      const requestRef =
-        db
-          .collection(
-            "serviceRequests"
-          )
-          .doc();
-
-
-      const requestData = {
-
-        customerId:
-          currentUser.uid,
-
-
-        customerName:
-          customerNameInput.value.trim(),
-
-
-        customerPhoto:
-          currentUser.photoURL ||
-          currentProfile?.photoURL ||
-          currentProfile?.photo ||
-          "",
-
-
-        phone:
-          phone,
-
-
-        serviceType:
-          serviceType,
-
-
-        description:
-          description,
-
-
-        address:
-          address,
-
-
-        location:
-          location,
-
-
-        /*
-          Storage is not active.
-
-          Therefore this remains
-          an empty array.
-
-          Later, when Storage is
-          activated, media URLs can
-          be stored here.
-        */
-
-        mediaUrls:
-          [],
-
-
-        preferredDate:
-          preferredDate,
-
-
-        preferredTime:
-          preferredTime,
-
-
-        status:
-          "pending",
-
-
-        createdAt:
-          firebase.firestore
-            .FieldValue
-            .serverTimestamp(),
-
-
-        updatedAt:
-          firebase.firestore
-            .FieldValue
-            .serverTimestamp()
-
-      };
-
-
-
-      /* ================= SAVE ================= */
-
-      await requestRef.set(
-        requestData
-      );
-
-
-
-      /* ================= SUCCESS ================= */
-
-      loading.classList.remove(
-        "active"
-      );
-
-
-      requestId.textContent =
-        requestRef.id;
-
-
-      success.classList.add(
-        "active"
-      );
-
-
-
-      /* ================= RESET ================= */
-
-      serviceForm.reset();
-
-
-      selectedMedia =
-        [];
-
-
-      mediaPreview.innerHTML =
-        "";
-
-
-      /*
-        Restore customer information
-        after form reset.
-      */
-
-      customerNameInput.value =
-        currentProfile?.name ||
-        currentUser.displayName ||
-        currentUser.email?.split("@")[0] ||
-        "Customer";
-
-
-      if(currentProfile?.phone){
-
-        phoneInput.value =
-          currentProfile.phone;
-
-      }
-
-    }catch(error){
-
-      console.error(
-        "Service request error:",
-        error
-      );
-
-
-      loading.classList.remove(
-        "active"
-      );
-
-
-      if(
-        error.code ===
-        "permission-denied"
-      ){
-
-        showToast(
-          "Permission denied. Check your Firestore rules.",
-          true
-        );
-
-      }else{
-
-        showToast(
-          error.message ||
-          "Could not send your service request.",
-          true
-        );
-
-      }
-
-    }finally{
-
-      submitBtn.disabled =
-        false;
-
-    }
-
-  }
+showToast(
+"Please sign in first.",
+true
 );
 
+return;
+
+}
+
+
+/* ================= VALUES ================= */
+
+const phone =
+phoneInput.value.trim();
+
+const serviceType =
+serviceTypeInput.value.trim();
+
+const description =
+descriptionInput.value.trim();
+
+const address =
+addressInput.value.trim();
+
+const location =
+locationInput.value.trim();
+
+const preferredDate =
+preferredDateInput.value;
+
+const preferredTime =
+preferredTimeInput.value;
+
+
+/* ================= VALIDATION ================= */
+
+if(!phone){
+
+showToast(
+"Please enter your phone number.",
+true
+);
+
+phoneInput.focus();
+
+return;
+
+}
+
+
+if(!serviceType){
+
+showToast(
+"Please select the service you need.",
+true
+);
+
+serviceTypeInput.focus();
+
+return;
+
+}
+
+
+if(!description){
+
+showToast(
+"Please describe the work you need.",
+true
+);
+
+descriptionInput.focus();
+
+return;
+
+}
+
+
+if(!address){
+
+showToast(
+"Please enter the work address.",
+true
+);
+
+addressInput.focus();
+
+return;
+
+}
+
+
+/* ================= DISABLE ================= */
+
+submitBtn.disabled =
+true;
+
+loading.classList.add(
+"active"
+);
+
+loadingText.textContent =
+"Preparing your service request...";
+
+
+try{
+
+/* =====================================================
+   UPLOAD MEDIA FIRST
+===================================================== */
+
+let uploadedMedia = [];
+
+
+if(selectedMedia.length){
+
+loadingText.textContent =
+"Uploading photos and videos...";
+
+
+uploadedMedia =
+await uploadSelectedMedia();
+
+}
+
+
+/* =====================================================
+   CREATE FIRESTORE REQUEST
+===================================================== */
+
+loadingText.textContent =
+"Saving your service request...";
+
+
+const requestRef =
+db
+.collection("serviceRequests")
+.doc();
+
+
+/*
+  mediaUrls contains the
+  Cloudinary URLs.
+
+  mediaDetails contains
+  additional information about
+  each uploaded file.
+*/
+
+const mediaUrls =
+uploadedMedia.map(
+function(media){
+
+return media.url;
+
+});
+
+
+const mediaDetails =
+uploadedMedia.map(
+function(media){
+
+return {
+
+url:
+media.url,
+
+publicId:
+media.publicId,
+
+resourceType:
+media.resourceType,
+
+format:
+media.format,
+
+originalName:
+media.originalName,
+
+bytes:
+media.bytes
+
+};
+
+});
+
+
+const requestData = {
+
+customerId:
+currentUser.uid,
+
+customerName:
+customerNameInput.value.trim(),
+
+customerPhoto:
+currentUser.photoURL ||
+currentProfile?.photoURL ||
+currentProfile?.photo ||
+"",
+
+phone:
+phone,
+
+serviceType:
+serviceType,
+
+description:
+description,
+
+address:
+address,
+
+location:
+location,
+
+mediaUrls:
+mediaUrls,
+
+mediaDetails:
+mediaDetails,
+
+preferredDate:
+preferredDate,
+
+preferredTime:
+preferredTime,
+
+status:
+"pending",
+
+createdAt:
+firebase.firestore
+.FieldValue
+.serverTimestamp(),
+
+updatedAt:
+firebase.firestore
+.FieldValue
+.serverTimestamp()
+
+};
+
+
+/* ================= SAVE ================= */
+
+await requestRef.set(
+requestData
+);
+
+
+/* ================= SUCCESS ================= */
+
+loading.classList.remove(
+"active"
+);
+
+uploadStatus.classList.remove(
+"show"
+);
+
+requestId.textContent =
+requestRef.id;
+
+success.classList.add(
+"active"
+);
+
+
+/* ================= RESET ================= */
+
+serviceForm.reset();
+
+selectedMedia = [];
+
+mediaPreview.innerHTML =
+"";
+
+progressBar.style.width =
+"0%";
+
+
+/* Restore customer */
+
+customerNameInput.value =
+currentProfile?.name ||
+currentUser.displayName ||
+currentUser.email?.split("@")[0] ||
+"Customer";
+
+
+if(currentProfile?.phone){
+
+phoneInput.value =
+currentProfile.phone;
+
+}
+
+
+}catch(error){
+
+console.error(
+"Service request error:",
+error
+);
+
+
+loading.classList.remove(
+"active"
+);
+
+
+/* ================= CLOUDINARY ERRORS ================= */
+
+if(
+error.message &&
+error.message.toLowerCase()
+.includes("upload preset")
+){
+
+showToast(
+"Cloudinary upload preset is not configured correctly.",
+true
+);
+
+}
+
+else if(
+error.message &&
+error.message.toLowerCase()
+.includes("unsigned")
+){
+
+showToast(
+"Cloudinary preset must be set to Unsigned.",
+true
+);
+
+}
+
+else if(
+error.code ===
+"permission-denied"
+){
+
+showToast(
+"Permission denied. Check your Firestore rules.",
+true
+);
+
+}
+
+else{
+
+showToast(
+error.message ||
+"Could not send your service request.",
+true
+);
+
+}
+
+}finally{
+
+submitBtn.disabled =
+false;
+
+}
+
+});
 
 
 /* =========================================================
@@ -2497,20 +2485,17 @@ serviceForm.addEventListener(
 ========================================================= */
 
 successBtn.addEventListener(
-  "click",
-  function(){
+"click",
+function(){
 
-    success.classList.remove(
-      "active"
-    );
-
-
-    window.location.href =
-      "home.html";
-
-  }
+success.classList.remove(
+"active"
 );
 
+window.location.href =
+"home.html";
+
+});
 
 
 /* =========================================================
@@ -2518,29 +2503,26 @@ successBtn.addEventListener(
 ========================================================= */
 
 signOutBtn.addEventListener(
-  "click",
-  async function(){
+"click",
+async function(){
 
-    try{
+try{
 
-      await auth.signOut();
+await auth.signOut();
 
+window.location.href =
+"login.html";
 
-      window.location.href =
-        "login.html";
+}catch(error){
 
-    }catch(error){
-
-      showToast(
-        "Could not sign out.",
-        true
-      );
-
-    }
-
-  }
+showToast(
+"Could not sign out.",
+true
 );
 
+}
+
+});
 
 
 /* =========================================================
@@ -2548,15 +2530,13 @@ signOutBtn.addEventListener(
 ========================================================= */
 
 notificationBtn.addEventListener(
-  "click",
-  function(){
+"click",
+function(){
 
-    window.location.href =
-      "notifications.html";
+window.location.href =
+"notifications.html";
 
-  }
-);
-
+});
 
 
 /* =========================================================
@@ -2564,17 +2544,14 @@ notificationBtn.addEventListener(
 ========================================================= */
 
 const today =
-  new Date()
-    .toISOString()
-    .split("T")[0];
-
+new Date()
+.toISOString()
+.split("T")[0];
 
 preferredDateInput.min =
-  today;
-
-
+today;
 
 </script>
 
 </body>
-  </html>
+</html>
