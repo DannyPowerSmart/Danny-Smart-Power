@@ -11,7 +11,10 @@ content="Request professional electrical, solar, inverter, wiring and lighting s
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
 <style>
 
@@ -35,7 +38,9 @@ select{
   font-family:inherit;
 }
 
-/* ================= HEADER ================= */
+button{
+  cursor:pointer;
+}
 
 header{
   height:70px;
@@ -98,7 +103,6 @@ header{
   color:#e2e8f0;
   border-radius:50%;
   font-size:21px;
-  cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -120,8 +124,6 @@ header{
   border-radius:50%;
   display:none;
 }
-
-/* ================= MENU ================= */
 
 .menu{
   position:fixed;
@@ -193,8 +195,6 @@ header{
   color:white;
 }
 
-/* ================= PAGE ================= */
-
 .page{
   max-width:850px;
   margin:auto;
@@ -233,8 +233,6 @@ header{
   margin:auto;
   line-height:1.7;
 }
-
-/* ================= CARD ================= */
 
 .form-card{
   background:#0f172a;
@@ -355,6 +353,11 @@ select option{
   background:#071426;
 }
 
+.upload-box.disabled{
+  opacity:.6;
+  pointer-events:none;
+}
+
 .upload-icon{
   font-size:29px;
   margin-bottom:7px;
@@ -377,8 +380,6 @@ select option{
 #mediaInput{
   display:none;
 }
-
-/* ================= PREVIEWS ================= */
 
 .media-preview{
   margin-top:13px;
@@ -403,6 +404,10 @@ select option{
   object-fit:cover;
 }
 
+.preview-item video{
+  background:#000;
+}
+
 .remove-media{
   position:absolute;
   top:7px;
@@ -411,10 +416,17 @@ select option{
   height:28px;
   border:none;
   border-radius:50%;
-  background:rgba(2,6,23,.8);
+  background:rgba(2,6,23,.85);
   color:white;
   cursor:pointer;
-  font-size:15px;
+  font-size:17px;
+  z-index:5;
+}
+
+.media-info{
+  margin-top:10px;
+  color:#64748b;
+  font-size:10px;
 }
 
 .media-warning{
@@ -432,6 +444,55 @@ select option{
   color:#f8fafc;
 }
 
+/* ================= UPLOAD PROGRESS ================= */
+
+.upload-progress{
+  display:none;
+  margin-top:14px;
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:12px;
+  padding:12px;
+}
+
+.upload-progress.active{
+  display:block;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.progress-text{
+  color:#cbd5e1;
+  font-size:11px;
+}
+
+.progress-percent{
+  color:#38bdf8;
+  font-size:11px;
+  font-weight:700;
+}
+
+.progress-track{
+  width:100%;
+  height:7px;
+  background:#1e293b;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:#0ea5e9;
+  border-radius:10px;
+  transition:.2s;
+}
+
 /* ================= NOTICE ================= */
 
 .notice{
@@ -446,8 +507,6 @@ select option{
   line-height:1.7;
   margin-top:8px;
 }
-
-/* ================= BUTTON ================= */
 
 .submit-btn{
   width:100%;
@@ -471,8 +530,6 @@ select option{
   opacity:.6;
   cursor:not-allowed;
 }
-
-/* ================= LOADING ================= */
 
 .loading{
   position:fixed;
@@ -509,15 +566,15 @@ select option{
 }
 
 @keyframes spin{
-  to{transform:rotate(360deg)}
+  to{
+    transform:rotate(360deg)
+  }
 }
 
 .loading-card p{
   color:#cbd5e1;
   font-size:13px;
 }
-
-/* ================= SUCCESS ================= */
 
 .success{
   position:fixed;
@@ -596,8 +653,6 @@ select option{
   cursor:pointer;
 }
 
-/* ================= TOAST ================= */
-
 .toast{
   position:fixed;
   left:50%;
@@ -625,8 +680,6 @@ select option{
   background:#450a0a;
   border-color:#991b1b;
 }
-
-/* ================= MOBILE ================= */
 
 @media(max-width:650px){
 
@@ -682,7 +735,9 @@ select option{
 
 <a href="home.html" class="brand">
 
-  <div class="brand-icon">⚡</div>
+  <div class="brand-icon">
+    ⚡
+  </div>
 
   <div class="brand-text">
     Danny Smart Power
@@ -693,18 +748,27 @@ select option{
 
 <div class="header-actions">
 
-<button class="icon-btn"
+<button
+class="icon-btn"
 id="notificationBtn"
 title="Notifications">
+
 🔔
-<span class="notification-dot"
-id="notificationDot"></span>
+
+<span
+class="notification-dot"
+id="notificationDot">
+</span>
+
 </button>
 
-<button class="icon-btn"
+<button
+class="icon-btn"
 id="menuBtn"
 title="Menu">
+
 ⋮
+
 </button>
 
 </div>
@@ -714,7 +778,9 @@ title="Menu">
 
 <!-- ================= MENU ================= -->
 
-<div class="menu" id="menu">
+<div
+class="menu"
+id="menu">
 
 <div class="menu-profile">
 
@@ -726,33 +792,53 @@ alt="Profile">
 
 <div>
 
-<div class="menu-name"
+<div
+class="menu-name"
 id="menuName">
+
 Customer
+
 </div>
 
-<div class="menu-email"
+<div
+class="menu-email"
 id="menuEmail">
+
 Loading...
-</div>
 
 </div>
 
 </div>
 
-<a href="home.html">🏠 <span>Home</span></a>
+</div>
 
-<a href="shop.html">🛒 <span>Shop</span></a>
+<a href="home.html">
+🏠 <span>Home</span>
+</a>
 
-<a href="profile.html">👤 <span>My Profile</span></a>
+<a href="shop.html">
+🛒 <span>Shop</span>
+</a>
 
-<a href="orders.html">📦 <span>My Orders</span></a>
+<a href="profile.html">
+👤 <span>My Profile</span>
+</a>
 
-<a href="service-project.html">🔧 <span>Electrical Project</span></a>
+<a href="orders.html">
+📦 <span>My Orders</span>
+</a>
 
-<a href="chat.html">💬 <span>Chat with Danny</span></a>
+<a href="service-project.html">
+🔧 <span>Electrical Project</span>
+</a>
 
-<button id="signOutBtn">🚪 <span>Sign Out</span></button>
+<a href="chat.html">
+💬 <span>Chat with Danny</span>
+</a>
+
+<button id="signOutBtn">
+🚪 <span>Sign Out</span>
+</button>
 
 </div>
 
@@ -767,7 +853,9 @@ Loading...
 ⚡
 </div>
 
-<h1>Request Electrical Service</h1>
+<h1>
+Request Electrical Service
+</h1>
 
 <p>
 Tell Danny Smart Power what electrical work you need.
@@ -777,13 +865,19 @@ We'll review your request and contact you about the next step.
 </div>
 
 
-<form class="form-card" id="serviceForm">
+<form
+class="form-card"
+id="serviceForm">
+
 
 <!-- CUSTOMER -->
 
 <div class="section-title">
+
 <span>👤</span>
+
 Customer Information
+
 </div>
 
 <div class="grid">
@@ -823,8 +917,11 @@ required>
 <!-- SERVICE -->
 
 <div class="section-title">
+
 <span>⚡</span>
+
 Service Information
+
 </div>
 
 <div class="grid">
@@ -832,24 +929,52 @@ Service Information
 <div class="field full">
 
 <label>
+
 What service do you need?
+
 <span class="required">*</span>
+
 </label>
 
-<select id="serviceType" required>
+<select
+id="serviceType"
+required>
 
 <option value="">
 Select electrical service
 </option>
 
-<option>☀️ Solar Installation</option>
-<option>🔋 Inverter Installation</option>
-<option>🏠 House Wiring</option>
-<option>💡 Lighting Installation</option>
-<option>🔧 Electrical Repair</option>
-<option>🔍 Fault Diagnosis</option>
-<option>🛠️ Electrical Maintenance</option>
-<option>⚡ Other Electrical Service</option>
+<option>
+☀️ Solar Installation
+</option>
+
+<option>
+🔋 Inverter Installation
+</option>
+
+<option>
+🏠 House Wiring
+</option>
+
+<option>
+💡 Lighting Installation
+</option>
+
+<option>
+🔧 Electrical Repair
+</option>
+
+<option>
+🔍 Fault Diagnosis
+</option>
+
+<option>
+🛠️ Electrical Maintenance
+</option>
+
+<option>
+⚡ Other Electrical Service
+</option>
 
 </select>
 
@@ -859,8 +984,11 @@ Select electrical service
 <div class="field full">
 
 <label>
+
 Describe what you need
+
 <span class="required">*</span>
+
 </label>
 
 <textarea
@@ -876,8 +1004,11 @@ required></textarea>
 <!-- LOCATION -->
 
 <div class="section-title">
+
 <span>📍</span>
+
 Work Location
+
 </div>
 
 <div class="grid">
@@ -885,7 +1016,9 @@ Work Location
 <div class="field full">
 
 <label>
+
 Address <span class="required">*</span>
+
 </label>
 
 <input
@@ -916,11 +1049,15 @@ placeholder="Optional: Estate, landmark, area, house number, etc.">
 <!-- MEDIA -->
 
 <div class="section-title">
+
 <span>📷</span>
+
 Photos or Short Video
+
 </div>
 
-<div class="upload-box"
+<div
+class="upload-box"
 id="uploadBox">
 
 <div class="upload-icon">
@@ -947,19 +1084,67 @@ id="mediaInput"
 accept="image/*,video/*"
 multiple>
 
+
 <div
 class="media-preview"
 id="mediaPreview">
 </div>
 
+
+<div
+class="media-info"
+id="mediaInfo">
+No photos or videos selected.
+</div>
+
+
+<div
+class="upload-progress"
+id="uploadProgress">
+
+<div class="progress-top">
+
+<span
+class="progress-text"
+id="progressText">
+
+Preparing upload...
+
+</span>
+
+<span
+class="progress-percent"
+id="progressPercent">
+
+0%
+
+</span>
+
+</div>
+
+<div class="progress-track">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+</div>
+
+
 <div class="media-warning">
 
-<strong>ℹ️ Media upload notice</strong><br>
+<strong>
+ℹ️ Media upload
+</strong>
+<br>
 
-You can preview photos and videos here, but they will not
-be uploaded with the request yet because Danny Smart Power
-Storage is not activated. Your service request itself will
-still be sent successfully.
+Photos and short videos will be securely uploaded
+to Danny Smart Power Storage when you send the request.
+The uploaded media will be attached to your service request
+so the administrator can view them.
 
 </div>
 
@@ -967,15 +1152,20 @@ still be sent successfully.
 <!-- SCHEDULE -->
 
 <div class="section-title">
+
 <span>📅</span>
+
 Preferred Schedule
+
 </div>
 
 <div class="grid">
 
 <div class="field">
 
-<label>Preferred Date</label>
+<label>
+Preferred Date
+</label>
 
 <input
 type="date"
@@ -986,7 +1176,9 @@ id="preferredDate">
 
 <div class="field">
 
-<label>Preferred Time</label>
+<label>
+Preferred Time
+</label>
 
 <input
 type="time"
@@ -1001,12 +1193,16 @@ id="preferredTime">
 
 <div class="notice">
 
-<div>ℹ️</div>
+<div>
+ℹ️
+</div>
 
 <div>
+
 Your request does not automatically mean the appointment
 has been confirmed. Danny Smart Power will review your
 request and contact you about the next step.
+
 </div>
 
 </div>
@@ -1028,7 +1224,9 @@ Send Service Request ⚡
 
 <!-- ================= LOADING ================= -->
 
-<div class="loading" id="loading">
+<div
+class="loading"
+id="loading">
 
 <div class="loading-card">
 
@@ -1045,7 +1243,9 @@ Sending your service request...
 
 <!-- ================= SUCCESS ================= -->
 
-<div class="success" id="success">
+<div
+class="success"
+id="success">
 
 <div class="success-card">
 
@@ -1058,14 +1258,19 @@ Request Sent Successfully
 </h2>
 
 <p>
+
 Your electrical service request has been received.
-Danny Smart Power will review it and contact you.
+Danny Smart Power will review your request and contact you.
+
 </p>
 
 <div class="request-id">
 
 Request ID:
-<strong id="requestId">-</strong>
+
+<strong id="requestId">
+-
+</strong>
 
 </div>
 
@@ -1084,7 +1289,10 @@ Done
 
 <!-- ================= TOAST ================= -->
 
-<div class="toast" id="toast"></div>
+<div
+class="toast"
+id="toast">
+</div>
 
 
 <!-- ================= FIREBASE ================= -->
@@ -1095,36 +1303,60 @@ Done
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
 
 <script>
 
+/* =========================================================
+   FIREBASE
+========================================================= */
+
 const firebaseConfig = {
 
-apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
-authDomain:"danny-smart-power.firebaseapp.com",
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
 
-databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
 
-projectId:"danny-smart-power",
+  projectId:
+    "danny-smart-power",
 
-messagingSenderId:"649735645158",
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
 
-appId:"1:649735645158:web:cff518b89721a163679827",
+  messagingSenderId:
+    "649735645158",
 
-measurementId:"G-258YKLP5ZS"
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+    "G-258YKLP5ZS"
 
 };
 
 
 firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
 
-const db = firebase.firestore();
+const auth =
+firebase.auth();
+
+const db =
+firebase.firestore();
+
+const storage =
+firebase.storage();
 
 
-/* ================= ELEMENTS ================= */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const serviceForm =
 document.getElementById("serviceForm");
@@ -1162,6 +1394,21 @@ document.getElementById("uploadBox");
 const mediaPreview =
 document.getElementById("mediaPreview");
 
+const mediaInfo =
+document.getElementById("mediaInfo");
+
+const uploadProgress =
+document.getElementById("uploadProgress");
+
+const progressBar =
+document.getElementById("progressBar");
+
+const progressText =
+document.getElementById("progressText");
+
+const progressPercent =
+document.getElementById("progressPercent");
+
 const submitBtn =
 document.getElementById("submitBtn");
 
@@ -1184,7 +1431,9 @@ const toast =
 document.getElementById("toast");
 
 
-/* ================= MENU ================= */
+/* =========================================================
+   MENU
+========================================================= */
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -1192,583 +1441,1191 @@ document.getElementById("menuBtn");
 const menu =
 document.getElementById("menu");
 
-menuBtn.addEventListener("click",e=>{
 
-e.stopPropagation();
+menuBtn.addEventListener(
+"click",
+event=>{
 
-menu.classList.toggle("active");
+  event.stopPropagation();
+
+  menu.classList.toggle("active");
 
 });
 
 
-document.addEventListener("click",e=>{
+document.addEventListener(
+"click",
+event=>{
 
-if(
-!menu.contains(e.target) &&
-e.target!==menuBtn
+  if(
+    !menu.contains(event.target) &&
+    event.target !== menuBtn
+  ){
+
+    menu.classList.remove("active");
+
+  }
+
+});
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+  message,
+  error=false
 ){
 
-menu.classList.remove("active");
+  toast.textContent =
+    message;
+
+  toast.classList.toggle(
+    "error",
+    error
+  );
+
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      ()=>{
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      3500
+    );
 
 }
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+let currentUser =
+null;
+
+let currentProfile =
+null;
+
+
+auth.onAuthStateChanged(
+async user=>{
+
+  if(!user){
+
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
+
+  currentUser =
+    user;
+
+
+  customerNameInput.value =
+    user.displayName ||
+    user.email?.split("@")[0] ||
+    "Customer";
+
+
+  document.getElementById(
+    "menuName"
+  ).textContent =
+    user.displayName ||
+    user.email?.split("@")[0] ||
+    "Customer";
+
+
+  document.getElementById(
+    "menuEmail"
+  ).textContent =
+    user.email || "";
+
+
+  if(user.photoURL){
+
+    document.getElementById(
+      "menuAvatar"
+    ).src =
+      user.photoURL;
+
+  }
+
+
+  /* =========================================
+     LOAD PROFILE
+  ========================================= */
+
+  try{
+
+    const snap =
+      await db
+        .collection("profiles")
+        .doc(user.uid)
+        .get();
+
+
+    if(snap.exists){
+
+      currentProfile =
+        snap.data();
+
+
+      if(
+        currentProfile.name
+      ){
+
+        customerNameInput.value =
+          currentProfile.name;
+
+
+        document.getElementById(
+          "menuName"
+        ).textContent =
+          currentProfile.name;
+
+      }
+
+
+      if(
+        currentProfile.phone
+      ){
+
+        phoneInput.value =
+          currentProfile.phone;
+
+      }
+
+
+      if(
+        currentProfile.photoURL
+      ){
+
+        document.getElementById(
+          "menuAvatar"
+        ).src =
+          currentProfile.photoURL;
+
+      }
+
+
+      if(
+        currentProfile.photo &&
+        !currentProfile.photoURL
+      ){
+
+        document.getElementById(
+          "menuAvatar"
+        ).src =
+          currentProfile.photo;
+
+      }
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Profile could not be loaded:",
+      error
+    );
+
+  }
 
 });
 
 
-/* ================= TOAST ================= */
+/* =========================================================
+   MEDIA
+========================================================= */
 
-function showToast(message,error=false){
-
-toast.textContent=message;
-
-toast.classList.toggle("error",error);
-
-toast.classList.add("show");
-
-setTimeout(()=>{
-
-toast.classList.remove("show");
-
-},3500);
-
-}
+let selectedMedia =
+[];
 
 
-/* ================= AUTH ================= */
+/* =========================================================
+   OPEN FILE PICKER
+========================================================= */
 
-let currentUser=null;
+uploadBox.addEventListener(
+"click",
+()=>{
 
-let currentProfile=null;
+  if(
+    submitBtn.disabled
+  ){
 
+    return;
 
-auth.onAuthStateChanged(async user=>{
+  }
 
-if(!user){
-
-window.location.href="login.html";
-
-return;
-
-}
-
-currentUser=user;
-
-
-customerNameInput.value=
-user.displayName ||
-user.email?.split("@")[0] ||
-"Customer";
-
-
-document.getElementById("menuName").textContent=
-user.displayName ||
-user.email?.split("@")[0] ||
-"Customer";
-
-
-document.getElementById("menuEmail").textContent=
-user.email || "";
-
-
-if(user.photoURL){
-
-document.getElementById("menuAvatar").src=
-user.photoURL;
-
-}
-
-
-/* Load profile */
-
-try{
-
-const snap=
-await db.collection("profiles")
-.doc(user.uid)
-.get();
-
-if(snap.exists){
-
-currentProfile=snap.data();
-
-
-if(currentProfile.name){
-
-customerNameInput.value=
-currentProfile.name;
-
-document.getElementById("menuName")
-.textContent=
-currentProfile.name;
-
-}
-
-
-if(currentProfile.phone){
-
-phoneInput.value=
-currentProfile.phone;
-
-}
-
-
-if(currentProfile.photoURL){
-
-document.getElementById("menuAvatar")
-.src=
-currentProfile.photoURL;
-
-}
-
-
-if(
-currentProfile.photo &&
-!currentProfile.photoURL
-){
-
-document.getElementById("menuAvatar")
-.src=
-currentProfile.photo;
-
-}
-
-}
-
-}catch(error){
-
-console.warn(
-"Profile could not be loaded:",
-error
-);
-
-}
+  mediaInput.click();
 
 });
 
 
-/* ================= MEDIA PREVIEW ================= */
+/* =========================================================
+   FILE SELECTION
+========================================================= */
 
-let selectedMedia=[];
+mediaInput.addEventListener(
+"change",
+function(){
+
+  const newFiles =
+    Array.from(
+      this.files
+    );
 
 
-uploadBox.addEventListener("click",()=>{
+  if(
+    !newFiles.length
+  ){
 
-mediaInput.click();
+    return;
+
+  }
+
+
+  /* =========================================
+     MAXIMUM 8 FILES
+  ========================================= */
+
+  if(
+    selectedMedia.length +
+    newFiles.length >
+    8
+  ){
+
+    showToast(
+      "Maximum 8 photos/videos allowed.",
+      true
+    );
+
+    this.value =
+      "";
+
+    return;
+
+  }
+
+
+  /* =========================================
+     FILE SIZE CHECK
+  ========================================= */
+
+  const MAX_IMAGE_SIZE =
+    10 * 1024 * 1024;
+
+  const MAX_VIDEO_SIZE =
+    50 * 1024 * 1024;
+
+
+  for(
+    const file of newFiles
+  ){
+
+    const isVideo =
+      file.type.startsWith(
+        "video/"
+      );
+
+
+    const maxSize =
+      isVideo
+      ? MAX_VIDEO_SIZE
+      : MAX_IMAGE_SIZE;
+
+
+    if(
+      file.size >
+      maxSize
+    ){
+
+      showToast(
+        `${file.name} is too large. Images: max 10MB. Videos: max 50MB.`,
+        true
+      );
+
+      this.value =
+        "";
+
+      return;
+
+    }
+
+
+    if(
+      !file.type.startsWith("image/") &&
+      !file.type.startsWith("video/")
+    ){
+
+      showToast(
+        "Only photos and videos are allowed.",
+        true
+      );
+
+      this.value =
+        "";
+
+      return;
+
+    }
+
+  }
+
+
+  selectedMedia =
+    [
+      ...selectedMedia,
+      ...newFiles
+    ];
+
+
+  renderMediaPreview();
+
+
+  /*
+    Allow selecting
+    the same file again.
+  */
+
+  this.value =
+    "";
 
 });
 
 
-mediaInput.addEventListener("change",function(){
-
-const newFiles=
-Array.from(this.files);
-
-if(!newFiles.length)return;
-
-
-/* maximum 8 */
-
-if(
-selectedMedia.length+
-newFiles.length>8
-){
-
-showToast(
-"Maximum 8 photos/videos allowed.",
-true
-);
-
-return;
-
-}
-
-
-selectedMedia=[
-...selectedMedia,
-...newFiles
-];
-
-renderMediaPreview();
-
-
-/*
-Allow the same file to be selected again
-later.
-*/
-
-mediaInput.value="";
-
-});
-
+/* =========================================================
+   MEDIA PREVIEW
+========================================================= */
 
 function renderMediaPreview(){
 
-mediaPreview.innerHTML="";
+  mediaPreview.innerHTML =
+    "";
 
 
-selectedMedia.forEach((file,index)=>{
+  if(
+    !selectedMedia.length
+  ){
 
-const item=
-document.createElement("div");
+    mediaInfo.textContent =
+      "No photos or videos selected.";
 
-item.className="preview-item";
+    return;
+
+  }
 
 
-let element;
+  mediaInfo.textContent =
+    `${selectedMedia.length} file${
+      selectedMedia.length === 1
+      ? ""
+      : "s"
+    } selected.`;
 
 
-if(file.type.startsWith("image/")){
+  selectedMedia.forEach(
+    (file,index)=>{
 
-element=
-document.createElement("img");
+      const item =
+        document.createElement(
+          "div"
+        );
 
-element.src=
-URL.createObjectURL(file);
 
-}else{
+      item.className =
+        "preview-item";
 
-element=
-document.createElement("video");
 
-element.src=
-URL.createObjectURL(file);
+      let element;
 
-element.controls=true;
+
+      if(
+        file.type.startsWith(
+          "image/"
+        )
+      ){
+
+        element =
+          document.createElement(
+            "img"
+          );
+
+        element.src =
+          URL.createObjectURL(
+            file
+          );
+
+      }else{
+
+        element =
+          document.createElement(
+            "video"
+          );
+
+        element.src =
+          URL.createObjectURL(
+            file
+          );
+
+        element.controls =
+          true;
+
+        element.playsInline =
+          true;
+
+      }
+
+
+      const remove =
+        document.createElement(
+          "button"
+        );
+
+
+      remove.type =
+        "button";
+
+
+      remove.className =
+        "remove-media";
+
+
+      remove.innerHTML =
+        "×";
+
+
+      remove.title =
+        "Remove file";
+
+
+      remove.onclick =
+        ()=>{
+
+          selectedMedia.splice(
+            index,
+            1
+          );
+
+          renderMediaPreview();
+
+        };
+
+
+      item.appendChild(
+        element
+      );
+
+
+      item.appendChild(
+        remove
+      );
+
+
+      mediaPreview.appendChild(
+        item
+      );
+
+    }
+  );
 
 }
 
 
-const remove=
-document.createElement("button");
+/* =========================================================
+   UPLOAD ONE FILE
+========================================================= */
 
-remove.className="remove-media";
+function uploadFile(
+  file,
+  requestIdValue,
+  fileIndex,
+  totalFiles
+){
 
-remove.innerHTML="×";
+  return new Promise(
+    (
+      resolve,
+      reject
+    )=>{
 
-remove.onclick=()=>{
+      const safeName =
+        file.name
+          .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+          );
 
-selectedMedia.splice(index,1);
 
-renderMediaPreview();
-
-};
+      const path =
+        `serviceRequests/${currentUser.uid}/${requestIdValue}/${Date.now()}_${fileIndex}_${safeName}`;
 
 
-item.appendChild(element);
+      const fileRef =
+        storage.ref().child(
+          path
+        );
 
-item.appendChild(remove);
 
-mediaPreview.appendChild(item);
+      const uploadTask =
+        fileRef.put(
+          file,
+          {
+            contentType:
+              file.type
+          }
+        );
 
-});
+
+      uploadTask.on(
+
+        firebase.storage
+          .TaskEvent
+          .STATE_CHANGED,
+
+        snapshot=>{
+
+          const percent =
+            (
+              snapshot.bytesTransferred /
+              snapshot.totalBytes
+            ) * 100;
+
+
+          const completedBefore =
+            fileIndex;
+
+
+          const overall =
+            (
+              (
+                completedBefore * 100
+              ) +
+              percent
+            ) /
+            totalFiles;
+
+
+          const rounded =
+            Math.round(
+              overall
+            );
+
+
+          progressBar.style.width =
+            `${rounded}%`;
+
+
+          progressPercent.textContent =
+            `${rounded}%`;
+
+
+          progressText.textContent =
+            `Uploading file ${fileIndex + 1} of ${totalFiles}...`;
+
+        },
+
+        error=>{
+
+          reject(error);
+
+        },
+
+        async()=>{
+
+          try{
+
+            const url =
+              await uploadTask
+                .snapshot
+                .ref
+                .getDownloadURL();
+
+
+            resolve({
+              url:url,
+              name:file.name,
+              type:file.type,
+              size:file.size,
+              path:path
+            });
+
+          }catch(error){
+
+            reject(error);
+
+          }
+
+        }
+
+      );
+
+    }
+  );
 
 }
 
 
-/* ================= SUBMIT ================= */
+/* =========================================================
+   UPLOAD ALL MEDIA
+========================================================= */
+
+async function uploadAllMedia(
+  requestIdValue
+){
+
+  if(
+    !selectedMedia.length
+  ){
+
+    return [];
+
+  }
+
+
+  uploadProgress.classList.add(
+    "active"
+  );
+
+
+  progressBar.style.width =
+    "0%";
+
+
+  progressPercent.textContent =
+    "0%";
+
+
+  progressText.textContent =
+    "Starting media upload...";
+
+
+  const results =
+    [];
+
+
+  for(
+    let i=0;
+    i<selectedMedia.length;
+    i++
+  ){
+
+    const result =
+      await uploadFile(
+        selectedMedia[i],
+        requestIdValue,
+        i,
+        selectedMedia.length
+      );
+
+
+    results.push(
+      result
+    );
+
+  }
+
+
+  progressBar.style.width =
+    "100%";
+
+
+  progressPercent.textContent =
+    "100%";
+
+
+  progressText.textContent =
+    "Media uploaded successfully.";
+
+
+  return results;
+
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
 
 serviceForm.addEventListener(
 "submit",
 async function(e){
 
-e.preventDefault();
+  e.preventDefault();
 
 
-if(!currentUser){
+  if(!currentUser){
 
-showToast(
-"Please sign in first.",
-true
-);
+    showToast(
+      "Please sign in first.",
+      true
+    );
 
-return;
+    return;
 
-}
+  }
 
 
-const phone=
-phoneInput.value.trim();
+  const phone =
+    phoneInput.value.trim();
 
-const serviceType=
-serviceTypeInput.value.trim();
 
-const description=
-descriptionInput.value.trim();
+  const serviceType =
+    serviceTypeInput.value.trim();
 
-const address=
-addressInput.value.trim();
 
-const location=
-locationInput.value.trim();
+  const description =
+    descriptionInput.value.trim();
 
-const preferredDate=
-preferredDateInput.value;
 
-const preferredTime=
-preferredTimeInput.value;
+  const address =
+    addressInput.value.trim();
 
 
-/* Validation */
+  const location =
+    locationInput.value.trim();
 
-if(!phone){
 
-showToast(
-"Please enter your phone number.",
-true
-);
+  const preferredDate =
+    preferredDateInput.value;
 
-phoneInput.focus();
 
-return;
+  const preferredTime =
+    preferredTimeInput.value;
 
-}
 
+  /* =========================================
+     VALIDATION
+  ========================================= */
 
-if(!serviceType){
+  if(!phone){
 
-showToast(
-"Please select the service you need.",
-true
-);
+    showToast(
+      "Please enter your phone number.",
+      true
+    );
 
-return;
+    phoneInput.focus();
 
-}
+    return;
 
+  }
 
-if(!description){
 
-showToast(
-"Please describe the work you need.",
-true
-);
+  if(!serviceType){
 
-return;
+    showToast(
+      "Please select the service you need.",
+      true
+    );
 
-}
+    serviceTypeInput.focus();
 
+    return;
 
-if(!address){
+  }
 
-showToast(
-"Please enter the work address.",
-true
-);
 
-return;
+  if(!description){
 
-}
+    showToast(
+      "Please describe the work you need.",
+      true
+    );
 
+    descriptionInput.focus();
 
-/* Disable */
+    return;
 
-submitBtn.disabled=true;
+  }
 
-loading.classList.add("active");
 
-loadingText.textContent=
-"Sending your service request...";
+  if(!address){
 
+    showToast(
+      "Please enter the work address.",
+      true
+    );
 
-try{
+    addressInput.focus();
 
-/*
-Create Firestore request.
+    return;
 
-NO STORAGE IS USED.
-*/
+  }
 
-const requestRef=
-db.collection("serviceRequests").doc();
 
+  /* =========================================
+     DISABLE
+  ========================================= */
 
-const requestData={
+  submitBtn.disabled =
+    true;
 
-customerId:
-currentUser.uid,
 
-customerName:
-customerNameInput.value.trim(),
+  uploadBox.classList.add(
+    "disabled"
+  );
 
-customerPhoto:
-currentUser.photoURL ||
-currentProfile?.photoURL ||
-currentProfile?.photo ||
-"",
 
-phone:phone,
+  loading.classList.add(
+    "active"
+  );
 
-serviceType:serviceType,
 
-description:description,
+  loadingText.textContent =
+    "Preparing your service request...";
 
-address:address,
 
-location:location,
+  try{
 
-/*
-Storage is not active yet.
-This stays empty until we later
-connect Firebase Storage.
-*/
+    /* =======================================
+       CREATE REQUEST ID FIRST
+    ======================================= */
 
-mediaUrls:[],
+    const requestRef =
+      db
+        .collection("serviceRequests")
+        .doc();
 
-preferredDate:
-preferredDate,
 
-preferredTime:
-preferredTime,
+    const requestIdValue =
+      requestRef.id;
 
-status:
-"pending",
 
-createdAt:
-firebase.firestore.FieldValue
-.serverTimestamp(),
+    /* =======================================
+       UPLOAD MEDIA
+    ======================================= */
 
-updatedAt:
-firebase.firestore.FieldValue
-.serverTimestamp()
+    loadingText.textContent =
+      selectedMedia.length
+      ? "Uploading your photos/videos..."
+      : "Sending your service request...";
 
-};
 
+    const uploadedMedia =
+      await uploadAllMedia(
+        requestIdValue
+      );
 
-/* Save request */
 
-await requestRef.set(requestData);
+    /* =======================================
+       MEDIA URL ARRAY
+    ======================================= */
 
+    const mediaUrls =
+      uploadedMedia.map(
+        item=>item.url
+      );
 
-/* Done */
 
-loading.classList.remove("active");
+    /* =======================================
+       REQUEST DATA
+    ======================================= */
 
-requestId.textContent=
-requestRef.id;
+    const requestData = {
 
-success.classList.add("active");
+      customerId:
+        currentUser.uid,
 
+      customerName:
+        customerNameInput.value.trim(),
 
-/* Reset */
+      customerPhoto:
+        currentUser.photoURL ||
+        currentProfile?.photoURL ||
+        currentProfile?.photo ||
+        "",
 
-serviceForm.reset();
+      phone:
+        phone,
 
-selectedMedia=[];
+      serviceType:
+        serviceType,
 
-mediaPreview.innerHTML="";
+      description:
+        description,
 
+      address:
+        address,
 
-customerNameInput.value=
-currentProfile?.name ||
-currentUser.displayName ||
-currentUser.email?.split("@")[0] ||
-"Customer";
+      location:
+        location,
 
+      mediaUrls:
+        mediaUrls,
 
-/*
-Restore phone from profile
-after reset.
-*/
+      preferredDate:
+        preferredDate,
 
-if(currentProfile?.phone){
+      preferredTime:
+        preferredTime,
 
-phoneInput.value=
-currentProfile.phone;
+      status:
+        "pending",
 
-}
+      createdAt:
+        firebase.firestore
+          .FieldValue
+          .serverTimestamp(),
 
+      updatedAt:
+        firebase.firestore
+          .FieldValue
+          .serverTimestamp()
 
-}catch(error){
+    };
 
-console.error(
-"Service request error:",
-error
-);
 
-loading.classList.remove("active");
+    /* =======================================
+       SAVE REQUEST
+    ======================================= */
 
+    loadingText.textContent =
+      "Saving your service request...";
 
-if(error.code==="permission-denied"){
 
-showToast(
-"Permission denied. Check your Firestore rules.",
-true
-);
+    await requestRef.set(
+      requestData
+    );
 
-}else{
 
-showToast(
-error.message ||
-"Could not send your service request.",
-true
-);
+    /* =======================================
+       DONE
+    ======================================= */
 
-}
+    loading.classList.remove(
+      "active"
+    );
 
-}finally{
 
-submitBtn.disabled=false;
+    requestId.textContent =
+      requestIdValue;
 
-}
+
+    success.classList.add(
+      "active"
+    );
+
+
+    /* =======================================
+       RESET
+    ======================================= */
+
+    serviceForm.reset();
+
+
+    selectedMedia =
+      [];
+
+
+    mediaPreview.innerHTML =
+      "";
+
+
+    mediaInfo.textContent =
+      "No photos or videos selected.";
+
+
+    uploadProgress.classList.remove(
+      "active"
+    );
+
+
+    progressBar.style.width =
+      "0%";
+
+
+    customerNameInput.value =
+      currentProfile?.name ||
+      currentUser.displayName ||
+      currentUser.email?.split("@")[0] ||
+      "Customer";
+
+
+    if(
+      currentProfile?.phone
+    ){
+
+      phoneInput.value =
+        currentProfile.phone;
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Service request error:",
+      error
+    );
+
+
+    loading.classList.remove(
+      "active"
+    );
+
+
+    uploadProgress.classList.remove(
+      "active"
+    );
+
+
+    if(
+      error.code ===
+      "storage/unauthorized"
+    ){
+
+      showToast(
+        "Media upload permission was denied. Please check Firebase Storage rules.",
+        true
+      );
+
+    }else if(
+      error.code ===
+      "storage/unknown"
+    ){
+
+      showToast(
+        "Firebase Storage could not upload the file.",
+        true
+      );
+
+    }else if(
+      error.code ===
+      "permission-denied"
+    ){
+
+      showToast(
+        "Permission denied. Check your Firestore rules.",
+        true
+      );
+
+    }else{
+
+      showToast(
+        error.message ||
+        "Could not send your service request.",
+        true
+      );
+
+    }
+
+  }finally{
+
+    submitBtn.disabled =
+      false;
+
+
+    uploadBox.classList.remove(
+      "disabled"
+    );
+
+  }
 
 });
 
 
-/* ================= SUCCESS ================= */
+/* =========================================================
+   SUCCESS
+========================================================= */
 
 successBtn.addEventListener(
 "click",
 ()=>{
 
-success.classList.remove("active");
-
-window.location.href="home.html";
-
-});
+  success.classList.remove(
+    "active"
+  );
 
 
-/* ================= SIGN OUT ================= */
-
-document.getElementById("signOutBtn")
-.addEventListener("click",async()=>{
-
-try{
-
-await auth.signOut();
-
-window.location.href="login.html";
-
-}catch(error){
-
-showToast(
-"Could not sign out.",
-true
-);
-
-}
+  window.location.href =
+    "home.html";
 
 });
 
 
-/* ================= NOTIFICATION ================= */
+/* =========================================================
+   SIGN OUT
+========================================================= */
 
-document.getElementById("notificationBtn")
-.addEventListener("click",()=>{
+document.getElementById(
+  "signOutBtn"
+)
+.addEventListener(
+"click",
+async()=>{
 
-window.location.href=
-"notifications.html";
+  try{
+
+    await auth.signOut();
+
+    window.location.href =
+      "login.html";
+
+  }catch(error){
+
+    showToast(
+      "Could not sign out.",
+      true
+    );
+
+  }
 
 });
 
 
-/* ================= DATE ================= */
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
 
-const today=
-new Date()
-.toISOString()
-.split("T")[0];
+document.getElementById(
+  "notificationBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
-preferredDateInput.min=today;
+  window.location.href =
+    "notifications.html";
+
+});
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+const today =
+  new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+preferredDateInput.min =
+  today;
+
+
+/* =========================================================
+   INITIAL MEDIA STATE
+========================================================= */
+
+renderMediaPreview();
 
 </script>
 
