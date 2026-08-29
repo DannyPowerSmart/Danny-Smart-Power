@@ -6,17 +6,21 @@
 
   <title>Our Electrical Work | Danny Smart Power</title>
 
-  <meta name="description"
-    content="Explore electrical, solar, inverter, wiring, lighting and repair projects completed by Danny Smart Power.">
+  <meta
+    name="description"
+    content="Explore electrical, solar, inverter, wiring, lighting and repair projects completed by Danny Smart Power."
+  >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"
+  >
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -46,6 +50,10 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     button,
@@ -148,201 +156,143 @@
       right: 7px;
     }
 
-    /* ================= DARK MENU ================= */
+    /* ================= MENU ================= */
 
-.menu {
-  position: fixed;
-  top: 76px;
-  right: 12px;
-  width: 275px;
+    .menu {
+      position: fixed;
+      top: 76px;
+      right: 12px;
+      width: 275px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #0b1729,
-      #07111f
-    );
+      background:
+        linear-gradient(
+          145deg,
+          #0b1729,
+          #07111f
+        );
 
-  color: #f8fafc;
+      color: #f8fafc;
 
-  border-radius: 20px;
+      border-radius: 20px;
 
-  padding: 10px;
+      padding: 10px;
 
-  z-index: 3000;
+      z-index: 3000;
 
-  display: none;
+      display: none;
 
-  border:
-    1px solid
-    rgba(56,189,248,.18);
+      border: 1px solid rgba(56,189,248,.18);
 
-  box-shadow:
-    0 25px 70px
-    rgba(0,0,0,.55);
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.55);
 
-  backdrop-filter:
-    blur(18px);
+      backdrop-filter: blur(18px);
 
-  -webkit-backdrop-filter:
-    blur(18px);
-}
+      -webkit-backdrop-filter: blur(18px);
+    }
 
-.menu.active {
-  display: block;
-  animation: menuIn .18s ease;
-}
+    .menu.active {
+      display: block;
+      animation: menuIn .18s ease;
+    }
 
-@keyframes menuIn {
+    @keyframes menuIn {
 
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(.98);
-  }
+      from {
+        opacity: 0;
+        transform: translateY(-8px) scale(.98);
+      }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
 
-}
+    }
 
+    .menu-profile {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px;
 
-/* PROFILE */
+      border-bottom:
+        1px solid rgba(148,163,184,.12);
 
-.menu-profile {
+      margin-bottom: 6px;
+    }
 
-  display: flex;
+    .menu-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #020617;
 
-  align-items: center;
+      border:
+        2px solid rgba(56,189,248,.35);
+    }
 
-  gap: 11px;
+    .menu-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
 
-  padding: 12px;
+    .menu-email {
+      color: #94a3b8;
+      font-size: 9px;
+      word-break: break-all;
+      margin-top: 2px;
+    }
 
-  border-bottom:
-    1px solid
-    rgba(148,163,184,.12);
+    .menu a,
+    .menu button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: #dbeafe;
 
-  margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
 
-}
+      padding: 12px;
 
-.menu-avatar {
+      border-radius: 12px;
 
-  width: 45px;
-  height: 45px;
+      font-size: 12px;
 
-  border-radius: 50%;
+      text-align: left;
 
-  object-fit: cover;
+      transition:
+        background .2s,
+        color .2s,
+        transform .2s;
+    }
 
-  background: #020617;
+    .menu a:hover,
+    .menu button:hover {
+      background: rgba(56,189,248,.09);
+      color: #38bdf8;
+      transform: translateX(2px);
+    }
 
-  border:
-    2px solid
-    rgba(56,189,248,.35);
+    .menu button:last-child {
+      margin-top: 5px;
 
-}
+      border-top:
+        1px solid rgba(148,163,184,.10);
 
-.menu-name {
+      border-radius: 12px;
 
-  font-size: 13px;
+      color: #fca5a5;
+    }
 
-  font-weight: 700;
-
-  color: #f8fafc;
-
-}
-
-.menu-email {
-
-  color: #94a3b8;
-
-  font-size: 9px;
-
-  word-break: break-all;
-
-  margin-top: 2px;
-
-}
-
-
-/* MENU LINKS */
-
-.menu a,
-.menu button {
-
-  width: 100%;
-
-  border: none;
-
-  background: transparent;
-
-  color: #dbeafe;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 12px;
-
-  border-radius: 12px;
-
-  font-size: 12px;
-
-  text-align: left;
-
-  transition:
-    background .2s,
-    color .2s,
-    transform .2s;
-
-}
-
-
-/* HOVER */
-
-.menu a:hover,
-.menu button:hover {
-
-  background:
-    rgba(56,189,248,.09);
-
-  color: #38bdf8;
-
-  transform:
-    translateX(2px);
-
-}
-
-
-/* SIGN OUT */
-
-.menu button:last-child {
-
-  margin-top: 5px;
-
-  border-top:
-    1px solid
-    rgba(148,163,184,.10);
-
-  border-radius: 12px;
-
-  color: #fca5a5;
-
-}
-
-.menu button:last-child:hover {
-
-  background:
-    rgba(239,68,68,.10);
-
-  color: #f87171;
-
-}
+    .menu button:last-child:hover {
+      background: rgba(239,68,68,.10);
+      color: #f87171;
+    }
 
     /* ================= PAGE ================= */
 
@@ -357,12 +307,25 @@
     .hero {
       position: relative;
       overflow: hidden;
+
       border: 1px solid var(--border);
+
       background:
-        radial-gradient(circle at top right, rgba(56,189,248,.16), transparent 35%),
-        linear-gradient(135deg, #111c30, #0b1324);
+        radial-gradient(
+          circle at top right,
+          rgba(56,189,248,.16),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #111c30,
+          #0b1324
+        );
+
       border-radius: 25px;
+
       padding: 30px 24px;
+
       margin-bottom: 22px;
     }
 
@@ -370,13 +333,22 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
+
       color: var(--blue);
+
       background: rgba(56,189,248,.09);
-      border: 1px solid rgba(56,189,248,.18);
+
+      border:
+        1px solid rgba(56,189,248,.18);
+
       border-radius: 50px;
+
       padding: 6px 11px;
+
       font-size: 10px;
+
       font-weight: 700;
+
       margin-bottom: 13px;
     }
 
@@ -388,8 +360,11 @@
 
     .hero p {
       max-width: 690px;
+
       color: var(--muted);
+
       font-size: 12px;
+
       line-height: 1.8;
     }
 
@@ -404,12 +379,16 @@
     .secondary-btn {
       border: none;
       border-radius: 12px;
+
       padding: 12px 16px;
+
       font-size: 12px;
       font-weight: 700;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       gap: 7px;
     }
 
@@ -425,7 +404,9 @@
     .secondary-btn {
       background: rgba(255,255,255,.06);
       color: white;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
     }
 
     .secondary-btn:hover {
@@ -438,8 +419,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 12px;
+
       margin: 22px 0;
+
       flex-wrap: wrap;
     }
 
@@ -460,22 +444,35 @@
 
     .search-box span {
       position: absolute;
+
       left: 13px;
       top: 50%;
+
       transform: translateY(-50%);
+
       color: var(--muted);
+
       font-size: 14px;
     }
 
     .search-box input {
       width: 100%;
       height: 42px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       background: #111c30;
+
       color: white;
+
       outline: none;
+
       border-radius: 12px;
-      padding: 0 13px 0 38px;
+
+      padding:
+        0 13px 0 38px;
+
       font-size: 11px;
     }
 
@@ -487,10 +484,15 @@
 
     .filters {
       display: flex;
+
       gap: 8px;
+
       overflow-x: auto;
+
       padding-bottom: 3px;
+
       scrollbar-width: none;
+
       margin-bottom: 20px;
     }
 
@@ -500,111 +502,176 @@
 
     .filter-btn {
       flex: 0 0 auto;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       background: #111c30;
+
       color: var(--muted);
+
       border-radius: 50px;
+
       padding: 8px 14px;
+
       font-size: 10px;
+
       font-weight: 600;
     }
 
     .filter-btn.active,
     .filter-btn:hover {
       background: rgba(56,189,248,.1);
+
       color: var(--blue);
-      border-color: rgba(56,189,248,.4);
+
+      border-color:
+        rgba(56,189,248,.4);
     }
 
     /* ================= PROJECT GRID ================= */
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
       gap: 16px;
     }
 
     .project-card {
       background: var(--card);
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 18px;
+
       overflow: hidden;
+
       transition: .22s ease;
+
       cursor: pointer;
+
       position: relative;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(56,189,248,.4);
-      box-shadow: 0 15px 35px rgba(0,0,0,.22);
+
+      border-color:
+        rgba(56,189,248,.4);
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.22);
     }
 
     .media-wrapper {
       height: 210px;
+
       background: #020617;
+
       position: relative;
+
       overflow: hidden;
     }
 
     .project-media {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       display: block;
     }
 
     .media-gradient {
       position: absolute;
+
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(2,6,23,.65),
-        transparent 45%
-      );
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(2,6,23,.65),
+          transparent 45%
+        );
+
       pointer-events: none;
     }
 
     .media-type {
       position: absolute;
+
       top: 10px;
       left: 10px;
-      background: rgba(2,6,23,.75);
+
+      background:
+        rgba(2,6,23,.75);
+
       backdrop-filter: blur(7px);
+
       color: white;
+
       border-radius: 50px;
+
       padding: 6px 9px;
+
       font-size: 9px;
+
       font-weight: 600;
     }
 
     .featured-badge {
       position: absolute;
+
       top: 10px;
       right: 10px;
+
       background: #f59e0b;
+
       color: #111827;
+
       border-radius: 50px;
+
       padding: 6px 9px;
+
       font-size: 9px;
+
       font-weight: 800;
     }
 
     .play-icon {
       position: absolute;
+
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%);
+
+      transform:
+        translate(-50%, -50%);
+
       width: 50px;
       height: 50px;
+
       border-radius: 50%;
-      background: rgba(2,6,23,.72);
-      border: 1px solid rgba(255,255,255,.25);
+
+      background:
+        rgba(2,6,23,.72);
+
+      border:
+        1px solid rgba(255,255,255,.25);
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       font-size: 18px;
+
       backdrop-filter: blur(5px);
+
+      pointer-events: none;
     }
 
     .project-info {
@@ -613,42 +680,64 @@
 
     .project-category {
       display: inline-block;
+
       color: var(--blue);
+
       font-size: 9px;
+
       font-weight: 700;
+
       margin-bottom: 6px;
     }
 
     .project-info h3 {
       font-size: 14px;
+
       margin-bottom: 6px;
+
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
     }
 
     .project-info p {
       color: var(--muted);
+
       font-size: 10px;
+
       line-height: 1.65;
+
       display: -webkit-box;
+
       -webkit-line-clamp: 2;
+
       -webkit-box-orient: vertical;
+
       overflow: hidden;
     }
 
     .project-footer {
       margin-top: 12px;
+
       padding-top: 11px;
-      border-top: 1px solid rgba(148,163,184,.1);
+
+      border-top:
+        1px solid rgba(148,163,184,.1);
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
     }
 
     .view-work {
       color: var(--blue);
+
       font-size: 10px;
+
       font-weight: 700;
     }
 
@@ -660,37 +749,57 @@
 
     .state {
       grid-column: 1 / -1;
+
       text-align: center;
+
       padding: 55px 20px;
-      border: 1px dashed var(--border);
+
+      border:
+        1px dashed var(--border);
+
       border-radius: 18px;
-      background: rgba(17,28,48,.5);
+
+      background:
+        rgba(17,28,48,.5);
     }
 
     .state-icon {
       font-size: 35px;
+
       margin-bottom: 10px;
     }
 
     .state h3 {
       font-size: 15px;
+
       margin-bottom: 6px;
     }
 
     .state p {
       color: var(--muted);
+
       font-size: 11px;
+
       line-height: 1.7;
     }
 
     .loader {
       width: 35px;
       height: 35px;
-      border: 3px solid var(--border);
-      border-top-color: var(--blue);
+
+      border:
+        3px solid var(--border);
+
+      border-top-color:
+        var(--blue);
+
       border-radius: 50%;
-      animation: spin .8s linear infinite;
-      margin: 0 auto 12px;
+
+      animation:
+        spin .8s linear infinite;
+
+      margin:
+        0 auto 12px;
     }
 
     @keyframes spin {
@@ -703,13 +812,22 @@
 
     .modal {
       position: fixed;
+
       inset: 0;
-      background: rgba(2,6,23,.86);
+
+      background:
+        rgba(2,6,23,.86);
+
       backdrop-filter: blur(8px);
+
       z-index: 5000;
+
       display: none;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 18px;
     }
 
@@ -719,16 +837,29 @@
 
     .modal-card {
       width: min(850px, 100%);
+
       max-height: 92vh;
+
       overflow-y: auto;
+
       background: #0f172a;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 22px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.5);
-      animation: modalIn .2s ease;
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.5);
+
+      animation:
+        modalIn .2s ease;
+
+      position: relative;
     }
 
     @keyframes modalIn {
+
       from {
         opacity: 0;
         transform: scale(.96);
@@ -738,13 +869,18 @@
         opacity: 1;
         transform: scale(1);
       }
+
     }
 
     .modal-media {
       width: 100%;
+
       max-height: 480px;
+
       background: #020617;
+
       display: block;
+
       object-fit: contain;
     }
 
@@ -754,97 +890,152 @@
 
     .modal-category {
       color: var(--blue);
+
       font-size: 10px;
+
       font-weight: 700;
+
       text-transform: uppercase;
     }
 
     .modal-content h2 {
       font-size: 21px;
-      margin: 6px 0 9px;
+
+      margin:
+        6px 0 9px;
     }
 
     .modal-description {
       color: var(--muted);
+
       font-size: 12px;
+
       line-height: 1.8;
+
       white-space: pre-line;
     }
 
     .modal-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 10px;
+
       margin-top: 20px;
     }
 
     .chat-btn,
     .request-btn {
       border: none;
+
       border-radius: 12px;
+
       padding: 13px;
+
       font-size: 12px;
+
       font-weight: 700;
     }
 
     .chat-btn {
       background: #22c55e;
+
       color: white;
     }
 
     .request-btn {
       background: var(--blue);
+
       color: #020617;
     }
 
     .close-modal {
       position: absolute;
+
       top: 15px;
       right: 15px;
+
       width: 39px;
       height: 39px;
+
       border: none;
+
       border-radius: 50%;
-      background: rgba(2,6,23,.75);
+
+      background:
+        rgba(2,6,23,.75);
+
       color: white;
+
       font-size: 20px;
-      z-index: 2;
+
+      z-index: 10;
+    }
+
+    .close-modal:hover {
+      background:
+        rgba(239,68,68,.8);
     }
 
     /* ================= TOAST ================= */
 
     .toast {
       position: fixed;
+
       left: 50%;
+
       bottom: 20px;
-      transform: translate(-50%, 100px);
+
+      transform:
+        translate(-50%, 100px);
+
       opacity: 0;
+
       background: #020617;
+
       color: white;
+
       padding: 11px 16px;
+
       border-radius: 12px;
+
       font-size: 11px;
+
       z-index: 7000;
+
       transition: .3s;
-      max-width: calc(100% - 30px);
+
+      max-width:
+        calc(100% - 30px);
+
       text-align: center;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
     }
 
     .toast.show {
-      transform: translate(-50%, 0);
+      transform:
+        translate(-50%, 0);
+
       opacity: 1;
     }
 
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 900px) {
+
       .project-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 600px) {
+
       header {
         height: 64px;
       }
@@ -858,11 +1049,14 @@
       }
 
       .page {
-        padding: 18px 12px 55px;
+        padding:
+          18px 12px 55px;
       }
 
       .hero {
-        padding: 23px 18px;
+        padding:
+          23px 18px;
+
         border-radius: 19px;
       }
 
@@ -896,11 +1090,17 @@
 
       .menu {
         top: 69px;
+
         right: 8px;
-        width: calc(100% - 16px);
+
+        width:
+          calc(100% - 16px);
+
         max-width: 310px;
       }
+
     }
+
   </style>
 </head>
 
@@ -911,12 +1111,21 @@
 <header>
 
   <a href="home.html" class="brand">
-    <div class="brand-icon">⚡</div>
+
+    <div class="brand-icon">
+      ⚡
+    </div>
 
     <div class="brand-text">
+
       Danny Smart Power
-      <small>POWERING YOUR NEEDS</small>
+
+      <small>
+        POWERING YOUR NEEDS
+      </small>
+
     </div>
+
   </a>
 
   <div class="header-actions">
@@ -925,13 +1134,15 @@
       class="icon-btn"
       id="notificationBtn"
       title="Notifications"
-      aria-label="Notifications">
+      aria-label="Notifications"
+    >
 
       🔔
+
       <span
         class="notification-dot"
-        id="notificationDot">
-      </span>
+        id="notificationDot"
+      ></span>
 
     </button>
 
@@ -939,7 +1150,8 @@
       class="icon-btn"
       id="menuBtn"
       title="Menu"
-      aria-label="Open menu">
+      aria-label="Open menu"
+    >
 
       ⋮
 
@@ -960,27 +1172,29 @@
       id="menuAvatar"
       class="menu-avatar"
       src="https://via.placeholder.com/80"
-      alt="Profile">
+      alt="Profile"
+    >
 
     <div>
+
       <div
         class="menu-name"
-        id="menuName">
-
+        id="menuName"
+      >
         Customer
-
       </div>
 
       <div
         class="menu-email"
-        id="menuEmail">
-
+        id="menuEmail"
+      >
         Loading...
-
       </div>
+
     </div>
 
   </div>
+
 
   <a href="home.html">
     🏠
@@ -1034,13 +1248,18 @@
 
 <main class="page">
 
-  <!-- HERO -->
+  <!-- ================= HERO ================= -->
 
   <section class="hero">
 
     <div class="hero-label">
+
       ⚡
-      <span>DANNY SMART POWER</span>
+
+      <span>
+        DANNY SMART POWER
+      </span>
+
     </div>
 
     <h1>
@@ -1048,17 +1267,21 @@
     </h1>
 
     <p>
-      See real electrical, solar, inverter, wiring, lighting and
-      repair projects completed by Danny Smart Power.
-      Every project you see here represents the type of professional
-      work we can help you with.
+
+      See real electrical, solar, inverter, wiring,
+      lighting and repair projects completed by
+      Danny Smart Power. Every project you see here
+      represents the type of professional work we can
+      help you with.
+
     </p>
 
     <div class="hero-actions">
 
       <a
         href="request-service.html"
-        class="primary-btn">
+        class="primary-btn"
+      >
 
         ⚡ Request Electrical Service
 
@@ -1066,7 +1289,8 @@
 
       <a
         href="chat.html"
-        class="secondary-btn">
+        class="secondary-btn"
+      >
 
         💬 Chat With Danny
 
@@ -1077,7 +1301,7 @@
   </section>
 
 
-  <!-- TOOLBAR -->
+  <!-- ================= TOOLBAR ================= -->
 
   <div class="toolbar">
 
@@ -1095,86 +1319,83 @@
 
     <div class="search-box">
 
-      <span>🔍</span>
+      <span>
+        🔍
+      </span>
 
       <input
         type="search"
         id="searchInput"
-        placeholder="Search our work...">
+        placeholder="Search our work..."
+      >
 
     </div>
 
   </div>
 
 
-  <!-- FILTERS -->
+  <!-- ================= FILTERS ================= -->
 
   <div class="filters">
 
     <button
       class="filter-btn active"
-      data-category="All">
-
+      data-category="All"
+    >
       All
-
     </button>
 
     <button
       class="filter-btn"
-      data-category="Solar">
-
+      data-category="Solar"
+    >
       ☀️ Solar
-
     </button>
 
     <button
       class="filter-btn"
-      data-category="Wiring">
-
+      data-category="Wiring"
+    >
       🏠 Wiring
-
     </button>
 
     <button
       class="filter-btn"
-      data-category="Lighting">
-
+      data-category="Lighting"
+    >
       💡 Lighting
-
     </button>
 
     <button
       class="filter-btn"
-      data-category="Inverter">
-
+      data-category="Inverter"
+    >
       🔋 Inverter
-
     </button>
 
     <button
       class="filter-btn"
-      data-category="Repair">
-
+      data-category="Repair"
+    >
       🔧 Repair
-
     </button>
 
     <button
       class="filter-btn"
-      data-category="Electrical">
-
+      data-category="Electrical"
+    >
       ⚡ Electrical
-
     </button>
 
   </div>
 
 
-  <!-- PROJECT GRID -->
+  <!-- ================= PROJECT GRID ================= -->
 
   <section
     class="project-grid"
-    id="projectGrid">
+    id="projectGrid"
+  >
 
     <div class="state">
 
@@ -1195,18 +1416,18 @@
 
 <div
   class="modal"
-  id="projectModal">
-
-  <button
-    class="close-modal"
-    id="closeModal"
-    aria-label="Close">
-
-    ×
-
-  </button>
+  id="projectModal"
+>
 
   <div class="modal-card">
+
+    <button
+      class="close-modal"
+      id="closeModal"
+      aria-label="Close"
+    >
+      ×
+    </button>
 
     <div id="modalMediaContainer"></div>
 
@@ -1214,9 +1435,8 @@
 
       <div
         class="modal-category"
-        id="modalCategory">
-
-      </div>
+        id="modalCategory"
+      ></div>
 
       <h2 id="modalTitle">
         Project
@@ -1224,26 +1444,23 @@
 
       <p
         class="modal-description"
-        id="modalDescription">
-
-      </p>
+        id="modalDescription"
+      ></p>
 
       <div class="modal-actions">
 
         <button
           class="chat-btn"
-          id="modalChatBtn">
-
+          id="modalChatBtn"
+        >
           💬 Chat About This Work
-
         </button>
 
         <button
           class="request-btn"
-          id="modalRequestBtn">
-
+          id="modalRequestBtn"
+        >
           ⚡ Request This Service
-
         </button>
 
       </div>
@@ -1259,15 +1476,18 @@
 
 <div
   class="toast"
-  id="toast">
-</div>
+  id="toast"
+></div>
 
 
 <!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 
 <script>
 
@@ -1306,9 +1526,11 @@
 
   firebase.initializeApp(firebaseConfig);
 
-  const auth = firebase.auth();
+  const auth =
+    firebase.auth();
 
-  const db = firebase.firestore();
+  const db =
+    firebase.firestore();
 
 
   /* ==========================================
@@ -1337,7 +1559,9 @@
     document.getElementById("closeModal");
 
   const modalMediaContainer =
-    document.getElementById("modalMediaContainer");
+    document.getElementById(
+      "modalMediaContainer"
+    );
 
   const modalTitle =
     document.getElementById("modalTitle");
@@ -1364,109 +1588,149 @@
 
   let currentUser = null;
 
-  auth.onAuthStateChanged(async user => {
+  auth.onAuthStateChanged(
+    async user => {
 
-    if (!user) {
+      if (!user) {
 
-      window.location.href = "login.html";
+        window.location.href =
+          "login.html";
 
-      return;
+        return;
 
-    }
+      }
 
-    currentUser = user;
+      currentUser =
+        user;
 
-    const fallbackName =
-      user.displayName ||
-      user.email?.split("@")[0] ||
-      "Customer";
 
-    document.getElementById("menuName").textContent =
-      fallbackName;
+      const fallbackName =
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "Customer";
 
-    document.getElementById("menuEmail").textContent =
-      user.email || "";
 
-    if (user.photoURL) {
+      document.getElementById(
+        "menuName"
+      ).textContent =
+        fallbackName;
 
-      document.getElementById("menuAvatar").src =
-        user.photoURL;
 
-    }
+      document.getElementById(
+        "menuEmail"
+      ).textContent =
+        user.email || "";
 
-    /* Try DSP profile */
 
-    try {
+      if (user.photoURL) {
 
-      const profileSnap =
-        await db
-          .collection("profiles")
-          .doc(user.uid)
-          .get();
+        document.getElementById(
+          "menuAvatar"
+        ).src =
+          user.photoURL;
 
-      if (profileSnap.exists) {
+      }
 
-        const profile =
-          profileSnap.data();
 
-        if (profile.name) {
+      /* ======================================
+         LOAD PROFILE
+      ====================================== */
 
-          document.getElementById("menuName")
-            .textContent = profile.name;
+      try {
 
-        }
+        const profileSnap =
+          await db
+            .collection("profiles")
+            .doc(user.uid)
+            .get();
 
-        if (profile.photoURL) {
 
-          document.getElementById("menuAvatar")
-            .src = profile.photoURL;
+        if (profileSnap.exists) {
 
-        } else if (profile.photo) {
+          const profile =
+            profileSnap.data();
 
-          document.getElementById("menuAvatar")
-            .src = profile.photo;
+
+          if (profile.name) {
+
+            document.getElementById(
+              "menuName"
+            ).textContent =
+              profile.name;
+
+          }
+
+
+          if (profile.photoURL) {
+
+            document.getElementById(
+              "menuAvatar"
+            ).src =
+              profile.photoURL;
+
+          }
+
+          else if (profile.photo) {
+
+            document.getElementById(
+              "menuAvatar"
+            ).src =
+              profile.photo;
+
+          }
 
         }
 
       }
 
-    } catch (error) {
+      catch (error) {
 
-      console.warn(
-        "Profile could not be loaded:",
-        error
-      );
+        console.warn(
+          "Profile could not be loaded:",
+          error
+        );
+
+      }
 
     }
-
-  });
+  );
 
 
   /* ==========================================
      MENU
   ========================================== */
 
-  menuBtn.addEventListener("click", e => {
+  menuBtn.addEventListener(
+    "click",
+    event => {
 
-    e.stopPropagation();
+      event.stopPropagation();
 
-    menu.classList.toggle("active");
-
-  });
-
-
-  document.addEventListener("click", e => {
-
-    if (
-      !menu.contains(e.target) &&
-      e.target !== menuBtn
-    ) {
-
-      menu.classList.remove("active");
+      menu.classList.toggle(
+        "active"
+      );
 
     }
+  );
 
-  });
+
+  document.addEventListener(
+    "click",
+    event => {
+
+      if (
+        !menu.contains(event.target) &&
+        event.target !== menuBtn
+      ) {
+
+        menu.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+  );
 
 
   /* ==========================================
@@ -1475,15 +1739,23 @@
 
   function showToast(message) {
 
-    toast.textContent = message;
+    toast.textContent =
+      message;
 
-    toast.classList.add("show");
+    toast.classList.add(
+      "show"
+    );
 
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      toast.classList.remove("show");
+        toast.classList.remove(
+          "show"
+        );
 
-    }, 3000);
+      },
+      3000
+    );
 
   }
 
@@ -1494,7 +1766,8 @@
 
   let allProjects = [];
 
-  let activeCategory = "All";
+  let activeCategory =
+    "All";
 
 
   /* ==========================================
@@ -1517,56 +1790,76 @@
 
     `;
 
+
     try {
 
       const snapshot =
         await db
-          .collection("serviceProjects")
-          .where("published", "==", true)
+          .collection(
+            "serviceProjects"
+          )
+          .where(
+            "published",
+            "==",
+            true
+          )
           .get();
+
 
       allProjects = [];
 
-      snapshot.forEach(doc => {
 
-        allProjects.push({
+      snapshot.forEach(
+        doc => {
 
-          id: doc.id,
+          allProjects.push({
 
-          ...doc.data()
+            id: doc.id,
 
-        });
+            ...doc.data()
 
-      });
+          });
+
+        }
+      );
 
 
-      /* Sort newest first */
+      /* ======================================
+         SORT NEWEST FIRST
+      ====================================== */
 
-      allProjects.sort((a, b) => {
+      allProjects.sort(
+        (a, b) => {
 
-        const dateA =
-          a.createdAt?.toMillis
-            ? a.createdAt.toMillis()
-            : 0;
+          const dateA =
+            a.createdAt?.toMillis
+              ? a.createdAt.toMillis()
+              : 0;
 
-        const dateB =
-          b.createdAt?.toMillis
-            ? b.createdAt.toMillis()
-            : 0;
 
-        return dateB - dateA;
+          const dateB =
+            b.createdAt?.toMillis
+              ? b.createdAt.toMillis()
+              : 0;
 
-      });
+
+          return dateB - dateA;
+
+        }
+      );
 
 
       renderProjects();
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
       console.error(
         "Could not load service projects:",
         error
       );
+
 
       projectGrid.innerHTML = `
 
@@ -1589,6 +1882,7 @@
 
       `;
 
+
       projectCount.textContent =
         "Unable to load projects";
 
@@ -1610,38 +1904,48 @@
 
 
     const filtered =
-      allProjects.filter(project => {
+      allProjects.filter(
+        project => {
 
-        const category =
-          String(project.category || "")
-            .toLowerCase();
-
-        const title =
-          String(project.title || "")
-            .toLowerCase();
-
-        const description =
-          String(project.description || "")
-            .toLowerCase();
+          const category =
+            String(
+              project.category || ""
+            ).toLowerCase();
 
 
-        const categoryMatch =
-          activeCategory === "All" ||
-          category.includes(
-            activeCategory.toLowerCase()
+          const title =
+            String(
+              project.title || ""
+            ).toLowerCase();
+
+
+          const description =
+            String(
+              project.description || ""
+            ).toLowerCase();
+
+
+          const categoryMatch =
+            activeCategory === "All" ||
+            category.includes(
+              activeCategory.toLowerCase()
+            );
+
+
+          const searchMatch =
+            !search ||
+            title.includes(search) ||
+            description.includes(search) ||
+            category.includes(search);
+
+
+          return (
+            categoryMatch &&
+            searchMatch
           );
 
-
-        const searchMatch =
-          !search ||
-          title.includes(search) ||
-          description.includes(search) ||
-          category.includes(search);
-
-
-        return categoryMatch && searchMatch;
-
-      });
+        }
+      );
 
 
     projectCount.textContent =
@@ -1667,8 +1971,8 @@
           </h3>
 
           <p>
-            Try another search or choose a
-            different category.
+            Try another search or choose
+            a different category.
           </p>
 
         </div>
@@ -1680,17 +1984,24 @@
     }
 
 
-    projectGrid.innerHTML = "";
+    projectGrid.innerHTML =
+      "";
 
 
-    filtered.forEach(project => {
+    filtered.forEach(
+      project => {
 
-      const card =
-        createProjectCard(project);
+        const card =
+          createProjectCard(
+            project
+          );
 
-      projectGrid.appendChild(card);
+        projectGrid.appendChild(
+          card
+        );
 
-    });
+      }
+    );
 
   }
 
@@ -1699,29 +2010,50 @@
      CREATE PROJECT CARD
   ========================================== */
 
-  function createProjectCard(project) {
+  function createProjectCard(
+    project
+  ) {
 
     const card =
-      document.createElement("article");
+      document.createElement(
+        "article"
+      );
 
-    card.className = "project-card";
+    card.className =
+      "project-card";
 
 
     const mediaWrapper =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     mediaWrapper.className =
       "media-wrapper";
 
 
+    /* ======================================
+       IMPORTANT:
+       USE mediaType
+       ====================================== */
+
     const mediaType =
-      String(project.mediaType || "image")
+      String(
+        project.mediaType || "image"
+      )
+        .trim()
         .toLowerCase();
 
 
     const mediaUrl =
-      project.mediaUrl || "";
+      String(
+        project.mediaUrl || ""
+      ).trim();
 
+
+    /* ======================================
+       NO MEDIA
+    ====================================== */
 
     if (!mediaUrl) {
 
@@ -1736,7 +2068,8 @@
             justify-content:center;
             font-size:40px;
             color:#38bdf8;
-          ">
+          "
+        >
 
           ⚡
 
@@ -1746,34 +2079,59 @@
 
     }
 
-    else if (mediaType === "video") {
+
+    /* ======================================
+       VIDEO
+    ====================================== */
+
+    else if (
+      mediaType === "video"
+    ) {
 
       const video =
-        document.createElement("video");
+        document.createElement(
+          "video"
+        );
+
 
       video.className =
         "project-media";
 
+
       video.src =
         mediaUrl;
 
-      video.muted = true;
 
-      video.loop = true;
+      video.muted =
+        true;
 
-      video.playsInline = true;
 
-      video.preload = "metadata";
+      video.loop =
+        true;
+
+
+      video.playsInline =
+        true;
+
+
+      video.preload =
+        "metadata";
+
 
       video.setAttribute(
         "aria-label",
-        project.title || "Project video"
+        project.title ||
+        "Project video"
       );
 
 
-      /* Try thumbnail first */
+      /* ==================================
+         THUMBNAIL
+      ================================== */
 
-      if (project.thumbnailUrl) {
+      if (
+        project.thumbnailUrl
+      ) {
 
         video.poster =
           project.thumbnailUrl;
@@ -1781,147 +2139,294 @@
       }
 
 
-      mediaWrapper.appendChild(video);
+      /* ==================================
+         VIDEO ERROR
+      ================================== */
+
+      video.onerror =
+        () => {
+
+          video.style.display =
+            "none";
+
+
+          mediaWrapper.insertAdjacentHTML(
+            "beforeend",
+            `
+
+              <div
+                style="
+                  width:100%;
+                  height:100%;
+                  display:flex;
+                  align-items:center;
+                  justify-content:center;
+                  flex-direction:column;
+                  gap:8px;
+                  color:#38bdf8;
+                  font-size:13px;
+                  text-align:center;
+                  padding:15px;
+                "
+              >
+
+                <div style="font-size:40px;">
+                  ⚠️
+                </div>
+
+                <div>
+                  Video unavailable
+                </div>
+
+              </div>
+
+            `
+          );
+
+        };
+
+
+      mediaWrapper.appendChild(
+        video
+      );
 
 
       const play =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       play.className =
         "play-icon";
 
+
       play.textContent =
         "▶";
 
-      mediaWrapper.appendChild(play);
+
+      mediaWrapper.appendChild(
+        play
+      );
 
     }
+
+
+    /* ======================================
+       IMAGE
+    ====================================== */
 
     else {
 
       const image =
-        document.createElement("img");
+        document.createElement(
+          "img"
+        );
+
 
       image.className =
         "project-media";
 
+
       image.src =
         mediaUrl;
 
+
       image.alt =
-        project.title || "Danny Smart Power project";
+        project.title ||
+        "Danny Smart Power project";
+
 
       image.loading =
         "lazy";
 
-      image.onerror = () => {
 
-        image.style.display = "none";
+      image.onerror =
+        () => {
 
-        mediaWrapper.insertAdjacentHTML(
-          "beforeend",
-          `<div style="
-            width:100%;
-            height:100%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:40px;
-            color:#38bdf8;
-          ">⚡</div>`
-        );
+          image.style.display =
+            "none";
 
-      };
 
-      mediaWrapper.appendChild(image);
+          mediaWrapper.insertAdjacentHTML(
+            "beforeend",
+            `
+
+              <div
+                style="
+                  width:100%;
+                  height:100%;
+                  display:flex;
+                  align-items:center;
+                  justify-content:center;
+                  font-size:40px;
+                  color:#38bdf8;
+                "
+              >
+                ⚡
+              </div>
+
+            `
+          );
+
+        };
+
+
+      mediaWrapper.appendChild(
+        image
+      );
 
     }
 
 
+    /* ======================================
+       MEDIA GRADIENT
+    ====================================== */
+
     const gradient =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     gradient.className =
       "media-gradient";
 
-    mediaWrapper.appendChild(gradient);
 
+    mediaWrapper.appendChild(
+      gradient
+    );
+
+
+    /* ======================================
+       MEDIA TYPE BADGE
+    ====================================== */
 
     const typeBadge =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     typeBadge.className =
       "media-type";
+
 
     typeBadge.textContent =
       mediaType === "video"
         ? "🎥 Video"
         : "📷 Photo";
 
-    mediaWrapper.appendChild(typeBadge);
+
+    mediaWrapper.appendChild(
+      typeBadge
+    );
 
 
-    if (project.featured === true) {
+    /* ======================================
+       FEATURED
+    ====================================== */
+
+    if (
+      project.featured === true
+    ) {
 
       const featured =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       featured.className =
         "featured-badge";
 
+
       featured.textContent =
         "★ Featured";
 
-      mediaWrapper.appendChild(featured);
+
+      mediaWrapper.appendChild(
+        featured
+      );
 
     }
 
 
-    /* ================= INFO ================= */
+    /* ======================================
+       PROJECT INFO
+    ====================================== */
 
     const info =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     info.className =
       "project-info";
 
 
     const category =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     category.className =
       "project-category";
 
-    category.textContent =
-      project.category || "Electrical";
 
-    info.appendChild(category);
+    category.textContent =
+      project.category ||
+      "Electrical";
+
+
+    info.appendChild(
+      category
+    );
 
 
     const title =
-      document.createElement("h3");
+      document.createElement(
+        "h3"
+      );
+
 
     title.textContent =
-      project.title || "Electrical Project";
+      project.title ||
+      "Electrical Project";
 
-    info.appendChild(title);
+
+    info.appendChild(
+      title
+    );
 
 
     const description =
-      document.createElement("p");
+      document.createElement(
+        "p"
+      );
+
 
     description.textContent =
       project.description ||
       "Professional electrical work completed by Danny Smart Power.";
 
-    info.appendChild(description);
+
+    info.appendChild(
+      description
+    );
 
 
     const footer =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     footer.className =
       "project-footer";
+
 
     footer.innerHTML = `
 
@@ -1935,17 +2440,31 @@
 
     `;
 
-    info.appendChild(footer);
+
+    info.appendChild(
+      footer
+    );
 
 
-    card.appendChild(mediaWrapper);
+    card.appendChild(
+      mediaWrapper
+    );
 
-    card.appendChild(info);
+
+    card.appendChild(
+      info
+    );
 
 
     card.addEventListener(
       "click",
-      () => openProject(project)
+      () => {
+
+        openProject(
+          project
+        );
+
+      }
     );
 
 
@@ -1958,7 +2477,9 @@
      OPEN PROJECT
   ========================================== */
 
-  function openProject(project) {
+  function openProject(
+    project
+  ) {
 
     modalTitle.textContent =
       project.title ||
@@ -1975,73 +2496,179 @@
       "Professional work completed by Danny Smart Power.";
 
 
-    modalMediaContainer.innerHTML = "";
+    modalMediaContainer.innerHTML =
+      "";
 
+
+    /* ======================================
+       IMPORTANT:
+       USE mediaType
+    ====================================== */
 
     const mediaType =
-      String(project.mediaType || "image")
+      String(
+        project.mediaType || "image"
+      )
+        .trim()
         .toLowerCase();
 
 
-    if (project.mediaUrl) {
+    const mediaUrl =
+      String(
+        project.mediaUrl || ""
+      ).trim();
 
-      if (mediaType === "video") {
+
+    if (mediaUrl) {
+
+      /* ====================================
+         VIDEO MODAL
+      ==================================== */
+
+      if (
+        mediaType === "video"
+      ) {
 
         const video =
-          document.createElement("video");
+          document.createElement(
+            "video"
+          );
+
 
         video.className =
           "modal-media";
 
-        video.controls = true;
 
-        video.playsInline = true;
+        video.controls =
+          true;
 
-        video.preload = "metadata";
+
+        video.playsInline =
+          true;
+
+
+        video.preload =
+          "metadata";
+
 
         video.src =
-          project.mediaUrl;
+          mediaUrl;
 
-        if (project.thumbnailUrl) {
+
+        if (
+          project.thumbnailUrl
+        ) {
 
           video.poster =
             project.thumbnailUrl;
 
         }
 
-        modalMediaContainer.appendChild(video);
 
-      } else {
+        video.onerror =
+          () => {
+
+            modalMediaContainer.innerHTML = `
+
+              <div
+                style="
+                  min-height:300px;
+                  display:flex;
+                  align-items:center;
+                  justify-content:center;
+                  flex-direction:column;
+                  gap:10px;
+                  color:#38bdf8;
+                  background:#020617;
+                  text-align:center;
+                  padding:20px;
+                "
+              >
+
+                <div style="font-size:50px;">
+                  ⚠️
+                </div>
+
+                <div>
+                  This video could not be played.
+                </div>
+
+              </div>
+
+            `;
+
+          };
+
+
+        modalMediaContainer.appendChild(
+          video
+        );
+
+      }
+
+
+      /* ====================================
+         IMAGE MODAL
+      ==================================== */
+
+      else {
 
         const image =
-          document.createElement("img");
+          document.createElement(
+            "img"
+          );
+
 
         image.className =
           "modal-media";
 
+
         image.src =
-          project.mediaUrl;
+          mediaUrl;
+
 
         image.alt =
-          project.title || "Project";
+          project.title ||
+          "Project";
 
-        modalMediaContainer.appendChild(image);
+
+        image.onerror =
+          () => {
+
+            image.style.display =
+              "none";
+
+          };
+
+
+        modalMediaContainer.appendChild(
+          image
+        );
 
       }
 
-    } else {
+    }
+
+
+    /* ======================================
+       NO MEDIA
+    ====================================== */
+
+    else {
 
       modalMediaContainer.innerHTML = `
 
-        <div style="
-          height:300px;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          font-size:60px;
-          color:#38bdf8;
-          background:#020617;
-        ">
+        <div
+          style="
+            height:300px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:60px;
+            color:#38bdf8;
+            background:#020617;
+          "
+        >
 
           ⚡
 
@@ -2052,26 +2679,40 @@
     }
 
 
-    modalChatBtn.onclick = () => {
+    /* ======================================
+       CHAT BUTTON
+    ====================================== */
 
-      window.location.href =
-        "chat.html";
+    modalChatBtn.onclick =
+      () => {
 
-    };
+        window.location.href =
+          "chat.html";
 
-
-    modalRequestBtn.onclick = () => {
-
-      window.location.href =
-        "request-service.html";
-
-    };
+      };
 
 
-    projectModal.classList.add("active");
+    /* ======================================
+       REQUEST BUTTON
+    ====================================== */
 
-    document.body.style.overflow =
-      "hidden";
+    modalRequestBtn.onclick =
+      () => {
+
+        window.location.href =
+          "request-service.html";
+
+      };
+
+
+    projectModal.classList.add(
+      "active"
+    );
+
+
+    document.body.classList.add(
+      "modal-open"
+    );
 
   }
 
@@ -2082,10 +2723,15 @@
 
   function closeProjectModal() {
 
-    projectModal.classList.remove("active");
+    projectModal.classList.remove(
+      "active"
+    );
 
-    document.body.style.overflow =
-      "";
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
 
     modalMediaContainer.innerHTML =
       "";
@@ -2101,9 +2747,12 @@
 
   projectModal.addEventListener(
     "click",
-    e => {
+    event => {
 
-      if (e.target === projectModal) {
+      if (
+        event.target ===
+        projectModal
+      ) {
 
         closeProjectModal();
 
@@ -2115,11 +2764,13 @@
 
   document.addEventListener(
     "keydown",
-    e => {
+    event => {
 
       if (
-        e.key === "Escape" &&
-        projectModal.classList.contains("active")
+        event.key === "Escape" &&
+        projectModal.classList.contains(
+          "active"
+        )
       ) {
 
         closeProjectModal();
@@ -2145,33 +2796,47 @@
   ========================================== */
 
   document
-    .querySelectorAll(".filter-btn")
-    .forEach(button => {
+    .querySelectorAll(
+      ".filter-btn"
+    )
+    .forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          document
-            .querySelectorAll(".filter-btn")
-            .forEach(btn =>
-              btn.classList.remove("active")
+            document
+              .querySelectorAll(
+                ".filter-btn"
+              )
+              .forEach(
+                btn => {
+
+                  btn.classList.remove(
+                    "active"
+                  );
+
+                }
+              );
+
+
+            button.classList.add(
+              "active"
             );
 
 
-          button.classList.add("active");
+            activeCategory =
+              button.dataset.category;
 
 
-          activeCategory =
-            button.dataset.category;
+            renderProjects();
 
+          }
+        );
 
-          renderProjects();
-
-        }
-      );
-
-    });
+      }
+    );
 
 
   /* ==========================================
@@ -2179,7 +2844,9 @@
   ========================================== */
 
   document
-    .getElementById("signOutBtn")
+    .getElementById(
+      "signOutBtn"
+    )
     .addEventListener(
       "click",
       async () => {
@@ -2191,7 +2858,15 @@
           window.location.href =
             "login.html";
 
-        } catch (error) {
+        }
+
+        catch (error) {
+
+          console.error(
+            "Sign out error:",
+            error
+          );
+
 
           showToast(
             "Could not sign out."
@@ -2208,7 +2883,9 @@
   ========================================== */
 
   document
-    .getElementById("notificationBtn")
+    .getElementById(
+      "notificationBtn"
+    )
     .addEventListener(
       "click",
       () => {
