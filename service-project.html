@@ -1,1112 +1,1539 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Our Electrical Work | Danny Smart Power</title>
-
-  <meta
-    name="description"
-    content="Explore electrical, solar, inverter, wiring, lighting and repair projects completed by Danny Smart Power."
-  >
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #0f172a;
-      --header: #020617;
-      --card: #111c30;
-      --card2: #162238;
-      --border: #24344d;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --blue: #38bdf8;
-      --blue-dark: #0284c7;
-      --green: #22c55e;
-      --red: #ef4444;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Poppins", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    button,
-    input {
-      font-family: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* ================= HEADER ================= */
-
-    header {
-      height: 70px;
-      background: var(--header);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(148, 163, 184, .12);
-      box-shadow: 0 5px 25px rgba(0,0,0,.22);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: var(--blue);
-      color: #020617;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 21px;
-      font-weight: 800;
-    }
-
-    .brand-text {
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.1;
-    }
-
-    .brand-text small {
-      display: block;
-      color: var(--muted);
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: .7px;
-      margin-top: 4px;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .icon-btn {
-      width: 43px;
-      height: 43px;
-      border: none;
-      border-radius: 50%;
-      background: transparent;
-      color: white;
-      font-size: 21px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .icon-btn:hover {
-      background: rgba(255,255,255,.08);
-    }
-
-    .notification-dot {
-      display: none;
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: var(--red);
-      border: 2px solid var(--header);
-      border-radius: 50%;
-      top: 7px;
-      right: 7px;
-    }
-
-    /* ================= MENU ================= */
-
-    .menu {
-      position: fixed;
-      top: 76px;
-      right: 12px;
-      width: 275px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #0b1729,
-          #07111f
-        );
-
-      color: #f8fafc;
-
-      border-radius: 20px;
-
-      padding: 10px;
-
-      z-index: 3000;
-
-      display: none;
-
-      border: 1px solid rgba(56,189,248,.18);
-
-      box-shadow:
-        0 25px 70px rgba(0,0,0,.55);
-
-      backdrop-filter: blur(18px);
-
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .menu.active {
-      display: block;
-      animation: menuIn .18s ease;
-    }
-
-    @keyframes menuIn {
-
-      from {
-        opacity: 0;
-        transform: translateY(-8px) scale(.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-    }
-
-    .menu-profile {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 12px;
-
-      border-bottom:
-        1px solid rgba(148,163,184,.12);
-
-      margin-bottom: 6px;
-    }
-
-    .menu-avatar {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #020617;
-
-      border:
-        2px solid rgba(56,189,248,.35);
-    }
-
-    .menu-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #f8fafc;
-    }
-
-    .menu-email {
-      color: #94a3b8;
-      font-size: 9px;
-      word-break: break-all;
-      margin-top: 2px;
-    }
-
-    .menu a,
-    .menu button {
-      width: 100%;
-      border: none;
-      background: transparent;
-      color: #dbeafe;
-
-      display: flex;
-      align-items: center;
-      gap: 12px;
-
-      padding: 12px;
-
-      border-radius: 12px;
-
-      font-size: 12px;
-
-      text-align: left;
-
-      transition:
-        background .2s,
-        color .2s,
-        transform .2s;
-    }
-
-    .menu a:hover,
-    .menu button:hover {
-      background: rgba(56,189,248,.09);
-      color: #38bdf8;
-      transform: translateX(2px);
-    }
-
-    .menu button:last-child {
-      margin-top: 5px;
-
-      border-top:
-        1px solid rgba(148,163,184,.10);
-
-      border-radius: 12px;
+<meta charset="UTF-8">
 
-      color: #fca5a5;
-    }
-
-    .menu button:last-child:hover {
-      background: rgba(239,68,68,.10);
-      color: #f87171;
-    }
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-    /* ================= PAGE ================= */
-
-    .page {
-      width: min(1180px, 100%);
-      margin: auto;
-      padding: 28px 16px 70px;
-    }
+<title>Our Electrical Work | Danny Smart Power</title>
 
-    /* ================= HERO ================= */
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-
-      border: 1px solid var(--border);
+<meta
+  name="description"
+  content="Explore electrical, solar, inverter, wiring, lighting and repair projects completed by Danny Smart Power."
+>
 
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(56,189,248,.16),
-          transparent 35%
-        ),
-        linear-gradient(
-          135deg,
-          #111c30,
-          #0b1324
-        );
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-      border-radius: 25px;
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
-      padding: 30px 24px;
+<style>
 
-      margin-bottom: 22px;
-    }
+/* =====================================================
+   RESET
+===================================================== */
 
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-      color: var(--blue);
+:root{
 
-      background: rgba(56,189,248,.09);
+  --bg:#0f172a;
+  --header:#020617;
 
-      border:
-        1px solid rgba(56,189,248,.18);
+  --card:#111c30;
+  --card2:#162238;
 
-      border-radius: 50px;
+  --border:#24344d;
 
-      padding: 6px 11px;
+  --text:#f8fafc;
+  --muted:#94a3b8;
 
-      font-size: 10px;
+  --blue:#38bdf8;
+  --blue2:#0ea5e9;
 
-      font-weight: 700;
+  --green:#22c55e;
+  --red:#ef4444;
 
-      margin-bottom: 13px;
-    }
+  --gold:#f59e0b;
+}
 
-    .hero h1 {
-      font-size: clamp(25px, 5vw, 40px);
-      line-height: 1.15;
-      margin-bottom: 10px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    .hero p {
-      max-width: 690px;
+body{
 
-      color: var(--muted);
+  font-family:"Poppins",sans-serif;
 
-      font-size: 12px;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(56,189,248,.06),
+      transparent 35%
+    ),
+    var(--bg);
 
-      line-height: 1.8;
-    }
+  color:var(--text);
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
+  min-height:100vh;
+}
 
-    .primary-btn,
-    .secondary-btn {
-      border: none;
-      border-radius: 12px;
+body.modal-open{
+  overflow:hidden;
+}
 
-      padding: 12px 16px;
+button,
+input{
+  font-family:inherit;
+}
 
-      font-size: 12px;
-      font-weight: 700;
+button{
+  cursor:pointer;
+}
 
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
-      gap: 7px;
-    }
+/* =====================================================
+   HEADER
+===================================================== */
 
-    .primary-btn {
-      background: var(--blue);
-      color: #020617;
-    }
+header{
 
-    .primary-btn:hover {
-      background: #7dd3fc;
-    }
+  height:70px;
 
-    .secondary-btn {
-      background: rgba(255,255,255,.06);
-      color: white;
+  background:rgba(2,6,23,.96);
 
-      border:
-        1px solid var(--border);
-    }
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-    .secondary-btn:hover {
-      background: rgba(255,255,255,.1);
-    }
+  padding:0 18px;
 
-    /* ================= TOOLBAR ================= */
+  position:sticky;
+  top:0;
 
-    .toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  z-index:2000;
 
-      gap: 12px;
+  border-bottom:
+    1px solid rgba(148,163,184,.12);
 
-      margin: 22px 0;
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.25);
 
-      flex-wrap: wrap;
-    }
+  backdrop-filter:blur(15px);
+}
 
-    .section-heading h2 {
-      font-size: 19px;
-    }
+.brand{
 
-    .section-heading p {
-      color: var(--muted);
-      font-size: 10px;
-      margin-top: 3px;
-    }
+  display:flex;
+  align-items:center;
 
-    .search-box {
-      width: min(300px, 100%);
-      position: relative;
-    }
+  gap:10px;
+}
 
-    .search-box span {
-      position: absolute;
+.brand-icon{
 
-      left: 13px;
-      top: 50%;
+  width:40px;
+  height:40px;
 
-      transform: translateY(-50%);
+  border-radius:12px;
 
-      color: var(--muted);
+  background:var(--blue);
 
-      font-size: 14px;
-    }
+  color:#020617;
 
-    .search-box input {
-      width: 100%;
-      height: 42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      border:
-        1px solid var(--border);
+  font-size:21px;
+  font-weight:800;
 
-      background: #111c30;
+  box-shadow:
+    0 5px 20px rgba(56,189,248,.2);
+}
 
-      color: white;
+.brand-text{
 
-      outline: none;
+  font-size:16px;
+  font-weight:800;
 
-      border-radius: 12px;
+  line-height:1.1;
+}
 
-      padding:
-        0 13px 0 38px;
+.brand-text small{
 
-      font-size: 11px;
-    }
+  display:block;
 
-    .search-box input:focus {
-      border-color: var(--blue);
-    }
+  color:var(--muted);
 
-    /* ================= FILTERS ================= */
+  font-size:8px;
 
-    .filters {
-      display: flex;
+  font-weight:500;
 
-      gap: 8px;
+  letter-spacing:.7px;
 
-      overflow-x: auto;
+  margin-top:4px;
+}
 
-      padding-bottom: 3px;
+.header-actions{
 
-      scrollbar-width: none;
+  display:flex;
+  align-items:center;
 
-      margin-bottom: 20px;
-    }
+  gap:5px;
+}
 
-    .filters::-webkit-scrollbar {
-      display: none;
-    }
+.icon-btn{
 
-    .filter-btn {
-      flex: 0 0 auto;
+  width:43px;
+  height:43px;
 
-      border:
-        1px solid var(--border);
+  border:none;
 
-      background: #111c30;
+  border-radius:50%;
 
-      color: var(--muted);
+  background:transparent;
 
-      border-radius: 50px;
+  color:white;
 
-      padding: 8px 14px;
+  font-size:21px;
 
-      font-size: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      font-weight: 600;
-    }
+  position:relative;
+}
 
-    .filter-btn.active,
-    .filter-btn:hover {
-      background: rgba(56,189,248,.1);
+.icon-btn:hover{
 
-      color: var(--blue);
+  background:
+    rgba(255,255,255,.08);
+}
 
-      border-color:
-        rgba(56,189,248,.4);
-    }
+.notification-dot{
 
-    /* ================= PROJECT GRID ================= */
+  display:none;
 
-    .project-grid {
-      display: grid;
+  position:absolute;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+  width:8px;
+  height:8px;
 
-      gap: 16px;
-    }
+  background:var(--red);
 
-    .project-card {
-      background: var(--card);
+  border:
+    2px solid var(--header);
 
-      border:
-        1px solid var(--border);
+  border-radius:50%;
 
-      border-radius: 18px;
+  top:7px;
+  right:7px;
+}
 
-      overflow: hidden;
+/* =====================================================
+   MENU
+===================================================== */
 
-      transition: .22s ease;
+.menu{
 
-      cursor: pointer;
+  position:fixed;
 
-      position: relative;
-    }
+  top:76px;
+  right:12px;
 
-    .project-card:hover {
-      transform: translateY(-4px);
+  width:275px;
 
-      border-color:
-        rgba(56,189,248,.4);
+  background:
+    linear-gradient(
+      145deg,
+      #0b1729,
+      #07111f
+    );
 
-      box-shadow:
-        0 15px 35px rgba(0,0,0,.22);
-    }
+  color:#f8fafc;
 
-    .media-wrapper {
-      height: 210px;
+  border-radius:20px;
 
-      background: #020617;
+  padding:10px;
 
-      position: relative;
+  z-index:3000;
 
-      overflow: hidden;
-    }
+  display:none;
 
-    .project-media {
-      width: 100%;
-      height: 100%;
+  border:
+    1px solid rgba(56,189,248,.18);
 
-      object-fit: cover;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.55);
 
-      display: block;
-    }
+  backdrop-filter:blur(18px);
+}
 
-    .media-gradient {
-      position: absolute;
+.menu.active{
 
-      inset: 0;
+  display:block;
 
-      background:
-        linear-gradient(
-          to top,
-          rgba(2,6,23,.65),
-          transparent 45%
-        );
+  animation:
+    menuIn .18s ease;
+}
 
-      pointer-events: none;
-    }
+@keyframes menuIn{
 
-    .media-type {
-      position: absolute;
+  from{
+    opacity:0;
+    transform:translateY(-8px) scale(.98);
+  }
 
-      top: 10px;
-      left: 10px;
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
 
-      background:
-        rgba(2,6,23,.75);
+.menu-profile{
 
-      backdrop-filter: blur(7px);
+  display:flex;
+  align-items:center;
 
-      color: white;
+  gap:11px;
 
-      border-radius: 50px;
+  padding:12px;
 
-      padding: 6px 9px;
+  border-bottom:
+    1px solid rgba(148,163,184,.12);
 
-      font-size: 9px;
+  margin-bottom:6px;
+}
 
-      font-weight: 600;
-    }
+.menu-avatar{
 
-    .featured-badge {
-      position: absolute;
+  width:45px;
+  height:45px;
 
-      top: 10px;
-      right: 10px;
+  border-radius:50%;
 
-      background: #f59e0b;
+  object-fit:cover;
 
-      color: #111827;
+  background:#020617;
 
-      border-radius: 50px;
+  border:
+    2px solid rgba(56,189,248,.35);
+}
 
-      padding: 6px 9px;
+.menu-name{
 
-      font-size: 9px;
+  font-size:13px;
+  font-weight:700;
+}
 
-      font-weight: 800;
-    }
+.menu-email{
 
-    .play-icon {
-      position: absolute;
+  color:var(--muted);
 
-      left: 50%;
-      top: 50%;
+  font-size:9px;
 
-      transform:
-        translate(-50%, -50%);
+  word-break:break-all;
 
-      width: 50px;
-      height: 50px;
+  margin-top:2px;
+}
 
-      border-radius: 50%;
+.menu a,
+.menu button{
 
-      background:
-        rgba(2,6,23,.72);
+  width:100%;
 
-      border:
-        1px solid rgba(255,255,255,.25);
+  border:none;
 
-      display: flex;
+  background:transparent;
 
-      align-items: center;
-      justify-content: center;
+  color:#dbeafe;
 
-      font-size: 18px;
+  display:flex;
+  align-items:center;
 
-      backdrop-filter: blur(5px);
+  gap:12px;
 
-      pointer-events: none;
-    }
+  padding:12px;
 
-    .project-info {
-      padding: 15px;
-    }
+  border-radius:12px;
 
-    .project-category {
-      display: inline-block;
+  font-size:12px;
 
-      color: var(--blue);
+  text-align:left;
 
-      font-size: 9px;
+  transition:.2s;
+}
 
-      font-weight: 700;
+.menu a:hover,
+.menu button:hover{
 
-      margin-bottom: 6px;
-    }
+  background:
+    rgba(56,189,248,.09);
 
-    .project-info h3 {
-      font-size: 14px;
+  color:var(--blue);
 
-      margin-bottom: 6px;
+  transform:translateX(2px);
+}
 
-      white-space: nowrap;
+.menu button:last-child{
 
-      overflow: hidden;
+  margin-top:5px;
 
-      text-overflow: ellipsis;
-    }
+  border-top:
+    1px solid rgba(148,163,184,.10);
 
-    .project-info p {
-      color: var(--muted);
+  color:#fca5a5;
+}
 
-      font-size: 10px;
+/* =====================================================
+   PAGE
+===================================================== */
 
-      line-height: 1.65;
+.page{
 
-      display: -webkit-box;
+  width:min(1180px,100%);
 
-      -webkit-line-clamp: 2;
+  margin:auto;
 
-      -webkit-box-orient: vertical;
+  padding:
+    28px 16px 70px;
+}
 
-      overflow: hidden;
-    }
+/* =====================================================
+   HERO
+===================================================== */
 
-    .project-footer {
-      margin-top: 12px;
+.hero{
 
-      padding-top: 11px;
+  position:relative;
 
-      border-top:
-        1px solid rgba(148,163,184,.1);
+  overflow:hidden;
 
-      display: flex;
+  border:
+    1px solid var(--border);
 
-      justify-content: space-between;
+  background:
 
-      align-items: center;
-    }
+    radial-gradient(
+      circle at top right,
+      rgba(56,189,248,.16),
+      transparent 35%
+    ),
 
-    .view-work {
-      color: var(--blue);
+    linear-gradient(
+      135deg,
+      #111c30,
+      #0b1324
+    );
 
-      font-size: 10px;
+  border-radius:25px;
 
-      font-weight: 700;
-    }
+  padding:30px 24px;
 
-    .arrow {
-      color: var(--muted);
-    }
+  margin-bottom:24px;
+}
 
-    /* ================= EMPTY / LOADING ================= */
+.hero-label{
 
-    .state {
-      grid-column: 1 / -1;
+  display:inline-flex;
 
-      text-align: center;
+  align-items:center;
 
-      padding: 55px 20px;
+  gap:7px;
 
-      border:
-        1px dashed var(--border);
+  color:var(--blue);
 
-      border-radius: 18px;
+  background:
+    rgba(56,189,248,.09);
 
-      background:
-        rgba(17,28,48,.5);
-    }
+  border:
+    1px solid rgba(56,189,248,.18);
 
-    .state-icon {
-      font-size: 35px;
+  border-radius:50px;
 
-      margin-bottom: 10px;
-    }
+  padding:6px 11px;
 
-    .state h3 {
-      font-size: 15px;
+  font-size:10px;
 
-      margin-bottom: 6px;
-    }
+  font-weight:700;
 
-    .state p {
-      color: var(--muted);
+  margin-bottom:13px;
+}
 
-      font-size: 11px;
+.hero h1{
 
-      line-height: 1.7;
-    }
+  font-size:
+    clamp(25px,5vw,40px);
 
-    .loader {
-      width: 35px;
-      height: 35px;
+  line-height:1.15;
 
-      border:
-        3px solid var(--border);
+  margin-bottom:10px;
+}
 
-      border-top-color:
-        var(--blue);
+.hero p{
 
-      border-radius: 50%;
+  max-width:690px;
 
-      animation:
-        spin .8s linear infinite;
+  color:var(--muted);
 
-      margin:
-        0 auto 12px;
-    }
+  font-size:12px;
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+  line-height:1.8;
+}
 
-    /* ================= MODAL ================= */
+.hero-actions{
 
-    .modal {
-      position: fixed;
+  display:flex;
 
-      inset: 0;
+  flex-wrap:wrap;
 
-      background:
-        rgba(2,6,23,.86);
+  gap:10px;
 
-      backdrop-filter: blur(8px);
+  margin-top:20px;
+}
 
-      z-index: 5000;
+.primary-btn,
+.secondary-btn{
 
-      display: none;
+  border:none;
 
-      align-items: center;
+  border-radius:12px;
 
-      justify-content: center;
+  padding:12px 16px;
 
-      padding: 18px;
-    }
+  font-size:12px;
 
-    .modal.active {
-      display: flex;
-    }
+  font-weight:700;
 
-    .modal-card {
-      width: min(850px, 100%);
+  display:inline-flex;
 
-      max-height: 92vh;
+  align-items:center;
 
-      overflow-y: auto;
+  justify-content:center;
 
-      background: #0f172a;
+  gap:7px;
+}
 
-      border:
-        1px solid var(--border);
+.primary-btn{
 
-      border-radius: 22px;
+  background:var(--blue);
 
-      box-shadow:
-        0 30px 80px rgba(0,0,0,.5);
+  color:#020617;
+}
 
-      animation:
-        modalIn .2s ease;
+.primary-btn:hover{
 
-      position: relative;
-    }
+  background:#7dd3fc;
+}
 
-    @keyframes modalIn {
+.secondary-btn{
 
-      from {
-        opacity: 0;
-        transform: scale(.96);
-      }
+  background:
+    rgba(255,255,255,.06);
 
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+  color:white;
 
-    }
+  border:
+    1px solid var(--border);
+}
 
-    .modal-media {
-      width: 100%;
+/* =====================================================
+   TOOLBAR
+===================================================== */
 
-      max-height: 480px;
+.toolbar{
 
-      background: #020617;
+  display:flex;
 
-      display: block;
+  align-items:center;
 
-      object-fit: contain;
-    }
+  justify-content:space-between;
 
-    .modal-content {
-      padding: 20px;
-    }
+  gap:12px;
 
-    .modal-category {
-      color: var(--blue);
+  margin:22px 0;
 
-      font-size: 10px;
+  flex-wrap:wrap;
+}
 
-      font-weight: 700;
+.section-heading h2{
 
-      text-transform: uppercase;
-    }
+  font-size:19px;
+}
 
-    .modal-content h2 {
-      font-size: 21px;
+.section-heading p{
 
-      margin:
-        6px 0 9px;
-    }
+  color:var(--muted);
 
-    .modal-description {
-      color: var(--muted);
+  font-size:10px;
 
-      font-size: 12px;
+  margin-top:3px;
+}
 
-      line-height: 1.8;
+.search-box{
 
-      white-space: pre-line;
-    }
+  width:min(300px,100%);
 
-    .modal-actions {
-      display: grid;
+  position:relative;
+}
 
-      grid-template-columns:
-        1fr 1fr;
+.search-box span{
 
-      gap: 10px;
+  position:absolute;
 
-      margin-top: 20px;
-    }
+  left:13px;
+  top:50%;
 
-    .chat-btn,
-    .request-btn {
-      border: none;
+  transform:translateY(-50%);
 
-      border-radius: 12px;
+  color:var(--muted);
 
-      padding: 13px;
+  font-size:14px;
+}
 
-      font-size: 12px;
+.search-box input{
 
-      font-weight: 700;
-    }
+  width:100%;
 
-    .chat-btn {
-      background: #22c55e;
+  height:42px;
 
-      color: white;
-    }
+  border:
+    1px solid var(--border);
 
-    .request-btn {
-      background: var(--blue);
+  background:#111c30;
 
-      color: #020617;
-    }
+  color:white;
 
-    .close-modal {
-      position: absolute;
+  outline:none;
 
-      top: 15px;
-      right: 15px;
+  border-radius:12px;
 
-      width: 39px;
-      height: 39px;
+  padding:
+    0 13px 0 38px;
 
-      border: none;
+  font-size:11px;
+}
 
-      border-radius: 50%;
+.search-box input:focus{
 
-      background:
-        rgba(2,6,23,.75);
+  border-color:var(--blue);
+}
 
-      color: white;
+/* =====================================================
+   FILTERS
+===================================================== */
 
-      font-size: 20px;
+.filters{
 
-      z-index: 10;
-    }
+  display:flex;
 
-    .close-modal:hover {
-      background:
-        rgba(239,68,68,.8);
-    }
+  gap:8px;
 
-    /* ================= TOAST ================= */
+  overflow-x:auto;
 
-    .toast {
-      position: fixed;
+  padding-bottom:4px;
 
-      left: 50%;
+  scrollbar-width:none;
 
-      bottom: 20px;
+  margin-bottom:20px;
+}
 
-      transform:
-        translate(-50%, 100px);
+.filters::-webkit-scrollbar{
+  display:none;
+}
 
-      opacity: 0;
+.filter-btn{
 
-      background: #020617;
+  flex:0 0 auto;
 
-      color: white;
+  border:
+    1px solid var(--border);
 
-      padding: 11px 16px;
+  background:#111c30;
 
-      border-radius: 12px;
+  color:var(--muted);
 
-      font-size: 11px;
+  border-radius:50px;
 
-      z-index: 7000;
+  padding:8px 14px;
 
-      transition: .3s;
+  font-size:10px;
 
-      max-width:
-        calc(100% - 30px);
+  font-weight:600;
+}
 
-      text-align: center;
+.filter-btn.active,
+.filter-btn:hover{
 
-      border:
-        1px solid var(--border);
-    }
+  background:
+    rgba(56,189,248,.1);
 
-    .toast.show {
-      transform:
-        translate(-50%, 0);
+  color:var(--blue);
 
-      opacity: 1;
-    }
+  border-color:
+    rgba(56,189,248,.4);
+}
 
-    /* ================= RESPONSIVE ================= */
+/* =====================================================
+   PROJECT GRID
+===================================================== */
 
-    @media (max-width: 900px) {
+.project-grid{
 
-      .project-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
+  display:grid;
 
-    }
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
 
-    @media (max-width: 600px) {
+  gap:16px;
+}
 
-      header {
-        height: 64px;
-      }
+/* =====================================================
+   PROJECT CARD
+===================================================== */
 
-      .brand-text {
-        font-size: 14px;
-      }
+.project-card{
 
-      .brand-text small {
-        font-size: 7px;
-      }
+  background:var(--card);
 
-      .page {
-        padding:
-          18px 12px 55px;
-      }
+  border:
+    1px solid var(--border);
 
-      .hero {
-        padding:
-          23px 18px;
+  border-radius:18px;
 
-        border-radius: 19px;
-      }
+  overflow:hidden;
 
-      .hero h1 {
-        font-size: 24px;
-      }
+  transition:.22s ease;
 
-      .hero p {
-        font-size: 11px;
-      }
+  position:relative;
+}
 
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
+.project-card:hover{
 
-      .media-wrapper {
-        height: 230px;
-      }
+  transform:translateY(-4px);
 
-      .toolbar {
-        align-items: stretch;
-      }
+  border-color:
+    rgba(56,189,248,.4);
 
-      .search-box {
-        width: 100%;
-      }
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.22);
+}
 
-      .modal-actions {
-        grid-template-columns: 1fr;
-      }
+/* =====================================================
+   MEDIA
+===================================================== */
 
-      .menu {
-        top: 69px;
+.media-wrapper{
 
-        right: 8px;
+  height:250px;
 
-        width:
-          calc(100% - 16px);
+  background:#020617;
 
-        max-width: 310px;
-      }
+  position:relative;
 
-    }
+  overflow:hidden;
 
-  </style>
+  cursor:pointer;
+}
+
+.project-media{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:#020617;
+}
+
+video.project-media{
+
+  object-fit:cover;
+}
+
+.media-gradient{
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(2,6,23,.75),
+      transparent 45%
+    );
+
+  pointer-events:none;
+}
+
+.media-type{
+
+  position:absolute;
+
+  top:10px;
+  left:10px;
+
+  background:
+    rgba(2,6,23,.78);
+
+  backdrop-filter:blur(7px);
+
+  color:white;
+
+  border-radius:50px;
+
+  padding:6px 9px;
+
+  font-size:9px;
+
+  font-weight:600;
+
+  z-index:3;
+}
+
+.featured-badge{
+
+  position:absolute;
+
+  top:10px;
+  right:10px;
+
+  background:var(--gold);
+
+  color:#111827;
+
+  border-radius:50px;
+
+  padding:6px 9px;
+
+  font-size:9px;
+
+  font-weight:800;
+
+  z-index:3;
+}
+
+.play-icon{
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  width:55px;
+  height:55px;
+
+  border-radius:50%;
+
+  background:
+    rgba(2,6,23,.78);
+
+  border:
+    1px solid rgba(255,255,255,.3);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:19px;
+
+  backdrop-filter:blur(6px);
+
+  pointer-events:none;
+
+  z-index:4;
+}
+
+.video-duration{
+
+  position:absolute;
+
+  right:10px;
+  bottom:10px;
+
+  background:
+    rgba(2,6,23,.75);
+
+  color:white;
+
+  border-radius:7px;
+
+  padding:4px 7px;
+
+  font-size:8px;
+
+  z-index:4;
+}
+
+/* =====================================================
+   NOTIFICATION BUTTON ON CARD
+===================================================== */
+
+.project-notify{
+
+  position:absolute;
+
+  right:10px;
+  bottom:10px;
+
+  width:37px;
+  height:37px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:
+    rgba(2,6,23,.82);
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:16px;
+
+  z-index:10;
+
+  border:
+    1px solid rgba(255,255,255,.18);
+
+  backdrop-filter:blur(7px);
+
+  transition:.2s;
+}
+
+.project-notify:hover{
+
+  background:var(--blue);
+
+  color:#020617;
+
+  transform:scale(1.08);
+}
+
+.project-notify.saved{
+
+  background:var(--green);
+
+  color:white;
+}
+
+/* =====================================================
+   PROJECT INFO
+===================================================== */
+
+.project-info{
+
+  padding:15px;
+}
+
+.project-category{
+
+  display:inline-block;
+
+  color:var(--blue);
+
+  font-size:9px;
+
+  font-weight:700;
+
+  margin-bottom:6px;
+
+  text-transform:uppercase;
+}
+
+.project-info h3{
+
+  font-size:14px;
+
+  margin-bottom:6px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+.project-info p{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.65;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:2;
+
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+}
+
+.project-footer{
+
+  margin-top:12px;
+
+  padding-top:11px;
+
+  border-top:
+    1px solid rgba(148,163,184,.1);
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+}
+
+.view-work{
+
+  color:var(--blue);
+
+  font-size:10px;
+
+  font-weight:700;
+}
+
+.arrow{
+
+  color:var(--muted);
+}
+
+/* =====================================================
+   EMPTY / LOADING
+===================================================== */
+
+.state{
+
+  grid-column:1 / -1;
+
+  text-align:center;
+
+  padding:55px 20px;
+
+  border:
+    1px dashed var(--border);
+
+  border-radius:18px;
+
+  background:
+    rgba(17,28,48,.5);
+}
+
+.state-icon{
+
+  font-size:35px;
+
+  margin-bottom:10px;
+}
+
+.state h3{
+
+  font-size:15px;
+
+  margin-bottom:6px;
+}
+
+.state p{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.7;
+}
+
+.loader{
+
+  width:35px;
+  height:35px;
+
+  border:
+    3px solid var(--border);
+
+  border-top-color:var(--blue);
+
+  border-radius:50%;
+
+  animation:
+    spin .8s linear infinite;
+
+  margin:
+    0 auto 12px;
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(2,6,23,.9);
+
+  backdrop-filter:blur(8px);
+
+  z-index:5000;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:15px;
+}
+
+.modal.active{
+
+  display:flex;
+}
+
+.modal-card{
+
+  width:min(850px,100%);
+
+  max-height:94vh;
+
+  overflow-y:auto;
+
+  background:#0f172a;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:22px;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.6);
+
+  animation:
+    modalIn .2s ease;
+
+  position:relative;
+}
+
+@keyframes modalIn{
+
+  from{
+    opacity:0;
+    transform:scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* =====================================================
+   MODAL MEDIA
+===================================================== */
+
+.modal-media{
+
+  width:100%;
+
+  max-height:500px;
+
+  min-height:250px;
+
+  background:#020617;
+
+  display:block;
+
+  object-fit:contain;
+}
+
+.modal-content{
+
+  padding:20px;
+}
+
+.modal-category{
+
+  color:var(--blue);
+
+  font-size:10px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+}
+
+.modal-content h2{
+
+  font-size:22px;
+
+  margin:
+    6px 0 9px;
+}
+
+.modal-description{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.8;
+
+  white-space:pre-line;
+}
+
+/* =====================================================
+   PROJECT META
+===================================================== */
+
+.project-meta{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:15px;
+}
+
+.meta-item{
+
+  background:
+    rgba(255,255,255,.05);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:9px;
+
+  padding:7px 9px;
+
+  font-size:9px;
+
+  color:var(--muted);
+}
+
+/* =====================================================
+   MODAL ACTIONS
+===================================================== */
+
+.modal-actions{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.chat-btn,
+.request-btn{
+
+  border:none;
+
+  border-radius:12px;
+
+  padding:13px;
+
+  font-size:12px;
+
+  font-weight:700;
+}
+
+.chat-btn{
+
+  background:var(--green);
+
+  color:white;
+}
+
+.request-btn{
+
+  background:var(--blue);
+
+  color:#020617;
+}
+
+.request-btn:hover{
+
+  background:#7dd3fc;
+}
+
+.chat-btn:hover{
+
+  background:#16a34a;
+}
+
+.request-btn.disabled{
+
+  opacity:.5;
+
+  cursor:not-allowed;
+}
+
+/* =====================================================
+   CLOSE
+===================================================== */
+
+.close-modal{
+
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  width:39px;
+  height:39px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:
+    rgba(2,6,23,.8);
+
+  color:white;
+
+  font-size:20px;
+
+  z-index:20;
+}
+
+.close-modal:hover{
+
+  background:
+    rgba(239,68,68,.85);
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:20px;
+
+  transform:
+    translate(-50%,100px);
+
+  opacity:0;
+
+  background:#020617;
+
+  color:white;
+
+  padding:11px 16px;
+
+  border-radius:12px;
+
+  font-size:11px;
+
+  z-index:7000;
+
+  transition:.3s;
+
+  max-width:
+    calc(100% - 30px);
+
+  text-align:center;
+
+  border:
+    1px solid var(--border);
+}
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+  opacity:1;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:700px){
+
+  header{
+    height:64px;
+  }
+
+  .brand-text{
+    font-size:14px;
+  }
+
+  .brand-text small{
+    font-size:7px;
+  }
+
+  .page{
+
+    padding:
+      18px 12px 55px;
+  }
+
+  .hero{
+
+    padding:
+      23px 18px;
+
+    border-radius:19px;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .hero p{
+    font-size:11px;
+  }
+
+  /* KEEP TWO PER LINE */
+
+  .project-grid{
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    gap:9px;
+  }
+
+  .media-wrapper{
+    height:145px;
+  }
+
+  .project-info{
+    padding:10px;
+  }
+
+  .project-info h3{
+    font-size:11px;
+  }
+
+  .project-info p{
+    font-size:8px;
+  }
+
+  .project-category{
+    font-size:7px;
+  }
+
+  .view-work{
+    font-size:8px;
+  }
+
+  .project-notify{
+
+    width:32px;
+    height:32px;
+
+    font-size:13px;
+
+    right:7px;
+    bottom:7px;
+  }
+
+  .featured-badge,
+  .media-type{
+
+    font-size:7px;
+
+    padding:5px 7px;
+  }
+
+  .play-icon{
+
+    width:42px;
+    height:42px;
+
+    font-size:15px;
+  }
+
+  .modal-actions{
+
+    grid-template-columns:1fr;
+  }
+
+  .search-box{
+    width:100%;
+  }
+
+  .menu{
+
+    top:69px;
+
+    right:8px;
+
+    width:
+      calc(100% - 16px);
+
+    max-width:310px;
+  }
+}
+
+@media(max-width:380px){
+
+  .project-grid{
+    gap:7px;
+  }
+
+  .media-wrapper{
+    height:130px;
+  }
+
+  .project-info h3{
+    font-size:10px;
+  }
+
+  .project-info p{
+    font-size:7px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -1162,7 +1589,9 @@
 </header>
 
 
-<!-- ================= MENU ================= -->
+<!-- =====================================================
+     MENU
+===================================================== -->
 
 <div class="menu" id="menu">
 
@@ -1194,7 +1623,6 @@
     </div>
 
   </div>
-
 
   <a href="home.html">
     🏠
@@ -1244,11 +1672,13 @@
 </div>
 
 
-<!-- ================= PAGE ================= -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="page">
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
 
   <section class="hero">
 
@@ -1268,11 +1698,10 @@
 
     <p>
 
-      See real electrical, solar, inverter, wiring,
-      lighting and repair projects completed by
-      Danny Smart Power. Every project you see here
-      represents the type of professional work we can
-      help you with.
+      Explore some of our electrical, solar, inverter,
+      wiring, lighting and repair projects. Tap any
+      project to see more details or request the same
+      service from Danny Smart Power.
 
     </p>
 
@@ -1301,7 +1730,7 @@
   </section>
 
 
-  <!-- ================= TOOLBAR ================= -->
+  <!-- TOOLBAR -->
 
   <div class="toolbar">
 
@@ -1334,7 +1763,7 @@
   </div>
 
 
-  <!-- ================= FILTERS ================= -->
+  <!-- FILTERS -->
 
   <div class="filters">
 
@@ -1390,7 +1819,7 @@
   </div>
 
 
-  <!-- ================= PROJECT GRID ================= -->
+  <!-- PROJECTS -->
 
   <section
     class="project-grid"
@@ -1412,7 +1841,9 @@
 </main>
 
 
-<!-- ================= PROJECT MODAL ================= -->
+<!-- =====================================================
+     PROJECT MODAL
+===================================================== -->
 
 <div
   class="modal"
@@ -1439,13 +1870,18 @@
       ></div>
 
       <h2 id="modalTitle">
-        Project
+        Electrical Project
       </h2>
 
       <p
         class="modal-description"
         id="modalDescription"
       ></p>
+
+      <div
+        class="project-meta"
+        id="modalMeta"
+      ></div>
 
       <div class="modal-actions">
 
@@ -1460,7 +1896,7 @@
           class="request-btn"
           id="modalRequestBtn"
         >
-          ⚡ Request This Service
+          ⚡ Request for This Service
         </button>
 
       </div>
@@ -1472,7 +1908,7 @@
 </div>
 
 
-<!-- ================= TOAST ================= -->
+<!-- TOAST -->
 
 <div
   class="toast"
@@ -1480,7 +1916,9 @@
 ></div>
 
 
-<!-- ================= FIREBASE ================= -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -1491,261 +1929,278 @@
 
 <script>
 
-  /* ==========================================
-     FIREBASE
-  ========================================== */
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
-  const firebaseConfig = {
+const firebaseConfig = {
 
-    apiKey:
-      "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey:
+    "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
-    authDomain:
-      "danny-smart-power.firebaseapp.com",
+  authDomain:
+    "danny-smart-power.firebaseapp.com",
 
-    databaseURL:
-      "https://danny-smart-power-default-rtdb.firebaseio.com",
+  databaseURL:
+    "https://danny-smart-power-default-rtdb.firebaseio.com",
 
-    projectId:
-      "danny-smart-power",
+  projectId:
+    "danny-smart-power",
 
-    storageBucket:
-      "danny-smart-power.firebasestorage.app",
+  storageBucket:
+    "danny-smart-power.firebasestorage.app",
 
-    messagingSenderId:
-      "649735645158",
+  messagingSenderId:
+    "649735645158",
 
-    appId:
-      "1:649735645158:web:cff518b89721a163679827",
+  appId:
+    "1:649735645158:web:cff518b89721a163679827",
 
-    measurementId:
-      "G-258YKLP5ZS"
+  measurementId:
+    "G-258YKLP5ZS"
 
-  };
-
-
-  firebase.initializeApp(firebaseConfig);
-
-  const auth =
-    firebase.auth();
-
-  const db =
-    firebase.firestore();
+};
 
 
-  /* ==========================================
-     ELEMENTS
-  ========================================== */
+firebase.initializeApp(
+  firebaseConfig
+);
 
-  const menuBtn =
-    document.getElementById("menuBtn");
 
-  const menu =
-    document.getElementById("menu");
+const auth =
+  firebase.auth();
 
-  const projectGrid =
-    document.getElementById("projectGrid");
 
-  const searchInput =
-    document.getElementById("searchInput");
+const db =
+  firebase.firestore();
 
-  const projectCount =
-    document.getElementById("projectCount");
 
-  const projectModal =
-    document.getElementById("projectModal");
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-  const closeModal =
-    document.getElementById("closeModal");
+const menuBtn =
+  document.getElementById("menuBtn");
 
-  const modalMediaContainer =
+const menu =
+  document.getElementById("menu");
+
+const projectGrid =
+  document.getElementById("projectGrid");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const projectCount =
+  document.getElementById("projectCount");
+
+const projectModal =
+  document.getElementById("projectModal");
+
+const closeModal =
+  document.getElementById("closeModal");
+
+const modalMediaContainer =
+  document.getElementById(
+    "modalMediaContainer"
+  );
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalCategory =
+  document.getElementById("modalCategory");
+
+const modalDescription =
+  document.getElementById("modalDescription");
+
+const modalMeta =
+  document.getElementById("modalMeta");
+
+const modalChatBtn =
+  document.getElementById("modalChatBtn");
+
+const modalRequestBtn =
+  document.getElementById("modalRequestBtn");
+
+const toast =
+  document.getElementById("toast");
+
+const notificationDot =
+  document.getElementById("notificationDot");
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+let currentUser = null;
+
+
+/* =====================================================
+   AUTH
+===================================================== */
+
+auth.onAuthStateChanged(
+  async user => {
+
+    if(!user){
+
+      window.location.href =
+        "login.html";
+
+      return;
+    }
+
+
+    currentUser =
+      user;
+
+
+    const fallbackName =
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "Customer";
+
+
     document.getElementById(
-      "modalMediaContainer"
-    );
-
-  const modalTitle =
-    document.getElementById("modalTitle");
-
-  const modalCategory =
-    document.getElementById("modalCategory");
-
-  const modalDescription =
-    document.getElementById("modalDescription");
-
-  const modalChatBtn =
-    document.getElementById("modalChatBtn");
-
-  const modalRequestBtn =
-    document.getElementById("modalRequestBtn");
-
-  const toast =
-    document.getElementById("toast");
+      "menuName"
+    ).textContent =
+      fallbackName;
 
 
-  /* ==========================================
-     AUTHENTICATION
-  ========================================== */
-
-  let currentUser = null;
-
-  auth.onAuthStateChanged(
-    async user => {
-
-      if (!user) {
-
-        window.location.href =
-          "login.html";
-
-        return;
-
-      }
-
-      currentUser =
-        user;
+    document.getElementById(
+      "menuEmail"
+    ).textContent =
+      user.email || "";
 
 
-      const fallbackName =
-        user.displayName ||
-        user.email?.split("@")[0] ||
-        "Customer";
-
+    if(user.photoURL){
 
       document.getElementById(
-        "menuName"
-      ).textContent =
-        fallbackName;
+        "menuAvatar"
+      ).src =
+        user.photoURL;
+
+    }
 
 
-      document.getElementById(
-        "menuEmail"
-      ).textContent =
-        user.email || "";
+    try{
+
+      const profileSnap =
+        await db
+          .collection("profiles")
+          .doc(user.uid)
+          .get();
 
 
-      if (user.photoURL) {
+      if(profileSnap.exists){
 
-        document.getElementById(
-          "menuAvatar"
-        ).src =
-          user.photoURL;
-
-      }
+        const profile =
+          profileSnap.data();
 
 
-      /* ======================================
-         LOAD PROFILE
-      ====================================== */
+        if(profile.name){
 
-      try {
+          document.getElementById(
+            "menuName"
+          ).textContent =
+            profile.name;
 
-        const profileSnap =
-          await db
-            .collection("profiles")
-            .doc(user.uid)
-            .get();
+        }
 
 
-        if (profileSnap.exists) {
-
-          const profile =
-            profileSnap.data();
-
-
-          if (profile.name) {
-
-            document.getElementById(
-              "menuName"
-            ).textContent =
-              profile.name;
-
-          }
+        const photo =
+          profile.photoURL ||
+          profile.photo ||
+          "";
 
 
-          if (profile.photoURL) {
+        if(photo){
 
-            document.getElementById(
-              "menuAvatar"
-            ).src =
-              profile.photoURL;
-
-          }
-
-          else if (profile.photo) {
-
-            document.getElementById(
-              "menuAvatar"
-            ).src =
-              profile.photo;
-
-          }
+          document.getElementById(
+            "menuAvatar"
+          ).src =
+            photo;
 
         }
 
       }
 
-      catch (error) {
+    }
+    catch(error){
 
-        console.warn(
-          "Profile could not be loaded:",
-          error
-        );
-
-      }
+      console.warn(
+        "Profile loading error:",
+        error
+      );
 
     }
-  );
+
+  }
+);
 
 
-  /* ==========================================
-     MENU
-  ========================================== */
+/* =====================================================
+   MENU
+===================================================== */
 
-  menuBtn.addEventListener(
-    "click",
-    event => {
+menuBtn.addEventListener(
+  "click",
+  event => {
 
-      event.stopPropagation();
+    event.stopPropagation();
 
-      menu.classList.toggle(
+    menu.classList.toggle(
+      "active"
+    );
+
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if(
+      !menu.contains(event.target) &&
+      event.target !== menuBtn
+    ){
+
+      menu.classList.remove(
         "active"
       );
 
     }
+
+  }
+);
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer = null;
+
+
+function showToast(message){
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
   );
 
 
-  document.addEventListener(
-    "click",
-    event => {
-
-      if (
-        !menu.contains(event.target) &&
-        event.target !== menuBtn
-      ) {
-
-        menu.classList.remove(
-          "active"
-        );
-
-      }
-
-    }
+  clearTimeout(
+    toastTimer
   );
 
 
-  /* ==========================================
-     TOAST
-  ========================================== */
-
-  function showToast(message) {
-
-    toast.textContent =
-      message;
-
-    toast.classList.add(
-      "show"
-    );
-
+  toastTimer =
     setTimeout(
       () => {
 
@@ -1754,36 +2209,184 @@
         );
 
       },
-      3000
+      2800
     );
+
+}
+
+
+/* =====================================================
+   PROJECT DATA
+===================================================== */
+
+let allProjects = [];
+
+let activeCategory =
+  "All";
+
+
+let selectedProject =
+  null;
+
+
+/* =====================================================
+   MEDIA TYPE
+===================================================== */
+
+function getMediaType(project){
+
+  let type =
+    project.mediaType ||
+    project.medisType ||
+    "image";
+
+
+  type =
+    String(type)
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    type === "mp4" ||
+    type === "video/mp4" ||
+    type === "vid"
+  ){
+
+    return "video";
 
   }
 
 
-  /* ==========================================
-     PROJECT DATA
-  ========================================== */
+  return type === "video"
+    ? "video"
+    : "image";
 
-  let allProjects = [];
-
-  let activeCategory =
-    "All";
+}
 
 
-  /* ==========================================
-     LOAD PROJECTS
-  ========================================== */
+/* =====================================================
+   FEATURED
+   SUPPORT BOTH featured AND Featured
+===================================================== */
 
-  async function loadProjects() {
+function isFeatured(project){
+
+  return (
+    project.featured === true ||
+    project.Featured === true
+  );
+
+}
+
+
+/* =====================================================
+   LOAD PROJECTS
+===================================================== */
+
+async function loadProjects(){
+
+  projectGrid.innerHTML = `
+
+    <div class="state">
+
+      <div class="loader"></div>
+
+      <p>
+        Loading our electrical work...
+      </p>
+
+    </div>
+
+  `;
+
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("serviceProjects")
+        .where(
+          "published",
+          "==",
+          true
+        )
+        .get();
+
+
+    allProjects = [];
+
+
+    snapshot.forEach(
+      doc => {
+
+        allProjects.push({
+
+          id:doc.id,
+
+          ...doc.data()
+
+        });
+
+      }
+    );
+
+
+    /* SORT NEWEST FIRST */
+
+    allProjects.sort(
+      (a,b) => {
+
+        const aTime =
+          a.createdAt &&
+          typeof a.createdAt.toMillis ===
+            "function"
+            ? a.createdAt.toMillis()
+            : 0;
+
+
+        const bTime =
+          b.createdAt &&
+          typeof b.createdAt.toMillis ===
+            "function"
+            ? b.createdAt.toMillis()
+            : 0;
+
+
+        return bTime - aTime;
+
+      }
+    );
+
+
+    updateNotificationDot();
+
+    renderProjects();
+
+  }
+  catch(error){
+
+    console.error(
+      "Project loading error:",
+      error
+    );
+
 
     projectGrid.innerHTML = `
 
       <div class="state">
 
-        <div class="loader"></div>
+        <div class="state-icon">
+          ⚠️
+        </div>
+
+        <h3>
+          We couldn't load the projects
+        </h3>
 
         <p>
-          Loading our electrical work...
+          Please check your internet connection
+          and try again.
         </p>
 
       </div>
@@ -1791,1117 +2394,1398 @@
     `;
 
 
-    try {
-
-      const snapshot =
-        await db
-          .collection(
-            "serviceProjects"
-          )
-          .where(
-            "published",
-            "==",
-            true
-          )
-          .get();
-
-
-      allProjects = [];
-
-
-      snapshot.forEach(
-        doc => {
-
-          allProjects.push({
-
-            id: doc.id,
-
-            ...doc.data()
-
-          });
-
-        }
-      );
-
-
-      /* ======================================
-         SORT NEWEST FIRST
-      ====================================== */
-
-      allProjects.sort(
-        (a, b) => {
-
-          const dateA =
-            a.createdAt?.toMillis
-              ? a.createdAt.toMillis()
-              : 0;
-
-
-          const dateB =
-            b.createdAt?.toMillis
-              ? b.createdAt.toMillis()
-              : 0;
-
-
-          return dateB - dateA;
-
-        }
-      );
-
-
-      renderProjects();
-
-    }
-
-    catch (error) {
-
-      console.error(
-        "Could not load service projects:",
-        error
-      );
-
-
-      projectGrid.innerHTML = `
-
-        <div class="state">
-
-          <div class="state-icon">
-            ⚠️
-          </div>
-
-          <h3>
-            We couldn't load the projects
-          </h3>
-
-          <p>
-            Please check your internet connection
-            and try again.
-          </p>
-
-        </div>
-
-      `;
-
-
-      projectCount.textContent =
-        "Unable to load projects";
-
-    }
+    projectCount.textContent =
+      "Unable to load projects";
 
   }
 
-
-  /* ==========================================
-     RENDER PROJECTS
-  ========================================== */
-
-  function renderProjects() {
-
-    const search =
-      searchInput.value
-        .trim()
-        .toLowerCase();
+}
 
 
-    const filtered =
-      allProjects.filter(
-        project => {
+/* =====================================================
+   RENDER PROJECTS
+===================================================== */
 
-          const category =
-            String(
-              project.category || ""
-            ).toLowerCase();
+function renderProjects(){
 
-
-          const title =
-            String(
-              project.title || ""
-            ).toLowerCase();
+  const search =
+    searchInput.value
+      .trim()
+      .toLowerCase();
 
 
-          const description =
-            String(
-              project.description || ""
-            ).toLowerCase();
-
-
-          const categoryMatch =
-            activeCategory === "All" ||
-            category.includes(
-              activeCategory.toLowerCase()
-            );
-
-
-          const searchMatch =
-            !search ||
-            title.includes(search) ||
-            description.includes(search) ||
-            category.includes(search);
-
-
-          return (
-            categoryMatch &&
-            searchMatch
-          );
-
-        }
-      );
-
-
-    projectCount.textContent =
-      `${filtered.length} ${
-        filtered.length === 1
-          ? "project"
-          : "projects"
-      } available`;
-
-
-    if (!filtered.length) {
-
-      projectGrid.innerHTML = `
-
-        <div class="state">
-
-          <div class="state-icon">
-            🔍
-          </div>
-
-          <h3>
-            No matching work found
-          </h3>
-
-          <p>
-            Try another search or choose
-            a different category.
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-
-    projectGrid.innerHTML =
-      "";
-
-
-    filtered.forEach(
+  const filtered =
+    allProjects.filter(
       project => {
 
-        const card =
-          createProjectCard(
-            project
+        const category =
+          String(
+            project.category || ""
+          ).toLowerCase();
+
+
+        const title =
+          String(
+            project.title || ""
+          ).toLowerCase();
+
+
+        const description =
+          String(
+            project.description || ""
+          ).toLowerCase();
+
+
+        const categoryMatch =
+          activeCategory === "All" ||
+          category.includes(
+            activeCategory.toLowerCase()
           );
 
-        projectGrid.appendChild(
-          card
+
+        const searchMatch =
+          !search ||
+          title.includes(search) ||
+          description.includes(search) ||
+          category.includes(search);
+
+
+        return (
+          categoryMatch &&
+          searchMatch
         );
 
       }
     );
 
-  }
+
+  projectCount.textContent =
+    `${filtered.length} ${
+      filtered.length === 1
+        ? "project"
+        : "projects"
+    } available`;
 
 
-  /* ==========================================
-     CREATE PROJECT CARD
-  ========================================== */
+  if(!filtered.length){
 
-  function createProjectCard(
-    project
-  ) {
+    projectGrid.innerHTML = `
 
-    const card =
-      document.createElement(
-        "article"
-      );
+      <div class="state">
 
-    card.className =
-      "project-card";
-
-
-    const mediaWrapper =
-      document.createElement(
-        "div"
-      );
-
-    mediaWrapper.className =
-      "media-wrapper";
-
-
-    /* ======================================
-       IMPORTANT:
-       USE mediaType
-       ====================================== */
-
-    const mediaType =
-      String(
-        project.mediaType || "image"
-      )
-        .trim()
-        .toLowerCase();
-
-
-    const mediaUrl =
-      String(
-        project.mediaUrl || ""
-      ).trim();
-
-
-    /* ======================================
-       NO MEDIA
-    ====================================== */
-
-    if (!mediaUrl) {
-
-      mediaWrapper.innerHTML = `
-
-        <div
-          style="
-            width:100%;
-            height:100%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:40px;
-            color:#38bdf8;
-          "
-        >
-
-          ⚡
-
+        <div class="state-icon">
+          🔍
         </div>
 
-      `;
-
-    }
-
-
-    /* ======================================
-       VIDEO
-    ====================================== */
-
-    else if (
-      mediaType === "video"
-    ) {
-
-      const video =
-        document.createElement(
-          "video"
-        );
-
-
-      video.className =
-        "project-media";
-
-
-      video.src =
-        mediaUrl;
-
-
-      video.muted =
-        true;
-
-
-      video.loop =
-        true;
-
-
-      video.playsInline =
-        true;
-
-
-      video.preload =
-        "metadata";
-
-
-      video.setAttribute(
-        "aria-label",
-        project.title ||
-        "Project video"
-      );
-
-
-      /* ==================================
-         THUMBNAIL
-      ================================== */
-
-      if (
-        project.thumbnailUrl
-      ) {
-
-        video.poster =
-          project.thumbnailUrl;
-
-      }
-
-
-      /* ==================================
-         VIDEO ERROR
-      ================================== */
-
-      video.onerror =
-        () => {
-
-          video.style.display =
-            "none";
-
-
-          mediaWrapper.insertAdjacentHTML(
-            "beforeend",
-            `
-
-              <div
-                style="
-                  width:100%;
-                  height:100%;
-                  display:flex;
-                  align-items:center;
-                  justify-content:center;
-                  flex-direction:column;
-                  gap:8px;
-                  color:#38bdf8;
-                  font-size:13px;
-                  text-align:center;
-                  padding:15px;
-                "
-              >
-
-                <div style="font-size:40px;">
-                  ⚠️
-                </div>
-
-                <div>
-                  Video unavailable
-                </div>
-
-              </div>
-
-            `
-          );
-
-        };
-
-
-      mediaWrapper.appendChild(
-        video
-      );
-
-
-      const play =
-        document.createElement(
-          "div"
-        );
-
-
-      play.className =
-        "play-icon";
-
-
-      play.textContent =
-        "▶";
-
-
-      mediaWrapper.appendChild(
-        play
-      );
-
-    }
-
-
-    /* ======================================
-       IMAGE
-    ====================================== */
-
-    else {
-
-      const image =
-        document.createElement(
-          "img"
-        );
-
-
-      image.className =
-        "project-media";
-
-
-      image.src =
-        mediaUrl;
-
-
-      image.alt =
-        project.title ||
-        "Danny Smart Power project";
-
-
-      image.loading =
-        "lazy";
-
-
-      image.onerror =
-        () => {
-
-          image.style.display =
-            "none";
-
-
-          mediaWrapper.insertAdjacentHTML(
-            "beforeend",
-            `
-
-              <div
-                style="
-                  width:100%;
-                  height:100%;
-                  display:flex;
-                  align-items:center;
-                  justify-content:center;
-                  font-size:40px;
-                  color:#38bdf8;
-                "
-              >
-                ⚡
-              </div>
-
-            `
-          );
-
-        };
-
-
-      mediaWrapper.appendChild(
-        image
-      );
-
-    }
-
-
-    /* ======================================
-       MEDIA GRADIENT
-    ====================================== */
-
-    const gradient =
-      document.createElement(
-        "div"
-      );
-
-
-    gradient.className =
-      "media-gradient";
-
-
-    mediaWrapper.appendChild(
-      gradient
-    );
-
-
-    /* ======================================
-       MEDIA TYPE BADGE
-    ====================================== */
-
-    const typeBadge =
-      document.createElement(
-        "div"
-      );
-
-
-    typeBadge.className =
-      "media-type";
-
-
-    typeBadge.textContent =
-      mediaType === "video"
-        ? "🎥 Video"
-        : "📷 Photo";
-
-
-    mediaWrapper.appendChild(
-      typeBadge
-    );
-
-
-    /* ======================================
-       FEATURED
-    ====================================== */
-
-    if (
-      project.featured === true
-    ) {
-
-      const featured =
-        document.createElement(
-          "div"
-        );
-
-
-      featured.className =
-        "featured-badge";
-
-
-      featured.textContent =
-        "★ Featured";
-
-
-      mediaWrapper.appendChild(
-        featured
-      );
-
-    }
-
-
-    /* ======================================
-       PROJECT INFO
-    ====================================== */
-
-    const info =
-      document.createElement(
-        "div"
-      );
-
-
-    info.className =
-      "project-info";
-
-
-    const category =
-      document.createElement(
-        "div"
-      );
-
-
-    category.className =
-      "project-category";
-
-
-    category.textContent =
-      project.category ||
-      "Electrical";
-
-
-    info.appendChild(
-      category
-    );
-
-
-    const title =
-      document.createElement(
-        "h3"
-      );
-
-
-    title.textContent =
-      project.title ||
-      "Electrical Project";
-
-
-    info.appendChild(
-      title
-    );
-
-
-    const description =
-      document.createElement(
-        "p"
-      );
-
-
-    description.textContent =
-      project.description ||
-      "Professional electrical work completed by Danny Smart Power.";
-
-
-    info.appendChild(
-      description
-    );
-
-
-    const footer =
-      document.createElement(
-        "div"
-      );
-
-
-    footer.className =
-      "project-footer";
-
-
-    footer.innerHTML = `
-
-      <span class="view-work">
-        View work →
-      </span>
-
-      <span class="arrow">
-        ↗
-      </span>
+        <h3>
+          No matching work found
+        </h3>
+
+        <p>
+          Try another search or choose
+          a different category.
+        </p>
+
+      </div>
 
     `;
 
-
-    info.appendChild(
-      footer
-    );
-
-
-    card.appendChild(
-      mediaWrapper
-    );
-
-
-    card.appendChild(
-      info
-    );
-
-
-    card.addEventListener(
-      "click",
-      () => {
-
-        openProject(
-          project
-        );
-
-      }
-    );
-
-
-    return card;
+    return;
 
   }
 
 
-  /* ==========================================
-     OPEN PROJECT
-  ========================================== */
-
-  function openProject(
-    project
-  ) {
-
-    modalTitle.textContent =
-      project.title ||
-      "Electrical Project";
+  projectGrid.innerHTML =
+    "";
 
 
-    modalCategory.textContent =
-      project.category ||
-      "Electrical";
+  filtered.forEach(
+    project => {
+
+      projectGrid.appendChild(
+        createProjectCard(project)
+      );
+
+    }
+  );
+
+}
 
 
-    modalDescription.textContent =
-      project.description ||
-      "Professional work completed by Danny Smart Power.";
+/* =====================================================
+   CREATE PROJECT CARD
+===================================================== */
+
+function createProjectCard(project){
+
+  const card =
+    document.createElement(
+      "article"
+    );
 
 
-    modalMediaContainer.innerHTML =
-      "";
+  card.className =
+    "project-card";
 
 
-    /* ======================================
-       IMPORTANT:
-       USE mediaType
-    ====================================== */
+  /* MEDIA */
 
-    const mediaType =
-      String(
-        project.mediaType || "image"
-      )
-        .trim()
-        .toLowerCase();
+  const mediaWrapper =
+    document.createElement(
+      "div"
+    );
 
 
-    const mediaUrl =
-      String(
-        project.mediaUrl || ""
-      ).trim();
+  mediaWrapper.className =
+    "media-wrapper";
 
 
-    if (mediaUrl) {
-
-      /* ====================================
-         VIDEO MODAL
-      ==================================== */
-
-      if (
-        mediaType === "video"
-      ) {
-
-        const video =
-          document.createElement(
-            "video"
-          );
+  const mediaType =
+    getMediaType(project);
 
 
-        video.className =
-          "modal-media";
+  const mediaUrl =
+    String(
+      project.mediaUrl || ""
+    ).trim();
 
 
-        video.controls =
-          true;
+  const thumbnailUrl =
+    String(
+      project.thumbnailUrl || ""
+    ).trim();
 
 
-        video.playsInline =
-          true;
+  /* ===================================================
+     VIDEO
+  =================================================== */
+
+  if(
+    mediaType === "video" &&
+    mediaUrl
+  ){
+
+    const video =
+      document.createElement(
+        "video"
+      );
 
 
-        video.preload =
-          "metadata";
+    video.className =
+      "project-media";
 
 
-        video.src =
-          mediaUrl;
+    video.src =
+      mediaUrl;
 
 
-        if (
-          project.thumbnailUrl
-        ) {
-
-          video.poster =
-            project.thumbnailUrl;
-
-        }
+    video.muted =
+      true;
 
 
-        video.onerror =
-          () => {
-
-            modalMediaContainer.innerHTML = `
-
-              <div
-                style="
-                  min-height:300px;
-                  display:flex;
-                  align-items:center;
-                  justify-content:center;
-                  flex-direction:column;
-                  gap:10px;
-                  color:#38bdf8;
-                  background:#020617;
-                  text-align:center;
-                  padding:20px;
-                "
-              >
-
-                <div style="font-size:50px;">
-                  ⚠️
-                </div>
-
-                <div>
-                  This video could not be played.
-                </div>
-
-              </div>
-
-            `;
-
-          };
+    video.loop =
+      true;
 
 
-        modalMediaContainer.appendChild(
-          video
-        );
-
-      }
+    video.playsInline =
+      true;
 
 
-      /* ====================================
-         IMAGE MODAL
-      ==================================== */
-
-      else {
-
-        const image =
-          document.createElement(
-            "img"
-          );
+    video.preload =
+      "metadata";
 
 
-        image.className =
-          "modal-media";
+    video.setAttribute(
+      "playsinline",
+      ""
+    );
 
 
-        image.src =
-          mediaUrl;
+    if(thumbnailUrl){
 
-
-        image.alt =
-          project.title ||
-          "Project";
-
-
-        image.onerror =
-          () => {
-
-            image.style.display =
-              "none";
-
-          };
-
-
-        modalMediaContainer.appendChild(
-          image
-        );
-
-      }
+      video.poster =
+        thumbnailUrl;
 
     }
 
 
-    /* ======================================
-       NO MEDIA
-    ====================================== */
+    /* Video should NOT automatically
+       use bandwidth by playing. */
 
-    else {
 
-      modalMediaContainer.innerHTML = `
+    video.addEventListener(
+      "mouseenter",
+      () => {
 
-        <div
-          style="
-            height:300px;
+        video.play()
+          .catch(
+            () => {}
+          );
+
+      }
+    );
+
+
+    video.addEventListener(
+      "mouseleave",
+      () => {
+
+        video.pause();
+
+      }
+    );
+
+
+    video.addEventListener(
+      "error",
+      () => {
+
+        video.style.display =
+          "none";
+
+
+        const fallback =
+          document.createElement(
+            "div"
+          );
+
+
+        fallback.style.cssText = `
+
+          width:100%;
+          height:100%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+          gap:7px;
+          color:#38bdf8;
+          font-size:11px;
+          text-align:center;
+
+        `;
+
+
+        fallback.innerHTML = `
+
+          <div style="font-size:35px;">
+            ⚠️
+          </div>
+
+          <div>
+            Video unavailable
+          </div>
+
+        `;
+
+
+        mediaWrapper.appendChild(
+          fallback
+        );
+
+      }
+    );
+
+
+    mediaWrapper.appendChild(
+      video
+    );
+
+
+    const play =
+      document.createElement(
+        "div"
+      );
+
+
+    play.className =
+      "play-icon";
+
+
+    play.textContent =
+      "▶";
+
+
+    mediaWrapper.appendChild(
+      play
+    );
+
+  }
+
+
+  /* ===================================================
+     IMAGE
+  =================================================== */
+
+  else if(mediaUrl){
+
+    const image =
+      document.createElement(
+        "img"
+      );
+
+
+    image.className =
+      "project-media";
+
+
+    image.src =
+      mediaUrl;
+
+
+    image.alt =
+      project.title ||
+      "Danny Smart Power project";
+
+
+    image.loading =
+      "lazy";
+
+
+    image.addEventListener(
+      "error",
+      () => {
+
+        image.style.display =
+          "none";
+
+
+        mediaWrapper.insertAdjacentHTML(
+          "beforeend",
+          `
+
+            <div style="
+              width:100%;
+              height:100%;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:40px;
+              color:#38bdf8;
+            ">
+              ⚡
+            </div>
+
+          `
+        );
+
+      }
+    );
+
+
+    mediaWrapper.appendChild(
+      image
+    );
+
+  }
+
+
+  /* ===================================================
+     NO MEDIA
+  =================================================== */
+
+  else{
+
+    mediaWrapper.innerHTML = `
+
+      <div style="
+        width:100%;
+        height:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:45px;
+        color:#38bdf8;
+      ">
+        ⚡
+      </div>
+
+    `;
+
+  }
+
+
+  /* GRADIENT */
+
+  const gradient =
+    document.createElement(
+      "div"
+    );
+
+
+  gradient.className =
+    "media-gradient";
+
+
+  mediaWrapper.appendChild(
+    gradient
+  );
+
+
+  /* MEDIA TYPE */
+
+  const typeBadge =
+    document.createElement(
+      "div"
+    );
+
+
+  typeBadge.className =
+    "media-type";
+
+
+  typeBadge.textContent =
+    mediaType === "video"
+      ? "🎥 Video"
+      : "📷 Photo";
+
+
+  mediaWrapper.appendChild(
+    typeBadge
+  );
+
+
+  /* FEATURED */
+
+  if(
+    isFeatured(project)
+  ){
+
+    const featured =
+      document.createElement(
+        "div"
+      );
+
+
+    featured.className =
+      "featured-badge";
+
+
+    featured.textContent =
+      "★ Featured";
+
+
+    mediaWrapper.appendChild(
+      featured
+    );
+
+  }
+
+
+  /* ===================================================
+     NOTIFICATION BUTTON
+  =================================================== */
+
+  const notifyBtn =
+    document.createElement(
+      "button"
+    );
+
+
+  notifyBtn.className =
+    "project-notify";
+
+
+  notifyBtn.type =
+    "button";
+
+
+  const saved =
+    isProjectSaved(
+      project.id
+    );
+
+
+  if(saved){
+
+    notifyBtn.classList.add(
+      "saved"
+    );
+
+    notifyBtn.textContent =
+      "🔔";
+
+  }
+  else{
+
+    notifyBtn.textContent =
+      "🔔";
+
+  }
+
+
+  notifyBtn.title =
+    "Save this project";
+
+
+  notifyBtn.addEventListener(
+    "click",
+    event => {
+
+      event.stopPropagation();
+
+      toggleProjectNotification(
+        project,
+        notifyBtn
+      );
+
+    }
+  );
+
+
+  mediaWrapper.appendChild(
+    notifyBtn
+  );
+
+
+  /* ===================================================
+     PROJECT INFO
+  =================================================== */
+
+  const info =
+    document.createElement(
+      "div"
+    );
+
+
+  info.className =
+    "project-info";
+
+
+  const category =
+    document.createElement(
+      "div"
+    );
+
+
+  category.className =
+    "project-category";
+
+
+  category.textContent =
+    project.category ||
+    "Electrical";
+
+
+  info.appendChild(
+    category
+  );
+
+
+  const title =
+    document.createElement(
+      "h3"
+    );
+
+
+  title.textContent =
+    project.title ||
+    "Electrical Project";
+
+
+  info.appendChild(
+    title
+  );
+
+
+  const description =
+    document.createElement(
+      "p"
+    );
+
+
+  description.textContent =
+    project.description ||
+    "Professional electrical work completed by Danny Smart Power.";
+
+
+  info.appendChild(
+    description
+  );
+
+
+  const footer =
+    document.createElement(
+      "div"
+    );
+
+
+  footer.className =
+    "project-footer";
+
+
+  footer.innerHTML = `
+
+    <span class="view-work">
+      View project →
+    </span>
+
+    <span class="arrow">
+      ↗
+    </span>
+
+  `;
+
+
+  info.appendChild(
+    footer
+  );
+
+
+  card.appendChild(
+    mediaWrapper
+  );
+
+
+  card.appendChild(
+    info
+  );
+
+
+  /* ===================================================
+     CLICK PROJECT
+  =================================================== */
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      openProject(
+        project
+      );
+
+    }
+  );
+
+
+  return card;
+
+}
+
+
+/* =====================================================
+   OPEN PROJECT
+===================================================== */
+
+function openProject(project){
+
+  selectedProject =
+    project;
+
+
+  modalTitle.textContent =
+    project.title ||
+    "Electrical Project";
+
+
+  modalCategory.textContent =
+    project.category ||
+    "Electrical";
+
+
+  modalDescription.textContent =
+    project.description ||
+    "Professional work completed by Danny Smart Power.";
+
+
+  /* META */
+
+  modalMeta.innerHTML =
+    "";
+
+
+  const mediaType =
+    getMediaType(project);
+
+
+  const typeMeta =
+    document.createElement(
+      "div"
+    );
+
+
+  typeMeta.className =
+    "meta-item";
+
+
+  typeMeta.textContent =
+    mediaType === "video"
+      ? "🎥 Project Video"
+      : "📷 Project Photo";
+
+
+  modalMeta.appendChild(
+    typeMeta
+  );
+
+
+  if(
+    isFeatured(project)
+  ){
+
+    const featuredMeta =
+      document.createElement(
+        "div"
+      );
+
+
+    featuredMeta.className =
+      "meta-item";
+
+
+    featuredMeta.textContent =
+      "★ Featured Work";
+
+
+    modalMeta.appendChild(
+      featuredMeta
+    );
+
+  }
+
+
+  /* MEDIA */
+
+  modalMediaContainer.innerHTML =
+    "";
+
+
+  const mediaUrl =
+    String(
+      project.mediaUrl || ""
+    ).trim();
+
+
+  const thumbnailUrl =
+    String(
+      project.thumbnailUrl || ""
+    ).trim();
+
+
+  if(
+    mediaUrl &&
+    mediaType === "video"
+  ){
+
+    const video =
+      document.createElement(
+        "video"
+      );
+
+
+    video.className =
+      "modal-media";
+
+
+    video.src =
+      mediaUrl;
+
+
+    video.controls =
+      true;
+
+
+    video.playsInline =
+      true;
+
+
+    video.preload =
+      "metadata";
+
+
+    if(thumbnailUrl){
+
+      video.poster =
+        thumbnailUrl;
+
+    }
+
+
+    video.onerror =
+      () => {
+
+        modalMediaContainer.innerHTML = `
+
+          <div style="
+            min-height:300px;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size:60px;
+            flex-direction:column;
+            gap:10px;
             color:#38bdf8;
             background:#020617;
-          "
-        >
+            text-align:center;
+            padding:20px;
+          ">
 
-          ⚡
+            <div style="font-size:45px;">
+              ⚠️
+            </div>
 
-        </div>
+            <div>
+              This project video could not be played.
+            </div>
 
-      `;
+          </div>
 
-    }
+        `;
+
+      };
 
 
-    /* ======================================
-       CHAT BUTTON
-    ====================================== */
+    modalMediaContainer.appendChild(
+      video
+    );
 
-    modalChatBtn.onclick =
-      () => {
+  }
+
+
+  else if(mediaUrl){
+
+    const image =
+      document.createElement(
+        "img"
+      );
+
+
+    image.className =
+      "modal-media";
+
+
+    image.src =
+      mediaUrl;
+
+
+    image.alt =
+      project.title ||
+      "Electrical project";
+
+
+    modalMediaContainer.appendChild(
+      image
+    );
+
+  }
+
+
+  else{
+
+    modalMediaContainer.innerHTML = `
+
+      <div style="
+        height:300px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:60px;
+        color:#38bdf8;
+        background:#020617;
+      ">
+        ⚡
+      </div>
+
+    `;
+
+  }
+
+
+  /* ===================================================
+     REQUEST BUTTON
+  =================================================== */
+
+  if(
+    project.requestEnabled === false
+  ){
+
+    modalRequestBtn.disabled =
+      true;
+
+    modalRequestBtn.classList.add(
+      "disabled"
+    );
+
+    modalRequestBtn.textContent =
+      "⚡ Request Unavailable";
+
+  }
+  else{
+
+    modalRequestBtn.disabled =
+      false;
+
+    modalRequestBtn.classList.remove(
+      "disabled"
+    );
+
+    modalRequestBtn.textContent =
+      "⚡ Request for This Service";
+
+  }
+
+
+  /* ===================================================
+     CHAT BUTTON
+  =================================================== */
+
+  modalChatBtn.onclick =
+    () => {
+
+      if(!selectedProject){
 
         window.location.href =
           "chat.html";
 
-      };
+        return;
+
+      }
 
 
-    /* ======================================
-       REQUEST BUTTON
-    ====================================== */
+      openProjectChat(
+        selectedProject,
+        false
+      );
 
-    modalRequestBtn.onclick =
-      () => {
-
-        window.location.href =
-          "request-service.html";
-
-      };
+    };
 
 
-    projectModal.classList.add(
-      "active"
-    );
+  /* ===================================================
+     REQUEST BUTTON
+  =================================================== */
+
+  modalRequestBtn.onclick =
+    () => {
+
+      if(
+        !selectedProject ||
+        selectedProject.requestEnabled === false
+      ){
+
+        return;
+
+      }
 
 
-    document.body.classList.add(
-      "modal-open"
-    );
+      openProjectChat(
+        selectedProject,
+        true
+      );
+
+    };
+
+
+  projectModal.classList.add(
+    "active"
+  );
+
+
+  document.body.classList.add(
+    "modal-open"
+  );
+
+}
+
+
+/* =====================================================
+   PROJECT CHAT
+===================================================== */
+
+function openProjectChat(
+  project,
+  requestMode
+){
+
+  const title =
+    project.title ||
+    "Electrical Project";
+
+
+  let message;
+
+
+  if(requestMode){
+
+    message =
+      `Hi Danny, I want to Request for this service: ${title}`;
+
+  }
+  else{
+
+    message =
+      `Hi Danny, I want to know more about this project: ${title}`;
 
   }
 
 
-  /* ==========================================
-     CLOSE MODAL
-  ========================================== */
-
-  function closeProjectModal() {
-
-    projectModal.classList.remove(
-      "active"
-    );
+  const params =
+    new URLSearchParams();
 
 
-    document.body.classList.remove(
-      "modal-open"
-    );
+  params.set(
+    "projectId",
+    project.id
+  );
 
 
-    modalMediaContainer.innerHTML =
-      "";
+  params.set(
+    "projectTitle",
+    title
+  );
+
+
+  params.set(
+    "category",
+    project.category ||
+    "Electrical"
+  );
+
+
+  params.set(
+    "message",
+    message
+  );
+
+
+  params.set(
+    "request",
+    requestMode
+      ? "true"
+      : "false"
+  );
+
+
+  window.location.href =
+    `chat.html?${params.toString()}`;
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeProjectModal(){
+
+  projectModal.classList.remove(
+    "active"
+  );
+
+
+  document.body.classList.remove(
+    "modal-open"
+  );
+
+
+  modalMediaContainer.innerHTML =
+    "";
+
+
+  selectedProject =
+    null;
+
+}
+
+
+closeModal.addEventListener(
+  "click",
+  closeProjectModal
+);
+
+
+projectModal.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target ===
+      projectModal
+    ){
+
+      closeProjectModal();
+
+    }
 
   }
+);
 
 
-  closeModal.addEventListener(
-    "click",
-    closeProjectModal
-  );
+document.addEventListener(
+  "keydown",
+  event => {
 
+    if(
+      event.key === "Escape" &&
+      projectModal.classList.contains(
+        "active"
+      )
+    ){
 
-  projectModal.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target ===
-        projectModal
-      ) {
-
-        closeProjectModal();
-
-      }
+      closeProjectModal();
 
     }
-  );
+
+  }
+);
 
 
-  document.addEventListener(
-    "keydown",
-    event => {
+/* =====================================================
+   SEARCH
+===================================================== */
 
-      if (
-        event.key === "Escape" &&
-        projectModal.classList.contains(
-          "active"
-        )
-      ) {
-
-        closeProjectModal();
-
-      }
-
-    }
-  );
+searchInput.addEventListener(
+  "input",
+  renderProjects
+);
 
 
-  /* ==========================================
-     SEARCH
-  ========================================== */
+/* =====================================================
+   FILTERS
+===================================================== */
 
-  searchInput.addEventListener(
-    "input",
-    renderProjects
-  );
+document
+  .querySelectorAll(
+    ".filter-btn"
+  )
+  .forEach(
+    button => {
 
+      button.addEventListener(
+        "click",
+        () => {
 
-  /* ==========================================
-     CATEGORY FILTER
-  ========================================== */
+          document
+            .querySelectorAll(
+              ".filter-btn"
+            )
+            .forEach(
+              btn => {
 
-  document
-    .querySelectorAll(
-      ".filter-btn"
-    )
-    .forEach(
-      button => {
+                btn.classList.remove(
+                  "active"
+                );
 
-        button.addEventListener(
-          "click",
-          () => {
-
-            document
-              .querySelectorAll(
-                ".filter-btn"
-              )
-              .forEach(
-                btn => {
-
-                  btn.classList.remove(
-                    "active"
-                  );
-
-                }
-              );
-
-
-            button.classList.add(
-              "active"
+              }
             );
 
 
-            activeCategory =
-              button.dataset.category;
+          button.classList.add(
+            "active"
+          );
 
 
-            renderProjects();
+          activeCategory =
+            button.dataset.category;
 
-          }
+
+          renderProjects();
+
+        }
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   PROJECT NOTIFICATIONS
+   Saved locally for the customer.
+===================================================== */
+
+function getSavedProjects(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "dspSavedProjects"
+      ) || "[]"
+    );
+
+  }
+  catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+function isProjectSaved(
+  projectId
+){
+
+  return getSavedProjects()
+    .includes(projectId);
+
+}
+
+
+function toggleProjectNotification(
+  project,
+  button
+){
+
+  let saved =
+    getSavedProjects();
+
+
+  const index =
+    saved.indexOf(
+      project.id
+    );
+
+
+  if(index === -1){
+
+    saved.push(
+      project.id
+    );
+
+
+    localStorage.setItem(
+      "dspSavedProjects",
+      JSON.stringify(saved)
+    );
+
+
+    button.classList.add(
+      "saved"
+    );
+
+
+    button.textContent =
+      "🔔";
+
+
+    button.title =
+      "Project saved";
+
+
+    showToast(
+      "🔔 Project saved to your notifications."
+    );
+
+  }
+  else{
+
+    saved.splice(
+      index,
+      1
+    );
+
+
+    localStorage.setItem(
+      "dspSavedProjects",
+      JSON.stringify(saved)
+    );
+
+
+    button.classList.remove(
+      "saved"
+    );
+
+
+    button.textContent =
+      "🔔";
+
+
+    button.title =
+      "Save this project";
+
+
+    showToast(
+      "Project removed from saved notifications."
+    );
+
+  }
+
+
+  updateNotificationDot();
+
+}
+
+
+/* =====================================================
+   NOTIFICATION DOT
+===================================================== */
+
+function updateNotificationDot(){
+
+  const saved =
+    getSavedProjects();
+
+
+  notificationDot.style.display =
+    saved.length
+      ? "block"
+      : "none";
+
+}
+
+
+/* =====================================================
+   HEADER NOTIFICATION
+===================================================== */
+
+document
+  .getElementById(
+    "notificationBtn"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      window.location.href =
+        "notifications.html";
+
+    }
+  );
+
+
+/* =====================================================
+   SIGN OUT
+===================================================== */
+
+document
+  .getElementById(
+    "signOutBtn"
+  )
+  .addEventListener(
+    "click",
+    async () => {
+
+      try{
+
+        await auth.signOut();
+
+        window.location.href =
+          "login.html";
+
+      }
+      catch(error){
+
+        console.error(
+          "Sign out error:",
+          error
+        );
+
+
+        showToast(
+          "Could not sign out."
         );
 
       }
-    );
+
+    }
+  );
 
 
-  /* ==========================================
-     SIGN OUT
-  ========================================== */
+/* =====================================================
+   START
+===================================================== */
 
-  document
-    .getElementById(
-      "signOutBtn"
-    )
-    .addEventListener(
-      "click",
-      async () => {
-
-        try {
-
-          await auth.signOut();
-
-          window.location.href =
-            "login.html";
-
-        }
-
-        catch (error) {
-
-          console.error(
-            "Sign out error:",
-            error
-          );
-
-
-          showToast(
-            "Could not sign out."
-          );
-
-        }
-
-      }
-    );
-
-
-  /* ==========================================
-     NOTIFICATIONS
-  ========================================== */
-
-  document
-    .getElementById(
-      "notificationBtn"
-    )
-    .addEventListener(
-      "click",
-      () => {
-
-        window.location.href =
-          "notifications.html";
-
-      }
-    );
-
-
-  /* ==========================================
-     START
-  ========================================== */
-
-  loadProjects();
+loadProjects();
 
 </script>
 
