@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Our Electrical Work | Danny Smart Power</title>
 
@@ -25,10 +21,6 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
   margin:0;
   padding:0;
@@ -36,25 +28,18 @@
 }
 
 :root{
-
   --bg:#0f172a;
   --header:#020617;
-
   --card:#111c30;
   --card2:#162238;
-
   --border:#24344d;
-
   --text:#f8fafc;
   --muted:#94a3b8;
-
   --blue:#38bdf8;
-  --blue2:#0ea5e9;
-
+  --blue2:#0284c7;
   --green:#22c55e;
+  --yellow:#f59e0b;
   --red:#ef4444;
-
-  --gold:#f59e0b;
 }
 
 html{
@@ -62,19 +47,9 @@ html{
 }
 
 body{
-
   font-family:"Poppins",sans-serif;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(56,189,248,.06),
-      transparent 35%
-    ),
-    var(--bg);
-
+  background:var(--bg);
   color:var(--text);
-
   min-height:100vh;
 }
 
@@ -96,550 +71,299 @@ a{
   color:inherit;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* ================= HEADER ================= */
 
 header{
-
   height:70px;
-
-  background:rgba(2,6,23,.96);
-
+  background:var(--header);
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:0 18px;
-
   position:sticky;
   top:0;
-
-  z-index:2000;
-
-  border-bottom:
-    1px solid rgba(148,163,184,.12);
-
-  box-shadow:
-    0 5px 25px rgba(0,0,0,.25);
-
-  backdrop-filter:blur(15px);
+  z-index:1000;
+  border-bottom:1px solid rgba(148,163,184,.12);
+  box-shadow:0 5px 25px rgba(0,0,0,.25);
 }
 
 .brand{
-
   display:flex;
   align-items:center;
-
   gap:10px;
 }
 
 .brand-icon{
-
-  width:40px;
-  height:40px;
-
-  border-radius:12px;
-
-  background:var(--blue);
-
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:#38bdf8;
   color:#020617;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
-  font-size:21px;
+  font-size:22px;
   font-weight:800;
-
-  box-shadow:
-    0 5px 20px rgba(56,189,248,.2);
+  box-shadow:0 8px 25px rgba(56,189,248,.15);
 }
 
 .brand-text{
-
   font-size:16px;
   font-weight:800;
-
   line-height:1.1;
 }
 
 .brand-text small{
-
   display:block;
-
   color:var(--muted);
-
   font-size:8px;
-
   font-weight:500;
-
-  letter-spacing:.7px;
-
+  letter-spacing:.8px;
   margin-top:4px;
 }
 
 .header-actions{
-
   display:flex;
   align-items:center;
-
-  gap:5px;
+  gap:4px;
 }
 
 .icon-btn{
-
   width:43px;
   height:43px;
-
   border:none;
-
   border-radius:50%;
-
   background:transparent;
-
   color:white;
-
-  font-size:21px;
-
+  font-size:22px;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  position:relative;
 }
 
 .icon-btn:hover{
-
-  background:
-    rgba(255,255,255,.08);
+  background:rgba(255,255,255,.08);
 }
 
-.notification-dot{
-
-  display:none;
-
-  position:absolute;
-
-  width:8px;
-  height:8px;
-
-  background:var(--red);
-
-  border:
-    2px solid var(--header);
-
-  border-radius:50%;
-
-  top:7px;
-  right:7px;
-}
-
-/* =====================================================
-   MENU
-===================================================== */
+/* ================= MENU ================= */
 
 .menu{
-
   position:fixed;
-
   top:76px;
   right:12px;
-
   width:275px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #0b1729,
-      #07111f
-    );
-
-  color:#f8fafc;
-
+  background:linear-gradient(145deg,#0b1729,#07111f);
+  border:1px solid rgba(56,189,248,.18);
   border-radius:20px;
-
   padding:10px;
-
   z-index:3000;
-
   display:none;
-
-  border:
-    1px solid rgba(56,189,248,.18);
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.55);
-
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
   backdrop-filter:blur(18px);
 }
 
 .menu.active{
-
   display:block;
-
-  animation:
-    menuIn .18s ease;
-}
-
-@keyframes menuIn{
-
-  from{
-    opacity:0;
-    transform:translateY(-8px) scale(.98);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
 }
 
 .menu-profile{
-
   display:flex;
   align-items:center;
-
   gap:11px;
-
   padding:12px;
-
-  border-bottom:
-    1px solid rgba(148,163,184,.12);
-
+  border-bottom:1px solid rgba(148,163,184,.12);
   margin-bottom:6px;
 }
 
 .menu-avatar{
-
   width:45px;
   height:45px;
-
   border-radius:50%;
-
   object-fit:cover;
-
   background:#020617;
-
-  border:
-    2px solid rgba(56,189,248,.35);
+  border:2px solid rgba(56,189,248,.35);
 }
 
 .menu-name{
-
   font-size:13px;
   font-weight:700;
 }
 
 .menu-email{
-
   color:var(--muted);
-
   font-size:9px;
-
   word-break:break-all;
-
   margin-top:2px;
 }
 
 .menu a,
 .menu button{
-
   width:100%;
-
   border:none;
-
   background:transparent;
-
   color:#dbeafe;
-
   display:flex;
   align-items:center;
-
   gap:12px;
-
   padding:12px;
-
   border-radius:12px;
-
   font-size:12px;
-
   text-align:left;
-
-  transition:.2s;
 }
 
 .menu a:hover,
 .menu button:hover{
-
-  background:
-    rgba(56,189,248,.09);
-
+  background:rgba(56,189,248,.09);
   color:var(--blue);
-
-  transform:translateX(2px);
 }
 
-.menu button:last-child{
-
+#signOutBtn{
   margin-top:5px;
-
-  border-top:
-    1px solid rgba(148,163,184,.10);
-
+  border-top:1px solid rgba(148,163,184,.1);
   color:#fca5a5;
 }
 
-/* =====================================================
-   PAGE
-===================================================== */
+/* ================= PAGE ================= */
 
 .page{
-
   width:min(1180px,100%);
-
   margin:auto;
-
-  padding:
-    28px 16px 70px;
+  padding:28px 16px 70px;
 }
 
-/* =====================================================
-   HERO
-===================================================== */
+/* ================= HERO ================= */
 
 .hero{
-
   position:relative;
-
   overflow:hidden;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   background:
-
     radial-gradient(
       circle at top right,
       rgba(56,189,248,.16),
       transparent 35%
     ),
-
-    linear-gradient(
-      135deg,
-      #111c30,
-      #0b1324
-    );
-
+    linear-gradient(135deg,#111c30,#0b1324);
   border-radius:25px;
-
   padding:30px 24px;
-
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
 
 .hero-label{
-
   display:inline-flex;
-
   align-items:center;
-
   gap:7px;
-
   color:var(--blue);
-
-  background:
-    rgba(56,189,248,.09);
-
-  border:
-    1px solid rgba(56,189,248,.18);
-
+  background:rgba(56,189,248,.09);
+  border:1px solid rgba(56,189,248,.18);
   border-radius:50px;
-
   padding:6px 11px;
-
   font-size:10px;
-
   font-weight:700;
-
   margin-bottom:13px;
 }
 
 .hero h1{
-
-  font-size:
-    clamp(25px,5vw,40px);
-
+  font-size:clamp(25px,5vw,40px);
   line-height:1.15;
-
   margin-bottom:10px;
 }
 
 .hero p{
-
   max-width:690px;
-
   color:var(--muted);
-
   font-size:12px;
-
   line-height:1.8;
 }
 
 .hero-actions{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:10px;
-
   margin-top:20px;
 }
 
 .primary-btn,
 .secondary-btn{
-
-  border:none;
-
   border-radius:12px;
-
   padding:12px 16px;
-
   font-size:12px;
-
   font-weight:700;
-
   display:inline-flex;
-
   align-items:center;
-
   justify-content:center;
-
   gap:7px;
 }
 
 .primary-btn{
-
   background:var(--blue);
-
   color:#020617;
 }
 
-.primary-btn:hover{
-
-  background:#7dd3fc;
-}
-
 .secondary-btn{
-
-  background:
-    rgba(255,255,255,.06);
-
+  background:rgba(255,255,255,.06);
   color:white;
-
-  border:
-    1px solid var(--border);
+  border:1px solid var(--border);
 }
 
-/* =====================================================
-   TOOLBAR
-===================================================== */
+/* ================= TOOLBAR ================= */
 
 .toolbar{
-
   display:flex;
-
-  align-items:center;
-
+  align-items:end;
   justify-content:space-between;
-
-  gap:12px;
-
+  gap:15px;
   margin:22px 0;
-
   flex-wrap:wrap;
 }
 
 .section-heading h2{
-
-  font-size:19px;
+  font-size:20px;
 }
 
 .section-heading p{
-
   color:var(--muted);
-
   font-size:10px;
-
-  margin-top:3px;
+  margin-top:4px;
 }
 
 .search-box{
-
-  width:min(300px,100%);
-
+  width:min(320px,100%);
   position:relative;
 }
 
 .search-box span{
-
   position:absolute;
-
   left:13px;
   top:50%;
-
   transform:translateY(-50%);
-
   color:var(--muted);
-
-  font-size:14px;
 }
 
 .search-box input{
-
   width:100%;
-
-  height:42px;
-
-  border:
-    1px solid var(--border);
-
+  height:43px;
+  border:1px solid var(--border);
   background:#111c30;
-
   color:white;
-
   outline:none;
-
-  border-radius:12px;
-
-  padding:
-    0 13px 0 38px;
-
+  border-radius:13px;
+  padding:0 13px 0 38px;
   font-size:11px;
 }
 
 .search-box input:focus{
-
   border-color:var(--blue);
 }
 
-/* =====================================================
-   FILTERS
-===================================================== */
+/* ================= FILTERS ================= */
 
 .filters{
-
   display:flex;
-
   gap:8px;
-
   overflow-x:auto;
-
-  padding-bottom:4px;
-
+  padding-bottom:5px;
   scrollbar-width:none;
-
   margin-bottom:20px;
 }
 
@@ -648,747 +372,435 @@ header{
 }
 
 .filter-btn{
-
   flex:0 0 auto;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   background:#111c30;
-
   color:var(--muted);
-
   border-radius:50px;
-
-  padding:8px 14px;
-
+  padding:9px 15px;
   font-size:10px;
-
   font-weight:600;
 }
 
 .filter-btn.active,
 .filter-btn:hover{
-
-  background:
-    rgba(56,189,248,.1);
-
+  background:rgba(56,189,248,.1);
   color:var(--blue);
-
-  border-color:
-    rgba(56,189,248,.4);
+  border-color:rgba(56,189,248,.4);
 }
 
-/* =====================================================
-   PROJECT GRID
-===================================================== */
+/* ================= GRID ================= */
 
 .project-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
+  grid-template-columns:repeat(3,1fr);
   gap:16px;
 }
 
-/* =====================================================
-   PROJECT CARD
-===================================================== */
-
 .project-card{
-
   background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:18px;
-
+  border:1px solid var(--border);
+  border-radius:20px;
   overflow:hidden;
-
   transition:.22s ease;
-
+  cursor:pointer;
   position:relative;
 }
 
 .project-card:hover{
-
   transform:translateY(-4px);
-
-  border-color:
-    rgba(56,189,248,.4);
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.22);
+  border-color:rgba(56,189,248,.45);
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
 }
 
-/* =====================================================
-   MEDIA
-===================================================== */
-
 .media-wrapper{
-
-  height:250px;
-
+  height:230px;
   background:#020617;
-
   position:relative;
-
   overflow:hidden;
-
-  cursor:pointer;
 }
 
 .project-media{
-
   width:100%;
   height:100%;
-
   object-fit:cover;
-
   display:block;
-
-  background:#020617;
-}
-
-video.project-media{
-
-  object-fit:cover;
 }
 
 .media-gradient{
-
   position:absolute;
-
   inset:0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(2,6,23,.75),
-      transparent 45%
-    );
-
+  background:linear-gradient(
+    to top,
+    rgba(2,6,23,.7),
+    transparent 50%
+  );
   pointer-events:none;
 }
 
 .media-type{
-
   position:absolute;
-
-  top:10px;
-  left:10px;
-
-  background:
-    rgba(2,6,23,.78);
-
+  top:12px;
+  left:12px;
+  background:rgba(2,6,23,.78);
   backdrop-filter:blur(7px);
-
   color:white;
-
   border-radius:50px;
-
-  padding:6px 9px;
-
+  padding:7px 10px;
   font-size:9px;
-
-  font-weight:600;
-
-  z-index:3;
+  font-weight:700;
 }
 
 .featured-badge{
-
   position:absolute;
-
-  top:10px;
-  right:10px;
-
-  background:var(--gold);
-
+  top:12px;
+  right:12px;
+  background:var(--yellow);
   color:#111827;
-
   border-radius:50px;
-
-  padding:6px 9px;
-
+  padding:7px 10px;
   font-size:9px;
-
   font-weight:800;
-
-  z-index:3;
 }
 
 .play-icon{
-
   position:absolute;
-
   left:50%;
   top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  width:55px;
-  height:55px;
-
+  transform:translate(-50%,-50%);
+  width:54px;
+  height:54px;
   border-radius:50%;
-
-  background:
-    rgba(2,6,23,.78);
-
-  border:
-    1px solid rgba(255,255,255,.3);
-
+  background:rgba(2,6,23,.76);
+  border:1px solid rgba(255,255,255,.3);
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   font-size:19px;
-
-  backdrop-filter:blur(6px);
-
   pointer-events:none;
-
-  z-index:4;
 }
-
-.video-duration{
-
-  position:absolute;
-
-  right:10px;
-  bottom:10px;
-
-  background:
-    rgba(2,6,23,.75);
-
-  color:white;
-
-  border-radius:7px;
-
-  padding:4px 7px;
-
-  font-size:8px;
-
-  z-index:4;
-}
-
-/* =====================================================
-   NOTIFICATION BUTTON ON CARD
-===================================================== */
-
-.project-notify{
-
-  position:absolute;
-
-  right:10px;
-  bottom:10px;
-
-  width:37px;
-  height:37px;
-
-  border:none;
-
-  border-radius:50%;
-
-  background:
-    rgba(2,6,23,.82);
-
-  color:white;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  font-size:16px;
-
-  z-index:10;
-
-  border:
-    1px solid rgba(255,255,255,.18);
-
-  backdrop-filter:blur(7px);
-
-  transition:.2s;
-}
-
-.project-notify:hover{
-
-  background:var(--blue);
-
-  color:#020617;
-
-  transform:scale(1.08);
-}
-
-.project-notify.saved{
-
-  background:var(--green);
-
-  color:white;
-}
-
-/* =====================================================
-   PROJECT INFO
-===================================================== */
 
 .project-info{
-
-  padding:15px;
+  padding:16px;
 }
 
 .project-category{
-
-  display:inline-block;
-
   color:var(--blue);
-
   font-size:9px;
-
-  font-weight:700;
-
-  margin-bottom:6px;
-
+  font-weight:800;
   text-transform:uppercase;
+  margin-bottom:7px;
 }
 
 .project-info h3{
-
-  font-size:14px;
-
-  margin-bottom:6px;
-
+  font-size:15px;
+  margin-bottom:7px;
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
 }
 
 .project-info p{
-
   color:var(--muted);
-
   font-size:10px;
-
-  line-height:1.65;
-
+  line-height:1.7;
   display:-webkit-box;
-
   -webkit-line-clamp:2;
-
   -webkit-box-orient:vertical;
-
   overflow:hidden;
+  min-height:34px;
 }
 
 .project-footer{
-
-  margin-top:12px;
-
-  padding-top:11px;
-
-  border-top:
-    1px solid rgba(148,163,184,.1);
-
+  margin-top:13px;
+  padding-top:12px;
+  border-top:1px solid rgba(148,163,184,.1);
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
 .view-work{
-
   color:var(--blue);
-
   font-size:10px;
-
-  font-weight:700;
+  font-weight:800;
 }
 
 .arrow{
-
   color:var(--muted);
 }
 
-/* =====================================================
-   EMPTY / LOADING
-===================================================== */
+/* ================= STATE ================= */
 
 .state{
-
-  grid-column:1 / -1;
-
+  grid-column:1/-1;
   text-align:center;
-
-  padding:55px 20px;
-
-  border:
-    1px dashed var(--border);
-
-  border-radius:18px;
-
-  background:
-    rgba(17,28,48,.5);
+  padding:60px 20px;
+  border:1px dashed var(--border);
+  border-radius:20px;
+  background:rgba(17,28,48,.5);
 }
 
 .state-icon{
-
-  font-size:35px;
-
+  font-size:38px;
   margin-bottom:10px;
 }
 
 .state h3{
-
   font-size:15px;
-
   margin-bottom:6px;
 }
 
 .state p{
-
   color:var(--muted);
-
   font-size:11px;
-
   line-height:1.7;
 }
 
 .loader{
-
-  width:35px;
-  height:35px;
-
-  border:
-    3px solid var(--border);
-
+  width:38px;
+  height:38px;
+  border:3px solid var(--border);
   border-top-color:var(--blue);
-
   border-radius:50%;
-
-  animation:
-    spin .8s linear infinite;
-
-  margin:
-    0 auto 12px;
+  animation:spin .8s linear infinite;
+  margin:0 auto 13px;
 }
 
 @keyframes spin{
-
   to{
     transform:rotate(360deg);
   }
 }
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* ================= MODAL ================= */
 
 .modal{
-
   position:fixed;
-
   inset:0;
-
-  background:
-    rgba(2,6,23,.9);
-
-  backdrop-filter:blur(8px);
-
+  background:rgba(2,6,23,.88);
+  backdrop-filter:blur(9px);
   z-index:5000;
-
   display:none;
-
   align-items:center;
-
   justify-content:center;
-
   padding:15px;
 }
 
 .modal.active{
-
   display:flex;
 }
 
 .modal-card{
-
   width:min(850px,100%);
-
   max-height:94vh;
-
   overflow-y:auto;
-
   background:#0f172a;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:22px;
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.6);
-
-  animation:
-    modalIn .2s ease;
-
+  border:1px solid var(--border);
+  border-radius:23px;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
   position:relative;
 }
 
-@keyframes modalIn{
-
-  from{
-    opacity:0;
-    transform:scale(.96);
-  }
-
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
+.modal-top{
+  position:relative;
 }
 
-/* =====================================================
-   MODAL MEDIA
-===================================================== */
-
 .modal-media{
-
   width:100%;
-
-  max-height:500px;
-
-  min-height:250px;
-
+  max-height:480px;
   background:#020617;
-
   display:block;
-
   object-fit:contain;
 }
 
-.modal-content{
+.close-modal{
+  position:absolute;
+  top:13px;
+  right:13px;
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:rgba(2,6,23,.8);
+  color:white;
+  font-size:21px;
+  z-index:20;
+}
 
-  padding:20px;
+.modal-notification{
+  position:absolute;
+  top:13px;
+  right:62px;
+  width:40px;
+  height:40px;
+  border:1px solid rgba(56,189,248,.35);
+  border-radius:50%;
+  background:rgba(2,6,23,.82);
+  color:white;
+  font-size:18px;
+  z-index:20;
+}
+
+.modal-notification:hover{
+  background:var(--blue);
+  color:#020617;
+}
+
+.modal-content{
+  padding:21px;
 }
 
 .modal-category{
-
   color:var(--blue);
-
   font-size:10px;
-
-  font-weight:700;
-
+  font-weight:800;
   text-transform:uppercase;
 }
 
 .modal-content h2{
-
   font-size:22px;
-
-  margin:
-    6px 0 9px;
+  margin:6px 0 9px;
 }
 
 .modal-description{
-
   color:var(--muted);
-
   font-size:12px;
-
   line-height:1.8;
-
   white-space:pre-line;
 }
 
-/* =====================================================
-   PROJECT META
-===================================================== */
-
-.project-meta{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  margin-top:15px;
-}
-
-.meta-item{
-
-  background:
-    rgba(255,255,255,.05);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:9px;
-
-  padding:7px 9px;
-
-  font-size:9px;
-
-  color:var(--muted);
-}
-
-/* =====================================================
-   MODAL ACTIONS
-===================================================== */
-
-.modal-actions{
-
+.modal-meta{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:10px;
-
-  margin-top:20px;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:18px;
 }
 
-.chat-btn,
-.request-btn{
+.meta-box{
+  background:#111c30;
+  border:1px solid rgba(148,163,184,.1);
+  border-radius:13px;
+  padding:11px;
+}
 
-  border:none;
+.meta-label{
+  display:block;
+  color:var(--muted);
+  font-size:8px;
+  margin-bottom:4px;
+}
 
-  border-radius:12px;
-
-  padding:13px;
-
-  font-size:12px;
-
+.meta-value{
+  font-size:10px;
   font-weight:700;
 }
 
-.chat-btn{
-
-  background:var(--green);
-
-  color:white;
+.enabled{
+  color:var(--green);
 }
 
-.request-btn{
+.disabled{
+  color:var(--red);
+}
 
+.modal-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:19px;
+}
+
+.chat-btn,
+.request-btn,
+.share-btn{
+  border:none;
+  border-radius:13px;
+  padding:14px 12px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.chat-btn{
   background:var(--blue);
-
   color:#020617;
 }
 
-.request-btn:hover{
-
-  background:#7dd3fc;
+.request-btn{
+  background:var(--green);
+  color:white;
 }
 
-.chat-btn:hover{
-
-  background:#16a34a;
-}
-
-.request-btn.disabled{
-
-  opacity:.5;
-
+.request-btn:disabled{
+  background:#334155;
+  color:#94a3b8;
   cursor:not-allowed;
 }
 
-/* =====================================================
-   CLOSE
-===================================================== */
-
-.close-modal{
-
-  position:absolute;
-
-  top:15px;
-  right:15px;
-
-  width:39px;
-  height:39px;
-
-  border:none;
-
-  border-radius:50%;
-
-  background:
-    rgba(2,6,23,.8);
-
+.share-btn{
+  width:100%;
+  margin-top:10px;
+  background:rgba(255,255,255,.06);
   color:white;
-
-  font-size:20px;
-
-  z-index:20;
+  border:1px solid var(--border);
 }
 
-.close-modal:hover{
-
-  background:
-    rgba(239,68,68,.85);
+.info-box{
+  margin-top:18px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(56,189,248,.06);
+  border:1px solid rgba(56,189,248,.12);
 }
 
-/* =====================================================
-   TOAST
-===================================================== */
+.info-box h4{
+  color:var(--blue);
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.info-box p{
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.7;
+}
+
+/* ================= TOAST ================= */
 
 .toast{
-
   position:fixed;
-
   left:50%;
-
   bottom:20px;
-
-  transform:
-    translate(-50%,100px);
-
+  transform:translate(-50%,100px);
   opacity:0;
-
   background:#020617;
-
   color:white;
-
   padding:11px 16px;
-
   border-radius:12px;
-
   font-size:11px;
-
   z-index:7000;
-
   transition:.3s;
-
-  max-width:
-    calc(100% - 30px);
-
+  max-width:calc(100% - 30px);
   text-align:center;
-
-  border:
-    1px solid var(--border);
+  border:1px solid var(--border);
 }
 
 .toast.show{
-
-  transform:
-    translate(-50%,0);
-
+  transform:translate(-50%,0);
   opacity:1;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* ================= RESPONSIVE ================= */
 
-@media(max-width:700px){
+@media(max-width:900px){
+
+  .project-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
 
   header{
     height:64px;
@@ -1403,16 +815,11 @@ video.project-media{
   }
 
   .page{
-
-    padding:
-      18px 12px 55px;
+    padding:18px 12px 55px;
   }
 
   .hero{
-
-    padding:
-      23px 18px;
-
+    padding:23px 18px;
     border-radius:19px;
   }
 
@@ -1424,22 +831,22 @@ video.project-media{
     font-size:11px;
   }
 
-  /* KEEP TWO PER LINE */
-
+  /* TWO PROJECTS PER LINE */
   .project-grid{
-
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-
-    gap:9px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
   }
 
   .media-wrapper{
-    height:145px;
+    height:165px;
   }
 
   .project-info{
-    padding:10px;
+    padding:11px;
+  }
+
+  .project-category{
+    font-size:7px;
   }
 
   .project-info h3{
@@ -1448,82 +855,66 @@ video.project-media{
 
   .project-info p{
     font-size:8px;
+    line-height:1.55;
   }
 
-  .project-category{
-    font-size:7px;
+  .project-footer{
+    margin-top:9px;
+    padding-top:9px;
   }
 
   .view-work{
     font-size:8px;
   }
 
-  .project-notify{
-
-    width:32px;
-    height:32px;
-
-    font-size:13px;
-
-    right:7px;
-    bottom:7px;
+  .arrow{
+    font-size:11px;
   }
 
-  .featured-badge,
-  .media-type{
-
-    font-size:7px;
-
+  .media-type,
+  .featured-badge{
+    top:8px;
     padding:5px 7px;
+    font-size:7px;
   }
 
   .play-icon{
-
-    width:42px;
-    height:42px;
-
+    width:43px;
+    height:43px;
     font-size:15px;
   }
 
-  .modal-actions{
-
-    grid-template-columns:1fr;
+  .toolbar{
+    align-items:stretch;
   }
 
   .search-box{
     width:100%;
   }
 
+  .modal-meta{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .modal-actions{
+    grid-template-columns:1fr;
+  }
+
+  .modal-content{
+    padding:16px;
+  }
+
+  .modal-content h2{
+    font-size:19px;
+  }
+
   .menu{
-
     top:69px;
-
     right:8px;
-
-    width:
-      calc(100% - 16px);
-
+    width:calc(100% - 16px);
     max-width:310px;
   }
-}
 
-@media(max-width:380px){
-
-  .project-grid{
-    gap:7px;
-  }
-
-  .media-wrapper{
-    height:130px;
-  }
-
-  .project-info h3{
-    font-size:10px;
-  }
-
-  .project-info p{
-    font-size:7px;
-  }
 }
 
 </style>
@@ -1531,9 +922,7 @@ video.project-media{
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -1559,29 +948,10 @@ video.project-media{
 
     <button
       class="icon-btn"
-      id="notificationBtn"
-      title="Notifications"
-      aria-label="Notifications"
-    >
-
-      🔔
-
-      <span
-        class="notification-dot"
-        id="notificationDot"
-      ></span>
-
-    </button>
-
-    <button
-      class="icon-btn"
       id="menuBtn"
-      title="Menu"
-      aria-label="Open menu"
+      aria-label="Menu"
     >
-
       ⋮
-
     </button>
 
   </div>
@@ -1589,9 +959,7 @@ video.project-media{
 </header>
 
 
-<!-- =====================================================
-     MENU
-===================================================== -->
+<!-- ================= MENU ================= -->
 
 <div class="menu" id="menu">
 
@@ -1607,15 +975,15 @@ video.project-media{
     <div>
 
       <div
-        class="menu-name"
         id="menuName"
+        class="menu-name"
       >
         Customer
       </div>
 
       <div
-        class="menu-email"
         id="menuEmail"
+        class="menu-email"
       >
         Loading...
       </div>
@@ -1672,24 +1040,15 @@ video.project-media{
 </div>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- ================= PAGE ================= -->
 
 <main class="page">
-
-  <!-- HERO -->
 
   <section class="hero">
 
     <div class="hero-label">
-
       ⚡
-
-      <span>
-        DANNY SMART POWER
-      </span>
-
+      <span>DANNY SMART POWER</span>
     </div>
 
     <h1>
@@ -1697,12 +1056,9 @@ video.project-media{
     </h1>
 
     <p>
-
-      Explore some of our electrical, solar, inverter,
-      wiring, lighting and repair projects. Tap any
-      project to see more details or request the same
-      service from Danny Smart Power.
-
+      Explore real electrical, solar, inverter, wiring,
+      lighting and repair projects completed by Danny Smart Power.
+      See our work and contact us when you're ready for a similar service.
     </p>
 
     <div class="hero-actions">
@@ -1711,26 +1067,20 @@ video.project-media{
         href="request-service.html"
         class="primary-btn"
       >
-
         ⚡ Request Electrical Service
-
       </a>
 
       <a
         href="chat.html"
         class="secondary-btn"
       >
-
         💬 Chat With Danny
-
       </a>
 
     </div>
 
   </section>
 
-
-  <!-- TOOLBAR -->
 
   <div class="toolbar">
 
@@ -1748,13 +1098,11 @@ video.project-media{
 
     <div class="search-box">
 
-      <span>
-        🔍
-      </span>
+      <span>🔍</span>
 
       <input
-        type="search"
         id="searchInput"
+        type="search"
         placeholder="Search our work..."
       >
 
@@ -1762,8 +1110,6 @@ video.project-media{
 
   </div>
 
-
-  <!-- FILTERS -->
 
   <div class="filters">
 
@@ -1819,11 +1165,9 @@ video.project-media{
   </div>
 
 
-  <!-- PROJECTS -->
-
   <section
-    class="project-grid"
     id="projectGrid"
+    class="project-grid"
   >
 
     <div class="state">
@@ -1841,63 +1185,163 @@ video.project-media{
 </main>
 
 
-<!-- =====================================================
-     PROJECT MODAL
-===================================================== -->
+<!-- ================= MODAL ================= -->
 
 <div
-  class="modal"
   id="projectModal"
+  class="modal"
 >
 
   <div class="modal-card">
 
-    <button
-      class="close-modal"
-      id="closeModal"
-      aria-label="Close"
-    >
-      ×
-    </button>
+    <div class="modal-top">
 
-    <div id="modalMediaContainer"></div>
+      <button
+        id="modalNotificationBtn"
+        class="modal-notification"
+        title="View notifications"
+        aria-label="View notifications"
+      >
+        🔔
+      </button>
+
+      <button
+        id="closeModal"
+        class="close-modal"
+        aria-label="Close project"
+      >
+        ×
+      </button>
+
+      <div id="modalMediaContainer"></div>
+
+    </div>
+
 
     <div class="modal-content">
 
       <div
-        class="modal-category"
         id="modalCategory"
+        class="modal-category"
       ></div>
 
       <h2 id="modalTitle">
-        Electrical Project
+        Project
       </h2>
 
       <p
-        class="modal-description"
         id="modalDescription"
+        class="modal-description"
       ></p>
 
-      <div
-        class="project-meta"
-        id="modalMeta"
-      ></div>
+
+      <div class="modal-meta">
+
+        <div class="meta-box">
+
+          <span class="meta-label">
+            Category
+          </span>
+
+          <span
+            id="modalMetaCategory"
+            class="meta-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="meta-box">
+
+          <span class="meta-label">
+            Media
+          </span>
+
+          <span
+            id="modalMetaMedia"
+            class="meta-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="meta-box">
+
+          <span class="meta-label">
+            Request
+          </span>
+
+          <span
+            id="modalMetaRequest"
+            class="meta-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="meta-box">
+
+          <span class="meta-label">
+            Date
+          </span>
+
+          <span
+            id="modalMetaDate"
+            class="meta-value"
+          >
+            —
+          </span>
+
+        </div>
+
+      </div>
+
 
       <div class="modal-actions">
 
         <button
-          class="chat-btn"
           id="modalChatBtn"
+          class="chat-btn"
         >
-          💬 Chat About This Work
+          💬 Chat With Danny
         </button>
 
         <button
-          class="request-btn"
           id="modalRequestBtn"
+          class="request-btn"
         >
-          ⚡ Request for This Service
+          ⚡ Request For This Service
         </button>
+
+      </div>
+
+
+      <button
+        id="shareBtn"
+        class="share-btn"
+      >
+        🔗 Share This Project
+      </button>
+
+
+      <div class="info-box">
+
+        <h4>
+          💡 Want work like this?
+        </h4>
+
+        <p>
+          You can chat directly with Danny about this project
+          or request the same type of electrical service.
+          Your selected project will automatically be included
+          in the conversation.
+        </p>
 
       </div>
 
@@ -1908,29 +1352,25 @@ video.project-media{
 </div>
 
 
-<!-- TOAST -->
+<!-- ================= TOAST ================= -->
 
 <div
-  class="toast"
   id="toast"
+  class="toast"
 ></div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
+<!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 
 <script>
 
 /* =====================================================
-   FIREBASE CONFIG
+   FIREBASE
 ===================================================== */
 
 const firebaseConfig = {
@@ -1962,14 +1402,10 @@ const firebaseConfig = {
 };
 
 
-firebase.initializeApp(
-  firebaseConfig
-);
-
+firebase.initializeApp(firebaseConfig);
 
 const auth =
   firebase.auth();
-
 
 const db =
   firebase.firestore();
@@ -2001,9 +1437,7 @@ const closeModal =
   document.getElementById("closeModal");
 
 const modalMediaContainer =
-  document.getElementById(
-    "modalMediaContainer"
-  );
+  document.getElementById("modalMediaContainer");
 
 const modalTitle =
   document.getElementById("modalTitle");
@@ -2014,131 +1448,124 @@ const modalCategory =
 const modalDescription =
   document.getElementById("modalDescription");
 
-const modalMeta =
-  document.getElementById("modalMeta");
-
 const modalChatBtn =
   document.getElementById("modalChatBtn");
 
 const modalRequestBtn =
   document.getElementById("modalRequestBtn");
 
+const modalNotificationBtn =
+  document.getElementById("modalNotificationBtn");
+
+const shareBtn =
+  document.getElementById("shareBtn");
+
 const toast =
   document.getElementById("toast");
-
-const notificationDot =
-  document.getElementById("notificationDot");
-
-
-/* =====================================================
-   USER
-===================================================== */
-
-let currentUser = null;
 
 
 /* =====================================================
    AUTH
 ===================================================== */
 
-auth.onAuthStateChanged(
-  async user => {
+let currentUser = null;
 
-    if(!user){
+auth.onAuthStateChanged(async user => {
 
-      window.location.href =
-        "login.html";
+  if(!user){
 
-      return;
-    }
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
+  currentUser =
+    user;
 
 
-    currentUser =
-      user;
+  document.getElementById(
+    "menuName"
+  ).textContent =
+    user.displayName ||
+    user.email?.split("@")[0] ||
+    "Customer";
 
 
-    const fallbackName =
-      user.displayName ||
-      user.email?.split("@")[0] ||
-      "Customer";
+  document.getElementById(
+    "menuEmail"
+  ).textContent =
+    user.email || "";
 
+
+  if(user.photoURL){
 
     document.getElementById(
-      "menuName"
-    ).textContent =
-      fallbackName;
+      "menuAvatar"
+    ).src =
+      user.photoURL;
+
+  }
 
 
-    document.getElementById(
-      "menuEmail"
-    ).textContent =
-      user.email || "";
+  try{
+
+    const profileSnap =
+      await db
+        .collection("profiles")
+        .doc(user.uid)
+        .get();
 
 
-    if(user.photoURL){
+    if(profileSnap.exists){
 
-      document.getElementById(
-        "menuAvatar"
-      ).src =
-        user.photoURL;
-
-    }
+      const profile =
+        profileSnap.data();
 
 
-    try{
+      if(profile.name){
 
-      const profileSnap =
-        await db
-          .collection("profiles")
-          .doc(user.uid)
-          .get();
+        document.getElementById(
+          "menuName"
+        ).textContent =
+          profile.name;
 
-
-      if(profileSnap.exists){
-
-        const profile =
-          profileSnap.data();
+      }
 
 
-        if(profile.name){
+      if(profile.photoURL){
 
-          document.getElementById(
-            "menuName"
-          ).textContent =
-            profile.name;
+        document.getElementById(
+          "menuAvatar"
+        ).src =
+          profile.photoURL;
 
-        }
+      }
 
+      else if(profile.photo){
 
-        const photo =
-          profile.photoURL ||
-          profile.photo ||
-          "";
-
-
-        if(photo){
-
-          document.getElementById(
-            "menuAvatar"
-          ).src =
-            photo;
-
-        }
+        document.getElementById(
+          "menuAvatar"
+        ).src =
+          profile.photo;
 
       }
 
     }
-    catch(error){
-
-      console.warn(
-        "Profile loading error:",
-        error
-      );
-
-    }
 
   }
-);
+
+  catch(error){
+
+    console.warn(
+      "Profile unavailable:",
+      error
+    );
+
+  }
+
+});
 
 
 /* =====================================================
@@ -2182,9 +1609,6 @@ document.addEventListener(
    TOAST
 ===================================================== */
 
-let toastTimer = null;
-
-
 function showToast(message){
 
   toast.textContent =
@@ -2196,11 +1620,11 @@ function showToast(message){
 
 
   clearTimeout(
-    toastTimer
+    window.toastTimer
   );
 
 
-  toastTimer =
+  window.toastTimer =
     setTimeout(
       () => {
 
@@ -2209,14 +1633,14 @@ function showToast(message){
         );
 
       },
-      2800
+      3000
     );
 
 }
 
 
 /* =====================================================
-   PROJECT DATA
+   PROJECTS
 ===================================================== */
 
 let allProjects = [];
@@ -2224,60 +1648,8 @@ let allProjects = [];
 let activeCategory =
   "All";
 
-
 let selectedProject =
   null;
-
-
-/* =====================================================
-   MEDIA TYPE
-===================================================== */
-
-function getMediaType(project){
-
-  let type =
-    project.mediaType ||
-    project.medisType ||
-    "image";
-
-
-  type =
-    String(type)
-      .trim()
-      .toLowerCase();
-
-
-  if(
-    type === "mp4" ||
-    type === "video/mp4" ||
-    type === "vid"
-  ){
-
-    return "video";
-
-  }
-
-
-  return type === "video"
-    ? "video"
-    : "image";
-
-}
-
-
-/* =====================================================
-   FEATURED
-   SUPPORT BOTH featured AND Featured
-===================================================== */
-
-function isFeatured(project){
-
-  return (
-    project.featured === true ||
-    project.Featured === true
-  );
-
-}
 
 
 /* =====================================================
@@ -2317,53 +1689,42 @@ async function loadProjects(){
     allProjects = [];
 
 
-    snapshot.forEach(
-      doc => {
+    snapshot.forEach(doc => {
 
-        allProjects.push({
+      allProjects.push({
 
-          id:doc.id,
+        id:doc.id,
 
-          ...doc.data()
+        ...doc.data()
 
-        });
+      });
 
-      }
-    );
+    });
 
-
-    /* SORT NEWEST FIRST */
 
     allProjects.sort(
       (a,b) => {
 
-        const aTime =
-          a.createdAt &&
-          typeof a.createdAt.toMillis ===
-            "function"
+        const dateA =
+          a.createdAt?.toMillis
             ? a.createdAt.toMillis()
             : 0;
 
-
-        const bTime =
-          b.createdAt &&
-          typeof b.createdAt.toMillis ===
-            "function"
+        const dateB =
+          b.createdAt?.toMillis
             ? b.createdAt.toMillis()
             : 0;
 
-
-        return bTime - aTime;
+        return dateB - dateA;
 
       }
     );
 
 
-    updateNotificationDot();
-
     renderProjects();
 
   }
+
   catch(error){
 
     console.error(
@@ -2403,7 +1764,80 @@ async function loadProjects(){
 
 
 /* =====================================================
-   RENDER PROJECTS
+   HELPERS
+===================================================== */
+
+function getMediaType(project){
+
+  return String(
+    project.mediaType ||
+    project.medisType ||
+    "image"
+  )
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function isFeatured(project){
+
+  return (
+    project.featured === true ||
+    project.Featured === true
+  );
+
+}
+
+
+function formatDate(timestamp){
+
+  if(!timestamp){
+    return "Not specified";
+  }
+
+
+  try{
+
+    const date =
+      timestamp.toDate
+        ? timestamp.toDate()
+        : new Date(timestamp);
+
+
+    if(
+      isNaN(
+        date.getTime()
+      )
+    ){
+
+      return "Not specified";
+
+    }
+
+
+    return date.toLocaleDateString(
+      undefined,
+      {
+        year:"numeric",
+        month:"short",
+        day:"numeric"
+      }
+    );
+
+  }
+
+  catch(error){
+
+    return "Not specified";
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER
 ===================================================== */
 
 function renderProjects(){
@@ -2482,8 +1916,7 @@ function renderProjects(){
         </h3>
 
         <p>
-          Try another search or choose
-          a different category.
+          Try another search or category.
         </p>
 
       </div>
@@ -2513,28 +1946,20 @@ function renderProjects(){
 
 
 /* =====================================================
-   CREATE PROJECT CARD
+   CREATE CARD
 ===================================================== */
 
 function createProjectCard(project){
 
   const card =
-    document.createElement(
-      "article"
-    );
-
+    document.createElement("article");
 
   card.className =
     "project-card";
 
 
-  /* MEDIA */
-
   const mediaWrapper =
-    document.createElement(
-      "div"
-    );
-
+    document.createElement("div");
 
   mediaWrapper.className =
     "media-wrapper";
@@ -2550,241 +1975,7 @@ function createProjectCard(project){
     ).trim();
 
 
-  const thumbnailUrl =
-    String(
-      project.thumbnailUrl || ""
-    ).trim();
-
-
-  /* ===================================================
-     VIDEO
-  =================================================== */
-
-  if(
-    mediaType === "video" &&
-    mediaUrl
-  ){
-
-    const video =
-      document.createElement(
-        "video"
-      );
-
-
-    video.className =
-      "project-media";
-
-
-    video.src =
-      mediaUrl;
-
-
-    video.muted =
-      true;
-
-
-    video.loop =
-      true;
-
-
-    video.playsInline =
-      true;
-
-
-    video.preload =
-      "metadata";
-
-
-    video.setAttribute(
-      "playsinline",
-      ""
-    );
-
-
-    if(thumbnailUrl){
-
-      video.poster =
-        thumbnailUrl;
-
-    }
-
-
-    /* Video should NOT automatically
-       use bandwidth by playing. */
-
-
-    video.addEventListener(
-      "mouseenter",
-      () => {
-
-        video.play()
-          .catch(
-            () => {}
-          );
-
-      }
-    );
-
-
-    video.addEventListener(
-      "mouseleave",
-      () => {
-
-        video.pause();
-
-      }
-    );
-
-
-    video.addEventListener(
-      "error",
-      () => {
-
-        video.style.display =
-          "none";
-
-
-        const fallback =
-          document.createElement(
-            "div"
-          );
-
-
-        fallback.style.cssText = `
-
-          width:100%;
-          height:100%;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          flex-direction:column;
-          gap:7px;
-          color:#38bdf8;
-          font-size:11px;
-          text-align:center;
-
-        `;
-
-
-        fallback.innerHTML = `
-
-          <div style="font-size:35px;">
-            ⚠️
-          </div>
-
-          <div>
-            Video unavailable
-          </div>
-
-        `;
-
-
-        mediaWrapper.appendChild(
-          fallback
-        );
-
-      }
-    );
-
-
-    mediaWrapper.appendChild(
-      video
-    );
-
-
-    const play =
-      document.createElement(
-        "div"
-      );
-
-
-    play.className =
-      "play-icon";
-
-
-    play.textContent =
-      "▶";
-
-
-    mediaWrapper.appendChild(
-      play
-    );
-
-  }
-
-
-  /* ===================================================
-     IMAGE
-  =================================================== */
-
-  else if(mediaUrl){
-
-    const image =
-      document.createElement(
-        "img"
-      );
-
-
-    image.className =
-      "project-media";
-
-
-    image.src =
-      mediaUrl;
-
-
-    image.alt =
-      project.title ||
-      "Danny Smart Power project";
-
-
-    image.loading =
-      "lazy";
-
-
-    image.addEventListener(
-      "error",
-      () => {
-
-        image.style.display =
-          "none";
-
-
-        mediaWrapper.insertAdjacentHTML(
-          "beforeend",
-          `
-
-            <div style="
-              width:100%;
-              height:100%;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              font-size:40px;
-              color:#38bdf8;
-            ">
-              ⚡
-            </div>
-
-          `
-        );
-
-      }
-    );
-
-
-    mediaWrapper.appendChild(
-      image
-    );
-
-  }
-
-
-  /* ===================================================
-     NO MEDIA
-  =================================================== */
-
-  else{
+  if(!mediaUrl){
 
     mediaWrapper.innerHTML = `
 
@@ -2804,66 +1995,203 @@ function createProjectCard(project){
 
   }
 
+  else if(mediaType === "video"){
 
-  /* GRADIENT */
+    const video =
+      document.createElement("video");
 
-  const gradient =
-    document.createElement(
-      "div"
+
+    video.className =
+      "project-media";
+
+    video.src =
+      mediaUrl;
+
+    video.muted =
+      true;
+
+    video.loop =
+      true;
+
+    video.playsInline =
+      true;
+
+    video.preload =
+      "metadata";
+
+
+    if(project.thumbnailUrl){
+
+      video.poster =
+        project.thumbnailUrl;
+
+    }
+
+
+    video.addEventListener(
+      "loadeddata",
+      () => {
+
+        video.play().catch(
+          () => {}
+        );
+
+      }
     );
 
 
+    video.onerror =
+      () => {
+
+        video.style.display =
+          "none";
+
+
+        mediaWrapper.insertAdjacentHTML(
+          "beforeend",
+          `
+
+          <div style="
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            gap:7px;
+            color:#38bdf8;
+            font-size:12px;
+            text-align:center;
+            padding:10px;
+          ">
+
+            <div style="font-size:35px;">
+              ⚠️
+            </div>
+
+            Video unavailable
+
+          </div>
+
+          `
+        );
+
+      };
+
+
+    mediaWrapper.appendChild(
+      video
+    );
+
+
+    const play =
+      document.createElement("div");
+
+    play.className =
+      "play-icon";
+
+    play.textContent =
+      "▶";
+
+    mediaWrapper.appendChild(
+      play
+    );
+
+  }
+
+  else{
+
+    const image =
+      document.createElement("img");
+
+
+    image.className =
+      "project-media";
+
+    image.src =
+      mediaUrl;
+
+    image.alt =
+      project.title ||
+      "Danny Smart Power project";
+
+    image.loading =
+      "lazy";
+
+
+    image.onerror =
+      () => {
+
+        image.style.display =
+          "none";
+
+
+        mediaWrapper.insertAdjacentHTML(
+          "beforeend",
+          `
+
+          <div style="
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:42px;
+            color:#38bdf8;
+          ">
+            ⚡
+          </div>
+
+          `
+        );
+
+      };
+
+
+    mediaWrapper.appendChild(
+      image
+    );
+
+  }
+
+
+  const gradient =
+    document.createElement("div");
+
   gradient.className =
     "media-gradient";
-
 
   mediaWrapper.appendChild(
     gradient
   );
 
 
-  /* MEDIA TYPE */
+  const badge =
+    document.createElement("div");
 
-  const typeBadge =
-    document.createElement(
-      "div"
-    );
-
-
-  typeBadge.className =
+  badge.className =
     "media-type";
 
-
-  typeBadge.textContent =
+  badge.textContent =
     mediaType === "video"
       ? "🎥 Video"
       : "📷 Photo";
 
-
   mediaWrapper.appendChild(
-    typeBadge
+    badge
   );
 
 
-  /* FEATURED */
-
-  if(
-    isFeatured(project)
-  ){
+  if(isFeatured(project)){
 
     const featured =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     featured.className =
       "featured-badge";
 
-
     featured.textContent =
       "★ Featured";
-
 
     mediaWrapper.appendChild(
       featured
@@ -2872,100 +2200,22 @@ function createProjectCard(project){
   }
 
 
-  /* ===================================================
-     NOTIFICATION BUTTON
-  =================================================== */
-
-  const notifyBtn =
-    document.createElement(
-      "button"
-    );
-
-
-  notifyBtn.className =
-    "project-notify";
-
-
-  notifyBtn.type =
-    "button";
-
-
-  const saved =
-    isProjectSaved(
-      project.id
-    );
-
-
-  if(saved){
-
-    notifyBtn.classList.add(
-      "saved"
-    );
-
-    notifyBtn.textContent =
-      "🔔";
-
-  }
-  else{
-
-    notifyBtn.textContent =
-      "🔔";
-
-  }
-
-
-  notifyBtn.title =
-    "Save this project";
-
-
-  notifyBtn.addEventListener(
-    "click",
-    event => {
-
-      event.stopPropagation();
-
-      toggleProjectNotification(
-        project,
-        notifyBtn
-      );
-
-    }
-  );
-
-
-  mediaWrapper.appendChild(
-    notifyBtn
-  );
-
-
-  /* ===================================================
-     PROJECT INFO
-  =================================================== */
-
   const info =
-    document.createElement(
-      "div"
-    );
-
+    document.createElement("div");
 
   info.className =
     "project-info";
 
 
   const category =
-    document.createElement(
-      "div"
-    );
-
+    document.createElement("div");
 
   category.className =
     "project-category";
 
-
   category.textContent =
     project.category ||
     "Electrical";
-
 
   info.appendChild(
     category
@@ -2973,15 +2223,11 @@ function createProjectCard(project){
 
 
   const title =
-    document.createElement(
-      "h3"
-    );
-
+    document.createElement("h3");
 
   title.textContent =
     project.title ||
     "Electrical Project";
-
 
   info.appendChild(
     title
@@ -2989,15 +2235,11 @@ function createProjectCard(project){
 
 
   const description =
-    document.createElement(
-      "p"
-    );
-
+    document.createElement("p");
 
   description.textContent =
     project.description ||
     "Professional electrical work completed by Danny Smart Power.";
-
 
   info.appendChild(
     description
@@ -3005,10 +2247,7 @@ function createProjectCard(project){
 
 
   const footer =
-    document.createElement(
-      "div"
-    );
-
+    document.createElement("div");
 
   footer.className =
     "project-footer";
@@ -3036,23 +2275,16 @@ function createProjectCard(project){
     mediaWrapper
   );
 
-
   card.appendChild(
     info
   );
 
 
-  /* ===================================================
-     CLICK PROJECT
-  =================================================== */
-
   card.addEventListener(
     "click",
     () => {
 
-      openProject(
-        project
-      );
+      openProject(project);
 
     }
   );
@@ -3085,66 +2317,59 @@ function openProject(project){
 
   modalDescription.textContent =
     project.description ||
-    "Professional work completed by Danny Smart Power.";
+    "Professional electrical work completed by Danny Smart Power.";
 
 
-  /* META */
-
-  modalMeta.innerHTML =
-    "";
+  document.getElementById(
+    "modalMetaCategory"
+  ).textContent =
+    project.category ||
+    "Electrical";
 
 
   const mediaType =
     getMediaType(project);
 
 
-  const typeMeta =
-    document.createElement(
-      "div"
-    );
-
-
-  typeMeta.className =
-    "meta-item";
-
-
-  typeMeta.textContent =
+  document.getElementById(
+    "modalMetaMedia"
+  ).textContent =
     mediaType === "video"
-      ? "🎥 Project Video"
-      : "📷 Project Photo";
+      ? "Video"
+      : "Photo";
 
 
-  modalMeta.appendChild(
-    typeMeta
-  );
+  const requestEnabled =
+    project.requestEnabled === true;
 
 
-  if(
-    isFeatured(project)
-  ){
-
-    const featuredMeta =
-      document.createElement(
-        "div"
-      );
-
-
-    featuredMeta.className =
-      "meta-item";
-
-
-    featuredMeta.textContent =
-      "★ Featured Work";
-
-
-    modalMeta.appendChild(
-      featuredMeta
+  const requestMeta =
+    document.getElementById(
+      "modalMetaRequest"
     );
 
-  }
+
+  requestMeta.textContent =
+    requestEnabled
+      ? "Available"
+      : "Disabled";
 
 
-  /* MEDIA */
+  requestMeta.className =
+    `meta-value ${
+      requestEnabled
+        ? "enabled"
+        : "disabled"
+    }`;
+
+
+  document.getElementById(
+    "modalMetaDate"
+  ).textContent =
+    formatDate(
+      project.createdAt
+    );
+
 
   modalMediaContainer.innerHTML =
     "";
@@ -3156,118 +2381,68 @@ function openProject(project){
     ).trim();
 
 
-  const thumbnailUrl =
-    String(
-      project.thumbnailUrl || ""
-    ).trim();
+  if(mediaUrl){
+
+    if(mediaType === "video"){
+
+      const video =
+        document.createElement("video");
 
 
-  if(
-    mediaUrl &&
-    mediaType === "video"
-  ){
+      video.className =
+        "modal-media";
 
-    const video =
-      document.createElement(
-        "video"
+      video.controls =
+        true;
+
+      video.playsInline =
+        true;
+
+      video.preload =
+        "metadata";
+
+      video.src =
+        mediaUrl;
+
+
+      if(project.thumbnailUrl){
+
+        video.poster =
+          project.thumbnailUrl;
+
+      }
+
+
+      modalMediaContainer.appendChild(
+        video
       );
-
-
-    video.className =
-      "modal-media";
-
-
-    video.src =
-      mediaUrl;
-
-
-    video.controls =
-      true;
-
-
-    video.playsInline =
-      true;
-
-
-    video.preload =
-      "metadata";
-
-
-    if(thumbnailUrl){
-
-      video.poster =
-        thumbnailUrl;
 
     }
 
+    else{
 
-    video.onerror =
-      () => {
-
-        modalMediaContainer.innerHTML = `
-
-          <div style="
-            min-height:300px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            flex-direction:column;
-            gap:10px;
-            color:#38bdf8;
-            background:#020617;
-            text-align:center;
-            padding:20px;
-          ">
-
-            <div style="font-size:45px;">
-              ⚠️
-            </div>
-
-            <div>
-              This project video could not be played.
-            </div>
-
-          </div>
-
-        `;
-
-      };
+      const image =
+        document.createElement("img");
 
 
-    modalMediaContainer.appendChild(
-      video
-    );
+      image.className =
+        "modal-media";
 
-  }
+      image.src =
+        mediaUrl;
+
+      image.alt =
+        project.title ||
+        "Electrical project";
 
 
-  else if(mediaUrl){
-
-    const image =
-      document.createElement(
-        "img"
+      modalMediaContainer.appendChild(
+        image
       );
 
-
-    image.className =
-      "modal-media";
-
-
-    image.src =
-      mediaUrl;
-
-
-    image.alt =
-      project.title ||
-      "Electrical project";
-
-
-    modalMediaContainer.appendChild(
-      image
-    );
+    }
 
   }
-
 
   else{
 
@@ -3290,88 +2465,23 @@ function openProject(project){
   }
 
 
-  /* ===================================================
-     REQUEST BUTTON
-  =================================================== */
+  modalRequestBtn.disabled =
+    !requestEnabled;
 
-  if(
-    project.requestEnabled === false
-  ){
 
-    modalRequestBtn.disabled =
-      true;
-
-    modalRequestBtn.classList.add(
-      "disabled"
-    );
+  if(requestEnabled){
 
     modalRequestBtn.textContent =
-      "⚡ Request Unavailable";
+      "⚡ Request For This Service";
 
   }
+
   else{
 
-    modalRequestBtn.disabled =
-      false;
-
-    modalRequestBtn.classList.remove(
-      "disabled"
-    );
-
     modalRequestBtn.textContent =
-      "⚡ Request for This Service";
+      "⚡ Request Currently Unavailable";
 
   }
-
-
-  /* ===================================================
-     CHAT BUTTON
-  =================================================== */
-
-  modalChatBtn.onclick =
-    () => {
-
-      if(!selectedProject){
-
-        window.location.href =
-          "chat.html";
-
-        return;
-
-      }
-
-
-      openProjectChat(
-        selectedProject,
-        false
-      );
-
-    };
-
-
-  /* ===================================================
-     REQUEST BUTTON
-  =================================================== */
-
-  modalRequestBtn.onclick =
-    () => {
-
-      if(
-        !selectedProject ||
-        selectedProject.requestEnabled === false
-      ){
-
-        return;
-
-      }
-
-
-      openProjectChat(
-        selectedProject,
-        true
-      );
-
-    };
 
 
   projectModal.classList.add(
@@ -3387,77 +2497,268 @@ function openProject(project){
 
 
 /* =====================================================
-   PROJECT CHAT
+   CHAT HANDOFF
 ===================================================== */
 
-function openProjectChat(
+function openChatWithProject(
   project,
-  requestMode
+  mode
 ){
+
+  if(!currentUser){
+
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
 
   const title =
     project.title ||
-    "Electrical Project";
+    "this electrical project";
 
 
-  let message;
+  let message = "";
 
 
-  if(requestMode){
+  if(mode === "request"){
 
     message =
       `Hi Danny, I want to Request for this service: ${title}`;
 
   }
+
   else{
 
     message =
-      `Hi Danny, I want to know more about this project: ${title}`;
+      `Hi Danny, I want to chat about this project: ${title}`;
 
   }
 
 
+  const chatData = {
+
+    projectId:
+      project.id || "",
+
+    projectTitle:
+      title,
+
+    projectCategory:
+      project.category || "",
+
+    mode:
+      mode,
+
+    message:
+      message,
+
+    createdAt:
+      Date.now()
+
+  };
+
+
+  /*
+     Save it locally too.
+     This allows chat.html to receive
+     the project even if the URL changes.
+  */
+
+  localStorage.setItem(
+    "dspChatProject",
+    JSON.stringify(chatData)
+  );
+
+
+  /*
+     Also send it through the URL.
+  */
+
   const params =
-    new URLSearchParams();
+    new URLSearchParams({
 
+      projectId:
+        project.id || "",
 
-  params.set(
-    "projectId",
-    project.id
-  );
+      projectTitle:
+        title,
 
+      mode:
+        mode,
 
-  params.set(
-    "projectTitle",
-    title
-  );
+      message:
+        message
 
-
-  params.set(
-    "category",
-    project.category ||
-    "Electrical"
-  );
-
-
-  params.set(
-    "message",
-    message
-  );
-
-
-  params.set(
-    "request",
-    requestMode
-      ? "true"
-      : "false"
-  );
+    });
 
 
   window.location.href =
-    `chat.html?${params.toString()}`;
+    "chat.html?" +
+    params.toString();
 
 }
+
+
+/* =====================================================
+   CHAT BUTTON
+===================================================== */
+
+modalChatBtn.addEventListener(
+  "click",
+  () => {
+
+    if(!selectedProject){
+
+      return;
+
+    }
+
+
+    openChatWithProject(
+      selectedProject,
+      "chat"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   REQUEST BUTTON
+===================================================== */
+
+modalRequestBtn.addEventListener(
+  "click",
+  () => {
+
+    if(
+      !selectedProject ||
+      selectedProject.requestEnabled !== true
+    ){
+
+      return;
+
+    }
+
+
+    openChatWithProject(
+      selectedProject,
+      "request"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+modalNotificationBtn.addEventListener(
+  "click",
+  () => {
+
+    /*
+      This is the ONLY notification button
+      connected to the project.
+    */
+
+    window.location.href =
+      "notification.html";
+
+  }
+);
+
+
+/* =====================================================
+   SHARE
+===================================================== */
+
+shareBtn.addEventListener(
+  "click",
+  async () => {
+
+    if(!selectedProject){
+
+      return;
+
+    }
+
+
+    const title =
+      selectedProject.title ||
+      "Danny Smart Power Project";
+
+
+    const url =
+      window.location.origin +
+      window.location.pathname +
+      "?project=" +
+      encodeURIComponent(
+        selectedProject.id
+      );
+
+
+    if(
+      navigator.share
+    ){
+
+      try{
+
+        await navigator.share({
+
+          title:
+            title,
+
+          text:
+            `Check out this electrical project by Danny Smart Power: ${title}`,
+
+          url:
+            url
+
+        });
+
+      }
+
+      catch(error){
+
+        /*
+          User cancelled share.
+        */
+
+      }
+
+    }
+
+    else{
+
+      try{
+
+        await navigator.clipboard.writeText(
+          url
+        );
+
+        showToast(
+          "Project link copied."
+        );
+
+      }
+
+      catch(error){
+
+        showToast(
+          "Could not copy project link."
+        );
+
+      }
+
+    }
+
+  }
+);
 
 
 /* =====================================================
@@ -3469,7 +2770,6 @@ function closeProjectModal(){
   projectModal.classList.remove(
     "active"
   );
-
 
   document.body.classList.remove(
     "modal-open"
@@ -3543,204 +2843,39 @@ searchInput.addEventListener(
 ===================================================== */
 
 document
-  .querySelectorAll(
-    ".filter-btn"
-  )
-  .forEach(
-    button => {
+  .querySelectorAll(".filter-btn")
+  .forEach(button => {
 
-      button.addEventListener(
-        "click",
-        () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-          document
-            .querySelectorAll(
-              ".filter-btn"
-            )
-            .forEach(
-              btn => {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach(btn => {
 
-                btn.classList.remove(
-                  "active"
-                );
-
-              }
+            btn.classList.remove(
+              "active"
             );
 
-
-          button.classList.add(
-            "active"
-          );
+          });
 
 
-          activeCategory =
-            button.dataset.category;
+        button.classList.add(
+          "active"
+        );
 
 
-          renderProjects();
-
-        }
-      );
-
-    }
-  );
+        activeCategory =
+          button.dataset.category;
 
 
-/* =====================================================
-   PROJECT NOTIFICATIONS
-   Saved locally for the customer.
-===================================================== */
+        renderProjects();
 
-function getSavedProjects(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        "dspSavedProjects"
-      ) || "[]"
+      }
     );
 
-  }
-  catch(error){
-
-    return [];
-
-  }
-
-}
-
-
-function isProjectSaved(
-  projectId
-){
-
-  return getSavedProjects()
-    .includes(projectId);
-
-}
-
-
-function toggleProjectNotification(
-  project,
-  button
-){
-
-  let saved =
-    getSavedProjects();
-
-
-  const index =
-    saved.indexOf(
-      project.id
-    );
-
-
-  if(index === -1){
-
-    saved.push(
-      project.id
-    );
-
-
-    localStorage.setItem(
-      "dspSavedProjects",
-      JSON.stringify(saved)
-    );
-
-
-    button.classList.add(
-      "saved"
-    );
-
-
-    button.textContent =
-      "🔔";
-
-
-    button.title =
-      "Project saved";
-
-
-    showToast(
-      "🔔 Project saved to your notifications."
-    );
-
-  }
-  else{
-
-    saved.splice(
-      index,
-      1
-    );
-
-
-    localStorage.setItem(
-      "dspSavedProjects",
-      JSON.stringify(saved)
-    );
-
-
-    button.classList.remove(
-      "saved"
-    );
-
-
-    button.textContent =
-      "🔔";
-
-
-    button.title =
-      "Save this project";
-
-
-    showToast(
-      "Project removed from saved notifications."
-    );
-
-  }
-
-
-  updateNotificationDot();
-
-}
-
-
-/* =====================================================
-   NOTIFICATION DOT
-===================================================== */
-
-function updateNotificationDot(){
-
-  const saved =
-    getSavedProjects();
-
-
-  notificationDot.style.display =
-    saved.length
-      ? "block"
-      : "none";
-
-}
-
-
-/* =====================================================
-   HEADER NOTIFICATION
-===================================================== */
-
-document
-  .getElementById(
-    "notificationBtn"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      window.location.href =
-        "notifications.html";
-
-    }
-  );
+  });
 
 
 /* =====================================================
@@ -3748,9 +2883,7 @@ document
 ===================================================== */
 
 document
-  .getElementById(
-    "signOutBtn"
-  )
+  .getElementById("signOutBtn")
   .addEventListener(
     "click",
     async () => {
@@ -3759,17 +2892,16 @@ document
 
         await auth.signOut();
 
+        localStorage.removeItem(
+          "dspChatProject"
+        );
+
         window.location.href =
           "login.html";
 
       }
+
       catch(error){
-
-        console.error(
-          "Sign out error:",
-          error
-        );
-
 
         showToast(
           "Could not sign out."
@@ -3782,10 +2914,58 @@ document
 
 
 /* =====================================================
+   OPEN PROJECT FROM URL
+===================================================== */
+
+function openProjectFromUrl(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const projectId =
+    params.get("project");
+
+
+  if(!projectId){
+
+    return;
+
+  }
+
+
+  const project =
+    allProjects.find(
+      item =>
+        item.id === projectId
+    );
+
+
+  if(project){
+
+    setTimeout(
+      () => {
+
+        openProject(project);
+
+      },
+      200
+    );
+
+  }
+
+}
+
+
+/* =====================================================
    START
 ===================================================== */
 
-loadProjects();
+loadProjects().then(
+  openProjectFromUrl
+);
 
 </script>
 
