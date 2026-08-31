@@ -6447,6 +6447,43 @@ window.addEventListener(
 
 updateNotificationBadge();
 
+      /* ==========================================
+   OPEN CHAT WITH PROJECT REQUEST MESSAGE
+========================================== */
+
+const chatParams = new URLSearchParams(window.location.search);
+
+const projectRequest = chatParams.get("message");
+
+if (projectRequest) {
+
+  // Try to find the message input in your chat
+  const messageInput =
+    document.querySelector(
+      "#messageInput, #messageBox, #chatInput, textarea, input[type='text']"
+    );
+
+  if (messageInput) {
+
+    messageInput.value = projectRequest;
+
+    // Make the input grow/update if your chat uses this
+    messageInput.dispatchEvent(
+      new Event("input", { bubbles: true })
+    );
+
+    // Put cursor at the end
+    messageInput.focus();
+
+    messageInput.setSelectionRange(
+      messageInput.value.length,
+      messageInput.value.length
+    );
+
+  }
+
+}
+
 </script>
 
 </body>
