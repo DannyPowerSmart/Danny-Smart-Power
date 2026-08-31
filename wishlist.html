@@ -207,6 +207,46 @@ header{
 
 }
 
+  /* =====================================================
+   NOTIFICATION BUTTON
+===================================================== */
+
+.notification-button{
+
+  position:relative;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:21px;
+
+  width:34px;
+
+  height:34px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  transition:.2s;
+
+}
+
+
+.notification-button:hover{
+
+  color:var(--blue);
+
+  background:rgba(56,189,248,.08);
+
+  transform:translateY(-1px);
+
+}
 
 .cart-button{
 
@@ -1382,35 +1422,48 @@ header{
     D<span>SP</span>
   </div>
 
+<div class="header-right">
 
-  <div class="header-right">
+  <a
+    href="index.html"
+    class="home-link"
+  >
+    Home
+  </a>
 
-    <a
-      href="index.html"
-      class="home-link"
+
+  <!-- NOTIFICATION -->
+
+  <a
+    href="notification.html"
+    class="notification-button"
+    aria-label="Notifications"
+    title="Notifications"
+  >
+    🔔
+  </a>
+
+
+  <!-- CART -->
+
+  <a
+    href="cart.html"
+    class="cart-button"
+    aria-label="Cart"
+  >
+
+    🛒
+
+    <span
+      class="cart-count"
+      id="cartCount"
     >
-      Home
-    </a>
+      0
+    </span>
 
+  </a>
 
-    <a
-      href="cart.html"
-      class="cart-button"
-      aria-label="Cart"
-    >
-
-      🛒
-
-      <span
-        class="cart-count"
-        id="cartCount"
-      >
-        0
-      </span>
-
-    </a>
-
-  </div>
+</div>
 
 </header>
 
