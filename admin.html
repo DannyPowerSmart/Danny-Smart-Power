@@ -6390,519 +6390,238 @@ function renderAdmins(){
     `).join("");
 }
 
-
 /* =========================================================
-   NOTIFICATIONS — ADMIN SYSTEM
-========================================================= */
-
-let notifications = [];
-
-
-/* =========================================================
-   LOAD NOTIFICATIONS
+NOTIFICATIONS
 ========================================================= */
 
 async function loadNotifications(){
 
-  try{
+try{
 
-    const snapshot =
-      await db
-        .collection("notifications")
-        .orderBy("createdAt", "desc")
-        .limit(100)
-        .get();
+const snapshot =  
+  await db  
+    .collection("notifications")  
+    .orderBy(  
+      "createdAt",  
+      "desc"  
+    )  
+    .limit(50)  
+    .get();  
 
-    notifications =
-      snapshot.docs.map(doc => ({
+notifications =  
+  snapshot.docs.map(  
+    doc=>({  
+      id:doc.id,  
+      ...doc.data()  
+    })  
+  );  
 
-        id: doc.id,
+renderNotifications();
 
-        ...doc.data()
+}catch(error){
 
-      }));
+notifications=[];  
 
-    renderNotifications();
-
-  }catch(error){
-
-    console.error(
-      "Admin notifications load error:",
-      error
-    );
-
-    notifications = [];
-
-    renderNotifications();
-
-  }
+renderNotifications();
 
 }
-
-
-/* =========================================================
-   RENDER ADMIN NOTIFICATIONS
-========================================================= */
+}
 
 function renderNotifications(){
 
-  const unread =
-    notifications.filter(
-      notification =>
-        notification.adminRead !== true
-    ).length;
+const unread =
+notifications.filter(
+notification =>
+!notification.read
+).length;
 
+$("notificationBadge")
+.textContent=unread;
 
-  const badge =
-    $("notificationBadge");
+$("notificationBadge")
+.classList
+.toggle(
+"hidden",
+unread===0
+);
 
-  if(badge){
+$("statNotifications")
+.textContent=unread;
 
-    badge.textContent =
-      unread > 99
-        ? "99+"
-        : unread;
+if(!notifications.length){
 
+$("notificationsList").innerHTML=  
+  `<div class="empty">  
+    No notifications yet.  
+  </div>`;  
 
-    badge.classList.toggle(
-      "hidden",
-      unread === 0
-    );
-
-  }
-
-
-  const stat =
-    $("statNotifications");
-
-  if(stat){
-
-    stat.textContent =
-      unread;
-
-  }
-
-
-  const list =
-    $("notificationsList");
-
-  if(!list){
-
-    return;
-
-  }
-
-
-  if(!notifications.length){
-
-    list.innerHTML = `
-
-      <div class="empty">
-
-        No notifications yet.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  list.innerHTML =
-    notifications
-      .map(notification => {
-
-        const target =
-          notification.target === "all"
-            ? "👥 Everyone"
-            : "👤 Customer";
-
-
-        return `
-
-          <div
-            class="notification"
-            style="
-              opacity:${
-                notification.adminRead === true
-                  ? ".6"
-                  : "1"
-              }
-            "
-          >
-
-            <div class="nicon">
-
-              ${escapeHTML(
-                notification.icon || "🔔"
-              )}
-
-            </div>
-
-
-            <div>
-
-              <strong>
-
-                ${escapeHTML(
-                  notification.title ||
-                  "Notification"
-                )}
-
-              </strong>
-
-
-              <div>
-
-                ${escapeHTML(
-                  notification.message ||
-                  ""
-                )}
-
-              </div>
-
-
-              <small>
-
-                ${target}
-                ·
-                ${dateOf(
-                  notification.createdAt
-                )}
-
-              </small>
-
-            </div>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
+return;
 
 }
 
+$("notificationsList").innerHTML =
+notifications.map(notification=>`
 
-/* =========================================================
-   SEND NOTIFICATION TO EVERYONE
-========================================================= */
+<div  
+    class="notification"  
+    style="opacity:${  
+      notification.read  
+        ?.6  
+        :1  
+    }"  
+  >  
 
-async function sendNotificationToAll(
-  title,
-  message,
-  icon = "🔔",
-  imageUrl = "",
-  chatId = "",
-  sourceId = ""
-){
+    <div class="nicon">  
+      ${escapeHTML(  
+        notification.icon||  
+        "🔔"  
+      )}  
+    </div>  
 
-  try{
+    <div>  
 
-    const data = {
+      <strong>  
+        ${escapeHTML(  
+          notification.title||  
+          "Notification"  
+        )}  
+      </strong>  
 
-      title: title,
+      <div>  
+        ${escapeHTML(  
+          notification.message||  
+          ""  
+        )}  
+      </div>  
 
-      message: message,
+      <small>  
+        ${dateOf(  
+          notification.createdAt  
+        )}  
+      </small>  
 
-      icon: icon,
+    </div>  
 
-      imageUrl: imageUrl || "",
+  </div>  
 
-      chatId: chatId || "",
-
-      target: "all",
-
-      recipientId: "",
-
-      recipientEmail: "",
-
-      readBy: [],
-
-      adminRead: true,
-
-      createdAt:
-        firebase.firestore
-          .FieldValue
-          .serverTimestamp()
-
-    };
-
-
-    if(sourceId){
-
-      data.sourceId =
-        sourceId;
-
-    }
-
-
-    await db
-      .collection("notifications")
-      .add(data);
-
-
-    await loadNotifications();
-
-
-    console.log(
-      "Notification sent to everyone."
-    );
-
-
-    return true;
-
-  }catch(error){
-
-    console.error(
-      "Send notification to all error:",
-      error
-    );
-
-
-    alert(
-      friendlyError(error)
-    );
-
-
-    return false;
-
-  }
+`).join("");
 
 }
-
-
-/* =========================================================
-   SEND NOTIFICATION TO ONE CUSTOMER
-========================================================= */
-
-async function sendNotificationToUser(
-  recipientId,
-  recipientEmail,
-  title,
-  message,
-  icon = "🔔",
-  imageUrl = "",
-  chatId = "",
-  sourceId = ""
-){
-
-  try{
-
-    if(!recipientId){
-
-      throw new Error(
-        "Customer Firebase UID is required."
-      );
-
-    }
-
-
-    const data = {
-
-      title: title,
-
-      message: message,
-
-      icon: icon,
-
-      imageUrl: imageUrl || "",
-
-      chatId: chatId || "",
-
-      target: "user",
-
-      recipientId: recipientId,
-
-      recipientEmail:
-        recipientEmail || "",
-
-      readBy: [],
-
-      adminRead: true,
-
-      createdAt:
-        firebase.firestore
-          .FieldValue
-          .serverTimestamp()
-
-    };
-
-
-    if(sourceId){
-
-      data.sourceId =
-        sourceId;
-
-    }
-
-
-    await db
-      .collection("notifications")
-      .add(data);
-
-
-    await loadNotifications();
-
-
-    console.log(
-      "Notification sent to customer:",
-      recipientId
-    );
-
-
-    return true;
-
-  }catch(error){
-
-    console.error(
-      "Send notification to user error:",
-      error
-    );
-
-
-    alert(
-      friendlyError(error)
-    );
-
-
-    return false;
-
-  }
-
-}
-
-
-/* =========================================================
-   SIMPLE ADMIN NOTIFICATION
-   -----------------------------------------
-   This replaces your old addNotification()
-========================================================= */
 
 async function addNotification(
-  title,
-  message,
-  icon = "🔔",
-  sourceId = ""
+title,
+message,
+icon="🔔",
+sourceId=""
 ){
 
-  return await sendNotificationToAll(
-    title,
-    message,
-    icon,
-    "",
-    "",
-    sourceId
-  );
+try{
+
+const source =  
+  sourceId||  
+  `${title}|${message}`;  
+
+
+const existing =  
+  await db  
+    .collection("notifications")  
+    .where(  
+      "sourceId",  
+      "==",  
+      source  
+    )  
+    .limit(1)  
+    .get();  
+
+
+if(existing.empty){  
+
+  await db  
+    .collection("notifications")  
+    .add({  
+
+      title:title,  
+
+      message:message,  
+
+      icon:icon,  
+
+      sourceId:source,  
+
+      read:false,  
+
+      createdAt:  
+        firebase.firestore.FieldValue  
+          .serverTimestamp()  
+
+    });  
+
+}  
+
+
+await loadNotifications();
+
+}catch(error){
+
+console.warn(  
+  "Notification write skipped:",  
+  error.message  
+);
 
 }
-
-
-/* =========================================================
-   MARK ADMIN NOTIFICATIONS AS READ
-========================================================= */
+}
 
 async function markNotificationsRead(){
 
-  try{
+try{
 
-    const unread =
-      notifications.filter(
-        notification =>
-          notification.adminRead !== true
-      );
-
-
-    if(!unread.length){
-
-      return;
-
-    }
+const unread =  
+  notifications.filter(  
+    notification =>  
+      !notification.read  
+  );  
 
 
-    const batch =
-      db.batch();
+if(!unread.length){  
+  return;  
+}  
 
 
-    unread.forEach(notification => {
-
-      batch.update(
-
-        db
-          .collection("notifications")
-          .doc(notification.id),
-
-        {
-
-          adminRead: true,
-
-          adminReadAt:
-            firebase.firestore
-              .FieldValue
-              .serverTimestamp()
-
-        }
-
-      );
-
-    });
+const batch =  
+  db.batch();  
 
 
-    await batch.commit();
+unread.forEach(  
+  notification=>{  
+
+    batch.update(  
+
+      db  
+        .collection("notifications")  
+        .doc(notification.id),  
+
+      {  
+        read:true  
+      }  
+
+    );  
+
+  }  
+);  
 
 
-    await loadNotifications();
+await batch.commit();  
 
-  }catch(error){
+await loadNotifications();
 
-    console.error(
-      "Admin read error:",
-      error
-    );
+}catch(error){
 
-
-    alert(
-      friendlyError(error)
-    );
-
-  }
+alert(  
+  friendlyError(error)  
+);
 
 }
-
-
-/* =========================================================
-   OPTIONAL: SEND NOTIFICATION FROM AN ORDER
-========================================================= */
-
-async function notifyCustomer(
-  customerId,
-  customerEmail,
-  title,
-  message,
-  icon = "🔔",
-  chatId = ""
-){
-
-  return await sendNotificationToUser(
-
-    customerId,
-
-    customerEmail,
-
-    title,
-
-    message,
-
-    icon,
-
-    "",
-
-    chatId
-
-  );
-
+}
 
 
 /* =========================================================
