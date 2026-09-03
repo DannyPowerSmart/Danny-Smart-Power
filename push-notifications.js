@@ -9,16 +9,24 @@ async function enablePushNotifications(){
     try{
 
         if(!("Notification" in window)){
-            alert("This browser does not support notifications.");
+
+            alert(
+                "This browser does not support notifications."
+            );
+
             return null;
         }
+
 
         const permission =
             await Notification.requestPermission();
 
+
         if(permission !== "granted"){
 
-            console.log("Notification permission was not granted.");
+            console.log(
+                "Notification permission was not granted."
+            );
 
             return null;
         }
@@ -52,12 +60,72 @@ async function enablePushNotifications(){
 
 
         console.log(
-            "Notification token:",
+            "FCM Token:",
             token
         );
 
 
+        /* =========================================
+           GET CURRENT CUSTOMER
+        ========================================= */
+
+        const user =
+            firebase.auth().currentUser;
+
+
+        if(!user){
+
+            console.log(
+                "User is not logged in. Token generated but not saved."
+            );
+
+            return token;
+        }
+
+
+        /* =========================================
+           FIRESTORE
+        ========================================= */
+
+        const db =
+            firebase.firestore();
+
+
+        /* =========================================
+           SAVE PUSH TOKEN
+        ========================================= */
+
+        await db
+            .collection("users")
+            .doc(user.uid)
+            .collection("pushTokens")
+            .doc(token)
+            .set({
+
+                token: token,
+
+                userId: user.uid,
+
+                email: user.email || "",
+
+                platform: "web",
+
+                createdAt:
+                    firebase.firestore.FieldValue.serverTimestamp(),
+
+                updatedAt:
+                    firebase.firestore.FieldValue.serverTimestamp()
+
+            }, { merge:true });
+
+
+        console.log(
+            "Push notification token saved successfully."
+        );
+
+
         return token;
+
 
     }catch(error){
 
