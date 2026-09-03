@@ -6391,702 +6391,238 @@ function renderAdmins(){
 }
 
 
-
-
-
-            View
-          </button>
-
-        </div>
-      `;
-
-    }).join("");
-}
-
-
-/* =========================================================
-   NOTIFICATIONS — ADMIN + CUSTOMER SYSTEM
-   Compatible with existing admin.html
-   Works with notification.html
-========================================================= */
-
-let notifications = [];
-
-
-/* =========================================================
-   LOAD NOTIFICATIONS
-   -----------------------------------------
-   KEEPING YOUR WORKING ADMIN QUERY
+    /* =========================================================
+NOTIFICATIONS
 ========================================================= */
 
 async function loadNotifications(){
 
-  try{
+try{
 
-    const snapshot =
-      await db
-        .collection("notifications")
-        .orderBy(
-          "createdAt",
-          "desc"
-        )
-        .limit(50)
-        .get();
+const snapshot =  
+  await db  
+    .collection("notifications")  
+    .orderBy(  
+      "createdAt",  
+      "desc"  
+    )  
+    .limit(50)  
+    .get();  
 
+notifications =  
+  snapshot.docs.map(  
+    doc=>({  
+      id:doc.id,  
+      ...doc.data()  
+    })  
+  );  
 
-    notifications =
-      snapshot.docs.map(
-        doc => ({
+renderNotifications();
 
-          id: doc.id,
+}catch(error){
 
-          ...doc.data()
+notifications=[];  
 
-        })
-      );
-
-
-    renderNotifications();
-
-
-  }catch(error){
-
-    console.error(
-      "Notification load error:",
-      error
-    );
-
-
-    /*
-      IMPORTANT:
-      Never allow notification loading
-      to affect admin login.
-    */
-
-    notifications = [];
-
-    renderNotifications();
-
-  }
+renderNotifications();
 
 }
-
-
-/* =========================================================
-   RENDER ADMIN NOTIFICATIONS
-   -----------------------------------------
-   Uses the OLD "read" field so your existing
-   admin interface continues working.
-========================================================= */
+}
 
 function renderNotifications(){
 
-  const unread =
-    notifications.filter(
-      notification =>
-        notification.read !== true
-    ).length;
+const unread =
+notifications.filter(
+notification =>
+!notification.read
+).length;
 
+$("notificationBadge")
+.textContent=unread;
 
-  const badge =
-    $("notificationBadge");
+$("notificationBadge")
+.classList
+.toggle(
+"hidden",
+unread===0
+);
 
+$("statNotifications")
+.textContent=unread;
 
-  if(badge){
+if(!notifications.length){
 
-    badge.textContent =
-      unread > 99
-        ? "99+"
-        : unread;
+$("notificationsList").innerHTML=  
+  `<div class="empty">  
+    No notifications yet.  
+  </div>`;  
 
-
-    badge.classList.toggle(
-      "hidden",
-      unread === 0
-    );
-
-  }
-
-
-  const stat =
-    $("statNotifications");
-
-
-  if(stat){
-
-    stat.textContent =
-      unread;
-
-  }
-
-
-  const list =
-    $("notificationsList");
-
-
-  if(!list){
-
-    return;
-
-  }
-
-
-  if(!notifications.length){
-
-    list.innerHTML = `
-
-      <div class="empty">
-
-        No notifications yet.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  list.innerHTML =
-    notifications
-      .map(
-        notification => {
-
-          const target =
-            notification.target === "user"
-              ? "👤 Customer"
-              : "👥 Everyone";
-
-
-          return `
-
-            <div
-              class="notification"
-              style="
-                opacity:${
-                  notification.read
-                    ? ".6"
-                    : "1"
-                }
-              "
-            >
-
-              <div class="nicon">
-
-                ${escapeHTML(
-                  notification.icon ||
-                  "🔔"
-                )}
-
-              </div>
-
-
-              <div>
-
-                <strong>
-
-                  ${escapeHTML(
-                    notification.title ||
-                    "Notification"
-                  )}
-
-                </strong>
-
-
-                <div>
-
-                  ${escapeHTML(
-                    notification.message ||
-                    ""
-                  )}
-
-                </div>
-
-
-                <small>
-
-                  ${target}
-
-                  ·
-
-                  ${dateOf(
-                    notification.createdAt
-                  )}
-
-                </small>
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join("");
+return;
 
 }
 
+$("notificationsList").innerHTML =
+notifications.map(notification=>`
 
-/* =========================================================
-   SEND NOTIFICATION TO EVERYONE
-   -----------------------------------------
-   CUSTOMER SIDE:
-   target = all
-   readBy = []
-========================================================= */
+<div  
+    class="notification"  
+    style="opacity:${  
+      notification.read  
+        ?.6  
+        :1  
+    }"  
+  >  
 
-async function sendNotificationToAll(
+    <div class="nicon">  
+      ${escapeHTML(  
+        notification.icon||  
+        "🔔"  
+      )}  
+    </div>  
 
-  title,
+    <div>  
 
-  message,
+      <strong>  
+        ${escapeHTML(  
+          notification.title||  
+          "Notification"  
+        )}  
+      </strong>  
 
-  icon = "🔔",
+      <div>  
+        ${escapeHTML(  
+          notification.message||  
+          ""  
+        )}  
+      </div>  
 
-  imageUrl = "",
+      <small>  
+        ${dateOf(  
+          notification.createdAt  
+        )}  
+      </small>  
 
-  chatId = "",
+    </div>  
 
-  sourceId = ""
+  </div>  
 
-){
-
-  try{
-
-    const source =
-      sourceId ||
-      `${title}|${message}`;
-
-
-    /*
-      Prevent duplicate notifications
-      when the same event calls this twice.
-    */
-
-    const existing =
-      await db
-        .collection("notifications")
-        .where(
-          "sourceId",
-          "==",
-          source
-        )
-        .limit(1)
-        .get();
-
-
-    if(!existing.empty){
-
-      await loadNotifications();
-
-      return true;
-
-    }
-
-
-    await db
-      .collection("notifications")
-      .add({
-
-        title:
-          title,
-
-        message:
-          message,
-
-        icon:
-          icon || "🔔",
-
-        imageUrl:
-          imageUrl || "",
-
-        chatId:
-          chatId || "",
-
-        target:
-          "all",
-
-        recipientId:
-          "",
-
-        recipientEmail:
-          "",
-
-        sourceId:
-          source,
-
-        /*
-          OLD ADMIN READ SYSTEM
-          --------------------------------
-          Admin sees this as already read.
-        */
-
-        read:
-          true,
-
-        /*
-          NEW CUSTOMER READ SYSTEM
-          --------------------------------
-          Every customer starts unread.
-        */
-
-        readBy:
-          [],
-
-        createdAt:
-          firebase.firestore
-            .FieldValue
-            .serverTimestamp()
-
-      });
-
-
-    await loadNotifications();
-
-
-    console.log(
-      "Notification sent to all customers."
-    );
-
-
-    return true;
-
-
-  }catch(error){
-
-    console.warn(
-      "Notification write skipped:",
-      error.message
-    );
-
-
-    /*
-      Do not break admin if notification
-      writing fails.
-    */
-
-    return false;
-
-  }
+`).join("");
 
 }
-
-
-/* =========================================================
-   SEND NOTIFICATION TO ONE CUSTOMER
-========================================================= */
-
-async function sendNotificationToUser(
-
-  recipientId,
-
-  recipientEmail,
-
-  title,
-
-  message,
-
-  icon = "🔔",
-
-  imageUrl = "",
-
-  chatId = "",
-
-  sourceId = ""
-
-){
-
-  try{
-
-    if(!recipientId){
-
-      console.warn(
-        "Customer UID is missing."
-      );
-
-      return false;
-
-    }
-
-
-    /*
-      Give customer notifications a unique
-      source unless caller supplied one.
-    */
-
-    const source =
-      sourceId ||
-      `${recipientId}|${title}|${message}`;
-
-
-    /*
-      Prevent duplicate customer notifications.
-    */
-
-    const existing =
-      await db
-        .collection("notifications")
-        .where(
-          "sourceId",
-          "==",
-          source
-        )
-        .limit(1)
-        .get();
-
-
-    if(!existing.empty){
-
-      await loadNotifications();
-
-      return true;
-
-    }
-
-
-    await db
-      .collection("notifications")
-      .add({
-
-        title:
-          title,
-
-        message:
-          message,
-
-        icon:
-          icon || "🔔",
-
-        imageUrl:
-          imageUrl || "",
-
-        chatId:
-          chatId || "",
-
-        target:
-          "user",
-
-        recipientId:
-          recipientId,
-
-        recipientEmail:
-          recipientEmail || "",
-
-        sourceId:
-          source,
-
-        /*
-          Admin already considers the
-          notification read.
-        */
-
-        read:
-          true,
-
-        /*
-          Customer has not read it yet.
-        */
-
-        readBy:
-          [],
-
-        createdAt:
-          firebase.firestore
-            .FieldValue
-            .serverTimestamp()
-
-      });
-
-
-    await loadNotifications();
-
-
-    console.log(
-      "Notification sent to customer:",
-      recipientId
-    );
-
-
-    return true;
-
-
-  }catch(error){
-
-    console.warn(
-      "Customer notification write skipped:",
-      error.message
-    );
-
-
-    return false;
-
-  }
-
-}
-
-
-/* =========================================================
-   SIMPLE ADMIN NOTIFICATION
-   -----------------------------------------
-   Keeps your existing addNotification()
-   calls working.
-========================================================= */
 
 async function addNotification(
-
-  title,
-
-  message,
-
-  icon = "🔔",
-
-  sourceId = ""
-
+title,
+message,
+icon="🔔",
+sourceId=""
 ){
 
-  return await sendNotificationToAll(
+try{
 
-    title,
-
-    message,
-
-    icon,
-
-    "",
-
-    "",
-
-    sourceId
-
-  );
-
-}
+const source =  
+  sourceId||  
+  `${title}|${message}`;  
 
 
-/* =========================================================
-   NOTIFY CUSTOMER
-   -----------------------------------------
-   Use this for:
-   - Orders
-   - Services
-   - Chat
-   - Customer-specific updates
-========================================================= */
+const existing =  
+  await db  
+    .collection("notifications")  
+    .where(  
+      "sourceId",  
+      "==",  
+      source  
+    )  
+    .limit(1)  
+    .get();  
 
-async function notifyCustomer(
 
-  customerId,
+if(existing.empty){  
 
-  customerEmail,
+  await db  
+    .collection("notifications")  
+    .add({  
 
-  title,
+      title:title,  
 
-  message,
+      message:message,  
 
-  icon = "🔔",
+      icon:icon,  
 
-  chatId = "",
+      sourceId:source,  
 
-  sourceId = ""
+      read:false,  
 
-){
+      createdAt:  
+        firebase.firestore.FieldValue  
+          .serverTimestamp()  
 
-  return await sendNotificationToUser(
+    });  
 
-    customerId,
+}  
 
-    customerEmail,
 
-    title,
+await loadNotifications();
 
-    message,
+}catch(error){
 
-    icon,
-
-    "",
-
-    chatId,
-
-    sourceId
-
-  );
+console.warn(  
+  "Notification write skipped:",  
+  error.message  
+);
 
 }
-
-
-/* =========================================================
-   MARK ADMIN NOTIFICATIONS AS READ
-   -----------------------------------------
-   Uses OLD "read" field intentionally.
-========================================================= */
+}
 
 async function markNotificationsRead(){
 
-  try{
+try{
 
-    const unread =
-      notifications.filter(
-        notification =>
-          notification.read !== true
-      );
-
-
-    if(!unread.length){
-
-      return;
-
-    }
+const unread =  
+  notifications.filter(  
+    notification =>  
+      !notification.read  
+  );  
 
 
-    const batch =
-      db.batch();
+if(!unread.length){  
+  return;  
+}  
 
 
-    unread.forEach(
-      notification => {
-
-        batch.update(
-
-          db
-            .collection(
-              "notifications"
-            )
-            .doc(
-              notification.id
-            ),
-
-          {
-
-            read:
-              true
-
-          }
-
-        );
-
-      }
-    );
+const batch =  
+  db.batch();  
 
 
-    await batch.commit();
+unread.forEach(  
+  notification=>{  
+
+    batch.update(  
+
+      db  
+        .collection("notifications")  
+        .doc(notification.id),  
+
+      {  
+        read:true  
+      }  
+
+    );  
+
+  }  
+);  
 
 
-    await loadNotifications();
+await batch.commit();  
 
+await loadNotifications();
 
-  }catch(error){
+}catch(error){
 
-    console.warn(
-      "Admin notification read error:",
-      error.message
-    );
-
-  }
+alert(  
+  friendlyError(error)  
+);
 
 }
-
+  }
 
 /* =========================================================
    DASHBOARD
