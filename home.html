@@ -1899,6 +1899,45 @@ document.addEventListener(
    
 </script>
 
+   <script>
+
+const enableNotificationsBtn =
+  document.getElementById("enableNotificationsBtn");
+
+enableNotificationsBtn.addEventListener(
+  "click",
+  async function(){
+
+    enableNotificationsBtn.disabled = true;
+
+    enableNotificationsBtn.textContent =
+      "Enabling...";
+
+    const token =
+      await enablePushNotifications();
+
+    if(token){
+
+      enableNotificationsBtn.textContent =
+        "✅ Notifications Enabled";
+
+      enableNotificationsBtn.style.background =
+        "#22c55e";
+
+    }else{
+
+      enableNotificationsBtn.disabled = false;
+
+      enableNotificationsBtn.textContent =
+        "🔔 Enable Notifications";
+
+    }
+
+  }
+);
+
+   </script>
+
 </body>
 
 </html>
