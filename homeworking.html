@@ -1562,9 +1562,6 @@ footer strong{
   </div>
 
 
-   <button id="enableNotificationsBtn">
-    🔔 Enable Notifications
-</button>
 
 
   <!-- =================================================
@@ -1885,51 +1882,6 @@ document.addEventListener(
     if(event.key === "Escape"){
 
       menu.classList.remove("active");
-
-    }
-
-  }
-);
-
-   </script>
-
-   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
-
-<script src="/push-notifications.js">
-   
-</script>
-
-   <script>
-
-const enableNotificationsBtn =
-  document.getElementById("enableNotificationsBtn");
-
-enableNotificationsBtn.addEventListener(
-  "click",
-  async function(){
-
-    enableNotificationsBtn.disabled = true;
-
-    enableNotificationsBtn.textContent =
-      "Enabling...";
-
-    const token =
-      await enablePushNotifications();
-
-    if(token){
-
-      enableNotificationsBtn.textContent =
-        "✅ Notifications Enabled";
-
-      enableNotificationsBtn.style.background =
-        "#22c55e";
-
-    }else{
-
-      enableNotificationsBtn.disabled = false;
-
-      enableNotificationsBtn.textContent =
-        "🔔 Enable Notifications";
 
     }
 
