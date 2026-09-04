@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Home — Danny Smart Power</title>
+
+<meta name="description"
+content="Danny Smart Power — Electrical, solar, lighting and power solutions.">
+
+<link rel="icon" href="/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#0f172a;
+    --header:#020617;
+    --card:#111c31;
+    --card2:#162238;
+    --blue:#38bdf8;
+    --blue2:#0ea5e9;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:rgba(148,163,184,.15);
+    --green:#22c55e;
+    --danger:#ef4444;
+}
+
+body{
+    font-family:Poppins,sans-serif;
+    background:
+        radial-gradient(circle at top right,rgba(56,189,248,.08),transparent 35%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:70px;
+    background:rgba(2,6,23,.96);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:white;
+}
+
+.logo-icon{
+    width:39px;
+    height:39px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--blue),var(--blue2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#020617;
+    font-size:21px;
+    font-weight:800;
+    box-shadow:0 8px 25px rgba(14,165,233,.25);
+}
+
+.logo-text{
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:-.4px;
+}
+
+.logo-text span{
+    color:var(--blue);
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:#111827;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    position:relative;
+    transition:.2s;
+}
+
+.icon-btn:hover{
+    background:#1e293b;
+    transform:translateY(-1px);
+}
+
+.notification-dot{
+    position:absolute;
+    top:7px;
+    right:7px;
+    width:9px;
+    height:9px;
+    background:#ef4444;
+    border-radius:50%;
+    border:2px solid #111827;
+    display:none;
+}
+
+/* ================= MENU ================= */
+
+.menu{
+    position:fixed;
+    top:0;
+    right:-330px;
+    width:320px;
+    max-width:90%;
+    height:100vh;
+    background:#020617;
+    border-left:1px solid var(--border);
+    z-index:3000;
+    transition:.3s ease;
+    padding:22px;
+    overflow-y:auto;
+    box-shadow:-20px 0 60px rgba(0,0,0,.4);
+}
+
+.menu.open{
+    right:0;
+}
+
+.menu-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.menu-top h2{
+    font-size:21px;
+}
+
+.close-menu{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:10px;
+    background:#111827;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.user-box{
+    background:linear-gradient(
+        135deg,
+        rgba(56,189,248,.12),
+        rgba(14,165,233,.03)
+    );
+    border:1px solid rgba(56,189,248,.18);
+    padding:16px;
+    border-radius:17px;
+    margin-bottom:22px;
+}
+
+.user-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.user-photo{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#1e293b;
+    border:2px solid rgba(56,189,248,.4);
+}
+
+.user-name{
+    font-weight:700;
+    font-size:15px;
+}
+
+.user-email{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:2px;
+    word-break:break-word;
+}
+
+.menu-links{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.menu-link{
+    text-decoration:none;
+    color:#e2e8f0;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:14px;
+    border-radius:12px;
+    transition:.2s;
+}
+
+.menu-link:hover{
+    background:#111827;
+    color:var(--blue);
+}
+
+.menu-link-icon{
+    width:35px;
+    height:35px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#111827;
+}
+
+.signout{
+    margin-top:20px;
+    width:100%;
+    border:none;
+    background:#1f2937;
+    color:#f8fafc;
+    padding:13px;
+    border-radius:12px;
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.signout:hover{
+    background:#334155;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:2500;
+    display:none;
+}
+
+.overlay.show{
+    display:block;
+}
+
+/* ================= MAIN ================= */
+
+main{
+    max-width:1100px;
+    margin:auto;
+    padding:28px 18px 50px;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome{
+    margin-bottom:24px;
+}
+
+.welcome small{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.welcome h1{
+    font-size:clamp(26px,6vw,40px);
+    line-height:1.15;
+    margin-top:5px;
+    letter-spacing:-1px;
+}
+
+.welcome h1 span{
+    color:var(--blue);
+}
+
+.welcome p{
+    color:var(--muted);
+    margin-top:8px;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(56,189,248,.16);
+    border-radius:23px;
+    padding:28px 23px;
+    margin-bottom:25px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(56,189,248,.13),
+            rgba(15,23,42,.7)
+        );
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(56,189,248,.08);
+    right:-70px;
+    top:-80px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:1;
+    max-width:700px;
+}
+
+.hero h2{
+    font-size:clamp(23px,5vw,34px);
+    line-height:1.2;
+    margin-bottom:9px;
+}
+
+.hero p{
+    color:#cbd5e1;
+    font-size:14px;
+    line-height:1.7;
+    max-width:650px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:19px;
+}
+
+.primary-btn,
+.secondary-btn{
+    border:none;
+    padding:12px 17px;
+    border-radius:11px;
+    font-family:inherit;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.primary-btn{
+    background:var(--blue);
+    color:#020617;
+}
+
+.primary-btn:hover{
+    background:#7dd3fc;
+}
+
+.secondary-btn{
+    background:#172033;
+    color:white;
+    border:1px solid var(--border);
+}
+
+/* ================= QUICK ACTIONS ================= */
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:13px;
+}
+
+.section-title h2{
+    font-size:18px;
+}
+
+.section-title span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+    margin-bottom:28px;
+}
+
+.quick-card{
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(145deg,#111c31,#0e192b);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:19px 15px;
+    min-height:150px;
+    transition:.22s;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.quick-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(56,189,248,.35);
+    box-shadow:0 14px 35px rgba(0,0,0,.18);
+}
+
+.quick-icon{
+    width:47px;
+    height:47px;
+    border-radius:14px;
+    background:rgba(56,189,248,.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.quick-card h3{
+    font-size:15px;
+    margin-top:13px;
+}
+
+.quick-card p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.5;
+    margin-top:4px;
+}
+
+/* ================= NOTIFICATION ================= */
+
+.notification-card{
+    background:linear-gradient(
+        135deg,
+        rgba(56,189,248,.09),
+        rgba(17,28,49,.9)
+    );
+    border:1px solid rgba(56,189,248,.14);
+    border-radius:19px;
+    padding:19px;
+    margin-bottom:27px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.notification-info{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.notification-icon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    background:rgba(56,189,248,.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    flex-shrink:0;
+}
+
+.notification-info h3{
+    font-size:14px;
+}
+
+.notification-info p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+    line-height:1.5;
+}
+
+#enableNotificationsBtn{
+    border:none;
+    background:var(--blue);
+    color:#020617;
+    padding:11px 14px;
+    border-radius:10px;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+#enableNotificationsBtn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+/* ================= INFO CARDS ================= */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:13px;
+}
+
+.info-card{
+    background:#111c31;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:19px;
+}
+
+.info-card-icon{
+    font-size:23px;
+    margin-bottom:11px;
+}
+
+.info-card h3{
+    font-size:14px;
+}
+
+.info-card p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.65;
+    margin-top:7px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:1px solid var(--border);
+    text-align:center;
+    padding:24px 18px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+footer strong{
+    color:var(--blue);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:800px){
+
+    .quick-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:520px){
+
+    header{
+        padding:0 13px;
+    }
+
+    .logo-text{
+        font-size:15px;
+    }
+
+    .logo-icon{
+        width:36px;
+        height:36px;
+    }
+
+    main{
+        padding:22px 13px 40px;
+    }
+
+    .hero{
+        padding:23px 18px;
+        border-radius:19px;
+    }
+
+    .quick-grid{
+        gap:10px;
+    }
+
+    .quick-card{
+        min-height:140px;
+        padding:16px 13px;
+    }
+
+    .notification-card{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    #enableNotificationsBtn{
+        width:100%;
+    }
+
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:22px;
+    transform:translate(-50%,120px);
+    background:#020617;
+    border:1px solid rgba(56,189,248,.2);
+    color:white;
+    padding:12px 17px;
+    border-radius:12px;
+    font-size:12px;
+    z-index:5000;
+    opacity:0;
+    transition:.3s;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <a href="home.html" class="logo">
+
+        <div class="logo-icon">⚡</div>
+
+        <div class="logo-text">
+            Danny <span>Smart Power</span>
+        </div>
+
+    </a>
+
+    <div class="header-actions">
+
+        <button
+            class="icon-btn"
+            id="notificationBtn"
+            aria-label="Notifications"
+            title="Notifications">
+            🔔
+            <span
+                class="notification-dot"
+                id="notificationDot">
+            </span>
+        </button>
+
+        <button
+            class="icon-btn"
+            id="menuBtn"
+            aria-label="Open menu">
+            ⋮
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= OVERLAY ================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+<!-- ================= SIDE MENU ================= -->
+
+<aside
+    class="menu"
+    id="sideMenu">
+
+    <div class="menu-top">
+
+        <h2>Menu</h2>
+
+        <button
+            class="close-menu"
+            id="closeMenu">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="user-box">
+
+        <div class="user-row">
+
+            <img
+                id="userPhoto"
+                class="user-photo"
+                src="/icon-192.png"
+                alt="Profile photo">
+
+            <div>
+
+                <div
+                    class="user-name"
+                    id="menuUserName">
+                    Customer
+                </div>
+
+                <div
+                    class="user-email"
+                    id="menuUserEmail">
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav class="menu-links">
+
+        <a
+            href="home.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">🏠</span>
+            <span>Home</span>
+
+        </a>
+
+
+        <a
+            href="shop.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">🛒</span>
+            <span>Shop</span>
+
+        </a>
+
+
+        <a
+            href="service.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">⚡</span>
+            <span>Electrical Services</span>
+
+        </a>
+
+
+        <a
+            href="service-project.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">🔧</span>
+            <span>Electrical Projects</span>
+
+        </a>
+
+
+        <a
+            href="chat.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">💬</span>
+            <span>Chat with Danny</span>
+
+        </a>
+
+
+        <a
+            href="notification.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">🔔</span>
+            <span>Notifications</span>
+
+        </a>
+
+
+        <a
+            href="profile.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">👤</span>
+            <span>My Profile</span>
+
+        </a>
+
+
+        <a
+            href="contact.html"
+            class="menu-link">
+
+            <span class="menu-link-icon">📞</span>
+            <span>Contact Us</span>
+
+        </a>
+
+    </nav>
+
+
+    <button
+        class="signout"
+        id="signOutBtn">
+        Sign Out
+    </button>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <small>Welcome back 👋</small>
+
+        <h1>
+            Hello, <span id="customerName">Customer</span>
+        </h1>
+
+        <p>
+            Manage your shopping, electrical services,
+            projects and conversations with Danny Smart Power.
+        </p>
+
+    </section>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h2>
+                Powering your world with smart solutions.
+            </h2>
+
+            <p>
+                Shop electrical products, explore solar solutions,
+                request professional electrical services and
+                communicate directly with Danny Smart Power.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="shop.html"
+                    class="primary-btn">
+                    🛒 Shop Now
+                </a>
+
+                <a
+                    href="service.html"
+                    class="secondary-btn">
+                    ⚡ Request Service
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <section class="notification-card">
+
+        <div class="notification-info">
+
+            <div class="notification-icon">
+                🔔
+            </div>
+
+            <div>
+
+                <h3>
+                    Stay updated
+                </h3>
+
+                <p>
+                    Enable notifications to receive important
+                    updates from Danny Smart Power.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="enableNotificationsBtn">
+            🔔 Enable Notifications
+        </button>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="section-title">
+
+        <h2>
+            Quick Actions
+        </h2>
+
+        <span>
+            What would you like to do?
+        </span>
+
+    </div>
+
+
+    <section class="quick-grid">
+
+
+        <a
+            href="shop.html"
+            class="quick-card">
+
+            <div class="quick-icon">
+                🛒
+            </div>
+
+            <div>
+
+                <h3>
+                    Shop
+                </h3>
+
+                <p>
+                    Browse electrical, solar and lighting products.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="service.html"
+            class="quick-card">
+
+            <div class="quick-icon">
+                ⚡
+            </div>
+
+            <div>
+
+                <h3>
+                    Request Electrical Service
+                </h3>
+
+                <p>
+                    Request professional electrical assistance.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="service-project.html"
+            class="quick-card">
+
+            <div class="quick-icon">
+                🔧
+            </div>
+
+            <div>
+
+                <h3>
+                    Electrical Projects
+                </h3>
+
+                <p>
+                    See electrical and power projects completed by DSP.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="chat.html"
+            class="quick-card">
+
+            <div class="quick-icon">
+                💬
+            </div>
+
+            <div>
+
+                <h3>
+                    Chat
+                </h3>
+
+                <p>
+                    Talk directly with Danny Smart Power.
+                </p>
+
+            </div>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- INFORMATION -->
+
+    <div class="section-title">
+
+        <h2>
+            Danny Smart Power
+        </h2>
+
+        <span>
+            Our services
+        </span>
+
+    </div>
+
+
+    <section class="info-grid">
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                ☀️
+            </div>
+
+            <h3>
+                Solar & Power
+            </h3>
+
+            <p>
+                Explore solar and power solutions designed
+                for homes, businesses and other electrical needs.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                💡
+            </div>
+
+            <h3>
+                Electrical & Lighting
+            </h3>
+
+            <p>
+                Get electrical products, lighting equipment
+                and professional electrical services.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                🛠️
+            </div>
+
+            <h3>
+                Professional Service
+            </h3>
+
+            <p>
+                Submit a service request and communicate
+                with Danny Smart Power about your project.
+            </p>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © <span id="year"></span>
+    <strong>Danny Smart Power</strong>.
+    All rights reserved.
+
+</footer>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+
+
+<script>
+
+/* =====================================================
+   FIREBASE INITIALIZATION
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+    authDomain:
+        "danny-smart-power.firebaseapp.com",
+
+    databaseURL:
+        "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+    projectId:
+        "danny-smart-power",
+
+    storageBucket:
+        "danny-smart-power.firebasestorage.app",
+
+    messagingSenderId:
+        "649735645158",
+
+    appId:
+        "1:649735645158:web:cff518b89721a163679827",
+
+    measurementId:
+        "G-258YKLP5ZS"
+
+};
+
+
+if(!firebase.apps.length){
+
+    firebase.initializeApp(firebaseConfig);
+
+}
+
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const customerName =
+    document.getElementById("customerName");
+
+const menuUserName =
+    document.getElementById("menuUserName");
+
+const menuUserEmail =
+    document.getElementById("menuUserEmail");
+
+const userPhoto =
+    document.getElementById("userPhoto");
+
+const enableNotificationsBtn =
+    document.getElementById("enableNotificationsBtn");
+
+const toast =
+    document.getElementById("toast");
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =====================================================
+   USER PROFILE
+===================================================== */
+
+auth.onAuthStateChanged(async (user) => {
+
+    if(!user){
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+
+    let displayName =
+        user.displayName || "Customer";
+
+
+    try{
+
+        const profileRef =
+            db.collection("users").doc(user.uid);
+
+        const profileSnap =
+            await profileRef.get();
+
+
+        if(profileSnap.exists){
+
+            const data =
+                profileSnap.data();
+
+
+            if(data.name){
+
+                displayName =
+                    data.name;
+
+            }
+
+
+            if(data.photo){
+
+                userPhoto.src =
+                    data.photo;
+
+            }
+
+            else if(data.photoURL){
+
+                userPhoto.src =
+                    data.photoURL;
+
+            }
+
+        }
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Could not load profile:",
+            error
+        );
+
+    }
+
+
+    customerName.textContent =
+        displayName;
+
+    menuUserName.textContent =
+        displayName;
+
+    menuUserEmail.textContent =
+        user.email || "";
+
+});
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const closeMenu =
+    document.getElementById("closeMenu");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function openMenu(){
+
+    sideMenu.classList.add("open");
+
+    overlay.classList.add("show");
+
+}
+
+
+function closeSideMenu(){
+
+    sideMenu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+menuBtn.addEventListener(
+    "click",
+    openMenu
+);
+
+
+closeMenu.addEventListener(
+    "click",
+    closeSideMenu
+);
+
+
+overlay.addEventListener(
+    "click",
+    closeSideMenu
+);
+
+
+/* =====================================================
+   SIGN OUT
+===================================================== */
+
+document
+    .getElementById("signOutBtn")
+    .addEventListener("click", async () => {
+
+        try{
+
+            await auth.signOut();
+
+            window.location.href =
+                "login.html";
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Unable to sign out."
+            );
+
+        }
+
+    });
+
+
+/* =====================================================
+   NOTIFICATION PAGE BUTTON
+===================================================== */
+
+document
+    .getElementById("notificationBtn")
+    .addEventListener("click", () => {
+
+        window.location.href =
+            "notification.html";
+
+    });
+
+
+/* =====================================================
+   ENABLE PUSH NOTIFICATIONS
+===================================================== */
+
+enableNotificationsBtn.addEventListener(
+    "click",
+    async function(){
+
+        enableNotificationsBtn.disabled =
+            true;
+
+        enableNotificationsBtn.textContent =
+            "Enabling...";
+
+
+        try{
+
+            if(
+                typeof enablePushNotifications !==
+                "function"
+            ){
+
+                throw new Error(
+                    "Notification system was not loaded."
+                );
+
+            }
+
+
+            const token =
+                await enablePushNotifications();
+
+
+            if(token){
+
+                enableNotificationsBtn.textContent =
+                    "✅ Notifications Enabled";
+
+                enableNotificationsBtn.style.background =
+                    "#22c55e";
+
+                showToast(
+                    "Notifications enabled successfully."
+                );
+
+            }
+
+            else{
+
+                enableNotificationsBtn.disabled =
+                    false;
+
+                enableNotificationsBtn.textContent =
+                    "🔔 Enable Notifications";
+
+                showToast(
+                    "Notifications were not enabled."
+                );
+
+            }
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Notification error:",
+                error
+            );
+
+
+            enableNotificationsBtn.disabled =
+                false;
+
+            enableNotificationsBtn.textContent =
+                "🔔 Enable Notifications";
+
+
+            showToast(
+                error.message ||
+                "Could not enable notifications."
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   YEAR
+===================================================== */
+
+document.getElementById("year")
+    .textContent =
+    new Date().getFullYear();
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if(event.key === "Escape"){
+
+            closeSideMenu();
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- =====================================================
+     YOUR PUSH NOTIFICATION SYSTEM
+===================================================== -->
+
+<script src="/push-notifications.js"></script>
+
+
+</body>
+</html>
