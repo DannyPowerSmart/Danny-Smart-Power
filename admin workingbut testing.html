@@ -1,0 +1,7604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+<title>Danny Smart Power — Admin Center</title>
+
+<style>
+:root{
+  --bg:#020617;
+  --bg2:#030b16;
+  --panel:#071423;
+  --panel2:#0b1b2e;
+  --panel3:#0f2238;
+  --header:#020617;
+  --text:#e8f1fb;
+  --muted:#8fa4bb;
+  --blue:#38bdf8;
+  --blue2:#0284c7;
+  --green:#22c55e;
+  --red:#ef4444;
+  --yellow:#f59e0b;
+  --border:#1d344d;
+  --shadow:0 14px 35px rgba(0,0,0,.30);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:#020617!important;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+body,*{
+  scrollbar-color:#29425c #020617;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#adminGate{
+  min-height:100dvh;
+  background:#020617;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.login-card{
+  width:min(430px,100%);
+  background:#071423;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.login-logo{
+  width:72px;
+  height:72px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 16px;
+  background:#08243b;
+  border:1px solid #16476b;
+  color:var(--blue);
+  font-size:34px;
+}
+
+.login-card h1{
+  text-align:center;
+  margin:0;
+  font-size:23px;
+}
+
+.login-subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin:7px 0 22px;
+  font-size:13px;
+}
+
+.login-label{
+  display:block;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:800;
+  margin:0 0 6px;
+}
+
+.login-input{
+  width:100%;
+  padding:13px;
+  background:#030d19!important;
+  color:#fff!important;
+  border:1px solid var(--border);
+  border-radius:11px;
+  outline:none;
+  margin-bottom:14px;
+}
+
+.login-input:focus{
+  border-color:var(--blue);
+}
+
+.login-btn{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:13px;
+  background:var(--blue2);
+  color:#fff;
+  font-weight:900;
+}
+
+.login-message{
+  min-height:20px;
+  margin-top:12px;
+  text-align:center;
+  font-size:13px;
+}
+
+.login-error{color:#f87171}
+.login-success{color:#4ade80}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  min-height:100dvh;
+  background:#020617;
+}
+
+.topbar{
+  height:64px;
+  background:#020617!important;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 16px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.brand{
+  font-weight:950;
+  letter-spacing:.4px;
+  line-height:1.05;
+}
+
+.brand small{
+  display:block;
+  color:var(--blue);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.menu-btn,
+.icon-btn{
+  border:1px solid var(--border);
+  background:#071423!important;
+  color:#fff;
+  border-radius:10px;
+  width:42px;
+  height:42px;
+}
+
+.top-actions{
+  margin-left:auto;
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  position:relative;
+}
+
+.badge{
+  position:absolute;
+  right:-4px;
+  top:-5px;
+  background:var(--red);
+  color:#fff;
+  border-radius:99px;
+  min-width:18px;
+  height:18px;
+  padding:0 5px;
+  font-size:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.layout{
+  display:flex;
+  min-height:calc(100dvh - 64px);
+  background:#020617!important;
+}
+
+.sidebar{
+  width:250px;
+  background:#020617!important;
+  border-right:1px solid var(--border);
+  padding:16px 12px;
+  position:fixed;
+  top:64px;
+  bottom:0;
+  overflow:auto;
+  z-index:90;
+}
+
+.sidebar h4{
+  color:#64748b;
+  font-size:10px;
+  margin:18px 10px 8px;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+}
+
+.nav{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent!important;
+  color:#cbd5e1;
+  padding:12px;
+  border-radius:10px;
+  margin:2px 0;
+}
+
+.nav:hover,
+.nav.active{
+  background:#10243b!important;
+  color:#fff;
+}
+
+.nav.active{
+  box-shadow:inset 3px 0 var(--blue);
+}
+
+.sidebar-back{
+  display:none;
+  width:100%;
+  margin-bottom:10px;
+}
+
+main{
+  margin-left:250px;
+  width:calc(100% - 250px);
+  padding:22px;
+  max-width:1600px;
+  background:#020617!important;
+}
+
+.page{
+  display:none;
+  background:#020617!important;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.page-head-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.page-head h1{
+  margin:0;
+  font-size:25px;
+}
+
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  border:1px solid var(--border);
+  background:#10243a!important;
+  color:#fff;
+  border-radius:9px;
+  padding:9px 13px;
+  font-weight:800;
+}
+
+.btn:hover{
+  filter:brightness(1.12);
+}
+
+.btn-blue{
+  background:#0284c7!important;
+  border-color:#0284c7;
+}
+
+.btn-green{
+  background:#15803d!important;
+  border-color:#15803d;
+}
+
+.btn-red{
+  background:#b91c1c!important;
+  border-color:#b91c1c;
+}
+
+.btn-yellow{
+  background:#a16207!important;
+  border-color:#a16207;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+
+.stat{
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  min-height:130px;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:.18s;
+}
+
+.stat:hover{
+  transform:translateY(-2px);
+  border-color:#356082;
+}
+
+.stat .ico{
+  font-size:25px;
+}
+
+.stat .label{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:12px;
+}
+
+.stat strong{
+  display:block;
+  font-size:27px;
+  margin-top:4px;
+}
+
+/* =========================
+   CARDS / FORMS
+========================= */
+
+.card{
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.input,
+.select,
+.textarea{
+  width:100%;
+  background:#030d19!important;
+  color:#fff!important;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:11px 12px;
+  outline:none;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus{
+  border-color:var(--blue);
+}
+
+.textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.search{
+  max-width:380px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.label{
+  display:block;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:800;
+  margin:0 0 6px;
+}
+
+.message{
+  margin-top:10px;
+  font-size:13px;
+  min-height:18px;
+}
+
+.success{color:#4ade80}
+.error{color:#f87171}
+.muted{color:var(--muted)}
+
+/* =========================
+   PRODUCTS / PROJECTS
+========================= */
+
+.product-grid,
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.product-card,
+.project-card{
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:13px;
+}
+
+.product-image,
+.project-media{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#030b15!important;
+}
+
+.product-name,
+.project-title{
+  font-weight:900;
+  margin-top:10px;
+}
+
+.product-category,
+.project-meta{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.product-price{
+  font-weight:950;
+  color:var(--blue);
+  margin-top:8px;
+}
+
+.product-meta{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.product-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px;
+}
+
+th,
+td{
+  text-align:left;
+  padding:11px 9px;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+
+th{
+  color:#94a3b8;
+  font-size:11px;
+  text-transform:uppercase;
+}
+
+.status{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:900;
+  background:#334155;
+}
+
+.status-Pending{
+  background:#78350f;
+  color:#fde68a;
+}
+
+.status-Processing{
+  background:#164e63;
+  color:#a5f3fc;
+}
+
+.status-Shipped{
+  background:#1e3a8a;
+  color:#bfdbfe;
+}
+
+.status-Completed{
+  background:#14532d;
+  color:#bbf7d0;
+}
+
+.status-Cancelled{
+  background:#7f1d1d;
+  color:#fecaca;
+}
+
+.empty{
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:12px;
+}
+
+/* =========================
+   CUSTOMERS
+========================= */
+
+.customer-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:13px;
+  margin-bottom:9px;
+}
+
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#12263c!important;
+  display:grid;
+  place-items:center;
+  flex:none;
+}
+
+.customer-main{
+  flex:1;
+}
+
+.customer-name{
+  font-weight:900;
+}
+
+.customer-info{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:300px minmax(0,1fr);
+  height:calc(100dvh - 135px);
+  min-height:500px;
+  background:#020617!important;
+}
+
+.chat-list{
+  border-right:1px solid var(--border);
+  overflow:auto;
+  background:#050f1b!important;
+}
+
+.chat-item{
+  padding:13px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  background:#050f1b!important;
+}
+
+.chat-item:hover,
+.chat-item.active{
+  background:#10243b!important;
+}
+
+.chat-item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.chat-name{
+  font-weight:900;
+}
+
+.last-message{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.unread{
+  background:var(--red);
+  border-radius:999px;
+  padding:2px 6px;
+  font-size:10px;
+}
+
+.chat-panel{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:0;
+  background:#020617!important;
+}
+
+.chat-head{
+  padding:12px;
+  border-bottom:1px solid var(--border);
+  background:#071423!important;
+}
+
+.messages{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  padding:15px;
+  background:#030b15!important;
+  overscroll-behavior:contain;
+}
+
+.message-row{
+  display:flex;
+  width:100%;
+  margin:8px 0;
+}
+
+.message-row.admin{
+  justify-content:flex-end;
+}
+
+.message-row.customer{
+  justify-content:flex-start;
+}
+
+.message-bubble{
+  max-width:78%;
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:13px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.message-bubble.admin{
+  background:#075985!important;
+  border-bottom-right-radius:4px;
+}
+
+.message-bubble.customer{
+  background:#1e293b!important;
+  border-bottom-left-radius:4px;
+}
+
+.message-time{
+  display:block;
+  font-size:9px;
+  color:#cbd5e1;
+  opacity:.75;
+  margin-top:5px;
+}
+
+.chat-compose{
+  display:flex;
+  align-items:flex-end;
+  gap:8px;
+  padding:10px;
+  background:#071423!important;
+  border-top:1px solid var(--border);
+  padding-bottom:max(10px,env(safe-area-inset-bottom));
+  position:relative;
+  z-index:5;
+}
+
+.chat-compose textarea{
+  min-height:45px;
+  max-height:130px;
+  resize:none;
+  flex:1;
+  background:#030d19!important;
+  color:#fff!important;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:11px 12px;
+  outline:none;
+}
+
+.chat-compose textarea:focus{
+  border-color:var(--blue);
+}
+
+.chat-send{
+  height:45px;
+  min-width:78px;
+}
+
+.mobile-chat-back{
+  display:none;
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification{
+  display:flex;
+  gap:12px;
+  margin-bottom:9px;
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:13px;
+}
+
+.notification .nicon{
+  font-size:21px;
+}
+
+.notification small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.76);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:200;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  background:#071423!important;
+  border:1px solid var(--border);
+  border-radius:16px;
+  width:min(700px,100%);
+  max-height:90dvh;
+  overflow:auto;
+  padding:18px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.detail{
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.detail-label{
+  font-size:10px;
+  color:#64748b;
+  text-transform:uppercase;
+  font-weight:900;
+}
+
+.detail-value{
+  margin-top:4px;
+  white-space:pre-wrap;
+}
+
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  margin-top:8px;
+  background:#030d19!important;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:64px 0 0;
+  background:rgba(0,0,0,.58);
+  z-index:80;
+}
+
+.overlay.show{
+  display:block;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+  .dashboard-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .product-grid,
+  .project-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:760px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.2s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .sidebar-back{
+    display:block;
+  }
+
+  main{
+    margin-left:0;
+    width:100%;
+    padding:14px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+
+  .stat{
+    padding:13px;
+    min-height:105px;
+  }
+
+  .stat strong{
+    font-size:21px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .product-grid,
+  .project-grid{
+    grid-template-columns:1fr;
+  }
+
+  .chat-layout{
+    grid-template-columns:1fr;
+    height:calc(100dvh - 118px);
+  }
+
+  .chat-list{
+    display:none;
+  }
+
+  .chat-list.mobile-open{
+    display:block;
+  }
+
+  .chat-panel.mobile-hidden{
+    display:none;
+  }
+
+  .mobile-chat-back{
+    display:inline-flex;
+  }
+
+  .message-bubble{
+    max-width:88%;
+  }
+
+  .page-head h1{
+    font-size:21px;
+  }
+
+  .topbar{
+    padding:0 10px;
+  }
+
+  .brand{
+    font-size:13px;
+  }
+}
+
+@media(max-width:420px){
+  .dashboard-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat .ico{
+    font-size:21px;
+  }
+
+  .stat .label{
+    font-size:11px;
+  }
+
+  .stat strong{
+    font-size:19px;
+  }
+
+  .chat-compose{
+    padding:7px;
+  }
+
+  .chat-send{
+    min-width:65px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     ADMIN LOGIN GATE
+========================================================= -->
+
+<div id="adminGate">
+
+  <div class="login-card">
+
+    <div class="login-logo">⚡</div>
+
+    <h1>Danny Smart Power</h1>
+
+    <div class="login-subtitle">
+      Secure Administrator Center
+    </div>
+
+    <form id="adminLoginForm">
+
+      <label class="login-label">
+        Admin Email
+      </label>
+
+      <input
+        id="adminEmailInput"
+        class="login-input"
+        type="email"
+        autocomplete="username"
+        value="dannysmartpower@gmail.com"
+        required
+      >
+
+      <label class="login-label">
+        Admin Password
+      </label>
+
+      <input
+        id="adminPasswordInput"
+        class="login-input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter admin password"
+        required
+      >
+
+      <button
+        id="adminLoginBtn"
+        class="login-btn"
+        type="submit"
+      >
+        Sign In to Admin Center
+      </button>
+
+      <div id="loginMessage" class="login-message"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     ADMIN APPLICATION
+========================================================= -->
+
+<div id="adminApp" class="app hidden">
+
+<header class="topbar">
+
+  <button
+    class="menu-btn"
+    id="menuBtn"
+    type="button"
+  >
+    ☰
+  </button>
+
+  <div class="brand">
+    DANNY SMART POWER
+    <small>ADMIN CENTER</small>
+  </div>
+
+  <div class="top-actions">
+
+    <button
+      class="icon-btn"
+      onclick="openPage('notifications')"
+      type="button"
+    >
+      🔔
+      <span
+        id="notificationBadge"
+        class="badge hidden"
+      >0</span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<div
+  class="overlay"
+  id="overlay"
+  onclick="toggleSidebar(false)"
+></div>
+
+
+<div class="layout">
+
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <button
+    class="btn sidebar-back"
+    onclick="toggleSidebar(false)"
+    type="button"
+  >
+    ← Close Menu
+  </button>
+
+
+  <h4>Overview</h4>
+
+  <button
+    class="nav active"
+    data-page="dashboard"
+    type="button"
+  >
+    📊 Dashboard
+  </button>
+
+
+  <h4>Store</h4>
+
+  <button
+    class="nav"
+    data-page="products"
+    type="button"
+  >
+    📦 Products
+  </button>
+
+  <button
+    class="nav"
+    data-page="orders"
+    type="button"
+  >
+    🛒 Orders
+  </button>
+
+  <button
+    class="nav"
+    data-page="customers"
+    type="button"
+  >
+    👥 Customers
+  </button>
+
+  <button
+    class="nav"
+    data-page="messages"
+    type="button"
+  >
+    💬 Messages
+  </button>
+
+  <button
+    class="nav"
+    data-page="notifications"
+    type="button"
+  >
+    🔔 Notifications
+  </button>
+
+
+  <h4>Electrical Services</h4>
+
+  <button
+    class="nav"
+    data-page="services"
+    type="button"
+  >
+    🔧 Service Requests
+  </button>
+
+  <button
+    class="nav"
+    data-page="projects"
+    type="button"
+  >
+    ⚡ Electrical Projects
+  </button>
+
+
+  <h4>Customers</h4>
+
+  <button
+    class="nav"
+    data-page="wishlists"
+    type="button"
+  >
+    ❤️ Wishlists
+  </button>
+
+  <button
+    class="nav"
+    data-page="profiles"
+    type="button"
+  >
+    👤 Profiles
+  </button>
+
+
+  <h4>System</h4>
+
+  <button
+    class="nav"
+    data-page="settings"
+    type="button"
+  >
+    ⚙️ Settings
+  </button>
+
+  <button
+    class="nav"
+    data-page="admins"
+    type="button"
+  >
+    🔐 Administrators
+  </button>
+
+  <button
+    class="nav"
+    id="logoutBtn"
+    type="button"
+  >
+    🚪 Sign Out
+  </button>
+
+</aside>
+
+
+<main>
+
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<section
+  id="page-dashboard"
+  class="page active"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <h1>Dashboard</h1>
+
+      <div class="muted">
+        Danny Smart Power control center
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-grid">
+
+    <div
+      class="stat"
+      onclick="openPage('products')"
+    >
+      <div class="ico">📦</div>
+      <div class="label">Products</div>
+      <strong id="statProducts">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('orders')"
+    >
+      <div class="ico">🛒</div>
+      <div class="label">Total Orders</div>
+      <strong id="statOrders">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('customers')"
+    >
+      <div class="ico">👥</div>
+      <div class="label">Customers</div>
+      <strong id="statCustomers">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('orders','Pending')"
+    >
+      <div class="ico">⏳</div>
+      <div class="label">Pending Orders</div>
+      <strong id="statPending">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('messages')"
+    >
+      <div class="ico">💬</div>
+      <div class="label">Unread Messages</div>
+      <strong id="statUnread">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('projects')"
+    >
+      <div class="ico">⚡</div>
+      <div class="label">Electrical Projects</div>
+      <strong id="statProjects">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('services')"
+    >
+      <div class="ico">🔧</div>
+      <div class="label">Service Requests</div>
+      <strong id="statServices">0</strong>
+    </div>
+
+
+    <div
+      class="stat"
+      onclick="openPage('notifications')"
+    >
+      <div class="ico">🔔</div>
+      <div class="label">Unread Notifications</div>
+      <strong id="statNotifications">0</strong>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>Revenue</h3>
+
+    <strong
+      id="dashboardRevenue"
+      style="font-size:28px;color:var(--blue)"
+    >
+      ₦0
+    </strong>
+
+    <div
+      id="orderSummary"
+      style="margin-top:12px"
+    ></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>Recent Orders</h3>
+
+    <div id="recentOrders"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<section
+  id="page-products"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Products</h1>
+
+    </div>
+
+    <button
+      class="btn btn-blue"
+      onclick="resetProductForm()"
+      type="button"
+    >
+      ＋ Add Product
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3 id="productFormTitle">
+      Add New Product
+    </h3>
+
+    <div class="form-grid">
+
+      <div>
+        <label class="label">Product Name</label>
+        <input id="pName" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Price (₦)</label>
+        <input
+          id="pPrice"
+          type="number"
+          min="0"
+          class="input"
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Category</label>
+
+        <select
+          id="pCategory"
+          class="select"
+        >
+          <option>Solar</option>
+          <option>Lighting</option>
+          <option>Electrical</option>
+          <option>Accessories</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label class="label">Colour</label>
+        <input
+          id="pColour"
+          class="input"
+          placeholder="Black, White, Blue..."
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Stock</label>
+        <input
+          id="pStock"
+          type="number"
+          min="0"
+          class="input"
+          value="0"
+        >
+      </div>
+
+
+      <div class="full">
+        <label class="label">Image URL</label>
+        <input
+          id="pImage"
+          class="input"
+          placeholder="https://..."
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Available</label>
+
+        <select
+          id="pAvailable"
+          class="select"
+        >
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label class="label">Featured</label>
+
+        <select
+          id="pFeatured"
+          class="select"
+        >
+          <option value="false">No</option>
+          <option value="true">Yes</option>
+        </select>
+      </div>
+
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="pDescription"
+          class="textarea"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top:12px">
+
+      <button
+        id="saveProductBtn"
+        class="btn btn-blue"
+        onclick="saveProduct()"
+        type="button"
+      >
+        Add Product
+      </button>
+
+      <button
+        id="cancelProductBtn"
+        class="btn hidden"
+        onclick="resetProductForm()"
+        type="button"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+
+    <div
+      id="productMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="productSearch"
+        class="input search"
+        placeholder="Search products..."
+        oninput="renderProducts()"
+      >
+
+    </div>
+
+    <div
+      id="productsGrid"
+      class="product-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ORDERS
+========================================================= -->
+
+<section
+  id="page-orders"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Orders</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="orderSearch"
+        class="input search"
+        placeholder="Search orders..."
+        oninput="renderOrders()"
+      >
+
+      <select
+        id="orderFilter"
+        class="select"
+        style="max-width:190px"
+        onchange="renderOrders()"
+      >
+        <option value="all">All statuses</option>
+        <option>Pending</option>
+        <option>Processing</option>
+        <option>Shipped</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
+      </select>
+
+    </div>
+
+    <div
+      id="ordersTable"
+      class="table-wrap"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CUSTOMERS
+========================================================= -->
+
+<section
+  id="page-customers"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Customers</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <input
+      id="customerSearch"
+      class="input search"
+      placeholder="Search customers..."
+      oninput="renderCustomers()"
+    >
+
+    <div
+      id="customersList"
+      style="margin-top:14px"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     MESSAGES
+========================================================= -->
+
+<section
+  id="page-messages"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <button
+        class="btn mobile-chat-back"
+        onclick="showChatList()"
+        type="button"
+      >
+        ← Chats
+      </button>
+
+      <h1>Admin Chat</h1>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="card"
+    style="padding:0;overflow:hidden"
+  >
+
+    <div class="chat-layout">
+
+      <div
+        id="chatList"
+        class="chat-list"
+      ></div>
+
+
+      <div
+        id="chatPanel"
+        class="chat-panel"
+      >
+
+        <div class="chat-head">
+
+          <strong id="chatCustomerName">
+            Select a customer
+          </strong>
+
+          <div
+            id="chatCustomerInfo"
+            class="muted"
+            style="font-size:11px"
+          ></div>
+
+        </div>
+
+
+        <div
+          id="messages"
+          class="messages"
+        >
+
+          <div class="empty">
+            Select a conversation.
+          </div>
+
+        </div>
+
+
+        <div class="chat-compose">
+
+          <textarea
+            id="chatInput"
+            rows="1"
+            placeholder="Type your reply..."
+            disabled
+            onkeydown="handleChatEnter(event)"
+            oninput="autoGrow(this)"
+          ></textarea>
+
+          <button
+            id="sendChatBtn"
+            class="btn btn-blue chat-send"
+            disabled
+            onclick="sendMessage()"
+            type="button"
+          >
+            Send
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     NOTIFICATIONS
+========================================================= -->
+
+<section
+  id="page-notifications"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Notifications</h1>
+
+    </div>
+
+    <button
+      class="btn"
+      onclick="markNotificationsRead()"
+      type="button"
+    >
+      Mark all read
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="notificationsList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ELECTRICAL PROJECTS
+========================================================= -->
+
+<section
+  id="page-projects"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Electrical Projects</h1>
+
+    </div>
+
+    <button
+      class="btn btn-blue"
+      onclick="resetProjectForm()"
+      type="button"
+    >
+      ＋ Add Project
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3 id="projectFormTitle">
+      Add Electrical Project
+    </h3>
+
+
+    <div class="form-grid">
+
+      <div>
+        <label class="label">
+          Project Title
+        </label>
+
+        <input
+          id="prTitle"
+          class="input"
+        >
+      </div>
+
+
+      <div>
+        <label class="label">
+          Category
+        </label>
+
+        <input
+          id="prCategory"
+          class="input"
+          placeholder="Solar, Wiring, Inverter..."
+        >
+      </div>
+
+
+      <div class="full">
+
+        <label class="label">
+          Description
+        </label>
+
+        <textarea
+          id="prDescription"
+          class="textarea"
+        ></textarea>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Media URL
+        </label>
+
+        <input
+          id="prMediaUrl"
+          class="input"
+          placeholder="Photo or video URL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Thumbnail URL
+        </label>
+
+        <input
+          id="prThumbnailUrl"
+          class="input"
+          placeholder="Thumbnail URL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Media Type
+        </label>
+
+        <select
+          id="prMediaType"
+          class="select"
+        >
+          <option value="Photo">
+            Photo
+          </option>
+
+          <option value="Video">
+            Video
+          </option>
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Featured
+        </label>
+
+        <select
+          id="prFeatured"
+          class="select"
+        >
+          <option value="false">
+            No
+          </option>
+
+          <option value="true">
+            Yes
+          </option>
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Published
+        </label>
+
+        <select
+          id="prPublished"
+          class="select"
+        >
+          <option value="true">
+            Yes
+          </option>
+
+          <option value="false">
+            No
+          </option>
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label class="label">
+          Request Enabled
+        </label>
+
+        <select
+          id="prRequestEnabled"
+          class="select"
+        >
+          <option value="true">
+            Yes
+          </option>
+
+          <option value="false">
+            No
+          </option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top:12px">
+
+      <button
+        id="saveProjectBtn"
+        class="btn btn-blue"
+        onclick="saveProject()"
+        type="button"
+      >
+        Save Project
+      </button>
+
+      <button
+        id="cancelProjectBtn"
+        class="btn hidden"
+        onclick="resetProjectForm()"
+        type="button"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+
+    <div
+      id="projectMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div
+      id="projectsGrid"
+      class="project-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICE REQUESTS
+========================================================= -->
+
+<section
+  id="page-services"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Service Requests</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="toolbar">
+
+      <input
+        id="serviceSearch"
+        class="input search"
+        placeholder="Search requests..."
+        oninput="renderServices()"
+      >
+
+      <select
+        id="serviceFilter"
+        class="select"
+        style="max-width:190px"
+        onchange="renderServices()"
+      >
+        <option value="all">All</option>
+        <option>Pending</option>
+        <option>Processing</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
+      </select>
+
+    </div>
+
+
+    <div
+      id="servicesTable"
+      class="table-wrap"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     WISHLISTS
+========================================================= -->
+
+<section
+  id="page-wishlists"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Wishlists</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="wishlistsList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROFILES
+========================================================= -->
+
+<section
+  id="page-profiles"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Profiles</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="profilesList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SETTINGS
+========================================================= -->
+
+<section
+  id="page-settings"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Settings</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div>
+        <label class="label">Store Name</label>
+        <input id="sName" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Email</label>
+        <input id="sEmail" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Phone</label>
+        <input id="sPhone" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">WhatsApp</label>
+        <input id="sWhatsapp" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">WhatsApp (alternate field)</label>
+        <input id="sWhatsapp2" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Currency</label>
+        <input
+          id="sCurrency"
+          class="input"
+          value="NGN"
+        >
+      </div>
+
+
+      <div>
+        <label class="label">Logo URL</label>
+        <input id="sLogo" class="input">
+      </div>
+
+
+      <div>
+        <label class="label">Login URL</label>
+        <input id="sLoginUrl" class="input">
+      </div>
+
+
+      <div class="full">
+        <label class="label">Address</label>
+        <input id="sAddress" class="input">
+      </div>
+
+
+      <div class="full">
+        <label class="label">Description</label>
+        <textarea
+          id="sDescription"
+          class="textarea"
+        ></textarea>
+      </div>
+
+    </div>
+
+
+    <button
+      id="saveSettingsBtn"
+      class="btn btn-blue"
+      style="margin-top:12px"
+      onclick="saveSettings()"
+      type="button"
+    >
+      Save Settings
+    </button>
+
+
+    <div
+      id="settingsMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADMINISTRATORS
+========================================================= -->
+
+<section
+  id="page-admins"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div class="page-head-left">
+
+      <button
+        class="btn back-btn"
+        onclick="goBack()"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <h1>Administrators</h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div id="adminsList"></div>
+
+  </div>
+
+</section>
+
+
+</main>
+</div>
+</div>
+
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div
+  id="modal"
+  class="modal"
+  onclick="closeModalOutside(event)"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2 id="modalTitle">
+        Details
+      </h2>
+
+      <button
+        class="btn"
+        onclick="closeModal()"
+        type="button"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain:"danny-smart-power.firebaseapp.com",
+  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId:"danny-smart-power",
+  storageBucket:"danny-smart-power.firebasestorage.app",
+  messagingSenderId:"649735645158",
+  appId:"1:649735645158:web:cff518b89721a163679827",
+  measurementId:"G-258YKLP5ZS"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+/* =========================================================
+   ADMIN AUTHORIZATION
+========================================================= */
+
+const ADMIN_UID =
+  "mJn7uuuqW8RYwILcLtjPrYFvf4P2";
+
+const ADMIN_EMAIL =
+  "dannysmartpower@gmail.com";
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let products=[];
+let orders=[];
+let users=[];
+let profiles=[];
+let chats=[];
+let wishlists=[];
+let admins=[];
+let projects=[];
+let services=[];
+let notifications=[];
+
+let editingProductId=null;
+let editingProjectId=null;
+
+let selectedChatId=null;
+let messageUnsubscribe=null;
+
+let settingsDocId=null;
+
+let currentPage="dashboard";
+let previousPage="dashboard";
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+function money(value){
+  return Number(value||0).toLocaleString("en-NG");
+}
+
+function numericTotal(value){
+
+  if(typeof value==="number"){
+    return value;
+  }
+
+  if(typeof value==="string"){
+
+    const n=Number(
+      value
+        .replace(/[₦,\s]/g,"")
+    );
+
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  return 0;
+}
+
+function timeOf(value){
+
+  if(!value) return 0;
+
+  try{
+
+    if(value.toDate){
+      return value.toDate().getTime();
+    }
+
+    if(value.seconds!==undefined){
+      return Number(value.seconds)*1000;
+    }
+
+    const n=new Date(value).getTime();
+
+    return Number.isNaN(n) ? 0 : n;
+
+  }catch{
+    return 0;
+  }
+}
+
+function dateOf(value){
+
+  const t=timeOf(value);
+
+  if(!t) return "—";
+
+  return new Date(t).toLocaleString(
+    "en-NG",
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric",
+      hour:"numeric",
+      minute:"2-digit"
+    }
+  );
+}
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function friendlyError(error){
+
+  if(error?.code==="permission-denied"){
+    return "Permission denied. Check your Firestore Rules.";
+  }
+
+  if(error?.code==="failed-precondition"){
+    return "Firestore needs an index for this query. Check Firebase Console.";
+  }
+
+  if(error?.code==="auth/wrong-password" ||
+     error?.code==="auth/invalid-credential"){
+    return "Incorrect admin email or password.";
+  }
+
+  if(error?.code==="auth/user-not-found"){
+    return "No Firebase account exists for this admin email.";
+  }
+
+  return error?.message || "Something went wrong.";
+}
+
+function normalizeItems(items){
+
+  if(!Array.isArray(items)){
+    return [];
+  }
+
+  return items.map(item => {
+
+    if(typeof item==="string"){
+      return {
+        name:item,
+        qty:1,
+        price:0
+      };
+    }
+
+    return item || {};
+  });
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+$("adminLoginForm").addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    const email =
+      $("adminEmailInput").value.trim();
+
+    const password =
+      $("adminPasswordInput").value;
+
+    const message =
+      $("loginMessage");
+
+    const button =
+      $("adminLoginBtn");
+
+    message.className="login-message";
+    message.textContent="";
+
+    if(email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
+
+      message.className=
+        "login-message login-error";
+
+      message.textContent=
+        "This email is not the authorized Danny Smart Power admin email.";
+
+      return;
+    }
+
+    if(!password){
+
+      message.className=
+        "login-message login-error";
+
+      message.textContent=
+        "Enter the admin password.";
+
+      return;
+    }
+
+    button.disabled=true;
+    button.textContent="Signing in...";
+
+    try{
+
+      const credential =
+        await auth.signInWithEmailAndPassword(
+          email,
+          password
+        );
+
+      const user =
+        credential.user;
+
+      if(user.uid!==ADMIN_UID){
+
+        await auth.signOut();
+
+        throw new Error(
+          "This Firebase account does not have the authorized admin UID."
+        );
+      }
+
+      // Force-refresh the Firebase ID token before the first Firestore request.
+      // This prevents Firestore from evaluating the request with an old/invalid
+      // authentication state.
+      await user.getIdToken(true);
+
+      message.className=
+        "login-message login-success";
+
+      message.textContent=
+        "Admin verified. Opening Admin Center...";
+
+      showAdminApp();
+
+    }catch(error){
+
+      message.className=
+        "login-message login-error";
+
+      message.textContent=
+        friendlyError(error);
+
+    }finally{
+
+      button.disabled=false;
+      button.textContent=
+        "Sign In to Admin Center";
+    }
+
+  }
+);
+
+
+/* =========================================================
+   SHOW ADMIN
+========================================================= */
+
+function showAdminApp(){
+
+  $("adminGate").classList.add("hidden");
+  $("adminApp").classList.remove("hidden");
+
+  initializeAdmin();
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+function toggleSidebar(show){
+
+  $("sidebar")
+    .classList
+    .toggle("open",show);
+
+  $("overlay")
+    .classList
+    .toggle("show",show);
+}
+
+$("menuBtn").onclick=()=>{
+
+  toggleSidebar(
+    !$("sidebar")
+      .classList
+      .contains("open")
+  );
+
+};
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function openPage(page,status=null){
+
+  previousPage=currentPage;
+  currentPage=page;
+
+  document
+    .querySelectorAll(".page")
+    .forEach(pageEl =>
+      pageEl.classList.remove("active")
+    );
+
+  document
+    .querySelectorAll(".nav")
+    .forEach(nav =>
+      nav.classList.remove("active")
+    );
+
+  const pageEl =
+    $("page-"+page);
+
+  if(pageEl){
+    pageEl.classList.add("active");
+  }
+
+  const nav =
+    document.querySelector(
+      `.nav[data-page="${page}"]`
+    );
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+  if(
+    status &&
+    page==="orders"
+  ){
+
+    $("orderFilter").value=status;
+
+    renderOrders();
+  }
+
+  if(page==="messages"){
+
+    $("chatPanel")
+      .classList
+      .remove("mobile-hidden");
+
+    $("chatList")
+      .classList
+      .remove("mobile-open");
+  }
+
+  toggleSidebar(false);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function goBack(){
+
+  if(
+    currentPage==="messages" &&
+    previousPage==="dashboard"
+  ){
+
+    openPage("dashboard");
+
+    return;
+  }
+
+  openPage("dashboard");
+}
+
+function showChatList(){
+
+  $("chatList")
+    .classList
+    .add("mobile-open");
+
+  $("chatPanel")
+    .classList
+    .add("mobile-hidden");
+}
+
+
+document
+  .querySelectorAll(".nav[data-page]")
+  .forEach(button=>{
+
+    button.onclick=()=>{
+      openPage(button.dataset.page);
+    };
+
+  });
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutBtn").onclick=async()=>{
+
+  if(messageUnsubscribe){
+    messageUnsubscribe();
+    messageUnsubscribe=null;
+  }
+
+  await auth.signOut();
+
+  location.reload();
+};
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+async function loadProducts(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("products")
+        .get();
+
+    products =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(b.updatedAt||b.createdAt) -
+            timeOf(a.updatedAt||a.createdAt)
+        );
+
+    renderProducts();
+    updateDashboard();
+
+  }catch(error){
+
+    $("productsGrid").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(friendlyError(error))}
+      </div>`;
+  }
+}
+
+
+function renderProducts(){
+
+  const box =
+    $("productsGrid");
+
+  const search =
+    (
+      $("productSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
+
+  const list =
+    products.filter(product=>{
+
+      const text=[
+        product.name,
+        product.category,
+        product.description,
+        product.colour
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return text.includes(search);
+    });
+
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No products found.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    list.map(product=>{
+
+      const image =
+        product.image ||
+        "https://via.placeholder.com/600x400?text=DSP";
+
+      return `
+
+        <div class="product-card">
+
+          <img
+            class="product-image"
+            src="${escapeHTML(image)}"
+            onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
+          >
+
+          <div class="product-name">
+            ${escapeHTML(product.name||"Unnamed")}
+          </div>
+
+          <div class="product-category">
+            ${escapeHTML(product.category||"Uncategorized")}
+          </div>
+
+          <div class="product-price">
+            ₦${money(product.price)}
+          </div>
+
+          <div class="product-meta">
+            Stock: ${Number(product.stock||0)}
+            ·
+            ${product.available===false
+              ?"Unavailable"
+              :"Available"
+            }
+            ${product.featured
+              ?" · ⭐ Featured"
+              :""
+            }
+          </div>
+
+          <div class="product-actions">
+
+            <button
+              class="btn"
+              onclick="editProduct('${product.id}')"
+              type="button"
+            >
+              Edit
+            </button>
+
+            <button
+              class="btn btn-red"
+              onclick="deleteProduct('${product.id}')"
+              type="button"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+function resetProductForm(){
+
+  $("pName").value="";
+  $("pPrice").value="";
+  $("pCategory").value="Solar";
+  $("pColour").value="";
+  $("pStock").value="0";
+  $("pImage").value="";
+  $("pAvailable").value="true";
+  $("pFeatured").value="false";
+  $("pDescription").value="";
+
+  editingProductId=null;
+
+  $("productFormTitle").textContent=
+    "Add New Product";
+
+  $("saveProductBtn").textContent=
+    "Add Product";
+
+  $("cancelProductBtn")
+    .classList
+    .add("hidden");
+
+  $("productMessage").textContent="";
+}
+
+
+function editProduct(id){
+
+  const product =
+    products.find(
+      item=>item.id===id
+    );
+
+  if(!product) return;
+
+  editingProductId=id;
+
+  $("pName").value=
+    product.name||"";
+
+  $("pPrice").value=
+    product.price??"";
+
+  $("pCategory").value=
+    product.category||"Solar";
+
+  $("pColour").value=
+    product.colour||"";
+
+  $("pStock").value=
+    product.stock??0;
+
+  $("pImage").value=
+    product.image||"";
+
+  $("pAvailable").value=
+    product.available===false
+      ?"false"
+      :"true";
+
+  $("pFeatured").value=
+    product.featured
+      ?"true"
+      :"false";
+
+  $("pDescription").value=
+    product.description||"";
+
+  $("productFormTitle").textContent=
+    "Edit Product";
+
+  $("saveProductBtn").textContent=
+    "Save Changes";
+
+  $("cancelProductBtn")
+    .classList
+    .remove("hidden");
+
+  openPage("products");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+async function saveProduct(){
+
+  const name =
+    $("pName")
+      .value
+      .trim();
+
+  const price =
+    Number(
+      $("pPrice").value
+    );
+
+  const stock =
+    Number(
+      $("pStock").value
+    );
+
+  const message =
+    $("productMessage");
+
+
+  message.className="message";
+  message.textContent="";
+
+
+  if(!name){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a product name.";
+
+    return;
+  }
+
+
+  if(
+    !Number.isFinite(price) ||
+    price<0
+  ){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a valid price.";
+
+    return;
+  }
+
+
+  if(
+    !Number.isFinite(stock) ||
+    stock<0
+  ){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a valid stock quantity.";
+
+    return;
+  }
+
+
+  const data={
+
+    name:name,
+
+    description:
+      $("pDescription")
+        .value
+        .trim(),
+
+    price:price,
+
+    category:
+      $("pCategory").value,
+
+    colour:
+      $("pColour")
+        .value
+        .trim(),
+
+    image:
+      $("pImage")
+        .value
+        .trim(),
+
+    stock:stock,
+
+    available:
+      $("pAvailable")
+        .value==="true",
+
+    featured:
+      $("pFeatured")
+        .value==="true",
+
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
+
+  };
+
+
+  const button =
+    $("saveProductBtn");
+
+  button.disabled=true;
+
+
+  try{
+
+    if(editingProductId){
+
+      await db
+        .collection("products")
+        .doc(editingProductId)
+        .set(
+          data,
+          {merge:true}
+        );
+
+    }else{
+
+      await db
+        .collection("products")
+        .add({
+
+          ...data,
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+    }
+
+
+    message.className=
+      "message success";
+
+    message.textContent=
+      "Product saved successfully.";
+
+    await loadProducts();
+
+    setTimeout(
+      resetProductForm,
+      700
+    );
+
+  }catch(error){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      friendlyError(error);
+
+  }finally{
+
+    button.disabled=false;
+
+  }
+}
+
+
+async function deleteProduct(id){
+
+  const product =
+    products.find(
+      item=>item.id===id
+    );
+
+  if(
+    !product ||
+    !confirm(
+      `Delete "${product.name||"this product"}"?`
+    )
+  ){
+    return;
+  }
+
+  try{
+
+    await db
+      .collection("products")
+      .doc(id)
+      .delete();
+
+    await loadProducts();
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("orders")
+        .get();
+
+    orders =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(b.createdAt) -
+            timeOf(a.createdAt)
+        );
+
+    renderOrders();
+    renderRecentOrders();
+    updateDashboard();
+
+  }catch(error){
+
+    $("ordersTable").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(friendlyError(error))}
+      </div>`;
+  }
+}
+
+
+function renderOrders(){
+
+  const search =
+    (
+      $("orderSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
+
+  const filter =
+    $("orderFilter")?.value ||
+    "all";
+
+
+  const list =
+    orders.filter(order=>{
+
+      const text=[
+        order.id,
+        order.customerName,
+        order.phone,
+        order.payment,
+        order.address,
+        order.city,
+        order.state
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      const status =
+        order.status||"Pending";
+
+      return(
+        text.includes(search) &&
+        (
+          filter==="all" ||
+          status===filter
+        )
+      );
+
+    });
+
+
+  if(!list.length){
+
+    $("ordersTable").innerHTML=
+      `<div class="empty">
+        No orders found.
+      </div>`;
+
+    return;
+  }
+
+
+  $("ordersTable").innerHTML=`
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Payment</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${list.map(order=>{
+
+          const status =
+            order.status||"Pending";
+
+          return `
+
+            <tr>
+
+              <td>
+                <strong>
+                  #${escapeHTML(
+                    order.id.slice(0,8)
+                  )}
+                </strong>
+              </td>
+
+              <td>
+
+                ${escapeHTML(
+                  order.customerName||"Customer"
+                )}
+
+                <div class="customer-info">
+                  ${escapeHTML(
+                    order.phone||""
+                  )}
+                </div>
+
+              </td>
+
+              <td>
+                <strong>
+                  ₦${money(
+                    numericTotal(order.total)
+                  )}
+                </strong>
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  order.payment||"—"
+                )}
+              </td>
+
+              <td>
+                <span
+                  class="status status-${escapeHTML(status)}"
+                >
+                  ${escapeHTML(status)}
+                </span>
+              </td>
+
+              <td>
+                ${dateOf(order.createdAt)}
+              </td>
+
+              <td>
+
+                <button
+                  class="btn"
+                  onclick="viewOrder('${order.id}')"
+                  type="button"
+                >
+                  View
+                </button>
+
+              </td>
+
+            </tr>
+          `;
+
+        }).join("")}
+
+      </tbody>
+
+    </table>
+  `;
+}
+
+
+function renderRecentOrders(){
+
+  const box =
+    $("recentOrders");
+
+  const list =
+    orders.slice(0,5);
+
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No orders yet.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML=`
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${list.map(order=>`
+
+            <tr>
+
+              <td>
+                ${escapeHTML(
+                  order.customerName||"Customer"
+                )}
+              </td>
+
+              <td>
+                ₦${money(
+                  numericTotal(order.total)
+                )}
+              </td>
+
+              <td>
+
+                <span
+                  class="status status-${escapeHTML(
+                    order.status||"Pending"
+                  )}"
+                >
+                  ${escapeHTML(
+                    order.status||"Pending"
+                  )}
+                </span>
+
+              </td>
+
+              <td>
+                ${dateOf(order.createdAt)}
+              </td>
+
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+}
+
+
+function viewOrder(id){
+
+  const order =
+    orders.find(
+      item=>item.id===id
+    );
+
+  if(!order) return;
+
+  const items =
+    normalizeItems(
+      order.items
+    );
+
+
+  $("modalTitle").textContent=
+    "Order Details";
+
+
+  $("modalContent").innerHTML=`
+
+    <div class="detail">
+      <div class="detail-label">
+        Order ID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(order.id)}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Customer
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.customerName||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Email
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.email||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.phone||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+      <div class="detail-label">
+        Address
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          [
+            order.address,
+            order.area,
+            order.city,
+            order.state
+          ]
+            .filter(Boolean)
+            .join(", ")||"—"
+        )}
+      </div>
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Items
+      </div>
+
+      ${
+        items.length
+
+        ?
+
+        items.map(item=>`
+
+          <div class="order-item">
+
+            <span>
+              ${escapeHTML(
+                item.name||
+                item.productName||
+                "Product"
+              )}
+              ×
+              ${Number(
+                item.qty||
+                item.quantity||
+                1
+              )}
+            </span>
+
+            <strong>
+              ₦${money(
+                Number(item.price||0) *
+                Number(
+                  item.qty||
+                  item.quantity||
+                  1
+                )
+              )}
+            </strong>
+
+          </div>
+
+        `).join("")
+
+        :
+
+        `<div class="detail-value">
+          No item details.
+        </div>`
+      }
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Subtotal
+      </div>
+
+      <div class="detail-value">
+        ₦${money(
+          numericTotal(order.subtotal)
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Delivery Fee
+      </div>
+
+      <div class="detail-value">
+        ₦${money(
+          order.deliveryFee
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Total
+      </div>
+
+      <div class="detail-value">
+
+        <strong
+          style="font-size:20px;color:var(--blue)"
+        >
+          ₦${money(
+            numericTotal(order.total)
+          )}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.payment||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment Status
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.paymentStatus||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Payment Reference
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.paymentReference||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Delivery Method
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          order.deliveryMethod||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Order Status
+      </div>
+
+      <select
+        class="select"
+        onchange="changeOrderStatus('${order.id}',this.value)"
+      >
+        ${orderStatusOptions(
+          order.status||"Pending"
+        )}
+      </select>
+
+    </div>
+
+  `;
+
+
+  $("modal")
+    .classList
+    .add("show");
+}
+
+
+function orderStatusOptions(current){
+
+  return[
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ]
+    .map(status=>`
+
+      <option
+        ${status===current?"selected":""}
+      >
+        ${status}
+      </option>
+
+    `)
+    .join("");
+}
+
+
+async function changeOrderStatus(
+  id,
+  status
+){
+
+  try{
+
+    await db
+      .collection("orders")
+      .doc(id)
+      .update({
+
+        status:status,
+
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    const order =
+      orders.find(
+        item=>item.id===id
+      );
+
+    if(order){
+      order.status=status;
+    }
+
+
+    renderOrders();
+    renderRecentOrders();
+    updateDashboard();
+
+
+    addNotification(
+      "Order Status Changed",
+      "An order was updated.",
+      "📦",
+      id
+    );
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   USERS / PROFILES
+========================================================= */
+
+async function loadUsers(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("users")
+        .get();
+
+    users =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+    renderCustomers();
+    renderProfiles();
+    updateDashboard();
+
+  }catch(error){
+
+    console.error(error);
+  }
+}
+
+
+async function loadProfiles(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("profiles")
+        .get();
+
+    profiles =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+    renderCustomers();
+    renderProfiles();
+
+  }catch(error){
+
+    console.error(error);
+  }
+}
+
+
+function findProfile(user){
+
+  return profiles.find(
+    profile =>
+      profile.uid===user.uid ||
+      profile.uid===user.id ||
+      profile.id===user.uid ||
+      profile.id===user.id
+  );
+}
+
+
+function renderCustomers(){
+
+  const search =
+    (
+      $("customerSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
+
+
+  const list =
+    users
+      .filter(
+        user =>
+          String(
+            user.accountType||""
+          ).toLowerCase()!=="admin"
+      )
+      .filter(user=>{
+
+        const profile =
+          findProfile(user);
+
+        const text=[
+          user.name,
+          user.email,
+          profile?.fullName,
+          profile?.phone,
+          profile?.city,
+          profile?.state
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+        return text.includes(search);
+      });
+
+
+  if(!list.length){
+
+    $("customersList").innerHTML=
+      `<div class="empty">
+        No customers found.
+      </div>`;
+
+    return;
+  }
+
+
+  $("customersList").innerHTML =
+    list.map(user=>{
+
+      const profile =
+        findProfile(user);
+
+      const photo =
+        profile?.photoURL||"";
+
+
+      return `
+
+        <div class="customer-row">
+
+          ${
+            photo
+
+            ?
+
+            `<img
+              class="avatar"
+              src="${escapeHTML(photo)}"
+            >`
+
+            :
+
+            `<div class="avatar">
+              👤
+            </div>`
+          }
+
+
+          <div class="customer-main">
+
+            <div class="customer-name">
+              ${escapeHTML(
+                profile?.fullName||
+                user.name||
+                "Customer"
+              )}
+            </div>
+
+            <div class="customer-info">
+              ${escapeHTML(
+                user.email||
+                profile?.email||
+                "No email"
+              )}
+              ·
+              ${escapeHTML(
+                profile?.phone||
+                "No phone"
+              )}
+            </div>
+
+          </div>
+
+
+          <button
+            class="btn"
+            onclick="viewCustomer('${escapeHTML(
+              user.uid||user.id
+            )}')"
+            type="button"
+          >
+            View
+          </button>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+function viewCustomer(uid){
+
+  const user =
+    users.find(
+      item =>
+        item.uid===uid ||
+        item.id===uid
+    );
+
+  const profile =
+    profiles.find(
+      item =>
+        item.uid===uid ||
+        item.id===uid
+    );
+
+  if(!user && !profile){
+    return;
+  }
+
+
+  $("modalTitle").textContent=
+    "Customer Profile";
+
+
+  $("modalContent").innerHTML=`
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Name
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.fullName||
+          user?.name||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Email
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.email||
+          user?.email||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.phone||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Address
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.address||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Location
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          [
+            profile?.city,
+            profile?.state,
+            profile?.country
+          ]
+            .filter(Boolean)
+            .join(", ")||"—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        UID
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          profile?.uid||
+          user?.uid||
+          user?.id||
+          "—"
+        )}
+      </div>
+
+    </div>
+
+  `;
+
+
+  $("modal")
+    .classList
+    .add("show");
+}
+
+
+function renderProfiles(){
+
+  const box =
+    $("profilesList");
+
+  if(!box) return;
+
+
+  const list =
+    users.filter(
+      user =>
+        String(
+          user.accountType||""
+        ).toLowerCase()!=="admin"
+    );
+
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No profiles found.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    list.map(user=>{
+
+      const profile =
+        findProfile(user);
+
+      return `
+
+        <div class="customer-row">
+
+          <div class="avatar">
+            👤
+          </div>
+
+          <div class="customer-main">
+
+            <div class="customer-name">
+              ${escapeHTML(
+                profile?.fullName||
+                user.name||
+                "Customer"
+              )}
+            </div>
+
+            <div class="customer-info">
+
+              ${escapeHTML(
+                profile?.email||
+                user.email||
+                ""
+              )}
+
+              ·
+
+              ${escapeHTML(
+                profile?.phone||
+                "No phone"
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+async function loadChats(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("chats")
+        .get();
+
+    chats =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(
+              b.updatedAt||
+              b.lastMessageAt
+            ) -
+            timeOf(
+              a.updatedAt||
+              a.lastMessageAt
+            )
+        );
+
+    renderChats();
+    updateDashboard();
+
+  }catch(error){
+
+    $("chatList").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function renderChats(){
+
+  const box =
+    $("chatList");
+
+
+  if(!chats.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No customer chats yet.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    chats.map(chat=>`
+
+      <div
+        class="chat-item ${
+          selectedChatId===chat.id
+            ?"active"
+            :""
+        }"
+        onclick="selectChat('${chat.id}')"
+      >
+
+        <div class="chat-item-top">
+
+          <div class="chat-name">
+
+            ${escapeHTML(
+              chat.customerName||
+              "Customer"
+            )}
+
+          </div>
+
+          ${
+            Number(
+              chat.unreadForAdmin||0
+            )>0
+
+            ?
+
+            `<span class="unread">
+              ${Number(
+                chat.unreadForAdmin
+              )}
+            </span>`
+
+            :
+
+            ""
+          }
+
+        </div>
+
+
+        <div class="last-message">
+
+          ${escapeHTML(
+            chat.lastMessage||
+            "No messages yet"
+          )}
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+
+async function selectChat(id){
+
+  selectedChatId=id;
+
+  const chat =
+    chats.find(
+      item=>item.id===id
+    );
+
+  if(!chat) return;
+
+
+  renderChats();
+
+
+  $("chatCustomerName").textContent =
+    chat.customerName||
+    "Customer";
+
+
+  $("chatCustomerInfo").textContent =
+    [
+      chat.customerEmail,
+      "Customer ID: "+
+      (chat.customerId||"—")
+    ]
+      .filter(Boolean)
+      .join(" · ");
+
+
+  $("chatInput").disabled=false;
+  $("sendChatBtn").disabled=false;
+
+
+  listenToMessages(id);
+
+
+  $("chatList")
+    .classList
+    .remove("mobile-open");
+
+  $("chatPanel")
+    .classList
+    .remove("mobile-hidden");
+
+
+  setTimeout(
+    ()=>$("chatInput").focus(),
+    150
+  );
+
+
+  if(
+    Number(chat.unreadForAdmin||0)>0
+  ){
+
+    try{
+
+      await db
+        .collection("chats")
+        .doc(id)
+        .update({
+          unreadForAdmin:0
+        });
+
+      chat.unreadForAdmin=0;
+
+      renderChats();
+      updateDashboard();
+
+    }catch(error){
+
+      console.error(error);
+    }
+  }
+}
+
+
+function listenToMessages(chatId){
+
+  if(messageUnsubscribe){
+
+    messageUnsubscribe();
+    messageUnsubscribe=null;
+  }
+
+
+  const box =
+    $("messages");
+
+  box.innerHTML=
+    `<div class="empty">
+      Loading messages...
+    </div>`;
+
+
+  messageUnsubscribe =
+    db
+      .collection("messages")
+      .where(
+        "chatId",
+        "==",
+        chatId
+      )
+      .onSnapshot(
+        snapshot=>{
+
+          const list =
+            snapshot.docs
+              .map(doc=>({
+                id:doc.id,
+                ...doc.data()
+              }))
+              .sort(
+                (a,b)=>
+                  timeOf(a.createdAt) -
+                  timeOf(b.createdAt)
+              );
+
+
+          if(!list.length){
+
+            box.innerHTML=
+              `<div class="empty">
+                No messages yet.
+              </div>`;
+
+            return;
+          }
+
+
+          box.innerHTML =
+            list.map(message=>{
+
+              const isAdmin =
+                String(
+                  message.senderRole||""
+                ).toLowerCase()==="admin";
+
+
+              return `
+
+                <div
+                  class="message-row ${
+                    isAdmin
+                      ?"admin"
+                      :"customer"
+                  }"
+                >
+
+                  <div
+                    class="message-bubble ${
+                      isAdmin
+                        ?"admin"
+                        :"customer"
+                    }"
+                  >
+
+                    ${escapeHTML(
+                      message.text||""
+                    )}
+
+                    ${
+                      message.imageUrl
+
+                      ?
+
+                      `<div style="margin-top:8px">
+                        <img
+                          src="${escapeHTML(
+                            message.imageUrl
+                          )}"
+                          style="max-width:180px;border-radius:10px"
+                        >
+                      </div>`
+
+                      :
+
+                      ""
+                    }
+
+
+                    <span class="message-time">
+
+                      ${escapeHTML(
+                        message.senderName||
+                        (
+                          isAdmin
+                            ?"Danny"
+                            :"Customer"
+                        )
+                      )}
+
+                      ·
+
+                      ${dateOf(
+                        message.createdAt
+                      )}
+
+                    </span>
+
+                  </div>
+
+                </div>
+              `;
+
+            }).join("");
+
+
+          box.scrollTop =
+            box.scrollHeight;
+
+        },
+
+        error=>{
+
+          box.innerHTML=
+            `<div class="empty">
+              ${escapeHTML(
+                friendlyError(error)
+              )}
+            </div>`;
+
+        }
+      );
+}
+
+
+function autoGrow(element){
+
+  element.style.height="auto";
+
+  element.style.height =
+    Math.min(
+      element.scrollHeight,
+      130
+    )+"px";
+}
+
+
+function handleChatEnter(event){
+
+  if(
+    event.key==="Enter" &&
+    !event.shiftKey
+  ){
+
+    event.preventDefault();
+
+    sendMessage();
+  }
+}
+
+
+async function sendMessage(){
+
+  if(!selectedChatId){
+    return;
+  }
+
+
+  const input =
+    $("chatInput");
+
+  const text =
+    input.value.trim();
+
+  const user =
+    auth.currentUser;
+
+
+  if(!text || !user){
+    return;
+  }
+
+
+  input.disabled=true;
+  $("sendChatBtn").disabled=true;
+
+
+  try{
+
+    await db
+      .collection("messages")
+      .add({
+
+        chatId:
+          selectedChatId,
+
+        senderId:
+          user.uid,
+
+        senderName:
+          "Danny",
+
+        senderRole:
+          "admin",
+
+        text:
+          text,
+
+        imageUrl:
+          "",
+
+        read:
+          false,
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    await db
+      .collection("chats")
+      .doc(selectedChatId)
+      .update({
+
+        adminTyping:false,
+
+        lastMessage:
+          text,
+
+        lastMessageAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
+
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp(),
+
+        unreadForCustomer:
+          firebase.firestore.FieldValue
+            .increment(1),
+
+        unreadForAdmin:0
+
+      });
+
+
+    input.value="";
+
+    input.style.height="45px";
+
+
+    const chat =
+      chats.find(
+        item=>item.id===selectedChatId
+      );
+
+    if(chat){
+      chat.lastMessage=text;
+      chat.unreadForAdmin=0;
+    }
+
+
+    renderChats();
+
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+
+  }finally{
+
+    input.disabled=false;
+    $("sendChatBtn").disabled=false;
+
+    input.focus();
+  }
+}
+
+
+/* =========================================================
+   WISHLISTS
+========================================================= */
+
+async function loadWishlists(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("wishlists")
+        .get();
+
+    wishlists =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }));
+
+    renderWishlists();
+
+  }catch(error){
+
+    $("wishlistsList").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function renderWishlists(){
+
+  const box =
+    $("wishlistsList");
+
+
+  if(!wishlists.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No wishlists found.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    wishlists.map(wishlist=>{
+
+      const product =
+        products.find(
+          item =>
+            item.id===
+            wishlist.productId
+        );
+
+
+      return `
+
+        <div class="customer-row">
+
+          <div class="avatar">
+            ❤️
+          </div>
+
+          <div class="customer-main">
+
+            <div class="customer-name">
+
+              ${escapeHTML(
+                wishlist.name||
+                product?.name||
+                "Saved Product"
+              )}
+
+            </div>
+
+            <div class="customer-info">
+
+              Customer:
+              ${escapeHTML(
+                wishlist.customerId||
+                "—"
+              )}
+
+              · Product:
+              ${escapeHTML(
+                wishlist.productId||
+                "—"
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+async function loadSettings(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("settings")
+        .limit(1)
+        .get();
+
+
+    if(snapshot.empty){
+
+      settingsDocId=null;
+
+      return;
+    }
+
+
+    const doc =
+      snapshot.docs[0];
+
+    settingsDocId=
+      doc.id;
+
+    const data =
+      doc.data();
+
+
+    $("sName").value =
+      data.storeName||"";
+
+    $("sEmail").value =
+      data.email||"";
+
+    $("sPhone").value =
+      data.phone||"";
+
+    $("sWhatsapp").value =
+      data.whatsapp||"";
+
+    $("sWhatsapp2").value =
+      data["whatsapp "]||"";
+
+    $("sCurrency").value =
+      data.currency||"NGN";
+
+    $("sLogo").value =
+      data.logoUrl||"";
+
+    $("sLoginUrl").value =
+      data.loginUrl||"";
+
+    $("sAddress").value =
+      data.address||"";
+
+    $("sDescription").value =
+      data.description||"";
+
+
+  }catch(error){
+
+    $("settingsMessage").className=
+      "message error";
+
+    $("settingsMessage").textContent=
+      friendlyError(error);
+  }
+}
+
+
+async function saveSettings(){
+
+  const button =
+    $("saveSettingsBtn");
+
+  const message =
+    $("settingsMessage");
+
+
+  const data={
+
+    storeName:
+      $("sName").value.trim(),
+
+    email:
+      $("sEmail").value.trim(),
+
+    phone:
+      $("sPhone").value.trim(),
+
+    whatsapp:
+      $("sWhatsapp").value.trim(),
+
+    "whatsapp ":
+      $("sWhatsapp2").value.trim(),
+
+    currency:
+      $("sCurrency").value.trim()||
+      "NGN",
+
+    logoUrl:
+      $("sLogo").value.trim(),
+
+    loginUrl:
+      $("sLoginUrl").value.trim(),
+
+    address:
+      $("sAddress").value.trim(),
+
+    description:
+      $("sDescription").value.trim(),
+
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
+
+  };
+
+
+  button.disabled=true;
+
+  message.className="message";
+  message.textContent="Saving...";
+
+
+  try{
+
+    if(settingsDocId){
+
+      await db
+        .collection("settings")
+        .doc(settingsDocId)
+        .set(
+          data,
+          {merge:true}
+        );
+
+    }else{
+
+      const ref =
+        await db
+          .collection("settings")
+          .add(data);
+
+      settingsDocId=
+        ref.id;
+    }
+
+
+    message.className=
+      "message success";
+
+    message.textContent=
+      "Store settings saved successfully.";
+
+  }catch(error){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      friendlyError(error);
+
+  }finally{
+
+    button.disabled=false;
+  }
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+async function loadProjects(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("serviceProjects")
+        .get();
+
+    projects =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(
+              b.updatedAt||
+              b.createdAt
+            ) -
+            timeOf(
+              a.updatedAt||
+              a.createdAt
+            )
+        );
+
+    renderProjects();
+
+    updateDashboard();
+
+  }catch(error){
+
+    $("projectsGrid").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function resetProjectForm(){
+
+  editingProjectId=null;
+
+  $("prTitle").value="";
+  $("prCategory").value="";
+  $("prDescription").value="";
+  $("prMediaUrl").value="";
+  $("prThumbnailUrl").value="";
+  $("prMediaType").value="Photo";
+  $("prFeatured").value="false";
+  $("prPublished").value="true";
+  $("prRequestEnabled").value="true";
+
+  $("projectFormTitle").textContent=
+    "Add Electrical Project";
+
+  $("saveProjectBtn").textContent=
+    "Save Project";
+
+  $("cancelProjectBtn")
+    .classList
+    .add("hidden");
+
+  $("projectMessage").textContent="";
+
+  openPage("projects");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+function editProject(id){
+
+  const project =
+    projects.find(
+      item=>item.id===id
+    );
+
+  if(!project) return;
+
+  editingProjectId=id;
+
+
+  $("prTitle").value =
+    project.title||"";
+
+  $("prCategory").value =
+    project.category||"";
+
+  $("prDescription").value =
+    project.description||"";
+
+  $("prMediaUrl").value =
+    project.mediaUrl||"";
+
+  $("prThumbnailUrl").value =
+    project.thumbnailUrl||"";
+
+
+  $("prMediaType").value =
+    project.medisType||
+    project.mediaType||
+    "Photo";
+
+
+  $("prFeatured").value =
+    String(
+      Boolean(
+        project.Featured ??
+        project.featured
+      )
+    );
+
+
+  $("prPublished").value =
+    String(
+      project.published!==false
+    );
+
+
+  $("prRequestEnabled").value =
+    String(
+      project.requestEnabled!==false
+    );
+
+
+  $("projectFormTitle").textContent=
+    "Edit Electrical Project";
+
+  $("saveProjectBtn").textContent=
+    "Save Changes";
+
+  $("cancelProjectBtn")
+    .classList
+    .remove("hidden");
+
+  openPage("projects");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+async function saveProject(){
+
+  const title =
+    $("prTitle")
+      .value
+      .trim();
+
+  const message =
+    $("projectMessage");
+
+
+  message.className="message";
+  message.textContent="";
+
+
+  if(!title){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      "Enter a project title.";
+
+    return;
+  }
+
+
+  /*
+    IMPORTANT:
+    These field names match the fields
+    you gave for serviceProjects.
+  */
+
+  const data={
+
+    title:title,
+
+    category:
+      $("prCategory")
+        .value
+        .trim(),
+
+    description:
+      $("prDescription")
+        .value
+        .trim(),
+
+    mediaUrl:
+      $("prMediaUrl")
+        .value
+        .trim(),
+
+    thumbnailUrl:
+      $("prThumbnailUrl")
+        .value
+        .trim(),
+
+    medisType:
+      $("prMediaType")
+        .value,
+
+    Featured:
+      $("prFeatured")
+        .value==="true",
+
+    published:
+      $("prPublished")
+        .value==="true",
+
+    requestEnabled:
+      $("prRequestEnabled")
+        .value==="true",
+
+    updatedAt:
+      firebase.firestore.FieldValue
+        .serverTimestamp()
+
+  };
+
+
+  const button =
+    $("saveProjectBtn");
+
+  button.disabled=true;
+
+
+  try{
+
+    if(editingProjectId){
+
+      await db
+        .collection("serviceProjects")
+        .doc(editingProjectId)
+        .set(
+          data,
+          {merge:true}
+        );
+
+    }else{
+
+      await db
+        .collection("serviceProjects")
+        .add({
+
+          ...data,
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+    }
+
+
+    message.className=
+      "message success";
+
+    message.textContent=
+      "Electrical project saved successfully.";
+
+
+    await loadProjects();
+
+
+    if(data.published){
+
+      await addNotification(
+        "Electrical Project Published",
+        title,
+        "⚡"
+      );
+    }
+
+
+    setTimeout(
+      resetProjectForm,
+      700
+    );
+
+
+  }catch(error){
+
+    message.className=
+      "message error";
+
+    message.textContent=
+      friendlyError(error);
+
+  }finally{
+
+    button.disabled=false;
+  }
+}
+
+
+function renderProjects(){
+
+  const box =
+    $("projectsGrid");
+
+
+  if(!projects.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No electrical projects yet.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    projects.map(project=>{
+
+      const mediaType =
+        String(
+          project.medisType||
+          project.mediaType||
+          "Photo"
+        ).toLowerCase();
+
+      const media =
+        project.mediaUrl||"";
+
+      const thumbnail =
+        project.thumbnailUrl||
+        media||
+        "https://via.placeholder.com/600x400?text=Project";
+
+
+      return `
+
+        <div class="project-card">
+
+          ${
+            mediaType==="video"
+
+            &&
+
+            media
+
+            ?
+
+            `<video
+              class="project-media"
+              src="${escapeHTML(media)}"
+              poster="${escapeHTML(thumbnail)}"
+              controls
+            ></video>`
+
+            :
+
+            `<img
+              class="project-media"
+              src="${escapeHTML(thumbnail)}"
+              onerror="this.src='https://via.placeholder.com/600x400?text=Project'"
+            >`
+          }
+
+
+          <div class="project-title">
+
+            ${escapeHTML(
+              project.title||
+              "Electrical Project"
+            )}
+
+          </div>
+
+
+          <div class="project-meta">
+
+            ${escapeHTML(
+              project.category||""
+            )}
+
+            ·
+
+            ${
+              project.published===false
+                ?"Unpublished"
+                :"Published"
+            }
+
+            ${
+              project.Featured
+                ?" · ⭐ Featured"
+                :""
+            }
+
+          </div>
+
+
+          <div class="project-meta">
+
+            Media:
+            ${escapeHTML(
+              project.medisType||
+              "Photo"
+            )}
+
+            ·
+
+            Request:
+            ${
+              project.requestEnabled===false
+                ?"Disabled"
+                :"Enabled"
+            }
+
+          </div>
+
+
+          <div
+            style="margin-top:10px;display:flex;gap:7px"
+          >
+
+            <button
+              class="btn"
+              onclick="editProject('${project.id}')"
+              type="button"
+            >
+              Edit
+            </button>
+
+            <button
+              class="btn btn-red"
+              onclick="deleteProject('${project.id}')"
+              type="button"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+async function deleteProject(id){
+
+  if(
+    !confirm(
+      "Delete this electrical project?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await db
+      .collection("serviceProjects")
+      .doc(id)
+      .delete();
+
+    await loadProjects();
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   SERVICE REQUESTS
+========================================================= */
+
+async function loadServices(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("serviceRequests")
+        .get();
+
+    services =
+      snapshot.docs
+        .map(doc=>({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .sort(
+          (a,b)=>
+            timeOf(b.createdAt) -
+            timeOf(a.createdAt)
+        );
+
+    renderServices();
+    updateDashboard();
+
+  }catch(error){
+
+    $("servicesTable").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function renderServices(){
+
+  const search =
+    (
+      $("serviceSearch")?.value ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
+
+  const filter =
+    $("serviceFilter")?.value||
+    "all";
+
+
+  const list =
+    services.filter(service=>{
+
+      const text=[
+        service.customerName,
+        service.phone,
+        service.serviceType,
+        service.description,
+        service.address,
+        service.location
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      const status =
+        service.status||
+        "Pending";
+
+      return(
+        text.includes(search) &&
+        (
+          filter==="all"||
+          status===filter
+        )
+      );
+    });
+
+
+  if(!list.length){
+
+    $("servicesTable").innerHTML=
+      `<div class="empty">
+        No service requests found.
+      </div>`;
+
+    return;
+  }
+
+
+  $("servicesTable").innerHTML=`
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Customer</th>
+          <th>Service</th>
+          <th>Phone</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${list.map(service=>{
+
+          const status =
+            service.status||
+            "Pending";
+
+          return `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(
+                  service.customerName||
+                  "Customer"
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  service.serviceType||
+                  "Electrical Service"
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  service.phone||
+                  "—"
+                )}
+              </td>
+
+              <td>
+
+                <span
+                  class="status status-${escapeHTML(status)}"
+                >
+                  ${escapeHTML(status)}
+                </span>
+
+              </td>
+
+              <td>
+                ${dateOf(
+                  service.createdAt
+                )}
+              </td>
+
+              <td>
+
+                <button
+                  class="btn"
+                  onclick="viewService('${service.id}')"
+                  type="button"
+                >
+                  View
+                </button>
+
+              </td>
+
+            </tr>
+          `;
+
+        }).join("")}
+
+      </tbody>
+
+    </table>
+  `;
+}
+
+
+window.viewService = function(id){
+
+  const service =
+    services.find(
+      item => item.id === id
+    );
+
+  if(!service) return;
+
+
+  $("modalTitle").textContent =
+    "Service Request";
+
+
+  /* =========================
+     MEDIA
+  ========================= */
+
+  let mediaHTML = "";
+
+  const mediaUrls =
+    Array.isArray(service.mediaUrls)
+      ? service.mediaUrls
+      : [];
+
+
+  if(mediaUrls.length){
+
+    mediaHTML = `
+
+      <div class="detail">
+
+        <div class="detail-label">
+          Photos / Videos
+        </div>
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:
+              repeat(auto-fit,minmax(130px,1fr));
+            gap:10px;
+            margin-top:10px;
+          "
+        >
+
+          ${mediaUrls.map(url => {
+
+            const safeURL =
+              escapeHTML(url);
+
+            const isVideo =
+              /\.(mp4|webm|ogg|mov|m4v)(\?|$)/i
+                .test(url);
+
+
+            if(isVideo){
+
+              return `
+
+                <video
+                  src="${safeURL}"
+                  controls
+                  style="
+                    width:100%;
+                    max-height:220px;
+                    border-radius:12px;
+                    background:#020617;
+                    border:1px solid #334155;
+                  "
+                ></video>
+
+              `;
+
+            }
+
+
+            return `
+
+              <a
+                href="${safeURL}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <img
+                  src="${safeURL}"
+                  alt="Service request photo"
+                  style="
+                    width:100%;
+                    height:150px;
+                    object-fit:cover;
+                    border-radius:12px;
+                    border:1px solid #334155;
+                    display:block;
+                  "
+                  onerror="
+                    this.style.display='none'
+                  "
+                >
+
+              </a>
+
+            `;
+
+          }).join("")}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }else{
+
+    mediaHTML = `
+
+      <div class="detail">
+
+        <div class="detail-label">
+          Photos / Videos
+        </div>
+
+        <div class="detail-value">
+          No photos or videos uploaded.
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================
+     DISPLAY REQUEST
+  ========================= */
+
+  $("modalContent").innerHTML = `
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Customer
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.customerName || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Phone
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.phone || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Service
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.serviceType ||
+          "Electrical Service"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Description
+      </div>
+
+      <div
+        class="detail-value"
+        style="white-space:pre-wrap;"
+      >
+        ${escapeHTML(
+          service.description || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Address
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.address || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Specific Location
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.location || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    ${mediaHTML}
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Preferred Date
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.preferredDate ||
+          "Not specified"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Preferred Time
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          service.preferredTime ||
+          "Not specified"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Request ID
+      </div>
+
+      <div
+        class="detail-value"
+        style="
+          font-size:11px;
+          word-break:break-all;
+        "
+      >
+        ${escapeHTML(
+          service.id || "—"
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Request Created
+      </div>
+
+      <div class="detail-value">
+        ${escapeHTML(
+          dateOf(service.createdAt)
+        )}
+      </div>
+
+    </div>
+
+
+    <div class="detail">
+
+      <div class="detail-label">
+        Status
+      </div>
+
+      <select
+        class="select"
+        onchange="
+          changeServiceStatus(
+            '${escapeHTML(service.id)}',
+            this.value
+          )
+        "
+      >
+
+        ${[
+          "Pending",
+          "Processing",
+          "Completed",
+          "Cancelled"
+        ]
+        .map(status => `
+
+          <option
+            value="${escapeHTML(status)}"
+            ${
+              status ===
+              (service.status || "Pending")
+                ? "selected"
+                : ""
+            }
+          >
+            ${escapeHTML(status)}
+          </option>
+
+        `)
+        .join("")}
+
+      </select>
+
+    </div>
+
+  `;
+
+
+  $("modal")
+    .classList
+    .add("show");
+
+};
+
+    
+
+async function changeServiceStatus(
+  id,
+  status
+){
+
+  try{
+
+    await db
+      .collection("serviceRequests")
+      .doc(id)
+      .update({
+
+        status:status,
+
+        updatedAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    const service =
+      services.find(
+        item=>item.id===id
+      );
+
+    if(service){
+      service.status=status;
+    }
+
+
+    renderServices();
+
+    addNotification(
+      "Service Request Updated",
+      "A service request was updated.",
+      "🔧",
+      id
+    );
+
+  }catch(error){
+
+    alert(
+      friendlyError(error)
+    );
+  }
+}
+
+
+/* =========================================================
+   ADMINS
+========================================================= */
+
+async function loadAdmins(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("admins")
+        .get();
+
+    admins =
+      snapshot.docs.map(
+        doc=>({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+    renderAdmins();
+
+  }catch(error){
+
+    $("adminsList").innerHTML=
+      `<div class="empty">
+        ${escapeHTML(
+          friendlyError(error)
+        )}
+      </div>`;
+  }
+}
+
+
+function renderAdmins(){
+
+  const box =
+    $("adminsList");
+
+
+  if(!admins.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        No administrators found.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    admins.map(admin=>`
+
+      <div class="customer-row">
+
+        <div class="avatar">
+          🔐
+        </div>
+
+        <div class="customer-main">
+
+          <div class="customer-name">
+            ${escapeHTML(
+              admin.name||
+              "Administrator"
+            )}
+          </div>
+
+          <div class="customer-info">
+
+            ${escapeHTML(
+              admin.email||
+              "No email"
+            )}
+
+            · Role:
+            ${escapeHTML(
+              admin.role||
+              "admin"
+            )}
+
+            ·
+
+            ${
+              admin.active===false
+                ?"Inactive"
+                :"Active"
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+/* =========================================================
+   NOTIFICATIONS
+   SAFE VERSION — DOES NOT TOUCH ADMIN AUTH
+========================================================= */
+
+/*
+  IMPORTANT:
+
+  Admin notifications use:
+    read: true / false
+
+  Customer notifications use:
+    target: "all" or "user"
+    recipientId: customer UID
+    readBy: []
+
+  This section does NOT contain:
+    auth.onAuthStateChanged()
+    auth.signOut()
+    auth.signIn()
+    getIdToken()
+    Firebase initialization
+*/
+
+
+/* =========================================================
+   LOAD ADMIN NOTIFICATIONS
+========================================================= */
+
+async function loadNotifications(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("notifications")
+        .orderBy(
+          "createdAt",
+          "desc"
+        )
+        .limit(50)
+        .get();
+
+
+    notifications =
+      snapshot.docs.map(
+        doc=>({
+
+          id:doc.id,
+
+          ...doc.data()
+
+        })
+      );
+
+
+    renderNotifications();
+
+
+  }catch(error){
+
+    /*
+      VERY IMPORTANT:
+
+      If notifications fail because of
+      Firestore rules/index/etc, DO NOT
+      affect admin login.
+    */
+
+    console.warn(
+      "Could not load notifications:",
+      error?.message || error
+    );
+
+
+    notifications=[];
+
+    renderNotifications();
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER ADMIN NOTIFICATIONS
+========================================================= */
+
+function renderNotifications(){
+
+  const badge =
+    $("notificationBadge");
+
+  const stat =
+    $("statNotifications");
+
+  const listBox =
+    $("notificationsList");
+
+
+  if(!badge || !stat || !listBox){
+    return;
+  }
+
+
+  /*
+    Only notifications meant for the admin
+    should affect the admin unread count.
+
+    Old notifications do not have target,
+    so they remain compatible.
+  */
+
+  const adminNotifications =
+    notifications.filter(
+      notification => {
+
+        /*
+          Old notification:
+          no target field
+        */
+
+        if(!notification.target){
+          return true;
+        }
+
+
+        /*
+          Customer notification:
+          don't count it as admin unread.
+        */
+
+        return false;
+
+      }
+    );
+
+
+  const unread =
+    adminNotifications.filter(
+      notification =>
+        notification.read !== true
+    ).length;
+
+
+  badge.textContent =
+    unread;
+
+
+  badge.classList.toggle(
+    "hidden",
+    unread===0
+  );
+
+
+  stat.textContent =
+    unread;
+
+
+  if(!notifications.length){
+
+    listBox.innerHTML =
+      `<div class="empty">
+        No notifications yet.
+      </div>`;
+
+    return;
+
+  }
+
+
+  listBox.innerHTML =
+    notifications.map(
+      notification=>{
+
+
+        /*
+          Customer-only notifications can still
+          exist in the same collection, but we
+          don't need to display them inside the
+          admin notification center.
+        */
+
+        if(
+          notification.target==="user"
+        ){
+
+          return "";
+
+        }
+
+
+        return `
+
+          <div
+            class="notification"
+            style="
+              opacity:${
+                notification.read===true
+                  ?".6"
+                  :"1"
+              };
+            "
+          >
+
+            <div class="nicon">
+
+              ${escapeHTML(
+                notification.icon||
+                "🔔"
+              )}
+
+            </div>
+
+
+            <div>
+
+              <strong>
+
+                ${escapeHTML(
+                  notification.title||
+                  "Notification"
+                )}
+
+              </strong>
+
+
+              <div>
+
+                ${escapeHTML(
+                  notification.message||
+                  ""
+                )}
+
+              </div>
+
+
+              <small>
+
+                ${dateOf(
+                  notification.createdAt
+                )}
+
+              </small>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* =========================================================
+   ADMIN INTERNAL NOTIFICATION
+========================================================= */
+
+/*
+  This keeps the EXACT behavior your old
+  notification system already uses.
+
+  Example:
+
+    addNotification(
+      "New Order",
+      "A customer placed a new order.",
+      "🛒",
+      orderId
+    );
+
+  It creates an admin notification with:
+
+    read:false
+*/
+
+async function addNotification(
+  title,
+  message,
+  icon="🔔",
+  sourceId=""
+){
+
+  try{
+
+    /*
+      If sourceId exists, use it to prevent
+      duplicate notifications.
+    */
+
+    const source =
+      sourceId ||
+      `${title}|${message}`;
+
+
+    const existing =
+      await db
+        .collection("notifications")
+        .where(
+          "sourceId",
+          "==",
+          source
+        )
+        .limit(1)
+        .get();
+
+
+    if(existing.empty){
+
+      await db
+        .collection("notifications")
+        .add({
+
+          title:
+            title,
+
+          message:
+            message,
+
+          icon:
+            icon,
+
+          sourceId:
+            source,
+
+          /*
+            This is for the ADMIN notification
+            center.
+          */
+
+          read:
+            false,
+
+          /*
+            No target means this is an old-style
+            admin notification.
+          */
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+
+    }
+
+
+    /*
+      Safe refresh.
+    */
+
+    await loadNotifications();
+
+
+  }catch(error){
+
+    /*
+      NEVER allow notification failure
+      to interrupt the rest of Admin Center.
+    */
+
+    console.warn(
+      "Admin notification skipped:",
+      error?.message || error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SEND NOTIFICATION TO ALL CUSTOMERS
+========================================================= */
+
+/*
+  Use this when you want to send an announcement
+  to every customer.
+
+  Example:
+
+    await sendNotificationToAll(
+      "New Service Available",
+      "Danny Smart Power is now offering inverter installation.",
+      "⚡"
+    );
+
+  Optional:
+    imageUrl
+    chatId
+    sourceId
+*/
+
+async function sendNotificationToAll(
+  title,
+  message,
+  icon="🔔",
+  imageUrl="",
+  chatId="",
+  sourceId=""
+){
+
+  try{
+
+    /*
+      Only use deduplication when a real
+      sourceId is supplied.
+
+      This means two intentional announcements
+      with the same title/message are allowed.
+    */
+
+    if(sourceId){
+
+      const existing =
+        await db
+          .collection("notifications")
+          .where(
+            "sourceId",
+            "==",
+            sourceId
+          )
+          .limit(1)
+          .get();
+
+
+      if(!existing.empty){
+
+        console.log(
+          "Notification already sent:",
+          sourceId
+        );
+
+        return;
+
+      }
+
+    }
+
+
+    await db
+      .collection("notifications")
+      .add({
+
+        title:
+          title,
+
+        message:
+          message,
+
+        icon:
+          icon,
+
+        imageUrl:
+          imageUrl,
+
+        chatId:
+          chatId,
+
+        sourceId:
+          sourceId,
+
+        /*
+          This tells customer notification.html
+          that this notification is for everyone.
+        */
+
+        target:
+          "all",
+
+        /*
+          Not needed for "all".
+        */
+
+        recipientId:
+          "",
+
+        recipientEmail:
+          "",
+
+        /*
+          Customer notification read tracking.
+
+          Each customer's UID will be added here
+          when that customer reads it.
+        */
+
+        readBy:
+          [],
+
+        /*
+          Keep the old admin field so your
+          existing admin notification system
+          remains compatible.
+
+          true means it isn't an unread admin
+          event.
+        */
+
+        read:
+          true,
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    console.log(
+      "Notification sent to all customers."
+    );
+
+
+  }catch(error){
+
+    console.warn(
+      "Customer announcement failed:",
+      error?.message || error
+    );
+
+    /*
+      Do NOT throw the error into admin
+      initialization.
+    */
+
+  }
+
+}
+
+
+/* =========================================================
+   SEND NOTIFICATION TO ONE CUSTOMER
+========================================================= */
+
+async function sendNotificationToUser(
+  recipientId,
+  recipientEmail,
+  title,
+  message,
+  icon="🔔",
+  imageUrl="",
+  chatId="",
+  sourceId=""
+){
+
+  try{
+
+    if(!recipientId){
+
+      console.warn(
+        "Notification skipped: recipientId missing."
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Optional duplicate protection.
+    */
+
+    if(sourceId){
+
+      const existing =
+        await db
+          .collection("notifications")
+          .where(
+            "sourceId",
+            "==",
+            sourceId
+          )
+          .limit(1)
+          .get();
+
+
+      if(!existing.empty){
+
+        console.log(
+          "Customer notification already exists."
+        );
+
+        return;
+
+      }
+
+    }
+
+
+    await db
+      .collection("notifications")
+      .add({
+
+        title:
+          title,
+
+        message:
+          message,
+
+        icon:
+          icon,
+
+        imageUrl:
+          imageUrl,
+
+        chatId:
+          chatId,
+
+        sourceId:
+          sourceId,
+
+        target:
+          "user",
+
+        recipientId:
+          recipientId,
+
+        recipientEmail:
+          recipientEmail||"",
+
+        /*
+          Customer has not read it yet.
+        */
+
+        readBy:
+          [],
+
+        /*
+          Do not make it an admin unread
+          notification.
+        */
+
+        read:
+          true,
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    console.log(
+      "Notification sent to customer:",
+      recipientId
+    );
+
+
+  }catch(error){
+
+    console.warn(
+      "Customer notification failed:",
+      error?.message || error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SHORT ALIAS
+========================================================= */
+
+async function notifyCustomer(
+  recipientId,
+  recipientEmail,
+  title,
+  message,
+  icon="🔔",
+  imageUrl="",
+  chatId="",
+  sourceId=""
+){
+
+  return sendNotificationToUser(
+    recipientId,
+    recipientEmail,
+    title,
+    message,
+    icon,
+    imageUrl,
+    chatId,
+    sourceId
+  );
+
+}
+
+
+/* =========================================================
+   MARK ADMIN NOTIFICATIONS AS READ
+========================================================= */
+
+async function markNotificationsRead(){
+
+  try{
+
+    const unread =
+      notifications.filter(
+        notification => {
+
+          /*
+            Don't mark customer-only
+            notifications as admin notifications.
+          */
+
+          if(
+            notification.target==="user" ||
+            notification.target==="all"
+          ){
+
+            return false;
+
+          }
+
+
+          return notification.read !== true;
+
+        }
+      );
+
+
+    if(!unread.length){
+
+      return;
+
+    }
+
+
+    const batch =
+      db.batch();
+
+
+    unread.forEach(
+      notification=>{
+
+        batch.update(
+
+          db
+            .collection("notifications")
+            .doc(notification.id),
+
+          {
+
+            read:
+              true
+
+          }
+
+        );
+
+      }
+    );
+
+
+    await batch.commit();
+
+
+    await loadNotifications();
+
+
+  }catch(error){
+
+    /*
+      Again, notification failure must
+      NEVER affect admin authentication.
+    */
+
+    console.warn(
+      "Could not mark notifications read:",
+      error?.message || error
+    );
+
+  }
+
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+  if($("statProducts")){
+    $("statProducts")
+      .textContent=
+      products.length;
+  }
+
+
+  if($("statOrders")){
+    $("statOrders")
+      .textContent=
+      orders.length;
+  }
+
+
+  if($("statCustomers")){
+
+    $("statCustomers")
+      .textContent=
+      users.filter(
+        user =>
+          String(
+            user.accountType||""
+          ).toLowerCase()!=="admin"
+      ).length;
+
+  }
+
+
+  const pending =
+    orders.filter(
+      order =>
+        String(
+          order.status||
+          "Pending"
+        ).toLowerCase()==="pending"
+    ).length;
+
+
+  $("statPending")
+    .textContent=
+    pending;
+
+
+  const unread =
+    chats.reduce(
+      (total,chat)=>
+        total+
+        Number(
+          chat.unreadForAdmin||0
+        ),
+      0
+    );
+
+
+  $("statUnread")
+    .textContent=
+    unread;
+
+
+  const revenue =
+    orders
+      .filter(
+        order =>
+          String(
+            order.status||""
+          ).toLowerCase()==="completed"
+      )
+      .reduce(
+        (total,order)=>
+          total+
+          numericTotal(
+            order.total
+          ),
+        0
+      );
+
+
+  $("dashboardRevenue")
+    .textContent=
+    "₦"+money(revenue);
+
+
+  $("statProjects")
+    .textContent=
+    projects.length;
+
+
+  $("statServices")
+    .textContent=
+    services.filter(
+      service =>
+        (service.status||
+        "Pending")==="Pending"
+    ).length;
+
+
+  renderOrderSummary();
+}
+
+
+function renderOrderSummary(){
+
+  const box =
+    $("orderSummary");
+
+  const statuses=[
+    "Pending",
+    "Processing",
+    "Shipped",
+    "Completed",
+    "Cancelled"
+  ];
+
+
+  box.innerHTML =
+    statuses.map(status=>`
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          padding:8px 0;
+          border-bottom:1px solid var(--border)
+        "
+      >
+
+        <span
+          class="status status-${status}"
+        >
+          ${status}
+        </span>
+
+        <strong>
+          ${
+            orders.filter(
+              order =>
+                (order.status||
+                "Pending")===status
+            ).length
+          }
+        </strong>
+
+      </div>
+
+    `).join("");
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function closeModal(){
+
+  $("modal")
+    .classList
+    .remove("show");
+}
+
+
+function closeModalOutside(event){
+
+  if(
+    event.target.id==="modal"
+  ){
+    closeModal();
+  }
+}
+
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeModal();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   REALTIME
+========================================================= */
+
+function listenRealtime(){
+
+  db
+    .collection("orders")
+    .onSnapshot(
+      snapshot=>{
+
+        const newIds =
+          snapshot.docChanges()
+            .filter(
+              change =>
+                change.type==="added"
+            )
+            .map(
+              change =>
+                change.doc.id
+            );
+
+
+        if(
+          orders.length &&
+          newIds.length
+        ){
+
+          newIds.forEach(
+            id=>
+              addNotification(
+                "New Order",
+                "A customer placed a new order.",
+                "🛒",
+                id
+              )
+          );
+
+        }
+
+
+        loadOrders();
+
+      }
+    );
+
+
+  db
+    .collection("chats")
+    .onSnapshot(
+      ()=>{
+        loadChats();
+      }
+    );
+
+
+  db
+    .collection("serviceRequests")
+    .onSnapshot(
+      snapshot=>{
+
+        const ids =
+          snapshot.docChanges()
+            .filter(
+              change =>
+                change.type==="added"
+            )
+            .map(
+              change =>
+                change.doc.id
+            );
+
+
+        if(
+          services.length &&
+          ids.length
+        ){
+
+          ids.forEach(
+            id=>
+              addNotification(
+                "New Service Request",
+                "A customer requested an electrical service.",
+                "🔧",
+                id
+              )
+          );
+
+        }
+
+
+        loadServices();
+
+      }
+    );
+
+
+  db
+    .collection("notifications")
+    .onSnapshot(
+      ()=>{
+        loadNotifications();
+      }
+    );
+
+}
+
+
+/* =========================================================
+   MOBILE KEYBOARD / VIEWPORT
+========================================================= */
+
+function mobileKeyboardFix(){
+
+  if(!window.visualViewport){
+    return;
+  }
+
+
+  const adjust=()=>{
+
+    const height =
+      window.visualViewport.height;
+
+    document.documentElement
+      .style
+      .setProperty(
+        "--vvh",
+        height+"px"
+      );
+
+  };
+
+
+  window.visualViewport
+    .addEventListener(
+      "resize",
+      adjust
+    );
+
+  window.visualViewport
+    .addEventListener(
+      "scroll",
+      adjust
+    );
+
+  adjust();
+}
+
+
+/* =========================================================
+   INITIALIZE ADMIN
+========================================================= */
+
+async function initializeAdmin(){
+
+  try{
+
+    await Promise.all([
+
+      loadProducts(),
+      loadOrders(),
+      loadUsers(),
+      loadProfiles(),
+      loadChats(),
+      loadWishlists(),
+      loadSettings(),
+      loadAdmins(),
+      loadProjects(),
+      loadServices(),
+      loadNotifications()
+
+    ]);
+
+
+    listenRealtime();
+
+    mobileKeyboardFix();
+
+    openPage("dashboard");
+
+  }catch(error){
+
+    console.error(
+      "Admin initialization error:",
+      error
+    );
+  }
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+auth.onAuthStateChanged(
+  async user=>{
+
+    if(!user){
+      $("adminGate")
+        .classList
+        .remove("hidden");
+
+      $("adminApp")
+        .classList
+        .add("hidden");
+
+      return;
+    }
+
+    // IMPORTANT: Never sign out the valid admin here.
+    // The old code signed the admin out immediately after login,
+    // which caused Firestore requests to return "Permission denied".
+    const validAdmin =
+      user.uid === ADMIN_UID &&
+      String(user.email || "").toLowerCase() ===
+        ADMIN_EMAIL.toLowerCase();
+
+    if(!validAdmin){
+      try{
+        await auth.signOut();
+      }catch(error){
+        console.error("Admin sign-out error:", error);
+      }
+      return;
+    }
+
+    try{
+      await user.getIdToken(true);
+      showAdminApp();
+    }catch(error){
+      console.error("Admin authentication refresh error:", error);
+      $("adminGate").classList.remove("hidden");
+      $("adminApp").classList.add("hidden");
+    }
+  }
+);
+
+</script>
+
+</body>
+      </html>
