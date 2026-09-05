@@ -6981,11 +6981,6 @@ async function sendNotificationToAll(
 
 }
           
-
-/* =========================================================
-   SEND NOTIFICATION TO ONE CUSTOMER
-========================================================= */
-
 async function sendNotificationToUser(
   recipientId,
   recipientEmail,
@@ -7041,6 +7036,11 @@ async function sendNotificationToUser(
     }
 
 
+    /*
+      SAVE CUSTOMER NOTIFICATION
+      TO FIRESTORE
+    */
+
     await db
       .collection("notifications")
       .add({
@@ -7070,18 +7070,14 @@ async function sendNotificationToUser(
           recipientId,
 
         recipientEmail:
-          recipientEmail||"",
-
-        /*
-          Customer has not read it yet.
-        */
+          recipientEmail || "",
 
         readBy:
           [],
 
         /*
-          Do not make it an admin unread
-          notification.
+          Keep this true so it does not
+          appear as an unread admin event.
         */
 
         read:
@@ -7092,6 +7088,110 @@ async function sendNotificationToUser(
             .serverTimestamp()
 
       });
+
+
+    /*
+      GET THE ADMIN LOGIN TOKEN
+      FOR SECURE PUSH SENDING
+    */
+
+    const currentUser =
+      auth.currentUser;
+
+
+    if(!currentUser){
+
+      throw new Error(
+        "Admin is not logged in."
+      );
+
+    }
+
+
+    const idToken =
+      await currentUser.getIdToken(true);
+
+
+    /*
+      SEND REAL PUSH TO THIS CUSTOMER
+      THROUGH THE SECURE NETLIFY FUNCTION
+    */
+
+    const pushResponse =
+      await fetch(
+        "/.netlify/functions/send-notification",
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+            "Authorization":
+              "Bearer " + idToken
+
+          },
+
+          body:
+            JSON.stringify({
+
+              title:
+                title,
+
+              message:
+                message,
+
+              userId:
+                recipientId,
+
+              imageUrl:
+                imageUrl,
+
+              chatId:
+                chatId,
+
+              sourceId:
+                sourceId
+
+            })
+
+        }
+      );
+
+
+    const pushResult =
+      await pushResponse.json();
+
+
+    /*
+      CHECK WHETHER PUSH WAS SUCCESSFUL
+    */
+
+    if(
+      !pushResponse.ok ||
+      !pushResult.success
+    ){
+
+      console.error(
+        "Push notification failed:",
+        pushResult
+      );
+
+      throw new Error(
+        pushResult.error ||
+        "Push notification could not be sent."
+      );
+
+    }
+
+
+    console.log(
+      "Customer push notification sent:",
+      pushResult
+    );
 
 
     console.log(
@@ -7110,8 +7210,7 @@ async function sendNotificationToUser(
   }
 
 }
-
-
+        
 /* =========================================================
    SHORT ALIAS
 ========================================================= */
