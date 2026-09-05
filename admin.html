@@ -6763,29 +6763,6 @@ async function addNotification(
 
 }
 
-
-/* =========================================================
-   SEND NOTIFICATION TO ALL CUSTOMERS
-========================================================= */
-
-/*
-  Use this when you want to send an announcement
-  to every customer.
-
-  Example:
-
-    await sendNotificationToAll(
-      "New Service Available",
-      "Danny Smart Power is now offering inverter installation.",
-      "⚡"
-    );
-
-  Optional:
-    imageUrl
-    chatId
-    sourceId
-*/
-
 async function sendNotificationToAll(
   title,
   message,
@@ -6800,9 +6777,6 @@ async function sendNotificationToAll(
     /*
       Only use deduplication when a real
       sourceId is supplied.
-
-      This means two intentional announcements
-      with the same title/message are allowed.
     */
 
     if(sourceId){
@@ -6833,6 +6807,11 @@ async function sendNotificationToAll(
     }
 
 
+    /*
+      SAVE CUSTOMER NOTIFICATION
+      TO FIRESTORE
+    */
+
     await db
       .collection("notifications")
       .add({
@@ -6855,17 +6834,8 @@ async function sendNotificationToAll(
         sourceId:
           sourceId,
 
-        /*
-          This tells customer notification.html
-          that this notification is for everyone.
-        */
-
         target:
           "all",
-
-        /*
-          Not needed for "all".
-        */
 
         recipientId:
           "",
@@ -6873,23 +6843,12 @@ async function sendNotificationToAll(
         recipientEmail:
           "",
 
-        /*
-          Customer notification read tracking.
-
-          Each customer's UID will be added here
-          when that customer reads it.
-        */
-
         readBy:
           [],
 
         /*
-          Keep the old admin field so your
-          existing admin notification system
-          remains compatible.
-
-          true means it isn't an unread admin
-          event.
+          Keep this true so it does not
+          appear as an unread admin event.
         */
 
         read:
@@ -6900,6 +6859,110 @@ async function sendNotificationToAll(
             .serverTimestamp()
 
       });
+
+
+    /*
+      GET THE ADMIN LOGIN TOKEN
+      FOR SECURE PUSH SENDING
+    */
+
+    const currentUser =
+      auth.currentUser;
+
+
+    if(!currentUser){
+
+      throw new Error(
+        "Admin is not logged in."
+      );
+
+    }
+
+
+    const idToken =
+      await currentUser.getIdToken(true);
+
+
+    /*
+      SEND REAL PHONE/BROWSER PUSH
+      THROUGH THE SECURE NETLIFY FUNCTION
+    */
+
+    const pushResponse =
+      await fetch(
+        "/.netlify/functions/send-notification",
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+            "Authorization":
+              "Bearer " + idToken
+
+          },
+
+          body:
+            JSON.stringify({
+
+              title:
+                title,
+
+              message:
+                message,
+
+              userId:
+                "",
+
+              imageUrl:
+                imageUrl,
+
+              chatId:
+                chatId,
+
+              sourceId:
+                sourceId
+
+            })
+
+        }
+      );
+
+
+    const pushResult =
+      await pushResponse.json();
+
+
+    /*
+      CHECK WHETHER PUSH WAS SUCCESSFUL
+    */
+
+    if(
+      !pushResponse.ok ||
+      !pushResult.success
+    ){
+
+      console.error(
+        "Push notification failed:",
+        pushResult
+      );
+
+      throw new Error(
+        pushResult.error ||
+        "Push notification could not be sent."
+      );
+
+    }
+
+
+    console.log(
+      "Customer push notification sent:",
+      pushResult
+    );
 
 
     console.log(
@@ -6914,15 +6977,10 @@ async function sendNotificationToAll(
       error?.message || error
     );
 
-    /*
-      Do NOT throw the error into admin
-      initialization.
-    */
-
   }
 
 }
-
+          
 
 /* =========================================================
    SEND NOTIFICATION TO ONE CUSTOMER
