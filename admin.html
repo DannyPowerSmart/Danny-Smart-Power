@@ -1871,13 +1871,38 @@ th{
 
     </div>
 
-    <button
-      class="btn"
-      onclick="markNotificationsRead()"
-      type="button"
+
+    <div
+      style="
+        display:flex;
+        gap:10px;
+        align-items:center;
+        flex-wrap:wrap;
+      "
     >
-      Mark all read
-    </button>
+
+      <!-- SEND CUSTOMER NOTIFICATION -->
+
+      <button
+        class="btn btn-primary"
+        id="addNotificationButton"
+        type="button"
+      >
+        ＋ Send Notification
+      </button>
+
+
+      <!-- MARK ADMIN NOTIFICATIONS READ -->
+
+      <button
+        class="btn"
+        onclick="markNotificationsRead()"
+        type="button"
+      >
+        Mark all read
+      </button>
+
+    </div>
 
   </div>
 
