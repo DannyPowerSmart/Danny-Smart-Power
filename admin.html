@@ -1884,12 +1884,43 @@ th{
       <!-- SEND CUSTOMER NOTIFICATION -->
 
       <button
-        class="btn btn-primary"
-        id="addNotificationButton"
-        type="button"
-      >
-        ＋ Send Notification
-      </button>
+  class="btn btn-primary"
+  id="addNotificationButton"
+  type="button"
+  onclick="
+    const form = document.getElementById('notificationForm');
+    const modal = document.getElementById('notificationModal');
+
+    if(form){
+      form.reset();
+    }
+
+    const icon = document.getElementById('notificationIcon');
+    if(icon){
+      icon.value = '🔔';
+    }
+
+    const target = document.getElementById('notificationTarget');
+    if(target){
+      target.value = 'all';
+    }
+
+    const type = document.getElementById('notificationType');
+    if(type){
+      type.value = 'general';
+    }
+
+    if(typeof toggleNotificationRecipient === 'function'){
+      toggleNotificationRecipient();
+    }
+
+    if(modal){
+      modal.classList.add('open');
+    }
+  "
+>
+  ＋ Send Notification
+</button>
 
 
       <!-- MARK ADMIN NOTIFICATIONS READ -->
