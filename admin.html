@@ -6415,29 +6415,11 @@ function renderAdmins(){
     `).join("");
 }
 
-/* =========================================================
+  /* =========================================================
    NOTIFICATIONS
-   SAFE VERSION — DOES NOT TOUCH ADMIN AUTH
+   FINAL COMPLETE VERSION
+   DOES NOT TOUCH ADMIN AUTH
 ========================================================= */
-
-/*
-  IMPORTANT:
-
-  Admin notifications use:
-    read: true / false
-
-  Customer notifications use:
-    target: "all" or "user"
-    recipientId: customer UID
-    readBy: []
-
-  This section does NOT contain:
-    auth.onAuthStateChanged()
-    auth.signOut()
-    auth.signIn()
-    getIdToken()
-    Firebase initialization
-*/
 
 
 /* =========================================================
@@ -6461,9 +6443,10 @@ async function loadNotifications(){
 
     notifications =
       snapshot.docs.map(
-        doc=>({
+        doc => ({
 
-          id:doc.id,
+          id:
+            doc.id,
 
           ...doc.data()
 
@@ -6476,21 +6459,13 @@ async function loadNotifications(){
 
   }catch(error){
 
-    /*
-      VERY IMPORTANT:
-
-      If notifications fail because of
-      Firestore rules/index/etc, DO NOT
-      affect admin login.
-    */
-
     console.warn(
       "Could not load notifications:",
       error?.message || error
     );
 
 
-    notifications=[];
+    notifications = [];
 
     renderNotifications();
 
@@ -6515,37 +6490,34 @@ function renderNotifications(){
     $("notificationsList");
 
 
-  if(!badge || !stat || !listBox){
+  if(
+    !badge ||
+    !stat ||
+    !listBox
+  ){
+
     return;
+
   }
 
 
   /*
-    Only notifications meant for the admin
-    should affect the admin unread count.
-
-    Old notifications do not have target,
-    so they remain compatible.
+    Only old-style admin notifications
+    count as admin unread notifications.
   */
 
   const adminNotifications =
     notifications.filter(
       notification => {
 
-        /*
-          Old notification:
-          no target field
-        */
+        if(
+          !notification.target
+        ){
 
-        if(!notification.target){
           return true;
+
         }
 
-
-        /*
-          Customer notification:
-          don't count it as admin unread.
-        */
 
         return false;
 
@@ -6566,7 +6538,7 @@ function renderNotifications(){
 
   badge.classList.toggle(
     "hidden",
-    unread===0
+    unread === 0
   );
 
 
@@ -6576,10 +6548,11 @@ function renderNotifications(){
 
   if(!notifications.length){
 
-    listBox.innerHTML =
-      `<div class="empty">
+    listBox.innerHTML = `
+      <div class="empty">
         No notifications yet.
-      </div>`;
+      </div>
+    `;
 
     return;
 
@@ -6587,126 +6560,105 @@ function renderNotifications(){
 
 
   listBox.innerHTML =
-    notifications.map(
-      notification=>{
+    notifications
+      .map(
+        notification => {
+
+          /*
+            Customer-only notifications
+            should not appear in the
+            admin notification list.
+          */
+
+          if(
+            notification.target === "user" ||
+            notification.target === "all"
+          ){
+
+            return "";
+
+          }
 
 
-        /*
-          Customer-only notifications can still
-          exist in the same collection, but we
-          don't need to display them inside the
-          admin notification center.
-        */
+          return `
 
-        if(
-          notification.target==="user"
-        ){
+            <div
+              class="notification"
+              style="
+                opacity:${
+                  notification.read === true
+                    ? ".6"
+                    : "1"
+                };
+              "
+            >
 
-          return "";
-
-        }
-
-
-        return `
-
-          <div
-            class="notification"
-            style="
-              opacity:${
-                notification.read===true
-                  ?".6"
-                  :"1"
-              };
-            "
-          >
-
-            <div class="nicon">
-
-              ${escapeHTML(
-                notification.icon||
-                "🔔"
-              )}
-
-            </div>
-
-
-            <div>
-
-              <strong>
+              <div class="nicon">
 
                 ${escapeHTML(
-                  notification.title||
-                  "Notification"
-                )}
-
-              </strong>
-
-
-              <div>
-
-                ${escapeHTML(
-                  notification.message||
-                  ""
+                  notification.icon ||
+                  "🔔"
                 )}
 
               </div>
 
 
-              <small>
+              <div>
 
-                ${dateOf(
-                  notification.createdAt
-                )}
+                <strong>
 
-              </small>
+                  ${escapeHTML(
+                    notification.title ||
+                    "Notification"
+                  )}
+
+                </strong>
+
+
+                <div>
+
+                  ${escapeHTML(
+                    notification.message ||
+                    ""
+                  )}
+
+                </div>
+
+
+                <small>
+
+                  ${dateOf(
+                    notification.createdAt
+                  )}
+
+                </small>
+
+              </div>
 
             </div>
 
-          </div>
+          `;
 
-        `;
-
-      }
-    ).join("");
+        }
+      )
+      .join("");
 
 }
 
 
 /* =========================================================
    ADMIN INTERNAL NOTIFICATION
+   DO NOT CHANGE THIS BEHAVIOR
 ========================================================= */
-
-/*
-  This keeps the EXACT behavior your old
-  notification system already uses.
-
-  Example:
-
-    addNotification(
-      "New Order",
-      "A customer placed a new order.",
-      "🛒",
-      orderId
-    );
-
-  It creates an admin notification with:
-
-    read:false
-*/
 
 async function addNotification(
   title,
   message,
-  icon="🔔",
-  sourceId=""
+  icon = "🔔",
+  sourceId = ""
 ){
 
   try{
-
-    /*
-      If sourceId exists, use it to prevent
-      duplicate notifications.
-    */
 
     const source =
       sourceId ||
@@ -6744,17 +6696,11 @@ async function addNotification(
             source,
 
           /*
-            This is for the ADMIN notification
-            center.
+            No target = admin notification.
           */
 
           read:
             false,
-
-          /*
-            No target means this is an old-style
-            admin notification.
-          */
 
           createdAt:
             firebase.firestore.FieldValue
@@ -6765,10 +6711,6 @@ async function addNotification(
     }
 
 
-    /*
-      Safe refresh.
-    */
-
     await loadNotifications();
 
 
@@ -6776,7 +6718,7 @@ async function addNotification(
 
     /*
       NEVER allow notification failure
-      to interrupt the rest of Admin Center.
+      to break Admin Center.
     */
 
     console.warn(
@@ -6788,53 +6730,39 @@ async function addNotification(
 
 }
 
+
+/* =========================================================
+   SEND NOTIFICATION TO ALL CUSTOMERS
+========================================================= */
+
 async function sendNotificationToAll(
   title,
   message,
-  icon="🔔",
-  imageUrl="",
-  chatId="",
-  sourceId=""
+  icon = "🔔",
+  imageUrl = "",
+  chatId = "",
+  sourceId = ""
 ){
 
   try{
 
     /*
-      Only use deduplication when a real
-      sourceId is supplied.
+      Generate a unique ID when the admin
+      doesn't provide one.
+
+      This prevents two intentional
+      announcements from being blocked.
     */
 
-    if(sourceId){
-
-      const existing =
-        await db
-          .collection("notifications")
-          .where(
-            "sourceId",
-            "==",
-            sourceId
-          )
-          .limit(1)
-          .get();
-
-
-      if(!existing.empty){
-
-        console.log(
-          "Notification already sent:",
-          sourceId
-        );
-
-        return;
-
-      }
-
-    }
+    const finalSourceId =
+      sourceId ||
+      `announcement-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 9)}`;
 
 
     /*
-      SAVE CUSTOMER NOTIFICATION
-      TO FIRESTORE
+      SAVE WEBSITE NOTIFICATION
     */
 
     await db
@@ -6857,7 +6785,7 @@ async function sendNotificationToAll(
           chatId,
 
         sourceId:
-          sourceId,
+          finalSourceId,
 
         target:
           "all",
@@ -6872,8 +6800,8 @@ async function sendNotificationToAll(
           [],
 
         /*
-          Keep this true so it does not
-          appear as an unread admin event.
+          Keep admin notification
+          marked as already read.
         */
 
         read:
@@ -6887,8 +6815,7 @@ async function sendNotificationToAll(
 
 
     /*
-      GET THE ADMIN LOGIN TOKEN
-      FOR SECURE PUSH SENDING
+      CHECK ADMIN LOGIN
     */
 
     const currentUser =
@@ -6904,13 +6831,18 @@ async function sendNotificationToAll(
     }
 
 
+    /*
+      GET SECURE FIREBASE ID TOKEN
+    */
+
     const idToken =
-      await currentUser.getIdToken(true);
+      await currentUser
+        .getIdToken(true);
 
 
     /*
-      SEND REAL PHONE/BROWSER PUSH
-      THROUGH THE SECURE NETLIFY FUNCTION
+      SEND PHONE/BROWSER PUSH
+      THROUGH NETLIFY FUNCTION
     */
 
     const pushResponse =
@@ -6950,7 +6882,7 @@ async function sendNotificationToAll(
                 chatId,
 
               sourceId:
-                sourceId
+                finalSourceId
 
             })
 
@@ -6958,13 +6890,28 @@ async function sendNotificationToAll(
       );
 
 
-    const pushResult =
-      await pushResponse.json();
+    let pushResult = {};
 
 
-    /*
-      CHECK WHETHER PUSH WAS SUCCESSFUL
-    */
+    try{
+
+      pushResult =
+        await pushResponse.json();
+
+    }catch(jsonError){
+
+      pushResult = {
+
+        success:
+          false,
+
+        error:
+          "Invalid response from notification server."
+
+      };
+
+    }
+
 
     if(
       !pushResponse.ok ||
@@ -6972,98 +6919,99 @@ async function sendNotificationToAll(
     ){
 
       console.error(
-        "Push notification failed:",
+        "Customer push failed:",
         pushResult
       );
 
+
+      /*
+        The website notification was already
+        successfully saved, so don't delete it.
+      */
+
       throw new Error(
         pushResult.error ||
-        "Push notification could not be sent."
+        "Push notification failed."
       );
 
     }
 
 
     console.log(
-      "Customer push notification sent:",
+      "ALL CUSTOMER PUSH SENT:",
       pushResult
     );
 
 
-    console.log(
-      "Notification sent to all customers."
-    );
+    return {
+
+      success:
+        true,
+
+      push:
+        pushResult
+
+    };
 
 
   }catch(error){
 
-    console.warn(
-      "Customer announcement failed:",
-      error?.message || error
+    console.error(
+      "Send to all customers failed:",
+      error
     );
+
+
+    /*
+      Throw so the form knows the push failed.
+    */
+
+    throw error;
 
   }
 
 }
-          
+
+
+/* =========================================================
+   SEND NOTIFICATION TO ONE CUSTOMER
+========================================================= */
+
 async function sendNotificationToUser(
   recipientId,
   recipientEmail,
   title,
   message,
-  icon="🔔",
-  imageUrl="",
-  chatId="",
-  sourceId=""
+  icon = "🔔",
+  imageUrl = "",
+  chatId = "",
+  sourceId = ""
 ){
 
   try{
 
     if(!recipientId){
 
-      console.warn(
-        "Notification skipped: recipientId missing."
+      throw new Error(
+        "Customer must be selected."
       );
 
-      return;
-
     }
 
 
     /*
-      Optional duplicate protection.
+      Generate unique ID when none supplied.
     */
 
-    if(sourceId){
-
-      const existing =
-        await db
-          .collection("notifications")
-          .where(
-            "sourceId",
-            "==",
-            sourceId
-          )
-          .limit(1)
-          .get();
-
-
-      if(!existing.empty){
-
-        console.log(
-          "Customer notification already exists."
-        );
-
-        return;
-
-      }
-
-    }
+    const finalSourceId =
+      sourceId ||
+      `customer-${recipientId}-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 9)}`;
 
 
     /*
-      SAVE CUSTOMER NOTIFICATION
-      TO FIRESTORE
+      SAVE WEBSITE NOTIFICATION
     */
 
     await db
@@ -7086,7 +7034,7 @@ async function sendNotificationToUser(
           chatId,
 
         sourceId:
-          sourceId,
+          finalSourceId,
 
         target:
           "user",
@@ -7101,8 +7049,8 @@ async function sendNotificationToUser(
           [],
 
         /*
-          Keep this true so it does not
-          appear as an unread admin event.
+          Don't count customer notification
+          as admin unread.
         */
 
         read:
@@ -7116,8 +7064,7 @@ async function sendNotificationToUser(
 
 
     /*
-      GET THE ADMIN LOGIN TOKEN
-      FOR SECURE PUSH SENDING
+      CHECK ADMIN LOGIN
     */
 
     const currentUser =
@@ -7133,13 +7080,17 @@ async function sendNotificationToUser(
     }
 
 
+    /*
+      GET SECURE FIREBASE ID TOKEN
+    */
+
     const idToken =
-      await currentUser.getIdToken(true);
+      await currentUser
+        .getIdToken(true);
 
 
     /*
-      SEND REAL PUSH TO THIS CUSTOMER
-      THROUGH THE SECURE NETLIFY FUNCTION
+      SEND PUSH TO THIS CUSTOMER
     */
 
     const pushResponse =
@@ -7179,7 +7130,7 @@ async function sendNotificationToUser(
                 chatId,
 
               sourceId:
-                sourceId
+                finalSourceId
 
             })
 
@@ -7187,13 +7138,28 @@ async function sendNotificationToUser(
       );
 
 
-    const pushResult =
-      await pushResponse.json();
+    let pushResult = {};
 
 
-    /*
-      CHECK WHETHER PUSH WAS SUCCESSFUL
-    */
+    try{
+
+      pushResult =
+        await pushResponse.json();
+
+    }catch(jsonError){
+
+      pushResult = {
+
+        success:
+          false,
+
+        error:
+          "Invalid response from notification server."
+
+      };
+
+    }
+
 
     if(
       !pushResponse.ok ||
@@ -7201,41 +7167,51 @@ async function sendNotificationToUser(
     ){
 
       console.error(
-        "Push notification failed:",
+        "Customer push failed:",
         pushResult
       );
 
+
       throw new Error(
         pushResult.error ||
-        "Push notification could not be sent."
+        "Push notification failed."
       );
 
     }
 
 
     console.log(
-      "Customer push notification sent:",
+      "CUSTOMER PUSH SENT:",
       pushResult
     );
 
 
-    console.log(
-      "Notification sent to customer:",
-      recipientId
-    );
+    return {
+
+      success:
+        true,
+
+      push:
+        pushResult
+
+    };
 
 
   }catch(error){
 
-    console.warn(
-      "Customer notification failed:",
-      error?.message || error
+    console.error(
+      "Send to customer failed:",
+      error
     );
+
+
+    throw error;
 
   }
 
 }
-        
+
+
 /* =========================================================
    SHORT ALIAS
 ========================================================= */
@@ -7245,10 +7221,10 @@ async function notifyCustomer(
   recipientEmail,
   title,
   message,
-  icon="🔔",
-  imageUrl="",
-  chatId="",
-  sourceId=""
+  icon = "🔔",
+  imageUrl = "",
+  chatId = "",
+  sourceId = ""
 ){
 
   return sendNotificationToUser(
@@ -7266,6 +7242,361 @@ async function notifyCustomer(
 
 
 /* =========================================================
+   OPEN CUSTOMER NOTIFICATION FORM
+========================================================= */
+
+const addNotificationButton =
+  $("addNotificationButton");
+
+
+if(addNotificationButton){
+
+  addNotificationButton.onclick =
+    function(){
+
+      const form =
+        $("notificationForm");
+
+      const modal =
+        $("notificationModal");
+
+
+      if(form){
+
+        form.reset();
+
+      }
+
+
+      if($("notificationIcon")){
+
+        $("notificationIcon").value =
+          "🔔";
+
+      }
+
+
+      if($("notificationTarget")){
+
+        $("notificationTarget").value =
+          "all";
+
+      }
+
+
+      if($("notificationType")){
+
+        $("notificationType").value =
+          "general";
+
+      }
+
+
+      if(
+        typeof toggleNotificationRecipient ===
+        "function"
+      ){
+
+        toggleNotificationRecipient();
+
+      }
+
+
+      if(modal){
+
+        modal.classList.add("open");
+
+      }
+
+    };
+
+}
+
+
+/* =========================================================
+   SUBMIT CUSTOMER NOTIFICATION
+========================================================= */
+
+const notificationForm =
+  $("notificationForm");
+
+
+if(notificationForm){
+
+  notificationForm.onsubmit =
+    async function(event){
+
+      event.preventDefault();
+
+
+      const button =
+        $("createNotificationButton");
+
+
+      try{
+
+        const target =
+          $("notificationTarget")
+            ?.value ||
+          "all";
+
+
+        const recipientId =
+          $("notificationRecipientId")
+            ?.value
+            ?.trim() ||
+          "";
+
+
+        const title =
+          $("notificationTitle")
+            ?.value
+            ?.trim() ||
+          "";
+
+
+        const message =
+          $("notificationMessage")
+            ?.value
+            ?.trim() ||
+          "";
+
+
+        const icon =
+          $("notificationIcon")
+            ?.value
+            ?.trim() ||
+          "🔔";
+
+
+        const sourceId =
+          $("notificationSourceId")
+            ?.value
+            ?.trim() ||
+          "";
+
+
+        if(!title){
+
+          toast(
+            "Please enter a notification title.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if(!message){
+
+          toast(
+            "Please enter a notification message.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if(
+          target === "user" &&
+          !recipientId
+        ){
+
+          toast(
+            "Please select a customer.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if(button){
+
+          button.disabled =
+            true;
+
+          button.textContent =
+            "Sending...";
+
+        }
+
+
+        /*
+          ===================================================
+          ALL CUSTOMERS
+          ===================================================
+        */
+
+        if(target === "all"){
+
+          await sendNotificationToAll(
+
+            title,
+
+            message,
+
+            icon,
+
+            "",
+
+            "",
+
+            sourceId
+
+          );
+
+
+          toast(
+            "Notification sent to all customers."
+          );
+
+        }
+
+
+        /*
+          ===================================================
+          ONE CUSTOMER
+          ===================================================
+        */
+
+        else if(target === "user"){
+
+          let recipientEmail =
+            "";
+
+
+          /*
+            Find customer email from
+            current Admin Center state.
+          */
+
+          const customer =
+            Array.isArray(state?.users)
+              ? state.users.find(
+                  user =>
+                    user.uid === recipientId
+                )
+              : null;
+
+
+          const profile =
+            Array.isArray(state?.profiles)
+              ? state.profiles.find(
+                  profile =>
+                    profile.uid === recipientId
+                )
+              : null;
+
+
+          const merged = {
+
+            ...(customer || {}),
+
+            ...(profile || {})
+
+          };
+
+
+          recipientEmail =
+            merged.email ||
+            "";
+
+
+          await sendNotificationToUser(
+
+            recipientId,
+
+            recipientEmail,
+
+            title,
+
+            message,
+
+            icon,
+
+            "",
+
+            "",
+
+            sourceId
+
+          );
+
+
+          toast(
+            "Notification sent to the customer."
+          );
+
+        }
+
+
+        /*
+          Close notification modal.
+        */
+
+        const modal =
+          $("notificationModal");
+
+
+        if(modal){
+
+          modal.classList.remove(
+            "open"
+          );
+
+        }
+
+
+        /*
+          Refresh admin notification
+          display safely.
+        */
+
+        await loadNotifications();
+
+        updateDashboard();
+
+
+      }catch(error){
+
+        console.error(
+          "Notification sending error:",
+          error
+        );
+
+
+        toast(
+          error?.message ||
+          "Unable to send notification.",
+          "error"
+        );
+
+
+      }finally{
+
+        if(button){
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "Send Notification";
+
+        }
+
+      }
+
+    };
+
+}
+
+
+/* =========================================================
    MARK ADMIN NOTIFICATIONS AS READ
 ========================================================= */
 
@@ -7278,13 +7609,13 @@ async function markNotificationsRead(){
         notification => {
 
           /*
-            Don't mark customer-only
-            notifications as admin notifications.
+            Customer notifications are not
+            admin notifications.
           */
 
           if(
-            notification.target==="user" ||
-            notification.target==="all"
+            notification.target === "user" ||
+            notification.target === "all"
           ){
 
             return false;
@@ -7310,7 +7641,7 @@ async function markNotificationsRead(){
 
 
     unread.forEach(
-      notification=>{
+      notification => {
 
         batch.update(
 
@@ -7339,11 +7670,6 @@ async function markNotificationsRead(){
 
   }catch(error){
 
-    /*
-      Again, notification failure must
-      NEVER affect admin authentication.
-    */
-
     console.warn(
       "Could not mark notifications read:",
       error?.message || error
@@ -7352,6 +7678,7 @@ async function markNotificationsRead(){
   }
 
 }
+          
 
 /* =========================================================
    DASHBOARD
