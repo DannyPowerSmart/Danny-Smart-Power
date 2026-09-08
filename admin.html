@@ -7048,6 +7048,86 @@ async function notifyCustomer(
 
 
 /* =========================================================
+   PUSH TOAST + HISTORY
+========================================================= */
+
+function toast(message, type = "info"){
+  let el = document.getElementById("dspToast");
+
+  if(!el){
+    el = document.createElement("div");
+    el.id = "dspToast";
+    el.setAttribute("role", "status");
+    el.style.position = "fixed";
+    el.style.left = "50%";
+    el.style.bottom = "24px";
+    el.style.transform = "translateX(-50%)";
+    el.style.zIndex = "99999";
+    el.style.maxWidth = "calc(100vw - 32px)";
+    el.style.width = "max-content";
+    el.style.padding = "13px 16px";
+    el.style.borderRadius = "12px";
+    el.style.border = "1px solid #1d344d";
+    el.style.background = "#071423";
+    el.style.color = "#e8f1fb";
+    el.style.fontWeight = "800";
+    el.style.fontSize = "14px";
+    el.style.boxShadow = "0 14px 35px rgba(0,0,0,.35)";
+    el.style.opacity = "0";
+    el.style.pointerEvents = "none";
+    el.style.transition = "opacity .2s ease";
+    document.body.appendChild(el);
+  }
+
+  el.textContent = message;
+  el.style.borderColor =
+    type === "error" ? "#ef4444" :
+    type === "success" ? "#22c55e" : "#1d344d";
+
+  el.style.opacity = "1";
+
+  clearTimeout(window.__dspToastTimer);
+  window.__dspToastTimer = setTimeout(() => {
+    el.style.opacity = "0";
+  }, type === "error" ? 6500 : 3500);
+}
+
+async function savePushNotificationHistory({
+  title,
+  message,
+  icon,
+  target,
+  recipientId = "",
+  recipientEmail = "",
+  sourceId = "",
+  pushResult = {}
+}){
+  try{
+    await db.collection("pushNotificationHistory").add({
+      title: title || "",
+      message: message || "",
+      icon: icon || "🔔",
+      target: target || "all",
+      recipientId: recipientId || "",
+      recipientEmail: recipientEmail || "",
+      sourceId: sourceId || "",
+      status: "sent",
+      sentCount: Number(pushResult?.sentCount || pushResult?.successCount || 0),
+      failedCount: Number(pushResult?.failedCount || pushResult?.failureCount || 0),
+      pushResponse: pushResult || {},
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      sentAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    console.log("Push notification history saved.");
+    return true;
+  }catch(error){
+    console.warn("Push history could not be saved:", error?.message || error);
+    return false;
+  }
+}
+
+/* =========================================================
    CUSTOMER NOTIFICATION UI
    ONE CLEAN HANDLER — NO DUPLICATES
 ========================================================= */
@@ -7319,6 +7399,18 @@ if(notificationForm){
 
       // This form sends a PHONE PUSH only. It intentionally does NOT
       // create a document in the website notifications collection.
+      // Save a separate history record after the push server confirms success.
+      await savePushNotificationHistory({
+        title,
+        message,
+        icon,
+        target,
+        recipientId: target === "user" ? recipientId : "",
+        recipientEmail: target === "user" ? recipientEmail : "",
+        sourceId: sourceId || result?.push?.sourceId || "",
+        pushResult: result?.push || result || {}
+      });
+
       toast(
         target === "all"
           ? "Push notification sent successfully to all customers."
