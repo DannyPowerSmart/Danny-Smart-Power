@@ -1940,7 +1940,7 @@ th{
     }
   "
 >
-  ＋ Send Notification
+  ＋ Send Push Notification
 </button>
 
 
@@ -2636,7 +2636,7 @@ th{
       </div>
 
       <div style="margin-top:18px;padding:11px 12px;border:1px solid var(--border);border-radius:12px;background:rgba(56,189,248,.05);font-size:12px;color:var(--muted);">
-        <strong style="color:#e2e8f0;">Push:</strong> Customers must have previously enabled browser notifications on a supported device/browser.
+        <strong style="color:#e2e8f0;">Phone Push:</strong> Sends directly to customers who have enabled browser notifications. This is separate from the website notification list.
       </div>
 
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;flex-wrap:wrap;">
@@ -6892,246 +6892,62 @@ async function sendNotificationToAll(
   chatId = "",
   sourceId = ""
 ){
+  const currentUser = auth.currentUser;
 
-  let websiteSaved = false;
-
-  try{
-
-    /*
-      Generate a unique ID when the admin
-      doesn't provide one.
-
-      This prevents two intentional
-      announcements from being blocked.
-    */
-
-    const finalSourceId =
-      sourceId ||
-      `announcement-${Date.now()}-${Math.random()
-        .toString(36)
-        .slice(2, 9)}`;
-
-
-    /*
-      SAVE WEBSITE NOTIFICATION
-    */
-
-    await db
-      .collection("notifications")
-      .add({
-
-        title:
-          title,
-
-        message:
-          message,
-
-        icon:
-          icon,
-
-        imageUrl:
-          imageUrl,
-
-        chatId:
-          chatId,
-
-        sourceId:
-          finalSourceId,
-
-        target:
-          "all",
-
-        recipientId:
-          "",
-
-        recipientEmail:
-          "",
-
-        readBy:
-          [],
-
-        /*
-          Keep admin notification
-          marked as already read.
-        */
-
-        read:
-          true,
-
-        createdAt:
-          firebase.firestore.FieldValue
-            .serverTimestamp()
-
-      });
-
-    websiteSaved = true;
-
-
-    /*
-      CHECK ADMIN LOGIN
-    */
-
-    const currentUser =
-      auth.currentUser;
-
-
-    if(!currentUser){
-
-      throw new Error(
-        "Admin is not logged in."
-      );
-
-    }
-
-
-    /*
-      GET SECURE FIREBASE ID TOKEN
-    */
-
-    const idToken =
-      await currentUser
-        .getIdToken(true);
-
-
-    /*
-      SEND PHONE/BROWSER PUSH
-      THROUGH NETLIFY FUNCTION
-    */
-
-    const pushResponse =
-      await fetch(
-        "/.netlify/functions/send-notification",
-        {
-
-          method:
-            "POST",
-
-          headers: {
-
-            "Content-Type":
-              "application/json",
-
-            "Authorization":
-              "Bearer " + idToken
-
-          },
-
-          body:
-            JSON.stringify({
-
-              title:
-                title,
-
-              message:
-                message,
-
-              userId:
-                "",
-
-              imageUrl:
-                imageUrl,
-
-              chatId:
-                chatId,
-
-              sourceId:
-                finalSourceId
-
-            })
-
-        }
-      );
-
-
-    let pushResult = {};
-
-
-    try{
-
-      pushResult =
-        await pushResponse.json();
-
-    }catch(jsonError){
-
-      pushResult = {
-
-        success:
-          false,
-
-        error:
-          "Invalid response from notification server."
-
-      };
-
-    }
-
-
-    if(
-      !pushResponse.ok ||
-      !pushResult.success
-    ){
-
-      console.error(
-        "Customer push failed:",
-        pushResult
-      );
-
-
-      /* The website notification was already saved successfully. */
-      console.error(
-        "Customer push failed (website notification was saved):",
-        pushResult
-      );
-    }
-
-    const pushSent =
-      !!pushResponse.ok &&
-      !!pushResult.success;
-
-    if(pushSent){
-      console.log(
-        "ALL CUSTOMER PUSH SENT:",
-        pushResult
-      );
-    }
-
-    return {
-      success: true,
-      pushSent: pushSent,
-      push: pushResult,
-      pushError: pushSent
-        ? ""
-        : (pushResult.error || "Device push was not delivered.")
-    };
-
-
-  }catch(error){
-
-    console.error(
-      "Send to all customers failed:",
-      error
-    );
-
-    // The website notification is already saved. Do not report the
-    // whole operation as failed just because device push failed.
-    if(websiteSaved){
-      return {
-        success: true,
-        pushSent: false,
-        push: {},
-        pushError: error?.message || "Device push was not delivered."
-      };
-    }
-
-    throw error;
-
+  if(!currentUser){
+    throw new Error("Admin is not logged in.");
   }
 
+  const finalSourceId = sourceId ||
+    `push-all-${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
+
+  const idToken = await currentUser.getIdToken(true);
+
+  const pushResponse = await fetch(
+    "/.netlify/functions/send-notification",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + idToken
+      },
+      body: JSON.stringify({
+        title,
+        message,
+        userId: "",
+        imageUrl,
+        chatId,
+        sourceId: finalSourceId
+      })
+    }
+  );
+
+  let pushResult = {};
+  try{
+    pushResult = await pushResponse.json();
+  }catch(error){
+    pushResult = {
+      success:false,
+      error:"Invalid response from notification server."
+    };
+  }
+
+  if(!pushResponse.ok || !pushResult.success){
+    throw new Error(
+      pushResult.error || "The push notification could not be sent."
+    );
+  }
+
+  return {
+    success:true,
+    pushSent:true,
+    push:pushResult
+  };
 }
 
 
 /* =========================================================
-   SEND NOTIFICATION TO ONE CUSTOMER
+   SEND PUSH NOTIFICATION TO ONE CUSTOMER
 ========================================================= */
 
 async function sendNotificationToUser(
@@ -7144,235 +6960,61 @@ async function sendNotificationToUser(
   chatId = "",
   sourceId = ""
 ){
-
-  try{
-
-    if(!recipientId){
-
-      throw new Error(
-        "Customer must be selected."
-      );
-
-    }
-
-
-    /*
-      Generate unique ID when none supplied.
-    */
-
-    const finalSourceId =
-      sourceId ||
-      `customer-${recipientId}-${Date.now()}-${Math.random()
-        .toString(36)
-        .slice(2, 9)}`;
-
-
-    /*
-      SAVE WEBSITE NOTIFICATION
-    */
-
-    await db
-      .collection("notifications")
-      .add({
-
-        title:
-          title,
-
-        message:
-          message,
-
-        icon:
-          icon,
-
-        imageUrl:
-          imageUrl,
-
-        chatId:
-          chatId,
-
-        sourceId:
-          finalSourceId,
-
-        target:
-          "user",
-
-        recipientId:
-          recipientId,
-
-        recipientEmail:
-          recipientEmail || "",
-
-        readBy:
-          [],
-
-        /*
-          Don't count customer notification
-          as admin unread.
-        */
-
-        read:
-          true,
-
-        createdAt:
-          firebase.firestore.FieldValue
-            .serverTimestamp()
-
-      });
-
-    websiteSaved = true;
-
-
-    /*
-      CHECK ADMIN LOGIN
-    */
-
-    const currentUser =
-      auth.currentUser;
-
-
-    if(!currentUser){
-
-      throw new Error(
-        "Admin is not logged in."
-      );
-
-    }
-
-
-    /*
-      GET SECURE FIREBASE ID TOKEN
-    */
-
-    const idToken =
-      await currentUser
-        .getIdToken(true);
-
-
-    /*
-      SEND PUSH TO THIS CUSTOMER
-    */
-
-    const pushResponse =
-      await fetch(
-        "/.netlify/functions/send-notification",
-        {
-
-          method:
-            "POST",
-
-          headers: {
-
-            "Content-Type":
-              "application/json",
-
-            "Authorization":
-              "Bearer " + idToken
-
-          },
-
-          body:
-            JSON.stringify({
-
-              title:
-                title,
-
-              message:
-                message,
-
-              userId:
-                recipientId,
-
-              imageUrl:
-                imageUrl,
-
-              chatId:
-                chatId,
-
-              sourceId:
-                finalSourceId
-
-            })
-
-        }
-      );
-
-
-    let pushResult = {};
-
-
-    try{
-
-      pushResult =
-        await pushResponse.json();
-
-    }catch(jsonError){
-
-      pushResult = {
-
-        success:
-          false,
-
-        error:
-          "Invalid response from notification server."
-
-      };
-
-    }
-
-
-    if(
-      !pushResponse.ok ||
-      !pushResult.success
-    ){
-
-      console.error(
-        "Customer push failed (website notification was saved):",
-        pushResult
-      );
-    }
-
-    const pushSent =
-      !!pushResponse.ok &&
-      !!pushResult.success;
-
-    if(pushSent){
-      console.log(
-        "CUSTOMER PUSH SENT:",
-        pushResult
-      );
-    }
-
-    return {
-      success: true,
-      pushSent: pushSent,
-      push: pushResult,
-      pushError: pushSent
-        ? ""
-        : (pushResult.error || "Device push was not delivered.")
-    };
-
-
-  }catch(error){
-
-    console.error(
-      "Send to customer failed:",
-      error
-    );
-
-    // The website notification is already saved. Device push is secondary.
-    if(websiteSaved){
-      return {
-        success: true,
-        pushSent: false,
-        push: {},
-        pushError: error?.message || "Device push was not delivered."
-      };
-    }
-
-    throw error;
-
+  if(!recipientId){
+    throw new Error("Customer must be selected.");
   }
 
+  const currentUser = auth.currentUser;
+
+  if(!currentUser){
+    throw new Error("Admin is not logged in.");
+  }
+
+  const finalSourceId = sourceId ||
+    `push-user-${recipientId}-${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
+
+  const idToken = await currentUser.getIdToken(true);
+
+  const pushResponse = await fetch(
+    "/.netlify/functions/send-notification",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + idToken
+      },
+      body: JSON.stringify({
+        title,
+        message,
+        userId: recipientId,
+        imageUrl,
+        chatId,
+        sourceId: finalSourceId
+      })
+    }
+  );
+
+  let pushResult = {};
+  try{
+    pushResult = await pushResponse.json();
+  }catch(error){
+    pushResult = {
+      success:false,
+      error:"Invalid response from notification server."
+    };
+  }
+
+  if(!pushResponse.ok || !pushResult.success){
+    throw new Error(
+      pushResult.error || "The push notification could not be sent."
+    );
+  }
+
+  return {
+    success:true,
+    pushSent:true,
+    push:pushResult
+  };
 }
 
 
@@ -7675,25 +7317,16 @@ if(notificationForm){
         );
       }
 
-      // Firestore save succeeded, so the notification is successfully sent
-      // to the website even if a device push could not be delivered.
-      if(result?.pushSent === false){
-        toast(
-          target === "all"
-            ? "Notification saved and sent to all customers. Device push was not delivered."
-            : "Notification saved and sent to the customer. Device push was not delivered.",
-          "success"
-        );
-      }else{
-        toast(
-          target === "all"
-            ? "Notification sent successfully to all customers."
-            : "Notification sent successfully to the customer.",
-          "success"
-        );
-      }
+      // This form sends a PHONE PUSH only. It intentionally does NOT
+      // create a document in the website notifications collection.
+      toast(
+        target === "all"
+          ? "Push notification sent successfully to all customers."
+          : "Push notification sent successfully to the customer.",
+        "success"
+      );
 
-      // Clear the form so the previous message is not left in the fields.
+      // Clear the form only after the push server confirms success.
       if(notificationForm){
         notificationForm.reset();
       }
@@ -7706,8 +7339,6 @@ if(notificationForm){
       toggleNotificationRecipient();
 
       closeNotificationModal();
-      await loadNotifications();
-      updateDashboard();
 
     }catch(error){
 
@@ -7726,7 +7357,7 @@ if(notificationForm){
 
       if(button){
         button.disabled = false;
-        button.textContent = "Send Notification";
+        button.textContent = "Send Push Notification";
       }
     }
   };
