@@ -856,6 +856,27 @@ th{
   align-items:center;
 }
 
+.field-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.notification-modal-box{
+  width:min(720px,100%);
+}
+
+.notification-modal-box textarea.input{
+  resize:vertical;
+  min-height:120px;
+}
+
+@media(max-width:650px){
+  .field-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 .detail{
   padding:10px 0;
   border-bottom:1px solid var(--border);
@@ -2531,6 +2552,101 @@ th{
 
 </div>
 
+
+<!-- =========================================================
+     CUSTOMER NOTIFICATION MODAL
+========================================================= -->
+
+<div
+  id="notificationModal"
+  class="modal"
+  aria-hidden="true"
+>
+  <div class="modal-box notification-modal-box">
+
+    <div class="modal-head">
+      <div>
+        <h2 style="margin:0;">Send Notification</h2>
+        <p style="margin:5px 0 0;color:var(--muted);font-size:13px;">
+          Send a website notification and browser/phone push.
+        </p>
+      </div>
+
+      <button
+        class="btn"
+        id="closeNotificationModal"
+        type="button"
+        aria-label="Close notification form"
+      >
+        ✕
+      </button>
+    </div>
+
+    <form id="notificationForm" style="margin-top:18px;">
+
+      <div class="field-grid">
+        <div>
+          <label class="label" for="notificationTarget">Send to</label>
+          <select class="select" id="notificationTarget" required>
+            <option value="all">All Customers</option>
+            <option value="user">One Customer</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="label" for="notificationType">Type</label>
+          <select class="select" id="notificationType">
+            <option value="general">General</option>
+            <option value="order">Order</option>
+            <option value="service">Service</option>
+            <option value="message">Message</option>
+            <option value="announcement">Announcement</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="notificationRecipientWrap" style="display:none;margin-top:14px;">
+        <label class="label" for="notificationRecipientId">Customer</label>
+        <select class="select" id="notificationRecipientId">
+          <option value="">Loading customers...</option>
+        </select>
+        <div id="notificationRecipientHint" style="font-size:11px;color:var(--muted);margin-top:6px;"></div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <label class="label" for="notificationTitle">Title</label>
+        <input class="input" id="notificationTitle" maxlength="100" required placeholder="Notification title">
+      </div>
+
+      <div style="margin-top:14px;">
+        <label class="label" for="notificationMessage">Message</label>
+        <textarea class="input" id="notificationMessage" maxlength="500" rows="5" required placeholder="Write your notification..."></textarea>
+      </div>
+
+      <div class="field-grid" style="margin-top:14px;">
+        <div>
+          <label class="label" for="notificationIcon">Icon</label>
+          <input class="input" id="notificationIcon" maxlength="8" value="🔔" placeholder="🔔">
+        </div>
+
+        <div>
+          <label class="label" for="notificationSourceId">Source ID <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+          <input class="input" id="notificationSourceId" maxlength="150" placeholder="Optional reference">
+        </div>
+      </div>
+
+      <div style="margin-top:18px;padding:11px 12px;border:1px solid var(--border);border-radius:12px;background:rgba(56,189,248,.05);font-size:12px;color:var(--muted);">
+        <strong style="color:#e2e8f0;">Push:</strong> Customers must have previously enabled browser notifications on a supported device/browser.
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        <button class="btn" id="cancelNotificationButton" type="button">Cancel</button>
+        <button class="btn btn-primary" id="createNotificationButton" type="submit">Send Notification</button>
+      </div>
+
+    </form>
+  </div>
+</div>
 
 <!-- =========================================================
      FIREBASE
@@ -7273,359 +7389,303 @@ async function notifyCustomer(
 
 
 /* =========================================================
-   OPEN CUSTOMER NOTIFICATION FORM
+   CUSTOMER NOTIFICATION UI
+   ONE CLEAN HANDLER — NO DUPLICATES
 ========================================================= */
 
+const notificationModal = $("notificationModal");
+const notificationForm = $("notificationForm");
+const notificationTarget = $("notificationTarget");
+const notificationRecipientId = $("notificationRecipientId");
+const notificationRecipientWrap = $("notificationRecipientWrap");
+const notificationRecipientHint = $("notificationRecipientHint");
+
+function closeNotificationModal(){
+  if(notificationModal){
+    notificationModal.classList.remove("show");
+    notificationModal.setAttribute("aria-hidden","true");
+  }
+}
+
+async function loadNotificationCustomers(){
+
+  if(!notificationRecipientId) return;
+
+  notificationRecipientId.innerHTML =
+    '<option value="">Loading customers...</option>';
+
+  try{
+
+    const [usersSnap, profilesSnap] =
+      await Promise.all([
+        db.collection("users").get(),
+        db.collection("profiles").get()
+      ]);
+
+    const profiles = {};
+
+    profilesSnap.docs.forEach(doc => {
+      const data = doc.data() || {};
+      const uid = data.uid || doc.id;
+      profiles[uid] = { id:uid, ...data };
+    });
+
+    const customers = usersSnap.docs
+      .map(doc => {
+        const data = doc.data() || {};
+        const uid = data.uid || doc.id;
+        const profile = profiles[uid] || {};
+        return {
+          uid,
+          name:
+            data.name ||
+            data.displayName ||
+            profile.name ||
+            profile.displayName ||
+            "Customer",
+          email:
+            data.email ||
+            profile.email ||
+            ""
+        };
+      })
+      .filter(customer =>
+        customer.uid &&
+        customer.uid !== ADMIN_UID &&
+        customer.email !== ADMIN_EMAIL
+      )
+      .sort((a,b) =>
+        String(a.name).localeCompare(String(b.name))
+      );
+
+    notificationRecipientId.innerHTML =
+      '<option value="">Select a customer...</option>' +
+      customers.map(customer => `
+        <option
+          value="${escapeHTML(customer.uid)}"
+          data-email="${escapeHTML(customer.email)}"
+        >
+          ${escapeHTML(customer.name)}${customer.email ? " — " + escapeHTML(customer.email) : ""}
+        </option>
+      `).join("");
+
+    notificationRecipientHint.textContent =
+      customers.length
+        ? `${customers.length} customer${customers.length === 1 ? "" : "s"} available.`
+        : "No customers found.";
+
+  }catch(error){
+
+    console.error("Could not load customers:", error);
+
+    notificationRecipientId.innerHTML =
+      '<option value="">Could not load customers</option>';
+
+    if(notificationRecipientHint){
+      notificationRecipientHint.textContent =
+        error?.message || "Could not load customers.";
+    }
+  }
+}
+
+function toggleNotificationRecipient(){
+
+  const isUser =
+    notificationTarget?.value === "user";
+
+  if(notificationRecipientWrap){
+    notificationRecipientWrap.style.display =
+      isUser ? "block" : "none";
+  }
+
+  if(isUser && notificationRecipientId){
+    if(
+      notificationRecipientId.options.length <= 1 ||
+      notificationRecipientId.options[0]?.value === ""
+    ){
+      loadNotificationCustomers();
+    }
+  }
+}
+
+function resetNotificationForm(){
+
+  if(notificationForm){
+    notificationForm.reset();
+  }
+
+  if(notificationTarget){
+    notificationTarget.value = "all";
+  }
+
+  if($("notificationType")){
+    $("notificationType").value = "general";
+  }
+
+  if($("notificationIcon")){
+    $("notificationIcon").value = "🔔";
+  }
+
+  if(notificationRecipientId){
+    notificationRecipientId.innerHTML =
+      '<option value="">Select a customer...</option>';
+  }
+
+  toggleNotificationRecipient();
+}
+
+/* OPEN */
 const addNotificationButton =
   $("addNotificationButton");
 
-
 if(addNotificationButton){
 
-  addNotificationButton.onclick =
-    function(){
+  addNotificationButton.onclick = async function(){
 
-      const form =
-        $("notificationForm");
+    resetNotificationForm();
 
-      const modal =
-        $("notificationModal");
-
-
-      if(form){
-
-        form.reset();
-
-      }
-
-
-      if($("notificationIcon")){
-
-        $("notificationIcon").value =
-          "🔔";
-
-      }
-
-
-      if($("notificationTarget")){
-
-        $("notificationTarget").value =
-          "all";
-
-      }
-
-
-      if($("notificationType")){
-
-        $("notificationType").value =
-          "general";
-
-      }
-
-
-      if(
-        typeof toggleNotificationRecipient ===
-        "function"
-      ){
-
-        toggleNotificationRecipient();
-
-      }
-
-
-      if(modal){
-
-        modal.classList.add("open");
-
-      }
-
-    };
-
+    if(notificationModal){
+      notificationModal.classList.add("show");
+      notificationModal.setAttribute("aria-hidden","false");
+    }
+  };
 }
 
+/* CLOSE */
+if($("closeNotificationModal")){
+  $("closeNotificationModal").onclick = closeNotificationModal;
+}
 
-/* =========================================================
-   SUBMIT CUSTOMER NOTIFICATION
-========================================================= */
+if($("cancelNotificationButton")){
+  $("cancelNotificationButton").onclick = closeNotificationModal;
+}
 
-const notificationForm =
-  $("notificationForm");
+if(notificationModal){
+  notificationModal.addEventListener("click", function(event){
+    if(event.target === notificationModal){
+      closeNotificationModal();
+    }
+  });
+}
 
+if(notificationTarget){
+  notificationTarget.addEventListener(
+    "change",
+    toggleNotificationRecipient
+  );
+}
 
+/* SUBMIT */
 if(notificationForm){
 
-  notificationForm.onsubmit =
-    async function(event){
+  notificationForm.onsubmit = async function(event){
 
-      event.preventDefault();
+    event.preventDefault();
 
+    const button =
+      $("createNotificationButton");
 
-      const button =
-        $("createNotificationButton");
+    const target =
+      notificationTarget?.value || "all";
 
+    const title =
+      $("notificationTitle")?.value.trim() || "";
 
-      try{
+    const message =
+      $("notificationMessage")?.value.trim() || "";
 
-        const target =
-          $("notificationTarget")
-            ?.value ||
-          "all";
+    const icon =
+      $("notificationIcon")?.value.trim() || "🔔";
 
+    const sourceId =
+      $("notificationSourceId")?.value.trim() || "";
 
-        const recipientId =
-          $("notificationRecipientId")
-            ?.value
-            ?.trim() ||
-          "";
+    const recipientId =
+      notificationRecipientId?.value.trim() || "";
 
+    if(!title){
+      toast("Please enter a notification title.","error");
+      return;
+    }
 
-        const title =
-          $("notificationTitle")
-            ?.value
-            ?.trim() ||
-          "";
+    if(!message){
+      toast("Please enter a notification message.","error");
+      return;
+    }
 
+    if(target === "user" && !recipientId){
+      toast("Please select a customer.","error");
+      return;
+    }
 
-        const message =
-          $("notificationMessage")
-            ?.value
-            ?.trim() ||
-          "";
+    const selectedOption =
+      notificationRecipientId?.selectedOptions?.[0];
 
+    const recipientEmail =
+      selectedOption?.dataset?.email || "";
 
-        const icon =
-          $("notificationIcon")
-            ?.value
-            ?.trim() ||
-          "🔔";
+    try{
 
-
-        const sourceId =
-          $("notificationSourceId")
-            ?.value
-            ?.trim() ||
-          "";
-
-
-        if(!title){
-
-          toast(
-            "Please enter a notification title.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        if(!message){
-
-          toast(
-            "Please enter a notification message.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        if(
-          target === "user" &&
-          !recipientId
-        ){
-
-          toast(
-            "Please select a customer.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        if(button){
-
-          button.disabled =
-            true;
-
-          button.textContent =
-            "Sending...";
-
-        }
-
-
-        /*
-          ===================================================
-          ALL CUSTOMERS
-          ===================================================
-        */
-
-        if(target === "all"){
-
-          await sendNotificationToAll(
-
-            title,
-
-            message,
-
-            icon,
-
-            "",
-
-            "",
-
-            sourceId
-
-          );
-
-
-          toast(
-            "Notification sent to all customers."
-          );
-
-        }
-
-
-        /*
-          ===================================================
-          ONE CUSTOMER
-          ===================================================
-        */
-
-        else if(target === "user"){
-
-          let recipientEmail =
-            "";
-
-
-          /*
-            Find customer email from
-            current Admin Center state.
-          */
-
-          const customer =
-            Array.isArray(state?.users)
-              ? state.users.find(
-                  user =>
-                    user.uid === recipientId
-                )
-              : null;
-
-
-          const profile =
-            Array.isArray(state?.profiles)
-              ? state.profiles.find(
-                  profile =>
-                    profile.uid === recipientId
-                )
-              : null;
-
-
-          const merged = {
-
-            ...(customer || {}),
-
-            ...(profile || {})
-
-          };
-
-
-          recipientEmail =
-            merged.email ||
-            "";
-
-
-          await sendNotificationToUser(
-
-            recipientId,
-
-            recipientEmail,
-
-            title,
-
-            message,
-
-            icon,
-
-            "",
-
-            "",
-
-            sourceId
-
-          );
-
-
-          toast(
-            "Notification sent to the customer."
-          );
-
-        }
-
-
-        /*
-          Close notification modal.
-        */
-
-        const modal =
-          $("notificationModal");
-
-
-        if(modal){
-
-          modal.classList.remove(
-            "open"
-          );
-
-        }
-
-
-        /*
-          Refresh admin notification
-          display safely.
-        */
-
-        await loadNotifications();
-
-        updateDashboard();
-
-
-      }catch(error){
-
-        console.error(
-          "Notification sending error:",
-          error
-        );
-
-
-        toast(
-          error?.message ||
-          "Unable to send notification.",
-          "error"
-        );
-
-
-      }finally{
-
-        if(button){
-
-          button.disabled =
-            false;
-
-          button.textContent =
-            "Send Notification";
-
-        }
-
+      if(button){
+        button.disabled = true;
+        button.textContent = "Sending...";
       }
 
-    };
+      if(target === "all"){
 
+        await sendNotificationToAll(
+          title,
+          message,
+          icon,
+          "",
+          "",
+          sourceId
+        );
+
+        toast("Notification sent to all customers.");
+
+      }else{
+
+        await sendNotificationToUser(
+          recipientId,
+          recipientEmail,
+          title,
+          message,
+          icon,
+          "",
+          "",
+          sourceId
+        );
+
+        toast("Notification sent to the customer.");
+      }
+
+      closeNotificationModal();
+      await loadNotifications();
+      updateDashboard();
+
+    }catch(error){
+
+      console.error(
+        "Notification sending error:",
+        error
+      );
+
+      toast(
+        error?.message ||
+        "Unable to send notification.",
+        "error"
+      );
+
+    }finally{
+
+      if(button){
+        button.disabled = false;
+        button.textContent = "Send Notification";
+      }
+    }
+  };
 }
-
 
 /* =========================================================
    MARK ADMIN NOTIFICATIONS AS READ
