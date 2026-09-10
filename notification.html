@@ -405,9 +405,8 @@ button{
     border-color:#38bdf8;
 }
 
-/* DESKTOP */
-
 @media(min-width:700px){
+
     .modal{
         align-items:center;
         padding:20px;
@@ -416,6 +415,7 @@ button{
     .modalBox{
         border-radius:22px;
     }
+
 }
 </style>
 </head>
@@ -425,24 +425,42 @@ button{
 <header class="header">
 
     <div class="brand">
-        <button class="backBtn" id="backBtn">‹</button>
 
-        <div class="logo">⚡</div>
+        <button class="backBtn" id="backBtn">
+            ‹
+        </button>
+
+        <div class="logo">
+            ⚡
+        </div>
 
         <div>
             <div>Danny Smart Power</div>
         </div>
+
     </div>
 
     <div class="headerRight">
 
-        <button class="iconBtn" id="refreshBtn" title="Refresh">
+        <button
+            class="iconBtn"
+            id="refreshBtn"
+            title="Refresh"
+        >
             ↻
         </button>
 
-        <button class="iconBtn" title="Notifications">
+        <button
+            class="iconBtn"
+            title="Notifications"
+        >
             🔔
-            <span id="headerBadge" class="badge hidden">0</span>
+            <span
+                id="headerBadge"
+                class="badge hidden"
+            >
+                0
+            </span>
         </button>
 
     </div>
@@ -453,26 +471,52 @@ button{
 <main class="container">
 
     <div class="pageTitle">
-        <h1>Notifications</h1>
-        <p>Messages, order updates, service updates and announcements.</p>
+
+        <h1>
+            Notifications
+        </h1>
+
+        <p>
+            Messages, order updates, service updates and announcements.
+        </p>
+
     </div>
 
-    <div id="errorBox" class="error"></div>
+
+    <div
+        id="errorBox"
+        class="error"
+    ></div>
+
 
     <div class="actions">
-        <button class="actionBtn" id="markAllBtn">
+
+        <button
+            class="actionBtn"
+            id="markAllBtn"
+        >
             ✓ Mark all as read
         </button>
 
-        <button class="actionBtn" id="refreshListBtn">
+        <button
+            class="actionBtn"
+            id="refreshListBtn"
+        >
             ↻ Refresh
         </button>
+
     </div>
 
-    <div id="notificationList" class="notificationList">
+
+    <div
+        id="notificationList"
+        class="notificationList"
+    >
+
         <div class="loading">
             Loading notifications...
         </div>
+
     </div>
 
 </main>
@@ -480,33 +524,60 @@ button{
 
 <!-- DETAIL MODAL -->
 
-<div id="modal" class="modal">
+<div
+    id="modal"
+    class="modal"
+>
 
     <div class="modalBox">
 
         <div class="modalHeader">
 
-            <h2>Notification</h2>
+            <h2>
+                Notification
+            </h2>
 
-            <button class="closeBtn" id="closeModal">
+            <button
+                class="closeBtn"
+                id="closeModal"
+            >
                 ×
             </button>
 
         </div>
 
-        <div id="detailIcon" class="detailIcon">🔔</div>
 
-        <div id="detailTitle" class="detailTitle">
+        <div
+            id="detailIcon"
+            class="detailIcon"
+        >
+            🔔
+        </div>
+
+
+        <div
+            id="detailTitle"
+            class="detailTitle"
+        >
             Notification
         </div>
 
-        <div id="detailDate" class="detailDate">
+
+        <div
+            id="detailDate"
+            class="detailDate"
+        >
             —
         </div>
 
-        <div id="detailMessage" class="detailMessage">
+
+        <div
+            id="detailMessage"
+            class="detailMessage"
+        >
             —
         </div>
+
 
         <div class="detailButtons">
 
@@ -538,6 +609,7 @@ button{
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
+
 <script>
 
 /* =========================================================
@@ -545,19 +617,37 @@ button{
 ========================================================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-    authDomain: "danny-smart-power.firebaseapp.com",
-    databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
-    projectId: "danny-smart-power",
-    storageBucket: "danny-smart-power.firebasestorage.app",
-    messagingSenderId: "649735645158",
-    appId: "1:649735645158:web:cff518b89721a163679827",
-    measurementId: "G-258YKLP5ZS"
+
+    apiKey:
+        "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
+    authDomain:
+        "danny-smart-power.firebaseapp.com",
+
+    databaseURL:
+        "https://danny-smart-power-default-rtdb.firebaseio.com",
+
+    projectId:
+        "danny-smart-power",
+
+    storageBucket:
+        "danny-smart-power.firebasestorage.app",
+
+    messagingSenderId:
+        "649735645158",
+
+    appId:
+        "1:649735645158:web:cff518b89721a163679827",
+
+    measurementId:
+        "G-258YKLP5ZS"
+
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+
 const db = firebase.firestore();
 
 
@@ -566,8 +656,12 @@ const db = firebase.firestore();
 ========================================================= */
 
 let currentUser = null;
+
 let notifications = [];
-let unsubscribeNotifications = null;
+
+let unsubscribeNotifications = [];
+
+let loadingNotifications = false;
 
 
 /* =========================================================
@@ -575,76 +669,111 @@ let unsubscribeNotifications = null;
 ========================================================= */
 
 function $(id){
+
     return document.getElementById(id);
+
 }
 
+
 function escapeHTML(value){
+
     return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
+
 }
 
-function getDate(value){
-
-    if(!value){
-        return "Just now";
-    }
-
-    try{
-
-        let date;
-
-        if(value.toDate){
-            date = value.toDate();
-        }else{
-            date = new Date(value);
-        }
-
-        if(isNaN(date.getTime())){
-            return "Just now";
-        }
-
-        return date.toLocaleString([],{
-            day:"numeric",
-            month:"short",
-            year:"numeric",
-            hour:"numeric",
-            minute:"2-digit"
-        });
-
-    }catch(error){
-        return "Just now";
-    }
-}
 
 function getTimestamp(value){
 
     if(!value){
+
         return 0;
+
     }
 
     try{
 
-        if(value.toMillis){
+        if(typeof value.toMillis === "function"){
+
             return value.toMillis();
+
+        }
+
+        if(typeof value.toDate === "function"){
+
+            return value.toDate().getTime();
+
         }
 
         if(value.seconds){
+
             return value.seconds * 1000;
+
         }
 
         const date = new Date(value);
 
         if(!isNaN(date.getTime())){
+
             return date.getTime();
+
         }
 
     }catch(error){}
 
     return 0;
+
+}
+
+
+function getDate(value){
+
+    const timestamp = getTimestamp(value);
+
+    if(!timestamp){
+
+        return "Just now";
+
+    }
+
+    try{
+
+        return new Date(timestamp).toLocaleString([],{
+
+            day:"numeric",
+
+            month:"short",
+
+            year:"numeric",
+
+            hour:"numeric",
+
+            minute:"2-digit"
+
+        });
+
+    }catch(error){
+
+        return "Just now";
+
+    }
+
+}
+
+
+/*
+   Create a unique key so the same notification
+   returned by two queries is displayed only once.
+*/
+
+function notificationKey(notification){
+
+    return String(notification.id || "");
+
 }
 
 
@@ -658,9 +787,12 @@ auth.onAuthStateChanged(async user=>{
 
         currentUser = null;
 
+        stopNotificationListeners();
+
         window.location.href = "login.html";
 
         return;
+
     }
 
     currentUser = user;
@@ -673,174 +805,700 @@ auth.onAuthStateChanged(async user=>{
 
 
 /* =========================================================
+   GET NOTIFICATIONS
+========================================================= */
+
+async function fetchNotificationQueries(){
+
+    if(!currentUser){
+
+        return [];
+
+    }
+
+
+    const queries = [];
+
+
+    /*
+       1. GENERAL NOTIFICATIONS
+
+       These are notifications created with:
+
+       target: "all"
+    */
+
+    queries.push(
+
+        db
+            .collection("notifications")
+            .where("target","==","all")
+            .limit(100)
+            .get()
+
+    );
+
+
+    /*
+       2. PERSONAL NOTIFICATIONS BY UID
+
+       This also catches the newer:
+
+       target: "user"
+       recipientId: currentUser.uid
+
+       and older notifications that simply
+       contain recipientId.
+    */
+
+    queries.push(
+
+        db
+            .collection("notifications")
+            .where(
+                "recipientId",
+                "==",
+                currentUser.uid
+            )
+            .limit(100)
+            .get()
+
+    );
+
+
+    /*
+       3. PERSONAL NOTIFICATIONS BY EMAIL
+
+       This supports notifications that were
+       sent using the customer's email.
+    */
+
+    if(currentUser.email){
+
+        queries.push(
+
+            db
+                .collection("notifications")
+                .where(
+                    "recipientEmail",
+                    "==",
+                    currentUser.email
+                )
+                .limit(100)
+                .get()
+
+        );
+
+    }
+
+
+    /*
+       Also support the older "email" field.
+    */
+
+    if(currentUser.email){
+
+        queries.push(
+
+            db
+                .collection("notifications")
+                .where(
+                    "email",
+                    "==",
+                    currentUser.email
+                )
+                .limit(100)
+                .get()
+
+        );
+
+    }
+
+
+    const results =
+        await Promise.all(queries);
+
+
+    const unique =
+        new Map();
+
+
+    results.forEach(snapshot=>{
+
+        snapshot.forEach(doc=>{
+
+            unique.set(
+
+                notificationKey({
+                    id:doc.id
+                }),
+
+                {
+                    id:doc.id,
+                    ...doc.data()
+                }
+
+            );
+
+        });
+
+    });
+
+
+    return Array.from(unique.values());
+
+}
+
+
+/* =========================================================
    LOAD NOTIFICATIONS
 ========================================================= */
 
 async function loadNotifications(){
 
     if(!currentUser){
+
         return;
+
     }
+
+    if(loadingNotifications){
+
+        return;
+
+    }
+
+    loadingNotifications = true;
+
+    clearError();
+
 
     try{
 
-        const snapshot = await db
-            .collection("notifications")
-            .orderBy("createdAt","desc")
-            .limit(100)
-            .get();
+        const results =
+            await fetchNotificationQueries();
 
-        notifications = snapshot.docs
-            .map(doc=>({
-                id:doc.id,
-                ...doc.data()
-            }))
-            .filter(notification=>{
 
-                /*
-                   CUSTOMER SHOULD SEE:
+        /*
+           Extra client-side safety filter.
 
-                   1. target = all
-                   2. target = user AND recipientId = current UID
-                   3. Old notifications with no target that were
-                      intentionally created for the customer.
-                */
+           This makes sure that even if a query
+           returns an unexpected document, it will
+           not be displayed to the customer.
+        */
 
-                if(notification.target === "all"){
-                    return true;
-                }
+        notifications =
+            results.filter(notification=>{
 
-                if(
-                    notification.target === "user" &&
-                    notification.recipientId === currentUser.uid
-                ){
-                    return true;
-                }
+                const target =
+                    notification.target;
+
+                const uid =
+                    currentUser.uid;
+
+                const email =
+                    String(
+                        currentUser.email || ""
+                    ).toLowerCase();
+
 
                 /*
-                   Keep old notification format compatible.
-                   We only accept old notifications if they have
-                   a recipientId matching this user.
+                   General
                 */
 
                 if(
-                    !notification.target &&
-                    notification.recipientId === currentUser.uid
+                    target === "all" ||
+                    target === "everyone" ||
+                    target === "customers"
                 ){
+
                     return true;
+
                 }
+
+
+                /*
+                   UID
+                */
+
+                if(
+                    notification.recipientId === uid ||
+                    notification.userId === uid ||
+                    notification.customerId === uid
+                ){
+
+                    return true;
+
+                }
+
+
+                /*
+                   Email
+                */
+
+                if(
+                    notification.recipientEmail &&
+                    String(
+                        notification.recipientEmail
+                    ).toLowerCase() === email
+                ){
+
+                    return true;
+
+                }
+
+
+                if(
+                    notification.email &&
+                    String(
+                        notification.email
+                    ).toLowerCase() === email
+                ){
+
+                    return true;
+
+                }
+
 
                 return false;
 
             });
 
+
+        sortNotifications();
+
         renderNotifications();
+
 
     }catch(error){
 
-        console.error("Notification loading error:",error);
+        console.error(
+            "Notification loading error:",
+            error
+        );
+
 
         notifications = [];
 
+
         showError(
-            "Unable to load notifications. Please check your internet connection."
+            "Unable to load notifications right now. Please try again."
         );
+
 
         renderNotifications();
 
+
+    }finally{
+
+        loadingNotifications = false;
+
     }
 
 }
 
 
 /* =========================================================
-   REALTIME NOTIFICATIONS
+   REALTIME LISTENERS
 ========================================================= */
+
+function stopNotificationListeners(){
+
+    unsubscribeNotifications.forEach(unsubscribe=>{
+
+        try{
+
+            unsubscribe();
+
+        }catch(error){}
+
+    });
+
+    unsubscribeNotifications = [];
+
+}
+
 
 function listenNotifications(){
 
-    if(unsubscribeNotifications){
-        unsubscribeNotifications();
-    }
+    stopNotificationListeners();
+
 
     if(!currentUser){
+
         return;
+
     }
 
-    unsubscribeNotifications = db
-        .collection("notifications")
-        .orderBy("createdAt","desc")
-        .limit(100)
-        .onSnapshot(snapshot=>{
 
-            notifications = snapshot.docs
-                .map(doc=>({
-                    id:doc.id,
-                    ...doc.data()
-                }))
-                .filter(notification=>{
+    /*
+       GENERAL
+    */
 
-                    if(notification.target === "all"){
-                        return true;
+    const generalUnsubscribe =
+
+        db
+            .collection("notifications")
+            .where("target","==","all")
+            .limit(100)
+            .onSnapshot(
+
+                snapshot=>{
+
+                    mergeSnapshot(snapshot);
+
+                },
+
+                error=>{
+
+                    console.error(
+                        "General notification listener error:",
+                        error
+                    );
+
+                }
+
+            );
+
+
+    unsubscribeNotifications.push(
+        generalUnsubscribe
+    );
+
+
+    /*
+       PERSONAL UID
+    */
+
+    const uidUnsubscribe =
+
+        db
+            .collection("notifications")
+            .where(
+                "recipientId",
+                "==",
+                currentUser.uid
+            )
+            .limit(100)
+            .onSnapshot(
+
+                snapshot=>{
+
+                    mergeSnapshot(snapshot);
+
+                },
+
+                error=>{
+
+                    console.error(
+                        "Personal notification listener error:",
+                        error
+                    );
+
+                }
+
+            );
+
+
+    unsubscribeNotifications.push(
+        uidUnsubscribe
+    );
+
+
+    /*
+       PERSONAL EMAIL
+    */
+
+    if(currentUser.email){
+
+        const emailUnsubscribe =
+
+            db
+                .collection("notifications")
+                .where(
+                    "recipientEmail",
+                    "==",
+                    currentUser.email
+                )
+                .limit(100)
+                .onSnapshot(
+
+                    snapshot=>{
+
+                        mergeSnapshot(snapshot);
+
+                    },
+
+                    error=>{
+
+                        console.error(
+                            "Email notification listener error:",
+                            error
+                        );
+
                     }
 
-                    if(
-                        notification.target === "user" &&
-                        notification.recipientId === currentUser.uid
-                    ){
-                        return true;
+                );
+
+
+        unsubscribeNotifications.push(
+            emailUnsubscribe
+        );
+
+
+        /*
+           Older email field.
+        */
+
+        const oldEmailUnsubscribe =
+
+            db
+                .collection("notifications")
+                .where(
+                    "email",
+                    "==",
+                    currentUser.email
+                )
+                .limit(100)
+                .onSnapshot(
+
+                    snapshot=>{
+
+                        mergeSnapshot(snapshot);
+
+                    },
+
+                    error=>{
+
+                        console.error(
+                            "Old email notification listener error:",
+                            error
+                        );
+
                     }
 
-                    if(
-                        !notification.target &&
-                        notification.recipientId === currentUser.uid
-                    ){
-                        return true;
-                    }
+                );
 
-                    return false;
 
-                });
+        unsubscribeNotifications.push(
+            oldEmailUnsubscribe
+        );
 
-            renderNotifications();
-
-        },error=>{
-
-            console.error("Realtime notification error:",error);
-
-        });
+    }
 
 }
 
 
 /* =========================================================
-   CHECK READ STATUS
+   MERGE REALTIME RESULTS
+========================================================= */
+
+function mergeSnapshot(snapshot){
+
+    const map = new Map();
+
+
+    /*
+       Start with existing notifications.
+    */
+
+    notifications.forEach(notification=>{
+
+        map.set(
+            notification.id,
+            notification
+        );
+
+    });
+
+
+    /*
+       Add/update incoming notifications.
+    */
+
+    snapshot.forEach(doc=>{
+
+        const notification = {
+
+            id:doc.id,
+
+            ...doc.data()
+
+        };
+
+
+        /*
+           Extra safety check.
+        */
+
+        if(isNotificationForCurrentUser(notification)){
+
+            map.set(
+                doc.id,
+                notification
+            );
+
+        }
+
+    });
+
+
+    notifications =
+        Array.from(map.values());
+
+
+    /*
+       Remove notifications that no longer
+       belong to this customer.
+    */
+
+    notifications =
+        notifications.filter(
+            isNotificationForCurrentUser
+        );
+
+
+    sortNotifications();
+
+    renderNotifications();
+
+}
+
+
+/* =========================================================
+   SECURITY FILTER
+========================================================= */
+
+function isNotificationForCurrentUser(notification){
+
+    if(!currentUser){
+
+        return false;
+
+    }
+
+
+    const uid =
+        currentUser.uid;
+
+
+    const email =
+        String(
+            currentUser.email || ""
+        ).toLowerCase();
+
+
+    /*
+       General.
+    */
+
+    if(
+        notification.target === "all" ||
+        notification.target === "everyone" ||
+        notification.target === "customers"
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+       UID.
+    */
+
+    if(
+        notification.recipientId === uid ||
+        notification.userId === uid ||
+        notification.customerId === uid
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+       Email.
+    */
+
+    if(
+        notification.recipientEmail &&
+        String(
+            notification.recipientEmail
+        ).toLowerCase() === email
+    ){
+
+        return true;
+
+    }
+
+
+    if(
+        notification.email &&
+        String(
+            notification.email
+        ).toLowerCase() === email
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function sortNotifications(){
+
+    notifications.sort(
+
+        (a,b)=>
+            getTimestamp(b.createdAt) -
+            getTimestamp(a.createdAt)
+
+    );
+
+}
+
+
+/* =========================================================
+   READ STATUS
 ========================================================= */
 
 function isRead(notification){
-
-    /*
-       New customer notification system:
-       readBy = [uid1,uid2,...]
-    */
 
     if(
         Array.isArray(notification.readBy) &&
         currentUser
     ){
-        return notification.readBy.includes(currentUser.uid);
+
+        return notification.readBy.includes(
+            currentUser.uid
+        );
+
     }
 
+
     /*
-       Older notification system:
-       read = true/false
+       Legacy support.
     */
 
     if(notification.read === true){
+
         return true;
+
     }
 
+
     return false;
+
 }
 
 
@@ -850,109 +1508,158 @@ function isRead(notification){
 
 function renderNotifications(){
 
-    const list = $("notificationList");
+    const list =
+        $("notificationList");
+
 
     if(!list){
+
         return;
+
     }
 
-    const unreadCount = notifications.filter(
-        notification=>!isRead(notification)
-    ).length;
+
+    const unreadCount =
+        notifications.filter(
+            notification=>!isRead(notification)
+        ).length;
+
 
     updateBadge(unreadCount);
+
 
     if(!notifications.length){
 
         list.innerHTML = `
+
             <div class="empty">
-                <div class="emptyIcon">🔔</div>
-                <div>No notifications yet.</div>
+
+                <div class="emptyIcon">
+                    🔔
+                </div>
+
+                <div>
+                    No notifications yet.
+                </div>
+
             </div>
+
         `;
 
         return;
+
     }
 
-    /*
-       Newest first.
-    */
 
-    notifications.sort(
-        (a,b)=>
-            getTimestamp(b.createdAt) -
-            getTimestamp(a.createdAt)
-    );
+    list.innerHTML =
+        notifications.map(notification=>{
 
-    list.innerHTML = notifications.map(notification=>{
+            const unread =
+                !isRead(notification);
 
-        const unread = !isRead(notification);
 
-        const icon =
-            notification.icon ||
-            getNotificationIcon(notification);
+            const icon =
+                notification.icon ||
+                getNotificationIcon(notification);
 
-        return `
-            <div
-                class="notification ${unread ? "unread" : ""}"
-                data-id="${escapeHTML(notification.id)}"
-            >
 
-                <div class="notificationIcon">
-                    ${escapeHTML(icon)}
-                </div>
+            return `
 
-                <div class="notificationBody">
+                <div
+                    class="notification ${
+                        unread ? "unread" : ""
+                    }"
+                    data-id="${escapeHTML(
+                        notification.id
+                    )}"
+                >
 
-                    <div class="notificationTop">
+                    <div class="notificationIcon">
 
-                        <div class="notificationTitle">
-                            ${escapeHTML(
-                                notification.title ||
-                                "Notification"
-                            )}
-                        </div>
-
-                        <div class="notificationTime">
-                            ${escapeHTML(
-                                getDate(notification.createdAt)
-                            )}
-                        </div>
+                        ${escapeHTML(icon)}
 
                     </div>
 
-                    <div class="notificationMessage">
-                        ${escapeHTML(
-                            notification.message || ""
-                        )}
-                    </div>
 
-                    ${
-                        unread
-                        ?
-                        `<div class="unreadDot"></div>`
-                        :
-                        `<div class="readLabel">Read</div>`
-                    }
+                    <div class="notificationBody">
+
+                        <div class="notificationTop">
+
+                            <div class="notificationTitle">
+
+                                ${escapeHTML(
+                                    notification.title ||
+                                    "Notification"
+                                )}
+
+                            </div>
+
+
+                            <div class="notificationTime">
+
+                                ${escapeHTML(
+                                    getDate(
+                                        notification.createdAt
+                                    )
+                                )}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notificationMessage">
+
+                            ${escapeHTML(
+                                notification.message || ""
+                            )}
+
+                        </div>
+
+
+                        ${
+                            unread
+
+                            ?
+
+                            `
+                            <div class="unreadDot"></div>
+                            `
+
+                            :
+
+                            `
+                            <div class="readLabel">
+                                Read
+                            </div>
+                            `
+                        }
+
+                    </div>
 
                 </div>
 
-            </div>
-        `;
+            `;
 
-    }).join("");
+        }).join("");
 
-    document.querySelectorAll(".notification").forEach(item=>{
 
-        item.addEventListener("click",()=>{
+    document
+        .querySelectorAll(".notification")
+        .forEach(item=>{
 
-            const id = item.dataset.id;
+            item.addEventListener(
+                "click",
+                ()=>{
 
-            openNotification(id);
+                    openNotification(
+                        item.dataset.id
+                    );
+
+                }
+            );
 
         });
-
-    });
 
 }
 
@@ -963,42 +1670,57 @@ function renderNotifications(){
 
 function getNotificationIcon(notification){
 
-    const source = String(
-        notification.source ||
-        notification.type ||
-        notification.title ||
-        ""
-    ).toLowerCase();
+    const source =
+        String(
+            notification.source ||
+            notification.type ||
+            notification.title ||
+            ""
+        ).toLowerCase();
+
 
     if(
         source.includes("chat") ||
         source.includes("message") ||
         source.includes("reply")
     ){
+
         return "💬";
+
     }
+
 
     if(
         source.includes("order") ||
         source.includes("payment")
     ){
+
         return "🛒";
+
     }
+
 
     if(
         source.includes("service") ||
         source.includes("electrical")
     ){
+
         return "🔧";
+
     }
+
 
     if(
         source.includes("project")
     ){
+
         return "⚡";
+
     }
 
+
     return "🔔";
+
 }
 
 
@@ -1008,17 +1730,24 @@ function getNotificationIcon(notification){
 
 function updateBadge(count){
 
-    const badge = $("headerBadge");
+    const badge =
+        $("headerBadge");
+
 
     if(!badge){
+
         return;
+
     }
+
 
     if(count <= 0){
 
         badge.textContent = "0";
 
-        badge.classList.add("hidden");
+        badge.classList.add(
+            "hidden"
+        );
 
     }else{
 
@@ -1027,7 +1756,9 @@ function updateBadge(count){
             ? "99+"
             : count;
 
-        badge.classList.remove("hidden");
+        badge.classList.remove(
+            "hidden"
+        );
 
     }
 
@@ -1041,127 +1772,201 @@ function updateBadge(count){
 async function openNotification(id){
 
     const notification =
-        notifications.find(item=>item.id === id);
+        notifications.find(
+            item=>item.id === id
+        );
+
 
     if(!notification){
+
         return;
+
     }
 
+
     $("detailIcon").textContent =
+
         notification.icon ||
         getNotificationIcon(notification);
 
+
     $("detailTitle").textContent =
+
         notification.title ||
         "Notification";
 
+
     $("detailDate").textContent =
-        getDate(notification.createdAt);
+
+        getDate(
+            notification.createdAt
+        );
+
 
     $("detailMessage").textContent =
+
         notification.message ||
         "";
 
-    /*
-       Show Open Chat if notification contains chatId.
-    */
 
-    const chatBtn = $("chatBtn");
+    const chatBtn =
+        $("chatBtn");
+
 
     if(notification.chatId){
 
-        chatBtn.style.display = "block";
+        chatBtn.style.display =
+            "block";
+
 
         chatBtn.onclick = ()=>{
 
             window.location.href =
                 "chat.html?chatId=" +
-                encodeURIComponent(notification.chatId);
+                encodeURIComponent(
+                    notification.chatId
+                );
 
         };
 
     }else{
 
-        chatBtn.style.display = "none";
+        chatBtn.style.display =
+            "none";
 
     }
 
-    $("modal").classList.add("show");
 
-    /*
-       Mark this notification as read.
-    */
+    $("modal").classList.add(
+        "show"
+    );
 
-    await markNotificationRead(notification);
+
+    await markNotificationRead(
+        notification
+    );
 
 }
 
 
 /* =========================================================
-   MARK ONE READ
+   MARK ONE AS READ
 ========================================================= */
 
-async function markNotificationRead(notification){
+async function markNotificationRead(
+    notification
+){
 
     if(!currentUser){
+
         return;
+
     }
 
+
     if(isRead(notification)){
+
         return;
+
     }
+
 
     try{
 
         /*
-           NEW SYSTEM
-           readBy array for customer.
+           New notification system.
+
+           Each customer gets their UID
+           added to readBy.
+
+           This is important for General
+           notifications because one customer
+           reading it must NOT mark it read
+           for everyone else.
         */
 
         if(
             notification.target === "all" ||
+            notification.target === "everyone" ||
+            notification.target === "customers" ||
             notification.target === "user"
         ){
 
-            const oldReadBy =
-                Array.isArray(notification.readBy)
+            await db
+                .collection("notifications")
+                .doc(notification.id)
+                .update({
+
+                    readBy:
+                        firebase.firestore.FieldValue
+                            .arrayUnion(
+                                currentUser.uid
+                            )
+
+                });
+
+
+            /*
+               Update local state immediately.
+            */
+
+            notification.readBy =
+                Array.isArray(
+                    notification.readBy
+                )
                 ? notification.readBy
                 : [];
 
-            if(!oldReadBy.includes(currentUser.uid)){
 
-                await db
-                    .collection("notifications")
-                    .doc(notification.id)
-                    .update({
+            if(
+                !notification.readBy.includes(
+                    currentUser.uid
+                )
+            ){
 
-                        readBy:
-                            firebase.firestore.FieldValue
-                                .arrayUnion(currentUser.uid)
-
-                    });
+                notification.readBy.push(
+                    currentUser.uid
+                );
 
             }
 
+
+            renderNotifications();
+
             return;
+
         }
 
+
         /*
-           OLD SYSTEM
+           Legacy notifications.
         */
 
         await db
             .collection("notifications")
             .doc(notification.id)
             .update({
-                read:true
+
+                read:true,
+
+                readAt:
+                    firebase.firestore.FieldValue
+                        .serverTimestamp()
+
             });
+
+
+        notification.read = true;
+
+
+        renderNotifications();
+
 
     }catch(error){
 
         console.warn(
-            "Could not mark notification read:",
-            error.message
+            "Could not mark notification as read:",
+            error
         );
 
     }
@@ -1176,63 +1981,142 @@ async function markNotificationRead(notification){
 async function markAllRead(){
 
     if(!currentUser){
+
         return;
+
     }
+
 
     const unread =
         notifications.filter(
             notification=>!isRead(notification)
         );
 
+
     if(!unread.length){
+
         return;
+
     }
+
 
     try{
 
-        const batch = db.batch();
+        const batch =
+            db.batch();
+
 
         unread.forEach(notification=>{
 
             const ref =
                 db
-                .collection("notifications")
-                .doc(notification.id);
+                    .collection("notifications")
+                    .doc(notification.id);
+
 
             /*
-               New notification system.
+               New system.
             */
 
             if(
                 notification.target === "all" ||
+                notification.target === "everyone" ||
+                notification.target === "customers" ||
                 notification.target === "user"
             ){
 
-                batch.update(ref,{
+                batch.update(
+                    ref,
+                    {
 
-                    readBy:
-                        firebase.firestore.FieldValue
-                            .arrayUnion(currentUser.uid)
+                        readBy:
+                            firebase.firestore
+                                .FieldValue
+                                .arrayUnion(
+                                    currentUser.uid
+                                )
 
-                });
+                    }
+                );
+
 
             }else{
 
                 /*
-                   Old system.
+                   Legacy system.
                 */
 
-                batch.update(ref,{
-                    read:true
-                });
+                batch.update(
+                    ref,
+                    {
+
+                        read:true,
+
+                        readAt:
+                            firebase.firestore
+                                .FieldValue
+                                .serverTimestamp()
+
+                    }
+                );
 
             }
 
         });
 
+
         await batch.commit();
 
-        await loadNotifications();
+
+        /*
+           Update local state.
+        */
+
+        notifications.forEach(
+            notification=>{
+
+                if(
+                    notification.target === "all" ||
+                    notification.target === "everyone" ||
+                    notification.target === "customers" ||
+                    notification.target === "user"
+                ){
+
+                    notification.readBy =
+                        Array.isArray(
+                            notification.readBy
+                        )
+                        ? notification.readBy
+                        : [];
+
+
+                    if(
+                        !notification.readBy.includes(
+                            currentUser.uid
+                        )
+                    ){
+
+                        notification.readBy.push(
+                            currentUser.uid
+                        );
+
+                    }
+
+                }else{
+
+                    notification.read = true;
+
+                }
+
+            }
+        );
+
+
+        renderNotifications();
+
+
+        clearError();
+
 
     }catch(error){
 
@@ -1240,6 +2124,7 @@ async function markAllRead(){
             "Mark all read error:",
             error
         );
+
 
         showError(
             "Some notifications could not be marked as read."
@@ -1254,27 +2139,46 @@ async function markAllRead(){
    CLOSE MODAL
 ========================================================= */
 
-$("closeModal").addEventListener("click",()=>{
+$("closeModal").addEventListener(
+    "click",
+    ()=>{
 
-    $("modal").classList.remove("show");
-
-});
-
-$("doneBtn").addEventListener("click",()=>{
-
-    $("modal").classList.remove("show");
-
-});
-
-$("modal").addEventListener("click",event=>{
-
-    if(event.target === $("modal")){
-
-        $("modal").classList.remove("show");
+        $("modal").classList.remove(
+            "show"
+        );
 
     }
+);
 
-});
+
+$("doneBtn").addEventListener(
+    "click",
+    ()=>{
+
+        $("modal").classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+$("modal").addEventListener(
+    "click",
+    event=>{
+
+        if(
+            event.target === $("modal")
+        ){
+
+            $("modal").classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -1286,29 +2190,44 @@ $("markAllBtn").addEventListener(
     markAllRead
 );
 
+
 $("refreshBtn").addEventListener(
     "click",
-    loadNotifications
+    async ()=>{
+
+        await loadNotifications();
+
+    }
 );
+
 
 $("refreshListBtn").addEventListener(
     "click",
-    loadNotifications
-);
+    async ()=>{
 
-$("backBtn").addEventListener("click",()=>{
-
-    if(history.length > 1){
-
-        history.back();
-
-    }else{
-
-        window.location.href = "index.html";
+        await loadNotifications();
 
     }
+);
 
-});
+
+$("backBtn").addEventListener(
+    "click",
+    ()=>{
+
+        if(history.length > 1){
+
+            history.back();
+
+        }else{
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -1317,21 +2236,46 @@ $("backBtn").addEventListener("click",()=>{
 
 function showError(message){
 
-    const box = $("errorBox");
+    const box =
+        $("errorBox");
+
 
     if(!box){
+
         return;
+
     }
 
-    box.textContent = message;
 
-    box.style.display = "block";
+    box.textContent =
+        message;
 
-    setTimeout(()=>{
 
-        box.style.display = "none";
+    box.style.display =
+        "block";
 
-    },5000);
+}
+
+
+function clearError(){
+
+    const box =
+        $("errorBox");
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    box.textContent =
+        "";
+
+
+    box.style.display =
+        "none";
 
 }
 
@@ -1340,15 +2284,14 @@ function showError(message){
    CLEANUP
 ========================================================= */
 
-window.addEventListener("beforeunload",()=>{
+window.addEventListener(
+    "beforeunload",
+    ()=>{
 
-    if(unsubscribeNotifications){
-
-        unsubscribeNotifications();
+        stopNotificationListeners();
 
     }
-
-});
+);
 
 </script>
 
