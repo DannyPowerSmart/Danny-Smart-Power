@@ -173,6 +173,92 @@ header{
 
 }
 
+
+/* =====================================================
+   NOTIFICATION BUTTON
+===================================================== */
+
+.notification-button{
+
+  position:relative;
+
+  width:35px;
+
+  height:35px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:21px;
+
+  border-radius:10px;
+
+  transition:.2s;
+
+}
+
+.notification-button:hover{
+
+  color:var(--blue);
+
+  background:var(--blue-soft);
+
+}
+
+.notification-count{
+
+  position:absolute;
+
+  top:-7px;
+
+  right:-8px;
+
+  min-width:19px;
+
+  height:19px;
+
+  padding:0 5px;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--red);
+
+  color:white;
+
+  border-radius:20px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  line-height:1;
+
+  border:2px solid var(--header);
+
+}
+
+.notification-count.show{
+
+  display:flex;
+
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
+
 .cart-button{
 
   position:relative;
@@ -278,7 +364,7 @@ header{
 
 
 /* =====================================================
-   IMAGE AREA
+   MEDIA AREA
 ===================================================== */
 
 .product-image-wrapper{
@@ -291,9 +377,9 @@ header{
 
   width:100%;
 
-  aspect-ratio:1/1;
+  min-height:420px;
 
-  max-height:600px;
+  max-height:650px;
 
   background:#0b1220;
 
@@ -305,13 +391,33 @@ header{
 
   position:relative;
 
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  padding:10px;
+
+}
+
+.product-media-item{
+
+  width:100%;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  background:#020617;
+
 }
 
 .product-image{
 
   width:100%;
 
-  height:100%;
+  max-height:600px;
 
   object-fit:cover;
 
@@ -319,13 +425,53 @@ header{
 
 }
 
+.product-video{
+
+  width:100%;
+
+  max-height:600px;
+
+  display:block;
+
+  background:#000;
+
+  border-radius:18px;
+
+}
+
+.media-empty{
+
+  min-height:420px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+}
+
+.media-empty-icon{
+
+  font-size:42px;
+
+}
+
 .image-badge{
 
   position:absolute;
 
-  top:15px;
+  top:20px;
 
-  left:15px;
+  left:20px;
 
   padding:7px 12px;
 
@@ -340,6 +486,8 @@ header{
   font-weight:600;
 
   border:1px solid rgba(34,197,94,.2);
+
+  z-index:3;
 
 }
 
@@ -474,18 +622,6 @@ header{
   line-height:1.2;
 
   margin-bottom:15px;
-
-}
-
-.product-price{
-
-  color:var(--blue);
-
-  font-size:29px;
-
-  font-weight:700;
-
-  margin-bottom:20px;
 
 }
 
@@ -917,7 +1053,7 @@ header{
 
 }
 
-.similar-image{
+.similar-media{
 
   width:100%;
 
@@ -925,7 +1061,23 @@ header{
 
   object-fit:cover;
 
+  display:block;
+
   background:#0b1220;
+
+}
+
+.similar-video{
+
+  width:100%;
+
+  height:170px;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:#000;
 
 }
 
@@ -949,23 +1101,13 @@ header{
 
   font-size:14px;
 
-  margin:4px 0 7px;
+  margin:4px 0 0;
 
   white-space:nowrap;
 
   overflow:hidden;
 
   text-overflow:ellipsis;
-
-}
-
-.similar-price{
-
-  color:var(--blue);
-
-  font-size:14px;
-
-  font-weight:700;
 
 }
 
@@ -1178,15 +1320,15 @@ header{
 
   }
 
-  .product-title{
+  .header-right{
 
-    font-size:27px;
+    gap:8px;
 
   }
 
-  .product-price{
+  .product-title{
 
-    font-size:25px;
+    font-size:27px;
 
   }
 
@@ -1198,7 +1340,8 @@ header{
 
   }
 
-  .similar-image{
+  .similar-media,
+  .similar-video{
 
     height:140px;
 
@@ -1262,27 +1405,63 @@ header{
     ← Shop
   </a>
 
+
   <div class="logo">
     D<span>SP</span>
   </div>
 
+
   <div class="header-right">
 
-    <a href="index.html" class="home-link">
+
+    <a
+      href="index.html"
+      class="home-link"
+    >
       Home
     </a>
 
-    <a href="cart.html" class="cart-button">
+
+    <!-- NOTIFICATIONS -->
+
+    <a
+      href="notification.html"
+      class="notification-button"
+      aria-label="Notifications"
+      title="Notifications"
+    >
+
+      🔔
+
+      <span
+        class="notification-count"
+        id="notificationCount"
+      >
+        0
+      </span>
+
+    </a>
+
+
+    <!-- CART -->
+
+    <a
+      href="cart.html"
+      class="cart-button"
+      aria-label="Cart"
+    >
 
       🛒
 
       <span
         class="cart-count"
-        id="cartCount">
+        id="cartCount"
+      >
         0
       </span>
 
     </a>
+
 
   </div>
 
@@ -1459,6 +1638,11 @@ const cartCount =
     "cartCount"
   );
 
+const notificationCount =
+  document.getElementById(
+    "notificationCount"
+  );
+
 const breadcrumbCategory =
   document.getElementById(
     "breadcrumbCategory"
@@ -1492,6 +1676,15 @@ let wishlistUnsubscribe = null;
 let selectedQuantity = 1;
 
 let wishlistSaved = false;
+
+
+/* =====================================================
+   NOTIFICATION STATE
+===================================================== */
+
+let notificationListeners = [];
+
+let notificationDocuments = new Map();
 
 
 /* =====================================================
@@ -1531,6 +1724,11 @@ auth.onAuthStateChanged(
 
     listenToWishlist(
       user.uid
+    );
+
+
+    listenToNotifications(
+      user
     );
 
 
@@ -1629,6 +1827,12 @@ async function loadProduct(){
       description:
         data.description || "",
 
+      /*
+        Price is loaded only because the
+        cart/checkout system still needs it.
+        It is NEVER displayed on this page.
+      */
+
       price:
         Number(data.price) || 0,
 
@@ -1636,7 +1840,20 @@ async function loadProduct(){
         data.category || "",
 
       image:
-        data.image || "",
+        data.image ||
+        data.imageUrl ||
+        data.photoURL ||
+        "",
+
+      video:
+        data.video ||
+        data.videoUrl ||
+        data.mediaUrl ||
+        "",
+
+      mediaType:
+        data.mediaType ||
+        "",
 
       stock:
         Number(data.stock) || 0,
@@ -1665,7 +1882,7 @@ async function loadProduct(){
     );
 
     showProductError(
-      error.message
+      "We could not load this product right now."
     );
 
   }
@@ -1681,11 +1898,6 @@ function displayProduct(){
 
   const product =
     currentProduct;
-
-
-  const image =
-    product.image ||
-    "https://via.placeholder.com/700x700?text=DSP+Product";
 
 
   const isAvailable =
@@ -1707,32 +1919,125 @@ function displayProduct(){
     `${product.name || "Product"} | Danny Smart Power`;
 
 
+  const imageUrl =
+    product.image;
+
+
+  const videoUrl =
+    product.video;
+
+
+  let mediaHtml = "";
+
+
+  /*
+    IMAGE
+  */
+
+  if(imageUrl){
+
+    mediaHtml += `
+
+      <div class="product-media-item">
+
+        <img
+          src="${escapeAttribute(imageUrl)}"
+          class="product-image"
+          alt="${escapeAttribute(product.name)}"
+        >
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+    VIDEO
+
+    Supports Cloudinary video URLs.
+  */
+
+  if(videoUrl){
+
+    mediaHtml += `
+
+      <div class="product-media-item">
+
+        <video
+          class="product-video"
+          controls
+          playsinline
+          preload="metadata"
+        >
+
+          <source
+            src="${escapeAttribute(videoUrl)}"
+          >
+
+          Your browser does not support
+          video playback.
+
+        </video>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+    FALLBACK
+  */
+
+  if(!mediaHtml){
+
+    mediaHtml = `
+
+      <div class="media-empty">
+
+        <div class="media-empty-icon">
+          📦
+        </div>
+
+        <div>
+          Product media unavailable
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
   productArea.innerHTML = `
 
     <!-- ===============================================
-         IMAGE
+         PRODUCT MEDIA
     ================================================ -->
 
     <div class="product-image-wrapper">
 
       <div class="product-image-box">
 
-        <img
-          src="${escapeAttribute(image)}"
-          class="product-image"
-          alt="${escapeAttribute(product.name)}"
-        >
 
-
-        <span
-          class="image-badge ${isAvailable ? "" : "unavailable"}"
+        <div
+          class="image-badge
+          ${isAvailable ? "" : "unavailable"}"
         >
 
           ${isAvailable
             ? "✓ Available"
             : "✕ Unavailable"}
 
-        </span>
+        </div>
+
+
+        ${mediaHtml}
+
 
       </div>
 
@@ -1809,13 +2114,9 @@ function displayProduct(){
       </h1>
 
 
-      <div class="product-price">
-
-        ₦${formatPrice(
-          product.price
-        )}
-
-      </div>
+      <!--
+        PRICE COMPLETELY REMOVED FROM DISPLAY.
+      -->
 
 
       <p class="product-description">
@@ -2227,33 +2528,49 @@ function setupQuantityControls(){
   );
 
 
-  document
-  .getElementById("addButton")
-  .addEventListener(
-    "click",
-    () => {
-
-      addToCart(
-        selectedQuantity
-      );
-
-    }
-  );
+  const addButton =
+    document.getElementById(
+      "addButton"
+    );
 
 
-  document
-  .getElementById("buyButton")
-  .addEventListener(
-    "click",
-    async () => {
+  const buyButton =
+    document.getElementById(
+      "buyButton"
+    );
 
-      await addToCart(
-        selectedQuantity,
-        true
-      );
 
-    }
-  );
+  if(addButton){
+
+    addButton.addEventListener(
+      "click",
+      () => {
+
+        addToCart(
+          selectedQuantity
+        );
+
+      }
+    );
+
+  }
+
+
+  if(buyButton){
+
+    buyButton.addEventListener(
+      "click",
+      async () => {
+
+        await addToCart(
+          selectedQuantity,
+          true
+        );
+
+      }
+    );
+
+  }
 
 
   updateQuantity();
@@ -2504,6 +2821,12 @@ async function addToCart(
       items[index].name =
         currentProduct.name;
 
+      /*
+        Price remains in the cart document
+        for checkout calculations.
+        It is NOT displayed on product.html.
+      */
+
       items[index].price =
         currentProduct.price;
 
@@ -2626,11 +2949,6 @@ function listenToWishlist(uid){
   }
 
 
-  /*
-    We listen only for the current
-    customer's wishlist document.
-  */
-
   const wishlistDocId =
     createWishlistDocumentId(
       uid,
@@ -2676,11 +2994,6 @@ function createWishlistDocumentId(
   uid,
   productId
 ){
-
-  /*
-    Using a fixed ID prevents
-    duplicate wishlist entries.
-  */
 
   return `${uid}_${productId}`;
 
@@ -3013,14 +3326,24 @@ async function loadSimilarProducts(){
           description:
             data.description || "",
 
-          price:
-            Number(data.price) || 0,
-
           category:
             data.category || "",
 
           image:
-            data.image || "",
+            data.image ||
+            data.imageUrl ||
+            data.photoURL ||
+            "",
+
+          video:
+            data.video ||
+            data.videoUrl ||
+            data.mediaUrl ||
+            "",
+
+          mediaType:
+            data.mediaType ||
+            "",
 
           stock:
             Number(data.stock) || 0,
@@ -3131,19 +3454,69 @@ function createSimilarCard(
     "similar-card";
 
 
-  const image =
-    product.image ||
-    "https://via.placeholder.com/600x400?text=DSP+Product";
+  let mediaHtml = "";
+
+
+  if(product.image){
+
+    mediaHtml = `
+
+      <img
+        class="similar-media"
+        src="${escapeAttribute(product.image)}"
+        alt="${escapeAttribute(product.name)}"
+        loading="lazy"
+      >
+
+    `;
+
+  }
+
+  else if(product.video){
+
+    mediaHtml = `
+
+      <video
+        class="similar-video"
+        muted
+        playsinline
+        preload="metadata"
+      >
+
+        <source
+          src="${escapeAttribute(product.video)}"
+        >
+
+      </video>
+
+    `;
+
+  }
+
+  else{
+
+    mediaHtml = `
+
+      <div
+        class="similar-media"
+        style="
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:30px;
+        "
+      >
+        📦
+      </div>
+
+    `;
+
+  }
 
 
   card.innerHTML = `
 
-    <img
-      class="similar-image"
-      src="${escapeAttribute(image)}"
-      alt="${escapeAttribute(product.name)}"
-      loading="lazy"
-    >
+    ${mediaHtml}
 
 
     <div class="similar-content">
@@ -3169,15 +3542,6 @@ function createSimilarCard(
       </h3>
 
 
-      <div class="similar-price">
-
-        ₦${formatPrice(
-          product.price
-        )}
-
-      </div>
-
-
     </div>
 
   `;
@@ -3199,6 +3563,339 @@ function createSimilarCard(
 
   similarProducts.appendChild(
     card
+  );
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function listenToNotifications(
+  user
+){
+
+  /*
+    Remove old listeners if the page
+    somehow changes authentication state.
+  */
+
+  notificationListeners.forEach(
+    unsubscribe => {
+
+      try{
+
+        unsubscribe();
+
+      }
+
+      catch(error){
+
+        console.error(
+          error
+        );
+
+      }
+
+    }
+  );
+
+
+  notificationListeners = [];
+
+  notificationDocuments.clear();
+
+  updateNotificationCount();
+
+
+  const uid =
+    user.uid;
+
+
+  const email =
+    String(
+      user.email || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  /*
+    Each query contains only ONE where()
+    condition.
+
+    This is intentional because your
+    Firestore notification rules use
+    different allowed fields.
+  */
+
+  const queries = [
+
+    {
+      field:
+        "target",
+
+      value:
+        "all"
+
+    },
+
+    {
+      field:
+        "target",
+
+      value:
+        "everyone"
+
+    },
+
+    {
+      field:
+        "target",
+
+      value:
+        "customers"
+
+    },
+
+    {
+      field:
+        "recipientId",
+
+      value:
+        uid
+
+    },
+
+    {
+      field:
+        "userId",
+
+      value:
+        uid
+
+    },
+
+    {
+      field:
+        "customerId",
+
+      value:
+        uid
+
+    }
+
+  ];
+
+
+  if(email){
+
+    queries.push(
+
+      {
+        field:
+          "recipientEmail",
+
+        value:
+          email
+      },
+
+      {
+        field:
+          "email",
+
+        value:
+          email
+      }
+
+    );
+
+  }
+
+
+  queries.forEach(
+    query => {
+
+      const unsubscribe =
+        db
+        .collection("notifications")
+        .where(
+          query.field,
+          "==",
+          query.value
+        )
+        .onSnapshot(
+
+          snapshot => {
+
+            snapshot.docChanges()
+            .forEach(
+              change => {
+
+                const id =
+                  change.doc.id;
+
+
+                if(
+                  change.type ===
+                  "removed"
+                ){
+
+                  notificationDocuments.delete(
+                    id
+                  );
+
+                }
+
+                else{
+
+                  notificationDocuments.set(
+                    id,
+                    {
+                      id:
+                        id,
+
+                      ...change.doc.data()
+                    }
+                  );
+
+                }
+
+              }
+            );
+
+
+            updateNotificationCount();
+
+          },
+
+          error => {
+
+            console.error(
+              `NOTIFICATION QUERY ERROR (${query.field}):`,
+              error
+            );
+
+          }
+
+        );
+
+
+      notificationListeners.push(
+        unsubscribe
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   UPDATE NOTIFICATION COUNT
+===================================================== */
+
+function updateNotificationCount(){
+
+  const user =
+    auth.currentUser;
+
+
+  if(!user){
+
+    notificationCount.textContent =
+      "0";
+
+    notificationCount.classList.remove(
+      "show"
+    );
+
+    return;
+
+  }
+
+
+  const uid =
+    user.uid;
+
+
+  let unread =
+    0;
+
+
+  notificationDocuments.forEach(
+    notification => {
+
+      /*
+        New notification system:
+        readBy contains the UID of customers
+        who have already read it.
+      */
+
+      if(
+        Array.isArray(
+          notification.readBy
+        )
+      ){
+
+        const hasRead =
+          notification.readBy.includes(
+            uid
+          );
+
+
+        if(!hasRead){
+
+          unread++;
+
+        }
+
+
+        return;
+
+      }
+
+
+      /*
+        Legacy notification system:
+        read === true means read.
+      */
+
+      if(
+        notification.read !== true
+      ){
+
+        unread++;
+
+      }
+
+    }
+  );
+
+
+  if(unread <= 0){
+
+    notificationCount.textContent =
+      "0";
+
+    notificationCount.classList.remove(
+      "show"
+    );
+
+    return;
+
+  }
+
+
+  notificationCount.textContent =
+    unread > 99
+      ? "99+"
+      : unread;
+
+
+  notificationCount.classList.add(
+    "show"
   );
 
 }
@@ -3307,30 +4004,6 @@ function normalize(
 }
 
 
-function formatPrice(
-  value
-){
-
-  const number =
-    Number(value);
-
-
-  if(
-    !Number.isFinite(number)
-  ){
-
-    return "0";
-
-  }
-
-
-  return number.toLocaleString(
-    "en-NG"
-  );
-
-}
-
-
 function escapeHtml(
   value
 ){
@@ -3382,4 +4055,4 @@ function escapeAttribute(
 
 </body>
 
-</html>
+  </html>
