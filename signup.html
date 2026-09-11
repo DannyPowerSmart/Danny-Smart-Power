@@ -19,39 +19,25 @@
 
 body{
   min-height:100vh;
-  font-family:'Poppins',sans-serif;
-
+  font-family:'Poppins', sans-serif;
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(56,189,248,.12),
-      transparent 35%
-    ),
+    radial-gradient(circle at top left, rgba(56,189,248,.12), transparent 35%),
     #07111f;
-
   color:white;
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   padding:25px;
 }
 
 .signup-card{
   width:100%;
   max-width:450px;
-
   background:rgba(13,27,42,.96);
-
   border:1px solid rgba(255,255,255,.08);
-
   border-radius:24px;
-
   padding:32px;
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.45);
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
 .brand{
@@ -62,7 +48,6 @@ body{
 .logo{
   width:70px;
   height:70px;
-
   margin:0 auto 15px;
 
   display:flex;
@@ -70,14 +55,11 @@ body{
   justify-content:center;
 
   border-radius:20px;
-
   background:#38bdf8;
   color:#00111c;
 
   font-size:32px;
-
-  box-shadow:
-    0 10px 30px rgba(56,189,248,.2);
+  box-shadow:0 10px 30px rgba(56,189,248,.2);
 }
 
 .brand h1{
@@ -96,11 +78,8 @@ body{
 
 label{
   display:block;
-
   font-size:13px;
-
   margin-bottom:8px;
-
   color:#dbeafe;
 }
 
@@ -110,19 +89,15 @@ label{
 
 input{
   width:100%;
-
   padding:14px 15px;
 
   border-radius:12px;
-
   border:1px solid rgba(255,255,255,.1);
 
   background:#102234;
-
   color:white;
 
   outline:none;
-
   font-size:14px;
 
   transition:.25s;
@@ -130,9 +105,7 @@ input{
 
 input:focus{
   border-color:#38bdf8;
-
-  box-shadow:
-    0 0 0 3px rgba(56,189,248,.1);
+  box-shadow:0 0 0 3px rgba(56,189,248,.1);
 }
 
 input::placeholder{
@@ -141,134 +114,98 @@ input::placeholder{
 
 .password-toggle{
   position:absolute;
-
   right:14px;
   top:50%;
-
   transform:translateY(-50%);
 
   cursor:pointer;
-
   color:#94a3b8;
-
   font-size:14px;
-
   user-select:none;
 }
 
 .password-strength{
   height:5px;
-
   width:100%;
-
   background:#1e293b;
-
   border-radius:10px;
-
   margin-top:8px;
-
   overflow:hidden;
 }
 
 #strengthBar{
   height:100%;
-
   width:0%;
-
   transition:.3s;
 }
 
 .password-hint{
   color:#64748b;
-
   font-size:11px;
-
   margin-top:6px;
-
   line-height:1.5;
 }
 
 .terms{
   display:flex;
-
   gap:9px;
-
   align-items:flex-start;
-
   margin:18px 0;
 
   color:#94a3b8;
-
   font-size:12px;
-
   line-height:1.5;
 }
 
 .terms input{
   width:auto;
-
   margin-top:3px;
-
   accent-color:#38bdf8;
 }
 
 button{
   width:100%;
-
   padding:15px;
 
   border:none;
-
   border-radius:12px;
 
   background:#38bdf8;
-
   color:#00111c;
 
   font-size:15px;
-
   font-weight:700;
 
   cursor:pointer;
-
   transition:.25s;
 }
 
 button:hover{
   background:#7dd3fc;
-
   transform:translateY(-1px);
 }
 
 button:disabled{
   opacity:.6;
-
   cursor:not-allowed;
-
   transform:none;
 }
 
 #message{
   text-align:center;
-
   margin-top:18px;
-
   font-size:13px;
-
   line-height:1.6;
 }
 
 .verification-box{
   display:none;
-
   margin-top:20px;
-
   padding:18px;
 
   border-radius:15px;
 
   background:rgba(56,189,248,.06);
-
   border:1px solid rgba(56,189,248,.18);
 
   text-align:center;
@@ -276,79 +213,65 @@ button:disabled{
 
 .verification-box h3{
   font-size:16px;
-
   margin-bottom:8px;
-
   color:#e0f2fe;
 }
 
 .verification-box p{
   color:#94a3b8;
-
   font-size:12px;
-
   line-height:1.6;
 }
 
 .verification-email{
   color:#38bdf8;
-
   font-weight:600;
-
   word-break:break-word;
 }
 
-.verification-button{
-  margin-top:12px;
-
+.resend-btn{
+  margin-top:14px;
+  background:transparent;
+  border:1px solid rgba(56,189,248,.35);
+  color:#38bdf8;
   padding:11px;
-
   font-size:13px;
 }
 
-.resend-button{
-  background:transparent;
-
-  border:1px solid rgba(56,189,248,.3);
-
-  color:#38bdf8;
+.resend-btn:hover{
+  background:rgba(56,189,248,.08);
+  transform:none;
 }
 
-.resend-button:hover{
-  background:rgba(56,189,248,.08);
+.resend-btn:disabled{
+  background:transparent;
+}
 
-  transform:none;
+.check-btn{
+  margin-top:10px;
+  background:#38bdf8;
 }
 
 .login-link{
   text-align:center;
-
   margin-top:22px;
-
   font-size:13px;
-
   color:#94a3b8;
 }
 
 .login-link a{
   color:#38bdf8;
-
   text-decoration:none;
-
   font-weight:600;
 }
 
 .back{
   display:block;
-
   text-align:center;
-
   margin-top:20px;
 
   color:#64748b;
-
   text-decoration:none;
-
   font-size:12px;
 }
 
@@ -363,12 +286,9 @@ button:disabled{
 </style>
 </head>
 
-
 <body>
 
-
 <div class="signup-card">
-
 
   <!-- BRAND -->
 
@@ -378,9 +298,7 @@ button:disabled{
       ⚡
     </div>
 
-    <h1>
-      Create Your Account
-    </h1>
+    <h1>Create Your Account</h1>
 
     <p>
       Join Danny Smart Power today
@@ -389,12 +307,11 @@ button:disabled{
   </div>
 
 
-  <!-- SIGNUP FORM -->
+  <!-- SIGN UP FORM -->
 
   <form id="signupForm">
 
-
-    <!-- NAME -->
+    <!-- FULL NAME -->
 
     <div class="form-group">
 
@@ -455,25 +372,19 @@ button:disabled{
 
         <span
           class="password-toggle"
-          onclick="togglePassword('password',this)"
+          onclick="togglePassword('password', this)"
         >
           Show
         </span>
 
       </div>
 
-
       <div class="password-strength">
-
         <div id="strengthBar"></div>
-
       </div>
 
-
       <div class="password-hint">
-
-        At least 8 characters, including an uppercase letter and a number.
-
+        Use at least 8 characters, including a number and an uppercase letter.
       </div>
 
     </div>
@@ -500,7 +411,7 @@ button:disabled{
 
         <span
           class="password-toggle"
-          onclick="togglePassword('confirmPassword',this)"
+          onclick="togglePassword('confirmPassword', this)"
         >
           Show
         </span>
@@ -527,15 +438,16 @@ button:disabled{
     </label>
 
 
-    <!-- CREATE BUTTON -->
+    <!-- BUTTON -->
 
     <button
       type="submit"
       id="signupBtn"
     >
-      Create Account
-    </button>
 
+      Create Account
+
+    </button>
 
   </form>
 
@@ -545,53 +457,43 @@ button:disabled{
   <p id="message"></p>
 
 
-  <!-- VERIFICATION BOX -->
+  <!-- EMAIL VERIFICATION -->
 
   <div
-    id="verificationBox"
     class="verification-box"
+    id="verificationBox"
   >
 
     <h3>
       📧 Verify Your Email
     </h3>
 
-
     <p>
-
-      We've sent a verification link to:
-
+      We've sent a verification link to
       <br>
-
       <span
-        id="verificationEmail"
         class="verification-email"
+        id="verificationEmail"
       ></span>
-
     </p>
-
 
     <p style="margin-top:8px;">
-
-      Open your email and click the verification link.
-      Then return here and check your verification.
-
+      Please open your email and click the verification link.
+      Then come back here and check your verification status.
     </p>
-
 
     <button
       type="button"
+      class="check-btn"
       id="checkVerificationBtn"
-      class="verification-button"
     >
       I've Verified My Email
     </button>
 
-
     <button
       type="button"
+      class="resend-btn"
       id="resendBtn"
-      class="verification-button resend-button"
     >
       Resend Verification Email
     </button>
@@ -618,9 +520,10 @@ button:disabled{
     href="index.html"
     class="back"
   >
-    ← Back to Danny Smart Power
-  </a>
 
+    ← Back to Danny Smart Power
+
+  </a>
 
 </div>
 
@@ -636,15 +539,13 @@ button:disabled{
 
 <script>
 
-
 /* =========================================
    FIREBASE CONFIG
 ========================================= */
 
 const firebaseConfig = {
 
-  apiKey:
-  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
   authDomain:
   "danny-smart-power.firebaseapp.com",
@@ -671,20 +572,19 @@ const firebaseConfig = {
 
 
 /* =========================================
-   INITIALIZE FIREBASE
+   START FIREBASE
 ========================================= */
 
-firebase.initializeApp(
-  firebaseConfig
-);
+firebase.initializeApp(firebaseConfig);
 
 
-const auth =
-firebase.auth();
+/* =========================================
+   SERVICES
+========================================= */
 
+const auth = firebase.auth();
 
-const db =
-firebase.firestore();
+const db = firebase.firestore();
 
 
 /* =========================================
@@ -722,14 +622,12 @@ const resendBtn =
 document.getElementById("resendBtn");
 
 const checkVerificationBtn =
-document.getElementById(
-  "checkVerificationBtn"
-);
+document.getElementById("checkVerificationBtn");
 
 
 let currentUser = null;
 
-let resendLocked = false;
+let resendCooldown = false;
 
 
 /* =========================================
@@ -775,63 +673,66 @@ function(){
   const password =
   passwordInput.value;
 
-  const bar =
-  document.getElementById(
-    "strengthBar"
-  );
+  const strengthBar =
+  document.getElementById("strengthBar");
 
 
   let strength = 0;
 
 
   if(password.length >= 8){
-    strength += 25;
-  }
 
+    strength += 25;
+
+  }
 
   if(password.length >= 12){
-    strength += 25;
-  }
 
+    strength += 25;
+
+  }
 
   if(/[A-Z]/.test(password)){
-    strength += 25;
-  }
 
+    strength += 25;
+
+  }
 
   if(/[0-9!@#$%^&*(),.?":{}|<>_\-+=]/.test(password)){
+
     strength += 25;
+
   }
 
 
-  bar.style.width =
+  strengthBar.style.width =
   strength + "%";
 
 
   if(strength <= 25){
 
-    bar.style.background =
+    strengthBar.style.background =
     "#ef4444";
 
   }
 
   else if(strength <= 50){
 
-    bar.style.background =
+    strengthBar.style.background =
     "#f59e0b";
 
   }
 
   else if(strength <= 75){
 
-    bar.style.background =
+    strengthBar.style.background =
     "#eab308";
 
   }
 
   else{
 
-    bar.style.background =
+    strengthBar.style.background =
     "#22c55e";
 
   }
@@ -843,10 +744,12 @@ function(){
    EMAIL VALIDATION
 ========================================= */
 
-function validEmail(email){
+function isValidEmail(email){
 
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-    .test(email);
+  const emailPattern =
+  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  return emailPattern.test(email);
 
 }
 
@@ -855,23 +758,27 @@ function validEmail(email){
    PASSWORD VALIDATION
 ========================================= */
 
-function strongPassword(password){
+function isStrongPassword(password){
 
-  return (
+  if(password.length < 8){
+    return false;
+  }
 
-    password.length >= 8 &&
+  if(!/[A-Z]/.test(password)){
+    return false;
+  }
 
-    /[A-Z]/.test(password) &&
+  if(!/[0-9]/.test(password)){
+    return false;
+  }
 
-    /[0-9]/.test(password)
-
-  );
+  return true;
 
 }
 
 
 /* =========================================
-   MESSAGE
+   SHOW MESSAGE
 ========================================= */
 
 function showMessage(
@@ -889,10 +796,10 @@ function showMessage(
 
 
 /* =========================================
-   BUTTON RESET
+   DISABLE SIGNUP
 ========================================= */
 
-function resetButton(){
+function resetSignupButton(){
 
   signupBtn.disabled =
   false;
@@ -904,66 +811,10 @@ function resetButton(){
 
 
 /* =========================================
-   START RESEND TIMER
-========================================= */
-
-function startResendTimer(){
-
-  resendLocked =
-  true;
-
-  let seconds = 60;
-
-
-  resendBtn.disabled =
-  true;
-
-
-  resendBtn.textContent =
-  "Resend available in " +
-  seconds +
-  "s";
-
-
-  const timer =
-  setInterval(function(){
-
-    seconds--;
-
-
-    if(seconds <= 0){
-
-      clearInterval(timer);
-
-      resendLocked =
-      false;
-
-      resendBtn.disabled =
-      false;
-
-      resendBtn.textContent =
-      "Resend Verification Email";
-
-      return;
-
-    }
-
-
-    resendBtn.textContent =
-    "Resend available in " +
-    seconds +
-    "s";
-
-  },1000);
-
-}
-
-
-/* =========================================
    SEND VERIFICATION EMAIL
 ========================================= */
 
-async function sendVerification(){
+async function sendVerificationEmail(){
 
   if(!currentUser){
     return;
@@ -989,7 +840,8 @@ async function sendVerification(){
     );
 
 
-    startResendTimer();
+    startResendCooldown();
+
 
   }
 
@@ -1007,7 +859,7 @@ async function sendVerification(){
     ){
 
       showMessage(
-        "Too many requests. Please wait before requesting another verification email.",
+        "Too many verification emails were requested. Please wait and try again.",
         "#f87171"
       );
 
@@ -1016,14 +868,73 @@ async function sendVerification(){
     else{
 
       showMessage(
-        "Verification email could not be sent. Error: " +
-        error.code,
+        "We couldn't send the verification email right now. Please try again.",
         "#f87171"
       );
 
     }
 
   }
+
+}
+
+
+/* =========================================
+   RESEND COOLDOWN
+========================================= */
+
+function startResendCooldown(){
+
+  if(resendCooldown){
+    return;
+  }
+
+
+  resendCooldown =
+  true;
+
+  let seconds = 60;
+
+
+  resendBtn.disabled =
+  true;
+
+  resendBtn.textContent =
+  "Resend available in " +
+  seconds +
+  "s";
+
+
+  const timer =
+  setInterval(function(){
+
+    seconds--;
+
+
+    if(seconds <= 0){
+
+      clearInterval(timer);
+
+      resendCooldown =
+      false;
+
+      resendBtn.disabled =
+      false;
+
+      resendBtn.textContent =
+      "Resend Verification Email";
+
+      return;
+
+    }
+
+
+    resendBtn.textContent =
+    "Resend available in " +
+    seconds +
+    "s";
+
+  },1000);
 
 }
 
@@ -1039,13 +950,15 @@ async function(event){
   event.preventDefault();
 
 
+  /* =======================================
+     GET VALUES
+  ======================================= */
+
   const name =
   nameInput.value.trim();
 
   const email =
-  emailInput.value
-    .trim()
-    .toLowerCase();
+  emailInput.value.trim().toLowerCase();
 
   const password =
   passwordInput.value;
@@ -1065,14 +978,12 @@ async function(event){
       "#f87171"
     );
 
-    nameInput.focus();
-
     return;
 
   }
 
 
-  if(!validEmail(email)){
+  if(!isValidEmail(email)){
 
     showMessage(
       "Please enter a valid email address.",
@@ -1086,7 +997,7 @@ async function(event){
   }
 
 
-  if(!strongPassword(password)){
+  if(!isStrongPassword(password)){
 
     showMessage(
       "Password must be at least 8 characters and contain an uppercase letter and a number.",
@@ -1127,7 +1038,7 @@ async function(event){
 
 
   /* =======================================
-     LOADING
+     DISABLE BUTTON
   ======================================= */
 
   signupBtn.disabled =
@@ -1141,10 +1052,10 @@ async function(event){
 
 
     /* =====================================
-       CREATE FIREBASE ACCOUNT
+       CREATE FIREBASE AUTH ACCOUNT
     ===================================== */
 
-    const result =
+    const userCredential =
     await auth.createUserWithEmailAndPassword(
       email,
       password
@@ -1152,142 +1063,63 @@ async function(event){
 
 
     currentUser =
-    result.user;
-
-
-    console.log(
-      "Firebase account created:",
-      currentUser.uid
-    );
+    userCredential.user;
 
 
     /* =====================================
-       SAVE DISPLAY NAME
+       SAVE NAME IN FIREBASE AUTH
     ===================================== */
 
-    try{
+    await currentUser.updateProfile({
 
-      await currentUser.updateProfile({
+      displayName:name
 
-        displayName:name
-
-      });
-
-    }
-
-    catch(profileError){
-
-      console.warn(
-        "Profile name could not be saved:",
-        profileError
-      );
-
-    }
+    });
 
 
     /* =====================================
        SAVE CUSTOMER PROFILE
     ===================================== */
 
-    try{
+    await db
+    .collection("users")
+    .doc(currentUser.uid)
+    .set({
 
-      await db
-      .collection("users")
-      .doc(currentUser.uid)
-      .set({
+      uid:
+      currentUser.uid,
 
-        uid:
-        currentUser.uid,
+      name:
+      name,
 
-        name:
-        name,
+      email:
+      currentUser.email,
 
-        email:
-        currentUser.email,
+      createdAt:
+      firebase.firestore.FieldValue.serverTimestamp(),
 
-        accountType:
-        "customer",
+      accountType:
+      "customer",
 
-        emailVerified:
-        false,
+      emailVerified:
+      false
 
-        createdAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp()
-
-      });
-
-
-      console.log(
-        "Customer profile saved."
-      );
-
-    }
-
-    catch(firestoreError){
-
-      /*
-        IMPORTANT:
-        Firebase Auth account has already
-        been successfully created.
-
-        Therefore we do NOT pretend signup
-        failed just because Firestore failed.
-      */
-
-      console.error(
-        "Firestore profile error:",
-        firestoreError
-      );
-
-
-      showMessage(
-        "Account created, but your customer profile could not be saved. Error: " +
-        firestoreError.code,
-        "#f59e0b"
-      );
-
-    }
+    });
 
 
     /* =====================================
        SEND VERIFICATION EMAIL
     ===================================== */
 
-    try{
+    await currentUser.sendEmailVerification({
 
-      await currentUser.sendEmailVerification({
+      url:
+      window.location.origin +
+      "/login.html",
 
-        url:
-        window.location.origin +
-        "/login.html",
+      handleCodeInApp:false
 
-        handleCodeInApp:false
-
-      });
-
-
-      console.log(
-        "Verification email sent."
-      );
-
-    }
-
-    catch(emailError){
-
-      console.error(
-        "Verification email error:",
-        emailError
-      );
-
-
-      showMessage(
-        "Account created, but the verification email could not be sent. Error: " +
-        emailError.code,
-        "#f87171"
-      );
-
-    }
+    });
 
 
     /* =====================================
@@ -1307,26 +1139,13 @@ async function(event){
     );
 
 
-    startResendTimer();
+    showMessage(
+      "Your account has been created. Please verify your email before continuing.",
+      "#4ade80"
+    );
 
 
-    if(currentUser.emailVerified){
-
-      showMessage(
-        "Your email is already verified. You can continue to login.",
-        "#4ade80"
-      );
-
-    }
-
-    else{
-
-      showMessage(
-        "Account created successfully! Please verify your email before continuing.",
-        "#4ade80"
-      );
-
-    }
+    startResendCooldown();
 
 
   }
@@ -1334,86 +1153,79 @@ async function(event){
   catch(error){
 
     console.error(
-      "FIREBASE SIGNUP ERROR:",
+      "Signup error:",
       error
     );
 
 
-    /*
-      SHOW THE REAL ERROR CODE.
-      This is intentional so we can
-      diagnose Firebase problems.
-    */
-
     let errorMessage =
-    "Signup failed.";
+    "Unable to create account.";
 
 
-    switch(error.code){
+    if(
+      error.code ===
+      "auth/email-already-in-use"
+    ){
 
-      case "auth/email-already-in-use":
+      errorMessage =
+      "This email already has an account. Please login instead.";
 
-        errorMessage =
-        "This email already has an account. Please login instead.";
+    }
 
-        break;
+    else if(
+      error.code ===
+      "auth/invalid-email"
+    ){
 
+      errorMessage =
+      "Please enter a valid email address.";
 
-      case "auth/invalid-email":
+    }
 
-        errorMessage =
-        "Please enter a valid email address.";
+    else if(
+      error.code ===
+      "auth/weak-password"
+    ){
 
-        break;
+      errorMessage =
+      "Your password is too weak. Please choose a stronger password.";
 
+    }
 
-      case "auth/weak-password":
+    else if(
+      error.code ===
+      "auth/network-request-failed"
+    ){
 
-        errorMessage =
-        "Firebase says this password is too weak.";
+      errorMessage =
+      "Network error. Please check your internet connection.";
 
-        break;
+    }
 
+    else if(
+      error.code ===
+      "auth/operation-not-allowed"
+    ){
 
-      case "auth/operation-not-allowed":
+      errorMessage =
+      "Email and password registration is currently unavailable.";
 
-        errorMessage =
-        "Email/password sign-up is disabled in Firebase Authentication.";
+    }
 
-        break;
+    else if(
+      error.code ===
+      "auth/too-many-requests"
+    ){
 
+      errorMessage =
+      "Too many attempts. Please wait a little and try again.";
 
-      case "auth/network-request-failed":
+    }
 
-        errorMessage =
-        "Network error. Please check your internet connection.";
+    else{
 
-        break;
-
-
-      case "auth/too-many-requests":
-
-        errorMessage =
-        "Too many signup attempts. Please wait and try again later.";
-
-        break;
-
-
-      case "auth/api-key-not-valid":
-
-        errorMessage =
-        "Firebase API key is not valid for this website.";
-
-        break;
-
-
-      default:
-
-        errorMessage =
-        "Firebase error (" +
-        error.code +
-        "): " +
-        error.message;
+      errorMessage =
+      "Unable to create your account right now. Please try again.";
 
     }
 
@@ -1424,7 +1236,7 @@ async function(event){
     );
 
 
-    resetButton();
+    resetSignupButton();
 
   }
 
@@ -1439,7 +1251,7 @@ resendBtn.addEventListener(
 "click",
 async function(){
 
-  if(resendLocked){
+  if(resendCooldown){
     return;
   }
 
@@ -1456,13 +1268,13 @@ async function(){
   }
 
 
-  await sendVerification();
+  await sendVerificationEmail();
 
 });
 
 
 /* =========================================
-   CHECK VERIFICATION
+   CHECK EMAIL VERIFICATION
 ========================================= */
 
 checkVerificationBtn.addEventListener(
@@ -1490,11 +1302,7 @@ async function(){
 
   try{
 
-    /*
-      The user is still signed in after
-      signup, so reload() can refresh
-      emailVerified from Firebase.
-    */
+    /* Refresh Firebase user information */
 
     await currentUser.reload();
 
@@ -1509,36 +1317,25 @@ async function(){
          UPDATE FIRESTORE
       =============================== */
 
-      try{
+      await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .set({
 
-        await db
-        .collection("users")
-        .doc(currentUser.uid)
-        .set({
+        emailVerified:
+        true,
 
-          emailVerified:
-          true,
+        email:
+        currentUser.email,
 
-          updatedAt:
-          firebase.firestore.FieldValue
-            .serverTimestamp()
+        updatedAt:
+        firebase.firestore.FieldValue.serverTimestamp()
 
-        },{
+      },{
 
-          merge:true
+        merge:true
 
-        });
-
-      }
-
-      catch(error){
-
-        console.warn(
-          "Could not update emailVerified in Firestore:",
-          error
-        );
-
-      }
+      });
 
 
       showMessage(
@@ -1551,12 +1348,16 @@ async function(){
       "Verified ✓";
 
 
+      /* ===============================
+         REDIRECT
+      =============================== */
+
       setTimeout(function(){
 
         window.location.href =
         "home.html";
 
-      },1000);
+      },1200);
 
 
     }
@@ -1564,7 +1365,7 @@ async function(){
     else{
 
       showMessage(
-        "Your email has not been verified yet. Please click the verification link in your email first.",
+        "Your email has not been verified yet. Please check your inbox and click the verification link.",
         "#f59e0b"
       );
 
@@ -1588,10 +1389,7 @@ async function(){
 
 
     showMessage(
-      "Could not check verification. Firebase error (" +
-      error.code +
-      "): " +
-      error.message,
+      "We couldn't check your verification status. Please try again.",
       "#f87171"
     );
 
@@ -1616,10 +1414,8 @@ function(user){
 
   if(user){
 
-    console.log(
-      "Firebase auth user:",
-      user.email
-    );
+    currentUser =
+    user;
 
   }
 
