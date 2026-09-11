@@ -19,7 +19,7 @@
 
 <link
   rel="preconnect"
-  href="https://fonts.gstatic.com"
+  href="https://fonts.googleapis.com"
   crossorigin
 >
 
@@ -48,20 +48,25 @@
 :root{
 
   --bg:#0f172a;
+
   --header:#020617;
 
   --card:#111e30;
+
   --card2:#17253a;
 
   --border:rgba(148,163,184,.15);
 
   --blue:#38bdf8;
+
   --blue2:#0284c7;
 
   --green:#22c55e;
+
   --red:#ef4444;
 
   --text:#f8fafc;
+
   --muted:#94a3b8;
 
 }
@@ -175,7 +180,7 @@ header{
 
   align-items:center;
 
-  gap:18px;
+  gap:12px;
 
 }
 
@@ -226,13 +231,13 @@ header{
 
   position:absolute;
 
-  top:0;
+  top:-2px;
 
-  right:-2px;
+  right:-3px;
 
-  min-width:19px;
+  min-width:20px;
 
-  height:19px;
+  height:20px;
 
   padding:0 5px;
 
@@ -253,6 +258,8 @@ header{
   font-size:9px;
 
   font-weight:700;
+
+  line-height:1;
 
 }
 
@@ -308,13 +315,13 @@ header{
 
   position:absolute;
 
-  top:0;
+  top:-2px;
 
-  right:-2px;
+  right:-3px;
 
-  min-width:19px;
+  min-width:20px;
 
-  height:19px;
+  height:20px;
 
   padding:0 5px;
 
@@ -338,6 +345,10 @@ header{
 
 }
 
+
+/* =====================================================
+   BACK
+===================================================== */
 
 .back-link{
 
@@ -367,7 +378,7 @@ main{
 
   width:100%;
 
-  max-width:1200px;
+  max-width:1100px;
 
   margin:auto;
 
@@ -398,24 +409,7 @@ main{
 
   font-size:14px;
 
-}
-
-
-/* =====================================================
-   CART LAYOUT
-===================================================== */
-
-.cart-layout{
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    350px;
-
-  gap:25px;
-
-  align-items:start;
+  line-height:1.6;
 
 }
 
@@ -477,7 +471,7 @@ main{
 
 
 /* =====================================================
-   PRODUCT IMAGE
+   IMAGE
 ===================================================== */
 
 .product-image{
@@ -510,21 +504,6 @@ main{
 }
 
 
-.item-info h3{
-
-  font-size:16px;
-
-  margin-bottom:5px;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-
-}
-
-
 .category{
 
   color:var(--blue);
@@ -533,20 +512,24 @@ main{
 
   text-transform:uppercase;
 
-  letter-spacing:.5px;
+  letter-spacing:.6px;
 
   margin-bottom:5px;
 
 }
 
 
-.price{
+.item-info h3{
 
-  color:var(--blue);
+  font-size:16px;
 
-  font-size:15px;
+  margin-bottom:10px;
 
-  font-weight:600;
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 
 }
 
@@ -561,9 +544,16 @@ main{
 
   align-items:center;
 
-  gap:8px;
+  gap:9px;
 
-  margin-top:12px;
+}
+
+
+.quantity-label{
+
+  color:var(--muted);
+
+  font-size:12px;
 
 }
 
@@ -612,25 +602,12 @@ main{
 
 
 /* =====================================================
-   RIGHT SIDE
+   REMOVE
 ===================================================== */
 
 .item-right{
 
-  min-width:120px;
-
-  text-align:right;
-
-}
-
-
-.subtotal{
-
-  font-size:16px;
-
-  font-weight:700;
-
-  margin-bottom:12px;
+  flex-shrink:0;
 
 }
 
@@ -643,9 +620,9 @@ main{
 
   color:#fca5a5;
 
-  padding:8px 11px;
+  padding:9px 12px;
 
-  border-radius:8px;
+  border-radius:9px;
 
   font-family:inherit;
 
@@ -668,14 +645,12 @@ main{
 
 
 /* =====================================================
-   SUMMARY
+   CART ACTION AREA
 ===================================================== */
 
-.summary{
+.cart-actions{
 
-  position:sticky;
-
-  top:100px;
+  margin-top:25px;
 
   padding:22px;
 
@@ -694,77 +669,52 @@ main{
 }
 
 
-.summary h2{
+.cart-actions h2{
 
   font-size:19px;
 
-  margin-bottom:20px;
+  margin-bottom:8px;
 
 }
 
 
-.summary-row{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  margin-bottom:13px;
+.cart-actions p{
 
   color:var(--muted);
 
-  font-size:14px;
+  font-size:13px;
+
+  line-height:1.7;
+
+  margin-bottom:18px;
 
 }
 
 
-.summary-row.total{
+.action-buttons{
 
-  padding-top:15px;
+  display:flex;
 
-  margin-top:8px;
-
-  border-top:1px solid var(--border);
-
-  color:white;
-
-  font-size:19px;
-
-  font-weight:700;
+  gap:12px;
 
 }
 
-
-.total-price{
-
-  color:var(--blue);
-
-}
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
 
 .action-button{
 
-  width:100%;
+  flex:1;
 
   border:none;
 
   padding:14px;
 
-  border-radius:11px;
+  border-radius:12px;
 
   font-family:inherit;
 
   font-weight:600;
 
   cursor:pointer;
-
-  margin-top:14px;
 
   transition:.2s;
 
@@ -783,6 +733,15 @@ main{
 .checkout:hover{
 
   background:#7dd3fc;
+
+}
+
+
+.checkout:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
 
 }
 
@@ -969,6 +928,8 @@ main{
 
   font-size:14px;
 
+  line-height:1.7;
+
 }
 
 
@@ -1028,6 +989,10 @@ main{
 
   transition:.25s;
 
+  text-align:center;
+
+  max-width:90%;
+
 }
 
 
@@ -1044,24 +1009,6 @@ main{
 /* =====================================================
    MOBILE
 ===================================================== */
-
-@media(max-width:850px){
-
-  .cart-layout{
-
-    grid-template-columns:1fr;
-
-  }
-
-
-  .summary{
-
-    position:static;
-
-  }
-
-}
-
 
 @media(max-width:600px){
 
@@ -1094,7 +1041,7 @@ main{
 
   .header-right{
 
-    gap:5px;
+    gap:4px;
 
   }
 
@@ -1165,27 +1112,21 @@ main{
 
     width:100%;
 
-    min-width:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    text-align:left;
-
     padding-top:12px;
 
     border-top:
       1px solid var(--border);
 
+    display:flex;
+
+    justify-content:flex-end;
+
   }
 
 
-  .subtotal{
+  .action-buttons{
 
-    margin:0;
+    flex-direction:column;
 
   }
 
@@ -1219,7 +1160,7 @@ main{
   <div class="header-right">
 
 
-    <!-- NOTIFICATION BUTTON -->
+    <!-- NOTIFICATIONS -->
 
     <a
       href="notification.html"
@@ -1240,7 +1181,7 @@ main{
     </a>
 
 
-    <!-- CART BUTTON -->
+    <!-- CART -->
 
     <a
       href="cart.html"
@@ -1260,8 +1201,6 @@ main{
 
     </a>
 
-
-    <!-- CONTINUE SHOPPING -->
 
     <a
       href="shop.html"
@@ -1298,7 +1237,7 @@ main{
 
     <p>
 
-      Review your selected products before checkout.
+      Review the products you selected before sending your request to Danny.
 
     </p>
 
@@ -1427,7 +1366,11 @@ let currentUser = null;
 
 let cartUnsubscribe = null;
 
-let notificationUnsubscribe = null;
+let notificationUnsubscribes = [];
+
+let notificationData = new Map();
+
+let sendingCartRequest = false;
 
 
 /* =====================================================
@@ -1451,35 +1394,155 @@ function cartRef(){
 
 
 /* =====================================================
-   NOTIFICATION LISTENER
+   NOTIFICATION QUERIES
 ===================================================== */
 
 /*
-   Firestore structure:
+   We use separate one-field queries because
+   Firestore security rules are NOT filters.
 
-   notifications
-      └── AUTO_NOTIFICATION_ID
-           ├── userId
-           ├── title
-           ├── message
-           ├── type
-           ├── read
-           ├── createdAt
-           └── adminId
+   Supported notification targets/fields:
 
-   This listener reads only notifications
-   belonging to the currently signed-in customer.
+   target:
+      all
+      everyone
+      customers
 
-   We intentionally do NOT use:
+   recipient:
+      recipientId
+      userId
+      customerId
 
-   where("read","==",false)
-
-   so that the customer does not need a
-   compound Firestore index just to display
-   the notification count.
+   email:
+      recipientEmail
+      email
 */
 
+function getNotificationQueries(){
+
+  if(!currentUser){
+
+    return [];
+
+  }
+
+
+  const queries = [];
+
+
+  queries.push(
+
+    db.collection("notifications")
+      .where(
+        "target",
+        "==",
+        "all"
+      )
+
+  );
+
+
+  queries.push(
+
+    db.collection("notifications")
+      .where(
+        "target",
+        "==",
+        "everyone"
+      )
+
+  );
+
+
+  queries.push(
+
+    db.collection("notifications")
+      .where(
+        "target",
+        "==",
+        "customers"
+      )
+
+  );
+
+
+  queries.push(
+
+    db.collection("notifications")
+      .where(
+        "recipientId",
+        "==",
+        currentUser.uid
+      )
+
+  );
+
+
+  queries.push(
+
+    db.collection("notifications")
+      .where(
+        "userId",
+        "==",
+        currentUser.uid
+      )
+
+  );
+
+
+  queries.push(
+
+    db.collection("notifications")
+      .where(
+        "customerId",
+        "==",
+        currentUser.uid
+      )
+
+  );
+
+
+  if(currentUser.email){
+
+    queries.push(
+
+      db.collection("notifications")
+        .where(
+          "recipientEmail",
+          "==",
+          currentUser.email
+        )
+
+    );
+
+
+    queries.push(
+
+      db.collection("notifications")
+        .where(
+          "email",
+          "==",
+          currentUser.email
+        )
+
+    );
+
+  }
+
+
+  return queries;
+
+}
+
+
+/* =====================================================
+   START NOTIFICATION LISTENERS
+===================================================== */
+
 function listenToNotifications(){
+
+  stopNotificationListeners();
+
 
   if(!currentUser){
 
@@ -1490,77 +1553,181 @@ function listenToNotifications(){
   }
 
 
-  /* Stop previous listener */
-
-  if(notificationUnsubscribe){
-
-    notificationUnsubscribe();
-
-    notificationUnsubscribe = null;
-
-  }
+  const queries =
+    getNotificationQueries();
 
 
-  notificationUnsubscribe =
+  queries.forEach(
 
-    db
-    .collection("notifications")
-    .where(
-      "userId",
-      "==",
-      currentUser.uid
-    )
-    .onSnapshot(
+    function(query){
 
-      function(snapshot){
+      const unsubscribe =
+        query.onSnapshot(
 
-        let unreadCount = 0;
+          function(snapshot){
+
+            snapshot.forEach(
+
+              function(doc){
+
+                notificationData.set(
+                  doc.id,
+                  doc.data()
+                );
+
+              }
+
+            );
 
 
-        snapshot.forEach(
+            updateNotificationBadgeFromData();
 
-          function(doc){
+          },
 
-            const data =
-              doc.data();
+          function(error){
 
+            console.error(
+              "Notification listener error:",
+              error
+            );
 
-            if(data.read !== true){
-
-              unreadCount++;
-
-            }
+            /*
+              Do not hide the badge here.
+              Another valid notification query
+              may still be working.
+            */
 
           }
 
         );
 
 
-        updateNotificationBadge(
-          unreadCount
-        );
+      notificationUnsubscribes.push(
+        unsubscribe
+      );
 
-      },
+    }
 
-      function(error){
+  );
 
-        console.error(
-          "Notification listener error:",
-          error
-        );
+}
 
 
-        hideNotificationBadge();
+/* =====================================================
+   STOP NOTIFICATION LISTENERS
+===================================================== */
+
+function stopNotificationListeners(){
+
+  notificationUnsubscribes.forEach(
+
+    function(unsubscribe){
+
+      try{
+
+        unsubscribe();
 
       }
 
-    );
+      catch(error){
+
+        console.error(error);
+
+      }
+
+    }
+
+  );
+
+
+  notificationUnsubscribes = [];
+
+  notificationData.clear();
 
 }
 
 
 /* =====================================================
    UPDATE NOTIFICATION BADGE
+===================================================== */
+
+function updateNotificationBadgeFromData(){
+
+  if(!currentUser){
+
+    hideNotificationBadge();
+
+    return;
+
+  }
+
+
+  let unreadCount = 0;
+
+
+  notificationData.forEach(
+
+    function(data){
+
+      if(isNotificationUnread(data)){
+
+        unreadCount++;
+
+      }
+
+    }
+
+  );
+
+
+  updateNotificationBadge(
+    unreadCount
+  );
+
+}
+
+
+/* =====================================================
+   CHECK UNREAD STATUS
+===================================================== */
+
+function isNotificationUnread(data){
+
+  if(!data){
+
+    return false;
+
+  }
+
+
+  /*
+     New notification system:
+
+     readBy: [uid1, uid2, ...]
+  */
+
+  if(Array.isArray(data.readBy)){
+
+    return !data.readBy.includes(
+      currentUser.uid
+    );
+
+  }
+
+
+  /*
+     Legacy notification system:
+
+     read: true / false
+  */
+
+  return data.read !== true;
+
+}
+
+
+/* =====================================================
+   UPDATE BADGE
 ===================================================== */
 
 function updateNotificationBadge(count){
@@ -1592,7 +1759,7 @@ function updateNotificationBadge(count){
 
 
 /* =====================================================
-   HIDE NOTIFICATION BADGE
+   HIDE BADGE
 ===================================================== */
 
 function hideNotificationBadge(){
@@ -1608,52 +1775,12 @@ function hideNotificationBadge(){
 
 
 /* =====================================================
-   TOAST
-===================================================== */
-
-let toastTimer = null;
-
-
-function showToast(message){
-
-  toast.textContent =
-    message;
-
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    toastTimer
-  );
-
-
-  toastTimer =
-    setTimeout(
-      function(){
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-      2300
-    );
-
-}
-
-
-/* =====================================================
    AUTH STATE
 ===================================================== */
 
 auth.onAuthStateChanged(
 
   function(user){
-
-    /* Stop old cart listener */
 
     if(cartUnsubscribe){
 
@@ -1664,15 +1791,7 @@ auth.onAuthStateChanged(
     }
 
 
-    /* Stop old notification listener */
-
-    if(notificationUnsubscribe){
-
-      notificationUnsubscribe();
-
-      notificationUnsubscribe = null;
-
-    }
+    stopNotificationListeners();
 
 
     if(!user){
@@ -1700,11 +1819,6 @@ auth.onAuthStateChanged(
 
     currentUser = user;
 
-
-    /*
-      Start both listeners for this
-      authenticated customer.
-    */
 
     listenToNotifications();
 
@@ -1736,8 +1850,10 @@ function showLogin(){
 
 
       <p>
-        Your cart is securely connected
-        to your Danny Smart Power account.
+
+        Your selected products are securely
+        connected to your Danny Smart Power account.
+
       </p>
 
 
@@ -1804,12 +1920,13 @@ function listenToCart(){
 
         const rawItems =
           Array.isArray(data.items)
-          ? data.items
-          : [];
+            ? data.items
+            : [];
 
 
         const items =
           rawItems.map(
+
             function(item,index){
 
               return {
@@ -1821,6 +1938,7 @@ function listenToCart(){
               };
 
             }
+
           );
 
 
@@ -1851,9 +1969,7 @@ function listenToCart(){
 
 
             <p>
-              ${escapeHtml(
-                error.message
-              )}
+              Please try again.
             </p>
 
           </div>
@@ -1898,7 +2014,9 @@ function displayCart(items){
 
 
         <p>
+
           You have not added any products yet.
+
         </p>
 
 
@@ -1916,12 +2034,11 @@ function displayCart(items){
 
     `;
 
+
     return;
 
   }
 
-
-  let total = 0;
 
   let totalQuantity = 0;
 
@@ -1930,10 +2047,6 @@ function displayCart(items){
 
     function(item){
 
-      const price =
-        Number(item.price) || 0;
-
-
       const qty =
         Math.max(
           1,
@@ -1941,12 +2054,7 @@ function displayCart(items){
         );
 
 
-      total +=
-        price * qty;
-
-
-      totalQuantity +=
-        qty;
+      totalQuantity += qty;
 
     }
 
@@ -1965,9 +2073,7 @@ function displayCart(items){
 
   let html = `
 
-    <div class="cart-layout">
-
-      <div class="cart-list">
+    <div class="cart-list">
 
   `;
 
@@ -1976,10 +2082,6 @@ function displayCart(items){
 
     function(item){
 
-      const price =
-        Number(item.price) || 0;
-
-
       const qty =
         Math.max(
           1,
@@ -1987,12 +2089,9 @@ function displayCart(items){
         );
 
 
-      const subtotal =
-        price * qty;
-
-
       const image =
         item.image ||
+        item.imageUrl ||
         "https://via.placeholder.com/500x400?text=DSP";
 
 
@@ -2035,20 +2134,19 @@ function displayCart(items){
             </h3>
 
 
-            <div class="price">
-
-              ₦${formatPrice(price)}
-
-            </div>
-
-
             <div class="quantity">
+
+              <span class="quantity-label">
+                Quantity
+              </span>
+
 
               <button
                 onclick="changeQuantity(
                   ${item._index},
                   -1
                 )"
+                aria-label="Decrease quantity"
               >
 
                 −
@@ -2068,6 +2166,7 @@ function displayCart(items){
                   ${item._index},
                   1
                 )"
+                aria-label="Increase quantity"
               >
 
                 +
@@ -2080,13 +2179,6 @@ function displayCart(items){
 
 
           <div class="item-right">
-
-            <div class="subtotal">
-
-              ₦${formatPrice(subtotal)}
-
-            </div>
-
 
             <button
               class="remove"
@@ -2112,74 +2204,32 @@ function displayCart(items){
 
   html += `
 
-      </div>
+    </div>
 
 
-      <aside class="summary">
+    <section class="cart-actions">
 
-        <h2>
-          Order Summary
-        </h2>
-
-
-        <div class="summary-row">
-
-          <span>
-            Items
-          </span>
-
-          <span>
-            ${totalQuantity}
-          </span>
-
-        </div>
+      <h2>
+        Ready to ask Danny? 💬
+      </h2>
 
 
-        <div class="summary-row">
+      <p>
 
-          <span>
-            Subtotal
-          </span>
+        Send your selected products directly
+        to Chat with Danny. Danny will check
+        the current material prices and reply
+        to you.
 
-          <span>
-            ₦${formatPrice(total)}
-          </span>
-
-        </div>
+      </p>
 
 
-        <div class="summary-row">
-
-          <span>
-            Delivery
-          </span>
-
-          <span>
-            Calculated at checkout
-          </span>
-
-        </div>
-
-
-        <div class="summary-row total">
-
-          <span>
-            Total
-          </span>
-
-
-          <span class="total-price">
-
-            ₦${formatPrice(total)}
-
-          </span>
-
-        </div>
-
+      <div class="action-buttons">
 
         <button
           class="action-button checkout"
-          onclick="proceedToCheckout()"
+          id="proceedButton"
+          onclick="proceedToChat()"
         >
 
           Proceed to Checkout
@@ -2196,9 +2246,9 @@ function displayCart(items){
 
         </button>
 
-      </aside>
+      </div>
 
-    </div>
+    </section>
 
   `;
 
@@ -2244,8 +2294,8 @@ async function changeQuantity(
 
     let items =
       Array.isArray(data.items)
-      ? [...data.items]
-      : [];
+        ? [...data.items]
+        : [];
 
 
     if(
@@ -2283,6 +2333,7 @@ async function changeQuantity(
       showToast(
         "Product removed from cart ✓"
       );
+
 
       return;
 
@@ -2351,8 +2402,8 @@ async function removeItem(
 
     let items =
       Array.isArray(data.items)
-      ? [...data.items]
-      : [];
+        ? [...data.items]
+        : [];
 
 
     if(
@@ -2433,10 +2484,10 @@ async function saveCart(
 
 
 /* =====================================================
-   CHECKOUT
+   PROCEED TO CHAT
 ===================================================== */
 
-function proceedToCheckout(){
+async function proceedToChat(){
 
   if(!currentUser){
 
@@ -2448,8 +2499,330 @@ function proceedToCheckout(){
   }
 
 
-  window.location.href =
-    "checkout.html";
+  if(sendingCartRequest){
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "proceedButton"
+    );
+
+
+  try{
+
+    sendingCartRequest = true;
+
+
+    if(button){
+
+      button.disabled = true;
+
+      button.textContent =
+        "Sending to Danny...";
+
+    }
+
+
+    const cartDocument =
+      await cartRef().get();
+
+
+    if(!cartDocument.exists){
+
+      showToast(
+        "Your cart is empty."
+      );
+
+
+      sendingCartRequest = false;
+
+      return;
+
+    }
+
+
+    const cartData =
+      cartDocument.data();
+
+
+    const items =
+      Array.isArray(cartData.items)
+        ? cartData.items
+        : [];
+
+
+    if(!items.length){
+
+      showToast(
+        "Your cart is empty."
+      );
+
+
+      sendingCartRequest = false;
+
+      return;
+
+    }
+
+
+    /*
+       Build a clean product list.
+
+       IMPORTANT:
+       We intentionally DO NOT include
+       price information here.
+    */
+
+    const productLines =
+      items.map(
+
+        function(item,index){
+
+          const name =
+            item.name ||
+            "Unnamed Product";
+
+
+          const category =
+            item.category ||
+            "Electrical";
+
+
+          const qty =
+            Math.max(
+              1,
+              Number(item.qty) || 1
+            );
+
+
+          return (
+
+            (index + 1) +
+            ". " +
+            name +
+            "\n" +
+            "   Category: " +
+            category +
+            "\n" +
+            "   Quantity: " +
+            qty
+
+          );
+
+        }
+
+      );
+
+
+    const productList =
+      productLines.join(
+        "\n\n"
+      );
+
+
+    /*
+       This is the message that Danny
+       will receive in Chat with Danny.
+    */
+
+    const messageText =
+
+`Hello Danny 👋
+
+I would like to ask about these electrical materials from my cart:
+
+${productList}
+
+Please check the current prices and availability for me.
+
+Thank you.`;
+
+
+    /*
+       Use the customer's UID as the
+       chat ID so one customer has
+       one conversation.
+    */
+
+    const chatId =
+      currentUser.uid;
+
+
+    const customerName =
+      currentUser.displayName ||
+      currentUser.email?.split("@")[0] ||
+      "Customer";
+
+
+    /*
+       Create/update the chat document.
+    */
+
+    await db
+      .collection("chats")
+      .doc(chatId)
+      .set({
+
+        customerId:
+          currentUser.uid,
+
+        customerName:
+          customerName,
+
+        customerEmail:
+          currentUser.email || "",
+
+        lastMessage:
+          messageText,
+
+        lastMessageAt:
+          firebase.firestore
+          .FieldValue
+          .serverTimestamp(),
+
+        unreadForAdmin:
+          firebase.firestore
+          .FieldValue
+          .increment(1),
+
+        unreadForCustomer:
+          0,
+
+        status:
+          "open",
+
+        updatedAt:
+          firebase.firestore
+          .FieldValue
+          .serverTimestamp(),
+
+        createdAt:
+          firebase.firestore
+          .FieldValue
+          .serverTimestamp()
+
+      },{
+
+        merge:true
+
+      });
+
+
+    /*
+       Add the actual message.
+    */
+
+    await db
+      .collection("messages")
+      .add({
+
+        chatId:
+          chatId,
+
+        senderId:
+          currentUser.uid,
+
+        senderName:
+          customerName,
+
+        senderRole:
+          "customer",
+
+        text:
+          messageText,
+
+        imageUrl:
+          "",
+
+        createdAt:
+          firebase.firestore
+          .FieldValue
+          .serverTimestamp(),
+
+        read:
+          false
+
+      });
+
+
+    /*
+       Optional record on the cart itself.
+       The cart remains intact so the customer
+       can still see what they selected.
+    */
+
+    await cartRef().set({
+
+      lastSentToDannyAt:
+        firebase.firestore
+        .FieldValue
+        .serverTimestamp(),
+
+      lastSentToDannyMessage:
+        messageText
+
+    },{
+
+      merge:true
+
+    });
+
+
+    showToast(
+      "Your product list has been sent to Danny ✓"
+    );
+
+
+    /*
+       Give Firestore a moment to complete
+       before opening the chat.
+    */
+
+    setTimeout(
+
+      function(){
+
+        window.location.href =
+          "chat.html";
+
+      },
+
+      500
+
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Send cart to Danny error:",
+      error
+    );
+
+
+    sendingCartRequest = false;
+
+
+    if(button){
+
+      button.disabled = false;
+
+      button.textContent =
+        "Proceed to Checkout";
+
+    }
+
+
+    showToast(
+      "Could not send your cart. Please try again."
+    );
+
+  }
 
 }
 
@@ -2467,27 +2840,42 @@ function goShopping(){
 
 
 /* =====================================================
-   PRICE FORMAT
+   TOAST
 ===================================================== */
 
-function formatPrice(
-  price
-){
-
-  const number =
-    Number(price);
+let toastTimer = null;
 
 
-  if(!Number.isFinite(number)){
+function showToast(message){
 
-    return "0";
+  toast.textContent =
+    message;
 
-  }
 
-
-  return number.toLocaleString(
-    "en-NG"
+  toast.classList.add(
+    "show"
   );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+
+      2600
+
+    );
 
 }
 
@@ -2555,4 +2943,4 @@ function escapeAttribute(
 
 </body>
 
-    </html>
+</html>
