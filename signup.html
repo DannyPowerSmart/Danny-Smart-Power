@@ -1,13 +1,19 @@
-<!DOCTYPE html>
+My sign up is not allowing to sign up i don't know why<!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Account | Danny Smart Power</title>
+<title>Sign In | Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
@@ -18,498 +24,799 @@
 }
 
 body{
+
   min-height:100vh;
-  font-family:'Poppins', sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(56,189,248,.12), transparent 35%),
-    #07111f;
-  color:white;
+
   display:flex;
-  justify-content:center;
   align-items:center;
-  padding:25px;
+  justify-content:center;
+
+  padding:24px;
+
+  font-family:"Inter",sans-serif;
+
+  color:#f8fafc;
+
+  background:
+
+    radial-gradient(
+      circle at top left,
+      rgba(56,189,248,.12),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at bottom right,
+      rgba(14,165,233,.08),
+      transparent 35%
+    ),
+
+    #020617;
+
 }
 
-.signup-card{
+.auth-wrapper{
+
   width:100%;
-  max-width:450px;
-  background:rgba(13,27,42,.96);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:24px;
-  padding:32px;
-  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  max-width:460px;
+
 }
 
 .brand{
+
   text-align:center;
-  margin-bottom:28px;
+
+  margin-bottom:22px;
+
 }
 
-.logo{
-  width:70px;
-  height:70px;
-  margin:0 auto 15px;
+.brand-icon{
+
+  width:62px;
+  height:62px;
+
+  margin:0 auto 14px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:20px;
-  background:#38bdf8;
-  color:#00111c;
+  border-radius:18px;
 
-  font-size:32px;
-  box-shadow:0 10px 30px rgba(56,189,248,.2);
+  color:#020617;
+
+  font-size:30px;
+
+  background:linear-gradient(
+    135deg,
+    #38bdf8,
+    #0ea5e9
+  );
+
+  box-shadow:
+  0 10px 30px
+  rgba(14,165,233,.25);
+
 }
 
-.brand h1{
-  font-size:24px;
-  margin-bottom:7px;
+.brand-name{
+
+  font-size:21px;
+  font-weight:800;
+
+  letter-spacing:-.5px;
+
 }
 
-.brand p{
+.brand-subtitle{
+
+  margin-top:6px;
+
   color:#94a3b8;
+
   font-size:13px;
+
+}
+
+.auth-card{
+
+  padding:30px;
+
+  border-radius:22px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(15,23,42,.96),
+      rgba(15,23,42,.82)
+    );
+
+  border:1px solid
+  rgba(148,163,184,.12);
+
+  box-shadow:
+
+    0 25px 70px
+    rgba(0,0,0,.35);
+
+}
+
+.auth-header{
+
+  margin-bottom:26px;
+
+}
+
+.auth-header h1{
+
+  font-size:26px;
+
+  letter-spacing:-.7px;
+
+}
+
+.auth-header p{
+
+  margin-top:8px;
+
+  color:#94a3b8;
+
+  font-size:14px;
+
+  line-height:1.6;
+
 }
 
 .form-group{
+
   margin-bottom:18px;
+
 }
 
-label{
+.form-group label{
+
   display:block;
-  font-size:13px;
+
   margin-bottom:8px;
-  color:#dbeafe;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  color:#cbd5e1;
+
 }
 
 .input-wrapper{
+
   position:relative;
+
 }
 
-input{
+.input-wrapper input{
+
   width:100%;
-  padding:14px 15px;
+
+  height:50px;
+
+  padding:0 15px;
 
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.1);
 
-  background:#102234;
-  color:white;
+  border:1px solid
+  rgba(148,163,184,.16);
 
   outline:none;
+
+  color:white;
+
+  background:#0b1728;
+
   font-size:14px;
 
-  transition:.25s;
+  transition:.2s ease;
+
 }
 
-input:focus{
+.input-wrapper input:focus{
+
   border-color:#38bdf8;
-  box-shadow:0 0 0 3px rgba(56,189,248,.1);
+
+  box-shadow:
+
+    0 0 0 3px
+    rgba(56,189,248,.1);
+
 }
 
-input::placeholder{
+.input-wrapper input::placeholder{
+
   color:#64748b;
+
 }
 
 .password-toggle{
+
   position:absolute;
-  right:14px;
+
   top:50%;
+  right:14px;
+
   transform:translateY(-50%);
 
+  border:none;
+
+  background:none;
+
+  color:#94a3b8;
+
   cursor:pointer;
-  color:#94a3b8;
-  font-size:14px;
-  user-select:none;
+
+  font-size:17px;
+
 }
 
-.password-strength{
-  height:5px;
-  width:100%;
-  background:#1e293b;
-  border-radius:10px;
-  margin-top:8px;
-  overflow:hidden;
+.password-toggle:hover{
+
+  color:#38bdf8;
+
 }
 
-#strengthBar{
-  height:100%;
-  width:0%;
-  transition:.3s;
-}
+.form-options{
 
-.password-hint{
-  color:#64748b;
-  font-size:11px;
-  margin-top:6px;
-  line-height:1.5;
-}
-
-.terms{
   display:flex;
-  gap:9px;
-  align-items:flex-start;
-  margin:18px 0;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-top:5px;
+
+  font-size:12px;
+
+}
+
+.remember{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
 
   color:#94a3b8;
-  font-size:12px;
-  line-height:1.5;
+
 }
 
-.terms input{
-  width:auto;
-  margin-top:3px;
+.remember input{
+
   accent-color:#38bdf8;
+
 }
 
-button{
+.forgot{
+
+  color:#38bdf8;
+
+  text-decoration:none;
+
+}
+
+.forgot:hover{
+
+  text-decoration:underline;
+
+}
+
+.login-btn{
+
   width:100%;
-  padding:15px;
+
+  height:52px;
+
+  margin-top:24px;
 
   border:none;
+
   border-radius:12px;
 
-  background:#38bdf8;
+  background:linear-gradient(
+    135deg,
+    #38bdf8,
+    #0ea5e9
+  );
+
   color:#00111c;
 
   font-size:15px;
-  font-weight:700;
+
+  font-weight:800;
 
   cursor:pointer;
-  transition:.25s;
+
+  transition:.2s ease;
+
 }
 
-button:hover{
-  background:#7dd3fc;
+.login-btn:hover{
+
   transform:translateY(-1px);
+
+  box-shadow:
+
+    0 10px 25px
+    rgba(14,165,233,.25);
+
 }
 
-button:disabled{
-  opacity:.6;
+.login-btn:disabled{
+
+  opacity:.65;
+
   cursor:not-allowed;
+
   transform:none;
+
 }
 
-#message{
-  text-align:center;
+.loading{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:9px;
+
+}
+
+.spinner{
+
+  width:17px;
+  height:17px;
+
+  border:2px solid
+  rgba(0,17,28,.3);
+
+  border-top-color:#00111c;
+
+  border-radius:50%;
+
+  animation:spin .7s linear infinite;
+
+}
+
+@keyframes spin{
+
+  to{
+
+    transform:rotate(360deg);
+
+  }
+
+}
+
+.message{
+
+  display:none;
+
   margin-top:18px;
+
+  padding:12px 14px;
+
+  border-radius:10px;
+
   font-size:13px;
-  line-height:1.6;
+
+  line-height:1.5;
+
+}
+
+.message.show{
+
+  display:block;
+
+}
+
+.message.error{
+
+  color:#fecaca;
+
+  background:rgba(239,68,68,.1);
+
+  border:1px solid
+  rgba(239,68,68,.2);
+
+}
+
+.message.success{
+
+  color:#bbf7d0;
+
+  background:rgba(34,197,94,.1);
+
+  border:1px solid
+  rgba(34,197,94,.2);
+
 }
 
 .verification-box{
+
   display:none;
-  margin-top:20px;
+
+  margin-top:18px;
+
   padding:18px;
 
-  border-radius:15px;
+  border-radius:14px;
 
   background:rgba(56,189,248,.06);
-  border:1px solid rgba(56,189,248,.18);
 
-  text-align:center;
+  border:1px solid
+  rgba(56,189,248,.18);
+
 }
 
 .verification-box h3{
-  font-size:16px;
-  margin-bottom:8px;
+
+  font-size:15px;
+
   color:#e0f2fe;
+
+  margin-bottom:8px;
+
 }
 
 .verification-box p{
+
   color:#94a3b8;
+
   font-size:12px;
+
   line-height:1.6;
+
 }
 
 .verification-email{
-  color:#38bdf8;
-  font-weight:600;
-  word-break:break-word;
-}
 
-.resend-btn{
-  margin-top:14px;
-  background:transparent;
-  border:1px solid rgba(56,189,248,.35);
-  color:#38bdf8;
-  padding:11px;
-  font-size:13px;
-}
-
-.resend-btn:hover{
-  background:rgba(56,189,248,.08);
-  transform:none;
-}
-
-.resend-btn:disabled{
-  background:transparent;
-}
-
-.check-btn{
-  margin-top:10px;
-  background:#38bdf8;
-}
-
-.login-link{
-  text-align:center;
-  margin-top:22px;
-  font-size:13px;
-  color:#94a3b8;
-}
-
-.login-link a{
-  color:#38bdf8;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.back{
   display:block;
+
+  margin-top:5px;
+
+  color:#38bdf8;
+
+  font-weight:600;
+
+  word-break:break-word;
+
+}
+
+.verification-action{
+
+  width:100%;
+
+  margin-top:12px;
+
+  padding:11px;
+
+  border-radius:10px;
+
+  border:1px solid
+  rgba(56,189,248,.3);
+
+  background:transparent;
+
+  color:#38bdf8;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+.verification-action:hover{
+
+  background:rgba(56,189,248,.08);
+
+}
+
+.verification-action:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+.auth-footer{
+
+  margin-top:24px;
+
   text-align:center;
+
+  color:#94a3b8;
+
+  font-size:13px;
+
+}
+
+.auth-footer a{
+
+  color:#38bdf8;
+
+  font-weight:600;
+
+  text-decoration:none;
+
+}
+
+.auth-footer a:hover{
+
+  text-decoration:underline;
+
+}
+
+.back-link{
+
+  display:block;
+
   margin-top:20px;
 
+  text-align:center;
+
   color:#64748b;
+
   text-decoration:none;
-  font-size:12px;
+
+  font-size:13px;
+
+  transition:.2s;
+
 }
 
-.back:hover{
+.back-link:hover{
+
   color:#38bdf8;
+
 }
 
-.hidden{
-  display:none !important;
+@media(max-width:480px){
+
+  body{
+
+    padding:16px;
+
+  }
+
+  .auth-card{
+
+    padding:24px 20px;
+
+  }
+
+  .auth-header h1{
+
+    font-size:23px;
+
+  }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div class="signup-card">
+
+<div class="auth-wrapper">
+
 
   <!-- BRAND -->
 
   <div class="brand">
 
-    <div class="logo">
+    <div class="brand-icon">
       ⚡
     </div>
 
-    <h1>Create Your Account</h1>
+    <div class="brand-name">
+      Danny Smart Power
+    </div>
 
-    <p>
-      Join Danny Smart Power today
-    </p>
+    <div class="brand-subtitle">
+      Smart power. Reliable service.
+    </div>
 
   </div>
 
 
-  <!-- SIGN UP FORM -->
+  <!-- LOGIN CARD -->
 
-  <form id="signupForm">
+  <div class="auth-card">
 
-    <!-- FULL NAME -->
 
-    <div class="form-group">
+    <div class="auth-header">
 
-      <label for="name">
-        Full Name
-      </label>
+      <h1>
+        Welcome back
+      </h1>
 
-      <input
-        type="text"
-        id="name"
-        placeholder="Enter your full name"
-        autocomplete="name"
-        maxlength="80"
-        required
-      >
+      <p>
+        Sign in to continue to your Danny Smart Power account.
+      </p>
 
     </div>
 
 
-    <!-- EMAIL -->
+    <!-- LOGIN FORM -->
 
-    <div class="form-group">
-
-      <label for="email">
-        Email Address
-      </label>
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Enter your email address"
-        autocomplete="email"
-        maxlength="254"
-        required
-      >
-
-    </div>
+    <form id="loginForm">
 
 
-    <!-- PASSWORD -->
+      <!-- EMAIL -->
 
-    <div class="form-group">
+      <div class="form-group">
 
-      <label for="password">
-        Password
-      </label>
+        <label for="email">
+          Email address
+        </label>
 
-      <div class="input-wrapper">
+        <div class="input-wrapper">
 
-        <input
-          type="password"
-          id="password"
-          placeholder="Create a password"
-          autocomplete="new-password"
-          maxlength="128"
-          required
+          <input
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            maxlength="254"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
+      <div class="form-group">
+
+        <label for="password">
+          Password
+        </label>
+
+        <div class="input-wrapper">
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            maxlength="128"
+            required
+          >
+
+          <button
+            type="button"
+            class="password-toggle"
+            id="togglePassword"
+            aria-label="Show password"
+          >
+            👁
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- OPTIONS -->
+
+      <div class="form-options">
+
+        <label class="remember">
+
+          <input
+            type="checkbox"
+            id="rememberMe"
+          >
+
+          Remember me
+
+        </label>
+
+
+        <a
+          href="forgot-password.html"
+          class="forgot"
         >
+          Forgot password?
+        </a>
+
+      </div>
+
+
+      <!-- LOGIN BUTTON -->
+
+      <button
+        type="submit"
+        class="login-btn"
+        id="loginBtn"
+      >
+        Sign in
+      </button>
+
+
+    </form>
+
+
+    <!-- MESSAGE -->
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+
+    <!-- VERIFICATION -->
+
+    <div
+      id="verificationBox"
+      class="verification-box"
+    >
+
+      <h3>
+        📧 Email verification required
+      </h3>
+
+      <p>
+
+        Your account exists, but your email has not been verified yet.
 
         <span
-          class="password-toggle"
-          onclick="togglePassword('password', this)"
-        >
-          Show
-        </span>
+          id="verificationEmail"
+          class="verification-email"
+        ></span>
 
-      </div>
-
-      <div class="password-strength">
-        <div id="strengthBar"></div>
-      </div>
-
-      <div class="password-hint">
-        Use at least 8 characters, including a number and an uppercase letter.
-      </div>
-
-    </div>
+      </p>
 
 
-    <!-- CONFIRM PASSWORD -->
-
-    <div class="form-group">
-
-      <label for="confirmPassword">
-        Confirm Password
-      </label>
-
-      <div class="input-wrapper">
-
-        <input
-          type="password"
-          id="confirmPassword"
-          placeholder="Confirm your password"
-          autocomplete="new-password"
-          maxlength="128"
-          required
-        >
-
-        <span
-          class="password-toggle"
-          onclick="togglePassword('confirmPassword', this)"
-        >
-          Show
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <!-- TERMS -->
-
-    <label class="terms">
-
-      <input
-        type="checkbox"
-        id="terms"
-        required
+      <button
+        type="button"
+        id="resendVerification"
+        class="verification-action"
       >
-
-      <span>
-        I agree to create an account with Danny Smart Power and use its services responsibly.
-      </span>
-
-    </label>
+        Resend Verification Email
+      </button>
 
 
-    <!-- BUTTON -->
+      <button
+        type="button"
+        id="checkVerification"
+        class="verification-action"
+      >
+        I've Verified My Email
+      </button>
 
-    <button
-      type="submit"
-      id="signupBtn"
-    >
-
-      Create Account
-
-    </button>
-
-  </form>
+    </div>
 
 
-  <!-- MESSAGE -->
+    <!-- REGISTER -->
 
-  <p id="message"></p>
+    <div class="auth-footer">
 
+      Don't have an account?
 
-  <!-- EMAIL VERIFICATION -->
+      <a href="signup.html">
+        Create account
+      </a>
 
-  <div
-    class="verification-box"
-    id="verificationBox"
-  >
+    </div>
 
-    <h3>
-      📧 Verify Your Email
-    </h3>
-
-    <p>
-      We've sent a verification link to
-      <br>
-      <span
-        class="verification-email"
-        id="verificationEmail"
-      ></span>
-    </p>
-
-    <p style="margin-top:8px;">
-      Please open your email and click the verification link.
-      Then come back here and check your verification status.
-    </p>
-
-    <button
-      type="button"
-      class="check-btn"
-      id="checkVerificationBtn"
-    >
-      I've Verified My Email
-    </button>
-
-    <button
-      type="button"
-      class="resend-btn"
-      id="resendBtn"
-    >
-      Resend Verification Email
-    </button>
-
-  </div>
-
-
-  <!-- LOGIN -->
-
-  <div class="login-link">
-
-    Already have an account?
-
-    <a href="login.html">
-      Login
-    </a>
 
   </div>
 
@@ -518,12 +825,13 @@ button:disabled{
 
   <a
     href="index.html"
-    class="back"
+    class="back-link"
   >
 
     ← Back to Danny Smart Power
 
   </a>
+
 
 </div>
 
@@ -534,10 +842,9 @@ button:disabled{
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 
 <script>
+
 
 /* =========================================
    FIREBASE CONFIG
@@ -545,7 +852,8 @@ button:disabled{
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey:
+  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
   authDomain:
   "danny-smart-power.firebaseapp.com",
@@ -575,27 +883,21 @@ const firebaseConfig = {
    START FIREBASE
 ========================================= */
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(
+  firebaseConfig
+);
 
 
-/* =========================================
-   SERVICES
-========================================= */
-
-const auth = firebase.auth();
-
-const db = firebase.firestore();
+const auth =
+firebase.auth();
 
 
 /* =========================================
    ELEMENTS
 ========================================= */
 
-const signupForm =
-document.getElementById("signupForm");
-
-const nameInput =
-document.getElementById("name");
+const loginForm =
+document.getElementById("loginForm");
 
 const emailInput =
 document.getElementById("email");
@@ -603,14 +905,14 @@ document.getElementById("email");
 const passwordInput =
 document.getElementById("password");
 
-const confirmPasswordInput =
-document.getElementById("confirmPassword");
+const loginBtn =
+document.getElementById("loginBtn");
 
-const signupBtn =
-document.getElementById("signupBtn");
-
-const message =
+const messageBox =
 document.getElementById("message");
+
+const togglePassword =
+document.getElementById("togglePassword");
 
 const verificationBox =
 document.getElementById("verificationBox");
@@ -618,124 +920,50 @@ document.getElementById("verificationBox");
 const verificationEmail =
 document.getElementById("verificationEmail");
 
-const resendBtn =
-document.getElementById("resendBtn");
+const resendVerification =
+document.getElementById("resendVerification");
 
-const checkVerificationBtn =
-document.getElementById("checkVerificationBtn");
+const checkVerification =
+document.getElementById("checkVerification");
 
 
-let currentUser = null;
+let verificationUser =
+null;
 
-let resendCooldown = false;
+let resendCooldown =
+false;
 
 
 /* =========================================
    PASSWORD VISIBILITY
 ========================================= */
 
-function togglePassword(
-  inputId,
-  element
-){
-
-  const input =
-  document.getElementById(inputId);
-
-
-  if(input.type === "password"){
-
-    input.type = "text";
-
-    element.textContent =
-    "Hide";
-
-  }else{
-
-    input.type = "password";
-
-    element.textContent =
-    "Show";
-
-  }
-
-}
-
-
-/* =========================================
-   PASSWORD STRENGTH
-========================================= */
-
-passwordInput.addEventListener(
-"input",
+togglePassword.addEventListener(
+"click",
 function(){
 
-  const password =
-  passwordInput.value;
-
-  const strengthBar =
-  document.getElementById("strengthBar");
+  const isPassword =
+  passwordInput.type === "password";
 
 
-  let strength = 0;
+  passwordInput.type =
+  isPassword
+  ? "text"
+  : "password";
 
 
-  if(password.length >= 8){
-
-    strength += 25;
-
-  }
-
-  if(password.length >= 12){
-
-    strength += 25;
-
-  }
-
-  if(/[A-Z]/.test(password)){
-
-    strength += 25;
-
-  }
-
-  if(/[0-9!@#$%^&*(),.?":{}|<>_\-+=]/.test(password)){
-
-    strength += 25;
-
-  }
+  togglePassword.textContent =
+  isPassword
+  ? "🙈"
+  : "👁";
 
 
-  strengthBar.style.width =
-  strength + "%";
-
-
-  if(strength <= 25){
-
-    strengthBar.style.background =
-    "#ef4444";
-
-  }
-
-  else if(strength <= 50){
-
-    strengthBar.style.background =
-    "#f59e0b";
-
-  }
-
-  else if(strength <= 75){
-
-    strengthBar.style.background =
-    "#eab308";
-
-  }
-
-  else{
-
-    strengthBar.style.background =
-    "#22c55e";
-
-  }
+  togglePassword.setAttribute(
+    "aria-label",
+    isPassword
+    ? "Hide password"
+    : "Show password"
+  );
 
 });
 
@@ -746,109 +974,142 @@ function(){
 
 function isValidEmail(email){
 
-  const emailPattern =
-  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  return emailPattern.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+    .test(email);
 
 }
 
 
 /* =========================================
-   PASSWORD VALIDATION
-========================================= */
-
-function isStrongPassword(password){
-
-  if(password.length < 8){
-    return false;
-  }
-
-  if(!/[A-Z]/.test(password)){
-    return false;
-  }
-
-  if(!/[0-9]/.test(password)){
-    return false;
-  }
-
-  return true;
-
-}
-
-
-/* =========================================
-   SHOW MESSAGE
+   MESSAGE
 ========================================= */
 
 function showMessage(
   text,
-  color
+  type
 ){
 
-  message.textContent =
+  messageBox.textContent =
   text;
 
-  message.style.color =
-  color;
+  messageBox.className =
+  "message show " + type;
 
 }
 
 
 /* =========================================
-   DISABLE SIGNUP
+   RESET LOGIN BUTTON
 ========================================= */
 
-function resetSignupButton(){
+function resetLoginButton(){
 
-  signupBtn.disabled =
+  loginBtn.disabled =
   false;
 
-  signupBtn.textContent =
-  "Create Account";
+  loginBtn.textContent =
+  "Sign in";
 
 }
 
 
 /* =========================================
-   SEND VERIFICATION EMAIL
+   SHOW VERIFICATION BOX
 ========================================= */
 
-async function sendVerificationEmail(){
+function showVerificationBox(
+  user
+){
 
-  if(!currentUser){
+  verificationUser =
+  user;
+
+
+  verificationEmail.textContent =
+  user.email;
+
+
+  verificationBox.style.display =
+  "block";
+
+}
+
+
+/* =========================================
+   HIDE VERIFICATION BOX
+========================================= */
+
+function hideVerificationBox(){
+
+  verificationBox.style.display =
+  "none";
+
+  verificationUser =
+  null;
+
+}
+
+
+/* =========================================
+   RESEND VERIFICATION
+========================================= */
+
+async function resendVerificationEmail(){
+
+  if(!verificationUser){
+
+    showMessage(
+      "Please sign in first.",
+      "error"
+    );
+
     return;
+
   }
+
+
+  if(resendCooldown){
+
+    return;
+
+  }
+
+
+  resendVerification.disabled =
+  true;
+
+  resendVerification.textContent =
+  "Sending...";
 
 
   try{
 
-    await currentUser.sendEmailVerification({
+    await verificationUser
+      .sendEmailVerification({
 
-      url:
-      window.location.origin +
-      "/login.html",
+        url:
+        window.location.origin +
+        "/login.html",
 
-      handleCodeInApp:false
+        handleCodeInApp:false
 
-    });
+      });
 
 
     showMessage(
       "Verification email sent. Please check your inbox.",
-      "#4ade80"
+      "success"
     );
 
 
     startResendCooldown();
-
 
   }
 
   catch(error){
 
     console.error(
-      "Verification email error:",
+      "Resend verification error:",
       error
     );
 
@@ -859,8 +1120,8 @@ async function sendVerificationEmail(){
     ){
 
       showMessage(
-        "Too many verification emails were requested. Please wait and try again.",
-        "#f87171"
+        "Too many requests. Please wait before requesting another email.",
+        "error"
       );
 
     }
@@ -869,10 +1130,17 @@ async function sendVerificationEmail(){
 
       showMessage(
         "We couldn't send the verification email right now. Please try again.",
-        "#f87171"
+        "error"
       );
 
     }
+
+
+    resendVerification.disabled =
+    false;
+
+    resendVerification.textContent =
+    "Resend Verification Email";
 
   }
 
@@ -885,21 +1153,18 @@ async function sendVerificationEmail(){
 
 function startResendCooldown(){
 
-  if(resendCooldown){
-    return;
-  }
-
-
   resendCooldown =
   true;
 
-  let seconds = 60;
+  let seconds =
+  60;
 
 
-  resendBtn.disabled =
+  resendVerification.disabled =
   true;
 
-  resendBtn.textContent =
+
+  resendVerification.textContent =
   "Resend available in " +
   seconds +
   "s";
@@ -918,10 +1183,10 @@ function startResendCooldown(){
       resendCooldown =
       false;
 
-      resendBtn.disabled =
+      resendVerification.disabled =
       false;
 
-      resendBtn.textContent =
+      resendVerification.textContent =
       "Resend Verification Email";
 
       return;
@@ -929,7 +1194,7 @@ function startResendCooldown(){
     }
 
 
-    resendBtn.textContent =
+    resendVerification.textContent =
     "Resend available in " +
     seconds +
     "s";
@@ -940,54 +1205,38 @@ function startResendCooldown(){
 
 
 /* =========================================
-   CREATE ACCOUNT
+   LOGIN
 ========================================= */
 
-signupForm.addEventListener(
+loginForm.addEventListener(
 "submit",
 async function(event){
 
   event.preventDefault();
 
 
-  /* =======================================
-     GET VALUES
-  ======================================= */
+  hideVerificationBox();
 
-  const name =
-  nameInput.value.trim();
 
   const email =
-  emailInput.value.trim().toLowerCase();
+  emailInput.value
+    .trim()
+    .toLowerCase();
+
 
   const password =
   passwordInput.value;
 
-  const confirmPassword =
-  confirmPasswordInput.value;
-
 
   /* =======================================
-     VALIDATION
+     VALIDATE EMAIL
   ======================================= */
-
-  if(name.length < 2){
-
-    showMessage(
-      "Please enter your full name.",
-      "#f87171"
-    );
-
-    return;
-
-  }
-
 
   if(!isValidEmail(email)){
 
     showMessage(
       "Please enter a valid email address.",
-      "#f87171"
+      "error"
     );
 
     emailInput.focus();
@@ -997,11 +1246,11 @@ async function(event){
   }
 
 
-  if(!isStrongPassword(password)){
+  if(!password){
 
     showMessage(
-      "Password must be at least 8 characters and contain an uppercase letter and a number.",
-      "#f87171"
+      "Please enter your password.",
+      "error"
     );
 
     passwordInput.focus();
@@ -1011,232 +1260,228 @@ async function(event){
   }
 
 
-  if(password !== confirmPassword){
-
-    showMessage(
-      "Passwords do not match.",
-      "#f87171"
-    );
-
-    confirmPasswordInput.focus();
-
-    return;
-
-  }
-
-
-  if(!document.getElementById("terms").checked){
-
-    showMessage(
-      "Please accept the terms before creating your account.",
-      "#f87171"
-    );
-
-    return;
-
-  }
-
-
   /* =======================================
-     DISABLE BUTTON
+     LOADING
   ======================================= */
 
-  signupBtn.disabled =
+  loginBtn.disabled =
   true;
 
-  signupBtn.textContent =
-  "Creating account...";
+
+  loginBtn.innerHTML = `
+
+    <span class="loading">
+
+      <span class="spinner"></span>
+
+      Signing in...
+
+    </span>
+
+  `;
 
 
   try{
 
 
     /* =====================================
-       CREATE FIREBASE AUTH ACCOUNT
+       REMEMBER LOGIN
     ===================================== */
 
-    const userCredential =
-    await auth.createUserWithEmailAndPassword(
+    const rememberMe =
+    document.getElementById(
+      "rememberMe"
+    ).checked;
+
+
+    const persistence =
+    rememberMe
+
+    ? firebase.auth.Auth.Persistence.LOCAL
+
+    : firebase.auth.Auth.Persistence.SESSION;
+
+
+    await auth.setPersistence(
+      persistence
+    );
+
+
+    /* =====================================
+       SIGN IN
+    ===================================== */
+
+    const result =
+    await auth.signInWithEmailAndPassword(
       email,
       password
     );
 
 
-    currentUser =
-    userCredential.user;
+    const user =
+    result.user;
 
 
     /* =====================================
-       SAVE NAME IN FIREBASE AUTH
+       CHECK EMAIL VERIFICATION
     ===================================== */
 
-    await currentUser.updateProfile({
+    await user.reload();
 
-      displayName:name
 
-    });
+    const freshUser =
+    auth.currentUser;
+
+
+    if(!freshUser.emailVerified){
+
+      /*
+        The account exists,
+        but the email is not verified.
+
+        Sign the user back out so
+        they cannot access protected
+        pages with this session.
+      */
+
+      verificationUser =
+      freshUser;
+
+
+      await auth.signOut();
+
+
+      showVerificationBox(
+        verificationUser
+      );
+
+
+      showMessage(
+        "Your email has not been verified yet. Please verify it before continuing.",
+        "error"
+      );
+
+
+      resetLoginButton();
+
+      return;
+
+    }
 
 
     /* =====================================
-       SAVE CUSTOMER PROFILE
+       VERIFIED USER
     ===================================== */
-
-    await db
-    .collection("users")
-    .doc(currentUser.uid)
-    .set({
-
-      uid:
-      currentUser.uid,
-
-      name:
-      name,
-
-      email:
-      currentUser.email,
-
-      createdAt:
-      firebase.firestore.FieldValue.serverTimestamp(),
-
-      accountType:
-      "customer",
-
-      emailVerified:
-      false
-
-    });
-
-
-    /* =====================================
-       SEND VERIFICATION EMAIL
-    ===================================== */
-
-    await currentUser.sendEmailVerification({
-
-      url:
-      window.location.origin +
-      "/login.html",
-
-      handleCodeInApp:false
-
-    });
-
-
-    /* =====================================
-       SHOW VERIFICATION SCREEN
-    ===================================== */
-
-    verificationEmail.textContent =
-    currentUser.email;
-
-
-    verificationBox.style.display =
-    "block";
-
-
-    signupForm.classList.add(
-      "hidden"
-    );
-
 
     showMessage(
-      "Your account has been created. Please verify your email before continuing.",
-      "#4ade80"
+      "Login successful. Welcome back ⚡",
+      "success"
     );
 
 
-    startResendCooldown();
+    /* =====================================
+       REDIRECT
+    ===================================== */
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+        "home.html";
+
+      },
+      800
+    );
 
 
   }
+
 
   catch(error){
 
     console.error(
-      "Signup error:",
+      "Login error:",
       error
     );
 
 
-    let errorMessage =
-    "Unable to create account.";
+    let text =
+    "Unable to sign in. Please try again.";
 
 
-    if(
-      error.code ===
-      "auth/email-already-in-use"
-    ){
+    switch(error.code){
 
-      errorMessage =
-      "This email already has an account. Please login instead.";
+      case "auth/invalid-credential":
 
-    }
+        text =
+        "Incorrect email or password.";
 
-    else if(
-      error.code ===
-      "auth/invalid-email"
-    ){
+        break;
 
-      errorMessage =
-      "Please enter a valid email address.";
 
-    }
+      case "auth/user-not-found":
 
-    else if(
-      error.code ===
-      "auth/weak-password"
-    ){
+        text =
+        "Incorrect email or password.";
 
-      errorMessage =
-      "Your password is too weak. Please choose a stronger password.";
+        break;
 
-    }
 
-    else if(
-      error.code ===
-      "auth/network-request-failed"
-    ){
+      case "auth/wrong-password":
 
-      errorMessage =
-      "Network error. Please check your internet connection.";
+        text =
+        "Incorrect email or password.";
 
-    }
+        break;
 
-    else if(
-      error.code ===
-      "auth/operation-not-allowed"
-    ){
 
-      errorMessage =
-      "Email and password registration is currently unavailable.";
+      case "auth/invalid-email":
 
-    }
+        text =
+        "Please enter a valid email address.";
 
-    else if(
-      error.code ===
-      "auth/too-many-requests"
-    ){
+        break;
 
-      errorMessage =
-      "Too many attempts. Please wait a little and try again.";
 
-    }
+      case "auth/user-disabled":
 
-    else{
+        text =
+        "This account has been disabled. Please contact Danny Smart Power.";
 
-      errorMessage =
-      "Unable to create your account right now. Please try again.";
+        break;
+
+
+      case "auth/too-many-requests":
+
+        text =
+        "Too many attempts. Please try again later.";
+
+        break;
+
+
+      case "auth/network-request-failed":
+
+        text =
+        "Network error. Check your internet connection.";
+
+        break;
+
+
+      default:
+
+        text =
+        "Unable to sign in. Please check your details and try again.";
 
     }
 
 
     showMessage(
-      errorMessage,
-      "#f87171"
+      text,
+      "error"
     );
 
 
-    resetSignupButton();
+    resetLoginButton();
 
   }
 
@@ -1244,48 +1489,31 @@ async function(event){
 
 
 /* =========================================
-   RESEND VERIFICATION
+   RESEND BUTTON
 ========================================= */
 
-resendBtn.addEventListener(
+resendVerification.addEventListener(
 "click",
 async function(){
 
-  if(resendCooldown){
-    return;
-  }
-
-
-  if(!currentUser){
-
-    showMessage(
-      "Please create your account first.",
-      "#f87171"
-    );
-
-    return;
-
-  }
-
-
-  await sendVerificationEmail();
+  await resendVerificationEmail();
 
 });
 
 
 /* =========================================
-   CHECK EMAIL VERIFICATION
+   CHECK VERIFICATION
 ========================================= */
 
-checkVerificationBtn.addEventListener(
+checkVerification.addEventListener(
 "click",
 async function(){
 
-  if(!currentUser){
+  if(!verificationUser){
 
     showMessage(
-      "Please create your account first.",
-      "#f87171"
+      "Please sign in again.",
+      "error"
     );
 
     return;
@@ -1293,87 +1521,130 @@ async function(){
   }
 
 
-  checkVerificationBtn.disabled =
+  checkVerification.disabled =
   true;
 
-  checkVerificationBtn.textContent =
+  checkVerification.textContent =
   "Checking...";
 
 
   try{
 
-    /* Refresh Firebase user information */
+    /*
+      Firebase requires the user
+      to be signed in before reload()
+      can refresh the verification state.
 
-    await currentUser.reload();
+      Therefore sign in again using
+      the email and password currently
+      entered in the form.
+    */
+
+    const email =
+    emailInput.value
+      .trim()
+      .toLowerCase();
 
 
-    currentUser =
+    const password =
+    passwordInput.value;
+
+
+    if(!email || !password){
+
+      showMessage(
+        "Please enter your email and password again, then check your verification.",
+        "error"
+      );
+
+      checkVerification.disabled =
+      false;
+
+      checkVerification.textContent =
+      "I've Verified My Email";
+
+      return;
+
+    }
+
+
+    const rememberMe =
+    document.getElementById(
+      "rememberMe"
+    ).checked;
+
+
+    const persistence =
+    rememberMe
+
+    ? firebase.auth.Auth.Persistence.LOCAL
+
+    : firebase.auth.Auth.Persistence.SESSION;
+
+
+    await auth.setPersistence(
+      persistence
+    );
+
+
+    const result =
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+
+    const user =
+    result.user;
+
+
+    await user.reload();
+
+
+    const freshUser =
     auth.currentUser;
 
 
-    if(currentUser.emailVerified){
-
-      /* ===============================
-         UPDATE FIRESTORE
-      =============================== */
-
-      await db
-      .collection("users")
-      .doc(currentUser.uid)
-      .set({
-
-        emailVerified:
-        true,
-
-        email:
-        currentUser.email,
-
-        updatedAt:
-        firebase.firestore.FieldValue.serverTimestamp()
-
-      },{
-
-        merge:true
-
-      });
-
+    if(freshUser.emailVerified){
 
       showMessage(
         "Email verified successfully! Welcome to Danny Smart Power ⚡",
-        "#4ade80"
+        "success"
       );
 
 
-      checkVerificationBtn.textContent =
+      checkVerification.textContent =
       "Verified ✓";
 
 
-      /* ===============================
-         REDIRECT
-      =============================== */
+      setTimeout(
+        function(){
 
-      setTimeout(function(){
+          window.location.href =
+          "home.html";
 
-        window.location.href =
-        "home.html";
-
-      },1200);
+        },
+        900
+      );
 
 
     }
 
     else{
 
+      await auth.signOut();
+
+
       showMessage(
-        "Your email has not been verified yet. Please check your inbox and click the verification link.",
-        "#f59e0b"
+        "Your email is still not verified. Please open the verification email and click the link first.",
+        "error"
       );
 
 
-      checkVerificationBtn.disabled =
+      checkVerification.disabled =
       false;
 
-      checkVerificationBtn.textContent =
+      checkVerification.textContent =
       "I've Verified My Email";
 
     }
@@ -1390,14 +1661,14 @@ async function(){
 
     showMessage(
       "We couldn't check your verification status. Please try again.",
-      "#f87171"
+      "error"
     );
 
 
-    checkVerificationBtn.disabled =
+    checkVerification.disabled =
     false;
 
-    checkVerificationBtn.textContent =
+    checkVerification.textContent =
     "I've Verified My Email";
 
   }
@@ -1412,10 +1683,22 @@ async function(){
 auth.onAuthStateChanged(
 function(user){
 
+  /*
+    We intentionally do NOT automatically
+    redirect users here.
+
+    This prevents someone from being
+    redirected unexpectedly and lets the
+    login verification process control
+    access to home.html.
+  */
+
   if(user){
 
-    currentUser =
-    user;
+    console.log(
+      "Active Firebase user:",
+      user.email
+    );
 
   }
 
