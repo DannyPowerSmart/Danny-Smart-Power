@@ -17,11 +17,20 @@ rel="stylesheet"
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
+
+
+/* =========================
+   BODY
+========================= */
 
 body{
 
@@ -55,12 +64,22 @@ body{
 
 }
 
+
+/* =========================
+   LOGIN CONTAINER
+========================= */
+
 .auth-wrapper{
 
   width:100%;
   max-width:460px;
 
 }
+
+
+/* =========================
+   BRAND
+========================= */
 
 .brand{
 
@@ -118,6 +137,11 @@ body{
 
 }
 
+
+/* =========================
+   CARD
+========================= */
+
 .auth-card{
 
   padding:30px;
@@ -141,6 +165,11 @@ body{
     rgba(0,0,0,.35);
 
 }
+
+
+/* =========================
+   HEADER
+========================= */
 
 .auth-header{
 
@@ -168,6 +197,11 @@ body{
 
 }
 
+
+/* =========================
+   FORM
+========================= */
+
 .form-group{
 
   margin-bottom:18px;
@@ -187,6 +221,11 @@ body{
   color:#cbd5e1;
 
 }
+
+
+/* =========================
+   INPUT
+========================= */
 
 .input-wrapper{
 
@@ -236,6 +275,11 @@ body{
 
 }
 
+
+/* =========================
+   PASSWORD TOGGLE
+========================= */
+
 .password-toggle{
 
   position:absolute;
@@ -262,6 +306,11 @@ body{
   color:#38bdf8;
 
 }
+
+
+/* =========================
+   OPTIONS
+========================= */
 
 .form-options{
 
@@ -308,6 +357,11 @@ body{
   text-decoration:underline;
 
 }
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
 
 .login-btn{
 
@@ -360,6 +414,11 @@ body{
 
 }
 
+
+/* =========================
+   LOADING
+========================= */
+
 .loading{
 
   display:inline-flex;
@@ -395,6 +454,11 @@ body{
   }
 
 }
+
+
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
 
@@ -440,95 +504,10 @@ body{
 
 }
 
-.verification-box{
 
-  display:none;
-
-  margin-top:18px;
-
-  padding:18px;
-
-  border-radius:14px;
-
-  background:rgba(56,189,248,.06);
-
-  border:1px solid
-  rgba(56,189,248,.18);
-
-}
-
-.verification-box h3{
-
-  font-size:15px;
-
-  color:#e0f2fe;
-
-  margin-bottom:8px;
-
-}
-
-.verification-box p{
-
-  color:#94a3b8;
-
-  font-size:12px;
-
-  line-height:1.6;
-
-}
-
-.verification-email{
-
-  display:block;
-
-  margin-top:5px;
-
-  color:#38bdf8;
-
-  font-weight:600;
-
-  word-break:break-word;
-
-}
-
-.verification-action{
-
-  width:100%;
-
-  margin-top:12px;
-
-  padding:11px;
-
-  border-radius:10px;
-
-  border:1px solid
-  rgba(56,189,248,.3);
-
-  background:transparent;
-
-  color:#38bdf8;
-
-  font-size:13px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-}
-
-.verification-action:hover{
-
-  background:rgba(56,189,248,.08);
-
-}
-
-.verification-action:disabled{
-
-  opacity:.6;
-
-  cursor:not-allowed;
-
-}
+/* =========================
+   FOOTER
+========================= */
 
 .auth-footer{
 
@@ -558,6 +537,11 @@ body{
 
 }
 
+
+/* =========================
+   BACK LINK
+========================= */
+
 .back-link{
 
   display:block;
@@ -581,6 +565,11 @@ body{
   color:#38bdf8;
 
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:480px){
 
@@ -620,15 +609,21 @@ body{
   <div class="brand">
 
     <div class="brand-icon">
+
       ⚡
+
     </div>
 
     <div class="brand-name">
+
       Danny Smart Power
+
     </div>
 
     <div class="brand-subtitle">
+
       Smart power. Reliable service.
+
     </div>
 
   </div>
@@ -642,17 +637,19 @@ body{
     <div class="auth-header">
 
       <h1>
+
         Welcome back
+
       </h1>
 
       <p>
+
         Sign in to continue to your Danny Smart Power account.
+
       </p>
 
     </div>
 
-
-    <!-- LOGIN FORM -->
 
     <form id="loginForm">
 
@@ -662,18 +659,25 @@ body{
       <div class="form-group">
 
         <label for="email">
+
           Email address
+
         </label>
 
         <div class="input-wrapper">
 
           <input
+
             type="email"
+
             id="email"
+
             placeholder="you@example.com"
+
             autocomplete="email"
-            maxlength="254"
+
             required
+
           >
 
         </div>
@@ -686,27 +690,41 @@ body{
       <div class="form-group">
 
         <label for="password">
+
           Password
+
         </label>
 
         <div class="input-wrapper">
 
           <input
+
             type="password"
+
             id="password"
+
             placeholder="Enter your password"
+
             autocomplete="current-password"
-            maxlength="128"
+
             required
+
           >
 
           <button
+
             type="button"
+
             class="password-toggle"
+
             id="togglePassword"
+
             aria-label="Show password"
+
           >
+
             👁
+
           </button>
 
         </div>
@@ -721,8 +739,11 @@ body{
         <label class="remember">
 
           <input
+
             type="checkbox"
+
             id="rememberMe"
+
           >
 
           Remember me
@@ -731,23 +752,34 @@ body{
 
 
         <a
+
           href="forgot-password.html"
+
           class="forgot"
+
         >
+
           Forgot password?
+
         </a>
 
       </div>
 
 
-      <!-- LOGIN BUTTON -->
+      <!-- BUTTON -->
 
       <button
+
         type="submit"
+
         class="login-btn"
+
         id="loginBtn"
+
       >
+
         Sign in
+
       </button>
 
 
@@ -757,52 +789,12 @@ body{
     <!-- MESSAGE -->
 
     <div
+
       id="message"
+
       class="message"
+
     ></div>
-
-
-    <!-- VERIFICATION -->
-
-    <div
-      id="verificationBox"
-      class="verification-box"
-    >
-
-      <h3>
-        📧 Email verification required
-      </h3>
-
-      <p>
-
-        Your account exists, but your email has not been verified yet.
-
-        <span
-          id="verificationEmail"
-          class="verification-email"
-        ></span>
-
-      </p>
-
-
-      <button
-        type="button"
-        id="resendVerification"
-        class="verification-action"
-      >
-        Resend Verification Email
-      </button>
-
-
-      <button
-        type="button"
-        id="checkVerification"
-        class="verification-action"
-      >
-        I've Verified My Email
-      </button>
-
-    </div>
 
 
     <!-- REGISTER -->
@@ -812,7 +804,9 @@ body{
       Don't have an account?
 
       <a href="signup.html">
+
         Create account
+
       </a>
 
     </div>
@@ -824,8 +818,11 @@ body{
   <!-- BACK -->
 
   <a
+
     href="index.html"
+
     class="back-link"
+
   >
 
     ← Back to Danny Smart Power
@@ -846,55 +843,33 @@ body{
 <script>
 
 
-/* =========================================
+/* =========================
    FIREBASE CONFIG
-========================================= */
+========================= */
 
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-
-  apiKey:
-  "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
-
-  authDomain:
-  "danny-smart-power.firebaseapp.com",
-
-  databaseURL:
-  "https://danny-smart-power-default-rtdb.firebaseio.com",
-
-  projectId:
-  "danny-smart-power",
-
-  storageBucket:
-  "danny-smart-power.firebasestorage.app",
-
-  messagingSenderId:
-  "649735645158",
-
-  appId:
-  "1:649735645158:web:cff518b89721a163679827",
-
-  measurementId:
-  "G-258YKLP5ZS"
-
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain: "danny-smart-power.firebaseapp.com",
+  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "danny-smart-power",
+  storageBucket: "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "649735645158",
+  appId: "1:649735645158:web:cff518b89721a163679827",
+  measurementId: "G-258YKLP5ZS"
 };
 
-
-/* =========================================
-   START FIREBASE
-========================================= */
-
-firebase.initializeApp(
-  firebaseConfig
-);
+firebase.initializeApp(firebaseConfig);
 
 
 const auth =
 firebase.auth();
 
 
-/* =========================================
+/* =========================
    ELEMENTS
-========================================= */
+========================= */
 
 const loginForm =
 document.getElementById("loginForm");
@@ -914,636 +889,52 @@ document.getElementById("message");
 const togglePassword =
 document.getElementById("togglePassword");
 
-const verificationBox =
-document.getElementById("verificationBox");
 
-const verificationEmail =
-document.getElementById("verificationEmail");
-
-const resendVerification =
-document.getElementById("resendVerification");
-
-const checkVerification =
-document.getElementById("checkVerification");
-
-
-let verificationUser =
-null;
-
-let resendCooldown =
-false;
-
-
-/* =========================================
+/* =========================
    PASSWORD VISIBILITY
-========================================= */
+========================= */
 
 togglePassword.addEventListener(
-"click",
-function(){
 
-  const isPassword =
-  passwordInput.type === "password";
+  "click",
 
+  function(){
 
-  passwordInput.type =
-  isPassword
-  ? "text"
-  : "password";
+    const isPassword =
+    passwordInput.type === "password";
 
 
-  togglePassword.textContent =
-  isPassword
-  ? "🙈"
-  : "👁";
-
-
-  togglePassword.setAttribute(
-    "aria-label",
+    passwordInput.type =
     isPassword
-    ? "Hide password"
-    : "Show password"
-  );
-
-});
+    ? "text"
+    : "password";
 
 
-/* =========================================
-   EMAIL VALIDATION
-========================================= */
-
-function isValidEmail(email){
-
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-    .test(email);
-
-}
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(
-  text,
-  type
-){
-
-  messageBox.textContent =
-  text;
-
-  messageBox.className =
-  "message show " + type;
-
-}
-
-
-/* =========================================
-   RESET LOGIN BUTTON
-========================================= */
-
-function resetLoginButton(){
-
-  loginBtn.disabled =
-  false;
-
-  loginBtn.textContent =
-  "Sign in";
-
-}
-
-
-/* =========================================
-   SHOW VERIFICATION BOX
-========================================= */
-
-function showVerificationBox(
-  user
-){
-
-  verificationUser =
-  user;
-
-
-  verificationEmail.textContent =
-  user.email;
-
-
-  verificationBox.style.display =
-  "block";
-
-}
-
-
-/* =========================================
-   HIDE VERIFICATION BOX
-========================================= */
-
-function hideVerificationBox(){
-
-  verificationBox.style.display =
-  "none";
-
-  verificationUser =
-  null;
-
-}
-
-
-/* =========================================
-   RESEND VERIFICATION
-========================================= */
-
-async function resendVerificationEmail(){
-
-  if(!verificationUser){
-
-    showMessage(
-      "Please sign in first.",
-      "error"
-    );
-
-    return;
+    togglePassword.textContent =
+    isPassword
+    ? "🙈"
+    : "👁";
 
   }
 
-
-  if(resendCooldown){
-
-    return;
-
-  }
+);
 
 
-  resendVerification.disabled =
-  true;
-
-  resendVerification.textContent =
-  "Sending...";
-
-
-  try{
-
-    await verificationUser
-      .sendEmailVerification({
-
-        url:
-        window.location.origin +
-        "/login.html",
-
-        handleCodeInApp:false
-
-      });
-
-
-    showMessage(
-      "Verification email sent. Please check your inbox.",
-      "success"
-    );
-
-
-    startResendCooldown();
-
-  }
-
-  catch(error){
-
-    console.error(
-      "Resend verification error:",
-      error
-    );
-
-
-    if(
-      error.code ===
-      "auth/too-many-requests"
-    ){
-
-      showMessage(
-        "Too many requests. Please wait before requesting another email.",
-        "error"
-      );
-
-    }
-
-    else{
-
-      showMessage(
-        "We couldn't send the verification email right now. Please try again.",
-        "error"
-      );
-
-    }
-
-
-    resendVerification.disabled =
-    false;
-
-    resendVerification.textContent =
-    "Resend Verification Email";
-
-  }
-
-}
-
-
-/* =========================================
-   RESEND COOLDOWN
-========================================= */
-
-function startResendCooldown(){
-
-  resendCooldown =
-  true;
-
-  let seconds =
-  60;
-
-
-  resendVerification.disabled =
-  true;
-
-
-  resendVerification.textContent =
-  "Resend available in " +
-  seconds +
-  "s";
-
-
-  const timer =
-  setInterval(function(){
-
-    seconds--;
-
-
-    if(seconds <= 0){
-
-      clearInterval(timer);
-
-      resendCooldown =
-      false;
-
-      resendVerification.disabled =
-      false;
-
-      resendVerification.textContent =
-      "Resend Verification Email";
-
-      return;
-
-    }
-
-
-    resendVerification.textContent =
-    "Resend available in " +
-    seconds +
-    "s";
-
-  },1000);
-
-}
-
-
-/* =========================================
+/* =========================
    LOGIN
-========================================= */
+========================= */
 
 loginForm.addEventListener(
-"submit",
-async function(event){
 
-  event.preventDefault();
+  "submit",
 
+  async function(event){
 
-  hideVerificationBox();
+    event.preventDefault();
 
-
-  const email =
-  emailInput.value
-    .trim()
-    .toLowerCase();
-
-
-  const password =
-  passwordInput.value;
-
-
-  /* =======================================
-     VALIDATE EMAIL
-  ======================================= */
-
-  if(!isValidEmail(email)){
-
-    showMessage(
-      "Please enter a valid email address.",
-      "error"
-    );
-
-    emailInput.focus();
-
-    return;
-
-  }
-
-
-  if(!password){
-
-    showMessage(
-      "Please enter your password.",
-      "error"
-    );
-
-    passwordInput.focus();
-
-    return;
-
-  }
-
-
-  /* =======================================
-     LOADING
-  ======================================= */
-
-  loginBtn.disabled =
-  true;
-
-
-  loginBtn.innerHTML = `
-
-    <span class="loading">
-
-      <span class="spinner"></span>
-
-      Signing in...
-
-    </span>
-
-  `;
-
-
-  try{
-
-
-    /* =====================================
-       REMEMBER LOGIN
-    ===================================== */
-
-    const rememberMe =
-    document.getElementById(
-      "rememberMe"
-    ).checked;
-
-
-    const persistence =
-    rememberMe
-
-    ? firebase.auth.Auth.Persistence.LOCAL
-
-    : firebase.auth.Auth.Persistence.SESSION;
-
-
-    await auth.setPersistence(
-      persistence
-    );
-
-
-    /* =====================================
-       SIGN IN
-    ===================================== */
-
-    const result =
-    await auth.signInWithEmailAndPassword(
-      email,
-      password
-    );
-
-
-    const user =
-    result.user;
-
-
-    /* =====================================
-       CHECK EMAIL VERIFICATION
-    ===================================== */
-
-    await user.reload();
-
-
-    const freshUser =
-    auth.currentUser;
-
-
-    if(!freshUser.emailVerified){
-
-      /*
-        The account exists,
-        but the email is not verified.
-
-        Sign the user back out so
-        they cannot access protected
-        pages with this session.
-      */
-
-      verificationUser =
-      freshUser;
-
-
-      await auth.signOut();
-
-
-      showVerificationBox(
-        verificationUser
-      );
-
-
-      showMessage(
-        "Your email has not been verified yet. Please verify it before continuing.",
-        "error"
-      );
-
-
-      resetLoginButton();
-
-      return;
-
-    }
-
-
-    /* =====================================
-       VERIFIED USER
-    ===================================== */
-
-    showMessage(
-      "Login successful. Welcome back ⚡",
-      "success"
-    );
-
-
-    /* =====================================
-       REDIRECT
-    ===================================== */
-
-    setTimeout(
-      function(){
-
-        window.location.href =
-        "home.html";
-
-      },
-      800
-    );
-
-
-  }
-
-
-  catch(error){
-
-    console.error(
-      "Login error:",
-      error
-    );
-
-
-    let text =
-    "Unable to sign in. Please try again.";
-
-
-    switch(error.code){
-
-      case "auth/invalid-credential":
-
-        text =
-        "Incorrect email or password.";
-
-        break;
-
-
-      case "auth/user-not-found":
-
-        text =
-        "Incorrect email or password.";
-
-        break;
-
-
-      case "auth/wrong-password":
-
-        text =
-        "Incorrect email or password.";
-
-        break;
-
-
-      case "auth/invalid-email":
-
-        text =
-        "Please enter a valid email address.";
-
-        break;
-
-
-      case "auth/user-disabled":
-
-        text =
-        "This account has been disabled. Please contact Danny Smart Power.";
-
-        break;
-
-
-      case "auth/too-many-requests":
-
-        text =
-        "Too many attempts. Please try again later.";
-
-        break;
-
-
-      case "auth/network-request-failed":
-
-        text =
-        "Network error. Check your internet connection.";
-
-        break;
-
-
-      default:
-
-        text =
-        "Unable to sign in. Please check your details and try again.";
-
-    }
-
-
-    showMessage(
-      text,
-      "error"
-    );
-
-
-    resetLoginButton();
-
-  }
-
-});
-
-
-/* =========================================
-   RESEND BUTTON
-========================================= */
-
-resendVerification.addEventListener(
-"click",
-async function(){
-
-  await resendVerificationEmail();
-
-});
-
-
-/* =========================================
-   CHECK VERIFICATION
-========================================= */
-
-checkVerification.addEventListener(
-"click",
-async function(){
-
-  if(!verificationUser){
-
-    showMessage(
-      "Please sign in again.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  checkVerification.disabled =
-  true;
-
-  checkVerification.textContent =
-  "Checking...";
-
-
-  try{
-
-    /*
-      Firebase requires the user
-      to be signed in before reload()
-      can refresh the verification state.
-
-      Therefore sign in again using
-      the email and password currently
-      entered in the form.
-    */
 
     const email =
-    emailInput.value
-      .trim()
-      .toLowerCase();
+    emailInput.value.trim();
 
 
     const password =
@@ -1553,157 +944,253 @@ async function(){
     if(!email || !password){
 
       showMessage(
-        "Please enter your email and password again, then check your verification.",
+
+        "Please enter your email and password.",
+
         "error"
+
       );
-
-      checkVerification.disabled =
-      false;
-
-      checkVerification.textContent =
-      "I've Verified My Email";
 
       return;
 
     }
 
 
-    const rememberMe =
-    document.getElementById(
-      "rememberMe"
-    ).checked;
+    loginBtn.disabled =
+    true;
 
 
-    const persistence =
-    rememberMe
+    loginBtn.innerHTML = `
 
-    ? firebase.auth.Auth.Persistence.LOCAL
+      <span class="loading">
 
-    : firebase.auth.Auth.Persistence.SESSION;
+        <span class="spinner"></span>
 
+        Signing in...
 
-    await auth.setPersistence(
-      persistence
-    );
+      </span>
 
-
-    const result =
-    await auth.signInWithEmailAndPassword(
-      email,
-      password
-    );
+    `;
 
 
-    const user =
-    result.user;
+    try{
 
 
-    await user.reload();
+      /* REMEMBER LOGIN */
+
+      const persistence =
+
+      document.getElementById(
+        "rememberMe"
+      ).checked
+
+      ? firebase.auth.Auth.Persistence.LOCAL
+
+      : firebase.auth.Auth.Persistence.SESSION;
 
 
-    const freshUser =
-    auth.currentUser;
-
-
-    if(freshUser.emailVerified){
-
-      showMessage(
-        "Email verified successfully! Welcome to Danny Smart Power ⚡",
-        "success"
+      await auth.setPersistence(
+        persistence
       );
 
 
-      checkVerification.textContent =
-      "Verified ✓";
+      /* LOGIN */
+
+      const result =
+
+      await auth.signInWithEmailAndPassword(
+
+        email,
+
+        password
+
+      );
+
+
+      const user =
+      result.user;
+
+
+      console.log(
+
+        "Logged in:",
+
+        user.uid
+
+      );
+
+
+      showMessage(
+
+        "Login successful. Welcome back ⚡",
+
+        "success"
+
+      );
 
 
       setTimeout(
+
         function(){
 
           window.location.href =
-          "home.html";
+  
+             "home.html";
 
         },
-        900
+
+        800
+
       );
 
 
     }
 
-    else{
 
-      await auth.signOut();
+    catch(error){
+
+
+      console.error(error);
+
+
+      let text =
+      "Unable to sign in. Please try again.";
+
+
+      switch(error.code){
+
+        case "auth/invalid-credential":
+
+          text =
+          "Incorrect email or password.";
+
+          break;
+
+
+        case "auth/user-not-found":
+
+          text =
+          "No account was found with this email.";
+
+          break;
+
+
+        case "auth/wrong-password":
+
+          text =
+          "Incorrect email or password.";
+
+          break;
+
+
+        case "auth/invalid-email":
+
+          text =
+          "Please enter a valid email address.";
+
+          break;
+
+
+        case "auth/too-many-requests":
+
+          text =
+          "Too many attempts. Please try again later.";
+
+          break;
+
+
+        case "auth/network-request-failed":
+
+          text =
+          "Network error. Check your internet connection.";
+
+          break;
+
+
+        default:
+
+          text =
+          error.message;
+
+      }
 
 
       showMessage(
-        "Your email is still not verified. Please open the verification email and click the link first.",
+
+        text,
+
         "error"
+
       );
 
 
-      checkVerification.disabled =
+      loginBtn.disabled =
       false;
 
-      checkVerification.textContent =
-      "I've Verified My Email";
+
+      loginBtn.textContent =
+      "Sign in";
 
     }
 
   }
 
-  catch(error){
-
-    console.error(
-      "Verification check error:",
-      error
-    );
+);
 
 
-    showMessage(
-      "We couldn't check your verification status. Please try again.",
-      "error"
-    );
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+
+  text,
+
+  type
+
+){
+
+  messageBox.textContent =
+  text;
 
 
-    checkVerification.disabled =
-    false;
+  messageBox.className =
 
-    checkVerification.textContent =
-    "I've Verified My Email";
+  "message show " + type;
 
-  }
-
-});
+}
 
 
-/* =========================================
-   AUTH STATE
-========================================= */
+/* =========================
+   ALREADY LOGGED IN
+========================= */
 
 auth.onAuthStateChanged(
-function(user){
 
-  /*
-    We intentionally do NOT automatically
-    redirect users here.
+  function(user){
 
-    This prevents someone from being
-    redirected unexpectedly and lets the
-    login verification process control
-    access to home.html.
-  */
+    if(user){
 
-  if(user){
+      console.log(
 
-    console.log(
-      "Active Firebase user:",
-      user.email
-    );
+        "Active user:",
+
+        user.email
+
+      );
+
+      // If you want automatic
+      // redirect for already
+      // logged-in users, enable:
+
+      // window.location.href =
+      // "home.html";
+
+    }
 
   }
 
-});
-
+);
 
 </script>
 
