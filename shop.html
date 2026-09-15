@@ -1651,28 +1651,39 @@
        AUTH
     ========================================= */
 
-    auth.onAuthStateChanged(async (user) => {
+ auth.onAuthStateChanged(async (user) => {
 
-      currentUser = user || null;
-
-      if (!currentUser) {
-
-        updateCartCount(0);
-
-        stopNotificationListeners();
-
-        setNotificationCount(0);
-
-        return;
-
-      }
+  currentUser = user || null;
 
 
-      loadCartCount();
+  if (!currentUser) {
 
-      startNotificationListeners();
+    updateCartCount(0);
 
-    });
+    stopNotificationListeners();
+
+    setNotificationCount(0);
+
+    loadMenuProfile();
+
+    return;
+
+  }
+
+
+  /*
+    Load the customer's saved profile
+    photo and name into the sidebar.
+  */
+
+  await loadMenuProfile();
+
+
+  loadCartCount();
+
+  startNotificationListeners();
+
+});
 
 
     /* =========================================
