@@ -1158,156 +1158,366 @@
   ></div>
 
   <aside
-    class="side-menu"
-    id="sideMenu"
-  >
+  class="side-menu"
+  id="sideMenu"
+>
 
-    <div class="menu-top">
+  <!-- MENU HEADER -->
 
-      <div class="menu-title">
-        Danny Smart Power
+  <div class="menu-top">
+
+    <div class="menu-brand">
+
+      <div class="menu-brand-mark">
+        ⚡
       </div>
 
-      <button
-        class="close-menu"
-        id="closeMenu"
-      >
-        ×
-      </button>
+      <div>
+
+        <div class="menu-title">
+          Danny Smart Power
+        </div>
+
+        <div class="menu-subtitle">
+          Smart power. Better living.
+        </div>
+
+      </div>
 
     </div>
 
-    <nav class="menu-links">
+    <button
+      class="close-menu"
+      id="closeMenu"
+      aria-label="Close menu"
+    >
+      ×
+    </button>
 
-      <a
-        href="profile.html"
-        class="menu-link"
+  </div>
+
+
+  <!-- PROFILE -->
+
+  <a
+    href="profile.html"
+    class="menu-profile"
+    id="menuProfile"
+    aria-label="Open profile"
+  >
+
+    <img
+      id="menuProfilePhoto"
+      class="menu-profile-photo"
+      src=""
+      alt="Profile"
+    >
+
+    <div class="menu-profile-info">
+
+      <div
+        class="menu-profile-name"
+        id="menuProfileName"
       >
-        <span class="menu-link-icon"👤></span>
-        <span>Profile</span>
-      </a>
+        My Profile
+      </div>
 
-      <a
-        href="home.html"
-        class="menu-link"
+      <div class="menu-profile-role">
+        Customer · View profile
+      </div>
+
+    </div>
+
+    <div class="menu-profile-action">
+      ›
+    </div>
+
+  </a>
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="menu-links">
+
+
+    <!-- SHOP -->
+
+    <div class="menu-section">
+      Shop
+    </div>
+
+
+    <a
+      href="home.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        🏠
+      </span>
+
+      <span>
+        Home
+      </span>
+
+    </a>
+
+
+    <a
+      href="shop.html"
+      class="menu-link active"
+    >
+
+      <span class="menu-link-icon">
+        🏪
+      </span>
+
+      <span>
+        Shop
+      </span>
+
+    </a>
+
+
+    <a
+      href="cart.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        🛒
+      </span>
+
+      <span>
+        Cart
+      </span>
+
+      <span
+        class="menu-notification"
+        id="menuCartCount"
       >
-        <span class="menu-link-icon">⌂</span>
-        <span>Home</span>
-      </a>
+        0
+      </span>
 
-      <a
-        href="shop.html"
-        class="menu-link active"
+    </a>
+
+
+    <a
+      href="orders.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        📦
+      </span>
+
+      <span>
+        My Orders
+      </span>
+
+    </a>
+
+
+    <a
+      href="wishlist.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        💙
+      </span>
+
+      <span>
+        Wishlist
+      </span>
+
+    </a>
+
+
+    <!-- SERVICES -->
+
+    <div class="menu-section">
+      Services
+    </div>
+
+
+    <a
+      href="services.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        🛠
+      </span>
+
+      <span>
+        Services
+      </span>
+
+    </a>
+
+
+    <a
+      href="service-project.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        ⚡️
+      </span>
+
+      <span>
+        Electrical Projects
+      </span>
+
+    </a>
+
+
+    <a
+      href="chat.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        •••
+      </span>
+
+      <span>
+        Chat with Danny
+      </span>
+
+      <span
+        class="menu-notification"
+        id="menuChatCount"
       >
-        <span class="menu-link-icon">🛍</span>
-        <span>Continue Shopping</span>
-      </a>
+        0
+      </span>
 
-      <a
-        href="cart.html"
-        class="menu-link"
+    </a>
+
+
+    <a
+      href="track-order.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        🚚
+      </span>
+
+      <span>
+        Track Order
+      </span>
+
+    </a>
+
+
+    <!-- SUPPORT -->
+
+    <div class="menu-section">
+      Support
+    </div>
+
+
+    <a
+      href="contact.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        ➡️
+      </span>
+
+      <span>
+        Contact Us
+      </span>
+
+    </a>
+
+
+    <a
+      href="help.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        ❓️
+      </span>
+
+      <span>
+        Help Center
+      </span>
+
+    </a>
+
+
+    <a
+      href="notification.html"
+      class="menu-link"
+    >
+
+      <span class="menu-link-icon">
+        🔔
+      </span>
+
+      <span>
+        Notifications
+      </span>
+
+      <span
+        class="menu-notification"
+        id="menuNotificationCount"
       >
-        <span class="menu-link-icon">🛒</span>
-        <span>Cart</span>
-      </a>
+        0
+      </span>
 
-      <a
-        href="orders.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">📦</span>
-        <span>My orders</span>
-      </a>
+    </a>
 
-      <a
-        href="services.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">🛠</span>
-        <span>Services</span>
-      </a>
 
-      <a
-        href="service-project.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">⚡</span>
-        <span>Electrical Projects</span>
-      </a>
+    <div class="menu-divider"></div>
 
-      <a
-        href="chat.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">💬</span>
-        <span>Chat with Danny</span>
-      </a>
 
-      <a
-        href="track-order.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">🚚</span>
-        <span>Track Order</span>
-      </a>
+    <!-- ACCOUNT -->
 
-      <a
-        href="wishlist.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">💙</span>
-        <span>Wishlist</span>
-      </a>
+    <div class="menu-section">
+      Account
+    </div>
 
-      <a
-        href="contact.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">📞</span>
-        <span>Contact Danny Smart Power</span>
-      </a>
 
-      <a
-        href="help.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">❓️</span>
-        <span>Help Center</span>
-      </a>
+    <a
+      href="settings.html"
+      class="menu-link"
+    >
 
-      <a
-        href="notification.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">🔔</span>
-        <span>Notifications</span>
+      <span class="menu-link-icon">
+        ⚙️
+      </span>
 
-        <span
-          class="menu-notification"
-          id="menuNotificationCount"
-        >0</span>
-      </a>
+      <span>
+        Settings
+      </span>
 
-      <a
-        href="settings.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">⚙️</span>
-        <span>Settings</span>
-      </a>
+    </a>
 
-      <a
-        href="signout.html"
-        class="menu-link"
-      >
-        <span class="menu-link-icon">🚪</span>
-        <span>Sign Out</span>
-      </a>
 
-    </nav>
+    <a
+      href="signout.html"
+      class="menu-link"
+    >
 
-  </aside>
+      <span class="menu-link-icon">
+        →
+      </span>
 
+      <span>
+        Sign Out
+      </span>
+
+    </a>
+
+  </nav>
+
+</aside>
 
   <!-- =========================
        MAIN PAGE
