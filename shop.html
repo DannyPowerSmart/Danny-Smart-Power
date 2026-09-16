@@ -724,9 +724,7 @@
       border: 1px solid rgba(148, 163, 184, 0.12);
       position: relative;
       cursor: pointer;
-
-      /* SPACE AROUND INLINE BANNER */
-      margin: 4px 0;
+      margin: 5px 0;
     }
 
     .product-inline-banner-image {
@@ -820,10 +818,7 @@
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-
-      /* MORE HORIZONTAL + VERTICAL SPACE */
-      column-gap: 18px;
-      row-gap: 22px;
+      gap: 15px;
     }
 
     .product-card {
@@ -1148,10 +1143,7 @@
 
       .products-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-
-        /* MORE MOBILE SPACE */
-        column-gap: 12px;
-        row-gap: 18px;
+        gap: 8px;
       }
 
       .product-image-wrap {
@@ -1232,10 +1224,7 @@
       }
 
       .products-grid {
-
-        /* KEEP 3 COLUMNS WITH BREATHING ROOM */
-        column-gap: 10px;
-        row-gap: 16px;
+        gap: 6px;
       }
 
       .product-image-wrap {
@@ -2287,7 +2276,7 @@
 
     /* =========================================
        RENDER PRODUCTS
-       RANDOM BANNER AFTER EVERY 9 PRODUCTS
+       RANDOM BANNER AFTER EVERY 10 PRODUCTS
     ========================================= */
 
     function renderProducts(products) {
@@ -2327,22 +2316,22 @@
 
         /*
           Add a random product banner
-          AFTER EVERY 9 PRODUCTS.
+          AFTER EVERY 10 PRODUCTS.
 
           Example:
 
-          Products 1-9
+          Products 1-10
           Banner
 
-          Products 10-18
+          Products 11-20
           Banner
 
-          Products 19-27
+          Products 21-30
           Banner
         */
 
         if (
-          (index + 1) % 9 === 0 &&
+          (index + 1) % 10 === 0 &&
           index !== products.length - 1
         ) {
 
@@ -4055,4 +4044,4 @@
   </script>
 
 </body>
-</html>
+  </html>
