@@ -3,65 +3,2412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services - Danny Smart Power</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Services | Danny Smart Power</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-  margin: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-header {
-  background: #020617;
-  padding: 15px 8%;
-  display: flex;
-  justify-content: space-between;
+:root{
+    --bg:#0f172a;
+    --header:#020617;
+    --card:#111c31;
+    --card2:#0b1629;
+    --blue:#38bdf8;
+    --blue2:#0ea5e9;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:rgba(148,163,184,.15);
+    --danger:#ef4444;
+    --success:#22c55e;
 }
 
-a { color: #38bdf8; text-decoration: none; }
-
-.container {
-  padding: 20px 8%;
+html{
+    scroll-behavior:smooth;
 }
 
-.service {
-  background: #020617;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:72px;
+    background:rgba(2,6,23,.96);
+    border-bottom:1px solid rgba(148,163,184,.12);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(15px);
+}
+
+.headerLeft{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.menuBtn,
+.cartBtn{
+    width:46px;
+    height:46px;
+    border:none;
+    border-radius:14px;
+    background:#0b172b;
+    border:1px solid rgba(56,189,248,.13);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:22px;
+    transition:.2s;
+    position:relative;
+}
+
+.menuBtn:hover,
+.cartBtn:hover{
+    background:#10243c;
+    border-color:rgba(56,189,248,.4);
+    transform:translateY(-1px);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#0b2037;
+    border:1px solid rgba(56,189,248,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.brandText{
+    line-height:1.15;
+}
+
+.brandText strong{
+    display:block;
+    font-size:16px;
+}
+
+.brandText span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:2px;
+}
+
+.cartBadge{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    min-width:19px;
+    height:19px;
+    padding:0 5px;
+    border-radius:20px;
+    background:var(--blue);
+    color:#00111d;
+    font-size:10px;
+    font-weight:700;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:28px 18px 70px;
+}
+
+.hero{
+    background:
+        radial-gradient(circle at 85% 20%,rgba(56,189,248,.12),transparent 35%),
+        linear-gradient(135deg,#0b172b,#101d34);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:34px 25px;
+    overflow:hidden;
+    position:relative;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    right:-70px;
+    bottom:-80px;
+    border-radius:50%;
+    background:rgba(56,189,248,.08);
+}
+
+.heroTag{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    background:rgba(56,189,248,.09);
+    color:var(--blue);
+    border:1px solid rgba(56,189,248,.18);
+    border-radius:30px;
+    padding:7px 12px;
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:32px;
+    line-height:1.2;
+    max-width:700px;
+}
+
+.hero h1 span{
+    color:var(--blue);
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:720px;
+    line-height:1.7;
+    font-size:14px;
+    margin-top:12px;
+}
+
+.heroActions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+}
+
+.primaryBtn,
+.secondaryBtn{
+    border:none;
+    min-height:46px;
+    padding:0 18px;
+    border-radius:13px;
+    font-family:inherit;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s;
+}
+
+.primaryBtn{
+    background:var(--blue);
+    color:#03121c;
+}
+
+.primaryBtn:hover{
+    background:#7dd3fc;
+    transform:translateY(-1px);
+}
+
+.secondaryBtn{
+    background:#101e34;
+    color:white;
+    border:1px solid var(--border);
+}
+
+.secondaryBtn:hover{
+    border-color:rgba(56,189,248,.4);
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.sectionTitle{
+    margin:35px 0 17px;
+}
+
+.sectionTitle h2{
+    font-size:22px;
+}
+
+.sectionTitle p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+}
+
+.servicesGrid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+}
+
+.serviceCard{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:21px;
+    transition:.25s;
+}
+
+.serviceCard:hover{
+    transform:translateY(-3px);
+    border-color:rgba(56,189,248,.3);
+}
+
+.serviceIcon{
+    width:52px;
+    height:52px;
+    border-radius:15px;
+    background:#0b2037;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    margin-bottom:16px;
+}
+
+.serviceCard h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.serviceCard p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+}
+
+.serviceLink{
+    display:inline-flex;
+    margin-top:14px;
+    color:var(--blue);
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+}
+
+/* =========================
+   REQUEST FORM
+========================= */
+
+.requestSection{
+    margin-top:38px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:24px;
+}
+
+.requestHeader{
+    margin-bottom:22px;
+}
+
+.requestHeader h2{
+    font-size:22px;
+}
+
+.requestHeader p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin-top:5px;
+}
+
+.formGrid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    font-size:12px;
+    color:#cbd5e1;
+    font-weight:600;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid rgba(148,163,184,.17);
+    background:#091426;
+    color:white;
+    border-radius:12px;
+    outline:none;
+    padding:13px 14px;
+    font-family:inherit;
+    font-size:13px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(56,189,248,.08);
+}
+
+.field textarea{
+    min-height:125px;
+    resize:vertical;
+}
+
+.field input:disabled{
+    opacity:.65;
+}
+
+.formBottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:18px;
+    flex-wrap:wrap;
+}
+
+.formNote{
+    color:var(--muted);
+    font-size:11px;
+    max-width:500px;
+    line-height:1.5;
+}
+
+.submitBtn{
+    border:none;
+    background:var(--blue);
+    color:#03121c;
+    min-height:47px;
+    padding:0 22px;
+    border-radius:13px;
+    font-family:inherit;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.submitBtn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    padding:13px 15px;
+    border-radius:12px;
+    margin-bottom:18px;
+    font-size:12px;
+}
+
+.message.success{
+    display:block;
+    background:rgba(34,197,94,.1);
+    border:1px solid rgba(34,197,94,.25);
+    color:#86efac;
+}
+
+.message.error{
+    display:block;
+    background:rgba(239,68,68,.1);
+    border:1px solid rgba(239,68,68,.25);
+    color:#fca5a5;
+}
+
+/* =========================
+   WHY US
+========================= */
+
+.infoGrid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:15px;
+    margin-top:18px;
+}
+
+.infoCard{
+    background:#0b172b;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:19px;
+}
+
+.infoCardIcon{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.infoCard h3{
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.infoCard p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    border-top:1px solid var(--border);
+    margin-top:50px;
+    padding:25px 0;
+    color:var(--muted);
+    text-align:center;
+    font-size:11px;
+}
+
+/* =========================
+   SIDE MENU
+========================= */
+
+.menuOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(3px);
+    z-index:2000;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
+}
+
+.menuOverlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.sideMenu{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:min(430px,88vw);
+    background:#020617;
+    border-right:1px solid rgba(148,163,184,.13);
+    transform:translateX(-100%);
+    transition:.28s ease;
+    overflow-y:auto;
+    padding:30px 24px 35px;
+}
+
+.menuOverlay.show .sideMenu{
+    transform:translateX(0);
+}
+
+.menuTop{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.menuBrand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.menuLogo{
+    width:70px;
+    height:70px;
+    border-radius:19px;
+    background:#0b2037;
+    border:1px solid rgba(56,189,248,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+}
+
+.menuBrandText strong{
+    display:block;
+    font-size:21px;
+}
+
+.menuBrandText span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.closeMenu{
+    width:53px;
+    height:53px;
+    border-radius:17px;
+    border:1px solid rgba(148,163,184,.13);
+    background:#0d192c;
+    color:#94a3b8;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.profileBox{
+    width:100%;
+    min-height:115px;
+    background:#0b172b;
+    border:1px solid rgba(56,189,248,.13);
+    border-radius:22px;
+    padding:17px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:34px;
+    cursor:pointer;
+}
+
+.profileImage{
+    width:76px;
+    height:76px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid rgba(56,189,248,.35);
+    background:#132238;
+    flex-shrink:0;
+}
+
+.profileDetails{
+    min-width:0;
+    flex:1;
+}
+
+.profileName{
+    font-size:16px;
+    font-weight:700;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.profileRole{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:3px;
+}
+
+.profileArrow{
+    font-size:27px;
+    color:#64748b;
+}
+
+.menuSection{
+    margin-bottom:26px;
+}
+
+.menuSectionTitle{
+    color:#64748b;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    margin:0 20px 12px;
+}
+
+.menuItem{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:10px 16px;
+    border-radius:18px;
+    color:#cbd5e1;
+    text-decoration:none;
+    margin:3px 0;
+    position:relative;
+    transition:.2s;
+}
+
+.menuItem:hover{
+    background:#08172b;
+    color:white;
+}
+
+.menuItem.active{
+    background:#081c33;
+    color:var(--blue);
+}
+
+.menuItem.active::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:18px;
+    bottom:18px;
+    width:5px;
+    border-radius:0 5px 5px 0;
+    background:var(--blue);
+}
+
+.menuIcon{
+    width:57px;
+    height:57px;
+    flex-shrink:0;
+    border-radius:15px;
+    background:#081326;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.menuText{
+    font-size:16px;
+    font-weight:600;
+}
+
+.menuDivider{
+    height:1px;
+    background:rgba(148,163,184,.1);
+    margin:4px 0 27px;
+}
+
+.signOut{
+    color:#cbd5e1;
+    cursor:pointer;
+    border:none;
+    background:transparent;
+    width:100%;
+    text-align:left;
+    font-family:inherit;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loadingOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(2,6,23,.78);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:5000;
+}
+
+.loadingOverlay.show{
+    display:flex;
+}
+
+.loaderBox{
+    background:#0b172b;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px 30px;
+    text-align:center;
+}
+
+.spinner{
+    width:34px;
+    height:34px;
+    border:3px solid rgba(56,189,248,.2);
+    border-top-color:var(--blue);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 12px;
+}
+
+.loaderBox p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+.backTop{
+    position:fixed;
+    right:18px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:14px;
+    background:var(--blue);
+    color:#03121c;
+    font-size:21px;
+    font-weight:700;
+    cursor:pointer;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:900;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+.backTop.show{
+    display:flex;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:800px){
+
+    .servicesGrid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .infoGrid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+}
+
+@media(max-width:600px){
+
+    .header{
+        padding:0 12px;
+    }
+
+    .brandText strong{
+        font-size:14px;
+    }
+
+    .brandText span{
+        font-size:9px;
+    }
+
+    .page{
+        padding:18px 13px 55px;
+    }
+
+    .hero{
+        border-radius:19px;
+        padding:26px 18px;
+    }
+
+    .hero h1{
+        font-size:24px;
+    }
+
+    .hero p{
+        font-size:12px;
+    }
+
+    .servicesGrid{
+        grid-template-columns:1fr;
+    }
+
+    .formGrid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .requestSection{
+        padding:18px;
+        border-radius:18px;
+    }
+
+    .menuItem{
+        min-height:70px;
+    }
+
+    .sideMenu{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .menuBrandText strong{
+        font-size:19px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h2>Our Services ⚡</h2>
-  <a href="shop.html">← Back</a>
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="headerLeft">
+
+        <button class="menuBtn" id="menuBtn" aria-label="Open menu">
+            ☰
+        </button>
+
+        <div class="brand">
+            <div class="logo">⚡</div>
+
+            <div class="brandText">
+                <strong>Danny Smart Power</strong>
+                <span>Smart power. Better living.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="cartBtn" id="cartBtn" aria-label="Cart">
+        🛒
+        <span class="cartBadge" id="cartBadge">0</span>
+    </button>
+
 </header>
 
-<div class="container">
 
-  <div class="service">
-    <h3>Electrical Installation</h3>
-    <p>Professional wiring and installation services for homes and offices.</p>
-  </div>
+<!-- =========================
+     SIDE MENU
+========================= -->
 
-  <div class="service">
-    <h3>Solar Installation</h3>
-    <p>Complete solar system setup and maintenance.</p>
-  </div>
+<div class="menuOverlay" id="menuOverlay">
 
-  <div class="service">
-    <h3>Lighting Solutions</h3>
-    <p>Modern lighting design and installation.</p>
-  </div>
+    <aside class="sideMenu" id="sideMenu">
+
+        <div class="menuTop">
+
+            <div class="menuBrand">
+
+                <div class="menuLogo">
+                    ⚡
+                </div>
+
+                <div class="menuBrandText">
+                    <strong>Danny Smart Power</strong>
+                    <span>Smart power. Better living.</span>
+                </div>
+
+            </div>
+
+            <button class="closeMenu" id="closeMenu">
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <div class="profileBox" id="profileBox">
+
+            <img
+                id="menuProfileImage"
+                class="profileImage"
+                src="https://via.placeholder.com/150/0b2037/38bdf8?text=👤"
+                alt="Profile">
+
+            <div class="profileDetails">
+
+                <div class="profileName" id="menuProfileName">
+                    Customer
+                </div>
+
+                <div class="profileRole">
+                    Customer · View profile
+                </div>
+
+            </div>
+
+            <div class="profileArrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <!-- SHOP -->
+
+        <div class="menuSection">
+
+            <div class="menuSectionTitle">
+                SHOP
+            </div>
+
+            <a href="index.html" class="menuItem">
+
+                <div class="menuIcon">
+                    🏠
+                </div>
+
+                <div class="menuText">
+                    Home
+                </div>
+
+            </a>
+
+
+            <a href="shop.html" class="menuItem">
+
+                <div class="menuIcon">
+                    🛍️
+                </div>
+
+                <div class="menuText">
+                    Shop
+                </div>
+
+            </a>
+
+
+            <a href="cart.html" class="menuItem">
+
+                <div class="menuIcon">
+                    🛒
+                </div>
+
+                <div class="menuText">
+                    Cart
+                </div>
+
+            </a>
+
+
+            <a href="orders.html" class="menuItem">
+
+                <div class="menuIcon">
+                    📦
+                </div>
+
+                <div class="menuText">
+                    My Orders
+                </div>
+
+            </a>
+
+
+            <a href="wishlist.html" class="menuItem">
+
+                <div class="menuIcon">
+                    💙
+                </div>
+
+                <div class="menuText">
+                    Wishlist
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <div class="menuSection">
+
+            <div class="menuSectionTitle">
+                SERVICES
+            </div>
+
+
+            <a href="services.html" class="menuItem active">
+
+                <div class="menuIcon">
+                    🛠️
+                </div>
+
+                <div class="menuText">
+                    Services
+                </div>
+
+            </a>
+
+
+            <a href="service-project.html" class="menuItem">
+
+                <div class="menuIcon">
+                    ⚡
+                </div>
+
+                <div class="menuText">
+                    Electrical Projects
+                </div>
+
+            </a>
+
+
+            <a href="service-request.html" class="menuItem">
+
+                <div class="menuIcon">
+                    🧰
+                </div>
+
+                <div class="menuText">
+                    Request Electrical Service
+                </div>
+
+            </a>
+
+
+            <a href="chat.html" class="menuItem">
+
+                <div class="menuIcon">
+                    •••
+                </div>
+
+                <div class="menuText">
+                    Chat with Danny
+                </div>
+
+            </a>
+
+
+            <a href="track-order.html" class="menuItem">
+
+                <div class="menuIcon">
+                    🚚
+                </div>
+
+                <div class="menuText">
+                    Track Order
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- SUPPORT -->
+
+        <div class="menuSection">
+
+            <div class="menuSectionTitle">
+                SUPPORT
+            </div>
+
+
+            <a href="contact.html" class="menuItem">
+
+                <div class="menuIcon">
+                    ➡️
+                </div>
+
+                <div class="menuText">
+                    Contact Us
+                </div>
+
+            </a>
+
+
+            <a href="help.html" class="menuItem">
+
+                <div class="menuIcon">
+                    ❓
+                </div>
+
+                <div class="menuText">
+                    Help Center
+                </div>
+
+            </a>
+
+
+            <a href="notifications.html" class="menuItem">
+
+                <div class="menuIcon">
+                    🔔
+                </div>
+
+                <div class="menuText">
+                    Notifications
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <div class="menuDivider"></div>
+
+
+        <!-- ACCOUNT -->
+
+        <div class="menuSection">
+
+            <div class="menuSectionTitle">
+                ACCOUNT
+            </div>
+
+
+            <a href="settings.html" class="menuItem">
+
+                <div class="menuIcon">
+                    ⚙️
+                </div>
+
+                <div class="menuText">
+                    Settings
+                </div>
+
+            </a>
+
+
+            <button class="menuItem signOut" id="signOutBtn">
+
+                <div class="menuIcon">
+                    →
+                </div>
+
+                <div class="menuText">
+                    Sign Out
+                </div>
+
+            </button>
+
+        </div>
+
+    </aside>
 
 </div>
 
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
+
+<main class="page">
+
+    <section class="hero">
+
+        <div class="heroTag">
+            ⚡ Professional Electrical Services
+        </div>
+
+        <h1>
+            Powering your home and business with
+            <span>smart electrical solutions.</span>
+        </h1>
+
+        <p>
+            From electrical installation and fault repairs to lighting,
+            solar solutions and maintenance, Danny Smart Power is here
+            to help you keep your electrical systems working safely and
+            efficiently.
+        </p>
+
+        <div class="heroActions">
+
+            <a href="#requestService" class="primaryBtn">
+                🧰 Request a Service
+            </a>
+
+            <a href="service-project.html" class="secondaryBtn">
+                ⚡ View Our Projects
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================= -->
+
+    <div class="sectionTitle">
+
+        <h2>
+            Our Services
+        </h2>
+
+        <p>
+            Professional electrical solutions for homes, businesses and projects.
+        </p>
+
+    </div>
+
+
+    <section class="servicesGrid">
+
+
+        <article class="serviceCard">
+
+            <div class="serviceIcon">
+                ⚡
+            </div>
+
+            <h3>
+                Electrical Installation
+            </h3>
+
+            <p>
+                Electrical wiring, installations, sockets, switches,
+                distribution systems and other electrical installations.
+            </p>
+
+            <a href="#requestService" class="serviceLink">
+                Request service →
+            </a>
+
+        </article>
+
+
+        <article class="serviceCard">
+
+            <div class="serviceIcon">
+                🔧
+            </div>
+
+            <h3>
+                Electrical Repairs
+            </h3>
+
+            <p>
+                Professional assistance with electrical faults,
+                damaged connections, power problems and related issues.
+            </p>
+
+            <a href="#requestService" class="serviceLink">
+                Request service →
+            </a>
+
+        </article>
+
+
+        <article class="serviceCard">
+
+            <div class="serviceIcon">
+                💡
+            </div>
+
+            <h3>
+                Lighting Solutions
+            </h3>
+
+            <p>
+                Indoor and outdoor lighting installation, replacement,
+                upgrades and practical lighting solutions.
+            </p>
+
+            <a href="#requestService" class="serviceLink">
+                Request service →
+            </a>
+
+        </article>
+
+
+        <article class="serviceCard">
+
+            <div class="serviceIcon">
+                ☀️
+            </div>
+
+            <h3>
+                Solar Solutions
+            </h3>
+
+            <p>
+                Solar electrical installations and solutions designed
+                around your power requirements.
+            </p>
+
+            <a href="#requestService" class="serviceLink">
+                Request service →
+            </a>
+
+        </article>
+
+
+        <article class="serviceCard">
+
+            <div class="serviceIcon">
+                🔌
+            </div>
+
+            <h3>
+                Power & Wiring
+            </h3>
+
+            <p>
+                Wiring upgrades, power connections and electrical
+                improvements for residential and commercial spaces.
+            </p>
+
+            <a href="#requestService" class="serviceLink">
+                Request service →
+            </a>
+
+        </article>
+
+
+        <article class="serviceCard">
+
+            <div class="serviceIcon">
+                🛠️
+            </div>
+
+            <h3>
+                Electrical Maintenance
+            </h3>
+
+            <p>
+                Electrical inspection, maintenance and troubleshooting
+                to help keep your systems operating properly.
+            </p>
+
+            <a href="#requestService" class="serviceLink">
+                Request service →
+            </a>
+
+        </article>
+
+    </section>
+
+
+    <!-- =========================
+         REQUEST SERVICE
+    ========================= -->
+
+    <section class="requestSection" id="requestService">
+
+        <div class="requestHeader">
+
+            <h2>
+                Request Electrical Service
+            </h2>
+
+            <p>
+                Tell us what you need and provide your location.
+                We will review your request and get back to you.
+            </p>
+
+        </div>
+
+
+        <div id="formMessage" class="message"></div>
+
+
+        <form id="serviceForm">
+
+            <div class="formGrid">
+
+
+                <div class="field">
+
+                    <label for="customerName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Your full name"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Your phone number"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="serviceType">
+                        Service Needed
+                    </label>
+
+                    <select id="serviceType" required>
+
+                        <option value="">
+                            Select a service
+                        </option>
+
+                        <option value="Electrical Installation">
+                            Electrical Installation
+                        </option>
+
+                        <option value="Electrical Repair">
+                            Electrical Repair
+                        </option>
+
+                        <option value="Lighting Solution">
+                            Lighting Solution
+                        </option>
+
+                        <option value="Solar Solution">
+                            Solar Solution
+                        </option>
+
+                        <option value="Power & Wiring">
+                            Power & Wiring
+                        </option>
+
+                        <option value="Electrical Maintenance">
+                            Electrical Maintenance
+                        </option>
+
+                        <option value="Electrical Inspection">
+                            Electrical Inspection
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="preferredDate">
+                        Preferred Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="preferredDate">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="address">
+                        Service Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        placeholder="House number / street"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="city">
+                        City / Area
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        placeholder="Your city or area"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="state">
+                        State
+                    </label>
+
+                    <input
+                        type="text"
+                        id="state"
+                        placeholder="Your state"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="country">
+                        Country
+                    </label>
+
+                    <input
+                        type="text"
+                        id="country"
+                        value="Nigeria">
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label for="description">
+                        Tell us about the problem or service you need
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Example: I need help with faulty wiring in my room..."
+                        required></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="formBottom">
+
+                <div class="formNote">
+                    Your request will be saved securely so our team can
+                    review and respond to you.
+                </div>
+
+                <button
+                    type="submit"
+                    class="submitBtn"
+                    id="submitBtn">
+
+                    Send Service Request
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- =========================
+         WHY CHOOSE US
+    ========================= -->
+
+    <div class="sectionTitle">
+
+        <h2>
+            Why Choose Danny Smart Power?
+        </h2>
+
+        <p>
+            We focus on practical electrical solutions and professional service.
+        </p>
+
+    </div>
+
+
+    <section class="infoGrid">
+
+        <div class="infoCard">
+
+            <div class="infoCardIcon">
+                🧰
+            </div>
+
+            <h3>
+                Professional Service
+            </h3>
+
+            <p>
+                We approach each electrical job with attention to the
+                actual requirements of the customer.
+            </p>
+
+        </div>
+
+
+        <div class="infoCard">
+
+            <div class="infoCardIcon">
+                ⚡
+            </div>
+
+            <h3>
+                Electrical Solutions
+            </h3>
+
+            <p>
+                From small electrical problems to larger projects,
+                we provide solutions based on your needs.
+            </p>
+
+        </div>
+
+
+        <div class="infoCard">
+
+            <div class="infoCardIcon">
+                💬
+            </div>
+
+            <h3>
+                Customer Support
+            </h3>
+
+            <p>
+                You can also contact us through Chat with Danny for
+                questions and service discussions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+        © <span id="year"></span> Danny Smart Power.
+        All rights reserved.
+
+    </footer>
+
+</main>
+
+
+<!-- BACK TO TOP -->
+
+<button class="backTop" id="backTop">
+    ↑
+</button>
+
+
+<!-- LOADING -->
+
+<div class="loadingOverlay" id="loadingOverlay">
+
+    <div class="loaderBox">
+
+        <div class="spinner"></div>
+
+        <p>
+            Sending your service request...
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
+
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "danny-smart-power.firebaseapp.com",
+    projectId: "danny-smart-power",
+    storageBucket: "danny-smart-power.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const closeMenu = document.getElementById("closeMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+const sideMenu = document.getElementById("sideMenu");
+
+const cartBtn = document.getElementById("cartBtn");
+const cartBadge = document.getElementById("cartBadge");
+
+const profileBox = document.getElementById("profileBox");
+const menuProfileImage = document.getElementById("menuProfileImage");
+const menuProfileName = document.getElementById("menuProfileName");
+
+const signOutBtn = document.getElementById("signOutBtn");
+
+const serviceForm = document.getElementById("serviceForm");
+const formMessage = document.getElementById("formMessage");
+const submitBtn = document.getElementById("submitBtn");
+const loadingOverlay = document.getElementById("loadingOverlay");
+
+const backTop = document.getElementById("backTop");
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* =========================================
+   MENU
+========================================= */
+
+function openMenu(){
+
+    menuOverlay.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeSideMenu(){
+
+    menuOverlay.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+}
+
+
+menuBtn.addEventListener("click", openMenu);
+
+closeMenu.addEventListener("click", closeSideMenu);
+
+
+menuOverlay.addEventListener("click", function(e){
+
+    if(e.target === menuOverlay){
+        closeSideMenu();
+    }
+
+});
+
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+        closeSideMenu();
+    }
+
+});
+
+
+/* =========================================
+   CART BUTTON
+========================================= */
+
+cartBtn.addEventListener("click", function(){
+
+    window.location.href = "cart.html";
+
+});
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+profileBox.addEventListener("click", function(){
+
+    window.location.href = "profile.html";
+
+});
+
+
+function setDefaultProfile(){
+
+    menuProfileName.textContent = "Customer";
+
+    menuProfileImage.src =
+        "https://via.placeholder.com/150/0b2037/38bdf8?text=👤";
+
+}
+
+
+/* =========================================
+   LOAD PROFILE FROM FIRESTORE
+========================================= */
+
+async function loadMenuProfile(user){
+
+    if(!user){
+
+        setDefaultProfile();
+
+        return;
+
+    }
+
+    try{
+
+        const profileSnap = await db
+            .collection("profiles")
+            .doc(user.uid)
+            .get();
+
+
+        if(profileSnap.exists){
+
+            const data = profileSnap.data();
+
+
+            const name =
+                data.fullName ||
+                data.name ||
+                user.displayName ||
+                "Customer";
+
+
+            menuProfileName.textContent = name;
+
+
+            const photo =
+                data.photoURL ||
+                data.photoUrl ||
+                data.photo ||
+                user.photoURL;
+
+
+            if(photo){
+
+                menuProfileImage.src = photo;
+
+            }else{
+
+                menuProfileImage.src =
+                    "https://via.placeholder.com/150/0b2037/38bdf8?text=👤";
+
+            }
+
+        }else{
+
+            menuProfileName.textContent =
+                user.displayName || "Customer";
+
+
+            if(user.photoURL){
+
+                menuProfileImage.src = user.photoURL;
+
+            }
+
+        }
+
+
+    }catch(error){
+
+        console.error("PROFILE LOAD ERROR:", error);
+
+        menuProfileName.textContent =
+            user.displayName || "Customer";
+
+
+        if(user.photoURL){
+
+            menuProfileImage.src = user.photoURL;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================
+   AUTH STATE
+========================================= */
+
+auth.onAuthStateChanged(async function(user){
+
+    if(user){
+
+        await loadMenuProfile(user);
+
+        await loadCartCount(user);
+
+        await prefillProfile(user);
+
+    }else{
+
+        setDefaultProfile();
+
+        cartBadge.style.display = "none";
+
+    }
+
+});
+
+
+/* =========================================
+   LOAD CART COUNT
+========================================= */
+
+async function loadCartCount(user){
+
+    if(!user){
+
+        cartBadge.style.display = "none";
+
+        return;
+
+    }
+
+    try{
+
+        const cartSnap = await db
+            .collection("carts")
+            .doc(user.uid)
+            .get();
+
+
+        if(!cartSnap.exists){
+
+            cartBadge.style.display = "none";
+
+            return;
+
+        }
+
+
+        const data = cartSnap.data();
+
+        const items = Array.isArray(data.items)
+            ? data.items
+            : [];
+
+
+        const count = items.reduce(function(total,item){
+
+            return total + Number(item.quantity || 1);
+
+        },0);
+
+
+        if(count > 0){
+
+            cartBadge.textContent =
+                count > 99 ? "99+" : count;
+
+            cartBadge.style.display = "flex";
+
+        }else{
+
+            cartBadge.style.display = "none";
+
+        }
+
+
+    }catch(error){
+
+        console.error("CART COUNT ERROR:", error);
+
+        cartBadge.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================================
+   PREFILL FORM FROM PROFILE
+========================================= */
+
+async function prefillProfile(user){
+
+    try{
+
+        const snap = await db
+            .collection("profiles")
+            .doc(user.uid)
+            .get();
+
+
+        if(!snap.exists){
+            return;
+        }
+
+
+        const data = snap.data();
+
+
+        document.getElementById("customerName").value =
+            data.fullName ||
+            data.name ||
+            user.displayName ||
+            "";
+
+
+        document.getElementById("phone").value =
+            data.phone ||
+            "";
+
+
+        document.getElementById("address").value =
+            data.address ||
+            "";
+
+
+        document.getElementById("city").value =
+            data.city ||
+            "";
+
+
+        document.getElementById("state").value =
+            data.state ||
+            "";
+
+
+        document.getElementById("country").value =
+            data.country ||
+            "Nigeria";
+
+
+    }catch(error){
+
+        console.error("PROFILE PREFILL ERROR:",error);
+
+    }
+
+}
+
+
+/* =========================================
+   FORM MESSAGE
+========================================= */
+
+function showMessage(type,text){
+
+    formMessage.className = "message " + type;
+
+    formMessage.textContent = text;
+
+    formMessage.style.display = "block";
+
+
+    formMessage.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+function hideMessage(){
+
+    formMessage.style.display = "none";
+
+}
+
+
+/* =========================================
+   SERVICE REQUEST
+========================================= */
+
+serviceForm.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    hideMessage();
+
+
+    const user = auth.currentUser;
+
+
+    if(!user){
+
+        showMessage(
+            "error",
+            "Please sign in to your account before submitting a service request."
+        );
+
+        setTimeout(function(){
+
+            window.location.href =
+                "login.html?redirect=services.html";
+
+        },1500);
+
+        return;
+
+    }
+
+
+    const customerName =
+        document.getElementById("customerName").value.trim();
+
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+
+    const serviceType =
+        document.getElementById("serviceType").value;
+
+
+    const preferredDate =
+        document.getElementById("preferredDate").value;
+
+
+    const address =
+        document.getElementById("address").value.trim();
+
+
+    const city =
+        document.getElementById("city").value.trim();
+
+
+    const state =
+        document.getElementById("state").value.trim();
+
+
+    const country =
+        document.getElementById("country").value.trim();
+
+
+    const description =
+        document.getElementById("description").value.trim();
+
+
+    if(
+        !customerName ||
+        !phone ||
+        !serviceType ||
+        !address ||
+        !city ||
+        !state ||
+        !description
+    ){
+
+        showMessage(
+            "error",
+            "Please complete all required fields."
+        );
+
+        return;
+
+    }
+
+
+    submitBtn.disabled = true;
+
+    loadingOverlay.classList.add("show");
+
+
+    try{
+
+        const requestRef =
+            db.collection("serviceRequests").doc();
+
+
+        await requestRef.set({
+
+            id:requestRef.id,
+
+            customerId:user.uid,
+
+            customerName:customerName,
+
+            customerEmail:user.email || "",
+
+            phone:phone,
+
+            serviceType:serviceType,
+
+            preferredDate:preferredDate || "",
+
+            address:address,
+
+            city:city,
+
+            state:state,
+
+            country:country || "Nigeria",
+
+            description:description,
+
+            status:"Pending",
+
+            createdAt:
+                firebase.firestore.FieldValue.serverTimestamp(),
+
+            updatedAt:
+                firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+
+        loadingOverlay.classList.remove("show");
+
+
+        showMessage(
+            "success",
+            "Your service request has been submitted successfully. Danny Smart Power will review it and contact you."
+        );
+
+
+        serviceForm.reset();
+
+
+        document.getElementById("country").value =
+            country || "Nigeria";
+
+
+        await prefillProfile(user);
+
+
+        window.scrollTo({
+            top:document.getElementById("requestService").offsetTop - 80,
+            behavior:"smooth"
+        });
+
+
+    }catch(error){
+
+        console.error(
+            "SERVICE REQUEST ERROR:",
+            error
+        );
+
+
+        loadingOverlay.classList.remove("show");
+
+
+        showMessage(
+            "error",
+            "We could not submit your request right now. Please try again."
+        );
+
+    }
+
+
+    submitBtn.disabled = false;
+
+});
+
+
+/* =========================================
+   SIGN OUT
+========================================= */
+
+signOutBtn.addEventListener("click", async function(){
+
+    const confirmLogout =
+        confirm("Are you sure you want to sign out?");
+
+
+    if(!confirmLogout){
+        return;
+    }
+
+
+    try{
+
+        await auth.signOut();
+
+        window.location.href = "login.html";
+
+    }catch(error){
+
+        console.error(
+            "SIGN OUT ERROR:",
+            error
+        );
+
+        alert(
+            "Unable to sign out right now. Please try again."
+        );
+
+    }
+
+});
+
+
+/* =========================================
+   BACK TO TOP
+========================================= */
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY > 400){
+
+        backTop.classList.add("show");
+
+    }else{
+
+        backTop.classList.remove("show");
+
+    }
+
+});
+
+
+backTop.addEventListener("click",function(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =========================================
+   SERVICE CARD LINKS
+========================================= */
+
+document.querySelectorAll(".serviceLink").forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        setTimeout(function(){
+
+            document.getElementById("serviceType").focus();
+
+        },500);
+
+    });
+
+});
+
+</script>
+
 </body>
-</html>
+  </html>
