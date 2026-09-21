@@ -76,7 +76,7 @@ header{
   height:42px;
   border:none;
   border-radius:12px;
-  background:#0f172a;
+  background:#162238;
   color:#fff;
   font-size:20px;
   cursor:pointer;
@@ -85,7 +85,7 @@ header{
 }
 
 .header-btn:hover{
-  background:#162238;
+  background:#1e293b;
 }
 
 .notification-dot{
@@ -206,7 +206,7 @@ header{
 }
 
 .menu-link:hover{
-  background:#0f172a;
+  background:#162238;
   color:#fff;
 }
 
@@ -229,14 +229,14 @@ header{
   height:35px;
   border:none;
   border-radius:10px;
-  background:#0f172a;
+  background:#162238;
   color:#fff;
   font-size:18px;
   cursor:pointer;
 }
 
 .menu-close:hover{
-  background:#162238;
+  background:#1e293b;
 }
 
 .signout-btn{
@@ -299,7 +299,7 @@ main{
   border-radius:18px;
   background:
     linear-gradient(135deg,rgba(56,189,248,.14),rgba(15,23,42,.96) 65%),
-    #020617;
+    #0f172a;
   border:1px solid rgba(56,189,248,.24);
   box-shadow:0 10px 30px rgba(0,0,0,.18);
 }
@@ -448,8 +448,8 @@ main{
 ========================= */
 
 .notification-card{
-  background:#020617;
-  border:1px solid rgba(255,255,255,.06);
+  background:#111c31;
+  border:1px solid rgba(56,189,248,.10);
   border-radius:16px;
   padding:17px;
   display:flex;
@@ -485,7 +485,7 @@ main{
 
 .notification-text p{
   font-size:10px;
-  color:#64748b;
+  color:#94a3b8;
   line-height:1.5;
 }
 
@@ -569,8 +569,8 @@ main{
   display:block;
   text-decoration:none;
   color:#fff;
-  background:#020617;
-  border:1px solid rgba(255,255,255,.06);
+  background:#111c31;
+  border:1px solid rgba(56,189,248,.08);
   border-radius:15px;
   padding:18px 14px;
   transition:.2s;
@@ -600,7 +600,7 @@ main{
 }
 
 .action-card p{
-  color:#64748b;
+  color:#94a3b8;
   font-size:9px;
   line-height:1.5;
 }
@@ -617,8 +617,8 @@ main{
 }
 
 .info-card{
-  background:#020617;
-  border:1px solid rgba(255,255,255,.06);
+  background:#111c31;
+  border:1px solid rgba(56,189,248,.08);
   border-radius:15px;
   padding:19px;
 }
@@ -634,7 +634,7 @@ main{
 }
 
 .info-card p{
-  color:#64748b;
+  color:#94a3b8;
   font-size:10px;
   line-height:1.7;
 }
@@ -649,6 +649,7 @@ footer{
   text-align:center;
   color:#64748b;
   font-size:10px;
+  background:#0f172a;
 }
 
 footer strong{
@@ -753,11 +754,11 @@ footer strong{
 }
 
 ::-webkit-scrollbar-track{
-  background:#020617;
+  background:#0f172a;
 }
 
 ::-webkit-scrollbar-thumb{
-  background:#1e293b;
+  background:#334155;
   border-radius:10px;
 }
 
@@ -772,20 +773,41 @@ footer strong{
 
 <header>
 
-  <a href="index.html" class="logo">
+  <a href="home.html" class="logo">
+
     <span class="logo-icon">⚡</span>
+
     <span>Danny Smart Power</span>
+
   </a>
 
   <div class="header-actions">
 
-    <button class="header-btn" id="notificationBtn" aria-label="Notifications">
+    <button
+      class="header-btn"
+      id="notificationBtn"
+      type="button"
+      aria-label="Notifications"
+    >
+
       🔔
-      <span class="notification-dot" id="notificationDot"></span>
+
+      <span
+        class="notification-dot"
+        id="notificationDot"
+      ></span>
+
     </button>
 
-    <button class="header-btn" id="menuBtn" aria-label="Open menu">
+    <button
+      class="header-btn"
+      id="menuBtn"
+      type="button"
+      aria-label="Open menu"
+    >
+
       ☰
+
     </button>
 
   </div>
@@ -797,18 +819,32 @@ footer strong{
      MENU OVERLAY
 ========================= -->
 
-<div class="menu-overlay" id="menuOverlay"></div>
+<div
+  class="menu-overlay"
+  id="menuOverlay"
+></div>
 
 
 <!-- =========================
      SIDE MENU
 ========================= -->
 
-<aside class="side-menu" id="sideMenu">
+<aside
+  class="side-menu"
+  id="sideMenu"
+>
 
-  <button class="menu-close" id="menuClose" aria-label="Close menu">
+  <button
+    class="menu-close"
+    id="menuClose"
+    type="button"
+    aria-label="Close menu"
+  >
+
     ×
+
   </button>
+
 
   <div class="menu-top">
 
@@ -817,17 +853,23 @@ footer strong{
       <img
         id="menuProfileImage"
         class="profile-image"
-        src="https://via.placeholder.com/100"
+        src="/icon-192.png"
         alt="Profile"
       >
 
       <div class="profile-info">
 
-        <div class="profile-name" id="menuProfileName">
+        <div
+          class="profile-name"
+          id="menuProfileName"
+        >
           Customer
         </div>
 
-        <div class="profile-email" id="menuProfileEmail">
+        <div
+          class="profile-email"
+          id="menuProfileEmail"
+        >
           Loading...
         </div>
 
@@ -842,31 +884,63 @@ footer strong{
 
   <div class="menu-section">
 
-    <div class="menu-title">SHOP</div>
+    <div class="menu-title">
+      SHOP
+    </div>
 
-    <a href="index.html" class="menu-link active">
+    <a
+      href="home.html"
+      class="menu-link active"
+    >
+
       <span class="menu-icon">⌂</span>
+
       <span>Home</span>
+
     </a>
 
-    <a href="shop.html" class="menu-link">
+    <a
+      href="shop.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">🛒</span>
+
       <span>Shop</span>
+
     </a>
 
-    <a href="cart.html" class="menu-link">
+    <a
+      href="cart.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">🛍️</span>
+
       <span>Cart</span>
+
     </a>
 
-    <a href="orders.html" class="menu-link">
+    <a
+      href="orders.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">📦</span>
+
       <span>My Orders</span>
+
     </a>
 
-    <a href="wishlist.html" class="menu-link">
+    <a
+      href="wishlist.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">♡</span>
+
       <span>Wishlist</span>
+
     </a>
 
   </div>
@@ -876,21 +950,41 @@ footer strong{
 
   <div class="menu-section">
 
-    <div class="menu-title">SERVICES</div>
+    <div class="menu-title">
+      SERVICES
+    </div>
 
-    <a href="services.html" class="menu-link">
+    <a
+      href="services.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">⚡</span>
+
       <span>Electrical Services</span>
+
     </a>
 
-    <a href="service-project.html" class="menu-link">
+    <a
+      href="service-project.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">🏗️</span>
+
       <span>Our Projects</span>
+
     </a>
 
-    <a href="service-request.html" class="menu-link">
+    <a
+      href="service-request.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">🔧</span>
+
       <span>Request a Service</span>
+
     </a>
 
   </div>
@@ -900,26 +994,52 @@ footer strong{
 
   <div class="menu-section">
 
-    <div class="menu-title">SUPPORT</div>
+    <div class="menu-title">
+      SUPPORT
+    </div>
 
-    <a href="chat.html" class="menu-link">
+    <a
+      href="chat.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">💬</span>
+
       <span>Chat with Danny</span>
+
     </a>
 
-    <a href="track-order.html" class="menu-link">
+    <a
+      href="track-order.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">📍</span>
+
       <span>Track Order</span>
+
     </a>
 
-    <a href="contact.html" class="menu-link">
+    <a
+      href="contact.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">☎️</span>
+
       <span>Contact Us</span>
+
     </a>
 
-    <a href="help.html" class="menu-link">
+    <a
+      href="help.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">❓</span>
+
       <span>Help Center</span>
+
     </a>
 
   </div>
@@ -929,28 +1049,54 @@ footer strong{
 
   <div class="menu-section">
 
-    <div class="menu-title">ACCOUNT</div>
+    <div class="menu-title">
+      ACCOUNT
+    </div>
 
-    <a href="notifications.html" class="menu-link">
+    <a
+      href="notifications.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">🔔</span>
+
       <span>Notifications</span>
+
     </a>
 
-    <a href="profile.html" class="menu-link">
+    <a
+      href="profile.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">👤</span>
+
       <span>My Profile</span>
+
     </a>
 
-    <a href="settings.html" class="menu-link">
+    <a
+      href="settings.html"
+      class="menu-link"
+    >
+
       <span class="menu-icon">⚙️</span>
+
       <span>Settings</span>
+
     </a>
 
   </div>
 
 
-  <button class="signout-btn" id="signOutBtn">
+  <button
+    class="signout-btn"
+    id="signOutBtn"
+    type="button"
+  >
+
     ↪ Sign Out
+
   </button>
 
 </aside>
@@ -962,14 +1108,23 @@ footer strong{
 
 <main>
 
+
   <!-- WELCOME -->
 
   <section class="welcome">
 
-    <small>Welcome back</small>
+    <small>
+      Welcome back
+    </small>
 
     <h1>
-      Hello, <span id="welcomeName">Customer</span> 👋
+
+      Hello,
+      <span id="welcomeName">
+        Customer
+      </span>
+      👋
+
     </h1>
 
   </section>
@@ -980,8 +1135,11 @@ footer strong{
   <section class="open-advert">
 
     <div class="open-badge">
+
       <span class="open-badge-dot"></span>
+
       WE'RE OPEN & READY
+
     </div>
 
     <h2>
@@ -989,19 +1147,31 @@ footer strong{
     </h2>
 
     <p>
+
       Danny Smart Power is live and ready to serve you.
       Shop quality electrical products, explore our power solutions,
       request a service, or chat directly with us whenever you need help.
+
     </p>
 
     <div class="open-advert-actions">
 
-      <a href="shop.html" class="advert-btn primary">
+      <a
+        href="shop.html"
+        class="advert-btn primary"
+      >
+
         Explore Products
+
       </a>
 
-      <a href="service-request.html" class="advert-btn secondary">
+      <a
+        href="service-request.html"
+        class="advert-btn secondary"
+      >
+
         Request a Service
+
       </a>
 
     </div>
@@ -1014,14 +1184,20 @@ footer strong{
   <section class="hero">
 
     <h2>
+
       Smart Power Solutions for
-      <span>Everyday Needs</span>
+      <span>
+        Everyday Needs
+      </span>
+
     </h2>
 
     <p>
+
       Discover electrical materials, lighting, solar products and
       professional electrical services from Danny Smart Power.
       We are here to help you power your home, business and projects.
+
     </p>
 
   </section>
@@ -1039,11 +1215,15 @@ footer strong{
 
       <div>
 
-        <h3>Stay Updated</h3>
+        <h3>
+          Stay Updated
+        </h3>
 
         <p>
+
           Turn on notifications to receive important updates,
           order information and messages.
+
         </p>
 
       </div>
@@ -1052,7 +1232,10 @@ footer strong{
 
     <label class="switch">
 
-      <input type="checkbox" id="pushSwitch">
+      <input
+        type="checkbox"
+        id="pushSwitch"
+      >
 
       <span class="slider"></span>
 
@@ -1065,22 +1248,32 @@ footer strong{
 
   <div class="section-title">
 
-    <h2>Quick Actions</h2>
+    <h2>
+      Quick Actions
+    </h2>
 
-    <span>What would you like to do?</span>
+    <span>
+      What would you like to do?
+    </span>
 
   </div>
 
 
   <section class="quick-actions">
 
-    <a href="shop.html" class="action-card">
+
+    <a
+      href="shop.html"
+      class="action-card"
+    >
 
       <div class="action-icon">
         🛒
       </div>
 
-      <h3>Shop Products</h3>
+      <h3>
+        Shop Products
+      </h3>
 
       <p>
         Browse electrical, lighting and solar products.
@@ -1089,13 +1282,18 @@ footer strong{
     </a>
 
 
-    <a href="service-request.html" class="action-card">
+    <a
+      href="service-request.html"
+      class="action-card"
+    >
 
       <div class="action-icon">
         🔧
       </div>
 
-      <h3>Request a Service</h3>
+      <h3>
+        Request a Service
+      </h3>
 
       <p>
         Need an electrician? Send us your service request.
@@ -1104,13 +1302,18 @@ footer strong{
     </a>
 
 
-    <a href="service-project.html" class="action-card">
+    <a
+      href="service-project.html"
+      class="action-card"
+    >
 
       <div class="action-icon">
         🏗️
       </div>
 
-      <h3>View Our Projects</h3>
+      <h3>
+        View Our Projects
+      </h3>
 
       <p>
         See electrical and power projects completed by us.
@@ -1119,13 +1322,18 @@ footer strong{
     </a>
 
 
-    <a href="chat.html" class="action-card">
+    <a
+      href="chat.html"
+      class="action-card"
+    >
 
       <div class="action-icon">
         💬
       </div>
 
-      <h3>Chat with Danny</h3>
+      <h3>
+        Chat with Danny
+      </h3>
 
       <p>
         Talk with us directly and get assistance.
@@ -1140,14 +1348,19 @@ footer strong{
 
   <div class="section-title">
 
-    <h2>Power Solutions</h2>
+    <h2>
+      Power Solutions
+    </h2>
 
-    <span>Danny Smart Power</span>
+    <span>
+      Danny Smart Power
+    </span>
 
   </div>
 
 
   <section class="info-grid">
+
 
     <div class="info-card">
 
@@ -1155,11 +1368,15 @@ footer strong{
         ☀️
       </div>
 
-      <h3>Solar & Power</h3>
+      <h3>
+        Solar & Power
+      </h3>
 
       <p>
+
         Explore solar and power solutions designed to support
         homes, businesses and everyday energy needs.
+
       </p>
 
     </div>
@@ -1171,11 +1388,15 @@ footer strong{
         💡
       </div>
 
-      <h3>Electrical & Lighting</h3>
+      <h3>
+        Electrical & Lighting
+      </h3>
 
       <p>
+
         Find electrical materials and lighting products for
         installations, repairs and new projects.
+
       </p>
 
     </div>
@@ -1187,11 +1408,15 @@ footer strong{
         ⚙️
       </div>
 
-      <h3>Professional Service</h3>
+      <h3>
+        Professional Service
+      </h3>
 
       <p>
+
         Request professional electrical assistance for your
         installation, maintenance and power-related needs.
+
       </p>
 
     </div>
@@ -1207,8 +1432,13 @@ footer strong{
 
 <footer>
 
-  © <span id="year"></span>
-  <strong>Danny Smart Power</strong>.
+  ©
+  <span id="year"></span>
+
+  <strong>
+    Danny Smart Power
+  </strong>.
+
   All rights reserved.
 
 </footer>
@@ -1227,29 +1457,56 @@ footer strong{
 <script>
 
 const firebaseConfig={
-  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
+
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+
   authDomain:"danny-smart-power.firebaseapp.com",
-  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  databaseURL:
+  "https://danny-smart-power-default-rtdb.firebaseio.com",
+
   projectId:"danny-smart-power",
-  storageBucket:"danny-smart-power.firebasestorage.app",
-  messagingSenderId:"649735645158",
-  appId:"1:649735645158:web:cff518b89721a163679827",
-  measurementId:"G-258YKLP5ZS"
+
+  storageBucket:
+  "danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:
+  "649735645158",
+
+  appId:
+  "1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:
+  "G-258YKLP5ZS"
+
 };
 
+
 if(!firebase.apps.length){
+
   firebase.initializeApp(firebaseConfig);
+
 }
 
+
 const auth=firebase.auth();
+
 const db=firebase.firestore();
 
 let messaging=null;
 
+
 try{
+
   messaging=firebase.messaging();
+
 }catch(error){
-  console.log("Firebase Messaging unavailable:",error);
+
+  console.log(
+    "Firebase Messaging unavailable:",
+    error
+  );
+
 }
 
 
@@ -1257,24 +1514,44 @@ try{
    ELEMENTS
 ========================= */
 
-const menuBtn=document.getElementById("menuBtn");
-const menuClose=document.getElementById("menuClose");
-const sideMenu=document.getElementById("sideMenu");
-const menuOverlay=document.getElementById("menuOverlay");
+const menuBtn=
+  document.getElementById("menuBtn");
 
-const notificationBtn=document.getElementById("notificationBtn");
+const menuClose=
+  document.getElementById("menuClose");
 
-const signOutBtn=document.getElementById("signOutBtn");
+const sideMenu=
+  document.getElementById("sideMenu");
 
-const welcomeName=document.getElementById("welcomeName");
+const menuOverlay=
+  document.getElementById("menuOverlay");
 
-const menuProfileName=document.getElementById("menuProfileName");
-const menuProfileEmail=document.getElementById("menuProfileEmail");
-const menuProfileImage=document.getElementById("menuProfileImage");
+const notificationBtn=
+  document.getElementById("notificationBtn");
 
-const pushSwitch=document.getElementById("pushSwitch");
+const signOutBtn=
+  document.getElementById("signOutBtn");
 
-document.getElementById("year").textContent=new Date().getFullYear();
+const welcomeName=
+  document.getElementById("welcomeName");
+
+const menuProfileName=
+  document.getElementById("menuProfileName");
+
+const menuProfileEmail=
+  document.getElementById("menuProfileEmail");
+
+const menuProfileImage=
+  document.getElementById("menuProfileImage");
+
+const pushSwitch=
+  document.getElementById("pushSwitch");
+
+const notificationDot=
+  document.getElementById("notificationDot");
+
+document.getElementById("year").textContent=
+  new Date().getFullYear();
 
 
 /* =========================
@@ -1284,145 +1561,325 @@ document.getElementById("year").textContent=new Date().getFullYear();
 function openMenu(){
 
   sideMenu.classList.add("open");
+
   menuOverlay.classList.add("show");
 
   document.body.style.overflow="hidden";
 
 }
 
+
 function closeMenu(){
 
   sideMenu.classList.remove("open");
+
   menuOverlay.classList.remove("show");
 
   document.body.style.overflow="";
 
 }
 
-menuBtn.addEventListener("click",openMenu);
 
-menuClose.addEventListener("click",closeMenu);
+menuBtn.addEventListener(
+  "click",
+  openMenu
+);
 
-menuOverlay.addEventListener("click",closeMenu);
+
+menuClose.addEventListener(
+  "click",
+  closeMenu
+);
+
+
+menuOverlay.addEventListener(
+  "click",
+  closeMenu
+);
+
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key==="Escape"){
+
+      closeMenu();
+
+    }
+
+  }
+);
 
 
 /* =========================
    NOTIFICATIONS BUTTON
 ========================= */
 
-notificationBtn.addEventListener("click",function(){
+notificationBtn.addEventListener(
+  "click",
+  function(){
 
-  window.location.href="notifications.html";
+    window.location.href=
+      "notifications.html";
 
-});
+  }
+);
 
 
 /* =========================
    AUTH + PROFILE
-   NO AUTOMATIC LOGIN REDIRECT
+   IMPORTANT:
+   NO AUTOMATIC REDIRECT
 ========================= */
 
-auth.onAuthStateChanged(async function(user){
+auth.onAuthStateChanged(
+  async function(user){
 
-  /*
-    IMPORTANT:
-    Do NOT redirect to login.html when Firebase temporarily
-    reports no user. The home page is allowed to remain open.
-  */
+    /*
+      IMPORTANT:
+      Home page does NOT redirect to login.html.
 
-  if(!user){
+      Firebase can take a moment to restore
+      the existing signed-in customer session.
 
-    welcomeName.textContent="Customer";
+      If there is temporarily no user,
+      simply keep the home page open.
+    */
 
-    menuProfileName.textContent="Customer";
+    if(!user){
 
-    menuProfileEmail.textContent="";
+      welcomeName.textContent=
+        "Customer";
 
-    pushSwitch.checked=false;
+      menuProfileName.textContent=
+        "Customer";
 
-    return;
+      menuProfileEmail.textContent=
+        "Not signed in";
 
-  }
+      menuProfileImage.src=
+        "/icon-192.png";
 
-  const fallbackName=
-    user.displayName ||
-    (user.email ? user.email.split("@")[0] : "Customer");
+      pushSwitch.checked=false;
 
-  welcomeName.textContent=fallbackName;
+      return;
 
-  menuProfileName.textContent=fallbackName;
+    }
 
-  menuProfileEmail.textContent=user.email || "Signed in";
 
-  if(user.photoURL){
+    /*
+      First use Firebase Authentication
+      information immediately.
+    */
 
-    menuProfileImage.src=user.photoURL;
+    let customerDisplayName=
+      user.displayName ||
+      "";
 
-  }
 
-  try{
+    /*
+      If Firebase Auth does not have a name,
+      use the email username temporarily.
+    */
 
-    const profileDoc=await db
-      .collection("profiles")
-      .doc(user.uid)
-      .get();
+    if(!customerDisplayName){
 
-    if(profileDoc.exists){
+      if(user.email){
 
-      const profile=profileDoc.data();
+        customerDisplayName=
+          user.email
+            .split("@")[0];
 
-      const name=
-        profile.fullName ||
-        profile.name ||
-        fallbackName;
+      }else{
 
-      welcomeName.textContent=name;
-
-      menuProfileName.textContent=name;
-
-      const photo=
-        profile.photoURL ||
-        profile.photoUrl ||
-        profile.photo;
-
-      if(photo){
-
-        menuProfileImage.src=photo;
+        customerDisplayName=
+          "Customer";
 
       }
 
     }
 
-  }catch(error){
 
-    console.log("Profile load error:",error);
+    /*
+      Show the customer name immediately.
+    */
+
+    welcomeName.textContent=
+      customerDisplayName;
+
+    menuProfileName.textContent=
+      customerDisplayName;
+
+    menuProfileEmail.textContent=
+      user.email ||
+      "Signed in";
+
+
+    /*
+      Firebase Auth profile photo.
+    */
+
+    if(user.photoURL){
+
+      menuProfileImage.src=
+        user.photoURL;
+
+    }
+
+
+    /*
+      IMPORTANT:
+      Read the customer's actual profile
+      from:
+
+      profiles/{Firebase Auth UID}
+    */
+
+    try{
+
+      const profileDoc=
+        await db
+          .collection("profiles")
+          .doc(user.uid)
+          .get();
+
+
+      if(profileDoc.exists){
+
+        const profile=
+          profileDoc.data() || {};
+
+
+        /*
+          Your profile page uses fullName,
+          so that is checked first.
+        */
+
+        const profileName=
+          profile.fullName ||
+          profile.name ||
+          user.displayName ||
+          customerDisplayName;
+
+
+        /*
+          Your profile page may save photoURL.
+        */
+
+        const profilePhoto=
+          profile.photoURL ||
+          profile.photoUrl ||
+          profile.photo ||
+          user.photoURL;
+
+
+        /*
+          Update the actual welcome name.
+        */
+
+        welcomeName.textContent=
+          profileName;
+
+        menuProfileName.textContent=
+          profileName;
+
+
+        /*
+          Update the actual profile picture.
+        */
+
+        if(profilePhoto){
+
+          menuProfileImage.src=
+            profilePhoto;
+
+        }
+
+      }
+
+
+    }catch(error){
+
+      console.error(
+        "Profile load error:",
+        error
+      );
+
+    }
+
+
+    /*
+      Load notification state
+      without creating another auth listener.
+    */
+
+    try{
+
+      const userDoc=
+        await db
+          .collection("users")
+          .doc(user.uid)
+          .get();
+
+
+      if(userDoc.exists){
+
+        const userData=
+          userDoc.data() || {};
+
+
+        pushSwitch.checked=
+          userData.notificationsEnabled===true;
+
+      }
+
+    }catch(error){
+
+      console.log(
+        "Notification setting load error:",
+        error
+      );
+
+    }
 
   }
-
-});
+);
 
 
 /* =========================
    SIGN OUT
 ========================= */
 
-signOutBtn.addEventListener("click",async function(){
+signOutBtn.addEventListener(
+  "click",
+  async function(){
 
-  try{
+    try{
 
-    await auth.signOut();
+      await auth.signOut();
 
-    window.location.href="login.html";
+      /*
+        Redirect happens ONLY because
+        the customer deliberately clicked
+        Sign Out.
+      */
 
-  }catch(error){
+      window.location.href=
+        "login.html";
 
-    console.error(error);
+    }catch(error){
 
-    alert("Unable to sign out. Please try again.");
+      console.error(error);
+
+      alert(
+        "Unable to sign out. Please try again."
+      );
+
+    }
 
   }
-
-});
+);
 
 
 /* =========================
@@ -1433,7 +1890,9 @@ async function enablePushNotifications(){
 
   if(!messaging){
 
-    alert("Notifications are not available on this browser.");
+    alert(
+      "Notifications are not available on this browser."
+    );
 
     pushSwitch.checked=false;
 
@@ -1441,9 +1900,27 @@ async function enablePushNotifications(){
 
   }
 
+
   try{
 
-    const permission=await Notification.requestPermission();
+    if(
+      !("Notification" in window)
+    ){
+
+      alert(
+        "Notifications are not supported on this browser."
+      );
+
+      pushSwitch.checked=false;
+
+      return;
+
+    }
+
+
+    const permission=
+      await Notification.requestPermission();
+
 
     if(permission!=="granted"){
 
@@ -1453,14 +1930,30 @@ async function enablePushNotifications(){
 
     }
 
-    const token=await messaging.getToken({
 
-      vapidKey:
-      "BFTvpM4Gy807AEVK5SpAZud3kjGdC4zsxlBpfC-jJLALKaxcqwjCMMPY3MI5NAjd5ZjLXQWutZ43WdBqlgAc8Q"
+    const registration=
+      await navigator
+        .serviceWorker
+        .register(
+          "/firebase-messaging-sw.js"
+        );
 
-    });
 
-    const user=auth.currentUser;
+    const token=
+      await messaging.getToken({
+
+        vapidKey:
+          "BFTvpM4Gy807AEVK5SpAZud3kjGdC4zsxlBpfC-jJLALKaxcqwjCMMPY3MI5NAjd5ZjLXQWutZ43WdBqlgAc8Q",
+
+        serviceWorkerRegistration:
+          registration
+
+      });
+
+
+    const user=
+      auth.currentUser;
+
 
     if(user && token){
 
@@ -1469,17 +1962,30 @@ async function enablePushNotifications(){
         .doc(user.uid)
         .set({
 
-          notificationToken:token,
-          notificationsEnabled:true,
-          updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+          notificationToken:
+            token,
 
-        },{merge:true});
+          notificationsEnabled:
+            true,
+
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        },{
+
+          merge:true
+
+        });
 
     }
 
+
   }catch(error){
 
-    console.error("Notification error:",error);
+    console.error(
+      "Notification error:",
+      error
+    );
 
     pushSwitch.checked=false;
 
@@ -1488,83 +1994,58 @@ async function enablePushNotifications(){
 }
 
 
-pushSwitch.addEventListener("change",async function(){
+pushSwitch.addEventListener(
+  "change",
+  async function(){
 
-  const user=auth.currentUser;
+    const user=
+      auth.currentUser;
 
-  if(!user){
 
-    pushSwitch.checked=false;
+    if(!user){
 
-    return;
+      pushSwitch.checked=false;
 
-  }
+      return;
 
-  if(pushSwitch.checked){
+    }
 
-    await enablePushNotifications();
 
-  }else{
+    if(pushSwitch.checked){
 
-    try{
+      await enablePushNotifications();
 
-      await db
-        .collection("users")
-        .doc(user.uid)
-        .set({
+    }else{
 
-          notificationsEnabled:false,
-          updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+      try{
 
-        },{merge:true});
+        await db
+          .collection("users")
+          .doc(user.uid)
+          .set({
 
-    }catch(error){
+            notificationsEnabled:
+              false,
 
-      console.error(error);
+            updatedAt:
+              firebase.firestore.FieldValue.serverTimestamp()
+
+          },{
+
+            merge:true
+
+          });
+
+      }catch(error){
+
+        console.error(error);
+
+      }
 
     }
 
   }
-
-});
-
-
-/* =========================
-   LOAD PUSH SETTING
-========================= */
-
-/*
-  This listener also DOES NOT redirect.
-  It only loads the notification setting when
-  a Firebase user is available.
-*/
-
-auth.onAuthStateChanged(async function(user){
-
-  if(!user) return;
-
-  try{
-
-    const doc=await db
-      .collection("users")
-      .doc(user.uid)
-      .get();
-
-    if(doc.exists){
-
-      const data=doc.data();
-
-      pushSwitch.checked=data.notificationsEnabled===true;
-
-    }
-
-  }catch(error){
-
-    console.log("Notification setting load error:",error);
-
-  }
-
-});
+);
 
 </script>
 
@@ -1574,4 +2055,4 @@ auth.onAuthStateChanged(async function(user){
 <script src="push-notifications.js"></script>
 
 </body>
-  </html>
+</html>
