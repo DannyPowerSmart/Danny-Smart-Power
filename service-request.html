@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -112,168 +113,153 @@ header{
   background:#0f172a;
 }
 
-/* ================= MENU ================= */
+/* ================= CHAT STYLE MENU ================= */
 
-.side-menu{
+.menu-overlay{
   position:fixed;
-  z-index:3000;
+  inset:0;
+  background:rgba(2,6,23,.62);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  opacity:0;
+  visibility:hidden;
+  transition:.25s ease;
+  z-index:2999;
+}
+
+.menu-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.menu{
+  position:fixed;
   top:0;
-  right:-340px;
-  width:320px;
-  max-width:90%;
-  height:100dvh;
-  overflow-y:auto;
-  background:#020617;
-  padding:18px 16px 28px;
-  transition:.3s ease;
-  box-shadow:-14px 0 40px rgba(0,0,0,.38);
-}
-
-.side-menu.active{
   right:0;
+  width:min(320px,88vw);
+  height:100vh;
+  background:#0f172a;
+  border-left:1px solid #1e293b;
+  padding:18px 12px 25px;
+  box-shadow:-20px 0 50px rgba(0,0,0,.45);
+  z-index:3000;
+  transform:translateX(100%);
+  transition:transform .28s ease;
+  overflow-y:auto;
+  display:block;
 }
 
-.menu-header{
+.menu.active{
+  transform:translateX(0);
+}
+
+.menu-top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:14px;
+  padding:2px 4px 14px;
+  border-bottom:1px solid #1e293b;
+  margin-bottom:8px;
 }
 
-.menu-brand{
-  font-size:17px;
-  font-weight:700;
+.menu-title{
   color:#f8fafc;
+  font-size:15px;
+  font-weight:700;
 }
 
 .menu-close{
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  background:#17253a;
-  color:white;
-  font-size:21px;
+  width:36px;
+  height:36px;
+  border:none;
+  border-radius:10px;
+  background:#172033;
+  color:#cbd5e1;
+  font-size:20px;
   cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.menu-close:hover{
+  background:#1e293b;
+  color:white;
 }
 
 .menu-profile{
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:12px;
-  margin-bottom:18px;
-  border:1px solid rgba(56,189,248,.14);
-  border-radius:16px;
-  background:linear-gradient(135deg,#0d1b2e,#111f33);
+  gap:11px;
+  padding:13px 9px;
+  background:#111c31;
+  border:1px solid #1e293b;
+  border-radius:15px;
+  margin-bottom:12px;
 }
 
-.menu-profile-image{
-  width:52px;
-  height:52px;
-  flex-shrink:0;
+.menu-avatar{
+  width:45px;
+  height:45px;
   border-radius:50%;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#38bdf8,#0284c7);
-  border:2px solid rgba(56,189,248,.25);
-  font-size:23px;
-}
-
-.menu-profile-image img{
-  width:100%;
-  height:100%;
   object-fit:cover;
+  background:#1e293b;
+  border:1px solid #334155;
 }
 
-.menu-profile-info{
-  min-width:0;
-}
-
-.menu-profile-name{
-  font-size:14px;
-  font-weight:700;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.menu-profile-email{
-  display:block;
-  margin-top:3px;
-  color:#64748b;
-  font-size:10px;
-  word-break:break-word;
-}
-
-.menu-section-title{
-  margin:17px 8px 7px;
-  color:#64748b;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:1.2px;
-  text-transform:uppercase;
-}
-
-.menu-link{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  width:100%;
-  padding:12px 13px;
-  margin-top:4px;
-  border:0;
-  border-radius:12px;
-  background:transparent;
-  color:#e2e8f0;
-  text-decoration:none;
-  text-align:left;
-  font-family:inherit;
+.menu-name{
   font-size:13px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.menu-link:hover{
-  background:#17253a;
+  font-weight:700;
   color:white;
 }
 
-.menu-link.active{
-  background:rgba(56,189,248,.12);
-  color:#38bdf8;
-  border:1px solid rgba(56,189,248,.12);
+.menu-email{
+  font-size:10px;
+  color:#64748b;
+  word-break:break-all;
+  margin-top:2px;
 }
 
-.menu-icon{
-  width:22px;
-  text-align:center;
-  font-size:17px;
-  flex-shrink:0;
+.menu-section{
+  color:#64748b;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1px;
+  padding:12px 10px 5px;
 }
 
-.menu-link.logout{
-  color:#fca5a5;
-  margin-top:10px;
+.menu a,
+.menu button{
+  width:100%;
+  border:none;
+  background:transparent;
+  color:#cbd5e1;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 10px;
+  border-radius:11px;
+  cursor:pointer;
+  text-align:left;
+  font-size:13px;
 }
 
-.menu-link.logout:hover{
-  background:#351c24;
+.menu a:hover,
+.menu button:hover{
+  background:#172033;
+  color:white;
 }
 
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  z-index:2500;
-  background:rgba(2,6,23,.55);
-  backdrop-filter:blur(2px);
-  display:none;
+.menu a span,
+.menu button span{
+  flex:1;
 }
 
-.menu-overlay.active{
-  display:block;
+.menu-divider{
+  height:1px;
+  background:#1e293b;
+  margin:8px 5px;
 }
 
 /* ================= PAGE ================= */
@@ -788,14 +774,14 @@ select option{
     grid-column:auto;
   }
 
-  .side-menu{
-    width:320px;
-    max-width:90%;
+  .menu{
+    width:min(320px,90vw);
   }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -832,7 +818,7 @@ class="icon-btn"
 id="menuBtn"
 title="Menu">
 
-⋮
+☰
 
 </button>
 
@@ -841,23 +827,22 @@ title="Menu">
 </header>
 
 
-<!-- ================= MENU ================= -->
+<!-- ================= CHAT STYLE MENU ================= -->
 
-<aside
-class="side-menu"
-id="sideMenu">
+<div class="menu-overlay" id="menuOverlay"></div>
 
-<div class="menu-header">
+<div class="menu" id="menu">
 
-<div class="menu-brand">
+<div class="menu-top">
+
+<div class="menu-title">
 Danny Smart Power
 </div>
 
 <button
 class="menu-close"
 id="menuClose"
-type="button"
-aria-label="Close menu">
+type="button">
 
 ×
 
@@ -868,267 +853,120 @@ aria-label="Close menu">
 
 <div class="menu-profile">
 
-<div
-class="menu-profile-image"
-id="menuProfileImage">
+<img
+id="menuAvatar"
+class="menu-avatar"
+src="https://via.placeholder.com/80"
+alt="Profile">
 
-⚡
+<div>
+
+<div
+class="menu-name"
+id="menuName">
+
+Customer
 
 </div>
 
-<div class="menu-profile-info">
-
 <div
-class="menu-profile-name"
-id="customerName">
+class="menu-email"
+id="menuEmail">
 
 Loading...
 
 </div>
 
-<small
-class="menu-profile-email"
-id="customerEmail">
-</small>
-
 </div>
 
 </div>
 
 
-<div class="menu-section-title">
-Shop
+<div class="menu-section">
+SHOP
 </div>
 
-<a
-class="menu-link"
-href="home.html">
+<a href="home.html">
+🏠 <span>Home</span>
+</a>
 
-<span class="menu-icon">
-⌂
-</span>
+<a href="shop.html">
+🛒 <span>Shop</span>
+</a>
 
-Home
+<a href="cart.html">
+🛍️ <span>Cart</span>
+</a>
 
+<a href="orders.html">
+📦 <span>My Orders</span>
+</a>
+
+<a href="wishlist.html">
+💙 <span>Wishlist</span>
 </a>
 
 
-<a
-class="menu-link"
-href="shop.html">
-
-<span class="menu-icon">
-🛍️
-</span>
-
-Shop
-
-</a>
-
-
-<a
-class="menu-link"
-href="cart.html">
-
-<span class="menu-icon">
-🛒
-</span>
-
-My Cart
-
-</a>
-
-
-<a
-class="menu-link"
-href="orders.html">
-
-<span class="menu-icon">
-📦
-</span>
-
-My Orders
-
-</a>
-
-
-<a
-class="menu-link"
-href="wishlist.html">
-
-<span class="menu-icon">
-💙
-</span>
-
-Wishlists
-
-</a>
-
-
-<div class="menu-section-title">
-Services
+<div class="menu-section">
+SERVICES
 </div>
 
+<a href="services.html">
+⚡ <span>Electrical Services</span>
+</a>
 
-<a
-class="menu-link"
-href="services.html">
+<a href="service-project.html">
+🔧 <span>Our Projects</span>
+</a>
 
-<span class="menu-icon">
-⚡
-</span>
-
-Services
-
+<a href="service-request.html">
+📝 <span>Request a Service</span>
 </a>
 
 
-<a
-class="menu-link"
-href="service-project.html">
-
-<span class="menu-icon">
-🏗️
-</span>
-
-Our Projects
-
-</a>
-
-
-<a
-class="menu-link active"
-href="service-request.html">
-
-<span class="menu-icon">
-🛠️
-</span>
-
-Request a Service
-
-</a>
-
-
-<div class="menu-section-title">
-Support
+<div class="menu-section">
+SUPPORT
 </div>
 
+<a href="chat.html">
+💬 <span>Chat with Danny</span>
+</a>
 
-<a
-class="menu-link"
-href="chat.html">
+<a href="track-order.html">
+🚚 <span>Track Order</span>
+</a>
 
-<span class="menu-icon">
-💬
-</span>
+<a href="contact.html">
+📞 <span>Contact Us</span>
+</a>
 
-Chat with Danny
-
+<a href="help.html">
+❓ <span>Help Center</span>
 </a>
 
 
-<a
-class="menu-link"
-href="track-order.html">
-
-<span class="menu-icon">
-📍
-</span>
-
-Track Order
-
-</a>
-
-
-<a
-class="menu-link"
-href="contact.html">
-
-<span class="menu-icon">
-📞
-</span>
-
-Contact Us
-
-</a>
-
-
-<a
-class="menu-link"
-href="help.html">
-
-<span class="menu-icon">
-❓
-</span>
-
-Help Center
-
-</a>
-
-
-<div class="menu-section-title">
-Account
+<div class="menu-section">
+ACCOUNT
 </div>
 
-
-<a
-class="menu-link"
-href="profile.html">
-
-<span class="menu-icon">
-👤
-</span>
-
-My Profile
-
+<a href="notifications.html">
+🔔 <span>Notifications</span>
 </a>
 
-
-<a
-class="menu-link"
-href="notification.html">
-
-<span class="menu-icon">
-🔔
-</span>
-
-Notifications
-
+<a href="profile.html">
+👤 <span>My Profile</span>
 </a>
 
-
-<a
-class="menu-link"
-href="settings.html">
-
-<span class="menu-icon">
-⚙️
-</span>
-
-Settings
-
+<a href="settings.html">
+⚙️ <span>Settings</span>
 </a>
 
+<div class="menu-divider"></div>
 
-<button
-class="menu-link logout"
-id="logout"
-type="button">
-
-<span class="menu-icon">
-🚪
-</span>
-
-Sign Out
-
+<button id="signOutBtn">
+🚪 <span>Sign Out</span>
 </button>
 
-</aside>
-
-
-<div
-class="menu-overlay"
-id="menuOverlay">
 </div>
 
 
@@ -1169,6 +1007,7 @@ Customer Information
 
 </div>
 
+
 <div class="grid">
 
 <div class="field">
@@ -1179,7 +1018,7 @@ Name <span class="required">*</span>
 
 <input
 type="text"
-id="customerNameInput"
+id="customerName"
 readonly
 placeholder="Your name">
 
@@ -1212,6 +1051,7 @@ required>
 Service Information
 
 </div>
+
 
 <div class="grid">
 
@@ -1270,6 +1110,7 @@ required></textarea>
 Work Location
 
 </div>
+
 
 <div class="grid">
 
@@ -1399,6 +1240,7 @@ Preferred Schedule
 
 </div>
 
+
 <div class="grid">
 
 <div class="field">
@@ -1496,10 +1338,8 @@ Request Sent Successfully
 </h2>
 
 <p>
-
 Your electrical service request has been received.
 Danny Smart Power will review it and contact you.
-
 </p>
 
 <div class="request-id">
@@ -1551,7 +1391,7 @@ id="toast">
 const firebaseConfig = {
 
 apiKey:
-"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvAGb44",
+"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
 
 authDomain:
 "danny-smart-power.firebaseapp.com",
@@ -1605,7 +1445,7 @@ const serviceForm =
 document.getElementById("serviceForm");
 
 const customerNameInput =
-document.getElementById("customerNameInput");
+document.getElementById("customerName");
 
 const phoneInput =
 document.getElementById("phone");
@@ -1670,17 +1510,17 @@ document.getElementById("toast");
 const menuBtn =
 document.getElementById("menuBtn");
 
-const sideMenu =
-document.getElementById("sideMenu");
-
-const menuClose =
-document.getElementById("menuClose");
+const menu =
+document.getElementById("menu");
 
 const menuOverlay =
 document.getElementById("menuOverlay");
 
-const logoutBtn =
-document.getElementById("logout");
+const menuClose =
+document.getElementById("menuClose");
+
+const signOutBtn =
+document.getElementById("signOutBtn");
 
 const notificationBtn =
 document.getElementById("notificationBtn");
@@ -1692,26 +1532,24 @@ document.getElementById("notificationBtn");
 
 function openMenu(){
 
-sideMenu.classList.add(
-"active"
-);
+menu.classList.add("active");
 
-menuOverlay.classList.add(
-"active"
-);
+menuOverlay.classList.add("active");
+
+document.body.style.overflow =
+"hidden";
 
 }
 
 
 function closeMenu(){
 
-sideMenu.classList.remove(
-"active"
-);
+menu.classList.remove("active");
 
-menuOverlay.classList.remove(
-"active"
-);
+menuOverlay.classList.remove("active");
+
+document.body.style.overflow =
+"";
 
 }
 
@@ -1722,10 +1560,17 @@ function(event){
 
 event.stopPropagation();
 
+if(menu.classList.contains("active")){
+
+closeMenu();
+
+}else{
+
 openMenu();
 
 }
-);
+
+});
 
 
 menuClose.addEventListener(
@@ -1734,8 +1579,7 @@ function(){
 
 closeMenu();
 
-}
-);
+});
 
 
 menuOverlay.addEventListener(
@@ -1744,8 +1588,7 @@ function(){
 
 closeMenu();
 
-}
-);
+});
 
 
 /* =========================================================
@@ -1828,13 +1671,13 @@ defaultName;
 
 
 document.getElementById(
-"customerName"
+"menuName"
 ).textContent =
 defaultName;
 
 
 document.getElementById(
-"customerEmail"
+"menuEmail"
 ).textContent =
 user.email ||
 "";
@@ -1842,13 +1685,10 @@ user.email ||
 
 if(user.photoURL){
 
-const profileImage =
 document.getElementById(
-"menuProfileImage"
-);
-
-profileImage.innerHTML =
-`<img src="${user.photoURL}" alt="Profile">`;
+"menuAvatar"
+).src =
+user.photoURL;
 
 }
 
@@ -1876,7 +1716,7 @@ customerNameInput.value =
 currentProfile.name;
 
 document.getElementById(
-"customerName"
+"menuName"
 ).textContent =
 currentProfile.name;
 
@@ -1894,9 +1734,9 @@ currentProfile.phone;
 if(currentProfile.photoURL){
 
 document.getElementById(
-"menuProfileImage"
-).innerHTML =
-`<img src="${currentProfile.photoURL}" alt="Profile">`;
+"menuAvatar"
+).src =
+currentProfile.photoURL;
 
 }
 
@@ -1907,9 +1747,9 @@ currentProfile.photo &&
 ){
 
 document.getElementById(
-"menuProfileImage"
-).innerHTML =
-`<img src="${currentProfile.photo}" alt="Profile">`;
+"menuAvatar"
+).src =
+currentProfile.photo;
 
 }
 
@@ -2261,6 +2101,7 @@ return;
 
 
 resolve({
+
 url:
 result.secure_url,
 
@@ -2857,7 +2698,7 @@ window.location.href =
    SIGN OUT
 ========================================================= */
 
-logoutBtn.addEventListener(
+signOutBtn.addEventListener(
 "click",
 async function(){
 
@@ -2909,4 +2750,4 @@ today;
 </script>
 
 </body>
-  </html>
+</html>
