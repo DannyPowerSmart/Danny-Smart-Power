@@ -4616,21 +4616,6 @@ async function markAdminMessagesRead(
 
 
 /* =====================================================
-   DATA URL -> BLOB
-===================================================== */
-
-function dataUrlToBlob(dataUrl){
-  const parts = dataUrl.split(",");
-  const mime = (parts[0].match(/:(.*?);/) || [,"image/jpeg"])[1];
-  const binary = atob(parts[1]);
-  const bytes = new Uint8Array(binary.length);
-  for(let i = 0; i < binary.length; i++){
-    bytes[i] = binary.charCodeAt(i);
-  }
-  return new Blob([bytes], {type:mime});
-}
-
-/* =====================================================
    SEND NORMAL MESSAGE
 ===================================================== */
 
@@ -4664,7 +4649,8 @@ async function sendMessage(){
   sending =
     true;
 
-  sendButton.setAttribute("aria-busy", "true");
+  sendButton.disabled =
+    true;
 
 
   try{
@@ -4680,7 +4666,6 @@ async function sendMessage(){
       sending =
         false;
 
-      sendButton.removeAttribute("aria-busy");
       updateSendButton();
 
       return;
@@ -4692,46 +4677,57 @@ async function sendMessage(){
        TEXT / IMAGE
     =============================================== */
 
-    let imageUrl = "";
-
-    /* Upload images to Firebase Storage instead of putting a large
-       base64 image directly inside the Firestore message document. */
-    if(selectedImageData){
-      showToast("Uploading photo...");
-
-      const imageBlob = dataUrlToBlob(selectedImageData);
-      const imagePath =
-        "chatImages/" +
-        chatId + "/" +
-        Date.now() + "_" +
-        Math.random().toString(36).slice(2) + ".jpg";
-
-      const imageRef = storage.ref(imagePath);
-      await imageRef.put(imageBlob, {
-        contentType: "image/jpeg",
-        cacheControl: "public,max-age=31536000"
-      });
-
-      imageUrl = await imageRef.getDownloadURL();
-    }
-
     const messageRef =
-      db.collection("messages").doc();
+      db.collection(
+        "messages"
+      )
+      .doc();
 
     await messageRef.set({
-      chatId: chatId,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      imageUrl: imageUrl,
-      voiceUrl: "",
-      voiceDuration: 0,
-      read: false,
-      delivered: false,
-      senderId: user.uid,
-      senderName: user.displayName ||
-        (user.email ? user.email.split("@")[0] : "Customer"),
-      senderRole: "customer",
-      text: text,
-      deletedForCustomer: false
+
+      chatId:
+        chatId,
+
+      createdAt:
+        firebase.firestore.FieldValue
+          .serverTimestamp(),
+
+      imageUrl:
+        selectedImageData || "",
+
+      voiceUrl:
+        "",
+
+      voiceDuration:
+        0,
+
+      read:
+        false,
+
+      delivered:
+        false,
+
+      senderId:
+        user.uid,
+
+      senderName:
+        user.displayName ||
+
+        (
+          user.email
+            ? user.email.split("@")[0]
+            : "Customer"
+        ),
+
+      senderRole:
+        "customer",
+
+      text:
+        text,
+
+      deletedForCustomer:
+        false
+
     });
 
 
@@ -4774,7 +4770,6 @@ async function sendMessage(){
   sending =
     false;
 
-  sendButton.removeAttribute("aria-busy");
   updateSendButton();
 
 }
@@ -6235,11 +6230,12 @@ function updateSendButton(){
     return;
   }
 
-  /* Keep the button clickable. sendMessage() validates whether there
-     is actually something to send. This avoids mobile browsers getting
-     stuck with a permanently disabled composer button. */
-  sendButton.disabled = false;
-  sendButton.setAttribute("aria-disabled", "false");
+  sendButton.disabled =
+    (
+      !input.value.trim() &&
+      !selectedImageData &&
+      !recordedVoiceBlob
+    );
 
 }
 
