@@ -4616,6 +4616,21 @@ async function markAdminMessagesRead(
 
 
 /* =====================================================
+   DATA URL -> BLOB
+===================================================== */
+
+function dataUrlToBlob(dataUrl){
+  const parts = dataUrl.split(",");
+  const mime = (parts[0].match(/:(.*?);/) || [,"image/jpeg"])[1];
+  const binary = atob(parts[1]);
+  const bytes = new Uint8Array(binary.length);
+  for(let i = 0; i < binary.length; i++){
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new Blob([bytes], {type:mime});
+}
+
+/* =====================================================
    SEND NORMAL MESSAGE
 ===================================================== */
 
@@ -4649,8 +4664,7 @@ async function sendMessage(){
   sending =
     true;
 
-  sendButton.disabled =
-    true;
+  sendButton.setAttribute("aria-busy", "true");
 
 
   try{
@@ -4666,6 +4680,7 @@ async function sendMessage(){
       sending =
         false;
 
+      sendButton.removeAttribute("aria-busy");
       updateSendButton();
 
       return;
@@ -4677,57 +4692,46 @@ async function sendMessage(){
        TEXT / IMAGE
     =============================================== */
 
+    let imageUrl = "";
+
+    /* Upload images to Firebase Storage instead of putting a large
+       base64 image directly inside the Firestore message document. */
+    if(selectedImageData){
+      showToast("Uploading photo...");
+
+      const imageBlob = dataUrlToBlob(selectedImageData);
+      const imagePath =
+        "chatImages/" +
+        chatId + "/" +
+        Date.now() + "_" +
+        Math.random().toString(36).slice(2) + ".jpg";
+
+      const imageRef = storage.ref(imagePath);
+      await imageRef.put(imageBlob, {
+        contentType: "image/jpeg",
+        cacheControl: "public,max-age=31536000"
+      });
+
+      imageUrl = await imageRef.getDownloadURL();
+    }
+
     const messageRef =
-      db.collection(
-        "messages"
-      )
-      .doc();
+      db.collection("messages").doc();
 
     await messageRef.set({
-
-      chatId:
-        chatId,
-
-      createdAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp(),
-
-      imageUrl:
-        selectedImageData || "",
-
-      voiceUrl:
-        "",
-
-      voiceDuration:
-        0,
-
-      read:
-        false,
-
-      delivered:
-        false,
-
-      senderId:
-        user.uid,
-
-      senderName:
-        user.displayName ||
-
-        (
-          user.email
-            ? user.email.split("@")[0]
-            : "Customer"
-        ),
-
-      senderRole:
-        "customer",
-
-      text:
-        text,
-
-      deletedForCustomer:
-        false
-
+      chatId: chatId,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      imageUrl: imageUrl,
+      voiceUrl: "",
+      voiceDuration: 0,
+      read: false,
+      delivered: false,
+      senderId: user.uid,
+      senderName: user.displayName ||
+        (user.email ? user.email.split("@")[0] : "Customer"),
+      senderRole: "customer",
+      text: text,
+      deletedForCustomer: false
     });
 
 
@@ -4770,6 +4774,7 @@ async function sendMessage(){
   sending =
     false;
 
+  sendButton.removeAttribute("aria-busy");
   updateSendButton();
 
 }
@@ -4782,144 +4787,74 @@ async function sendMessage(){
 async function sendVoiceMessage(){
 
   if(!recordedVoiceBlob){
-
     return;
-
   }
-
 
   if(!user){
-
     return;
-
   }
-
 
   try{
 
+    /*
+      VOICE-ONLY TEMPORARY MODE
+      --------------------------
+      Firebase Storage is not required for voice notes for now.
+      The recorded audio is converted to a data URL and saved directly
+      in the Firestore message as voiceUrl.
+
+      This keeps the existing voice-message renderer working without
+      changing the rest of the chat system.
+
+      Firestore documents have a size limit, so we keep the audio below
+      a safe size. For normal short voice notes, WebM/Opus is very small.
+    */
+
+    const MAX_VOICE_BYTES = 700 * 1024;
+
+    if(recordedVoiceBlob.size > MAX_VOICE_BYTES){
+
+      alert(
+        "This voice note is too large to send right now.\n\n" +
+        "Please record a shorter voice note. Firebase Storage can be " +
+        "added later for longer voice notes."
+      );
+
+      return;
+
+    }
+
     showToast(
-      "Uploading voice note..."
+      "Preparing voice note..."
     );
 
+    const voiceDataUrl =
+      await new Promise((resolve,reject) => {
 
-    const extension =
-      getAudioExtension(
-        recordedVoiceBlob.type
-      );
+        const reader =
+          new FileReader();
 
+        reader.onload = () => {
+          resolve(reader.result);
+        };
 
-    const filePath =
-      "chatVoice/" +
-      chatId +
-      "/" +
-      Date.now() +
-      "_" +
-      Math.random()
-        .toString(36)
-        .slice(2) +
-      "." +
-      extension;
+        reader.onerror = () => {
+          reject(reader.error || new Error("Could not read voice note."));
+        };
 
-
-    const voiceRef =
-      storage.ref(
-        filePath
-      );
-
-
-    const metadata = {
-
-      contentType:
-        recordedVoiceBlob.type ||
-        "audio/webm",
-
-      customMetadata:{
-
-        chatId:
-          chatId,
-
-        senderId:
-          user.uid,
-
-        senderRole:
-          "customer"
-
-      }
-
-    };
-
-
-    const uploadTask =
-      voiceRef.put(
-        recordedVoiceBlob,
-        metadata
-      );
-
-
-    await new Promise(
-      (
-        resolve,
-        reject
-      ) => {
-
-        uploadTask.on(
-
-          firebase.storage.TaskEvent.STATE_CHANGED,
-
-          snapshot => {
-
-            const percent =
-              Math.round(
-                (
-                  snapshot.bytesTransferred /
-                  snapshot.totalBytes
-                ) * 100
-              );
-
-            showToast(
-              "Uploading voice " +
-              percent +
-              "%..."
-            );
-
-          },
-
-          error => {
-
-            reject(
-              error
-            );
-
-          },
-
-          () => {
-
-            resolve();
-
-          }
-
+        reader.readAsDataURL(
+          recordedVoiceBlob
         );
 
-      }
-    );
-
-
-    const voiceUrl =
-      await voiceRef.getDownloadURL();
-
+      });
 
     const duration =
       await getAudioDurationFromBlob(
         recordedVoiceBlob
       );
 
-
     const messageRef =
-      db.collection(
-        "messages"
-      )
-      .doc();
-
+      db.collection("messages").doc();
 
     await messageRef.set({
 
@@ -4933,8 +4868,14 @@ async function sendVoiceMessage(){
       imageUrl:
         "",
 
+      /*
+        Temporary voice storage:
+        the audio itself is stored as a data URL in Firestore.
+        The existing createVoiceMessage() already uses voiceUrl,
+        so no other chat UI needs to change.
+      */
       voiceUrl:
-        voiceUrl,
+        voiceDataUrl,
 
       voiceDuration:
         duration,
@@ -4954,7 +4895,6 @@ async function sendVoiceMessage(){
 
       senderName:
         user.displayName ||
-
         (
           user.email
             ? user.email.split("@")[0]
@@ -4972,11 +4912,9 @@ async function sendVoiceMessage(){
 
     });
 
-
     await updateChatAfterMessage(
       "🎙️ Voice note"
     );
-
 
     clearVoiceRecording();
 
@@ -4986,113 +4924,46 @@ async function sendVoiceMessage(){
       "Voice note sent ✓"
     );
 
-    scrollToBottom(
-      true
-    );
+    setTimeout(() => {
+      scrollToBottom(true);
+    },100);
 
   }
-
   catch(error){
 
     console.error(
-      "VOICE SEND ERROR:",
+      "VOICE MESSAGE ERROR:",
       error
     );
 
+    if(error && error.code === "permission-denied"){
 
-    let message =
-      error.message ||
-      "Unknown error";
-
-
-    if(
-      error.code ===
-      "storage/unauthorized"
-    ){
-
-      message =
-        "Firebase Storage permission denied.\n\n" +
-        "Check your Firebase Storage Rules.";
+      alert(
+        "The voice note was recorded, but Firestore permission " +
+        "blocked sending it."
+      );
 
     }
+    else if(error && error.code === "resource-exhausted"){
 
-
-    else if(
-      error.code ===
-      "storage/unauthenticated"
-    ){
-
-      message =
-        "Your login session expired. Please login again.";
+      alert(
+        "The voice note is too large for the current Firestore setup. " +
+        "Please record a shorter one."
+      );
 
     }
+    else{
 
-
-    else if(
-      error.code ===
-      "storage/quota-exceeded"
-    ){
-
-      message =
-        "Firebase Storage quota has been exceeded.";
+      alert(
+        "Could not send the voice note right now.\n\n" +
+        (error && error.message ? error.message : "Please try again.")
+      );
 
     }
-
-
-    alert(
-      "Voice note could not be sent.\n\n" +
-      message
-    );
 
   }
 
 }
-
-
-/* =====================================================
-   UPDATE CHAT AFTER MESSAGE
-===================================================== */
-
-async function updateChatAfterMessage(
-  lastMessage
-){
-
-  await db.collection(
-    "chats"
-  )
-  .doc(chatId)
-  .set({
-
-    lastMessage:
-      lastMessage,
-
-    lastMessageAt:
-      firebase.firestore.FieldValue
-        .serverTimestamp(),
-
-    updatedAt:
-      firebase.firestore.FieldValue
-        .serverTimestamp(),
-
-    unreadForAdmin:
-      firebase.firestore.FieldValue
-        .increment(1),
-
-    unreadForCustomer:
-      0,
-
-    customerTyping:
-      false,
-
-    status:
-      "open"
-
-  },{
-    merge:true
-  });
-
-}
-
 
 /* =====================================================
    VOICE RECORDING
@@ -6230,12 +6101,11 @@ function updateSendButton(){
     return;
   }
 
-  sendButton.disabled =
-    (
-      !input.value.trim() &&
-      !selectedImageData &&
-      !recordedVoiceBlob
-    );
+  /* Keep the button clickable. sendMessage() validates whether there
+     is actually something to send. This avoids mobile browsers getting
+     stuck with a permanently disabled composer button. */
+  sendButton.disabled = false;
+  sendButton.setAttribute("aria-disabled", "false");
 
 }
 
