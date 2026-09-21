@@ -26,7 +26,7 @@ rel="stylesheet">
 
 body{
   font-family:"Poppins",sans-serif;
-  background:#020617;
+  background:#0f172a;
   color:#e2e8f0;
   min-height:100vh;
 }
@@ -114,74 +114,166 @@ header{
 
 /* ================= MENU ================= */
 
-.menu{
+.side-menu{
   position:fixed;
-  top:76px;
-  right:12px;
-  width:250px;
-  background:#0f172a;
-  border:1px solid #1e293b;
-  border-radius:18px;
-  padding:9px;
-  box-shadow:0 20px 50px rgba(0,0,0,.45);
   z-index:3000;
-  display:none;
+  top:0;
+  right:-340px;
+  width:320px;
+  max-width:90%;
+  height:100dvh;
+  overflow-y:auto;
+  background:#020617;
+  padding:18px 16px 28px;
+  transition:.3s ease;
+  box-shadow:-14px 0 40px rgba(0,0,0,.38);
 }
 
-.menu.active{
-  display:block;
+.side-menu.active{
+  right:0;
+}
+
+.menu-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.menu-brand{
+  font-size:17px;
+  font-weight:700;
+  color:#f8fafc;
+}
+
+.menu-close{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:#17253a;
+  color:white;
+  font-size:21px;
+  cursor:pointer;
 }
 
 .menu-profile{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:12px;
   padding:12px;
-  border-bottom:1px solid #1e293b;
-  margin-bottom:5px;
+  margin-bottom:18px;
+  border:1px solid rgba(56,189,248,.14);
+  border-radius:16px;
+  background:linear-gradient(135deg,#0d1b2e,#111f33);
 }
 
-.menu-avatar{
-  width:42px;
-  height:42px;
+.menu-profile-image{
+  width:52px;
+  height:52px;
+  flex-shrink:0;
   border-radius:50%;
-  object-fit:cover;
-  background:#1e293b;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#38bdf8,#0284c7);
+  border:2px solid rgba(56,189,248,.25);
+  font-size:23px;
 }
 
-.menu-name{
-  font-size:13px;
-  font-weight:700;
-  color:white;
-}
-
-.menu-email{
-  font-size:10px;
-  color:#64748b;
-  word-break:break-all;
-}
-
-.menu a,
-.menu button{
+.menu-profile-image img{
   width:100%;
-  border:none;
-  background:transparent;
-  color:#cbd5e1;
-  text-decoration:none;
+  height:100%;
+  object-fit:cover;
+}
+
+.menu-profile-info{
+  min-width:0;
+}
+
+.menu-profile-name{
+  font-size:14px;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.menu-profile-email{
+  display:block;
+  margin-top:3px;
+  color:#64748b;
+  font-size:10px;
+  word-break:break-word;
+}
+
+.menu-section-title{
+  margin:17px 8px 7px;
+  color:#64748b;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.menu-link{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:12px;
+  width:100%;
+  padding:12px 13px;
+  margin-top:4px;
+  border:0;
   border-radius:12px;
-  cursor:pointer;
+  background:transparent;
+  color:#e2e8f0;
+  text-decoration:none;
   text-align:left;
+  font-family:inherit;
   font-size:13px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.menu a:hover,
-.menu button:hover{
-  background:#172033;
+.menu-link:hover{
+  background:#17253a;
   color:white;
+}
+
+.menu-link.active{
+  background:rgba(56,189,248,.12);
+  color:#38bdf8;
+  border:1px solid rgba(56,189,248,.12);
+}
+
+.menu-icon{
+  width:22px;
+  text-align:center;
+  font-size:17px;
+  flex-shrink:0;
+}
+
+.menu-link.logout{
+  color:#fca5a5;
+  margin-top:10px;
+}
+
+.menu-link.logout:hover{
+  background:#351c24;
+}
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  z-index:2500;
+  background:rgba(2,6,23,.55);
+  backdrop-filter:blur(2px);
+  display:none;
+}
+
+.menu-overlay.active{
+  display:block;
 }
 
 /* ================= PAGE ================= */
@@ -696,11 +788,9 @@ select option{
     grid-column:auto;
   }
 
-  .menu{
-    top:70px;
-    right:8px;
-    width:calc(100% - 16px);
-    max-width:300px;
+  .side-menu{
+    width:320px;
+    max-width:90%;
   }
 
 }
@@ -753,71 +843,292 @@ title="Menu">
 
 <!-- ================= MENU ================= -->
 
-<div class="menu" id="menu">
+<aside
+class="side-menu"
+id="sideMenu">
 
-<div class="menu-profile">
+<div class="menu-header">
 
-<img
-id="menuAvatar"
-class="menu-avatar"
-src="https://via.placeholder.com/80"
-alt="Profile">
+<div class="menu-brand">
+Danny Smart Power
+</div>
 
-<div>
+<button
+class="menu-close"
+id="menuClose"
+type="button"
+aria-label="Close menu">
 
-<div
-class="menu-name"
-id="menuName">
+×
 
-Customer
+</button>
 
 </div>
 
+
+<div class="menu-profile">
+
 <div
-class="menu-email"
-id="menuEmail">
+class="menu-profile-image"
+id="menuProfileImage">
+
+⚡
+
+</div>
+
+<div class="menu-profile-info">
+
+<div
+class="menu-profile-name"
+id="customerName">
 
 Loading...
 
 </div>
 
-</div>
+<small
+class="menu-profile-email"
+id="customerEmail">
+</small>
 
 </div>
 
+</div>
 
-<a href="home.html">
-🏠 <span>Home</span>
+
+<div class="menu-section-title">
+Shop
+</div>
+
+<a
+class="menu-link"
+href="home.html">
+
+<span class="menu-icon">
+⌂
+</span>
+
+Home
+
 </a>
 
-<a href="shop.html">
-🛒 <span>Shop</span>
+
+<a
+class="menu-link"
+href="shop.html">
+
+<span class="menu-icon">
+🛍️
+</span>
+
+Shop
+
 </a>
 
-<a href="profile.html">
-👤 <span>My Profile</span>
+
+<a
+class="menu-link"
+href="cart.html">
+
+<span class="menu-icon">
+🛒
+</span>
+
+My Cart
+
 </a>
 
-<a href="orders.html">
-📦 <span>My Orders</span>
+
+<a
+class="menu-link"
+href="orders.html">
+
+<span class="menu-icon">
+📦
+</span>
+
+My Orders
+
 </a>
 
-  <a href="wishlist.html">
-💙 <span>Wishlists</span>
-  </a>
 
-<a href="service-project.html">
-🔧 <span>Electrical Project</span>
+<a
+class="menu-link"
+href="wishlist.html">
+
+<span class="menu-icon">
+💙
+</span>
+
+Wishlists
+
 </a>
 
-<a href="chat.html">
-💬 <span>Chat with Danny</span>
+
+<div class="menu-section-title">
+Services
+</div>
+
+
+<a
+class="menu-link"
+href="services.html">
+
+<span class="menu-icon">
+⚡
+</span>
+
+Services
+
 </a>
 
-<button id="signOutBtn">
-🚪 <span>Sign Out</span>
+
+<a
+class="menu-link"
+href="service-project.html">
+
+<span class="menu-icon">
+🏗️
+</span>
+
+Our Projects
+
+</a>
+
+
+<a
+class="menu-link active"
+href="service-request.html">
+
+<span class="menu-icon">
+🛠️
+</span>
+
+Request a Service
+
+</a>
+
+
+<div class="menu-section-title">
+Support
+</div>
+
+
+<a
+class="menu-link"
+href="chat.html">
+
+<span class="menu-icon">
+💬
+</span>
+
+Chat with Danny
+
+</a>
+
+
+<a
+class="menu-link"
+href="track-order.html">
+
+<span class="menu-icon">
+📍
+</span>
+
+Track Order
+
+</a>
+
+
+<a
+class="menu-link"
+href="contact.html">
+
+<span class="menu-icon">
+📞
+</span>
+
+Contact Us
+
+</a>
+
+
+<a
+class="menu-link"
+href="help.html">
+
+<span class="menu-icon">
+❓
+</span>
+
+Help Center
+
+</a>
+
+
+<div class="menu-section-title">
+Account
+</div>
+
+
+<a
+class="menu-link"
+href="profile.html">
+
+<span class="menu-icon">
+👤
+</span>
+
+My Profile
+
+</a>
+
+
+<a
+class="menu-link"
+href="notification.html">
+
+<span class="menu-icon">
+🔔
+</span>
+
+Notifications
+
+</a>
+
+
+<a
+class="menu-link"
+href="settings.html">
+
+<span class="menu-icon">
+⚙️
+</span>
+
+Settings
+
+</a>
+
+
+<button
+class="menu-link logout"
+id="logout"
+type="button">
+
+<span class="menu-icon">
+🚪
+</span>
+
+Sign Out
+
 </button>
 
+</aside>
+
+
+<div
+class="menu-overlay"
+id="menuOverlay">
 </div>
 
 
@@ -868,7 +1179,7 @@ Name <span class="required">*</span>
 
 <input
 type="text"
-id="customerName"
+id="customerNameInput"
 readonly
 placeholder="Your name">
 
@@ -1240,7 +1551,7 @@ id="toast">
 const firebaseConfig = {
 
 apiKey:
-"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvAGb44",
 
 authDomain:
 "danny-smart-power.firebaseapp.com",
@@ -1294,7 +1605,7 @@ const serviceForm =
 document.getElementById("serviceForm");
 
 const customerNameInput =
-document.getElementById("customerName");
+document.getElementById("customerNameInput");
 
 const phoneInput =
 document.getElementById("phone");
@@ -1359,11 +1670,17 @@ document.getElementById("toast");
 const menuBtn =
 document.getElementById("menuBtn");
 
-const menu =
-document.getElementById("menu");
+const sideMenu =
+document.getElementById("sideMenu");
 
-const signOutBtn =
-document.getElementById("signOutBtn");
+const menuClose =
+document.getElementById("menuClose");
+
+const menuOverlay =
+document.getElementById("menuOverlay");
+
+const logoutBtn =
+document.getElementById("logout");
 
 const notificationBtn =
 document.getElementById("notificationBtn");
@@ -1373,31 +1690,62 @@ document.getElementById("notificationBtn");
    MENU
 ========================================================= */
 
+function openMenu(){
+
+sideMenu.classList.add(
+"active"
+);
+
+menuOverlay.classList.add(
+"active"
+);
+
+}
+
+
+function closeMenu(){
+
+sideMenu.classList.remove(
+"active"
+);
+
+menuOverlay.classList.remove(
+"active"
+);
+
+}
+
+
 menuBtn.addEventListener(
 "click",
 function(event){
 
 event.stopPropagation();
 
-menu.classList.toggle("active");
-
-});
-
-
-document.addEventListener(
-"click",
-function(event){
-
-if(
-!menu.contains(event.target) &&
-event.target !== menuBtn
-){
-
-menu.classList.remove("active");
+openMenu();
 
 }
+);
 
-});
+
+menuClose.addEventListener(
+"click",
+function(){
+
+closeMenu();
+
+}
+);
+
+
+menuOverlay.addEventListener(
+"click",
+function(){
+
+closeMenu();
+
+}
+);
 
 
 /* =========================================================
@@ -1480,13 +1828,13 @@ defaultName;
 
 
 document.getElementById(
-"menuName"
+"customerName"
 ).textContent =
 defaultName;
 
 
 document.getElementById(
-"menuEmail"
+"customerEmail"
 ).textContent =
 user.email ||
 "";
@@ -1494,10 +1842,13 @@ user.email ||
 
 if(user.photoURL){
 
+const profileImage =
 document.getElementById(
-"menuAvatar"
-).src =
-user.photoURL;
+"menuProfileImage"
+);
+
+profileImage.innerHTML =
+`<img src="${user.photoURL}" alt="Profile">`;
 
 }
 
@@ -1525,7 +1876,7 @@ customerNameInput.value =
 currentProfile.name;
 
 document.getElementById(
-"menuName"
+"customerName"
 ).textContent =
 currentProfile.name;
 
@@ -1543,9 +1894,9 @@ currentProfile.phone;
 if(currentProfile.photoURL){
 
 document.getElementById(
-"menuAvatar"
-).src =
-currentProfile.photoURL;
+"menuProfileImage"
+).innerHTML =
+`<img src="${currentProfile.photoURL}" alt="Profile">`;
 
 }
 
@@ -1556,9 +1907,9 @@ currentProfile.photo &&
 ){
 
 document.getElementById(
-"menuAvatar"
-).src =
-currentProfile.photo;
+"menuProfileImage"
+).innerHTML =
+`<img src="${currentProfile.photo}" alt="Profile">`;
 
 }
 
@@ -2506,7 +2857,7 @@ window.location.href =
    SIGN OUT
 ========================================================= */
 
-signOutBtn.addEventListener(
+logoutBtn.addEventListener(
 "click",
 async function(){
 
@@ -2558,4 +2909,4 @@ today;
 </script>
 
 </body>
-</html>
+  </html>
