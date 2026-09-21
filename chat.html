@@ -2570,6 +2570,11 @@ const notificationBadge =
     "notificationBadge"
   );
 
+const notificationButton =
+  document.getElementById(
+    "notificationButton"
+  );
+
 const sideMenu =
   document.getElementById(
     "sideMenu"
@@ -2658,6 +2663,70 @@ let unreadAdminCount = 0;
 let userNearBottom = true;
 
 let lastRenderedMessages = [];
+
+/* =====================================================
+   EARLY COMPOSER CONTROL BINDINGS
+   Keep the main customer controls alive even if a later
+   optional UI section encounters an error.
+===================================================== */
+
+(function bindCoreComposerControls(){
+  try{
+    if(sendButton){
+      sendButton.disabled = true;
+      sendButton.onclick = function(event){
+        if(event) event.preventDefault();
+        Promise.resolve(sendMessage()).catch(function(error){
+          console.error("Send button error:", error);
+          showToast("Message could not be sent.");
+        });
+      };
+    }
+
+    if(attachButton && galleryInput){
+      attachButton.onclick = function(event){
+        if(event) event.preventDefault();
+        galleryInput.click();
+      };
+    }
+
+    if(cameraButton){
+      cameraButton.onclick = function(event){
+        if(event) event.preventDefault();
+        Promise.resolve(openCamera()).catch(function(error){
+          console.error("Camera button error:", error);
+          if(cameraInput) cameraInput.click();
+        });
+      };
+    }
+
+    if(voiceButton){
+      voiceButton.onclick = function(event){
+        if(event) event.preventDefault();
+        Promise.resolve(startVoiceRecording()).catch(function(error){
+          console.error("Voice button error:", error);
+          showToast("Could not start voice recording.");
+        });
+      };
+    }
+
+    if(cameraInput){
+      cameraInput.onchange = function(event){
+        const file = event.target && event.target.files ? event.target.files[0] : null;
+        if(file) handleSelectedFile(file);
+      };
+    }
+
+    if(galleryInput){
+      galleryInput.onchange = function(event){
+        const file = event.target && event.target.files ? event.target.files[0] : null;
+        if(file) handleSelectedFile(file);
+      };
+    }
+  }catch(error){
+    console.error("Core composer binding error:", error);
+  }
+})();
 
 
 /* =====================================================
@@ -2950,23 +3019,16 @@ auth.onAuthStateChanged(
     chatId =
       user.uid;
 
-    const customerName =
-      user.displayName ||
-      (
-        user.email
-          ? user.email.split("@")[0]
-          : "Customer"
-      );
+    const customerEmailEl =
+      document.getElementById("customerEmail");
 
-    document.getElementById(
-      "customerName"
-    ).textContent =
-      customerName;
-
-    document.getElementById(
-      "customerEmail"
-    ).textContent =
-      user.email || "";
+    if(
+      customerEmailEl &&
+      !customerEmailEl.textContent.trim()
+    ){
+      customerEmailEl.textContent =
+        user.email || "";
+    }
 
     try{
 
@@ -2975,6 +3037,8 @@ auth.onAuthStateChanged(
       listenToChat();
 
       listenToMessages();
+
+      updateSendButton();
 
       loading.classList.add(
         "hidden"
@@ -4572,6 +4636,12 @@ async function sendMessage(){
     !recordedVoiceBlob
   ){
 
+    showToast(
+      "Type a message or choose a photo/voice note first."
+    );
+
+    updateSendButton();
+
     return;
 
   }
@@ -5751,6 +5821,14 @@ async function openCamera(){
     cameraVideo.style.display="none";
     cameraCapture.style.display="none";
     cameraCancel.textContent="Close";
+
+    // On browsers where getUserMedia is unavailable/blocked,
+    // fall back to the phone's native camera picker.
+    if(cameraInput && (error.name === "NotAllowedError" || error.name === "NotFoundError" || !window.isSecureContext)){
+      setTimeout(function(){
+        try{ cameraInput.click(); }catch(fallbackError){ console.warn("Native camera fallback:", fallbackError); }
+      }, 250);
+    }
   }finally{
     cameraOpenInProgress=false;
   }
@@ -6148,6 +6226,10 @@ function stopTyping(){
 
 function updateSendButton(){
 
+  if(!sendButton || !input){
+    return;
+  }
+
   sendButton.disabled =
     (
       !input.value.trim() &&
@@ -6157,6 +6239,7 @@ function updateSendButton(){
 
 }
 
+updateSendButton();
 
 /* =====================================================
    AUTO RESIZE
@@ -6282,13 +6365,17 @@ scrollDownButton.onclick =
    NOTIFICATION BUTTON
 ===================================================== */
 
-notificationButton.onclick =
-  () => {
+if(notificationButton){
 
-    window.location.href =
-      "notification.html";
+  notificationButton.onclick =
+    () => {
 
-  };
+      window.location.href =
+        "notifications.html";
+
+    };
+
+}
 
 
 /* =====================================================
