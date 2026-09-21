@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#020617">
+<title>Home — Danny Smart Power</title>
+<meta name="description" content="Danny Smart Power — electrical, solar, lighting and power solutions.">
+<link rel="icon" href="/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f172a;--header:#020617;--panel:#111c31;--panel2:#162238;
+  --blue:#38bdf8;--blue2:#0ea5e9;--text:#f8fafc;--muted:#94a3b8;
+  --line:rgba(148,163,184,.14);--green:#22c55e;--red:#ef4444;
+  --shadow:0 18px 55px rgba(0,0,0,.22);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:Poppins,sans-serif;background:
+  radial-gradient(circle at 85% 0,rgba(56,189,248,.10),transparent 28%),
+  radial-gradient(circle at 0 40%,rgba(14,165,233,.05),transparent 30%),var(--bg);
+  color:var(--text);min-height:100vh
+}
+button,a{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+a{text-decoration:none;color:inherit}
+
+header{
+  height:68px;position:sticky;top:0;z-index:1000;background:rgba(2,6,23,.92);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;padding:0 18px
+}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo-icon{
+  width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));
+  display:grid;place-items:center;color:#020617;font-size:21px;font-weight:800;
+  box-shadow:0 8px 25px rgba(14,165,233,.25);flex:none
+}
+.logo-text{font-size:16px;font-weight:800;letter-spacing:-.45px;white-space:nowrap}
+.logo-text span{color:var(--blue)}
+.header-actions{display:flex;gap:8px}
+.icon-btn{
+  width:42px;height:42px;border:1px solid transparent;border-radius:12px;background:#111827;
+  color:#fff;font-size:20px;display:grid;place-items:center;position:relative;transition:.2s
+}
+.icon-btn:hover{background:#1e293b;border-color:var(--line);transform:translateY(-1px)}
+.notification-dot{
+  position:absolute;right:6px;top:6px;width:9px;height:9px;border-radius:50%;
+  background:var(--red);border:2px solid #111827;display:none
+}
+.notification-dot.show{display:block}
+
+main{width:min(1120px,100%);margin:auto;padding:30px 18px 48px}
+
+.welcome{margin-bottom:24px}
+.eyebrow{font-size:12px;color:var(--muted);font-weight:600}
+.welcome h1{font-size:clamp(28px,6vw,43px);line-height:1.12;letter-spacing:-1.2px;margin-top:5px}
+.welcome h1 span{color:var(--blue)}
+.welcome p{color:var(--muted);font-size:14px;line-height:1.7;margin-top:9px;max-width:720px}
+
+.hero{
+  position:relative;overflow:hidden;border:1px solid rgba(56,189,248,.16);border-radius:25px;
+  padding:31px 25px;margin-bottom:26px;background:
+  linear-gradient(135deg,rgba(56,189,248,.14),rgba(15,23,42,.84) 62%),
+  #101b2f;box-shadow:var(--shadow)
+}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero:before{width:240px;height:240px;right:-95px;top:-125px;background:rgba(56,189,248,.08)}
+.hero:after{width:130px;height:130px;right:130px;bottom:-95px;border:1px solid rgba(56,189,248,.10)}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(56,189,248,.2);
+  background:rgba(2,6,23,.28);border-radius:999px;padding:6px 10px;color:#bae6fd;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:14px
+}
+.hero h2{font-size:clamp(25px,5vw,37px);line-height:1.18;letter-spacing:-.8px}
+.hero p{color:#cbd5e1;font-size:14px;line-height:1.75;margin-top:10px;max-width:670px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.primary-btn,.secondary-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:12px;padding:12px 16px;
+  border:1px solid var(--line);font-weight:700;font-size:13px;transition:.2s
+}
+.primary-btn{background:var(--blue);color:#020617;border-color:var(--blue)}
+.primary-btn:hover{background:#7dd3fc;transform:translateY(-1px)}
+.secondary-btn{background:#172033;color:#fff}
+.secondary-btn:hover{background:#202d43;transform:translateY(-1px)}
+
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:27px 0 13px}
+.section-head h2{font-size:18px;letter-spacing:-.3px}
+.section-head p{color:var(--muted);font-size:11px}
+
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.quick-card{
+  min-height:158px;padding:17px;border-radius:18px;border:1px solid var(--line);
+  background:linear-gradient(145deg,#111c31,#0e192b);display:flex;flex-direction:column;justify-content:space-between;
+  transition:.22s;position:relative;overflow:hidden
+}
+.quick-card:after{content:"→";position:absolute;right:15px;top:15px;color:#475569;font-size:17px;transition:.2s}
+.quick-card:hover{transform:translateY(-3px);border-color:rgba(56,189,248,.30);box-shadow:0 15px 38px rgba(0,0,0,.18)}
+.quick-card:hover:after{color:var(--blue);transform:translateX(2px)}
+.quick-icon{
+  width:46px;height:46px;border-radius:14px;background:rgba(56,189,248,.09);
+  display:grid;place-items:center;font-size:22px;border:1px solid rgba(56,189,248,.08)
+}
+.quick-card h3{font-size:14px;margin-top:13px}
+.quick-card p{color:var(--muted);font-size:11px;line-height:1.55;margin-top:4px}
+
+.notification-card{
+  margin-top:27px;padding:18px 19px;border-radius:20px;border:1px solid rgba(56,189,248,.15);
+  background:linear-gradient(135deg,rgba(56,189,248,.09),rgba(17,28,49,.92));
+  display:flex;align-items:center;justify-content:space-between;gap:18px
+}
+.notification-info{display:flex;align-items:center;gap:13px;min-width:0}
+.notification-icon{
+  width:47px;height:47px;border-radius:14px;background:rgba(56,189,248,.11);
+  display:grid;place-items:center;font-size:21px;flex:none
+}
+.notification-info h3{font-size:14px}
+.notification-info p{color:var(--muted);font-size:11px;line-height:1.55;margin-top:3px}
+
+.notification-control{display:flex;align-items:center;gap:11px;flex:none}
+.notification-state{font-size:11px;color:var(--muted);font-weight:700;min-width:44px;text-align:right}
+.notification-state.on{color:var(--green)}
+.notification-state.blocked{color:#fca5a5}
+
+/* The compact 2-state switch: OFF = dark, ON = DSP blue. */
+.push-switch{
+  width:58px;height:32px;border:1px solid #263247;border-radius:999px;
+  background:#050b15;position:relative;padding:0;transition:.25s;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)
+}
+.push-switch .knob{
+  position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;
+  background:#64748b;box-shadow:0 2px 8px rgba(0,0,0,.4);transition:.25s
+}
+.push-switch.on{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 4px rgba(56,189,248,.08)}
+.push-switch.on .knob{left:30px;background:#020617}
+.push-switch.loading{opacity:.65}
+.push-switch:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+.status-note{display:none}
+.status-note.show{display:block;margin-top:9px;color:var(--muted);font-size:10px;line-height:1.5}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info-card{background:#111c31;border:1px solid var(--line);border-radius:18px;padding:19px}
+.info-card-icon{font-size:22px;margin-bottom:10px}
+.info-card h3{font-size:14px}
+.info-card p{color:var(--muted);font-size:11px;line-height:1.65;margin-top:7px}
+
+footer{border-top:1px solid var(--line);padding:23px 18px;text-align:center;color:var(--muted);font-size:10px}
+footer strong{color:var(--blue)}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:2400;display:none}
+.overlay.show{display:block}
+.menu{
+  position:fixed;top:0;right:-350px;width:325px;max-width:91%;height:100dvh;background:#020617;
+  border-left:1px solid var(--line);z-index:3000;padding:20px;overflow:auto;transition:.3s ease;
+  box-shadow:-22px 0 65px rgba(0,0,0,.45)
+}
+.menu.open{right:0}
+.menu-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:21px}
+.menu-top h2{font-size:20px}
+.close-menu{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:#111827;color:#fff;font-size:20px}
+.user-box{
+  padding:15px;border-radius:17px;border:1px solid rgba(56,189,248,.17);
+  background:linear-gradient(135deg,rgba(56,189,248,.11),rgba(14,165,233,.025));margin-bottom:18px
+}
+.user-row{display:flex;align-items:center;gap:12px}
+.user-photo{width:53px;height:53px;border-radius:50%;object-fit:cover;background:#1e293b;border:2px solid rgba(56,189,248,.38)}
+.user-name{font-weight:700;font-size:14px}
+.user-email{font-size:11px;color:var(--muted);margin-top:2px;word-break:break-word}
+.menu-links{display:flex;flex-direction:column;gap:5px}
+.menu-link{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;color:#e2e8f0;transition:.2s}
+.menu-link:hover{background:#111827;color:var(--blue)}
+.menu-link-icon{width:34px;height:34px;border-radius:10px;background:#111827;display:grid;place-items:center;flex:none}
+.signout{margin-top:18px;width:100%;border:1px solid var(--line);background:#111827;color:#fff;padding:12px;border-radius:12px;font-weight:700}
+.signout:hover{background:#1e293b}
+
+.toast{
+  position:fixed;left:50%;bottom:20px;z-index:5000;max-width:min(92vw,440px);
+  padding:12px 16px;border-radius:13px;background:#020617;border:1px solid rgba(56,189,248,.25);
+  color:#fff;font-size:11px;box-shadow:0 18px 45px rgba(0,0,0,.4);
+  transform:translate(-50%,120px);opacity:0;transition:.3s
+}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.toast.success{border-color:rgba(34,197,94,.45)}
+.toast.error{border-color:rgba(239,68,68,.55)}
+
+@media(max-width:850px){.quick-grid{grid-template-columns:repeat(2,1fr)}.info-grid{grid-template-columns:1fr}}
+@media(max-width:560px){
+  header{padding:0 13px}.logo-text{font-size:14px}.logo-icon{width:36px;height:36px}
+  main{padding:23px 13px 42px}.hero{padding:25px 18px;border-radius:20px}
+  .notification-card{align-items:flex-start}.notification-control{margin-left:auto}
+  .notification-info{align-items:flex-start}
+}
+@media(max-width:430px){
+  .quick-grid{gap:9px}.quick-card{min-height:145px;padding:15px}
+  .quick-card h3{font-size:13px}.quick-card p{font-size:10px}
+  .notification-card{flex-direction:column}.notification-control{width:100%;justify-content:space-between}
+  .notification-state{order:1;text-align:left}.push-switch{order:2}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a href="home.html" class="logo" aria-label="Danny Smart Power home">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-text">Danny <span>Smart Power</span></div>
+  </a>
+  <div class="header-actions">
+    <button class="icon-btn" id="notificationBtn" type="button" aria-label="Open notifications" title="Notifications">
+      🔔<span class="notification-dot" id="notificationDot"></span>
+    </button>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="Open menu" title="Menu">⋮</button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="menu" id="sideMenu" aria-label="Main menu">
+  <div class="menu-top">
+    <h2>Menu</h2>
+    <button class="close-menu" id="closeMenu" type="button" aria-label="Close menu">×</button>
+  </div>
+
+  <div class="user-box">
+    <div class="user-row">
+      <img id="userPhoto" class="user-photo" src="/icon-192.png" alt="Profile photo">
+      <div>
+        <div class="user-name" id="menuUserName">Customer</div>
+        <div class="user-email" id="menuUserEmail">Loading...</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="menu-links">
+    <a href="home.html" class="menu-link"><span class="menu-link-icon">🏠</span><span>Home</span></a>
+    <a href="shop.html" class="menu-link"><span class="menu-link-icon">🛒</span><span>Shop</span></a>
+    <a href="service.html" class="menu-link"><span class="menu-link-icon">⚡</span><span>Electrical Services</span></a>
+    <a href="service-project.html" class="menu-link"><span class="menu-link-icon">🔧</span><span>Electrical Projects</span></a>
+    <a href="chat.html" class="menu-link"><span class="menu-link-icon">💬</span><span>Chat with Danny</span></a>
+    <a href="notifications.html" class="menu-link"><span class="menu-link-icon">🔔</span><span>Notifications</span></a>
+    <a href="profile.html" class="menu-link"><span class="menu-link-icon">👤</span><span>My Profile</span></a>
+    <a href="contact.html" class="menu-link"><span class="menu-link-icon">📞</span><span>Contact Us</span></a>
+  </nav>
+
+  <button class="signout" id="signOutBtn" type="button">Sign Out</button>
+</aside>
+
+<main>
+  <section class="welcome">
+    <div class="eyebrow">Danny Smart Power • Customer Area</div>
+    <h1>Hello, <span id="customerName">Customer</span> 👋</h1>
+    <p>Your central place to shop power products, request electrical services, view projects and stay connected with Danny Smart Power.</p>
+  </section>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">⚡ Smart power solutions</div>
+      <h2>Powering your world with smart solutions.</h2>
+      <p>Shop electrical and solar products, request professional electrical services and communicate directly with Danny Smart Power — all from one place.</p>
+      <div class="hero-buttons">
+        <a href="shop.html" class="primary-btn">🛒 Shop Now <span>→</span></a>
+        <a href="service.html" class="secondary-btn">⚡ Request Service</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="notification-card" aria-label="Push notification controls">
+    <div class="notification-info">
+      <div class="notification-icon">🔔</div>
+      <div>
+        <h3>DSP Notifications</h3>
+        <p id="notificationDescription">Receive important updates, messages and service information even when you are not on the website.</p>
+        <div class="status-note" id="notificationStatusNote"></div>
+      </div>
+    </div>
+    <div class="notification-control">
+      <span class="notification-state" id="notificationState">OFF</span>
+      <button class="push-switch" id="enableNotificationsBtn" type="button" role="switch" aria-checked="false" aria-label="Turn DSP notifications on or off">
+        <span class="knob"></span>
+      </button>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Quick Actions</h2>
+    <p>Everything you need</p>
+  </div>
+
+  <section class="quick-grid">
+    <a href="shop.html" class="quick-card">
+      <div class="quick-icon">🛒</div>
+      <div><h3>Shop</h3><p>Browse electrical, solar and lighting products.</p></div>
+    </a>
+    <a href="service-request.html" class="quick-card">
+      <div class="quick-icon">⚡</div>
+      <div><h3>Request Service</h3><p>Request professional electrical assistance.</p></div>
+    </a>
+    <a href="service-project.html" class="quick-card">
+      <div class="quick-icon">🔧</div>
+      <div><h3>Electrical Projects</h3><p>Explore electrical and power projects from DSP.</p></div>
+    </a>
+    <a href="chat.html" class="quick-card">
+      <div class="quick-icon">💬</div>
+      <div><h3>Chat</h3><p>Talk directly with Danny Smart Power.</p></div>
+    </a>
+  </section>
+
+  <div class="section-head">
+    <h2>Danny Smart Power</h2>
+    <p>What we provide</p>
+  </div>
+
+  <section class="info-grid">
+    <div class="info-card"><div class="info-card-icon">☀️</div><h3>Solar & Power</h3><p>Explore practical solar and power solutions for homes, businesses and other electrical needs.</p></div>
+    <div class="info-card"><div class="info-card-icon">💡</div><h3>Electrical & Lighting</h3><p>Find electrical products, lighting equipment and solutions for everyday power needs.</p></div>
+    <div class="info-card"><div class="info-card-icon">🛠️</div><h3>Professional Service</h3><p>Send a service request and communicate with Danny Smart Power about your electrical project.</p></div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> <strong>Danny Smart Power</strong>. All rights reserved.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+
+<script>
+const firebaseConfig={
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  authDomain:"danny-smart-power.firebaseapp.com",
+  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId:"danny-smart-power",
+  storageBucket:"danny-smart-power.firebasestorage.app",
+  messagingSenderId:"649735645158",
+  appId:"1:649735645158:web:cff518b89721a163679827",
+  measurementId:"G-258YKLP5ZS"
+};
+if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+
+const VAPID_KEY="BFTvpM4Gy807AEVK5SpAZud3kjGdC4zsxlBpfC-jJLALKaxcqwjCMMPY3MI5NAjd5ZjLXQWutZ43WdBqlgAc8Q";
+</script>
+
+<script>
+const $=id=>document.getElementById(id);
+const customerName=$("customerName"),menuUserName=$("menuUserName"),menuUserEmail=$("menuUserEmail"),userPhoto=$("userPhoto");
+const pushSwitch=$("enableNotificationsBtn"),notificationState=$("notificationState"),notificationStatusNote=$("notificationStatusNote"),notificationDescription=$("notificationDescription"),toast=$("toast"),notificationDot=$("notificationDot");
+
+let toastTimer=null;
+function showToast(message,type="success"){
+  clearTimeout(toastTimer);toast.className="toast "+type;toast.textContent=message;
+  requestAnimationFrame(()=>toast.classList.add("show"));
+  toastTimer=setTimeout(()=>toast.classList.remove("show"),type==="error"?6000:3500);
+}
+
+function setPushUI(state,note=""){
+  const on=state==="on",blocked=state==="blocked",loading=state==="loading";
+  pushSwitch.classList.toggle("on",on);
+  pushSwitch.classList.toggle("loading",loading);
+  pushSwitch.setAttribute("aria-checked",String(on));
+  pushSwitch.disabled=loading||blocked;
+  notificationState.textContent=loading?"...":blocked?"BLOCKED":on?"ON":"OFF";
+  notificationState.className="notification-state "+(on?"on":blocked?"blocked":"");
+  notificationStatusNote.textContent=note;
+  notificationStatusNote.classList.toggle("show",!!note);
+  notificationDescription.textContent=blocked
+    ?"Notifications are blocked by your browser. Allow notifications for this site in your browser settings, then return here."
+    :"Receive important updates, messages and service information even when you are not on the website.";
+}
+
+async function getMessagingToken(){
+  if(!("Notification" in window)) throw new Error("This browser does not support notifications.");
+  if(!("serviceWorker" in navigator)) throw new Error("This browser does not support background notifications.");
+  const registration=await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+  const messaging=firebase.messaging();
+  return messaging.getToken({vapidKey:VAPID_KEY,serviceWorkerRegistration:registration});
+}
+
+async function saveToken(token){
+  const user=auth.currentUser;
+  if(!user||!token) return;
+  await db.collection("users").doc(user.uid).collection("pushTokens").doc(token).set({
+    token:token,
+    platform:"web",
+    userAgent:navigator.userAgent,
+    updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+  },{merge:true});
+}
+
+async function deleteCurrentToken(){
+  const user=auth.currentUser;
+  if(!user) return;
+  const messaging=firebase.messaging();
+  let token=null;
+  try{ token=await messaging.getToken({vapidKey:VAPID_KEY}); }catch{}
+  try{ await messaging.deleteToken(); }catch{}
+  if(token){
+    try{ await db.collection("users").doc(user.uid).collection("pushTokens").doc(token).delete(); }catch{}
+  }
+}
+
+async function enablePushFromHome(){
+  if(!auth.currentUser) throw new Error("Please sign in first.");
+  if(!("Notification" in window)) throw new Error("Notifications are not supported on this browser.");
+  if(Notification.permission==="denied"){
+    setPushUI("blocked","Your browser has blocked notifications for this site.");
+    throw new Error("Notifications are blocked in your browser settings.");
+  }
+  if(Notification.permission!=="granted"){
+    const permission=await Notification.requestPermission();
+    if(permission!=="granted"){
+      setPushUI("off","Notification permission was not granted.");
+      return false;
+    }
+  }
+  const token=await getMessagingToken();
+  if(!token) throw new Error("No notification token was created.");
+  await saveToken(token);
+  localStorage.setItem("dsp_push_enabled","true");
+  setPushUI("on","Notifications are active. You can leave the website and still receive DSP push notifications.");
+  return true;
+}
+
+async function turnPushOff(){
+  await deleteCurrentToken();
+  localStorage.removeItem("dsp_push_enabled");
+  setPushUI("off","Notifications are off. Turn the switch on again whenever you want DSP push notifications.");
+}
+
+async function syncPushState(){
+  if(!auth.currentUser){setPushUI("off");return}
+  if(!("Notification" in window)){setPushUI("blocked","This browser does not support web notifications.");return}
+  if(Notification.permission==="denied"){setPushUI("blocked","Notifications are blocked by your browser.");return}
+  if(Notification.permission!=="granted"){
+    setPushUI("off");
+    return;
+  }
+
+  /* Permission is already granted, so no permission popup is needed.
+     Re-register the FCM token silently when the customer returns. */
+  try{
+    const token=await getMessagingToken();
+    if(token){
+      await saveToken(token);
+      localStorage.setItem("dsp_push_enabled","true");
+      setPushUI("on","Notifications are active. You can leave the website and still receive DSP push notifications.");
+      return;
+    }
+  }catch(error){
+    console.warn("Silent notification sync failed:",error);
+  }
+
+  setPushUI("off","Notifications are permitted, but the current push registration could not be restored yet.");
+}
+
+pushSwitch.addEventListener("click",async()=>{
+  if(pushSwitch.classList.contains("on")){
+    pushSwitch.disabled=true;setPushUI("loading");
+    try{await turnPushOff();showToast("DSP notifications turned off.");}
+    catch(error){console.error(error);setPushUI("on","Notifications remain active.");showToast(error.message||"Could not turn notifications off.","error");}
+    return;
+  }
+  pushSwitch.disabled=true;setPushUI("loading");
+  try{
+    const ok=await enablePushFromHome();
+    if(ok) showToast("DSP notifications are now ON.");
+    else {setPushUI("off");showToast("Notifications were not enabled.","error");}
+  }catch(error){
+    console.error("Notification toggle error:",error);
+    if(Notification.permission==="denied") setPushUI("blocked","Notifications are blocked by your browser.");
+    else setPushUI("off");
+    showToast(error.message||"Could not enable notifications.","error");
+  }
+});
+
+auth.onAuthStateChanged(async user=>{
+  if(!user){window.location.href="login.html";return}
+  let displayName=user.displayName||"Customer";
+  try{
+    const snap=await db.collection("users").doc(user.uid).get();
+    if(snap.exists){
+      const data=snap.data()||{};
+      displayName=data.name||data.fullName||displayName;
+      const photo=data.photo||data.photoURL;
+      if(photo) userPhoto.src=photo;
+    }
+  }catch(error){console.warn("Profile load:",error)}
+  customerName.textContent=displayName;
+  menuUserName.textContent=displayName;
+  menuUserEmail.textContent=user.email||"";
+  setPushUI("loading");
+  await syncPushState();
+});
+
+const sideMenu=$("sideMenu"),overlay=$("overlay");
+function closeSideMenu(){sideMenu.classList.remove("open");overlay.classList.remove("show")}
+$("menuBtn").addEventListener("click",()=>{sideMenu.classList.add("open");overlay.classList.add("show")});
+$("closeMenu").addEventListener("click",closeSideMenu);
+overlay.addEventListener("click",closeSideMenu);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSideMenu()});
+
+$("signOutBtn").addEventListener("click",async()=>{
+  try{await auth.signOut();window.location.href="login.html"}
+  catch(error){showToast("Unable to sign out.","error")}
+});
+
+$("notificationBtn").addEventListener("click",()=>window.location.href="notifications.html");
+$("year").textContent=new Date().getFullYear();
+</script>
+
+<!-- Existing DSP notification helper remains available to the rest of the site. -->
+<script src="/push-notifications.js"></script>
+</body>
+</html>
