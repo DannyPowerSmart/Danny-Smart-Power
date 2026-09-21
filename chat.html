@@ -977,6 +977,125 @@ body{
 
 
 /* =====================================================
+   INPUT AREA
+===================================================== */
+
+.input-area{
+
+  max-width:950px;
+
+  margin:auto;
+
+  display:flex;
+
+  align-items:flex-end;
+
+  gap:7px;
+}
+
+
+/* =====================================================
+   COMPOSER BUTTONS
+===================================================== */
+
+.attach,
+.camera-button,
+.send{
+
+  width:48px;
+  height:48px;
+
+  min-width:48px;
+
+  border:0;
+
+  border-radius:50%;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:22px;
+}
+
+.camera-button,
+.attach{
+
+  background:#17283e;
+
+  color:white;
+}
+
+70%{
+    box-shadow:0 0 0 12px rgba(239,68,68,0);
+  }
+
+  100%{
+    box-shadow:0 0 0 0 rgba(239,68,68,0);
+  }
+}
+
+.send{
+
+  background:#38bdf8;
+
+  color:#00111c;
+
+  font-size:21px;
+}
+
+.send:disabled{
+
+  opacity:.35;
+
+  cursor:not-allowed;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+textarea{
+
+  flex:1;
+
+  min-width:0;
+
+  min-height:48px;
+
+  max-height:135px;
+
+  resize:none;
+
+  border:0;
+
+  outline:0;
+
+  border-radius:25px;
+
+  background:var(--input);
+
+  color:white;
+
+  padding:13px 16px;
+
+  font-family:inherit;
+
+  font-size:14px;
+}
+
+textarea::placeholder{
+
+  color:#64748b;
+}
+
+
+/* =====================================================
    SIDE MENU
 ===================================================== */
 
@@ -1363,15 +1482,13 @@ window.addEventListener("beforeunload",()=>{
     right:14px;
     bottom:108px;
   }
-
-  .input-area{
+.input-area{
 
     gap:5px;
   }
 
   .attach,
   .camera-button,
-
   .send{
 
     width:46px;
@@ -1430,7 +1547,6 @@ window.addEventListener("beforeunload",()=>{
 
   .attach,
   .camera-button,
-
   .send{
 
     width:42px;
@@ -1710,7 +1826,9 @@ window.addEventListener("beforeunload",()=>{
       📎
 
     </button>
-<!-- CAMERA INPUT -->
+
+
+    <!-- CAMERA INPUT -->
 
     <input
       type="file"
@@ -2147,7 +2265,6 @@ let lastRenderedMessages = [];
         });
       };
     }
-
 
     if(cameraInput){
       cameraInput.onchange = function(event){
@@ -3557,6 +3674,241 @@ function renderMessage(
 
 
 /* =====================================================
+   READ STATUS
+===================================================== */
+
+function getReadClass(
+  data
+){
+
+  if(data.read === true){
+
+    return "read";
+
+  }
+
+  if(data.delivered === true){
+
+    return "delivered";
+
+  }
+
+  return "sent";
+
+}
+
+
+function getReadSymbol(
+  data
+){
+
+  if(data.read === true){
+
+    return "✓✓";
+
+  }
+
+  if(data.delivered === true){
+
+    return "✓✓";
+
+  }
+
+  return "✓";
+
+}
+
+
+/* =====================================================
+   DELETE FOR CUSTOMER
+===================================================== */
+
+async function deleteForCustomer(
+  message
+){
+
+  if(
+    message.senderId !==
+    user.uid
+  ){
+
+    return;
+
+  }
+
+  const confirmed =
+    confirm(
+      "Delete this message for you?"
+    );
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+  try{
+
+    await db
+      .collection("messages")
+      .doc(message.id)
+      .set({
+
+        deletedForCustomer:
+          true,
+
+        deletedForCustomerAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      },{
+        merge:true
+      });
+
+    showToast(
+      "Message deleted for you ✓"
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      error
+    );
+
+    alert(
+      "Could not delete message.\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   REPLY
+===================================================== */
+
+function prepareReply(
+  message
+){
+
+  if(!message.text){
+
+    showToast(
+      "This message cannot be replied to."
+    );
+
+    return;
+
+  }
+
+  input.value =
+    "↩️ " +
+    message.text +
+    "\n";
+
+  input.focus();
+
+  autoResize();
+
+  updateSendButton();
+
+}
+
+
+/* =====================================================
+   MARK ADMIN READ
+===================================================== */
+
+async function markAdminMessagesRead(
+  messages
+){
+
+  const unread =
+    messages.filter(
+      message =>
+
+        message.senderRole !==
+        "customer" &&
+
+        message.read !== true
+
+    );
+
+  if(unread.length === 0){
+
+    return;
+
+  }
+
+  try{
+
+    const batch =
+      db.batch();
+
+    unread.forEach(
+      message => {
+
+        const ref =
+          db.collection(
+            "messages"
+          )
+          .doc(
+            message.id
+          );
+
+        batch.update(
+          ref,
+          {
+            read:true
+          }
+        );
+
+      }
+    );
+
+    await batch.commit();
+
+    await db.collection(
+      "chats"
+    )
+    .doc(chatId)
+    .set({
+
+      unreadForCustomer:
+        0
+
+    },{
+      merge:true
+    });
+
+    unreadAdminCount =
+      Math.max(
+        0,
+        unreadAdminCount -
+        unread.length
+      );
+
+    updateNotificationBadge();
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Read update:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
    SEND NORMAL MESSAGE
 ===================================================== */
 
@@ -3594,6 +3946,7 @@ async function sendMessage(){
 
 
   try{
+
 
     /* ===============================================
        TEXT / IMAGE
