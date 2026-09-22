@@ -535,6 +535,67 @@ main{
 }
 
 /* =========================
+   TEMPORARY NOTIFICATION TEST
+========================= */
+
+.notification-test-card{
+  background:#111c31;
+  border:1px solid rgba(56,189,248,.12);
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:25px;
+}
+
+.notification-test-title{
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:5px;
+}
+
+.notification-test-description{
+  color:#94a3b8;
+  font-size:10px;
+  line-height:1.6;
+  margin-bottom:14px;
+}
+
+.notification-test-button{
+  width:100%;
+  padding:12px 16px;
+  border:none;
+  border-radius:10px;
+  background:#38bdf8;
+  color:#020617;
+  font-family:'Poppins',sans-serif;
+  font-size:12px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.notification-test-button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 18px rgba(56,189,248,.18);
+}
+
+.notification-test-button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.notification-test-status{
+  display:none;
+  margin-top:12px;
+  padding:10px;
+  border-radius:9px;
+  background:rgba(56,189,248,.08);
+  color:#bae6fd;
+  font-size:10px;
+  line-height:1.5;
+}
+
+/* =========================
    SECTION TITLE
 ========================= */
 
@@ -1244,6 +1305,42 @@ footer strong{
   </section>
 
 
+  <!-- =========================
+       TEMPORARY NOTIFICATION TEST
+  ========================= -->
+
+  <section class="notification-test-card">
+
+    <div class="notification-test-title">
+      Notification System Test
+    </div>
+
+    <div class="notification-test-description">
+
+      This is a temporary test for the new Danny Smart Power
+      notification system. We are testing the notification
+      foundation before connecting it to the rest of the website.
+
+    </div>
+
+    <button
+      id="testNotificationBtn"
+      class="notification-test-button"
+      type="button"
+    >
+
+      🔔 Test Notification Setup
+
+    </button>
+
+    <div
+      id="notificationTestStatus"
+      class="notification-test-status"
+    ></div>
+
+  </section>
+
+
   <!-- QUICK ACTIONS -->
 
   <div class="section-title">
@@ -1452,12 +1549,14 @@ footer strong{
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+
 <script src="/notification.js"></script>
+
 <script>
 
 const firebaseConfig={
 
-  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
 
   authDomain:"danny-smart-power.firebaseapp.com",
 
@@ -1638,12 +1737,6 @@ auth.onAuthStateChanged(
     /*
       IMPORTANT:
       Home page does NOT redirect to login.html.
-
-      Firebase can take a moment to restore
-      the existing signed-in customer session.
-
-      If there is temporarily no user,
-      simply keep the home page open.
     */
 
     if(!user){
@@ -1667,20 +1760,10 @@ auth.onAuthStateChanged(
     }
 
 
-    /*
-      First use Firebase Authentication
-      information immediately.
-    */
-
     let customerDisplayName=
       user.displayName ||
       "";
 
-
-    /*
-      If Firebase Auth does not have a name,
-      use the email username temporarily.
-    */
 
     if(!customerDisplayName){
 
@@ -1700,10 +1783,6 @@ auth.onAuthStateChanged(
     }
 
 
-    /*
-      Show the customer name immediately.
-    */
-
     welcomeName.textContent=
       customerDisplayName;
 
@@ -1715,10 +1794,6 @@ auth.onAuthStateChanged(
       "Signed in";
 
 
-    /*
-      Firebase Auth profile photo.
-    */
-
     if(user.photoURL){
 
       menuProfileImage.src=
@@ -1726,14 +1801,6 @@ auth.onAuthStateChanged(
 
     }
 
-
-    /*
-      IMPORTANT:
-      Read the customer's actual profile
-      from:
-
-      profiles/{Firebase Auth UID}
-    */
 
     try{
 
@@ -1750,21 +1817,12 @@ auth.onAuthStateChanged(
           profileDoc.data() || {};
 
 
-        /*
-          Your profile page uses fullName,
-          so that is checked first.
-        */
-
         const profileName=
           profile.fullName ||
           profile.name ||
           user.displayName ||
           customerDisplayName;
 
-
-        /*
-          Your profile page may save photoURL.
-        */
 
         const profilePhoto=
           profile.photoURL ||
@@ -1773,20 +1831,12 @@ auth.onAuthStateChanged(
           user.photoURL;
 
 
-        /*
-          Update the actual welcome name.
-        */
-
         welcomeName.textContent=
           profileName;
 
         menuProfileName.textContent=
           profileName;
 
-
-        /*
-          Update the actual profile picture.
-        */
 
         if(profilePhoto){
 
@@ -1807,11 +1857,6 @@ auth.onAuthStateChanged(
 
     }
 
-
-    /*
-      Load notification state
-      without creating another auth listener.
-    */
 
     try{
 
@@ -1858,12 +1903,6 @@ signOutBtn.addEventListener(
 
       await auth.signOut();
 
-      /*
-        Redirect happens ONLY because
-        the customer deliberately clicked
-        Sign Out.
-      */
-
       window.location.href=
         "login.html";
 
@@ -1882,7 +1921,8 @@ signOutBtn.addEventListener(
 
 
 /* =========================
-   PUSH NOTIFICATIONS
+   EXISTING PUSH NOTIFICATION
+   SWITCH
 ========================= */
 
 async function enablePushNotifications(){
@@ -2040,6 +2080,82 @@ pushSwitch.addEventListener(
         console.error(error);
 
       }
+
+    }
+
+  }
+);
+
+
+/* =========================
+   STEP 4
+   TEMPORARY NOTIFICATION TEST
+========================= */
+
+const testNotificationBtn =
+  document.getElementById(
+    "testNotificationBtn"
+  );
+
+const notificationTestStatus =
+  document.getElementById(
+    "notificationTestStatus"
+  );
+
+
+testNotificationBtn.addEventListener(
+  "click",
+  async function(){
+
+    testNotificationBtn.disabled =
+      true;
+
+    testNotificationBtn.textContent =
+      "⏳ Setting up notifications...";
+
+
+    notificationTestStatus.style.display =
+      "block";
+
+    notificationTestStatus.textContent =
+      "Please wait. Connecting this browser to Firebase Cloud Messaging...";
+
+
+    try{
+
+      await registerDannySmartPowerNotifications();
+
+
+      notificationTestStatus.textContent =
+        "✅ Notification setup completed successfully. The device registration was saved to Firestore.";
+
+
+      testNotificationBtn.textContent =
+        "✅ Notification Setup Complete";
+
+
+    }catch(error){
+
+      console.error(
+        "Danny Smart Power notification test failed:",
+        error
+      );
+
+
+      notificationTestStatus.textContent =
+        "❌ Notification setup failed: " +
+        (
+          error.message ||
+          "Unknown error"
+        );
+
+
+      testNotificationBtn.disabled =
+        false;
+
+
+      testNotificationBtn.textContent =
+        "🔔 Try Notification Setup Again";
 
     }
 
