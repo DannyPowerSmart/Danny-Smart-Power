@@ -1981,23 +1981,28 @@ async function enablePushNotifications(){
     console.log(
       "Danny Smart Power notification token registered."
     );
-
+    
   }catch(error){
 
-    console.error(
-      "Notification registration error:",
-      error
-    );
+    console.error("========== NOTIFICATION ERROR ==========");
+    console.error(error);
+    console.error("Message:", error.message);
+    console.error("Code:", error.code);
+    console.error("Name:", error.name);
+    console.error("Stack:", error.stack);
+    console.error("========================================");
 
     pushSwitch.checked=false;
 
     alert(
-      "Could not enable notifications. Please check your browser notification permission and try again."
+      "NOTIFICATION ERROR\n\n" +
+      "Name: " + (error.name || "Unknown") +
+      "\n\nCode: " + (error.code || "None") +
+      "\n\nMessage: " + (error.message || "Unknown error")
     );
 
   }
 
-}
 
 pushSwitch.addEventListener(
   "change",
