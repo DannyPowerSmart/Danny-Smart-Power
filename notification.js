@@ -5,7 +5,7 @@
 // ============================================
 
 const DSP_VAPID_KEY =
-  "BFTvpM4Gy807AEVK5SpAZud3kjGdC4zsxlBpfC-jJLALKaxcqwjCMMPY3MI5NAjd5ZjLXQWutZ43WdBqlgAc8Q";
+  "BFTvpM4Gy807AEVK5SpAZud3kjGdC4zsxlBpfC-jJLALKaxcqwjCMMPY3MIk5NAjd5ZjLXQWutZ43WdBqlgAc8Q";
 
 async function registerDannySmartPowerNotifications() {
   try {
