@@ -8,13 +8,12 @@ const DSP_VAPID_KEY =
   "BFTvpM4Gy807AEVK5SpAZud3kjGdC4zsxlBpfC-jJLALKaxcqwjCMMPY3MI5NAjd5ZjLXQWutZ43WdBqlgAc8Q";
 
 async function registerDannySmartPowerNotifications() {
-
   try {
 
     console.log("Starting Danny Smart Power notification setup...");
 
     // --------------------------------------------
-    // 1. Check browser notification support
+    // CHECK BROWSER SUPPORT
     // --------------------------------------------
 
     if (!("Notification" in window)) {
@@ -23,20 +22,14 @@ async function registerDannySmartPowerNotifications() {
       );
     }
 
-
-    // --------------------------------------------
-    // 2. Check service worker support
-    // --------------------------------------------
-
     if (!("serviceWorker" in navigator)) {
       throw new Error(
         "This browser does not support service workers."
       );
     }
 
-
     // --------------------------------------------
-    // 3. Check Firebase
+    // CHECK FIREBASE
     // --------------------------------------------
 
     if (
@@ -49,27 +42,64 @@ async function registerDannySmartPowerNotifications() {
       );
     }
 
-
-    // --------------------------------------------
-    // 4. Check logged-in customer
-    // --------------------------------------------
-
     const auth = firebase.auth();
 
-    const user = auth.currentUser;
+    // --------------------------------------------
+    // WAIT FOR FIREBASE AUTH TO RESTORE LOGIN
+    // --------------------------------------------
+
+    const user = await new Promise((resolve) => {
+
+      // If Firebase already knows the user
+      if (auth.currentUser) {
+        resolve(auth.currentUser);
+        return;
+      }
+
+      // Otherwise wait for Firebase Auth
+      // to restore the existing login session
+      const unsubscribe =
+        auth.onAuthStateChanged((currentUser) => {
+
+          unsubscribe();
+
+          resolve(currentUser || null);
+
+        });
+
+    });
+
+    console.log(
+      "Firebase authentication check completed."
+    );
 
     if (!user) {
       throw new Error(
-        "Please log in before enabling notifications."
+        "Firebase could not find the logged-in account. Please log out and log in again."
       );
     }
 
+    console.log(
+      "Logged-in user:",
+      user.uid
+    );
+
+    console.log(
+      "Logged-in email:",
+      user.email || "No email"
+    );
 
     // --------------------------------------------
-    // 5. Ask for notification permission
+    // NOTIFICATION PERMISSION
     // --------------------------------------------
 
-    let permission = Notification.permission;
+    let permission =
+      Notification.permission;
+
+    console.log(
+      "Current notification permission:",
+      permission
+    );
 
     if (permission !== "granted") {
 
@@ -79,10 +109,9 @@ async function registerDannySmartPowerNotifications() {
     }
 
     console.log(
-      "Notification permission:",
+      "Notification permission after request:",
       permission
     );
-
 
     if (permission !== "granted") {
       throw new Error(
@@ -90,9 +119,8 @@ async function registerDannySmartPowerNotifications() {
       );
     }
 
-
     // --------------------------------------------
-    // 6. Register Firebase messaging service worker
+    // REGISTER SERVICE WORKER
     // --------------------------------------------
 
     const registration =
@@ -104,64 +132,47 @@ async function registerDannySmartPowerNotifications() {
       "Firebase messaging service worker registered."
     );
 
-
-    // --------------------------------------------
-    // 7. Wait until service worker is ready
-    // --------------------------------------------
-
     await navigator.serviceWorker.ready;
 
+    console.log(
+      "Firebase messaging service worker is ready."
+    );
 
     // --------------------------------------------
-    // 8. Get Firebase Messaging
+    // FIREBASE CLOUD MESSAGING
     // --------------------------------------------
 
     const messaging =
       firebase.messaging();
 
-
-    // --------------------------------------------
-    // 9. Generate notification token
-    // --------------------------------------------
-
     const token =
       await messaging.getToken({
-
         vapidKey: DSP_VAPID_KEY,
-
         serviceWorkerRegistration:
           registration
-
       });
 
-
     if (!token) {
-
       throw new Error(
         "Firebase did not generate a notification token."
       );
-
     }
 
-
     console.log(
-      "Firebase notification token created."
+      "Firebase notification token created successfully."
     );
 
-
     // --------------------------------------------
-    // 10. Save notification device
+    // SAVE DEVICE TOKEN
     // --------------------------------------------
 
     const db =
       firebase.firestore();
 
-
     const tokenRef =
       db
         .collection("notificationTokens")
         .doc(user.uid);
-
 
     await tokenRef.set({
 
@@ -179,19 +190,19 @@ async function registerDannySmartPowerNotifications() {
         firebase.firestore.FieldValue.serverTimestamp()
 
     }, {
-
       merge: true
-
     });
 
+    console.log(
+      "Notification device saved to Firestore."
+    );
 
     // --------------------------------------------
-    // 11. Verify Firestore save
+    // VERIFY FIRESTORE SAVE
     // --------------------------------------------
 
     const savedToken =
       await tokenRef.get();
-
 
     if (!savedToken.exists) {
 
@@ -201,10 +212,8 @@ async function registerDannySmartPowerNotifications() {
 
     }
 
-
     const savedData =
       savedToken.data();
-
 
     if (
       !savedData ||
@@ -216,7 +225,6 @@ async function registerDannySmartPowerNotifications() {
       );
 
     }
-
 
     console.log(
       "===================================="
@@ -245,9 +253,7 @@ async function registerDannySmartPowerNotifications() {
       "===================================="
     );
 
-
     return true;
-
 
   } catch (error) {
 
@@ -260,5 +266,4 @@ async function registerDannySmartPowerNotifications() {
     throw error;
 
   }
-
 }
