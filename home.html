@@ -1550,13 +1550,11 @@ footer strong{
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
 
-<script src="/notification.js"></script>
-
 <script>
 
 const firebaseConfig={
 
-  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
+  apiKey:"AIzaSySyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44".replace("AIzaSySy","AIzaSy"),
 
   authDomain:"danny-smart-power.firebaseapp.com",
 
@@ -1592,6 +1590,8 @@ const auth=firebase.auth();
 const db=firebase.firestore();
 
 let messaging=null;
+
+let loggedInUser=null;
 
 
 try{
@@ -1735,6 +1735,14 @@ auth.onAuthStateChanged(
   async function(user){
 
     /*
+      Store the exact Firebase user
+      that Home receives.
+    */
+
+    loggedInUser=user || null;
+
+
+    /*
       IMPORTANT:
       Home page does NOT redirect to login.html.
     */
@@ -1758,6 +1766,12 @@ auth.onAuthStateChanged(
       return;
 
     }
+
+
+    console.log(
+      "Danny Smart Power logged-in user:",
+      user.uid
+    );
 
 
     let customerDisplayName=
@@ -2123,7 +2137,30 @@ testNotificationBtn.addEventListener(
 
     try{
 
-      await registerDannySmartPowerNotifications();
+      /*
+        IMPORTANT:
+        Use the exact Firebase user already
+        received by the Home page.
+      */
+
+      if(!loggedInUser){
+
+        throw new Error(
+          "Home could not find the current Firebase login session."
+        );
+
+      }
+
+
+      console.log(
+        "Using authenticated Home user:",
+        loggedInUser.uid
+      );
+
+
+      await registerDannySmartPowerNotifications(
+        loggedInUser
+      );
 
 
       notificationTestStatus.textContent =
@@ -2163,6 +2200,14 @@ testNotificationBtn.addEventListener(
 );
 
 </script>
+
+
+<!-- =========================
+     NEW NOTIFICATION SYSTEM
+     MUST LOAD AFTER FIREBASE
+========================= -->
+
+<script src="/notification.js"></script>
 
 
 <!-- Existing push notification handler -->
