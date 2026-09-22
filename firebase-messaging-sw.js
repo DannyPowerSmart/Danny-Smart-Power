@@ -2,7 +2,7 @@ importScripts("https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js
 importScripts("https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js");
 
 firebase.initializeApp({
-  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
   authDomain: "danny-smart-power.firebaseapp.com",
   databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
   projectId: "danny-smart-power",
@@ -14,17 +14,17 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage((payload) => {
+messaging.onBackgroundMessage(function(payload) {
   console.log(
-    "[Danny Smart Power] Background notification received:",
+    "[Danny Smart Power] Background notification:",
     payload
   );
 
-  const title =
+  const notificationTitle =
     payload.notification?.title ||
     "Danny Smart Power";
 
-  const options = {
+  const notificationOptions = {
     body:
       payload.notification?.body ||
       "You have a new notification.",
@@ -33,5 +33,8 @@ messaging.onBackgroundMessage((payload) => {
     data: payload.data || {}
   };
 
-  self.registration.showNotification(title, options);
+  self.registration.showNotification(
+    notificationTitle,
+    notificationOptions
+  );
 });
