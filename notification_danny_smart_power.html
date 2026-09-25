@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#020617">
+<title>Notifications | Danny Smart Power</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f172a;--header:#020617;--accent:#38bdf8;--text:#f8fafc;--muted:#94a3b8;--card:#111c31;--line:#263449;--danger:#f87171}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+button,a{font:inherit}button{cursor:pointer}
+header{height:70px;background:var(--header);border-bottom:1px solid #1e293b;display:flex;align-items:center;gap:14px;padding:0 18px;position:sticky;top:0;z-index:20}
+.menu-btn{width:42px;height:42px;border:1px solid #263449;border-radius:12px;background:#0f172a;color:white;font-size:22px}
+.brand{font-weight:700;font-size:17px;line-height:1.2}.brand span{color:var(--accent)}
+.header-spacer{flex:1}.header-link{color:var(--text);text-decoration:none;border:1px solid #263449;padding:9px 13px;border-radius:10px;font-size:13px}
+main{width:min(900px,100%);margin:0 auto;padding:28px 16px 60px}
+.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:22px}
+h1{font-size:clamp(24px,5vw,32px);line-height:1.25} .sub{color:var(--muted);font-size:13px;margin-top:7px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid #334155;background:#172338;color:var(--text);border-radius:10px;padding:10px 13px;font-size:12px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#082f49;font-weight:700}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.status{padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:#111c31;color:#cbd5e1;font-size:13px;margin-bottom:14px}
+.status.error{border-color:#7f1d1d;background:#2b151b;color:#fecaca}
+.list{display:grid;gap:12px}
+.notice{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.notice.unread{border-color:#287ba0;box-shadow:inset 3px 0 0 var(--accent)}
+.notice-icon{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:#082f49;color:#7dd3fc;display:grid;place-items:center;font-size:21px}
+.notice-content{flex:1;min-width:0}.notice-title{font-size:15px;font-weight:600;overflow-wrap:anywhere}.notice-body{font-size:13px;color:#cbd5e1;line-height:1.65;margin-top:5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.notice-meta{font-size:11px;color:var(--muted);margin-top:9px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{font-size:10px;border-radius:20px;padding:3px 8px;background:#0c4a6e;color:#bae6fd}
+.notice-buttons{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}.small-btn{font-size:11px;padding:7px 10px;border-radius:8px;border:1px solid #334155;background:#172338;color:#e2e8f0}
+.empty{text-align:center;padding:48px 18px;border:1px dashed #334155;border-radius:16px;color:var(--muted)}
+.empty strong{display:block;color:var(--text);font-size:16px;margin-bottom:6px}
+footer{text-align:center;color:#64748b;font-size:11px;padding:18px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:40;opacity:0;visibility:hidden;transition:.22s}
+.overlay.show{opacity:1;visibility:visible}
+.side-menu{position:fixed;z-index:50;left:0;top:0;bottom:0;width:min(330px,88vw);background:#020617;border-right:1px solid #1e293b;padding:20px 16px;overflow-y:auto;transform:translateX(-105%);transition:transform .25s ease}
+.side-menu.open{transform:translateX(0)}
+.menu-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.menu-brand{font-size:19px;font-weight:700}.menu-brand span{color:var(--accent)}
+.close-menu{background:#111c31;border:1px solid #263449;color:white;border-radius:10px;width:38px;height:38px;font-size:22px}
+.profile-box{padding:14px;background:#0f172a;border:1px solid #263449;border-radius:14px;margin-bottom:18px}
+.profile-name{font-weight:600;font-size:14px;overflow-wrap:anywhere}.profile-email{font-size:11px;color:var(--muted);overflow-wrap:anywhere;margin-top:3px}
+.menu-label{color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:1.3px;margin:18px 10px 8px}
+.menu-links{display:grid;gap:5px}.menu-links a{display:flex;align-items:center;gap:11px;padding:11px 12px;color:#cbd5e1;text-decoration:none;border-radius:10px;font-size:13px}
+.menu-links a:hover,.menu-links a.active{background:#0c2538;color:#7dd3fc}.menu-links .signout{color:#fca5a5}
+@media(max-width:600px){header{padding:0 12px}.brand{font-size:15px}.header-link{padding:8px 10px}.heading{display:block}.actions{margin-top:15px}.notice{padding:13px}.notice-icon{width:38px;height:38px;flex-basis:38px}}
+</style>
+</head>
+<body>
+<header>
+  <button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+  <div class="brand">DANNY <span>SMART POWER</span></div>
+  <div class="header-spacer"></div>
+  <a class="header-link" href="shop.html">Shop</a>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<aside class="side-menu" id="sideMenu" aria-label="Main menu">
+  <div class="menu-top"><div class="menu-brand">DANNY <span>SMART POWER</span></div><button class="close-menu" id="closeMenu" aria-label="Close menu">×</button></div>
+  <div class="profile-box"><div class="profile-name" id="menuName">My Account</div><div class="profile-email" id="menuEmail">Sign in to your account</div></div>
+  <div class="menu-label">Main menu</div>
+  <nav class="menu-links">
+    <a href="home.html">⌂ <span>Home</span></a>
+    <a href="shop.html">▦ <span>Shop</span></a>
+    <a href="cart.html">🛒 <span>Cart</span></a>
+    <a href="orders.html">▤ <span>My Orders</span></a>
+    <a href="wishlist.html">♡ <span>Wishlist</span></a>
+    <a href="services.html">⚡ <span>Services</span></a>
+    <a href="service-project.html">▧ <span>Electrical Projects</span></a>
+    <a href="service-request.html">＋ <span>Request Electrical Service</span></a>
+    <a href="chat.html">☏ <span>Chat with Danny</span></a>
+    <a href="track-order.html">⌕ <span>Track Order</span></a>
+    <a href="contact.html">✉ <span>Contact Us</span></a>
+    <a href="help.html">? <span>Help Center</span></a>
+    <a class="active" href="notification.html">♢ <span>Notifications</span></a>
+    <a href="settings.html">⚙ <span>Settings</span></a>
+    <a class="signout" href="signout.html">↪ <span>Sign Out</span></a>
+  </nav>
+</aside>
+
+<main>
+  <div class="heading">
+    <div><h1>Notifications</h1><p class="sub">Updates and messages from Danny Smart Power.</p></div>
+    <div class="actions"><button class="btn" id="refreshBtn">↻ Refresh</button><button class="btn primary" id="markAllBtn" disabled>Mark all as read</button></div>
+  </div>
+  <div class="status" id="status">Checking your account…</div>
+  <div class="list" id="notificationList"></div>
+</main>
+<footer>Danny Smart Power · Customer notifications</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
+  authDomain: "danny-smart-power.firebaseapp.com",
+  databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+  projectId: "danny-smart-power",
+  storageBucket: "danny-smart-power.firebasestorage.app",
+  messagingSenderId: "649735645158",
+  appId: "1:649735645158:web:cff518b89721a163679827",
+  measurementId: "G-258YKLP5ZS"
+};
+
+const statusBox = document.getElementById('status');
+const listBox = document.getElementById('notificationList');
+const refreshBtn = document.getElementById('refreshBtn');
+const markAllBtn = document.getElementById('markAllBtn');
+let currentUser = null;
+let notifications = [];
+let authReady = false;
+let loadGeneration = 0;
+let authTimeout = setTimeout(() => {
+  if (!authReady) showError('Authentication is taking too long. Check your connection, then reload this page.');
+}, 12000);
+
+try {
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+} catch (e) { console.error(e); }
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+function setStatus(message, type='normal') {
+  statusBox.textContent = message;
+  statusBox.className = 'status' + (type === 'error' ? ' error' : '');
+  statusBox.style.display = 'block';
+}
+function showError(message) {
+  setStatus(message, 'error');
+  listBox.innerHTML = '<div class="empty"><strong>Notifications could not be loaded</strong><div>Check your internet connection and try again.</div><div style="margin-top:14px"><button class="btn primary" onclick="loadNotifications()">Try again</button></div></div>';
+}
+function esc(value) {
+  return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function dateLabel(value) {
+  try {
+    let date = value && typeof value.toDate === 'function' ? value.toDate() : (value ? new Date(value) : null);
+    if (!date || isNaN(date.getTime())) return 'Recently';
+    return date.toLocaleString([], {dateStyle:'medium', timeStyle:'short'});
+  } catch (_) { return 'Recently'; }
+}
+function isRead(data) {
+  const readBy = Array.isArray(data.readBy) ? data.readBy : [];
+  if (currentUser && readBy.includes(currentUser.uid)) return true;
+  // Legacy boolean is supported for old records.
+  return data.read === true;
+}
+function isCustomerNotice(data) {
+  if (data.target === 'admin') return false;
+  const target = String(data.target || '').toLowerCase();
+  if (['all','everyone','customers'].includes(target)) return true;
+  if (!currentUser) return false;
+  const uid = currentUser.uid;
+  const email = String(currentUser.email || '').toLowerCase();
+  return [data.recipientId, data.userId, data.customerId].some(v => v && v === uid) ||
+         [data.recipientEmail, data.email].some(v => v && String(v).toLowerCase() === email);
+}
+function getIcon(data) {
+  if (data.icon) return data.icon;
+  const type = String(data.type || '').toLowerCase();
+  if (type.includes('order')) return '📦';
+  if (type.includes('service')) return '⚡';
+  if (type.includes('chat') || type.includes('message')) return '💬';
+  return '🔔';
+}
+function renderNotifications() {
+  const unread = notifications.filter(n => !isRead(n.data));
+  markAllBtn.disabled = unread.length === 0;
+  if (!notifications.length) {
+    listBox.innerHTML = '<div class="empty"><strong>You’re all caught up</strong><div>There are no notifications for your account right now.</div></div>';
+    setStatus('You’re signed in. No notifications found.');
+    return;
+  }
+  setStatus(`${notifications.length} notification${notifications.length === 1 ? '' : 's'} · ${unread.length} unread`);
+  listBox.innerHTML = notifications.map(n => {
+    const d = n.data;
+    const read = isRead(d);
+    return `<article class="notice ${read ? '' : 'unread'}">
+      <div class="notice-icon">${esc(getIcon(d))}</div>
+      <div class="notice-content">
+        <div class="notice-title">${esc(d.title || 'Danny Smart Power update')}</div>
+        <div class="notice-body">${esc(d.body || d.message || 'You have a new update.')}</div>
+        <div class="notice-meta"><span>${esc(dateLabel(d.createdAt || d.timestamp || d.created))}</span>${read ? '<span>Read</span>' : '<span class="pill">New</span>'}</div>
+        ${read ? '' : `<div class="notice-buttons"><button class="small-btn" data-read="${esc(n.id)}">Mark as read</button></div>`}
+      </div>
+    </article>`;
+  }).join('');
+  listBox.querySelectorAll('[data-read]').forEach(button => {
+    button.addEventListener('click', () => markOneRead(button.getAttribute('data-read'), button));
+  });
+}
+async function queryCollection(query, seen, results) {
+  try {
+    const snap = await query.get();
+    snap.forEach(doc => {
+      if (!seen.has(doc.id)) {
+        const data = doc.data() || {};
+        if (isCustomerNotice(data)) {
+          seen.add(doc.id);
+          results.push({id:doc.id, data});
+        }
+      }
+    });
+  } catch (error) {
+    console.warn('A notification query was unavailable:', error.code || error.message);
+  }
+}
+async function loadNotifications() {
+  const generation = ++loadGeneration;
+  if (!currentUser) {
+    setStatus('Please sign in to view your notifications.');
+    listBox.innerHTML = '<div class="empty"><strong>Sign-in required</strong><div>Sign in to your Danny Smart Power account to see your notifications.</div><div style="margin-top:14px"><a class="header-link" href="login.html">Go to login</a></div></div>';
+    markAllBtn.disabled = true;
+    return;
+  }
+  refreshBtn.disabled = true;
+  markAllBtn.disabled = true;
+  setStatus('Loading your notifications…');
+  listBox.innerHTML = '<div class="empty">Loading notifications…</div>';
+  const seen = new Set();
+  const results = [];
+  const tasks = [
+    queryCollection(db.collection('notifications').where('target','==','all'), seen, results),
+    queryCollection(db.collection('notifications').where('target','==','everyone'), seen, results),
+    queryCollection(db.collection('notifications').where('target','==','customers'), seen, results),
+    queryCollection(db.collection('notifications').where('recipientId','==',currentUser.uid), seen, results),
+    queryCollection(db.collection('notifications').where('userId','==',currentUser.uid), seen, results),
+    queryCollection(db.collection('notifications').where('customerId','==',currentUser.uid), seen, results)
+  ];
+  if (currentUser.email) {
+    const email = currentUser.email.toLowerCase();
+    tasks.push(queryCollection(db.collection('notifications').where('recipientEmail','==',email), seen, results));
+    tasks.push(queryCollection(db.collection('notifications').where('email','==',email), seen, results));
+  }
+  try {
+    await Promise.all(tasks);
+    if (generation !== loadGeneration) return;
+    results.sort((a,b) => {
+      const time = item => {
+        const v = item.data.createdAt || item.data.timestamp || item.data.created;
+        try { return v && typeof v.toMillis === 'function' ? v.toMillis() : new Date(v || 0).getTime(); } catch (_) { return 0; }
+      };
+      return time(b) - time(a);
+    });
+    notifications = results;
+    renderNotifications();
+  } catch (error) {
+    console.error(error);
+    if (generation === loadGeneration) showError('We couldn’t load notifications. Your Firestore rules or connection may be blocking access.');
+  } finally {
+    if (generation === loadGeneration) refreshBtn.disabled = false;
+  }
+}
+async function markOneRead(id, button) {
+  if (!currentUser) return;
+  const item = notifications.find(n => n.id === id);
+  if (!item) return;
+  if (button) button.disabled = true;
+  try {
+    await db.collection('notifications').doc(id).update({
+      readBy: firebase.firestore.FieldValue.arrayUnion(currentUser.uid)
+    });
+    item.data.readBy = Array.isArray(item.data.readBy) ? item.data.readBy : [];
+    if (!item.data.readBy.includes(currentUser.uid)) item.data.readBy.push(currentUser.uid);
+    renderNotifications();
+  } catch (error) {
+    console.error(error);
+    if (button) button.disabled = false;
+    setStatus('Could not mark this notification as read. Check your Firestore rules.', 'error');
+  }
+}
+markAllBtn.addEventListener('click', async () => {
+  if (!currentUser) return;
+  const unread = notifications.filter(n => !isRead(n.data));
+  if (!unread.length) return;
+  markAllBtn.disabled = true;
+  setStatus('Marking notifications as read…');
+  // Keep each update separate to avoid Firestore batch limits and partial batch failures.
+  const outcomes = await Promise.allSettled(unread.map(n =>
+    db.collection('notifications').doc(n.id).update({
+      readBy: firebase.firestore.FieldValue.arrayUnion(currentUser.uid)
+    })
+  ));
+  outcomes.forEach((result, i) => {
+    if (result.status === 'fulfilled') {
+      const d = unread[i].data;
+      d.readBy = Array.isArray(d.readBy) ? d.readBy : [];
+      if (!d.readBy.includes(currentUser.uid)) d.readBy.push(currentUser.uid);
+    }
+  });
+  renderNotifications();
+  if (outcomes.some(r => r.status === 'rejected')) {
+    setStatus('Some notifications could not be marked as read. Check your Firestore rules.', 'error');
+  }
+});
+refreshBtn.addEventListener('click', loadNotifications);
+
+const sideMenu = document.getElementById('sideMenu');
+const overlay = document.getElementById('overlay');
+function openMenu(){sideMenu.classList.add('open');overlay.classList.add('show');}
+function closeMenu(){sideMenu.classList.remove('open');overlay.classList.remove('show');}
+document.getElementById('openMenu').addEventListener('click', openMenu);
+document.getElementById('closeMenu').addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+auth.onAuthStateChanged(user => {
+  authReady = true;
+  clearTimeout(authTimeout);
+  currentUser = user;
+  document.getElementById('menuName').textContent = user ? (user.displayName || 'My Account') : 'My Account';
+  document.getElementById('menuEmail').textContent = user ? (user.email || 'Signed in') : 'Sign in to your account';
+  if (user) loadNotifications();
+  else {
+    notifications = [];
+    setStatus('Please sign in to view your notifications.');
+    listBox.innerHTML = '<div class="empty"><strong>Sign-in required</strong><div>Sign in to your Danny Smart Power account to see your notifications.</div><div style="margin-top:14px"><a class="header-link" href="login.html">Go to login</a></div></div>';
+  }
+}, error => {
+  console.error(error);
+  authReady = true;
+  clearTimeout(authTimeout);
+  showError('We could not verify your sign-in. Refresh the page or sign in again.');
+});
+</script>
+</body>
+</html>
