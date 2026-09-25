@@ -4,463 +4,431 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Notifications — Danny Smart Power</title>
+<title>Notifications | Danny Smart Power</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 body{
-    font-family:Poppins,sans-serif;
+    font-family:'Poppins',sans-serif;
     background:#0f172a;
-    color:#f8fafc;
+    color:#e5e7eb;
     min-height:100vh;
 }
 
-button{
-    font-family:inherit;
-}
+/* ================= HEADER ================= */
 
-.header{
+header{
+    height:70px;
+    background:#020617;
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 18px;
+
     position:sticky;
     top:0;
     z-index:100;
-    height:70px;
-    background:#020617;
-    border-bottom:1px solid rgba(148,163,184,.12);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 18px;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:18px;
-    font-weight:700;
 }
 
 .logo{
-    width:38px;
-    height:38px;
-    border-radius:12px;
-    background:#38bdf8;
-    color:#020617;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-    font-size:19px;
-    box-shadow:0 0 20px rgba(56,189,248,.2);
-}
-
-.headerRight{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.iconBtn{
-    position:relative;
-    width:42px;
-    height:42px;
-    border:1px solid rgba(148,163,184,.16);
-    border-radius:12px;
-    background:#0f172a;
-    color:#f8fafc;
-    cursor:pointer;
-    font-size:19px;
-}
-
-.iconBtn:hover{
-    border-color:#38bdf8;
-}
-
-.badge{
-    position:absolute;
-    top:-5px;
-    right:-5px;
-    min-width:19px;
-    height:19px;
-    padding:0 5px;
-    border-radius:50px;
-    background:#ef4444;
-    color:white;
-    font-size:10px;
+    color:#fff;
+    font-size:18px;
     font-weight:700;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:2px solid #020617;
 }
 
-.hidden{
-    display:none!important;
-}
-
-.backBtn{
-    background:transparent;
-    border:0;
-    color:#94a3b8;
-    font-size:20px;
-    cursor:pointer;
-    margin-right:4px;
-}
-
-.backBtn:hover{
+.logo span{
     color:#38bdf8;
 }
 
-.container{
-    width:100%;
-    max-width:850px;
-    margin:0 auto;
-    padding:24px 16px 50px;
-}
-
-.pageTitle{
-    margin-bottom:20px;
-}
-
-.pageTitle h1{
-    font-size:25px;
-    margin-bottom:5px;
-}
-
-.pageTitle p{
-    color:#94a3b8;
-    font-size:13px;
-}
-
-.actions{
+.header-actions{
     display:flex;
-    gap:10px;
-    margin-bottom:18px;
+    gap:9px;
 }
 
-.actionBtn{
-    border:1px solid rgba(148,163,184,.15);
-    background:#111c32;
-    color:#cbd5e1;
+.header-btn{
+    border:1px solid rgba(255,255,255,.10);
+    background:#111827;
+    color:#e5e7eb;
+
     border-radius:10px;
-    padding:9px 13px;
-    cursor:pointer;
+
+    padding:9px 12px;
+
+    font-family:'Poppins',sans-serif;
     font-size:12px;
-}
+    font-weight:600;
 
-.actionBtn:hover{
-    border-color:#38bdf8;
-    color:#38bdf8;
-}
-
-.notificationList{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.notification{
-    position:relative;
-    background:#111c32;
-    border:1px solid rgba(148,163,184,.12);
-    border-radius:17px;
-    padding:15px;
-    display:flex;
-    gap:13px;
     cursor:pointer;
+
     transition:.2s;
 }
 
-.notification:hover{
-    transform:translateY(-1px);
-    border-color:rgba(56,189,248,.4);
+.header-btn:hover{
+    border-color:#38bdf8;
+    color:#38bdf8;
 }
 
-.notification.unread{
-    border-color:rgba(56,189,248,.4);
-    background:#12213a;
-}
+/* ================= MAIN ================= */
 
-.notificationIcon{
-    width:45px;
-    height:45px;
-    flex-shrink:0;
-    border-radius:13px;
-    background:#0f172a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-}
-
-.notificationBody{
-    flex:1;
-    min-width:0;
-}
-
-.notificationTop{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    align-items:flex-start;
-}
-
-.notificationTitle{
-    font-weight:700;
-    font-size:14px;
-    color:#f8fafc;
-}
-
-.notificationTime{
-    color:#64748b;
-    font-size:10px;
-    white-space:nowrap;
-}
-
-.notificationMessage{
-    margin-top:5px;
-    color:#cbd5e1;
-    font-size:12px;
-    line-height:1.65;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-.unreadDot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#38bdf8;
-    margin-top:7px;
-    flex-shrink:0;
-}
-
-.readLabel{
-    margin-top:7px;
-    color:#64748b;
-    font-size:9px;
-}
-
-.empty{
-    padding:50px 20px;
-    text-align:center;
-    background:#111c32;
-    border:1px solid rgba(148,163,184,.12);
-    border-radius:17px;
-    color:#64748b;
-}
-
-.emptyIcon{
-    font-size:38px;
-    margin-bottom:10px;
-}
-
-.loading{
-    text-align:center;
-    padding:50px;
-    color:#64748b;
-    font-size:13px;
-}
-
-.error{
-    background:#3f1515;
-    border:1px solid #7f1d1d;
-    color:#fecaca;
-    padding:14px;
-    border-radius:12px;
-    font-size:12px;
-    display:none;
-    margin-bottom:15px;
-}
-
-/* DETAIL MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:500;
-    background:rgba(2,6,23,.82);
-    backdrop-filter:blur(7px);
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modalBox{
+main{
     width:100%;
-    max-width:650px;
-    max-height:90vh;
-    overflow-y:auto;
-    background:#0f172a;
-    border:1px solid rgba(148,163,184,.15);
-    border-radius:24px 24px 0 0;
-    padding:20px;
+    max-width:850px;
+
+    margin:auto;
+
+    padding:28px 16px 60px;
 }
 
-.modalHeader{
+/* ================= TOP ================= */
+
+.page-top{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:15px;
+    align-items:flex-start;
+
+    gap:20px;
+
     margin-bottom:20px;
 }
 
-.modalHeader h2{
-    font-size:18px;
+.page-title{
+    color:#fff;
+    font-size:25px;
+    font-weight:700;
 }
 
-.closeBtn{
-    width:36px;
-    height:36px;
-    border:0;
+.page-subtitle{
+    color:#94a3b8;
+    font-size:13px;
+
+    margin-top:5px;
+
+    line-height:1.6;
+}
+
+.mark-all-btn{
+    border:none;
+
+    background:#38bdf8;
+    color:#02111d;
+
     border-radius:10px;
-    background:#1e293b;
-    color:#f8fafc;
+
+    padding:10px 14px;
+
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    font-weight:700;
+
     cursor:pointer;
-    font-size:18px;
+
+    white-space:nowrap;
+
+    transition:.2s;
 }
 
-.detailIcon{
-    width:58px;
-    height:58px;
-    border-radius:17px;
-    background:#111c32;
+.mark-all-btn:hover{
+    transform:translateY(-1px);
+}
+
+.mark-all-btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
+/* ================= STATUS ================= */
+
+.status{
+    color:#94a3b8;
+    font-size:12px;
+
+    margin-bottom:12px;
+}
+
+/* ================= NOTIFICATION LIST ================= */
+
+.notifications-list{
+    display:flex;
+    flex-direction:column;
+
+    gap:11px;
+}
+
+/* ================= CARD ================= */
+
+.notification-card{
+    width:100%;
+
+    display:flex;
+
+    gap:13px;
+
+    padding:15px;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.notification-card:hover{
+    border-color:rgba(56,189,248,.45);
+    transform:translateY(-1px);
+}
+
+/* UNREAD */
+
+.notification-card.unread{
+    border-left:3px solid #38bdf8;
+
+    background:#132033;
+}
+
+/* ================= ICON ================= */
+
+.notification-icon{
+    width:44px;
+    height:44px;
+
+    min-width:44px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:28px;
-    margin-bottom:14px;
+
+    border-radius:12px;
+
+    background:#172033;
+
+    font-size:21px;
 }
 
-.detailTitle{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:7px;
+/* ================= CONTENT ================= */
+
+.notification-content{
+    min-width:0;
+    flex:1;
 }
 
-.detailDate{
-    color:#64748b;
-    font-size:11px;
-    margin-bottom:18px;
-}
-
-.detailMessage{
-    background:#111c32;
-    border:1px solid rgba(148,163,184,.12);
-    border-radius:15px;
-    padding:15px;
-    color:#cbd5e1;
-    line-height:1.8;
-    font-size:13px;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-.detailButtons{
+.notification-title-row{
     display:flex;
-    gap:10px;
-    margin-top:16px;
+
+    justify-content:space-between;
+
+    gap:12px;
 }
 
-.primaryBtn{
-    flex:1;
-    border:0;
-    border-radius:12px;
-    padding:12px;
-    background:#38bdf8;
-    color:#020617;
-    font-weight:700;
-    cursor:pointer;
-}
+.notification-title{
+    color:#fff;
 
-.secondaryBtn{
-    flex:1;
-    border:1px solid rgba(148,163,184,.15);
-    border-radius:12px;
-    padding:12px;
-    background:#111c32;
-    color:#cbd5e1;
+    font-size:14px;
     font-weight:600;
-    cursor:pointer;
+
+    line-height:1.4;
 }
 
-.primaryBtn:hover{
-    opacity:.9;
+.notification-time{
+    color:#64748b;
+
+    font-size:10px;
+
+    white-space:nowrap;
 }
 
-.secondaryBtn:hover{
-    border-color:#38bdf8;
+.notification-body{
+    color:#cbd5e1;
+
+    font-size:12px;
+
+    line-height:1.65;
+
+    margin-top:5px;
+
+    white-space:pre-wrap;
 }
 
-@media(min-width:700px){
+.notification-type{
+    display:inline-block;
 
-    .modal{
-        align-items:center;
-        padding:20px;
+    margin-top:8px;
+
+    padding:3px 8px;
+
+    border-radius:20px;
+
+    background:rgba(56,189,248,.10);
+
+    color:#38bdf8;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    text-transform:capitalize;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-state{
+    background:#111827;
+
+    border:1px dashed rgba(255,255,255,.12);
+
+    border-radius:15px;
+
+    padding:45px 20px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.empty-icon{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    width:24px;
+    height:24px;
+
+    border:2px solid #334155;
+    border-top-color:#38bdf8;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+    margin:30px auto;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
     }
 
-    .modalBox{
-        border-radius:22px;
+}
+
+/* ================= ERROR ================= */
+
+.error-box{
+    background:#1f1720;
+
+    border:1px solid rgba(248,113,113,.25);
+
+    color:#fca5a5;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    header{
+        height:62px;
+        padding:0 12px;
+    }
+
+    .logo{
+        font-size:15px;
+    }
+
+    .header-btn{
+        padding:8px 9px;
+        font-size:11px;
+    }
+
+    main{
+        padding:22px 12px 45px;
+    }
+
+    .page-top{
+        flex-direction:column;
+        gap:13px;
+    }
+
+    .page-title{
+        font-size:22px;
+    }
+
+    .mark-all-btn{
+        width:100%;
+    }
+
+    .notification-card{
+        padding:13px;
+    }
+
+    .notification-title-row{
+        display:block;
+    }
+
+    .notification-time{
+        display:block;
+        margin-top:3px;
     }
 
 }
+
 </style>
 </head>
 
+
 <body>
 
-<header class="header">
 
-    <div class="brand">
+<!-- ================= HEADER ================= -->
 
-        <button class="backBtn" id="backBtn">
-            ‹
-        </button>
+<header>
 
-        <div class="logo">
-            ⚡
-        </div>
-
-        <div>
-            <div>Danny Smart Power</div>
-        </div>
-
+    <div class="logo">
+        Danny <span>Smart Power</span>
     </div>
 
-    <div class="headerRight">
+    <div class="header-actions">
 
         <button
-            class="iconBtn"
-            id="refreshBtn"
-            title="Refresh"
-        >
-            ↻
+            class="header-btn"
+            type="button"
+            onclick="location.href='home.html'">
+            Home
         </button>
 
         <button
-            class="iconBtn"
-            title="Notifications"
-        >
-            🔔
-            <span
-                id="headerBadge"
-                class="badge hidden"
-            >
-                0
-            </span>
+            class="header-btn"
+            type="button"
+            onclick="location.href='profile.html'">
+            Profile
         </button>
 
     </div>
@@ -468,908 +436,220 @@ button{
 </header>
 
 
-<main class="container">
 
-    <div class="pageTitle">
+<!-- ================= MAIN ================= -->
 
-        <h1>
-            Notifications
-        </h1>
+<main>
 
-        <p>
-            Messages, order updates, service updates and announcements.
-        </p>
+    <div class="page-top">
 
-    </div>
+        <div>
 
+            <h1 class="page-title">
+                Notifications
+            </h1>
 
-    <div
-        id="errorBox"
-        class="error"
-    ></div>
+            <p class="page-subtitle">
+                Stay updated with your orders, services and important messages from Danny Smart Power.
+            </p>
 
-
-    <div class="actions">
-
-        <button
-            class="actionBtn"
-            id="markAllBtn"
-        >
-            ✓ Mark all as read
-        </button>
-
-        <button
-            class="actionBtn"
-            id="refreshListBtn"
-        >
-            ↻ Refresh
-        </button>
-
-    </div>
-
-
-    <div
-        id="notificationList"
-        class="notificationList"
-    >
-
-        <div class="loading">
-            Loading notifications...
         </div>
+
+
+        <button
+            class="mark-all-btn"
+            id="markAllBtn"
+            type="button">
+
+            ✓ Mark all as read
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="status">
+
+        Checking your notifications...
+
+    </div>
+
+
+    <div
+        class="notifications-list"
+        id="notificationsList">
+
+        <div class="loading"></div>
 
     </div>
 
 </main>
 
 
-<!-- DETAIL MODAL -->
 
-<div
-    id="modal"
-    class="modal"
->
-
-    <div class="modalBox">
-
-        <div class="modalHeader">
-
-            <h2>
-                Notification
-            </h2>
-
-            <button
-                class="closeBtn"
-                id="closeModal"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div
-            id="detailIcon"
-            class="detailIcon"
-        >
-            🔔
-        </div>
-
-
-        <div
-            id="detailTitle"
-            class="detailTitle"
-        >
-            Notification
-        </div>
-
-
-        <div
-            id="detailDate"
-            class="detailDate"
-        >
-            —
-        </div>
-
-
-        <div
-            id="detailMessage"
-            class="detailMessage"
-        >
-            —
-        </div>
-
-
-        <div class="detailButtons">
-
-            <button
-                id="chatBtn"
-                class="primaryBtn"
-                style="display:none;"
-            >
-                💬 Open Chat
-            </button>
-
-            <button
-                id="doneBtn"
-                class="secondaryBtn"
-            >
-                Done
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- FIREBASE -->
+<!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
 
 
 <script>
 
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
 ========================================================= */
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGb44",
+    apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
 
-    authDomain:
-        "danny-smart-power.firebaseapp.com",
+    authDomain:"danny-smart-power.firebaseapp.com",
 
-    databaseURL:
-        "https://danny-smart-power-default-rtdb.firebaseio.com",
+    projectId:"danny-smart-power",
 
-    projectId:
-        "danny-smart-power",
+    storageBucket:"danny-smart-power.firebasestorage.app",
 
-    storageBucket:
-        "danny-smart-power.firebasestorage.app",
+    messagingSenderId:"649735645158",
 
-    messagingSenderId:
-        "649735645158",
+    appId:"1:649735645158:web:cff518b89721a163679827",
 
-    appId:
-        "1:649735645158:web:cff518b89721a163679827",
-
-    measurementId:
-        "G-258YKLP5ZS"
+    measurementId:"G-258YKLP5ZS"
 
 };
 
+
 firebase.initializeApp(firebaseConfig);
+
 
 const auth = firebase.auth();
 
 const db = firebase.firestore();
 
 
+
 /* =========================================================
-   STATE
+   VARIABLES
 ========================================================= */
 
 let currentUser = null;
 
-let notifications = [];
+let allNotifications = [];
 
-let unsubscribeNotifications = [];
+let notificationListeners = [];
 
-let loadingNotifications = false;
 
 
 /* =========================================================
-   HELPERS
+   ESCAPE HTML
 ========================================================= */
-
-function $(id){
-
-    return document.getElementById(id);
-
-}
-
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(value ?? "").replace(
+        /[&<>"']/g,
+
+        function(character){
+
+            return {
+
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+
+            }[character];
+
+        }
+    );
 
 }
 
 
-function getTimestamp(value){
 
-    if(!value){
+/* =========================================================
+   GET TIMESTAMP VALUE
+========================================================= */
+
+function getDateValue(timestamp){
+
+    if(!timestamp){
 
         return 0;
 
     }
 
-    try{
 
-        if(typeof value.toMillis === "function"){
+    if(typeof timestamp.toMillis === "function"){
 
-            return value.toMillis();
+        return timestamp.toMillis();
 
-        }
+    }
 
-        if(typeof value.toDate === "function"){
 
-            return value.toDate().getTime();
+    if(timestamp.seconds){
 
-        }
+        return timestamp.seconds * 1000;
 
-        if(value.seconds){
+    }
 
-            return value.seconds * 1000;
 
-        }
+    const date = new Date(timestamp);
 
-        const date = new Date(value);
+    if(isNaN(date.getTime())){
 
-        if(!isNaN(date.getTime())){
+        return 0;
 
-            return date.getTime();
+    }
 
-        }
 
-    }catch(error){}
-
-    return 0;
+    return date.getTime();
 
 }
 
 
-function getDate(value){
 
-    const timestamp = getTimestamp(value);
+/* =========================================================
+   FORMAT DATE
+========================================================= */
 
-    if(!timestamp){
+function formatDate(timestamp){
+
+    const milliseconds = getDateValue(timestamp);
+
+
+    if(!milliseconds){
 
         return "Just now";
 
     }
 
-    try{
 
-        return new Date(timestamp).toLocaleString([],{
-
-            day:"numeric",
-
-            month:"short",
-
-            year:"numeric",
-
-            hour:"numeric",
-
-            minute:"2-digit"
-
-        });
-
-    }catch(error){
-
-        return "Just now";
-
-    }
-
-}
-
-
-/*
-   Create a unique key so the same notification
-   returned by two queries is displayed only once.
-*/
-
-function notificationKey(notification){
-
-    return String(notification.id || "");
-
-}
-
-
-/* =========================================================
-   AUTH
-========================================================= */
-
-auth.onAuthStateChanged(async user=>{
-
-    if(!user){
-
-        currentUser = null;
-
-        stopNotificationListeners();
-
-        window.location.href = "login.html";
-
-        return;
-
-    }
-
-    currentUser = user;
-
-    await loadNotifications();
-
-    listenNotifications();
-
-});
-
-
-/* =========================================================
-   GET NOTIFICATIONS
-========================================================= */
-
-async function fetchNotificationQueries(){
-
-    if(!currentUser){
-
-        return [];
-
-    }
-
-
-    const queries = [];
-
-
-    /*
-       1. GENERAL NOTIFICATIONS
-
-       These are notifications created with:
-
-       target: "all"
-    */
-
-    queries.push(
-
-        db
-            .collection("notifications")
-            .where("target","==","all")
-            .limit(100)
-            .get()
-
-    );
-
-
-    /*
-       2. PERSONAL NOTIFICATIONS BY UID
-
-       This also catches the newer:
-
-       target: "user"
-       recipientId: currentUser.uid
-
-       and older notifications that simply
-       contain recipientId.
-    */
-
-    queries.push(
-
-        db
-            .collection("notifications")
-            .where(
-                "recipientId",
-                "==",
-                currentUser.uid
-            )
-            .limit(100)
-            .get()
-
-    );
-
-
-    /*
-       3. PERSONAL NOTIFICATIONS BY EMAIL
-
-       This supports notifications that were
-       sent using the customer's email.
-    */
-
-    if(currentUser.email){
-
-        queries.push(
-
-            db
-                .collection("notifications")
-                .where(
-                    "recipientEmail",
-                    "==",
-                    currentUser.email
-                )
-                .limit(100)
-                .get()
-
-        );
-
-    }
-
-
-    /*
-       Also support the older "email" field.
-    */
-
-    if(currentUser.email){
-
-        queries.push(
-
-            db
-                .collection("notifications")
-                .where(
-                    "email",
-                    "==",
-                    currentUser.email
-                )
-                .limit(100)
-                .get()
-
-        );
-
-    }
-
-
-    const results =
-        await Promise.all(queries);
-
-
-    const unique =
-        new Map();
-
-
-    results.forEach(snapshot=>{
-
-        snapshot.forEach(doc=>{
-
-            unique.set(
-
-                notificationKey({
-                    id:doc.id
-                }),
-
-                {
-                    id:doc.id,
-                    ...doc.data()
-                }
-
-            );
-
-        });
-
-    });
-
-
-    return Array.from(unique.values());
-
-}
-
-
-/* =========================================================
-   LOAD NOTIFICATIONS
-========================================================= */
-
-async function loadNotifications(){
-
-    if(!currentUser){
-
-        return;
-
-    }
-
-    if(loadingNotifications){
-
-        return;
-
-    }
-
-    loadingNotifications = true;
-
-    clearError();
-
-
-    try{
-
-        const results =
-            await fetchNotificationQueries();
-
-
-        /*
-           Extra client-side safety filter.
-
-           This makes sure that even if a query
-           returns an unexpected document, it will
-           not be displayed to the customer.
-        */
-
-        notifications =
-            results.filter(notification=>{
-
-                const target =
-                    notification.target;
-
-                const uid =
-                    currentUser.uid;
-
-                const email =
-                    String(
-                        currentUser.email || ""
-                    ).toLowerCase();
-
-
-                /*
-                   General
-                */
-
-                if(
-                    target === "all" ||
-                    target === "everyone" ||
-                    target === "customers"
-                ){
-
-                    return true;
-
-                }
-
-
-                /*
-                   UID
-                */
-
-                if(
-                    notification.recipientId === uid ||
-                    notification.userId === uid ||
-                    notification.customerId === uid
-                ){
-
-                    return true;
-
-                }
-
-
-                /*
-                   Email
-                */
-
-                if(
-                    notification.recipientEmail &&
-                    String(
-                        notification.recipientEmail
-                    ).toLowerCase() === email
-                ){
-
-                    return true;
-
-                }
-
-
-                if(
-                    notification.email &&
-                    String(
-                        notification.email
-                    ).toLowerCase() === email
-                ){
-
-                    return true;
-
-                }
-
-
-                return false;
-
-            });
-
-
-        sortNotifications();
-
-        renderNotifications();
-
-
-    }catch(error){
-
-        console.error(
-            "Notification loading error:",
-            error
-        );
-
-
-        notifications = [];
-
-
-        showError(
-            "Unable to load notifications right now. Please try again."
-        );
-
-
-        renderNotifications();
-
-
-    }finally{
-
-        loadingNotifications = false;
-
-    }
-
-}
-
-
-/* =========================================================
-   REALTIME LISTENERS
-========================================================= */
-
-function stopNotificationListeners(){
-
-    unsubscribeNotifications.forEach(unsubscribe=>{
-
-        try{
-
-            unsubscribe();
-
-        }catch(error){}
-
-    });
-
-    unsubscribeNotifications = [];
-
-}
-
-
-function listenNotifications(){
-
-    stopNotificationListeners();
-
-
-    if(!currentUser){
-
-        return;
-
-    }
-
-
-    /*
-       GENERAL
-    */
-
-    const generalUnsubscribe =
-
-        db
-            .collection("notifications")
-            .where("target","==","all")
-            .limit(100)
-            .onSnapshot(
-
-                snapshot=>{
-
-                    mergeSnapshot(snapshot);
-
-                },
-
-                error=>{
-
-                    console.error(
-                        "General notification listener error:",
-                        error
-                    );
-
-                }
-
-            );
-
-
-    unsubscribeNotifications.push(
-        generalUnsubscribe
-    );
-
-
-    /*
-       PERSONAL UID
-    */
-
-    const uidUnsubscribe =
-
-        db
-            .collection("notifications")
-            .where(
-                "recipientId",
-                "==",
-                currentUser.uid
-            )
-            .limit(100)
-            .onSnapshot(
-
-                snapshot=>{
-
-                    mergeSnapshot(snapshot);
-
-                },
-
-                error=>{
-
-                    console.error(
-                        "Personal notification listener error:",
-                        error
-                    );
-
-                }
-
-            );
-
-
-    unsubscribeNotifications.push(
-        uidUnsubscribe
-    );
-
-
-    /*
-       PERSONAL EMAIL
-    */
-
-    if(currentUser.email){
-
-        const emailUnsubscribe =
-
-            db
-                .collection("notifications")
-                .where(
-                    "recipientEmail",
-                    "==",
-                    currentUser.email
-                )
-                .limit(100)
-                .onSnapshot(
-
-                    snapshot=>{
-
-                        mergeSnapshot(snapshot);
-
-                    },
-
-                    error=>{
-
-                        console.error(
-                            "Email notification listener error:",
-                            error
-                        );
-
-                    }
-
-                );
-
-
-        unsubscribeNotifications.push(
-            emailUnsubscribe
-        );
-
-
-        /*
-           Older email field.
-        */
-
-        const oldEmailUnsubscribe =
-
-            db
-                .collection("notifications")
-                .where(
-                    "email",
-                    "==",
-                    currentUser.email
-                )
-                .limit(100)
-                .onSnapshot(
-
-                    snapshot=>{
-
-                        mergeSnapshot(snapshot);
-
-                    },
-
-                    error=>{
-
-                        console.error(
-                            "Old email notification listener error:",
-                            error
-                        );
-
-                    }
-
-                );
-
-
-        unsubscribeNotifications.push(
-            oldEmailUnsubscribe
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   MERGE REALTIME RESULTS
-========================================================= */
-
-function mergeSnapshot(snapshot){
-
-    const map = new Map();
-
-
-    /*
-       Start with existing notifications.
-    */
-
-    notifications.forEach(notification=>{
-
-        map.set(
-            notification.id,
-            notification
-        );
-
-    });
-
-
-    /*
-       Add/update incoming notifications.
-    */
-
-    snapshot.forEach(doc=>{
-
-        const notification = {
-
-            id:doc.id,
-
-            ...doc.data()
-
-        };
-
-
-        /*
-           Extra safety check.
-        */
-
-        if(isNotificationForCurrentUser(notification)){
-
-            map.set(
-                doc.id,
-                notification
-            );
-
+    return new Intl.DateTimeFormat(
+        "en-NG",
+        {
+            dateStyle:"medium",
+            timeStyle:"short"
         }
-
-    });
-
-
-    notifications =
-        Array.from(map.values());
-
-
-    /*
-       Remove notifications that no longer
-       belong to this customer.
-    */
-
-    notifications =
-        notifications.filter(
-            isNotificationForCurrentUser
-        );
-
-
-    sortNotifications();
-
-    renderNotifications();
+    ).format(
+        new Date(milliseconds)
+    );
 
 }
 
 
+
 /* =========================================================
-   SECURITY FILTER
+   CHECK IF NOTIFICATION BELONGS TO CUSTOMER
 ========================================================= */
 
-function isNotificationForCurrentUser(notification){
+function isForCurrentUser(notification){
 
     if(!currentUser){
 
@@ -1378,101 +658,83 @@ function isNotificationForCurrentUser(notification){
     }
 
 
-    const uid =
-        currentUser.uid;
+    const target =
+        String(notification.target || "").toLowerCase();
 
 
-    const email =
-        String(
-            currentUser.email || ""
-        ).toLowerCase();
+    /* Never show admin-only notifications */
+
+    if(target === "admin"){
+
+        return false;
+
+    }
 
 
-    /*
-       General.
-    */
+    /* Notifications for everybody */
 
     if(
-        notification.target === "all" ||
-        notification.target === "everyone" ||
-        notification.target === "customers"
+        target === "all" ||
+        target === "everyone" ||
+        target === "customers"
     ){
 
         return true;
+
+    }
+
+
+    /* Notification for one specific customer */
+
+    if(target === "user"){
+
+        return (
+
+            notification.recipientId === currentUser.uid
+
+        ) || (
+
+            currentUser.email &&
+            notification.recipientEmail === currentUser.email
+
+        );
 
     }
 
 
     /*
-       UID.
+       Fallback for a notification that has a
+       matching customer ID or email.
     */
 
-    if(
-        notification.recipientId === uid ||
-        notification.userId === uid ||
-        notification.customerId === uid
-    ){
+    return (
 
-        return true;
+        notification.recipientId === currentUser.uid
 
-    }
+    ) || (
 
-
-    /*
-       Email.
-    */
-
-    if(
-        notification.recipientEmail &&
-        String(
-            notification.recipientEmail
-        ).toLowerCase() === email
-    ){
-
-        return true;
-
-    }
-
-
-    if(
-        notification.email &&
-        String(
-            notification.email
-        ).toLowerCase() === email
-    ){
-
-        return true;
-
-    }
-
-
-    return false;
-
-}
-
-
-/* =========================================================
-   SORT
-========================================================= */
-
-function sortNotifications(){
-
-    notifications.sort(
-
-        (a,b)=>
-            getTimestamp(b.createdAt) -
-            getTimestamp(a.createdAt)
+        currentUser.email &&
+        notification.recipientEmail === currentUser.email
 
     );
 
 }
 
 
+
 /* =========================================================
-   READ STATUS
+   CHECK READ STATUS
 ========================================================= */
 
-function isRead(notification){
+function isNotificationRead(notification){
+
+    /*
+       New system uses readBy.
+
+       This is important because a notification
+       sent to "all" customers cannot use one
+       global read=true value.
+    */
 
     if(
         Array.isArray(notification.readBy) &&
@@ -1487,59 +749,116 @@ function isRead(notification){
 
 
     /*
-       Legacy support.
+       Fallback for old/simple documents.
+       This does NOT use the old notification
+       message system.
     */
 
-    if(notification.read === true){
-
-        return true;
-
-    }
-
-
-    return false;
+    return notification.read === true;
 
 }
 
 
+
 /* =========================================================
-   RENDER
+   MERGE NOTIFICATIONS
+========================================================= */
+
+function mergeNotifications(rows){
+
+    const notificationMap = new Map();
+
+
+    rows.forEach(function(item){
+
+        if(
+            item &&
+            item.id &&
+            item.data &&
+            isForCurrentUser(item.data)
+        ){
+
+            notificationMap.set(
+                item.id,
+                {
+                    id:item.id,
+                    ...item.data
+                }
+            );
+
+        }
+
+    });
+
+
+    allNotifications =
+        Array.from(
+            notificationMap.values()
+        );
+
+
+    /*
+       Sort on the client.
+
+       This avoids requiring a Firestore
+       composite index.
+    */
+
+    allNotifications.sort(function(a,b){
+
+        return (
+            getDateValue(b.createdAt) -
+            getDateValue(a.createdAt)
+        );
+
+    });
+
+
+    renderNotifications();
+
+}
+
+
+
+/* =========================================================
+   RENDER NOTIFICATIONS
 ========================================================= */
 
 function renderNotifications(){
 
     const list =
-        $("notificationList");
+        document.getElementById(
+            "notificationsList"
+        );
 
 
-    if(!list){
-
-        return;
-
-    }
-
-
-    const unreadCount =
-        notifications.filter(
-            notification=>!isRead(notification)
-        ).length;
+    const status =
+        document.getElementById(
+            "status"
+        );
 
 
-    updateBadge(unreadCount);
+    if(!allNotifications.length){
 
+        status.textContent =
+            "You're all caught up.";
 
-    if(!notifications.length){
 
         list.innerHTML = `
 
-            <div class="empty">
+            <div class="empty-state">
 
-                <div class="emptyIcon">
+                <div class="empty-icon">
                     🔔
                 </div>
 
                 <div>
                     No notifications yet.
+                </div>
+
+                <div>
+                    New messages from Danny Smart Power
+                    will appear here.
                 </div>
 
             </div>
@@ -1551,109 +870,136 @@ function renderNotifications(){
     }
 
 
+    const unreadCount =
+        allNotifications.filter(
+            function(notification){
+
+                return !isNotificationRead(
+                    notification
+                );
+
+            }
+        ).length;
+
+
+    if(unreadCount > 0){
+
+        status.textContent =
+            unreadCount +
+            " unread notification" +
+            (unreadCount === 1 ? "" : "s");
+
+    }else{
+
+        status.textContent =
+            "You're all caught up.";
+
+    }
+
+
     list.innerHTML =
-        notifications.map(notification=>{
+        allNotifications.map(function(notification){
 
             const unread =
-                !isRead(notification);
+                !isNotificationRead(
+                    notification
+                );
 
 
             const icon =
-                notification.icon ||
-                getNotificationIcon(notification);
+                escapeHTML(
+                    notification.icon || "🔔"
+                );
+
+
+            const title =
+                escapeHTML(
+                    notification.title ||
+                    "Danny Smart Power"
+                );
+
+
+            const body =
+                escapeHTML(
+                    notification.body ||
+                    "You have a new notification."
+                );
+
+
+            const type =
+                escapeHTML(
+                    notification.type ||
+                    "notification"
+                );
+
+
+            const time =
+                escapeHTML(
+                    formatDate(
+                        notification.createdAt
+                    )
+                );
 
 
             return `
 
-                <div
-                    class="notification ${
-                        unread ? "unread" : ""
-                    }"
-                    data-id="${escapeHTML(
-                        notification.id
-                    )}"
+                <article
+                    class="notification-card ${unread ? "unread" : ""}"
+                    data-id="${escapeHTML(notification.id)}"
                 >
 
-                    <div class="notificationIcon">
-
-                        ${escapeHTML(icon)}
-
+                    <div class="notification-icon">
+                        ${icon}
                     </div>
 
 
-                    <div class="notificationBody">
+                    <div class="notification-content">
 
-                        <div class="notificationTop">
+                        <div class="notification-title-row">
 
-                            <div class="notificationTitle">
-
-                                ${escapeHTML(
-                                    notification.title ||
-                                    "Notification"
-                                )}
-
+                            <div class="notification-title">
+                                ${title}
                             </div>
 
-
-                            <div class="notificationTime">
-
-                                ${escapeHTML(
-                                    getDate(
-                                        notification.createdAt
-                                    )
-                                )}
-
+                            <div class="notification-time">
+                                ${time}
                             </div>
 
                         </div>
 
 
-                        <div class="notificationMessage">
-
-                            ${escapeHTML(
-                                notification.message || ""
-                            )}
-
+                        <div class="notification-body">
+                            ${body}
                         </div>
 
 
-                        ${
-                            unread
-
-                            ?
-
-                            `
-                            <div class="unreadDot"></div>
-                            `
-
-                            :
-
-                            `
-                            <div class="readLabel">
-                                Read
-                            </div>
-                            `
-                        }
+                        <span class="notification-type">
+                            ${type}
+                        </span>
 
                     </div>
 
-                </div>
+                </article>
 
             `;
 
         }).join("");
 
 
-    document
-        .querySelectorAll(".notification")
-        .forEach(item=>{
+    /*
+       Clicking a notification marks it as read.
+    */
 
-            item.addEventListener(
+    list
+        .querySelectorAll(".notification-card")
+        .forEach(function(card){
+
+            card.addEventListener(
                 "click",
-                ()=>{
+                function(){
 
-                    openNotification(
-                        item.dataset.id
+                    markNotificationAsRead(
+                        card.dataset.id
                     );
 
                 }
@@ -1664,116 +1010,216 @@ function renderNotifications(){
 }
 
 
+
 /* =========================================================
-   ICONS
+   LISTEN TO NOTIFICATIONS
 ========================================================= */
 
-function getNotificationIcon(notification){
+function listenToNotifications(){
 
-    const source =
-        String(
-            notification.source ||
-            notification.type ||
-            notification.title ||
-            ""
-        ).toLowerCase();
+    /*
+       Remove previous listeners first.
+    */
+
+    notificationListeners.forEach(
+        function(unsubscribe){
+
+            unsubscribe();
+
+        }
+    );
 
 
-    if(
-        source.includes("chat") ||
-        source.includes("message") ||
-        source.includes("reply")
-    ){
+    notificationListeners = [];
 
-        return "💬";
+
+    const queries = [
+
+        /*
+           Sent to everybody.
+        */
+
+        db
+            .collection("notifications")
+            .where("target","==","all"),
+
+
+        /*
+           Alternative general customer targets.
+        */
+
+        db
+            .collection("notifications")
+            .where("target","==","everyone"),
+
+
+        db
+            .collection("notifications")
+            .where("target","==","customers"),
+
+
+        /*
+           Sent directly to this customer.
+        */
+
+        db
+            .collection("notifications")
+            .where(
+                "recipientId",
+                "==",
+                currentUser.uid
+            )
+
+    ];
+
+
+    /*
+       Also listen for notifications
+       addressed using the customer's email.
+    */
+
+    if(currentUser.email){
+
+        queries.push(
+
+            db
+                .collection("notifications")
+                .where(
+                    "recipientEmail",
+                    "==",
+                    currentUser.email
+                )
+
+        );
 
     }
 
 
-    if(
-        source.includes("order") ||
-        source.includes("payment")
-    ){
-
-        return "🛒";
-
-    }
+    const snapshots =
+        new Array(
+            queries.length
+        );
 
 
-    if(
-        source.includes("service") ||
-        source.includes("electrical")
-    ){
+    queries.forEach(
+        function(query,index){
 
-        return "🔧";
+            const unsubscribe =
+                query.onSnapshot(
 
-    }
+                    function(snapshot){
+
+                        snapshots[index] =
+                            snapshot.docs.map(
+                                function(doc){
+
+                                    return {
+
+                                        id:doc.id,
+
+                                        data:doc.data()
+
+                                    };
+
+                                }
+                            );
 
 
-    if(
-        source.includes("project")
-    ){
-
-        return "⚡";
-
-    }
+                        const merged = [];
 
 
-    return "🔔";
+                        snapshots.forEach(
+                            function(rows){
+
+                                if(rows){
+
+                                    merged.push(
+                                        ...rows
+                                    );
+
+                                }
+
+                            }
+                        );
+
+
+                        mergeNotifications(
+                            merged
+                        );
+
+                    },
+
+
+                    function(error){
+
+                        console.error(
+                            "Notification listener error:",
+                            error
+                        );
+
+
+                        document.getElementById(
+                            "status"
+                        ).textContent =
+                            "Unable to load notifications. Please refresh and try again.";
+
+
+                        document.getElementById(
+                            "notificationsList"
+                        ).innerHTML = `
+
+                            <div class="error-box">
+
+                                We could not load your
+                                notifications right now.
+
+                                <br><br>
+
+                                Please refresh the page
+                                and try again.
+
+                            </div>
+
+                        `;
+
+                    }
+
+                );
+
+
+            notificationListeners.push(
+                unsubscribe
+            );
+
+        }
+    );
 
 }
 
 
+
 /* =========================================================
-   BADGE
+   MARK ONE NOTIFICATION AS READ
 ========================================================= */
 
-function updateBadge(count){
+async function markNotificationAsRead(
+    notificationId
+){
 
-    const badge =
-        $("headerBadge");
-
-
-    if(!badge){
+    if(!currentUser){
 
         return;
 
     }
 
 
-    if(count <= 0){
-
-        badge.textContent = "0";
-
-        badge.classList.add(
-            "hidden"
-        );
-
-    }else{
-
-        badge.textContent =
-            count > 99
-            ? "99+"
-            : count;
-
-        badge.classList.remove(
-            "hidden"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   OPEN NOTIFICATION
-========================================================= */
-
-async function openNotification(id){
-
     const notification =
-        notifications.find(
-            item=>item.id === id
+        allNotifications.find(
+            function(item){
+
+                return item.id === notificationId;
+
+            }
         );
 
 
@@ -1784,87 +1230,11 @@ async function openNotification(id){
     }
 
 
-    $("detailIcon").textContent =
-
-        notification.icon ||
-        getNotificationIcon(notification);
-
-
-    $("detailTitle").textContent =
-
-        notification.title ||
-        "Notification";
-
-
-    $("detailDate").textContent =
-
-        getDate(
-            notification.createdAt
-        );
-
-
-    $("detailMessage").textContent =
-
-        notification.message ||
-        "";
-
-
-    const chatBtn =
-        $("chatBtn");
-
-
-    if(notification.chatId){
-
-        chatBtn.style.display =
-            "block";
-
-
-        chatBtn.onclick = ()=>{
-
-            window.location.href =
-                "chat.html?chatId=" +
-                encodeURIComponent(
-                    notification.chatId
-                );
-
-        };
-
-    }else{
-
-        chatBtn.style.display =
-            "none";
-
-    }
-
-
-    $("modal").classList.add(
-        "show"
-    );
-
-
-    await markNotificationRead(
-        notification
-    );
-
-}
-
-
-/* =========================================================
-   MARK ONE AS READ
-========================================================= */
-
-async function markNotificationRead(
-    notification
-){
-
-    if(!currentUser){
-
-        return;
-
-    }
-
-
-    if(isRead(notification)){
+    if(
+        isNotificationRead(
+            notification
+        )
+    ){
 
         return;
 
@@ -1873,99 +1243,35 @@ async function markNotificationRead(
 
     try{
 
-        /*
-           New notification system.
-
-           Each customer gets their UID
-           added to readBy.
-
-           This is important for General
-           notifications because one customer
-           reading it must NOT mark it read
-           for everyone else.
-        */
-
-        if(
-            notification.target === "all" ||
-            notification.target === "everyone" ||
-            notification.target === "customers" ||
-            notification.target === "user"
-        ){
-
-            await db
-                .collection("notifications")
-                .doc(notification.id)
-                .update({
-
-                    readBy:
-                        firebase.firestore.FieldValue
-                            .arrayUnion(
-                                currentUser.uid
-                            )
-
-                });
-
-
-            /*
-               Update local state immediately.
-            */
-
-            notification.readBy =
-                Array.isArray(
-                    notification.readBy
-                )
-                ? notification.readBy
-                : [];
-
-
-            if(
-                !notification.readBy.includes(
-                    currentUser.uid
-                )
-            ){
-
-                notification.readBy.push(
-                    currentUser.uid
-                );
-
-            }
-
-
-            renderNotifications();
-
-            return;
-
-        }
-
-
-        /*
-           Legacy notifications.
-        */
-
         await db
             .collection("notifications")
-            .doc(notification.id)
+            .doc(notificationId)
             .update({
 
-                read:true,
+                /*
+                   Each customer gets their own
+                   read status.
+                */
+
+                readBy:
+                    firebase.firestore
+                    .FieldValue
+                    .arrayUnion(
+                        currentUser.uid
+                    ),
+
 
                 readAt:
-                    firebase.firestore.FieldValue
-                        .serverTimestamp()
+                    firebase.firestore
+                    .FieldValue
+                    .serverTimestamp()
 
             });
 
-
-        notification.read = true;
-
-
-        renderNotifications();
-
-
     }catch(error){
 
-        console.warn(
-            "Could not mark notification as read:",
+        console.error(
+            "Mark notification as read error:",
             error
         );
 
@@ -1974,11 +1280,12 @@ async function markNotificationRead(
 }
 
 
+
 /* =========================================================
-   MARK ALL READ
+   MARK ALL AS READ
 ========================================================= */
 
-async function markAllRead(){
+async function markAllAsRead(){
 
     if(!currentUser){
 
@@ -1988,8 +1295,14 @@ async function markAllRead(){
 
 
     const unread =
-        notifications.filter(
-            notification=>!isRead(notification)
+        allNotifications.filter(
+            function(notification){
+
+                return !isNotificationRead(
+                    notification
+                );
+
+            }
         );
 
 
@@ -2000,295 +1313,153 @@ async function markAllRead(){
     }
 
 
-    try{
-
-        const batch =
-            db.batch();
-
-
-        unread.forEach(notification=>{
-
-            const ref =
-                db
-                    .collection("notifications")
-                    .doc(notification.id);
-
-
-            /*
-               New system.
-            */
-
-            if(
-                notification.target === "all" ||
-                notification.target === "everyone" ||
-                notification.target === "customers" ||
-                notification.target === "user"
-            ){
-
-                batch.update(
-                    ref,
-                    {
-
-                        readBy:
-                            firebase.firestore
-                                .FieldValue
-                                .arrayUnion(
-                                    currentUser.uid
-                                )
-
-                    }
-                );
-
-
-            }else{
-
-                /*
-                   Legacy system.
-                */
-
-                batch.update(
-                    ref,
-                    {
-
-                        read:true,
-
-                        readAt:
-                            firebase.firestore
-                                .FieldValue
-                                .serverTimestamp()
-
-                    }
-                );
-
-            }
-
-        });
-
-
-        await batch.commit();
-
-
-        /*
-           Update local state.
-        */
-
-        notifications.forEach(
-            notification=>{
-
-                if(
-                    notification.target === "all" ||
-                    notification.target === "everyone" ||
-                    notification.target === "customers" ||
-                    notification.target === "user"
-                ){
-
-                    notification.readBy =
-                        Array.isArray(
-                            notification.readBy
-                        )
-                        ? notification.readBy
-                        : [];
-
-
-                    if(
-                        !notification.readBy.includes(
-                            currentUser.uid
-                        )
-                    ){
-
-                        notification.readBy.push(
-                            currentUser.uid
-                        );
-
-                    }
-
-                }else{
-
-                    notification.read = true;
-
-                }
-
-            }
+    const button =
+        document.getElementById(
+            "markAllBtn"
         );
 
 
-        renderNotifications();
+    button.disabled = true;
+
+    button.textContent =
+        "Updating...";
 
 
-        clearError();
+    try{
 
+        let batch =
+            db.batch();
+
+
+        let count = 0;
+
+
+        for(
+            const notification of unread
+        ){
+
+            batch.update(
+
+                db
+                    .collection("notifications")
+                    .doc(notification.id),
+
+                {
+
+                    readBy:
+                        firebase.firestore
+                        .FieldValue
+                        .arrayUnion(
+                            currentUser.uid
+                        ),
+
+
+                    readAt:
+                        firebase.firestore
+                        .FieldValue
+                        .serverTimestamp()
+
+                }
+
+            );
+
+
+            count++;
+
+
+            /*
+               Firestore batch maximum is 500.
+               Keep a safe limit.
+            */
+
+            if(count === 450){
+
+                await batch.commit();
+
+                batch =
+                    db.batch();
+
+                count = 0;
+
+            }
+
+        }
+
+
+        if(count > 0){
+
+            await batch.commit();
+
+        }
 
     }catch(error){
 
         console.error(
-            "Mark all read error:",
+            "Mark all notifications error:",
             error
         );
 
 
-        showError(
-            "Some notifications could not be marked as read."
-        );
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Some notifications could not be marked as read.";
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "✓ Mark all as read";
 
     }
 
 }
 
 
+
 /* =========================================================
-   CLOSE MODAL
+   MARK ALL BUTTON
 ========================================================= */
 
-$("closeModal").addEventListener(
-    "click",
-    ()=>{
+document
+    .getElementById("markAllBtn")
+    .addEventListener(
+        "click",
+        markAllAsRead
+    );
 
-        $("modal").classList.remove(
-            "show"
-        );
-
-    }
-);
-
-
-$("doneBtn").addEventListener(
-    "click",
-    ()=>{
-
-        $("modal").classList.remove(
-            "show"
-        );
-
-    }
-);
-
-
-$("modal").addEventListener(
-    "click",
-    event=>{
-
-        if(
-            event.target === $("modal")
-        ){
-
-            $("modal").classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
 
 
 /* =========================================================
-   BUTTONS
+   AUTH STATE
 ========================================================= */
 
-$("markAllBtn").addEventListener(
-    "click",
-    markAllRead
-);
+auth.onAuthStateChanged(
+    function(user){
 
+        if(!user){
 
-$("refreshBtn").addEventListener(
-    "click",
-    async ()=>{
-
-        await loadNotifications();
-
-    }
-);
-
-
-$("refreshListBtn").addEventListener(
-    "click",
-    async ()=>{
-
-        await loadNotifications();
-
-    }
-);
-
-
-$("backBtn").addEventListener(
-    "click",
-    ()=>{
-
-        if(history.length > 1){
-
-            history.back();
-
-        }else{
+            /*
+               Customer must be logged in.
+            */
 
             window.location.href =
-                "index.html";
+                "login.html";
+
+            return;
 
         }
 
-    }
-);
+
+        currentUser = user;
 
 
-/* =========================================================
-   ERROR
-========================================================= */
+        /*
+           Start the notification listeners.
+        */
 
-function showError(message){
-
-    const box =
-        $("errorBox");
-
-
-    if(!box){
-
-        return;
-
-    }
-
-
-    box.textContent =
-        message;
-
-
-    box.style.display =
-        "block";
-
-}
-
-
-function clearError(){
-
-    const box =
-        $("errorBox");
-
-
-    if(!box){
-
-        return;
-
-    }
-
-
-    box.textContent =
-        "";
-
-
-    box.style.display =
-        "none";
-
-}
-
-
-/* =========================================================
-   CLEANUP
-========================================================= */
-
-window.addEventListener(
-    "beforeunload",
-    ()=>{
-
-        stopNotificationListeners();
+        listenToNotifications();
 
     }
 );
