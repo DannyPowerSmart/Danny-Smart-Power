@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -19,820 +18,602 @@
 body{
     font-family:Poppins,sans-serif;
     background:#0f172a;
-    color:#e5e7eb;
+    color:#fff;
     min-height:100vh;
 }
 
-/* HEADER */
-
 header{
-    height:68px;
+    height:70px;
     background:#020617;
-    border-bottom:1px solid rgba(255,255,255,.08);
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    padding:0 16px;
-
+    padding:0 20px;
+    border-bottom:1px solid rgba(255,255,255,.08);
     position:sticky;
     top:0;
     z-index:100;
 }
 
 .logo{
-    color:#fff;
-    font-size:17px;
-    font-weight:700;
-}
-
-.logo span{
     color:#38bdf8;
+    font-size:20px;
+    font-weight:700;
 }
 
 .header-actions{
     display:flex;
-    gap:8px;
-}
-
-.header-btn{
-    border:1px solid rgba(255,255,255,.10);
-    background:#111827;
-    color:#e5e7eb;
-
-    padding:8px 11px;
-    border-radius:9px;
-
-    font-family:Poppins,sans-serif;
-    font-size:11px;
-    font-weight:600;
-
-    cursor:pointer;
-}
-
-.header-btn:hover{
-    border-color:#38bdf8;
-    color:#38bdf8;
-}
-
-/* MAIN */
-
-main{
-    width:100%;
-    max-width:850px;
-
-    margin:auto;
-
-    padding:28px 16px 60px;
-}
-
-/* TOP */
-
-.page-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-
-    gap:18px;
-
-    margin-bottom:20px;
-}
-
-.page-title{
-    color:#fff;
-    font-size:25px;
-    font-weight:700;
-}
-
-.page-subtitle{
-    color:#94a3b8;
-    font-size:13px;
-
-    margin-top:5px;
-
-    line-height:1.6;
-}
-
-.mark-all-btn{
-    border:none;
-    background:#38bdf8;
-    color:#02111d;
-
-    padding:10px 14px;
-
-    border-radius:10px;
-
-    font-family:Poppins,sans-serif;
-    font-size:12px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    white-space:nowrap;
-}
-
-.mark-all-btn:disabled{
-    opacity:.55;
-    cursor:not-allowed;
-}
-
-/* STATUS */
-
-.status{
-    color:#94a3b8;
-    font-size:12px;
-    margin-bottom:12px;
-}
-
-/* LIST */
-
-.notifications-list{
-    display:flex;
-    flex-direction:column;
-    gap:11px;
-}
-
-/* NOTIFICATION */
-
-.notification-card{
-    width:100%;
-
-    display:flex;
-    gap:13px;
-
-    padding:15px;
-
-    background:#111827;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:15px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.notification-card:hover{
-    border-color:rgba(56,189,248,.45);
-}
-
-.notification-card.unread{
-    border-left:3px solid #38bdf8;
-    background:#132033;
-}
-
-/* ICON */
-
-.notification-icon{
-    width:44px;
-    height:44px;
-
-    min-width:44px;
-
-    border-radius:12px;
-
-    background:#172033;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:21px;
-}
-
-/* CONTENT */
-
-.notification-content{
-    min-width:0;
-    flex:1;
-}
-
-.notification-title-row{
-    display:flex;
-    justify-content:space-between;
     gap:10px;
 }
 
-.notification-title{
+.header-btn{
+    border:1px solid rgba(255,255,255,.12);
+    background:#111827;
     color:#fff;
-    font-size:14px;
-    font-weight:600;
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:10px;
+    font-size:13px;
 }
 
-.notification-time{
-    color:#64748b;
-    font-size:10px;
-    white-space:nowrap;
+.header-btn:hover{
+    background:#1e293b;
+}
+
+.container{
+    width:min(900px,94%);
+    margin:25px auto 50px;
+}
+
+.top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.title-area h1{
+    font-size:25px;
+}
+
+.title-area p{
+    color:#94a3b8;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.mark-btn{
+    background:#38bdf8;
+    color:#020617;
+    border:0;
+    padding:10px 15px;
+    border-radius:10px;
+    font-family:inherit;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.mark-btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.status{
+    text-align:center;
+    color:#94a3b8;
+    padding:30px 10px;
+    font-size:14px;
+}
+
+.notification-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.notification{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+    padding:16px;
+    display:flex;
+    gap:14px;
+    position:relative;
+    transition:.2s;
+}
+
+.notification.unread{
+    border-color:rgba(56,189,248,.45);
+    background:#111c2d;
+}
+
+.notification:hover{
+    transform:translateY(-1px);
+}
+
+.icon{
+    width:46px;
+    height:46px;
+    min-width:46px;
+    border-radius:12px;
+    background:#0b2535;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.content{
+    flex:1;
+    min-width:0;
+}
+
+.notification-title{
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:5px;
+    padding-right:20px;
 }
 
 .notification-body{
     color:#cbd5e1;
-
-    font-size:12px;
-
-    line-height:1.65;
-
-    margin-top:5px;
-
-    white-space:pre-wrap;
-}
-
-.notification-type{
-    display:inline-block;
-
-    margin-top:8px;
-
-    padding:3px 8px;
-
-    border-radius:20px;
-
-    background:rgba(56,189,248,.10);
-
-    color:#38bdf8;
-
-    font-size:9px;
-
-    font-weight:600;
-
-    text-transform:capitalize;
-}
-
-/* EMPTY */
-
-.empty-state{
-    background:#111827;
-
-    border:1px dashed rgba(255,255,255,.12);
-
-    border-radius:15px;
-
-    padding:45px 20px;
-
-    text-align:center;
-
-    color:#94a3b8;
-
     font-size:13px;
+    line-height:1.6;
+}
 
-    line-height:1.7;
+.date{
+    color:#64748b;
+    font-size:11px;
+    margin-top:8px;
+}
+
+.unread-dot{
+    width:9px;
+    height:9px;
+    background:#38bdf8;
+    border-radius:50%;
+    position:absolute;
+    right:15px;
+    top:18px;
+}
+
+.read-btn{
+    margin-top:9px;
+    background:transparent;
+    border:0;
+    color:#38bdf8;
+    font-family:inherit;
+    font-size:11px;
+    cursor:pointer;
+    padding:0;
+}
+
+.empty{
+    text-align:center;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:45px 20px;
 }
 
 .empty-icon{
-    font-size:34px;
-    margin-bottom:10px;
-}
-
-/* LOGIN MESSAGE */
-
-.login-box{
-    background:#111827;
-
-    border:1px solid rgba(56,189,248,.18);
-
-    border-radius:16px;
-
-    padding:35px 20px;
-
-    text-align:center;
-}
-
-.login-icon{
-    font-size:38px;
+    font-size:45px;
     margin-bottom:12px;
 }
 
-.login-box h2{
-    color:#fff;
+.empty h2{
+    font-size:18px;
+}
+
+.empty p{
+    color:#94a3b8;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.error{
+    text-align:center;
+    background:#1e293b;
+    border:1px solid rgba(239,68,68,.35);
+    color:#fca5a5;
+    border-radius:12px;
+    padding:18px;
+    font-size:13px;
+}
+
+.no-session{
+    text-align:center;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:40px 20px;
+}
+
+.no-session-icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.no-session h2{
     font-size:18px;
     margin-bottom:7px;
 }
 
-.login-box p{
+.no-session p{
     color:#94a3b8;
-    font-size:12px;
-    line-height:1.6;
-    margin-bottom:18px;
-}
-
-.login-btn{
-    border:none;
-
-    background:#38bdf8;
-    color:#02111d;
-
-    padding:10px 18px;
-
-    border-radius:10px;
-
-    font-family:Poppins,sans-serif;
-
-    font-size:12px;
-    font-weight:700;
-
-    cursor:pointer;
-}
-
-/* LOADING */
-
-.loading{
-    width:25px;
-    height:25px;
-
-    border:2px solid #334155;
-    border-top-color:#38bdf8;
-
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-
-    margin:30px auto;
-}
-
-@keyframes spin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-/* ERROR */
-
-.error-box{
-    background:#1e1720;
-
-    border:1px solid rgba(248,113,113,.25);
-
-    color:#fca5a5;
-
-    border-radius:12px;
-
-    padding:16px;
-
-    font-size:12px;
-
+    font-size:13px;
     line-height:1.6;
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
     header{
-        height:62px;
-        padding:0 12px;
+        padding:0 14px;
     }
 
     .logo{
-        font-size:15px;
+        font-size:17px;
     }
 
     .header-btn{
-        padding:8px 9px;
-        font-size:10px;
+        padding:8px 10px;
+        font-size:12px;
     }
 
-    main{
-        padding:22px 12px 45px;
+    .top{
+        align-items:flex-start;
     }
 
-    .page-top{
-        flex-direction:column;
-    }
-
-    .page-title{
+    .title-area h1{
         font-size:22px;
     }
 
-    .mark-all-btn{
-        width:100%;
+    .mark-btn{
+        font-size:11px;
+        padding:9px 10px;
     }
 
-    .notification-card{
-        padding:13px;
+    .notification{
+        padding:14px;
     }
-
-    .notification-title-row{
-        display:block;
-    }
-
-    .notification-time{
-        display:block;
-        margin-top:3px;
-    }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- HEADER -->
 
 <header>
 
     <div class="logo">
-        Danny <span>Smart Power</span>
+        Danny Smart Power
     </div>
 
     <div class="header-actions">
-
-        <button
-            class="header-btn"
-            onclick="location.href='home.html'">
-            Home
-        </button>
-
-        <button
-            class="header-btn"
-            onclick="location.href='profile.html'">
-            Profile
-        </button>
-
+        <a href="home.html" class="header-btn">Home</a>
+        <a href="profile.html" class="header-btn">Profile</a>
     </div>
 
 </header>
 
 
-<!-- MAIN -->
+<main class="container">
 
-<main>
+    <div class="top">
 
-    <div class="page-top">
-
-        <div>
-
-            <h1 class="page-title">
-                Notifications
-            </h1>
-
-            <p class="page-subtitle">
-                Stay updated with your orders, services and important messages.
-            </p>
-
+        <div class="title-area">
+            <h1>Notifications</h1>
+            <p id="status">Checking your account...</p>
         </div>
 
-
         <button
-            class="mark-all-btn"
             id="markAllBtn"
-            type="button">
-
-            ✓ Mark all as read
-
+            class="mark-btn"
+            type="button"
+            disabled
+        >
+            Mark all read
         </button>
 
     </div>
 
 
-    <div
-        class="status"
-        id="status">
+    <div id="notificationArea">
 
-        Checking your account...
-
-    </div>
-
-
-    <div
-        class="notifications-list"
-        id="notificationsList">
-
-        <div class="loading"></div>
+        <div class="status">
+            Loading notifications...
+        </div>
 
     </div>
 
 </main>
 
 
-<!-- FIREBASE -->
-
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 
 <script>
 
-/* =========================================================
-   FIREBASE CONFIG
-========================================================= */
-
 const firebaseConfig = {
-
-    apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
-
-    authDomain:"danny-smart-power.firebaseapp.com",
-
-    projectId:"danny-smart-power",
-
-    storageBucket:"danny-smart-power.firebasestorage.app",
-
-    messagingSenderId:"649735645158",
-
-    appId:"1:649735645158:web:cff518b89721a163679827",
-
-    measurementId:"G-258YKLP5ZS"
-
+    apiKey: "AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
+    authDomain: "danny-smart-power.firebaseapp.com",
+    databaseURL: "https://danny-smart-power-default-rtdb.firebaseio.com",
+    projectId: "danny-smart-power",
+    storageBucket: "danny-smart-power.firebasestorage.app",
+    messagingSenderId: "649735645158",
+    appId: "1:649735645158:web:cff518b89721a163679827",
+    measurementId: "G-258YKLP5ZS"
 };
 
-
-if(!firebase.apps.length){
-
-    firebase.initializeApp(firebaseConfig);
-
-}
-
+firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
-
 const db = firebase.firestore();
 
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 let currentUser = null;
-
 let notifications = [];
 
-let unsubscribeFunctions = [];
+const area = document.getElementById("notificationArea");
+const statusText = document.getElementById("status");
+const markAllBtn = document.getElementById("markAllBtn");
 
 
 /* =========================================================
-   HTML SAFETY
-========================================================= */
-
-function escapeHTML(value){
-
-    return String(value ?? "").replace(
-        /[&<>"']/g,
-
-        function(char){
-
-            return {
-
-                "&":"&amp;",
-                "<":"&lt;",
-                ">":"&gt;",
-                '"':"&quot;",
-                "'":"&#039;"
-
-            }[char];
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   TIMESTAMP
-========================================================= */
-
-function timestampValue(timestamp){
-
-    if(!timestamp){
-
-        return 0;
-
-    }
-
-
-    if(typeof timestamp.toMillis === "function"){
-
-        return timestamp.toMillis();
-
-    }
-
-
-    if(timestamp.seconds){
-
-        return timestamp.seconds * 1000;
-
-    }
-
-
-    const date = new Date(timestamp);
-
-    return isNaN(date.getTime())
-        ? 0
-        : date.getTime();
-
-}
-
-
-/* =========================================================
-   DATE
+   DATE FORMAT
 ========================================================= */
 
 function formatDate(timestamp){
 
-    const value =
-        timestampValue(timestamp);
-
-
-    if(!value){
-
+    if(!timestamp){
         return "Just now";
-
     }
 
+    try{
 
-    return new Intl.DateTimeFormat(
-        "en-NG",
-        {
-            dateStyle:"medium",
-            timeStyle:"short"
-        }
-    ).format(
-        new Date(value)
-    );
+        const date = timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
 
+        return date.toLocaleString("en-NG",{
+            day:"numeric",
+            month:"short",
+            year:"numeric",
+            hour:"numeric",
+            minute:"2-digit"
+        });
+
+    }catch(error){
+
+        return "Recently";
+
+    }
 }
 
 
 /* =========================================================
-   IS NOTIFICATION FOR CUSTOMER?
+   ICON
 ========================================================= */
 
-function belongsToCustomer(notification){
+function getIcon(notification){
 
-    if(!currentUser){
-
-        return false;
-
+    if(notification.icon){
+        return notification.icon;
     }
 
+    switch(notification.type){
 
-    const target =
-        String(
-            notification.target || ""
-        ).toLowerCase();
+        case "order":
+            return "📦";
 
+        case "payment":
+            return "💳";
 
-    /* Never display admin-only notifications */
+        case "service":
+            return "🔧";
 
-    if(target === "admin"){
+        case "chat":
+            return "💬";
 
-        return false;
+        case "promotion":
+            return "🎁";
 
+        case "system":
+            return "🔔";
+
+        default:
+            return "🔔";
     }
-
-
-    /* Notifications sent to everybody */
-
-    if(
-        target === "all" ||
-        target === "everyone" ||
-        target === "customers"
-    ){
-
-        return true;
-
-    }
-
-
-    /* Direct notification */
-
-    if(target === "user"){
-
-        if(
-            notification.recipientId ===
-            currentUser.uid
-        ){
-
-            return true;
-
-        }
-
-
-        if(
-            currentUser.email &&
-            notification.recipientEmail ===
-            currentUser.email
-        ){
-
-            return true;
-
-        }
-
-
-        return false;
-
-    }
-
-
-    /*
-       Also support a notification that
-       has a direct recipient without
-       specifying target=user.
-    */
-
-    return (
-
-        notification.recipientId ===
-        currentUser.uid
-
-    ) || (
-
-        currentUser.email &&
-        notification.recipientEmail ===
-        currentUser.email
-
-    );
-
 }
 
 
 /* =========================================================
-   READ STATUS
+   READ CHECK
 ========================================================= */
 
 function isRead(notification){
 
-    /*
-       NEW SYSTEM:
-       readBy contains customer UIDs.
-    */
-
     if(
         Array.isArray(notification.readBy) &&
-        currentUser
+        currentUser &&
+        notification.readBy.includes(currentUser.uid)
     ){
-
-        return notification.readBy.includes(
-            currentUser.uid
-        );
-
+        return true;
     }
 
-
-    /*
-       Fallback.
-    */
-
     return notification.read === true;
-
 }
 
 
 /* =========================================================
-   SHOW LOGIN MESSAGE
+   LOAD NOTIFICATIONS
 ========================================================= */
 
-function showLoginMessage(){
+async function loadNotifications(){
 
-    document.getElementById(
-        "status"
-    ).textContent =
-        "You are not currently signed in.";
+    if(!currentUser){
+        return;
+    }
 
+    statusText.textContent = "Loading your notifications...";
 
-    document.getElementById(
-        "notificationsList"
-    ).innerHTML = `
-
-        <div class="login-box">
-
-            <div class="login-icon">
-                🔐
-            </div>
-
-            <h2>
-                Sign in to view your notifications
-            </h2>
-
-            <p>
-                Your notifications are connected
-                to your Danny Smart Power account.
-            </p>
-
-            <button
-                class="login-btn"
-                onclick="location.href='login.html'">
-
-                Sign In
-
-            </button>
-
+    area.innerHTML = `
+        <div class="status">
+            Loading notifications...
         </div>
-
     `;
 
+    try{
 
-    document.getElementById(
-        "markAllBtn"
-    ).disabled = true;
+        const uid = currentUser.uid;
+        const email = (currentUser.email || "").toLowerCase();
+
+        /*
+         IMPORTANT:
+
+         We use the SAME Firebase Auth user that logged
+         into the website.
+
+         No second login.
+        */
+
+        const results = [];
+
+        /* USER UID NOTIFICATIONS */
+
+        const uidSnapshot = await db
+            .collection("notifications")
+            .where("recipientId","==",uid)
+            .get();
+
+        uidSnapshot.forEach(doc => {
+
+            results.push({
+                id:doc.id,
+                ...doc.data()
+            });
+
+        });
+
+
+        /* EMAIL NOTIFICATIONS */
+
+        if(email){
+
+            const emailSnapshot = await db
+                .collection("notifications")
+                .where("recipientEmail","==",email)
+                .get();
+
+            emailSnapshot.forEach(doc => {
+
+                if(!results.some(item => item.id === doc.id)){
+
+                    results.push({
+                        id:doc.id,
+                        ...doc.data()
+                    });
+
+                }
+
+            });
+
+        }
+
+
+        /* ALL CUSTOMER NOTIFICATIONS */
+
+        const targets = [
+            "all",
+            "everyone",
+            "customers"
+        ];
+
+        for(const target of targets){
+
+            const targetSnapshot = await db
+                .collection("notifications")
+                .where("target","==",target)
+                .get();
+
+            targetSnapshot.forEach(doc => {
+
+                if(!results.some(item => item.id === doc.id)){
+
+                    results.push({
+                        id:doc.id,
+                        ...doc.data()
+                    });
+
+                }
+
+            });
+
+        }
+
+
+        /*
+         Never show admin-only notifications
+         to customers.
+        */
+
+        notifications = results.filter(item => {
+
+            return item.target !== "admin";
+
+        });
+
+
+        /*
+         Sort newest first.
+        */
+
+        notifications.sort((a,b) => {
+
+            const aTime =
+                a.createdAt && a.createdAt.toMillis
+                    ? a.createdAt.toMillis()
+                    : 0;
+
+            const bTime =
+                b.createdAt && b.createdAt.toMillis
+                    ? b.createdAt.toMillis()
+                    : 0;
+
+            return bTime - aTime;
+
+        });
+
+
+        statusText.textContent =
+            notifications.length
+                ? `${notifications.length} notification${notifications.length === 1 ? "" : "s"}`
+                : "You're all caught up";
+
+
+        markAllBtn.disabled =
+            !notifications.some(item => !isRead(item));
+
+
+        renderNotifications();
+
+
+    }catch(error){
+
+        console.error("Notification error:",error);
+
+        statusText.textContent = "Unable to load notifications.";
+
+        area.innerHTML = `
+            <div class="error">
+                We couldn't load your notifications right now.
+                Please try again.
+            </div>
+        `;
+
+    }
 
 }
 
@@ -843,476 +624,158 @@ function showLoginMessage(){
 
 function renderNotifications(){
 
-    const list =
-        document.getElementById(
-            "notificationsList"
-        );
-
-
-    const status =
-        document.getElementById(
-            "status"
-        );
-
-
     if(!notifications.length){
 
-        status.textContent =
-            "You're all caught up.";
-
-
-        list.innerHTML = `
-
-            <div class="empty-state">
+        area.innerHTML = `
+            <div class="empty">
 
                 <div class="empty-icon">
                     🔔
                 </div>
 
-                <div>
-                    No notifications yet.
-                </div>
+                <h2>No notifications yet</h2>
 
-                <div>
-                    New messages from Danny Smart Power
+                <p>
+                    New updates from Danny Smart Power
                     will appear here.
-                </div>
+                </p>
 
             </div>
-
         `;
 
         return;
-
     }
 
 
-    const unread =
-        notifications.filter(
-            function(item){
+    area.innerHTML = `
 
-                return !isRead(item);
+        <div class="notification-list">
 
-            }
-        ).length;
+            ${notifications.map(notification => {
 
-
-    status.textContent =
-        unread > 0
-
-        ? unread +
-          " unread notification" +
-          (unread === 1 ? "" : "s")
-
-        : "You're all caught up.";
-
-
-    document.getElementById(
-        "markAllBtn"
-    ).disabled = unread === 0;
-
-
-    list.innerHTML =
-        notifications.map(
-            function(notification){
-
-                const unreadClass =
-                    isRead(notification)
-                    ? ""
-                    : "unread";
-
+                const read = isRead(notification);
 
                 return `
 
-                    <article
-                        class="notification-card ${unreadClass}"
-                        data-id="${escapeHTML(notification.id)}"
+                    <div
+                        class="notification ${read ? "" : "unread"}"
+                        data-id="${notification.id}"
                     >
 
-                        <div class="notification-icon">
-                            ${escapeHTML(
-                                notification.icon ||
-                                "🔔"
-                            )}
+                        ${
+                            read
+                            ? ""
+                            : `<div class="unread-dot"></div>`
+                        }
+
+
+                        <div class="icon">
+                            ${getIcon(notification)}
                         </div>
 
 
-                        <div class="notification-content">
+                        <div class="content">
 
-                            <div class="notification-title-row">
-
-                                <div class="notification-title">
-                                    ${escapeHTML(
-                                        notification.title ||
-                                        "Danny Smart Power"
-                                    )}
-                                </div>
-
-                                <div class="notification-time">
-                                    ${escapeHTML(
-                                        formatDate(
-                                            notification.createdAt
-                                        )
-                                    )}
-                                </div>
-
+                            <div class="notification-title">
+                                ${escapeHTML(notification.title || "Danny Smart Power")}
                             </div>
 
 
                             <div class="notification-body">
-                                ${escapeHTML(
-                                    notification.body ||
-                                    "You have a new notification."
-                                )}
+                                ${escapeHTML(notification.body || "")}
                             </div>
 
 
-                            <span class="notification-type">
-                                ${escapeHTML(
-                                    notification.type ||
-                                    "notification"
-                                )}
-                            </span>
+                            <div class="date">
+                                ${formatDate(notification.createdAt)}
+                            </div>
+
+
+                            ${
+                                read
+                                ? ""
+                                : `
+                                    <button
+                                        class="read-btn"
+                                        type="button"
+                                        onclick="markAsRead('${notification.id}')"
+                                    >
+                                        Mark as read
+                                    </button>
+                                `
+                            }
 
                         </div>
 
-                    </article>
+                    </div>
 
                 `;
 
-            }
-        ).join("");
+            }).join("")}
 
+        </div>
 
-    list
-        .querySelectorAll(
-            ".notification-card"
-        )
-        .forEach(
-            function(card){
-
-                card.addEventListener(
-                    "click",
-                    function(){
-
-                        markAsRead(
-                            card.dataset.id
-                        );
-
-                    }
-                );
-
-            }
-        );
+    `;
 
 }
 
 
 /* =========================================================
-   COMBINE FIRESTORE RESULTS
+   MARK ONE READ
 ========================================================= */
 
-function combineResults(resultSets){
-
-    const map =
-        new Map();
-
-
-    resultSets.forEach(
-        function(rows){
-
-            if(!rows){
-
-                return;
-
-            }
-
-
-            rows.forEach(
-                function(item){
-
-                    if(
-                        item &&
-                        item.id &&
-                        item.data &&
-                        belongsToCustomer(
-                            item.data
-                        )
-                    ){
-
-                        map.set(
-                            item.id,
-                            {
-                                id:item.id,
-                                ...item.data
-                            }
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    notifications =
-        Array.from(
-            map.values()
-        );
-
-
-    notifications.sort(
-        function(a,b){
-
-            return (
-                timestampValue(
-                    b.createdAt
-                ) -
-                timestampValue(
-                    a.createdAt
-                )
-            );
-
-        }
-    );
-
-
-    renderNotifications();
-
-}
-
-
-/* =========================================================
-   LOAD NOTIFICATIONS
-========================================================= */
-
-function startNotificationListeners(){
-
-    /*
-       Clear any previous listeners.
-    */
-
-    unsubscribeFunctions.forEach(
-        function(unsubscribe){
-
-            try{
-
-                unsubscribe();
-
-            }catch(error){}
-
-        }
-    );
-
-
-    unsubscribeFunctions = [];
-
-
-    const queries = [
-
-        db
-        .collection("notifications")
-        .where(
-            "target",
-            "==",
-            "all"
-        ),
-
-        db
-        .collection("notifications")
-        .where(
-            "target",
-            "==",
-            "everyone"
-        ),
-
-        db
-        .collection("notifications")
-        .where(
-            "target",
-            "==",
-            "customers"
-        ),
-
-        db
-        .collection("notifications")
-        .where(
-            "recipientId",
-            "==",
-            currentUser.uid
-        )
-
-    ];
-
-
-    if(currentUser.email){
-
-        queries.push(
-
-            db
-            .collection("notifications")
-            .where(
-                "recipientEmail",
-                "==",
-                currentUser.email
-            )
-
-        );
-
-    }
-
-
-    const results =
-        new Array(
-            queries.length
-        );
-
-
-    queries.forEach(
-        function(query,index){
-
-            const unsubscribe =
-                query.onSnapshot(
-
-                    function(snapshot){
-
-                        results[index] =
-                            snapshot.docs.map(
-                                function(doc){
-
-                                    return {
-
-                                        id:doc.id,
-
-                                        data:doc.data()
-
-                                    };
-
-                                }
-                            );
-
-
-                        combineResults(
-                            results
-                        );
-
-                    },
-
-                    function(error){
-
-                        console.error(
-                            "Notification error:",
-                            error
-                        );
-
-
-                        document.getElementById(
-                            "status"
-                        ).textContent =
-                            "Could not load notifications.";
-
-
-                        document.getElementById(
-                            "notificationsList"
-                        ).innerHTML = `
-
-                            <div class="error-box">
-
-                                We couldn't load your
-                                notifications.
-
-                                <br><br>
-
-                                Please check your
-                                internet connection
-                                and refresh the page.
-
-                            </div>
-
-                        `;
-
-                    }
-
-                );
-
-
-            unsubscribeFunctions.push(
-                unsubscribe
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   MARK ONE AS READ
-========================================================= */
-
-async function markAsRead(notificationId){
+async function markAsRead(id){
 
     if(!currentUser){
-
         return;
-
     }
-
-
-    const notification =
-        notifications.find(
-            function(item){
-
-                return item.id ===
-                    notificationId;
-
-            }
-        );
-
-
-    if(!notification){
-
-        return;
-
-    }
-
-
-    if(isRead(notification)){
-
-        return;
-
-    }
-
 
     try{
 
         await db
-        .collection("notifications")
-        .doc(notificationId)
-        .update({
+            .collection("notifications")
+            .doc(id)
+            .update({
 
-            readBy:
-                firebase.firestore
-                .FieldValue
-                .arrayUnion(
-                    currentUser.uid
-                ),
+                readBy:
+                    firebase.firestore.FieldValue.arrayUnion(
+                        currentUser.uid
+                    ),
 
-            readAt:
-                firebase.firestore
-                .FieldValue
-                .serverTimestamp()
+                readAt:
+                    firebase.firestore.FieldValue.serverTimestamp()
 
-        });
+            });
+
+
+        const item = notifications.find(
+            notification => notification.id === id
+        );
+
+        if(item){
+
+            item.read = true;
+
+            item.readBy = Array.isArray(item.readBy)
+                ? item.readBy
+                : [];
+
+            if(!item.readBy.includes(currentUser.uid)){
+                item.readBy.push(currentUser.uid);
+            }
+
+        }
+
+
+        renderNotifications();
+
+        markAllBtn.disabled =
+            !notifications.some(item => !isRead(item));
+
 
     }catch(error){
 
-        console.error(
-            "Unable to mark notification:",
-            error
-        );
+        console.error("Mark read error:",error);
 
     }
 
@@ -1320,186 +783,170 @@ async function markAsRead(notificationId){
 
 
 /* =========================================================
-   MARK ALL AS READ
+   MARK ALL READ
 ========================================================= */
 
-async function markAllAsRead(){
+markAllBtn.addEventListener("click", async function(){
 
     if(!currentUser){
-
         return;
-
     }
 
-
-    const unread =
-        notifications.filter(
-            function(item){
-
-                return !isRead(item);
-
-            }
-        );
-
+    const unread = notifications.filter(
+        notification => !isRead(notification)
+    );
 
     if(!unread.length){
-
         return;
-
     }
 
-
-    const button =
-        document.getElementById(
-            "markAllBtn"
-        );
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "Updating...";
-
+    markAllBtn.disabled = true;
 
     try{
 
-        let batch =
-            db.batch();
+        /*
+         Firestore batch keeps this clean and fast.
+        */
 
-        let count = 0;
+        const batch = db.batch();
 
+        unread.forEach(notification => {
 
-        for(
-            const notification of unread
-        ){
-
-            batch.update(
-
-                db
+            const ref = db
                 .collection("notifications")
-                .doc(notification.id),
+                .doc(notification.id);
 
-                {
+            batch.update(ref,{
 
-                    readBy:
-                        firebase.firestore
-                        .FieldValue
-                        .arrayUnion(
-                            currentUser.uid
-                        ),
+                readBy:
+                    firebase.firestore.FieldValue.arrayUnion(
+                        currentUser.uid
+                    ),
 
-                    readAt:
-                        firebase.firestore
-                        .FieldValue
-                        .serverTimestamp()
+                readAt:
+                    firebase.firestore.FieldValue.serverTimestamp()
 
-                }
+            });
 
-            );
+        });
+
+        await batch.commit();
 
 
-            count++;
+        notifications.forEach(notification => {
 
+            notification.read = true;
 
-            if(count === 450){
+            notification.readBy =
+                Array.isArray(notification.readBy)
+                    ? notification.readBy
+                    : [];
 
-                await batch.commit();
+            if(!notification.readBy.includes(currentUser.uid)){
 
-                batch =
-                    db.batch();
-
-                count = 0;
+                notification.readBy.push(
+                    currentUser.uid
+                );
 
             }
 
-        }
+        });
 
 
-        if(count > 0){
+        statusText.textContent = "You're all caught up";
 
-            await batch.commit();
+        renderNotifications();
 
-        }
+        markAllBtn.disabled = true;
+
 
     }catch(error){
 
-        console.error(
-            "Mark all error:",
-            error
-        );
+        console.error("Mark all error:",error);
 
-
-        document.getElementById(
-            "status"
-        ).textContent =
-            "Some notifications could not be marked as read.";
+        markAllBtn.disabled = false;
 
     }
 
+});
 
-    button.disabled = false;
 
-    button.textContent =
-        "✓ Mark all as read";
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    const div = document.createElement("div");
+
+    div.textContent = value == null
+        ? ""
+        : String(value);
+
+    return div.innerHTML;
 
 }
 
 
 /* =========================================================
-   BUTTON
-========================================================= */
-
-document
-.getElementById("markAllBtn")
-.addEventListener(
-    "click",
-    markAllAsRead
-);
-
-
-/* =========================================================
-   AUTH
+   FIREBASE AUTH SESSION
 ========================================================= */
 
 /*
-   IMPORTANT:
+   THIS IS THE IMPORTANT PART.
 
-   There is NO automatic redirect here.
+   Firebase automatically remembers the user who already
+   logged into Danny Smart Power.
 
-   Firebase first checks whether the customer
-   already has a valid session.
+   We do NOT create another login.
+   We do NOT redirect to login.html.
 */
 
-auth.onAuthStateChanged(
-    function(user){
+auth.onAuthStateChanged(function(user){
 
-        if(user){
+    if(user){
 
-            currentUser = user;
+        currentUser = user;
 
-            document.getElementById(
-                "status"
-            ).textContent =
-                "Loading your notifications...";
+        console.log(
+            "Notification session:",
+            user.uid,
+            user.email
+        );
 
+        loadNotifications();
 
-            document.getElementById(
-                "markAllBtn"
-            ).disabled = false;
+    }else{
 
+        currentUser = null;
 
-            startNotificationListeners();
+        statusText.textContent =
+            "Your account session is not available.";
 
-        }else{
+        area.innerHTML = `
+            <div class="no-session">
 
-            currentUser = null;
+                <div class="no-session-icon">
+                    🔐
+                </div>
 
-            showLoginMessage();
+                <h2>Account session unavailable</h2>
 
-        }
+                <p>
+                    Danny Smart Power could not access
+                    your existing account session on this page.
+                    Please return to the Home page and open
+                    Notifications again.
+                </p>
+
+            </div>
+        `;
+
+        markAllBtn.disabled = true;
 
     }
-);
+
+});
 
 </script>
 
