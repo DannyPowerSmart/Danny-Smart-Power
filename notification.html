@@ -4,41 +4,1868 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#020617">
+
 <title>Notifications | Danny Smart Power</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#0f172a;--header:#020617;--accent:#38bdf8;--text:#f8fafc;--muted:#94a3b8;--card:#111c31;--line:#263449}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}button,a{font:inherit}button{cursor:pointer}
-header{height:70px;background:var(--header);border-bottom:1px solid #1e293b;display:flex;align-items:center;gap:14px;padding:0 18px;position:sticky;top:0;z-index:20}.menu-btn{width:42px;height:42px;border:1px solid #263449;border-radius:12px;background:#0f172a;color:white;font-size:22px}.brand{font-weight:700;font-size:17px}.brand span,.menu-brand span{color:var(--accent)}.header-spacer{flex:1}.header-link{color:var(--text);text-decoration:none;border:1px solid #263449;padding:9px 13px;border-radius:10px;font-size:13px}
-main{width:min(900px,100%);margin:0 auto;padding:28px 16px 60px}.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:22px}h1{font-size:clamp(24px,5vw,32px);line-height:1.25}.sub{color:var(--muted);font-size:13px;margin-top:7px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #334155;background:#172338;color:var(--text);border-radius:10px;padding:10px 13px;font-size:12px}.btn.primary{background:var(--accent);border-color:var(--accent);color:#082f49;font-weight:700}.btn:disabled{opacity:.5;cursor:not-allowed}.status{padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:#111c31;color:#cbd5e1;font-size:13px;margin-bottom:14px}.status.error{border-color:#7f1d1d;background:#2b151b;color:#fecaca}.list{display:grid;gap:12px}.notice{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.notice.unread{border-color:#287ba0;box-shadow:inset 3px 0 0 var(--accent)}.notice-icon{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:#082f49;color:#7dd3fc;display:grid;place-items:center;font-size:21px}.notice-content{flex:1;min-width:0}.notice-title{font-size:15px;font-weight:600;overflow-wrap:anywhere}.notice-body{font-size:13px;color:#cbd5e1;line-height:1.65;margin-top:5px;white-space:pre-wrap;overflow-wrap:anywhere}.notice-meta{font-size:11px;color:var(--muted);margin-top:9px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill{font-size:10px;border-radius:20px;padding:3px 8px;background:#0c4a6e;color:#bae6fd}.notice-buttons{display:flex;gap:7px;margin-top:10px}.small-btn{font-size:11px;padding:7px 10px;border-radius:8px;border:1px solid #334155;background:#172338;color:#e2e8f0}.empty{text-align:center;padding:48px 18px;border:1px dashed #334155;border-radius:16px;color:var(--muted)}.empty strong{display:block;color:var(--text);font-size:16px;margin-bottom:6px}footer{text-align:center;color:#64748b;font-size:11px;padding:18px}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:40;opacity:0;visibility:hidden;transition:.22s}.overlay.show{opacity:1;visibility:visible}.side-menu{position:fixed;z-index:50;left:0;top:0;bottom:0;width:min(330px,88vw);background:#020617;border-right:1px solid #1e293b;padding:20px 16px;overflow-y:auto;transform:translateX(-105%);transition:transform .25s ease}.side-menu.open{transform:translateX(0)}.menu-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.menu-brand{font-size:19px;font-weight:700}.close-menu{background:#111c31;border:1px solid #263449;color:white;border-radius:10px;width:38px;height:38px;font-size:22px}.profile-box{padding:14px;background:#0f172a;border:1px solid #263449;border-radius:14px;margin-bottom:18px}.profile-name{font-weight:600;font-size:14px;overflow-wrap:anywhere}.profile-email{font-size:11px;color:var(--muted);overflow-wrap:anywhere;margin-top:3px}.menu-label{color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:1.3px;margin:18px 10px 8px}.menu-links{display:grid;gap:5px}.menu-links a{display:flex;align-items:center;gap:11px;padding:11px 12px;color:#cbd5e1;text-decoration:none;border-radius:10px;font-size:13px}.menu-links a:hover,.menu-links a.active{background:#0c2538;color:#7dd3fc}.menu-links .signout{color:#fca5a5}@media(max-width:600px){header{padding:0 12px}.brand{font-size:15px}.header-link{padding:8px 10px}.heading{display:block}.actions{margin-top:15px}.notice{padding:13px}.notice-icon{width:38px;height:38px;flex-basis:38px}}
+:root{
+  --bg:#0f172a;
+  --header:#020617;
+  --accent:#38bdf8;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --card:#111c31;
+  --line:#263449;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,a{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* HEADER */
+
+header{
+  height:70px;
+  background:var(--header);
+  border-bottom:1px solid #1e293b;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.menu-btn{
+  width:42px;
+  height:42px;
+  border:1px solid #263449;
+  border-radius:12px;
+  background:#0f172a;
+  color:white;
+  font-size:22px;
+}
+
+.brand{
+  font-weight:700;
+  font-size:17px;
+}
+
+.brand span,
+.menu-brand span{
+  color:var(--accent);
+}
+
+.header-spacer{
+  flex:1;
+}
+
+.header-link{
+  color:var(--text);
+  text-decoration:none;
+  border:1px solid #263449;
+  padding:9px 13px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+/* MAIN */
+
+main{
+  width:min(900px,100%);
+  margin:0 auto;
+  padding:28px 16px 60px;
+}
+
+.heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+h1{
+  font-size:clamp(24px,5vw,32px);
+  line-height:1.25;
+}
+
+.sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:7px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:1px solid #334155;
+  background:#172338;
+  color:var(--text);
+  border-radius:10px;
+  padding:10px 13px;
+  font-size:12px;
+}
+
+.btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#082f49;
+  font-weight:700;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.status{
+  padding:15px 16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#111c31;
+  color:#cbd5e1;
+  font-size:13px;
+  margin-bottom:14px;
+}
+
+.status.error{
+  border-color:#7f1d1d;
+  background:#2b151b;
+  color:#fecaca;
+}
+
+.list{
+  display:grid;
+  gap:12px;
+}
+
+.notice{
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+}
+
+.notice.unread{
+  border-color:#287ba0;
+  box-shadow:inset 3px 0 0 var(--accent);
+}
+
+.notice-icon{
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  border-radius:13px;
+  background:#082f49;
+  color:#7dd3fc;
+  display:grid;
+  place-items:center;
+  font-size:21px;
+}
+
+.notice-content{
+  flex:1;
+  min-width:0;
+}
+
+.notice-title{
+  font-size:15px;
+  font-weight:600;
+  overflow-wrap:anywhere;
+}
+
+.notice-body{
+  font-size:13px;
+  color:#cbd5e1;
+  line-height:1.65;
+  margin-top:5px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.notice-meta{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:9px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.pill{
+  font-size:10px;
+  border-radius:20px;
+  padding:3px 8px;
+  background:#0c4a6e;
+  color:#bae6fd;
+}
+
+.notice-buttons{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.small-btn{
+  font-size:11px;
+  padding:7px 10px;
+  border-radius:8px;
+  border:1px solid #334155;
+  background:#172338;
+  color:#e2e8f0;
+}
+
+.empty{
+  text-align:center;
+  padding:48px 18px;
+  border:1px dashed #334155;
+  border-radius:16px;
+  color:var(--muted);
+}
+
+.empty strong{
+  display:block;
+  color:var(--text);
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+footer{
+  text-align:center;
+  color:#64748b;
+  font-size:11px;
+  padding:18px;
+}
+
+/* SIDE MENU */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.62);
+  backdrop-filter:blur(3px);
+  z-index:40;
+  opacity:0;
+  visibility:hidden;
+  transition:.22s;
+}
+
+.overlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.side-menu{
+  position:fixed;
+  z-index:50;
+  left:0;
+  top:0;
+  bottom:0;
+  width:min(330px,88vw);
+  background:#020617;
+  border-right:1px solid #1e293b;
+  padding:20px 16px;
+  overflow-y:auto;
+  transform:translateX(-105%);
+  transition:transform .25s ease;
+}
+
+.side-menu.open{
+  transform:translateX(0);
+}
+
+.menu-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
+}
+
+.menu-brand{
+  font-size:19px;
+  font-weight:700;
+}
+
+.close-menu{
+  background:#111c31;
+  border:1px solid #263449;
+  color:white;
+  border-radius:10px;
+  width:38px;
+  height:38px;
+  font-size:22px;
+}
+
+/* PROFILE IN MENU */
+
+.profile-box{
+  padding:14px;
+  background:#0f172a;
+  border:1px solid #263449;
+  border-radius:14px;
+  margin-bottom:18px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.menu-profile-photo{
+  width:48px;
+  height:48px;
+  min-width:48px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#172338;
+  border:2px solid #263449;
+  display:block;
+}
+
+.menu-profile-placeholder{
+  width:48px;
+  height:48px;
+  min-width:48px;
+  border-radius:50%;
+  background:#172338;
+  border:2px solid #263449;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+  color:#7dd3fc;
+}
+
+.profile-info{
+  min-width:0;
+  flex:1;
+}
+
+.profile-name{
+  font-weight:600;
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
+
+.profile-email{
+  font-size:11px;
+  color:var(--muted);
+  overflow-wrap:anywhere;
+  margin-top:3px;
+}
+
+.menu-label{
+  color:#64748b;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  margin:18px 10px 8px;
+}
+
+.menu-links{
+  display:grid;
+  gap:5px;
+}
+
+.menu-links a{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:11px 12px;
+  color:#cbd5e1;
+  text-decoration:none;
+  border-radius:10px;
+  font-size:13px;
+}
+
+.menu-links a:hover,
+.menu-links a.active{
+  background:#0c2538;
+  color:#7dd3fc;
+}
+
+.menu-links .signout{
+  color:#fca5a5;
+}
+
+@media(max-width:600px){
+
+  header{
+    padding:0 12px;
+  }
+
+  .brand{
+    font-size:15px;
+  }
+
+  .header-link{
+    padding:8px 10px;
+  }
+
+  .heading{
+    display:block;
+  }
+
+  .actions{
+    margin-top:15px;
+  }
+
+  .notice{
+    padding:13px;
+  }
+
+  .notice-icon{
+    width:38px;
+    height:38px;
+    flex-basis:38px;
+  }
+}
 </style>
 </head>
+
 <body>
-<header><button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button><div class="brand">DANNY <span>SMART POWER</span></div><div class="header-spacer"></div><a class="header-link" href="shop.html">Shop</a></header>
+
+<header>
+
+  <button class="menu-btn" id="openMenu" aria-label="Open menu">
+    ☰
+  </button>
+
+  <div class="brand">
+    DANNY <span>SMART POWER</span>
+  </div>
+
+  <div class="header-spacer"></div>
+
+  <a class="header-link" href="shop.html">
+    Shop
+  </a>
+
+</header>
+
+
 <div class="overlay" id="overlay"></div>
-<aside class="side-menu" id="sideMenu" aria-label="Main menu"><div class="menu-top"><div class="menu-brand">DANNY <span>SMART POWER</span></div><button class="close-menu" id="closeMenu" aria-label="Close menu">×</button></div><div class="profile-box"><div class="profile-name" id="menuName">My Account</div><div class="profile-email" id="menuEmail">Sign in to your account</div></div><div class="menu-label">Main menu</div><nav class="menu-links"><a href="home.html">⌂ <span>Home</span></a><a href="shop.html">▦ <span>Shop</span></a><a href="cart.html">🛒 <span>Cart</span></a><a href="orders.html">▤ <span>My Orders</span></a><a href="wishlist.html">♡ <span>Wishlist</span></a><a href="services.html">⚡ <span>Services</span></a><a href="service-project.html">▧ <span>Electrical Projects</span></a><a href="service-request.html">＋ <span>Request Electrical Service</span></a><a href="chat.html">☏ <span>Chat with Danny</span></a><a href="track-order.html">⌕ <span>Track Order</span></a><a href="contact.html">✉ <span>Contact Us</span></a><a href="help.html">? <span>Help Center</span></a><a class="active" href="notification.html">♢ <span>Notifications</span></a><a href="settings.html">⚙ <span>Settings</span></a><a class="signout" href="signout.html">↪ <span>Sign Out</span></a></nav></aside>
-<main><div class="heading"><div><h1>Notifications</h1><p class="sub">Updates and messages from Danny Smart Power.</p></div><div class="actions"><button class="btn" id="refreshBtn">↻ Refresh</button><button class="btn primary" id="markAllBtn" disabled>Mark all as read</button></div></div><div class="status" id="status">Loading notifications…</div><div class="list" id="notificationList"></div></main>
-<footer>Danny Smart Power · Customer notifications</footer>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<aside class="side-menu" id="sideMenu" aria-label="Main menu">
+
+  <div class="menu-top">
+
+    <div class="menu-brand">
+      DANNY <span>SMART POWER</span>
+    </div>
+
+    <button class="close-menu" id="closeMenu" aria-label="Close menu">
+      ×
+    </button>
+
+  </div>
+
+
+  <!-- PROFILE -->
+
+  <div class="profile-box">
+
+    <div id="menuPhotoContainer">
+      <div class="menu-profile-placeholder">👤</div>
+    </div>
+
+    <div class="profile-info">
+
+      <div class="profile-name" id="menuName">
+        Loading profile...
+      </div>
+
+      <div class="profile-email" id="menuEmail">
+        Please wait...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="menu-label">
+    Main menu
+  </div>
+
+
+  <nav class="menu-links">
+
+    <a href="home.html">
+      ⌂ <span>Home</span>
+    </a>
+
+    <a href="shop.html">
+      ▦ <span>Shop</span>
+    </a>
+
+    <a href="cart.html">
+      🛒 <span>Cart</span>
+    </a>
+
+    <a href="orders.html">
+      ▤ <span>My Orders</span>
+    </a>
+
+    <a href="wishlist.html">
+      ♡ <span>Wishlist</span>
+    </a>
+
+    <a href="services.html">
+      ⚡ <span>Services</span>
+    </a>
+
+    <a href="service-project.html">
+      ▧ <span>Electrical Projects</span>
+    </a>
+
+    <a href="service-request.html">
+      ＋ <span>Request Electrical Service</span>
+    </a>
+
+    <a href="chat.html">
+      ☏ <span>Chat with Danny</span>
+    </a>
+
+    <a href="track-order.html">
+      ⌕ <span>Track Order</span>
+    </a>
+
+    <a href="contact.html">
+      ✉ <span>Contact Us</span>
+    </a>
+
+    <a href="help.html">
+      ? <span>Help Center</span>
+    </a>
+
+    <a class="active" href="notification.html">
+      ♢ <span>Notifications</span>
+    </a>
+
+    <a href="settings.html">
+      ⚙ <span>Settings</span>
+    </a>
+
+    <a class="signout" href="signout.html">
+      ↪ <span>Sign Out</span>
+    </a>
+
+  </nav>
+
+</aside>
+
+
+<main>
+
+  <div class="heading">
+
+    <div>
+
+      <h1>
+        Notifications
+      </h1>
+
+      <p class="sub">
+        Updates and messages from Danny Smart Power.
+      </p>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button class="btn" id="refreshBtn">
+        ↻ Refresh
+      </button>
+
+      <button class="btn primary" id="markAllBtn" disabled>
+        Mark all as read
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="status" id="status">
+    Checking your account…
+  </div>
+
+
+  <div class="list" id="notificationList"></div>
+
+</main>
+
+
+<footer>
+  Danny Smart Power · Customer notifications
+</footer>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
 <script>
-const firebaseConfig={apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",authDomain:"danny-smart-power.firebaseapp.com",databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",projectId:"danny-smart-power",storageBucket:"danny-smart-power.firebasestorage.app",messagingSenderId:"649735645158",appId:"1:649735645158:web:cff518b89721a163679827",measurementId:"G-258YKLP5ZS"};
-if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
-const statusBox=document.getElementById('status'),listBox=document.getElementById('notificationList'),refreshBtn=document.getElementById('refreshBtn'),markAllBtn=document.getElementById('markAllBtn');let currentUser=null,notifications=[],loadGeneration=0;
-function setStatus(m,error=false){statusBox.textContent=m;statusBox.className='status'+(error?' error':'')}
-function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function dateLabel(v){try{let d=v&&typeof v.toDate==='function'?v.toDate():(v?new Date(v):null);return d&&!isNaN(d.getTime())?d.toLocaleString([],{dateStyle:'medium',timeStyle:'short'}):'Recently'}catch(e){return'Recently'}}
-function isRead(d){return currentUser&&Array.isArray(d.readBy)&&d.readBy.includes(currentUser.uid)||d.read===true}
-function visible(d){let t=String(d.target||'').toLowerCase();if(t==='admin')return false;if(['all','everyone','customers'].includes(t))return true;if(!currentUser)return false;let u=currentUser.uid,e=String(currentUser.email||'').toLowerCase();return [d.recipientId,d.userId,d.customerId].some(v=>v===u)||[d.recipientEmail,d.email].some(v=>v&&String(v).toLowerCase()===e)}
-function icon(d){if(d.icon)return d.icon;let t=String(d.type||'').toLowerCase();if(t.includes('order'))return'📦';if(t.includes('service'))return'⚡';if(t.includes('chat')||t.includes('message'))return'💬';return'🔔'}
-function render(){let unread=notifications.filter(x=>!isRead(x.data));markAllBtn.disabled=!currentUser||!unread.length;if(!notifications.length){listBox.innerHTML='<div class="empty"><strong>No notifications yet</strong><div>Public announcements will appear here. Personal notifications appear after you sign in.</div></div>';setStatus(currentUser?'You’re signed in. No notifications found.':'Browsing as a guest. Public announcements do not require sign-in.');return}setStatus(`${notifications.length} notification${notifications.length===1?'':'s'} · ${unread.length} unread`);listBox.innerHTML=notifications.map(x=>{let d=x.data,r=isRead(d);return`<article class="notice ${r?'':'unread'}"><div class="notice-icon">${esc(icon(d))}</div><div class="notice-content"><div class="notice-title">${esc(d.title||'Danny Smart Power update')}</div><div class="notice-body">${esc(d.body||d.message||'You have a new update.')}</div><div class="notice-meta"><span>${esc(dateLabel(d.createdAt||d.timestamp||d.created))}</span>${r?'<span>Read</span>':'<span class="pill">New</span>'}</div>${currentUser&&!r?`<div class="notice-buttons"><button class="small-btn" data-read="${esc(x.id)}">Mark as read</button></div>`:''}</div></article>`}).join('');listBox.querySelectorAll('[data-read]').forEach(b=>b.onclick=()=>markOne(b.dataset.read,b))}
-async function query(q,seen,out){try{let s=await q.get();s.forEach(d=>{if(!seen.has(d.id)&&visible(d.data())){seen.add(d.id);out.push({id:d.id,data:d.data()})}});return true}catch(e){console.warn('Notification query failed:',e.code||e.message);return false}}
-async function loadNotifications(){let gen=++loadGeneration;refreshBtn.disabled=true;markAllBtn.disabled=true;setStatus('Loading notifications…');listBox.innerHTML='<div class="empty">Loading notifications…</div>';let seen=new Set(),out=[],c=db.collection('notifications'),qs=[c.where('target','==','all'),c.where('target','==','everyone'),c.where('target','==','customers')];if(currentUser){qs.push(c.where('recipientId','==',currentUser.uid),c.where('userId','==',currentUser.uid),c.where('customerId','==',currentUser.uid));if(currentUser.email){let e=currentUser.email.toLowerCase();qs.push(c.where('recipientEmail','==',e),c.where('email','==',e))}}let rs=await Promise.all(qs.map(q=>query(q,seen,out)));if(gen!==loadGeneration)return;out.sort((a,b)=>(dateValue(b.data)-dateValue(a.data)));notifications=out;render();if(rs.some(x=>!x)&&!out.length)setStatus('Notifications could not be read. Check your Firestore read permissions.',true);refreshBtn.disabled=false}
-function dateValue(d){try{let v=d.createdAt||d.timestamp||d.created;return v&&typeof v.toMillis==='function'?v.toMillis():new Date(v||0).getTime()}catch(e){return 0}}
-async function markOne(id,b){if(!currentUser)return;let x=notifications.find(n=>n.id===id);if(!x)return;if(b)b.disabled=true;try{await db.collection('notifications').doc(id).update({readBy:firebase.firestore.FieldValue.arrayUnion(currentUser.uid)});x.data.readBy=Array.isArray(x.data.readBy)?x.data.readBy:[];if(!x.data.readBy.includes(currentUser.uid))x.data.readBy.push(currentUser.uid);render()}catch(e){console.error(e);if(b)b.disabled=false;setStatus('Could not mark this notification as read. Check your Firestore rules.',true)}}
-markAllBtn.onclick=async()=>{if(!currentUser)return;let u=notifications.filter(n=>!isRead(n.data));if(!u.length)return;markAllBtn.disabled=true;setStatus('Marking notifications as read…');let rs=await Promise.allSettled(u.map(n=>db.collection('notifications').doc(n.id).update({readBy:firebase.firestore.FieldValue.arrayUnion(currentUser.uid)})));rs.forEach((r,i)=>{if(r.status==='fulfilled'){u[i].data.readBy=Array.isArray(u[i].data.readBy)?u[i].data.readBy:[];if(!u[i].data.readBy.includes(currentUser.uid))u[i].data.readBy.push(currentUser.uid)}});render();if(rs.some(r=>r.status==='rejected'))setStatus('Some notifications could not be marked as read. Check your Firestore rules.',true)};
-refreshBtn.onclick=loadNotifications;
-const sideMenu=document.getElementById('sideMenu'),overlay=document.getElementById('overlay');document.getElementById('openMenu').onclick=()=>{sideMenu.classList.add('open');overlay.classList.add('show')};document.getElementById('closeMenu').onclick=()=>{sideMenu.classList.remove('open');overlay.classList.remove('show')};overlay.onclick=()=>{sideMenu.classList.remove('open');overlay.classList.remove('show')};
-auth.onAuthStateChanged(u=>{currentUser=u||null;document.getElementById('menuName').textContent=u?(u.displayName||'My Account'):'Browsing as a guest';document.getElementById('menuEmail').textContent=u?(u.email||'Signed in'):'Sign in is optional';loadNotifications()});
+
+const firebaseConfig = {
+
+  apiKey:"AIzaSyB48Z_i8k3gV3uHmNUFQjAH9bOvUlAGB44",
+
+  authDomain:"danny-smart-power.firebaseapp.com",
+
+  databaseURL:"https://danny-smart-power-default-rtdb.firebaseio.com",
+
+  projectId:"danny-smart-power",
+
+  storageBucket:"danny-smart-power.firebasestorage.app",
+
+  messagingSenderId:"649735645158",
+
+  appId:"1:649735645158:web:cff518b89721a163679827",
+
+  measurementId:"G-258YKLP5ZS"
+
+};
+
+
+if(!firebase.apps.length){
+
+  firebase.initializeApp(firebaseConfig);
+
+}
+
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+
+/*
+  IMPORTANT:
+  Keep the Firebase login session available between pages.
+*/
+
+let authReady = false;
+
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  .then(() => {
+
+    authReady = true;
+
+  })
+  .catch(error => {
+
+    console.warn(
+      "Firebase persistence could not be set:",
+      error
+    );
+
+  });
+
+
+const statusBox =
+  document.getElementById("status");
+
+const listBox =
+  document.getElementById("notificationList");
+
+const refreshBtn =
+  document.getElementById("refreshBtn");
+
+const markAllBtn =
+  document.getElementById("markAllBtn");
+
+const menuName =
+  document.getElementById("menuName");
+
+const menuEmail =
+  document.getElementById("menuEmail");
+
+const menuPhotoContainer =
+  document.getElementById("menuPhotoContainer");
+
+
+let currentUser = null;
+
+let notifications = [];
+
+let loadGeneration = 0;
+
+let authStateKnown = false;
+
+
+/* STATUS */
+
+function setStatus(message,error=false){
+
+  statusBox.textContent = message;
+
+  statusBox.className =
+    "status" + (error ? " error" : "");
+
+}
+
+
+/* ESCAPE HTML */
+
+function esc(value){
+
+  return String(value == null ? "" : value)
+    .replace(/[&<>"']/g,function(c){
+
+      return {
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+
+      }[c];
+
+    });
+
+}
+
+
+/* DATE */
+
+function dateLabel(value){
+
+  try{
+
+    let d =
+      value &&
+      typeof value.toDate === "function"
+        ? value.toDate()
+        : value
+          ? new Date(value)
+          : null;
+
+    return d && !isNaN(d.getTime())
+
+      ? d.toLocaleString([],{
+          dateStyle:"medium",
+          timeStyle:"short"
+        })
+
+      : "Recently";
+
+  }catch(e){
+
+    return "Recently";
+
+  }
+
+}
+
+
+/* DATE SORT */
+
+function dateValue(data){
+
+  try{
+
+    const value =
+      data.createdAt ||
+      data.timestamp ||
+      data.created;
+
+    if(
+      value &&
+      typeof value.toMillis === "function"
+    ){
+
+      return value.toMillis();
+
+    }
+
+    return new Date(value || 0).getTime();
+
+  }catch(e){
+
+    return 0;
+
+  }
+
+}
+
+
+/* READ STATUS */
+
+function isRead(data){
+
+  if(!currentUser){
+
+    return false;
+
+  }
+
+  return (
+
+    Array.isArray(data.readBy) &&
+    data.readBy.includes(currentUser.uid)
+
+  ) || data.read === true;
+
+}
+
+
+/* NOTIFICATION VISIBILITY */
+
+function visible(data){
+
+  const target =
+    String(data.target || "")
+      .toLowerCase()
+      .trim();
+
+
+  /*
+    Admin notifications must never
+    appear to customers.
+  */
+
+  if(target === "admin"){
+
+    return false;
+
+  }
+
+
+  /*
+    Public notifications.
+  */
+
+  if(
+    target === "all" ||
+    target === "everyone" ||
+    target === "customers"
+  ){
+
+    return true;
+
+  }
+
+
+  /*
+    Personal notification.
+  */
+
+  if(!currentUser){
+
+    return false;
+
+  }
+
+
+  const uid =
+    currentUser.uid;
+
+  const email =
+    String(currentUser.email || "")
+      .toLowerCase()
+      .trim();
+
+
+  const userIds = [
+
+    data.recipientId,
+    data.userId,
+    data.customerId
+
+  ];
+
+
+  const userEmails = [
+
+    data.recipientEmail,
+    data.email
+
+  ];
+
+
+  return (
+
+    userIds.some(function(value){
+
+      return value === uid;
+
+    })
+
+  ) || (
+
+    userEmails.some(function(value){
+
+      return value &&
+        String(value)
+          .toLowerCase()
+          .trim() === email;
+
+    })
+
+  );
+
+}
+
+
+/* ICON */
+
+function icon(data){
+
+  if(data.icon){
+
+    return data.icon;
+
+  }
+
+
+  const type =
+    String(data.type || "")
+      .toLowerCase();
+
+
+  if(type.includes("order")){
+
+    return "📦";
+
+  }
+
+
+  if(type.includes("service")){
+
+    return "⚡";
+
+  }
+
+
+  if(
+    type.includes("chat") ||
+    type.includes("message")
+  ){
+
+    return "💬";
+
+  }
+
+
+  return "🔔";
+
+}
+
+
+/* PROFILE MENU */
+
+async function loadMenuProfile(user){
+
+  if(!user){
+
+    menuName.textContent =
+      "My Account";
+
+    menuEmail.textContent =
+      "Please sign in";
+
+    menuPhotoContainer.innerHTML =
+      '<div class="menu-profile-placeholder">👤</div>';
+
+    return;
+
+  }
+
+
+  /*
+    First use Firebase Auth values
+    so the menu never stays blank.
+  */
+
+  menuName.textContent =
+    user.displayName ||
+    "My Account";
+
+  menuEmail.textContent =
+    user.email ||
+    "Signed in";
+
+
+  /*
+    Then load the actual profile document.
+
+    Expected document:
+
+    profiles
+       └── USER_UID
+
+    Fields:
+
+    fullName
+    email
+    photoURL
+  */
+
+  try{
+
+    const profileSnap =
+      await db
+        .collection("profiles")
+        .doc(user.uid)
+        .get();
+
+
+    if(profileSnap.exists){
+
+      const profile =
+        profileSnap.data() || {};
+
+
+      const fullName =
+        profile.fullName ||
+        profile.name ||
+        user.displayName ||
+        "My Account";
+
+
+      const email =
+        profile.email ||
+        user.email ||
+        "Signed in";
+
+
+      const photoURL =
+        profile.photoURL ||
+        profile.photoUrl ||
+        profile.profilePhoto ||
+        "";
+
+
+      menuName.textContent =
+        fullName;
+
+      menuEmail.textContent =
+        email;
+
+
+      if(photoURL){
+
+        menuPhotoContainer.innerHTML = `
+
+          <img
+            class="menu-profile-photo"
+            src="${esc(photoURL)}"
+            alt="Profile photo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          >
+
+          <div
+            class="menu-profile-placeholder"
+            style="display:none;"
+          >
+            👤
+          </div>
+
+        `;
+
+      }else{
+
+        menuPhotoContainer.innerHTML =
+          '<div class="menu-profile-placeholder">👤</div>';
+
+      }
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Could not load profile:",
+      error
+    );
+
+    /*
+      Keep Auth information visible
+      if Firestore profile access fails.
+    */
+
+  }
+
+}
+
+
+/* RENDER NOTIFICATIONS */
+
+function render(){
+
+  const unread =
+    notifications.filter(function(item){
+
+      return !isRead(item.data);
+
+    });
+
+
+  markAllBtn.disabled =
+    !currentUser || !unread.length;
+
+
+  if(!notifications.length){
+
+    listBox.innerHTML = `
+
+      <div class="empty">
+
+        <strong>No notifications yet</strong>
+
+        <div>
+          ${
+            currentUser
+              ? "You’re signed in. New notifications will appear here."
+              : "Public announcements will appear here."
+          }
+        </div>
+
+      </div>
+
+    `;
+
+
+    setStatus(
+
+      currentUser
+
+        ? "You’re signed in. No notifications found."
+
+        : "Browsing as a guest. Public announcements do not require sign-in."
+
+    );
+
+
+    return;
+
+  }
+
+
+  setStatus(
+
+    `${notifications.length} notification${notifications.length===1?"":"s"} · ${unread.length} unread`
+
+  );
+
+
+  listBox.innerHTML =
+    notifications.map(function(item){
+
+      const data =
+        item.data;
+
+      const read =
+        isRead(data);
+
+
+      return `
+
+        <article class="notice ${read ? "" : "unread"}">
+
+          <div class="notice-icon">
+            ${esc(icon(data))}
+          </div>
+
+          <div class="notice-content">
+
+            <div class="notice-title">
+              ${esc(
+                data.title ||
+                "Danny Smart Power update"
+              )}
+            </div>
+
+            <div class="notice-body">
+              ${esc(
+                data.body ||
+                data.message ||
+                "You have a new update."
+              )}
+            </div>
+
+            <div class="notice-meta">
+
+              <span>
+                ${esc(
+                  dateLabel(
+                    data.createdAt ||
+                    data.timestamp ||
+                    data.created
+                  )
+                )}
+              </span>
+
+              ${
+                read
+                  ? "<span>Read</span>"
+                  : '<span class="pill">New</span>'
+              }
+
+            </div>
+
+
+            ${
+              currentUser && !read
+
+                ? `
+
+                  <div class="notice-buttons">
+
+                    <button
+                      class="small-btn"
+                      data-read="${esc(item.id)}"
+                    >
+                      Mark as read
+                    </button>
+
+                  </div>
+
+                `
+
+                : ""
+
+            }
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+
+  listBox
+    .querySelectorAll("[data-read]")
+    .forEach(function(button){
+
+      button.onclick =
+        function(){
+
+          markOne(
+            button.dataset.read,
+            button
+          );
+
+        };
+
+    });
+
+}
+
+
+/* FIRESTORE QUERY */
+
+async function queryNotifications(
+  query,
+  seen,
+  output
+){
+
+  try{
+
+    const snapshot =
+      await query.get();
+
+
+    snapshot.forEach(function(doc){
+
+      const data =
+        doc.data();
+
+
+      if(
+        !seen.has(doc.id) &&
+        visible(data)
+      ){
+
+        seen.add(doc.id);
+
+        output.push({
+
+          id:doc.id,
+          data:data
+
+        });
+
+      }
+
+    });
+
+
+    return true;
+
+  }catch(error){
+
+    console.warn(
+      "Notification query failed:",
+      error.code ||
+      error.message
+    );
+
+    return false;
+
+  }
+
+}
+
+
+/* LOAD NOTIFICATIONS */
+
+async function loadNotifications(){
+
+  /*
+    Do not load until Firebase has
+    finished determining the login state.
+  */
+
+  if(!authStateKnown){
+
+    return;
+
+  }
+
+
+  const generation =
+    ++loadGeneration;
+
+
+  refreshBtn.disabled = true;
+
+  markAllBtn.disabled = true;
+
+
+  setStatus(
+    currentUser
+      ? "Loading your notifications…"
+      : "Loading public notifications…"
+  );
+
+
+  listBox.innerHTML = `
+
+    <div class="empty">
+      Loading notifications…
+    </div>
+
+  `;
+
+
+  const seen =
+    new Set();
+
+  const output =
+    [];
+
+  const collection =
+    db.collection("notifications");
+
+
+  const queries = [
+
+    collection.where(
+      "target",
+      "==",
+      "all"
+    ),
+
+    collection.where(
+      "target",
+      "==",
+      "everyone"
+    ),
+
+    collection.where(
+      "target",
+      "==",
+      "customers"
+    )
+
+  ];
+
+
+  /*
+    IMPORTANT:
+    These personal queries only run
+    after Firebase confirms the user.
+  */
+
+  if(currentUser){
+
+    queries.push(
+
+      collection.where(
+        "recipientId",
+        "==",
+        currentUser.uid
+      ),
+
+      collection.where(
+        "userId",
+        "==",
+        currentUser.uid
+      ),
+
+      collection.where(
+        "customerId",
+        "==",
+        currentUser.uid
+      )
+
+    );
+
+
+    if(currentUser.email){
+
+      const email =
+        currentUser.email
+          .toLowerCase()
+          .trim();
+
+
+      queries.push(
+
+        collection.where(
+          "recipientEmail",
+          "==",
+          email
+        ),
+
+        collection.where(
+          "email",
+          "==",
+          email
+        )
+
+      );
+
+    }
+
+  }
+
+
+  const results =
+    await Promise.all(
+
+      queries.map(function(query){
+
+        return queryNotifications(
+          query,
+          seen,
+          output
+        );
+
+      })
+
+    );
+
+
+  if(generation !== loadGeneration){
+
+    return;
+
+  }
+
+
+  output.sort(function(a,b){
+
+    return (
+      dateValue(b.data) -
+      dateValue(a.data)
+    );
+
+  });
+
+
+  notifications =
+    output;
+
+
+  render();
+
+
+  if(
+    results.some(function(result){
+      return !result;
+    }) &&
+    !output.length
+  ){
+
+    setStatus(
+      currentUser
+        ? "Notifications could not be read. Check your Firestore read permissions."
+        : "Public notifications could not be read. Check your Firestore read permissions.",
+      true
+    );
+
+  }
+
+
+  refreshBtn.disabled = false;
+
+}
+
+
+/* MARK ONE AS READ */
+
+async function markOne(
+  id,
+  button
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  const item =
+    notifications.find(function(notification){
+
+      return notification.id === id;
+
+    });
+
+
+  if(!item){
+
+    return;
+
+  }
+
+
+  if(button){
+
+    button.disabled = true;
+
+  }
+
+
+  try{
+
+    await db
+      .collection("notifications")
+      .doc(id)
+      .update({
+
+        readBy:
+          firebase.firestore.FieldValue
+            .arrayUnion(
+              currentUser.uid
+            )
+
+      });
+
+
+    item.data.readBy =
+      Array.isArray(item.data.readBy)
+        ? item.data.readBy
+        : [];
+
+
+    if(
+      !item.data.readBy.includes(
+        currentUser.uid
+      )
+    ){
+
+      item.data.readBy.push(
+        currentUser.uid
+      );
+
+    }
+
+
+    render();
+
+  }catch(error){
+
+    console.error(error);
+
+
+    if(button){
+
+      button.disabled = false;
+
+    }
+
+
+    setStatus(
+      "Could not mark this notification as read. Check your Firestore rules.",
+      true
+    );
+
+  }
+
+}
+
+
+/* MARK ALL AS READ */
+
+markAllBtn.onclick =
+  async function(){
+
+    if(!currentUser){
+
+      return;
+
+    }
+
+
+    const unread =
+      notifications.filter(function(item){
+
+        return !isRead(item.data);
+
+      });
+
+
+    if(!unread.length){
+
+      return;
+
+    }
+
+
+    markAllBtn.disabled = true;
+
+
+    setStatus(
+      "Marking notifications as read…"
+    );
+
+
+    const results =
+      await Promise.allSettled(
+
+        unread.map(function(item){
+
+          return db
+            .collection("notifications")
+            .doc(item.id)
+            .update({
+
+              readBy:
+                firebase.firestore.FieldValue
+                  .arrayUnion(
+                    currentUser.uid
+                  )
+
+            });
+
+        })
+
+      );
+
+
+    results.forEach(
+      function(result,index){
+
+        if(result.status === "fulfilled"){
+
+          const item =
+            unread[index];
+
+
+          item.data.readBy =
+            Array.isArray(
+              item.data.readBy
+            )
+              ? item.data.readBy
+              : [];
+
+
+          if(
+            !item.data.readBy.includes(
+              currentUser.uid
+            )
+          ){
+
+            item.data.readBy.push(
+              currentUser.uid
+            );
+
+          }
+
+        }
+
+      }
+    );
+
+
+    render();
+
+
+    if(
+      results.some(function(result){
+
+        return result.status === "rejected";
+
+      })
+    ){
+
+      setStatus(
+        "Some notifications could not be marked as read. Check your Firestore rules.",
+        true
+      );
+
+    }
+
+  };
+
+
+/* REFRESH */
+
+refreshBtn.onclick =
+  function(){
+
+    loadNotifications();
+
+  };
+
+
+/* SIDE MENU */
+
+const sideMenu =
+  document.getElementById("sideMenu");
+
+const overlay =
+  document.getElementById("overlay");
+
+
+document.getElementById("openMenu")
+  .onclick = function(){
+
+    sideMenu.classList.add("open");
+
+    overlay.classList.add("show");
+
+  };
+
+
+document.getElementById("closeMenu")
+  .onclick = function(){
+
+    sideMenu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+  };
+
+
+overlay.onclick =
+  function(){
+
+    sideMenu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+  };
+
+
+/*
+  CLOSE MENU WHEN A LINK IS CLICKED
+  ON MOBILE
+*/
+
+document
+  .querySelectorAll(".menu-links a")
+  .forEach(function(link){
+
+    link.addEventListener(
+      "click",
+      function(){
+
+        sideMenu.classList.remove("open");
+
+        overlay.classList.remove("show");
+
+      }
+    );
+
+  });
+
+
+/*
+  IMPORTANT AUTH FLOW
+
+  Firebase first determines whether
+  the customer is already signed in.
+
+  Only AFTER that do we load the
+  notifications.
+*/
+
+auth.onAuthStateChanged(
+  async function(user){
+
+    currentUser =
+      user || null;
+
+    authStateKnown = true;
+
+
+    /*
+      Load name, email and photo
+      from profiles/{uid}.
+    */
+
+    await loadMenuProfile(
+      currentUser
+    );
+
+
+    /*
+      Now load notifications using
+      the confirmed Firebase user.
+    */
+
+    await loadNotifications();
+
+  }
+);
+
 </script>
+
 </body>
 </html>
