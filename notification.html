@@ -333,7 +333,6 @@ footer{
   border:1px solid #263449;
   border-radius:14px;
   margin-bottom:18px;
-
   display:flex;
   align-items:center;
   gap:12px;
@@ -471,9 +470,7 @@ footer{
 
 </header>
 
-
 <div class="overlay" id="overlay"></div>
-
 
 <aside class="side-menu" id="sideMenu" aria-label="Main menu">
 
@@ -488,7 +485,6 @@ footer{
     </button>
 
   </div>
-
 
   <!-- PROFILE -->
 
@@ -512,11 +508,9 @@ footer{
 
   </div>
 
-
   <div class="menu-label">
     Main menu
   </div>
-
 
   <nav class="menu-links">
 
@@ -584,7 +578,6 @@ footer{
 
 </aside>
 
-
 <main>
 
   <div class="heading">
@@ -601,7 +594,6 @@ footer{
 
     </div>
 
-
     <div class="actions">
 
       <button class="btn" id="refreshBtn">
@@ -616,30 +608,23 @@ footer{
 
   </div>
 
-
   <div class="status" id="status">
     Checking your account…
   </div>
-
 
   <div class="list" id="notificationList"></div>
 
 </main>
 
-
 <footer>
   Danny Smart Power · Customer notifications
 </footer>
 
-
 <!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 
 <script>
 
@@ -663,41 +648,14 @@ const firebaseConfig = {
 
 };
 
-
 if(!firebase.apps.length){
 
   firebase.initializeApp(firebaseConfig);
 
 }
 
-
 const auth = firebase.auth();
-
 const db = firebase.firestore();
-
-
-/*
-  IMPORTANT:
-  Keep the Firebase login session available between pages.
-*/
-
-let authReady = false;
-
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-  .then(() => {
-
-    authReady = true;
-
-  })
-  .catch(error => {
-
-    console.warn(
-      "Firebase persistence could not be set:",
-      error
-    );
-
-  });
-
 
 const statusBox =
   document.getElementById("status");
@@ -720,14 +678,24 @@ const menuEmail =
 const menuPhotoContainer =
   document.getElementById("menuPhotoContainer");
 
-
 let currentUser = null;
-
 let notifications = [];
-
 let loadGeneration = 0;
-
 let authStateKnown = false;
+
+
+/* AUTH PERSISTENCE */
+
+auth.setPersistence(
+  firebase.auth.Auth.Persistence.LOCAL
+).catch(function(error){
+
+  console.warn(
+    "Firebase persistence error:",
+    error
+  );
+
+});
 
 
 /* STATUS */
@@ -742,7 +710,7 @@ function setStatus(message,error=false){
 }
 
 
-/* ESCAPE HTML */
+/* ESCAPE */
 
 function esc(value){
 
@@ -827,7 +795,7 @@ function dateValue(data){
 }
 
 
-/* READ STATUS */
+/* READ */
 
 function isRead(data){
 
@@ -847,7 +815,83 @@ function isRead(data){
 }
 
 
-/* NOTIFICATION VISIBILITY */
+/* GET PERSONAL UID VALUES */
+
+function matchesCurrentUser(data){
+
+  if(!currentUser){
+
+    return false;
+
+  }
+
+  const uid =
+    String(currentUser.uid || "")
+      .trim();
+
+  const email =
+    String(currentUser.email || "")
+      .toLowerCase()
+      .trim();
+
+
+  const ids = [
+
+    data.recipientId,
+    data.recipientUid,
+    data.userId,
+    data.customerId,
+    data.customerUid
+
+  ];
+
+
+  for(let i=0;i<ids.length;i++){
+
+    if(
+      ids[i] != null &&
+      String(ids[i]).trim() === uid
+    ){
+
+      return true;
+
+    }
+
+  }
+
+
+  const emails = [
+
+    data.recipientEmail,
+    data.email,
+    data.userEmail,
+    data.customerEmail
+
+  ];
+
+
+  for(let i=0;i<emails.length;i++){
+
+    if(
+      emails[i] != null &&
+      String(emails[i])
+        .toLowerCase()
+        .trim() === email
+    ){
+
+      return true;
+
+    }
+
+  }
+
+
+  return false;
+
+}
+
+
+/* VISIBILITY */
 
 function visible(data){
 
@@ -858,8 +902,8 @@ function visible(data){
 
 
   /*
-    Admin notifications must never
-    appear to customers.
+    Never show admin-only notifications
+    to customers.
   */
 
   if(target === "admin"){
@@ -888,59 +932,7 @@ function visible(data){
     Personal notification.
   */
 
-  if(!currentUser){
-
-    return false;
-
-  }
-
-
-  const uid =
-    currentUser.uid;
-
-  const email =
-    String(currentUser.email || "")
-      .toLowerCase()
-      .trim();
-
-
-  const userIds = [
-
-    data.recipientId,
-    data.userId,
-    data.customerId
-
-  ];
-
-
-  const userEmails = [
-
-    data.recipientEmail,
-    data.email
-
-  ];
-
-
-  return (
-
-    userIds.some(function(value){
-
-      return value === uid;
-
-    })
-
-  ) || (
-
-    userEmails.some(function(value){
-
-      return value &&
-        String(value)
-          .toLowerCase()
-          .trim() === email;
-
-    })
-
-  );
+  return matchesCurrentUser(data);
 
 }
 
@@ -955,11 +947,9 @@ function icon(data){
 
   }
 
-
   const type =
     String(data.type || "")
       .toLowerCase();
-
 
   if(type.includes("order")){
 
@@ -967,13 +957,11 @@ function icon(data){
 
   }
 
-
   if(type.includes("service")){
 
     return "⚡";
 
   }
-
 
   if(
     type.includes("chat") ||
@@ -983,7 +971,6 @@ function icon(data){
     return "💬";
 
   }
-
 
   return "🔔";
 
@@ -1011,8 +998,7 @@ async function loadMenuProfile(user){
 
 
   /*
-    First use Firebase Auth values
-    so the menu never stays blank.
+    Show Auth information immediately.
   */
 
   menuName.textContent =
@@ -1023,23 +1009,17 @@ async function loadMenuProfile(user){
     user.email ||
     "Signed in";
 
+  menuPhotoContainer.innerHTML =
+    '<div class="menu-profile-placeholder">👤</div>';
 
-  /*
-    Then load the actual profile document.
-
-    Expected document:
-
-    profiles
-       └── USER_UID
-
-    Fields:
-
-    fullName
-    email
-    photoURL
-  */
 
   try{
+
+    /*
+      Main profile location:
+
+      profiles/{AUTH UID}
+    */
 
     const profileSnap =
       await db
@@ -1057,6 +1037,7 @@ async function loadMenuProfile(user){
       const fullName =
         profile.fullName ||
         profile.name ||
+        profile.displayName ||
         user.displayName ||
         "My Account";
 
@@ -1071,6 +1052,9 @@ async function loadMenuProfile(user){
         profile.photoURL ||
         profile.photoUrl ||
         profile.profilePhoto ||
+        profile.profileImage ||
+        profile.photo ||
+        user.photoURL ||
         "";
 
 
@@ -1101,10 +1085,34 @@ async function loadMenuProfile(user){
 
         `;
 
-      }else{
+      }
 
-        menuPhotoContainer.innerHTML =
-          '<div class="menu-profile-placeholder">👤</div>';
+    }else{
+
+      /*
+        No Firestore profile yet.
+        Use Firebase Auth photo if available.
+      */
+
+      if(user.photoURL){
+
+        menuPhotoContainer.innerHTML = `
+
+          <img
+            class="menu-profile-photo"
+            src="${esc(user.photoURL)}"
+            alt="Profile photo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          >
+
+          <div
+            class="menu-profile-placeholder"
+            style="display:none;"
+          >
+            👤
+          </div>
+
+        `;
 
       }
 
@@ -1112,22 +1120,44 @@ async function loadMenuProfile(user){
 
   }catch(error){
 
-    console.warn(
-      "Could not load profile:",
+    console.error(
+      "Could not load customer profile:",
       error
     );
 
     /*
       Keep Auth information visible
-      if Firestore profile access fails.
+      if Firestore access fails.
     */
+
+    if(user.photoURL){
+
+      menuPhotoContainer.innerHTML = `
+
+        <img
+          class="menu-profile-photo"
+          src="${esc(user.photoURL)}"
+          alt="Profile photo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+        >
+
+        <div
+          class="menu-profile-placeholder"
+          style="display:none;"
+        >
+          👤
+        </div>
+
+      `;
+
+    }
 
   }
 
 }
 
 
-/* RENDER NOTIFICATIONS */
+/* RENDER */
 
 function render(){
 
@@ -1167,13 +1197,10 @@ function render(){
     setStatus(
 
       currentUser
-
         ? "You’re signed in. No notifications found."
-
         : "Browsing as a guest. Public announcements do not require sign-in."
 
     );
-
 
     return;
 
@@ -1242,7 +1269,6 @@ function render(){
 
             </div>
 
-
             ${
               currentUser && !read
 
@@ -1293,7 +1319,7 @@ function render(){
 }
 
 
-/* FIRESTORE QUERY */
+/* QUERY */
 
 async function queryNotifications(
   query,
@@ -1353,11 +1379,6 @@ async function queryNotifications(
 
 async function loadNotifications(){
 
-  /*
-    Do not load until Firebase has
-    finished determining the login state.
-  */
-
   if(!authStateKnown){
 
     return;
@@ -1370,14 +1391,15 @@ async function loadNotifications(){
 
 
   refreshBtn.disabled = true;
-
   markAllBtn.disabled = true;
 
 
   setStatus(
+
     currentUser
       ? "Loading your notifications…"
       : "Loading public notifications…"
+
   );
 
 
@@ -1399,6 +1421,10 @@ async function loadNotifications(){
   const collection =
     db.collection("notifications");
 
+
+  /*
+    PUBLIC QUERIES
+  */
 
   const queries = [
 
@@ -1424,35 +1450,53 @@ async function loadNotifications(){
 
 
   /*
-    IMPORTANT:
-    These personal queries only run
-    after Firebase confirms the user.
+    PERSONAL QUERIES
   */
 
   if(currentUser){
+
+    const uid =
+      currentUser.uid;
+
 
     queries.push(
 
       collection.where(
         "recipientId",
         "==",
-        currentUser.uid
+        uid
+      ),
+
+      collection.where(
+        "recipientUid",
+        "==",
+        uid
       ),
 
       collection.where(
         "userId",
         "==",
-        currentUser.uid
+        uid
       ),
 
       collection.where(
         "customerId",
         "==",
-        currentUser.uid
+        uid
+      ),
+
+      collection.where(
+        "customerUid",
+        "==",
+        uid
       )
 
     );
 
+
+    /*
+      Personal email notifications.
+    */
 
     if(currentUser.email){
 
@@ -1472,6 +1516,18 @@ async function loadNotifications(){
 
         collection.where(
           "email",
+          "==",
+          email
+        ),
+
+        collection.where(
+          "userEmail",
+          "==",
+          email
+        ),
+
+        collection.where(
+          "customerEmail",
           "==",
           email
         )
@@ -1531,10 +1587,13 @@ async function loadNotifications(){
   ){
 
     setStatus(
+
       currentUser
-        ? "Notifications could not be read. Check your Firestore read permissions."
-        : "Public notifications could not be read. Check your Firestore read permissions.",
+        ? "Notifications could not be read. Check your Firestore notification permissions."
+        : "Public notifications could not be read. Check your Firestore notification permissions.",
+
       true
+
     );
 
   }
@@ -1545,7 +1604,7 @@ async function loadNotifications(){
 }
 
 
-/* MARK ONE AS READ */
+/* MARK ONE */
 
 async function markOne(
   id,
@@ -1622,7 +1681,6 @@ async function markOne(
 
     console.error(error);
 
-
     if(button){
 
       button.disabled = false;
@@ -1640,7 +1698,7 @@ async function markOne(
 }
 
 
-/* MARK ALL AS READ */
+/* MARK ALL */
 
 markAllBtn.onclick =
   async function(){
@@ -1803,11 +1861,6 @@ overlay.onclick =
   };
 
 
-/*
-  CLOSE MENU WHEN A LINK IS CLICKED
-  ON MOBILE
-*/
-
 document
   .querySelectorAll(".menu-links a")
   .forEach(function(link){
@@ -1826,15 +1879,7 @@ document
   });
 
 
-/*
-  IMPORTANT AUTH FLOW
-
-  Firebase first determines whether
-  the customer is already signed in.
-
-  Only AFTER that do we load the
-  notifications.
-*/
+/* AUTH */
 
 auth.onAuthStateChanged(
   async function(user){
@@ -1845,20 +1890,10 @@ auth.onAuthStateChanged(
     authStateKnown = true;
 
 
-    /*
-      Load name, email and photo
-      from profiles/{uid}.
-    */
-
     await loadMenuProfile(
       currentUser
     );
 
-
-    /*
-      Now load notifications using
-      the confirmed Firebase user.
-    */
 
     await loadNotifications();
 
